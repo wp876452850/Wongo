@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="90" id="KGk-i7-Jjw" customClass="WPCommodityManagementTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="378" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="378" height="89"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="垃圾啥事都能看" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZg-TB-mWY">
+                        <rect key="frame" x="98" y="15" width="232" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="WAA-4e-Tuu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥186" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTp-SX-L5F">
+                        <rect key="frame" x="98" y="55" width="237" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="XOo-aO-eY4"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.99215686270000003" green="0.38823529410000002" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LII-q7-uAF">
+                        <rect key="frame" x="335" y="49" width="30" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="Gfq-aH-3GL"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="delete.png"/>
+                        <connections>
+                            <action selector="delete:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xrQ-CA-Klu"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="111.png" translatesAutoresizingMaskIntoConstraints="NO" id="jf8-vp-eAG">
+                        <rect key="frame" x="13" y="10" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="oFE-Wb-sX1"/>
+                            <constraint firstAttribute="width" constant="70" id="tDt-dA-vjC"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jf8-vp-eAG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4HY-ch-cyr"/>
+                    <constraint firstItem="wTp-SX-L5F" firstAttribute="top" secondItem="bZg-TB-mWY" secondAttribute="bottom" constant="20" id="5EI-gl-BGA"/>
+                    <constraint firstItem="jf8-vp-eAG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="AIg-Vt-wol"/>
+                    <constraint firstItem="LII-q7-uAF" firstAttribute="leading" secondItem="wTp-SX-L5F" secondAttribute="trailing" id="ATc-dT-PiM"/>
+                    <constraint firstItem="bZg-TB-mWY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="NKC-SW-aJv"/>
+                    <constraint firstItem="LII-q7-uAF" firstAttribute="bottom" secondItem="wTp-SX-L5F" secondAttribute="bottom" id="U8p-xa-5vo"/>
+                    <constraint firstItem="wTp-SX-L5F" firstAttribute="leading" secondItem="jf8-vp-eAG" secondAttribute="trailing" constant="15" id="euL-D5-D8C"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="bZg-TB-mWY" secondAttribute="trailing" constant="40" id="tfi-Yu-q5G"/>
+                    <constraint firstItem="bZg-TB-mWY" firstAttribute="leading" secondItem="jf8-vp-eAG" secondAttribute="trailing" constant="15" id="wYb-N2-KAv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="LII-q7-uAF" secondAttribute="trailing" constant="5" id="x2r-VI-PvS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="deleteButton" destination="LII-q7-uAF" id="8TK-B5-HM2"/>
+                <outlet property="goodsImage" destination="jf8-vp-eAG" id="YbW-n7-wVQ"/>
+                <outlet property="goodsName" destination="bZg-TB-mWY" id="WgS-GV-n69"/>
+                <outlet property="price" destination="wTp-SX-L5F" id="7gv-fX-MFs"/>
+            </connections>
+            <point key="canvasLocation" x="-190" y="22"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="111.png" width="132" height="132"/>
+        <image name="delete.png" width="21" height="26"/>
+    </resources>
+</document>

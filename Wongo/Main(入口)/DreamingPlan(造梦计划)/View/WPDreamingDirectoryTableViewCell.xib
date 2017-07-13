@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="148" id="KGk-i7-Jjw" customClass="WPDreamingDirectoryTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="405" height="148"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="405" height="148"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jCB-OP-zRf">
+                        <rect key="frame" x="5" y="3" width="395" height="142"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dreamingDirectory" translatesAutoresizingMaskIntoConstraints="NO" id="kO2-GX-g65">
+                        <rect key="frame" x="102" y="54" width="200" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="200" id="ORR-it-zYG"/>
+                            <constraint firstAttribute="height" constant="40" id="jg0-nM-y3h"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="六一儿童节" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5nc-oj-GoK">
+                        <rect key="frame" x="117" y="64" width="170" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Et3-0h-i4p"/>
+                            <constraint firstAttribute="width" constant="170" id="Njs-AQ-B3Y"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sc5-8d-yCZ">
+                        <rect key="frame" x="183.5" y="102" width="37.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5nc-oj-GoK" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NMY-8y-goj"/>
+                    <constraint firstItem="kO2-GX-g65" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OrH-rl-oGP"/>
+                    <constraint firstItem="Sc5-8d-yCZ" firstAttribute="top" secondItem="kO2-GX-g65" secondAttribute="bottom" constant="8" id="RNu-LW-gn5"/>
+                    <constraint firstAttribute="trailing" secondItem="jCB-OP-zRf" secondAttribute="trailing" constant="5" id="UoX-Mv-zGU"/>
+                    <constraint firstItem="5nc-oj-GoK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="V7y-fi-bda"/>
+                    <constraint firstAttribute="bottom" secondItem="jCB-OP-zRf" secondAttribute="bottom" constant="2.5" id="cEI-N9-4KR"/>
+                    <constraint firstItem="jCB-OP-zRf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2.5" id="eaa-HG-Cj0"/>
+                    <constraint firstItem="Sc5-8d-yCZ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="gEt-6z-LSO"/>
+                    <constraint firstItem="kO2-GX-g65" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="gqj-Ah-4OS"/>
+                    <constraint firstItem="jCB-OP-zRf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="tAd-Sw-sya"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bgImage" destination="jCB-OP-zRf" id="24j-YV-FyZ"/>
+                <outlet property="dreamingName" destination="5nc-oj-GoK" id="sSt-SH-SBq"/>
+                <outlet property="leftLabel" destination="Sc5-8d-yCZ" id="QKM-p9-Sot"/>
+            </connections>
+            <point key="canvasLocation" x="-88" y="-106"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="dreamingDirectory" width="138" height="27"/>
+    </resources>
+</document>

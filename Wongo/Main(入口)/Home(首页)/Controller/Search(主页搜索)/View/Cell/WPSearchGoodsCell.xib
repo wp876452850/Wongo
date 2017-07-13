@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WPSearchGoodsCell">
+            <rect key="frame" x="0.0" y="0.0" width="108" height="117"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="108" height="117"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bRA-OZ-XxK">
+                        <rect key="frame" x="0.0" y="0.0" width="108" height="97"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0m-Lo-bx3">
+                        <rect key="frame" x="0.0" y="97" width="108" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="qG6-nl-0eu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="G0m-Lo-bx3" secondAttribute="bottom" id="I3H-3u-UE3"/>
+                <constraint firstAttribute="trailing" secondItem="G0m-Lo-bx3" secondAttribute="trailing" id="Lfm-7o-Plp"/>
+                <constraint firstAttribute="trailing" secondItem="bRA-OZ-XxK" secondAttribute="trailing" id="N3i-OH-Wue"/>
+                <constraint firstItem="G0m-Lo-bx3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OVu-e8-ATY"/>
+                <constraint firstItem="bRA-OZ-XxK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Xds-Rs-7lr"/>
+                <constraint firstItem="G0m-Lo-bx3" firstAttribute="top" secondItem="bRA-OZ-XxK" secondAttribute="bottom" id="dwX-Cc-YET"/>
+                <constraint firstItem="bRA-OZ-XxK" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="v2S-bN-pUO"/>
+            </constraints>
+            <size key="customSize" width="108" height="117"/>
+            <connections>
+                <outlet property="goodsImage" destination="bRA-OZ-XxK" id="Fen-BN-5Z0"/>
+                <outlet property="goodsName" destination="G0m-Lo-bx3" id="xlJ-c3-bUp"/>
+            </connections>
+            <point key="canvasLocation" x="-303" y="-22"/>
+        </collectionViewCell>
+    </objects>
+</document>

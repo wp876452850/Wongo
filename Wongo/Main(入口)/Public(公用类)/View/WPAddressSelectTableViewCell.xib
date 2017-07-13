@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="WPAddressSelectTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="371" height="82"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUp-gL-RsQ">
+                        <rect key="frame" x="48" y="13" width="38" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="UxY-3x-x7P"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iYD-Bs-t0f">
+                        <rect key="frame" x="48" y="33" width="313" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="acZ-xz-L7V"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRi-tL-ERk">
+                        <rect key="frame" x="13" y="28" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="axD-Mr-IFg"/>
+                            <constraint firstAttribute="width" constant="25" id="fL1-NO-uac"/>
+                        </constraints>
+                        <connections>
+                            <action selector="selectButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tvo-J7-M6I"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电话:15659831869" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys7-wv-vqP">
+                        <rect key="frame" x="221" y="13" width="132" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Wb7-7a-dfS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ys7-wv-vqP" firstAttribute="top" secondItem="CUp-gL-RsQ" secondAttribute="top" id="Aes-qb-Seq"/>
+                    <constraint firstItem="NRi-tL-ERk" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FbL-sG-7sM"/>
+                    <constraint firstItem="iYD-Bs-t0f" firstAttribute="leading" secondItem="NRi-tL-ERk" secondAttribute="trailing" constant="10" id="HOP-5p-LLr"/>
+                    <constraint firstItem="iYD-Bs-t0f" firstAttribute="top" secondItem="Ys7-wv-vqP" secondAttribute="bottom" id="LvQ-Fq-rKx"/>
+                    <constraint firstItem="CUp-gL-RsQ" firstAttribute="leading" secondItem="NRi-tL-ERk" secondAttribute="trailing" constant="10" id="Msz-fR-LJ4"/>
+                    <constraint firstItem="CUp-gL-RsQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="bgH-RO-fI1"/>
+                    <constraint firstAttribute="trailing" secondItem="iYD-Bs-t0f" secondAttribute="trailing" constant="10" id="gJ7-bA-c4e"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Ys7-wv-vqP" secondAttribute="trailing" constant="10" id="tCL-xB-RUq"/>
+                    <constraint firstItem="NRi-tL-ERk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="zra-6c-w0J"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="address" destination="iYD-Bs-t0f" id="Omp-HU-hA0"/>
+                <outlet property="phoneNumber" destination="Ys7-wv-vqP" id="RJ5-Tl-CQd"/>
+                <outlet property="select" destination="NRi-tL-ERk" id="c3J-RQ-mqs"/>
+                <outlet property="userName" destination="CUp-gL-RsQ" id="r11-US-rm2"/>
+            </connections>
+            <point key="canvasLocation" x="-522" y="13"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="581" id="KGk-i7-Jjw" customClass="WPDreamingIntroduceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="328" height="581"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="328" height="580.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lvx-Ek-EtC">
+                        <rect key="frame" x="13" y="13" width="40" height="40"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.027798254719999999" blue="0.15242963640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="B2q-DP-f1k"/>
+                            <constraint firstAttribute="height" constant="40" id="Ckk-lo-WYE"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小柒球球多" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3a-26-8p2">
+                        <rect key="frame" x="63" y="23.5" width="182" height="20"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.027798254719999999" blue="0.15242963640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="f6U-dc-Ufz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10-15 20:17" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A2v-qd-1vy">
+                        <rect key="frame" x="245" y="23.5" width="80" height="20"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.027798254719999999" blue="0.15242963640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="bnR-OS-gkY"/>
+                            <constraint firstAttribute="width" constant="80" id="fkb-dm-vhR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="跑步机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYW-Vz-evm">
+                        <rect key="frame" x="13" y="68" width="302" height="20"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.027798254719999999" blue="0.15242963640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="bRN-RS-rhm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIX-bi-KtP">
+                        <rect key="frame" x="13" y="103" width="312" height="125.5"/>
+                        <color key="backgroundColor" red="0.99215686270000003" green="0.027798254719999999" blue="0.15242963640000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <string key="text">哇............................................................！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！好厉害的跑步机呀呀呀呀呀呀呀好厉害的跑步机呀呀呀呀呀呀呀好厉害的跑步机呀呀呀呀呀呀呀好厉害的跑步机呀呀呀呀呀呀呀好厉害的跑步机呀呀呀呀呀呀呀</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="50.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gc3-62-jO8">
+                        <rect key="frame" x="8" y="296" width="312" height="202"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.67786871839999996" green="0.99215686270000003" blue="0.12932491730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Lvx-Ek-EtC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="AVV-CV-sfD"/>
+                    <constraint firstItem="kIX-bi-KtP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="OBf-B9-I83"/>
+                    <constraint firstItem="KYW-Vz-evm" firstAttribute="top" secondItem="Lvx-Ek-EtC" secondAttribute="bottom" constant="15" id="OuZ-6Q-k15"/>
+                    <constraint firstItem="A2v-qd-1vy" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="WrJ-2h-ECT"/>
+                    <constraint firstItem="i3a-26-8p2" firstAttribute="centerY" secondItem="Lvx-Ek-EtC" secondAttribute="centerY" id="a31-gm-5tH"/>
+                    <constraint firstItem="kIX-bi-KtP" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="aRB-FY-dWM"/>
+                    <constraint firstItem="kIX-bi-KtP" firstAttribute="top" secondItem="KYW-Vz-evm" secondAttribute="bottom" constant="15" id="bxz-Kg-sJE"/>
+                    <constraint firstItem="Lvx-Ek-EtC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="c5c-On-PEU"/>
+                    <constraint firstItem="KYW-Vz-evm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="jmr-3y-NHD"/>
+                    <constraint firstItem="A2v-qd-1vy" firstAttribute="leading" secondItem="i3a-26-8p2" secondAttribute="trailing" id="lPd-b9-ARo"/>
+                    <constraint firstItem="A2v-qd-1vy" firstAttribute="centerY" secondItem="Lvx-Ek-EtC" secondAttribute="centerY" id="q2m-0L-Brj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="KYW-Vz-evm" secondAttribute="trailing" constant="5" id="sSd-Mb-HJ6"/>
+                    <constraint firstItem="i3a-26-8p2" firstAttribute="leading" secondItem="Lvx-Ek-EtC" secondAttribute="trailing" constant="10" id="uyd-hx-heV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="goodsImage" destination="gc3-62-jO8" id="uIi-XH-osa"/>
+                <outlet property="goodsIntroduce" destination="kIX-bi-KtP" id="alb-fF-YHg"/>
+                <outlet property="goodsName" destination="KYW-Vz-evm" id="urs-NW-Sw6"/>
+                <outlet property="headerView" destination="Lvx-Ek-EtC" id="xLR-ny-khu"/>
+                <outlet property="pushTime" destination="A2v-qd-1vy" id="Gdx-Vi-2hS"/>
+                <outlet property="userName" destination="i3a-26-8p2" id="gJO-M2-wlJ"/>
+            </connections>
+            <point key="canvasLocation" x="-42" y="123"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="1.png" width="69" height="70"/>
+        <image name="50.jpg" width="188" height="180"/>
+    </resources>
+</document>

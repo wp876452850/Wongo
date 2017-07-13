@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="WPExchangeCommentCell">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SrY-mr-WrV">
+                        <rect key="frame" x="13" y="19.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="9aj-jJ-TIV"/>
+                            <constraint firstAttribute="height" constant="40" id="PiW-3g-d2i"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8w-XV-ZNZ">
+                        <rect key="frame" x="63" y="47.5" width="38" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEh-Hq-evw">
+                        <rect key="frame" x="63" y="19.5" width="43" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="q2L-7F-Cap"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mq8-tc-4ca">
+                        <rect key="frame" x="331" y="19.5" width="36" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="81s-hR-Zw0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.41568627450000001" green="0.41568627450000001" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fEh-Hq-evw" firstAttribute="top" secondItem="SrY-mr-WrV" secondAttribute="top" id="B5Z-E1-TBB"/>
+                    <constraint firstItem="fEh-Hq-evw" firstAttribute="leading" secondItem="SrY-mr-WrV" secondAttribute="trailing" constant="10" id="JEd-s2-awc"/>
+                    <constraint firstItem="SrY-mr-WrV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Mw2-zS-6nZ"/>
+                    <constraint firstItem="P8w-XV-ZNZ" firstAttribute="leading" secondItem="SrY-mr-WrV" secondAttribute="trailing" constant="10" id="UaG-Pw-VAP"/>
+                    <constraint firstItem="mq8-tc-4ca" firstAttribute="top" secondItem="fEh-Hq-evw" secondAttribute="top" id="iCY-St-sfW"/>
+                    <constraint firstItem="mq8-tc-4ca" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="kvz-GA-BUP"/>
+                    <constraint firstItem="SrY-mr-WrV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="muv-f0-GaK"/>
+                    <constraint firstItem="P8w-XV-ZNZ" firstAttribute="top" secondItem="fEh-Hq-evw" secondAttribute="bottom" constant="8" id="ohd-zY-XA1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="comment" destination="P8w-XV-ZNZ" id="4Vq-DN-DRe"/>
+                <outlet property="time" destination="mq8-tc-4ca" id="37u-Mj-znD"/>
+                <outlet property="userImage" destination="SrY-mr-WrV" id="aw5-z7-Jgm"/>
+                <outlet property="userName" destination="fEh-Hq-evw" id="4UL-lg-xaD"/>
+            </connections>
+            <point key="canvasLocation" x="-447" y="-78"/>
+        </tableViewCell>
+    </objects>
+</document>

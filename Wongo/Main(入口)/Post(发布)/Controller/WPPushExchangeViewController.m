@@ -1,0 +1,263 @@
+//
+//  WPPushExchangeViewController.m
+//  Wongo
+//
+//  Created by rexsu on 2017/3/23.
+//  Copyright © 2017年 Winny. All rights reserved.
+//
+
+#import "WPPushExchangeViewController.h"
+#import "WPDreamingDataTableViewCell.h"
+#import "WPDreamingDescribeTableViewCell.h"
+#import "WPDremingImagesCellTableViewCell.h"
+#import "WPAddImagesButton.h"
+#import "WPRegionTableViewCell.h"
+#import "WPMyNavigationBar.h"
+#import "WPAddressSelectViewController.h"
+#import "WPSelectAlterView.h"
+
+#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"]
+
+static NSString * const dataCell        = @"DataCell";
+static NSString * const describeCell    = @"DescribeCell";
+static NSString * const imagesCell      = @"ImageCell";
+static NSString * const cell            = @"cell";
+
+@interface WPPushExchangeViewController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    //记录图片组单元格高度
+    CGFloat imagesCellHeight;
+    //记录数据组单元格高度
+    CGFloat dataCellHeight;
+    //记录描述组单元格高度
+    CGFloat describeCellHeight;
+    /////////////
+    ///物品信息///
+    ////////////
+    //商品名称
+    NSString * _name;
+    //商品描述
+    NSString * _describe;
+    //商品新旧程度
+    NSString * _newOrOld;
+    //商品价格
+    NSString * _price;
+    //库存
+    NSString * _inventory;
+    //种类
+    NSString * _species;
+    //种类id
+    NSString * _specieid;
+    //是否同意协议说明
+    BOOL       _isAgreed;
+    
+}
+@property (nonatomic,strong)UITableView * tableView;
+
+@property (nonatomic,strong)NSMutableArray * images;
+//自定义导航
+@property (nonatomic,strong)WPMyNavigationBar * nav;
+@end
+
+@implementation WPPushExchangeViewController
+
+-(WPMyNavigationBar *)nav{
+    if (!_nav) {
+        _nav = [[WPMyNavigationBar alloc]init];
+        _nav.title.text = @"发布宝贝";
+        [_nav.leftButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+        //_nav.leftButton.hidden = YES;
+        
+    }
+    return _nav;
+}
+-(UITableView *)tableView
+{
+    if (!_tableView) {
+        
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 114) style:UITableViewStylePlain];
+        //_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDataTableViewCell" bundle:nil] forCellReuseIdentifier:dataCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDescribeTableViewCell" bundle:nil] forCellReuseIdentifier:describeCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDremingImagesCellTableViewCell" bundle:nil] forCellReuseIdentifier:imagesCell];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell];
+        dataCellHeight = 50;
+        describeCellHeight = 130;
+    }
+    return _tableView;
+}
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = WhiteColor;
+    [self.view addSubview:self.nav];
+    [self.view addSubview:self.tableView];
+    self.images = [NSMutableArray arrayWithCapacity:3];
+    
+    UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.backgroundColor  = SelfOrangeColor;
+    [button setTitle:@"发布" forState:UIControlStateNormal];
+    button.titleLabel.font  = [UIFont systemFontOfSize:15];
+    [button addTarget:self action:@selector(goNextVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(WINDOW_WIDTH, 50));
+    }];
+}
+
+#pragma mark - 发布交换
+-(void)goNextVC{
+    __weak WPPushExchangeViewController * weakSelf = (WPPushExchangeViewController*)self;
+    if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_inventory.length!=0&&_newOrOld.length!=0) {
+        
+        NSString * timeStr = [self getNowTime];
+        
+        NSDictionary * params = @{@"pubtime":timeStr,@"gname":_name,@"remark":_describe,@"gcid":_specieid,@"price":@([_price floatValue]),@"repertory":@([_inventory integerValue]),@"neworold":_newOrOld,@"uid":[[NSUserDefaults standardUserDefaults]objectForKey:User_ID]};
+        
+        [WPNetWorking createPostRequestMenagerWithUrlString:PushExchangeUrl params:params datas:^(NSDictionary *responseObject) {
+            NSString * flag = [responseObject objectForKey:@"flag"];
+            if ([flag integerValue] == 1) {
+                //上传图片
+                [WPGCD createUpLoadImageGCDWithImages:weakSelf.images urlString:PushImageUrl params:@{@"gid":[responseObject objectForKey:@"gid"]}];
+                [self showAlertWithAlertTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+                }];
+                
+                
+            }
+            else{
+                [self showAlertWithAlertTitle:@"上传失败" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+            }
+        }];
+    }else{
+        [self showAlertWithAlertTitle:@"请输入完整的信息" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+}
+#pragma mark - UITableViewDelegate,UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return Push_Titles.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 1:
+        {
+            WPDreamingDescribeTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:describeCell forIndexPath:indexPath];
+            
+            [cell getDescribeBlockWithBlock:^(NSString *str) {
+                _describe = str;
+            }];
+            
+            return cell;
+        }
+            break;
+        case 2:
+        {
+            WPDremingImagesCellTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imagesCell forIndexPath:indexPath];
+            [cell.contentView removeAllSubviews];
+            cell.images = self.images;
+            imagesCellHeight = cell.rowHeight;
+            [cell getRowDataWithBlock:^(NSMutableArray *images, NSInteger heightRow) {
+                _images = images;
+                imagesCellHeight = heightRow;
+                [tableView reloadData];
+            }];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+            break;
+        case 4:case 5:
+        {
+            //跳转地址选择控制器
+            UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.textLabel.font = [UIFont systemFontOfSize:15];
+            cell.textLabel.text = Push_Titles[indexPath.row];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if (indexPath.row == 4) {
+                 if (_species) {
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],_species];
+                 }
+            }else{
+                if (_newOrOld) {
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],_newOrOld];
+                }
+            }
+
+            return cell;
+        }
+            break;
+    }
+    WPDreamingDataTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:dataCell forIndexPath:indexPath];
+    cell.data.superView     = self.view;
+    cell.name.text          = Push_Titles[indexPath.row];
+    cell.data.placeholder   = Section_0_Placeholder[indexPath.row];
+    if (indexPath.row == 3) {
+        cell.data.text = _price;
+        cell.data.keyboardType = UIKeyboardTypeDecimalPad;
+        [cell getTextFieldDataWithBlock:^(NSString *str) {
+            _price = cell.data.text;
+        }];
+    }
+    else if (indexPath.row == 6){
+        cell.data.text              = _inventory;
+        cell.data.openRisingView    = YES;
+        cell.data.keyboardType      = UIKeyboardTypeNumberPad;
+        [cell getTextFieldDataWithBlock:^(NSString *str) {
+            _inventory = cell.data.text;
+        }];
+    }else{
+        cell.data.text          = _name;
+        cell.data.keyboardType  = UIKeyboardTypeDefault;
+        [cell getTextFieldDataWithBlock:^(NSString *str) {
+            _name = cell.data.text;
+        }];
+
+    }
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row ==1) {
+        return describeCellHeight;
+    }
+    else if (indexPath.row == 2){
+        return imagesCellHeight;
+    }
+    return dataCellHeight;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{ 
+           if (indexPath.row == 4) {
+                WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string,NSString * gcid) {
+                    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
+                    
+                    _species = string;
+                    _specieid = gcid;
+                }];
+               [self.view addSubview:selectAlterView];
+            }else if (indexPath.row == 5){
+                WPSelectAlterView * selectAlterView = [WPSelectAlterView createArraySelectAlterWithFrame:self.view.frame array:@[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"] block:^(NSString *string,NSString * gcid) {
+                    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
+                    _newOrOld      = string;
+                }];
+                [self.view addSubview:selectAlterView];
+            }
+    
+    [self.view endEditing:YES];
+}
+
+
+@end

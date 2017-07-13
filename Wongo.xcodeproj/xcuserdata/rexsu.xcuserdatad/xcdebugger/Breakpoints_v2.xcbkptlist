@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/MyAddress/WPAddressEditViewController.m"
+            timestampString = "517395105.333387"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "-saveAddress"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[WPAddressEditViewController saveAddress]"
+                  moduleName = "Wongo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rexsu/Desktop/coding/Wongo/Wongo/Main(%E5%85%A5%E5%8F%A3)/Mine(%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83)/Controller/MyAddress/WPAddressEditViewController.m"
+                  timestampString = "517399120.958822"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "1176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__42-[WPAddressEditViewController saveAddress]_block_invoke.119"
+                  moduleName = "Wongo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rexsu/Desktop/coding/Wongo/Wongo/Main(%E5%85%A5%E5%8F%A3)/Mine(%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83)/Controller/MyAddress/WPAddressEditViewController.m"
+                  timestampString = "517399120.965178"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
