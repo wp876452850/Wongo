@@ -260,14 +260,14 @@ static NSString * const cell            = @"cell";
             
             _species = string;
             _specieid = gcid;
-        }];
+        } selectedCategoryName:_species];
         [self.view addSubview:selectAlterView];
     }else if (indexPath.row == 5){
         WPSelectAlterView * selectAlterView = [WPSelectAlterView createArraySelectAlterWithFrame:self.view.frame array:@[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"] block:^(NSString *string,NSString * gcid) {
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
             _newOrOld      = string;
-        }];
+        } selectedCategoryName:_newOrOld];
         [self.view addSubview:selectAlterView];
     }
     else if (indexPath.row == 7){

@@ -11,7 +11,27 @@
 typedef void(^SelectAlertBlock)(NSString * string,NSString * gcid);
 @interface WPSelectAlterView : UIView
 
-+(instancetype)createURLSelectAlterWithFrame:(CGRect)frame urlString:(NSString *)urlString params:(NSDictionary *)params block:(SelectAlertBlock)block;
-+(instancetype)createArraySelectAlterWithFrame:(CGRect)frame array:(NSArray *)array block:(SelectAlertBlock)block;
+/**
+ 网络请求分类
+
+ @param frame 控件frame
+ @param urlString 请求url
+ @param params 参数
+ @param block 点击类型返回数据
+ @param selectedCategoryName 已经选择的分类，如果没有传nil
+ @return id
+ */
++(instancetype)createURLSelectAlterWithFrame:(CGRect)frame urlString:(NSString *)urlString params:(NSDictionary *)params block:(SelectAlertBlock)block selectedCategoryName:(NSString *)selectedCategoryName;
+
+/**
+ 自定义分类
+
+ @param frame 控件frame
+ @param array 自定义分类数组
+ @param block 点击类型返回数据
+ @param selectedCategoryName 已经选择的分类，如果没有传nil
+ @return id
+ */
++(instancetype)createArraySelectAlterWithFrame:(CGRect)frame array:(NSArray *)array block:(SelectAlertBlock)block selectedCategoryName:(NSString *)selectedCategoryName;
 
 @end
