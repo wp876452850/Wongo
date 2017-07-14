@@ -11,7 +11,7 @@
 #import "WPPushExchangeViewController.h"
 #import "WPPushDreamingViewController.h"
 
-#define PushTypeTitle   @[@"发布交换",@"发布造梦"]
+#define PushTypeTitle   @[@"发布",@"造梦计划"]
 #define PushButtonIcon  @[@"pushExchange",@"pushDreaming"]
 
 @interface WPPublishViewController ()
@@ -83,6 +83,14 @@
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
         [button setBackgroundImage:[UIImage imageNamed:PushButtonIcon[i]] forState:UIControlStateNormal];
+        
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH/3, 30)];
+        label.top = button.bottom+10;
+        label.centerX = button.centerX;
+        label.textColor = WhiteColor;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.text = PushTypeTitle[i];
+        [self.view addSubview:label];
     }
 }
 

@@ -138,8 +138,9 @@ static SelectAlertBlock _selectAlertBlock;
     [cell.selectButton setTitle:_dataSource[indexPath.section][indexPath.row] forState:UIControlStateNormal];
     return cell;
 }
+
 //section大小
--(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
     CGSize size = {WINDOW_WIDTH, 30};
     return size;
@@ -155,4 +156,7 @@ static SelectAlertBlock _selectAlertBlock;
     _selectAlertBlock(_dataSource[indexPath.section][indexPath.row],_gcids[indexPath.section][indexPath.row]);
     [self tap];
 }
+
+
+
 @end

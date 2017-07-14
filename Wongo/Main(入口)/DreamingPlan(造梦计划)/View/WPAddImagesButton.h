@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^BackImageBlock)(UIImage * image);
+typedef void(^BackImageBlock)(NSArray * images);
 
 
 @interface WPAddImagesButton : UIButton

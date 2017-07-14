@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIButton       *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton       *leftButton;
 @property (weak, nonatomic) IBOutlet UILabel        *transactionStatus;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidth;
 
 @end
 @implementation WPExchangeOrderCell
@@ -36,6 +38,7 @@
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     UITapGestureRecognizer * myImageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(myImageClick:)];
     UITapGestureRecognizer * otherImageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(otherImageClick:)];

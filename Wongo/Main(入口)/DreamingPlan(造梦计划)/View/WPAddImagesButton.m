@@ -10,11 +10,11 @@
 #import "SKFCamera.h"
 #import "WPPhotoLibrary.h"
 #import "WPPushExchangeViewController.h"
+#define MaxImageCount 10
 
 
 
-
-@interface WPAddImagesButton ()<WPPhotoLibraryDelegate>
+@interface WPAddImagesButton ()<UIActionSheetDelegate, TZImagePickerControllerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 {
     BackImageBlock _backBlock;
 }
@@ -75,20 +75,17 @@
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
     {
-        WPPhotoLibrary * photoLibrary = [[WPPhotoLibrary alloc]initWithCurrentView:self];
-        photoLibrary.photoDelegate = self;
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:MaxImageCount delegate:self];
+        [[self findViewController:self]presentViewController:imagePickerVc animated:YES completion:nil];
+    }else{
+        [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"请打开允许访问相册权限" preferredStyle:UIAlertControllerStyleActionSheet actionTitles:@[@"确定"]];
     }
 }
 
--(void)getSelectPhotoWithImage:(UIImage *)image
-{
-    if (_backBlock) {
-        _backBlock(image);
-    }
-#warning 后期上传服务器
+// 相册选的图片
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
+    _backBlock(photos);
 }
-
-
 -(void)getSelectPhotoWithBlock:(BackImageBlock)block{
     _backBlock = block;
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="389" height="310"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="389" height="309.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="389" height="310"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l7J-dt-1in">
@@ -152,6 +152,8 @@
             <connections>
                 <outlet property="goodsName" destination="26t-ar-u57" id="fMp-UP-pGS"/>
                 <outlet property="goodsPrice" destination="rYo-7Y-kKI" id="Wcg-hj-58g"/>
+                <outlet property="imageHeight" destination="c0e-OA-hf9" id="QUY-cb-VwB"/>
+                <outlet property="imageWidth" destination="DQ5-Wn-tIb" id="Uaa-ih-x8q"/>
                 <outlet property="leftButton" destination="1v0-YE-geL" id="8ax-Ma-DTg"/>
                 <outlet property="myGoodsImage" destination="l7J-dt-1in" id="gOR-Hm-101"/>
                 <outlet property="partnerGoodsImage" destination="IfO-Oy-2Hp" id="Ejz-9j-B1I"/>
@@ -160,7 +162,7 @@
                 <outlet property="rightButton" destination="765-m8-U5G" id="xMU-CQ-cAD"/>
                 <outlet property="transactionStatus" destination="xZZ-j8-J6c" id="0wD-La-7Vn"/>
             </connections>
-            <point key="canvasLocation" x="-73" y="-37"/>
+            <point key="canvasLocation" x="-182" y="-34"/>
         </tableViewCell>
     </objects>
     <resources>

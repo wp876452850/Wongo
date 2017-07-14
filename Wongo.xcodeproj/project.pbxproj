@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		28D099FA71FBF94054BCA0CF /* libPods-Wongo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC6F344167E7C137723A0A1 /* libPods-Wongo.a */; };
+		3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E01F18A7F70084E409 /* TZAssetCell.m */; };
+		3D0772F31F18A7F70084E409 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E21F18A7F70084E409 /* TZAssetModel.m */; };
+		3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E41F18A7F70084E409 /* TZImageManager.m */; };
+		3D0772F51F18A7F70084E409 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D0772E51F18A7F70084E409 /* TZImagePickerController.bundle */; };
+		3D0772F61F18A7F70084E409 /* TZImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E71F18A7F70084E409 /* TZImagePickerController.m */; };
+		3D0772F71F18A7F70084E409 /* TZPhotoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E91F18A7F70084E409 /* TZPhotoPickerController.m */; };
+		3D0772F81F18A7F70084E409 /* TZPhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772EB1F18A7F70084E409 /* TZPhotoPreviewCell.m */; };
+		3D0772F91F18A7F70084E409 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772ED1F18A7F70084E409 /* TZPhotoPreviewController.m */; };
+		3D0772FA1F18A7F70084E409 /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772EF1F18A7F70084E409 /* TZVideoPlayerController.m */; };
+		3D0772FB1F18A7F70084E409 /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772F11F18A7F70084E409 /* UIView+Layout.m */; };
+		3D0773041F18AF560084E409 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772FE1F18AF560084E409 /* SDBrowserImageView.m */; };
+		3D0773051F18AF560084E409 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773001F18AF560084E409 /* SDPhotoBrowser.m */; };
+		3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773031F18AF560084E409 /* SDWaitingView.m */; };
 		3D13B8251F16227000C1A20F /* WPBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13B8241F16227000C1A20F /* WPBezierPath.m */; };
 		3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */; };
 		3D2F20E41EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */; };
@@ -572,6 +585,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D0772DF1F18A7F70084E409 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
+		3D0772E01F18A7F70084E409 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
+		3D0772E11F18A7F70084E409 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
+		3D0772E21F18A7F70084E409 /* TZAssetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetModel.m; sourceTree = "<group>"; };
+		3D0772E31F18A7F70084E409 /* TZImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImageManager.h; sourceTree = "<group>"; };
+		3D0772E41F18A7F70084E409 /* TZImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImageManager.m; sourceTree = "<group>"; };
+		3D0772E51F18A7F70084E409 /* TZImagePickerController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TZImagePickerController.bundle; sourceTree = "<group>"; };
+		3D0772E61F18A7F70084E409 /* TZImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZImagePickerController.h; sourceTree = "<group>"; };
+		3D0772E71F18A7F70084E409 /* TZImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZImagePickerController.m; sourceTree = "<group>"; };
+		3D0772E81F18A7F70084E409 /* TZPhotoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPickerController.h; sourceTree = "<group>"; };
+		3D0772E91F18A7F70084E409 /* TZPhotoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPickerController.m; sourceTree = "<group>"; };
+		3D0772EA1F18A7F70084E409 /* TZPhotoPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewCell.h; sourceTree = "<group>"; };
+		3D0772EB1F18A7F70084E409 /* TZPhotoPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewCell.m; sourceTree = "<group>"; };
+		3D0772EC1F18A7F70084E409 /* TZPhotoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZPhotoPreviewController.h; sourceTree = "<group>"; };
+		3D0772ED1F18A7F70084E409 /* TZPhotoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZPhotoPreviewController.m; sourceTree = "<group>"; };
+		3D0772EE1F18A7F70084E409 /* TZVideoPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZVideoPlayerController.h; sourceTree = "<group>"; };
+		3D0772EF1F18A7F70084E409 /* TZVideoPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZVideoPlayerController.m; sourceTree = "<group>"; };
+		3D0772F01F18A7F70084E409 /* UIView+Layout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Layout.h"; sourceTree = "<group>"; };
+		3D0772F11F18A7F70084E409 /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
+		3D0772FD1F18AF560084E409 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		3D0772FE1F18AF560084E409 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		3D0772FF1F18AF560084E409 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		3D0773001F18AF560084E409 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		3D0773011F18AF560084E409 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		3D0773021F18AF560084E409 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		3D0773031F18AF560084E409 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		3D13B8231F16227000C1A20F /* WPBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBezierPath.h; sourceTree = "<group>"; };
 		3D13B8241F16227000C1A20F /* WPBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBezierPath.m; sourceTree = "<group>"; };
 		3D2F20E01EEA4DD900045EF8 /* LYWanGaoUserAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWanGaoUserAgreementController.h; sourceTree = "<group>"; };
@@ -1550,6 +1589,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D0772DE1F18A7F70084E409 /* TZImagePickerController(相册多选） */ = {
+			isa = PBXGroup;
+			children = (
+				3D0772DF1F18A7F70084E409 /* TZAssetCell.h */,
+				3D0772E01F18A7F70084E409 /* TZAssetCell.m */,
+				3D0772E11F18A7F70084E409 /* TZAssetModel.h */,
+				3D0772E21F18A7F70084E409 /* TZAssetModel.m */,
+				3D0772E31F18A7F70084E409 /* TZImageManager.h */,
+				3D0772E41F18A7F70084E409 /* TZImageManager.m */,
+				3D0772E51F18A7F70084E409 /* TZImagePickerController.bundle */,
+				3D0772E61F18A7F70084E409 /* TZImagePickerController.h */,
+				3D0772E71F18A7F70084E409 /* TZImagePickerController.m */,
+				3D0772E81F18A7F70084E409 /* TZPhotoPickerController.h */,
+				3D0772E91F18A7F70084E409 /* TZPhotoPickerController.m */,
+				3D0772EA1F18A7F70084E409 /* TZPhotoPreviewCell.h */,
+				3D0772EB1F18A7F70084E409 /* TZPhotoPreviewCell.m */,
+				3D0772EC1F18A7F70084E409 /* TZPhotoPreviewController.h */,
+				3D0772ED1F18A7F70084E409 /* TZPhotoPreviewController.m */,
+				3D0772EE1F18A7F70084E409 /* TZVideoPlayerController.h */,
+				3D0772EF1F18A7F70084E409 /* TZVideoPlayerController.m */,
+				3D0772F01F18A7F70084E409 /* UIView+Layout.h */,
+				3D0772F11F18A7F70084E409 /* UIView+Layout.m */,
+			);
+			name = "TZImagePickerController(相册多选）";
+			path = TZImagePickerController;
+			sourceTree = "<group>";
+		};
+		3D0772FC1F18AF560084E409 /* SDPhotoBrowser(图片浏览器) */ = {
+			isa = PBXGroup;
+			children = (
+				3D0772FD1F18AF560084E409 /* SDBrowserImageView.h */,
+				3D0772FE1F18AF560084E409 /* SDBrowserImageView.m */,
+				3D0772FF1F18AF560084E409 /* SDPhotoBrowser.h */,
+				3D0773001F18AF560084E409 /* SDPhotoBrowser.m */,
+				3D0773011F18AF560084E409 /* SDPhotoBrowserConfig.h */,
+				3D0773021F18AF560084E409 /* SDWaitingView.h */,
+				3D0773031F18AF560084E409 /* SDWaitingView.m */,
+			);
+			name = "SDPhotoBrowser(图片浏览器)";
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		3D13B8221F16222900C1A20F /* WPBezier(画线) */ = {
 			isa = PBXGroup;
 			children = (
@@ -2925,6 +3006,8 @@
 		8566A7221E4824EF00C08624 /* Third(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				3D0772FC1F18AF560084E409 /* SDPhotoBrowser(图片浏览器) */,
+				3D0772DE1F18A7F70084E409 /* TZImagePickerController(相册多选） */,
 				853B7AE41E9CBBBA008BAA4D /* MJExtension */,
 				852A68681E669EB100318F4A /* UILabel+YBAttributeTextTapAction(富文本) */,
 				854E04281E7780A400FEE59D /* WPProgressView(环状进度条) */,
@@ -4307,6 +4390,7 @@
 				85187F231E8DFA1800D3D64F /* dropdown_anim__00023@2x.png in Resources */,
 				85187F161E8DFA1800D3D64F /* Contents.json in Resources */,
 				85187F151E8DFA1800D3D64F /* dropdown_anim__00017@2x.png in Resources */,
+				3D0772F51F18A7F70084E409 /* TZImagePickerController.bundle in Resources */,
 				85F08EEA1E4848A000A07451 /* search.png in Resources */,
 				85187F221E8DFA1800D3D64F /* Contents.json in Resources */,
 				8532813A1E5EBAF9001AAAB1 /* WPFansTableViewCell.xib in Resources */,
@@ -4610,11 +4694,13 @@
 				852D0D8A1E5A990200B8EE93 /* WPSearchUserModel.m in Sources */,
 				852D0D871E5A98EC00B8EE93 /* WPSearchGoodsModel.m in Sources */,
 				855C97151E640C300089EF32 /* WPDreamingDetailViewController.m in Sources */,
+				3D0772FB1F18A7F70084E409 /* UIView+Layout.m in Sources */,
 				85187E421E8DF94B00D3D64F /* WPAnimationHeader.m in Sources */,
 				85187E361E8DF19300D3D64F /* MJRefreshGifHeader.m in Sources */,
 				85F08E901E482E3E00A07451 /* SDWebImageDecoder.m in Sources */,
 				854B28FF1E7B75B300289554 /* WPExchangeDetailModel.m in Sources */,
 				853B7B061E9CBBBA008BAA4D /* MJExtensionConst.m in Sources */,
+				3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */,
 				8525A6B71E9DCDA200FF0917 /* WPChoiceSubCollectionView.m in Sources */,
 				8566A89E1E48281500C08624 /* WPMyShopViewController.m in Sources */,
 				8566A8891E48281500C08624 /* WPCommodityManagementViewController.m in Sources */,
@@ -4622,6 +4708,7 @@
 				8566A7A91E48265C00C08624 /* MASConstraintMaker.m in Sources */,
 				85C748F71E7FD3BD000E1B65 /* AFURLSessionManager.m in Sources */,
 				85DA3AD91EA0CE320075ABB6 /* WPEnjoyViewController.m in Sources */,
+				3D0772F61F18A7F70084E409 /* TZImagePickerController.m in Sources */,
 				85187E381E8DF19300D3D64F /* MJRefreshStateHeader.m in Sources */,
 				8566A7A61E48265C00C08624 /* CityPickView.m in Sources */,
 				8566A8961E48281500C08624 /* WPAddressTableViewCell.m in Sources */,
@@ -4655,6 +4742,7 @@
 				85335C2C1ED52C11007C95A4 /* UIView+SDAutoLayout.m in Sources */,
 				85C748FE1E7FD3BD000E1B65 /* UIButton+AFNetworking.m in Sources */,
 				853B7B0F1E9CBBBA008BAA4D /* NSString+MJExtension.m in Sources */,
+				3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */,
 				85F08E931E482E3E00A07451 /* SDWebImageManager.m in Sources */,
 				85F08E8D1E482E3E00A07451 /* NSData+ImageContentType.m in Sources */,
 				85F08E991E482E3F00A07451 /* UIImageView+HighlightedWebCache.m in Sources */,
@@ -4703,12 +4791,14 @@
 				854389EB1E51AE0A00B84CCB /* WPSearchGuideViewController.m in Sources */,
 				85187E341E8DF19300D3D64F /* MJRefreshBackNormalFooter.m in Sources */,
 				854196251E554B6E002210C7 /* WPSearchNavigationBar.m in Sources */,
+				3D0772F31F18A7F70084E409 /* TZAssetModel.m in Sources */,
 				8594C1161EA8A039006F028B /* Order.m in Sources */,
 				85335C2B1ED52C11007C95A4 /* UITableView+SDAutoTableViewCellHeight.m in Sources */,
 				8566A8A01E48281500C08624 /* WPMyViewController.m in Sources */,
 				85F08E9B1E482E3F00A07451 /* UIView+WebCacheOperation.m in Sources */,
 				854B290D1E7B86C200289554 /* WPUserIntroductionModel.m in Sources */,
 				8566A7D71E48265C00C08624 /* TOCropScrollView.m in Sources */,
+				3D0772F71F18A7F70084E409 /* TZPhotoPickerController.m in Sources */,
 				853B7B0D1E9CBBBA008BAA4D /* NSObject+MJKeyValue.m in Sources */,
 				3DFDCCFA1EE4EB95000249F7 /* LYDreamSubjectCell.m in Sources */,
 				85187E311E8DF19300D3D64F /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -4735,6 +4825,7 @@
 				8536A3C01E763D3800B09985 /* WPDreamingModel.m in Sources */,
 				85C748FF1E7FD3BD000E1B65 /* UIImageView+AFNetworking.m in Sources */,
 				85C748F61E7FD3BD000E1B65 /* AFURLResponseSerialization.m in Sources */,
+				3D0773051F18AF560084E409 /* SDPhotoBrowser.m in Sources */,
 				85067BF51E8CE9AF0044E555 /* WPMyShopUserInformationView.m in Sources */,
 				85187E321E8DF19300D3D64F /* MJRefreshAutoStateFooter.m in Sources */,
 				858C45F11E67BD75005C8029 /* UILabel+WPCategory.m in Sources */,
@@ -4766,6 +4857,7 @@
 				85187E2C1E8DF19300D3D64F /* MJRefreshBackFooter.m in Sources */,
 				8566A7AC1E48265C00C08624 /* MASViewConstraint.m in Sources */,
 				8566A7EF1E4826C900C08624 /* NSString+AutoSize.m in Sources */,
+				3D0772F81F18A7F70084E409 /* TZPhotoPreviewCell.m in Sources */,
 				8566A7DA1E48265C00C08624 /* TOCropViewController.m in Sources */,
 				853B7B031E9CBBBA008BAA4D /* MJExtension-dummy.m in Sources */,
 				8597EFB11E8A3CD7001E1BA5 /* WPGCD.m in Sources */,
@@ -4812,13 +4904,16 @@
 				8566A88F1E48281500C08624 /* WPRegionTableViewCell.m in Sources */,
 				8566A7DC1E48265C00C08624 /* TOCropViewControllerTransitioning.m in Sources */,
 				852695091E4AC1880056EEE3 /* WPHomeReusableModel.m in Sources */,
+				3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */,
 				85F08E8F1E482E3E00A07451 /* SDWebImageCompat.m in Sources */,
 				8566A7DD1E48265C00C08624 /* UIImage+CropRotate.m in Sources */,
 				852F80DD1E825E9300D0AB48 /* WPExchangeOrderModel.m in Sources */,
 				85187E2F1E8DF19300D3D64F /* MJRefreshHeader.m in Sources */,
 				852BF6C51ECD3F3000C38E90 /* WPClassificationView.m in Sources */,
+				3D0773041F18AF560084E409 /* SDBrowserImageView.m in Sources */,
 				8526950F1E4AEE720056EEE3 /* UIView+Extension.m in Sources */,
 				85187E3B1E8DF19300D3D64F /* NSBundle+MJRefresh.m in Sources */,
+				3D0772F91F18A7F70084E409 /* TZPhotoPreviewController.m in Sources */,
 				851E361D1EC4473A00C48AEF /* WPDreamingGoodsIntroduceModel.m in Sources */,
 				8597EFB81E8A4E3E001E1BA5 /* WPProductParametersCell.m in Sources */,
 				85A641981EC58E88008BDD60 /* WPMyDreamingViewController.m in Sources */,
@@ -4834,6 +4929,7 @@
 				8594C1111EA88AAB006F028B /* RSADataSigner.m in Sources */,
 				8566A89D1E48281500C08624 /* WPOrderDetailViewController.m in Sources */,
 				85C748F31E7FD3BD000E1B65 /* AFNetworkReachabilityManager.m in Sources */,
+				3D0772FA1F18A7F70084E409 /* TZVideoPlayerController.m in Sources */,
 				85067BF81E8CF14C0044E555 /* WPMyShopUserInformationModel.m in Sources */,
 				851B77D91E8B46BB007D8315 /* WPSelectExchangeGoodsCell.m in Sources */,
 				8566A8AE1E48285800C08624 /* LoginViewController.m in Sources */,

@@ -35,6 +35,8 @@
 #import "MJRefresh.h"
 #import "MJExtension.h"
 #import "WPBezierPath.h"
+#import "TZImagePickerController.h"
+#import "SDPhotoBrowser.h"
 
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>
