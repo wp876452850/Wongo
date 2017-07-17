@@ -27,7 +27,12 @@
     }
     return self;
 }
-
+-(instancetype)init{
+    if (self) {
+        [self createDeleteBtn];
+    }
+    return self;
+}
 -(void)createDeleteBtn{
     self.userInteractionEnabled = YES;
     UIButton * deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];

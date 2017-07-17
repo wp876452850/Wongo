@@ -74,7 +74,7 @@ static SelectAlertBlock _selectAlertBlock;
     }
     return self;
 }
-
+//自定义分类
 +(instancetype)createArraySelectAlterWithFrame:(CGRect)frame array:(NSArray *)array block:(SelectAlertBlock)block selectedCategoryName:(NSString *)selectedCategoryName{
     WPSelectAlterView * selectAlterView = [[WPSelectAlterView alloc]initWithFrame:frame];
     selectAlterView.selectCategoryName = selectedCategoryName;
@@ -83,7 +83,7 @@ static SelectAlertBlock _selectAlertBlock;
     _selectAlertBlock = block;
     return selectAlterView;
 }
-
+//服务器定义分类
 +(instancetype)createURLSelectAlterWithFrame:(CGRect)frame urlString:(NSString *)urlString params:(NSDictionary *)params block:(SelectAlertBlock)block selectedCategoryName:(NSString *)selectedCategoryName
 {
     WPSelectAlterView * selectAlterView = [[WPSelectAlterView alloc]initWithFrame:frame];
@@ -92,14 +92,20 @@ static SelectAlertBlock _selectAlertBlock;
     _selectAlertBlock = block;
     return selectAlterView;
 }
-
+//请求分类数据
 -(void)loadDatasWithUrlString:(NSString *)urlString params:(NSDictionary *)params{
     [WPNetWorking createPostRequestMenagerWithUrlString:urlString params:params datas:^(NSDictionary *responseObject) {
         NSArray * dataSource = [responseObject objectForKey:@"goodClass"];
+        NSMutableArray * dataSourceTitle = [ NSMutableArray arrayWithCapacity:3];
+        NSMutableArray * gcids           = [ NSMutableArray arrayWithCapacity:3];
+        
         for (NSDictionary *dic in dataSource) {
-            [_gcids addObject:[dic objectForKey:@"gcid"]];
-            [_dataSource addObject:[dic objectForKey:@"gcname"]];
+            [gcids addObject:[dic objectForKey:@"gcid"]];
+            [dataSourceTitle addObject:[dic objectForKey:@"gcname"]];
         }
+        [_dataSource addObject:dataSourceTitle];
+        [_gcids addObject:gcids];
+        [_collectionView reloadData];
     }];
 }
 
@@ -153,6 +159,7 @@ static SelectAlertBlock _selectAlertBlock;
     }
     WPSelectAlterViewCell * cell = (WPSelectAlterViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.selectButton.selected = !cell.selectButton.selected;
+    
     _selectAlertBlock(_dataSource[indexPath.section][indexPath.row],_gcids[indexPath.section][indexPath.row]);
     [self tap];
 }

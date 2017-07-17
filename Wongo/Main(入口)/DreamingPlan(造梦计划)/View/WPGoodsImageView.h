@@ -12,6 +12,6 @@ typedef void(^DeleteGoodsImage)(void);
 
 @interface WPGoodsImageView : UIImageView
 
-
+-(void)createDeleteBtn;
 -(void)getBlock:(DeleteGoodsImage)block;
 @end

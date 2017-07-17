@@ -237,7 +237,8 @@ static NSString * const cell            = @"cell";
     return dataCellHeight;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{ 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
            if (indexPath.row == 4) {
                 WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string,NSString * gcid) {
                     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -256,6 +257,10 @@ static NSString * const cell            = @"cell";
                 [self.view addSubview:selectAlterView];
             }
     
+    [self.view endEditing:YES];
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
 

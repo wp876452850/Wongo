@@ -21,6 +21,8 @@
 		3D0773041F18AF560084E409 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772FE1F18AF560084E409 /* SDBrowserImageView.m */; };
 		3D0773051F18AF560084E409 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773001F18AF560084E409 /* SDPhotoBrowser.m */; };
 		3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773031F18AF560084E409 /* SDWaitingView.m */; };
+		3D07730A1F18BAEF0084E409 /* WPPushImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */; };
+		3D07730B1F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */; };
 		3D13B8251F16227000C1A20F /* WPBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13B8241F16227000C1A20F /* WPBezierPath.m */; };
 		3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */; };
 		3D2F20E41EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */; };
@@ -611,6 +613,9 @@
 		3D0773011F18AF560084E409 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		3D0773021F18AF560084E409 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		3D0773031F18AF560084E409 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		3D0773071F18BAEF0084E409 /* WPPushImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPushImageCollectionViewCell.h; sourceTree = "<group>"; };
+		3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPushImageCollectionViewCell.m; sourceTree = "<group>"; };
+		3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPushImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D13B8231F16227000C1A20F /* WPBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBezierPath.h; sourceTree = "<group>"; };
 		3D13B8241F16227000C1A20F /* WPBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBezierPath.m; sourceTree = "<group>"; };
 		3D2F20E01EEA4DD900045EF8 /* LYWanGaoUserAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWanGaoUserAgreementController.h; sourceTree = "<group>"; };
@@ -3318,6 +3323,9 @@
 				3DFDDA9E1F175A1000EF799F /* WPSelectAlterViewCell.h */,
 				3DFDDA9F1F175A1000EF799F /* WPSelectAlterViewCell.m */,
 				3DFDDAA01F175A1000EF799F /* WPSelectAlterViewCell.xib */,
+				3D0773071F18BAEF0084E409 /* WPPushImageCollectionViewCell.h */,
+				3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */,
+				3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4490,6 +4498,7 @@
 				85CF0F4C1E52F3AD00013DD9 /* WPSearchGoodsCell.xib in Resources */,
 				85D1FFA11E52B64E003141A3 /* 30.jpg in Resources */,
 				85F08EEC1E4848A000A07451 /* delete.png in Resources */,
+				3D07730B1F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib in Resources */,
 				85187F381E8DFA1800D3D64F /* Contents.json in Resources */,
 				85187F241E8DFA1800D3D64F /* Contents.json in Resources */,
 				85D1FFB81E52B7C5003141A3 /* 200.jpg in Resources */,
@@ -4945,6 +4954,7 @@
 				853B7B081E9CBBBA008BAA4D /* MJProperty.m in Sources */,
 				85F08F141E48504C00A07451 /* TAAbstractDotView.m in Sources */,
 				85F08E8C1E482E3E00A07451 /* MKAnnotationView+WebCache.m in Sources */,
+				3D07730A1F18BAEF0084E409 /* WPPushImageCollectionViewCell.m in Sources */,
 				85FB6C5D1E83CDE700520C0D /* WPAddressSelectModel.m in Sources */,
 				85F08F161E48504C00A07451 /* TADotView.m in Sources */,
 				854196281E55866F002210C7 /* WPSearchResultsViewController.m in Sources */,

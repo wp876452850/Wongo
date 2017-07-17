@@ -58,7 +58,7 @@
         homec.fininshcapture=^(UIImage *ss){
             if (ss) {
                 if (_backBlock) {
-                    _backBlock(ss);
+                    _backBlock(@[ss]);
                 }
 #warning 后期上传服务器
             }
