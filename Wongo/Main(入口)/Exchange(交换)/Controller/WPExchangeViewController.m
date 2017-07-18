@@ -1,4 +1,4 @@
-//
+	//
 //  WPExchangeViewController.m
 //  Wongo
 //
@@ -18,12 +18,13 @@
 #import "LoginViewController.h"
 #import "WPParameterInformationView.h"
 #import "LYConversationController.h"
+#import "SDCollectionViewCell.h"
 
 static NSString * const commentCell     = @"CommentCell";
 static NSString * const userCell        = @"UserCell";
 static NSString * const commodityCell   = @"CommodityCell";
 
-@interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate>
 //自动滚播器
 @property (nonatomic,strong) SDCycleScrollView      * cycleScrollView;
 @property (nonatomic,strong) WPExchangeDetailModel  * exchangeModel;
@@ -40,7 +41,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     WPExchangeViewController * exchangeGoodsVC = [[WPExchangeViewController alloc]init];
     exchangeGoodsVC.urlString                  = url;
     exchangeGoodsVC.params                     = params;
-    exchangeGoodsVC.fromOrder = fromOrder;
+    exchangeGoodsVC.fromOrder                  = fromOrder;
     return exchangeGoodsVC;
 }
 
@@ -64,15 +65,20 @@ static NSString * const commodityCell   = @"CommodityCell";
     }
     return _tableView;
 }
+
 -(SDCycleScrollView *)cycleScrollView{
     if(!_cycleScrollView){
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:_exchangeModel.rollPlayImages];
+        _cycleScrollView.height +=80;
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
-        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
+        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
+        _cycleScrollView.delegate = self;
+        _cycleScrollView.autoScroll = NO;
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
     }
     return _cycleScrollView;
 }
-
+//返回按钮
 -(UIButton *)backButton{
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -92,7 +98,7 @@ static NSString * const commodityCell   = @"CommodityCell";
 -(void)loadDatas{
     __weak WPExchangeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:self.urlString params:self.params datas:^(NSDictionary *responseObject) {
-        _exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
+        
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
         
         NSArray * images = [responseObject objectForKey:@"listimg"];
@@ -100,7 +106,6 @@ static NSString * const commodityCell   = @"CommodityCell";
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
         }
-
         
         //获取用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.exchangeModel.uid} datas:^(NSDictionary *responseObject) {
@@ -117,7 +122,7 @@ static NSString * const commodityCell   = @"CommodityCell";
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return 6;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 1&&_exchangeModel.commentsModelArray.count>0) {
@@ -142,7 +147,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         {
             if (indexPath.row == 0) {
                 UITableViewCell * cell      = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-                NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"宝贝评价(%ld)",_exchangeModel.commentsModelArray.count]];
+                NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
                 [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"宝贝评价".length,attributedString.length-@"宝贝评价".length)];
                 cell.textLabel.attributedText   = attributedString;
                 cell.textLabel.font             = [UIFont systemFontOfSize:15];
@@ -174,7 +179,21 @@ static NSString * const commodityCell   = @"CommodityCell";
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
         }
             break;
+        case 5:{
+            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
+            textLabel.text          = @"商品描述:";
+            textLabel.font          = [UIFont systemFontOfSize:15];
+            [cell.contentView addSubview:textLabel];
+
+            
+            UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
+            textView.text           = _exchangeModel.remark;
+            textView.font           = [UIFont systemFontOfSize:15];
+            [cell.contentView addSubview:textView];
+        }
     }
+    
     
     UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
@@ -207,8 +226,15 @@ static NSString * const commodityCell   = @"CommodityCell";
             return 40;
         }
             break;
+        case 5:{
+            CGFloat rowHeight = [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 80, MAXFLOAT)].height + 10;
+            if (rowHeight < 40) {
+                return 40;
+            }else
+            return rowHeight;
+        }
     }
-    return 110;
+    return 40;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -219,11 +245,6 @@ static NSString * const commodityCell   = @"CommodityCell";
     }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (scrollView.contentOffset.y <=0) {
-        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, 0);
-    }
-}
 //创建底部视图
 -(void)createBottmView{
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40)];
@@ -264,9 +285,11 @@ static NSString * const commodityCell   = @"CommodityCell";
 }
 //聊天
 - (void)chat{
-    LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
-    vc.title = self.exchangeModel.userIntroductionModel.uname;
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self determineWhetherTheLogin]) {
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
+        vc.title = self.exchangeModel.userIntroductionModel.uname;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 //去交换
 -(void)goExchange{
@@ -286,6 +309,59 @@ static NSString * const commodityCell   = @"CommodityCell";
     }else{
         [self showAlertWithAlertTitle:@"提示" message:@"该商品是您发布的商品,无法进行交换" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
     }
+}
+
+#pragma mark SDCycleScrollViewDelegate
+//点击图片回调
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    NSIndexPath * indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    SDCollectionViewCell * cell = (SDCollectionViewCell *)[cycleScrollView.mainView cellForItemAtIndexPath:indexPath];
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 0)];
+    browser.currentImageIndex = indexPath.row;
+    browser.sourceImagesContainerView = cell.contentView;
+    browser.imageCount = _exchangeModel.rollPlayImages.count;
+    browser.delegate = self;
+    [browser show];
+
+}
+
+#pragma mark - SDPhotoBrowserDelegate
+//展示的图片与对应的index
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    UIImageView * imageView = [[UIImageView alloc]init];
+    [imageView sd_setImageWithURL:_exchangeModel.rollPlayImages[index]];
+    return imageView.image;
+}
+//点击缩小图片至什么位置
+- (void)selfView:(UIView *)supperView imageForIndex:(NSInteger)index currentImageView:(UIImageView *)imageview {
+    
+    NSIndexPath *CellIndexPath = [NSIndexPath indexPathForRow: index inSection:0];
+    
+    SDCollectionViewCell * cell = (SDCollectionViewCell *)[_cycleScrollView.mainView cellForItemAtIndexPath:CellIndexPath];
+    
+    //如果cell不存在，从重用池中取出cell
+    if (!cell) {
+        [_cycleScrollView.mainView scrollToItemAtIndexPath:CellIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        [_cycleScrollView.mainView layoutIfNeeded];
+        cell = (SDCollectionViewCell*)[_cycleScrollView.mainView cellForItemAtIndexPath:CellIndexPath];
+    }
+
+    /**图片尺寸大小*/
+    CGRect imageFrame = CGRectZero;
+    CGFloat scale = (cell.contentView.height/cell.imageView.image.size.height)<(WINDOW_WIDTH/cell.imageView.image.size.width)?(cell.contentView.height/cell.imageView.image.size.height):(WINDOW_WIDTH/cell.imageView.image.size.width);
+    imageFrame.size = CGSizeMake(cell.imageView.image.size.width * scale, cell.imageView.image.size.height * scale);
+    imageFrame.origin = CGPointMake((WINDOW_WIDTH - imageFrame.size.width)/2, cell.contentView.y);
+
+    
+    CGRect targetTemp = [cell.contentView convertRect:imageFrame toView:supperView];
+    
+    [UIView animateWithDuration:0.4f    animations:^{
+        imageview.frame = targetTemp;
+        supperView.backgroundColor = [UIColor clearColor];
+    } completion:^(BOOL finished) {
+        [supperView removeFromSuperview];
+    }];
 }
 
 @end

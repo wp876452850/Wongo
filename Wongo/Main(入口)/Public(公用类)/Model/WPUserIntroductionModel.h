@@ -30,4 +30,6 @@
  用户id
  */
 @property (nonatomic,strong)NSString * uid;
+
+
 @end

@@ -60,7 +60,7 @@
         [vc showAlertWithAlertTitle:@"提示" message:@"当前未登录,是否前往登录" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
             LoginViewController * login = [[LoginViewController alloc]init];
             [nav pushViewControllerAndHideBottomBar:login animated:YES];
-            //[vc presentViewController:login animated:YES completion:nil];
+            
         }];
         
         return NO;
@@ -142,4 +142,13 @@
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     return [regextestmobile evaluateWithObject:mobileNum];
 }
+
+-(void)thumbUpGoods{
+}
+-(void)focusOnTheUser{
+}
+-(void)collectionOfGoods{
+}
+
+
 @end

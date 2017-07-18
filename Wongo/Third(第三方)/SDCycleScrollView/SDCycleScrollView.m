@@ -89,7 +89,7 @@ NSString * const ID = @"cycleCell";
     _hidesForSinglePage = YES;
     _currentPageDotColor = [UIColor whiteColor];
     _pageDotColor = [UIColor lightGrayColor];
-    _bannerImageViewContentMode = UIViewContentModeScaleToFill;
+    _bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     
     self.backgroundColor = [UIColor lightGrayColor];
     
@@ -139,6 +139,7 @@ NSString * const ID = @"cycleCell";
     mainView.pagingEnabled = YES;
     mainView.showsHorizontalScrollIndicator = NO;
     mainView.showsVerticalScrollIndicator = NO;
+    mainView.backgroundColor = WhiteColor;
     [mainView registerClass:[SDCollectionViewCell class] forCellWithReuseIdentifier:ID];
     mainView.dataSource = self;
     mainView.delegate = self;
@@ -156,7 +157,7 @@ NSString * const ID = @"cycleCell";
     
     if (!self.backgroundImageView) {
         UIImageView *bgImageView = [UIImageView new];
-        bgImageView.contentMode = UIViewContentModeScaleAspectFit;
+        bgImageView.contentMode = _bannerImageViewContentMode;
         [self insertSubview:bgImageView belowSubview:self.mainView];
         self.backgroundImageView = bgImageView;
     }
@@ -568,8 +569,8 @@ NSString * const ID = @"cycleCell";
         cell.titleLabelHeight = self.titleLabelHeight;
         cell.titleLabelTextColor = self.titleLabelTextColor;
         cell.titleLabelTextFont = self.titleLabelTextFont;
-        cell.hasConfigured = YES;
         cell.imageView.contentMode = self.bannerImageViewContentMode;
+        cell.hasConfigured = YES;
         cell.clipsToBounds = YES;
         cell.onlyDisplayText = self.onlyDisplayText;
     }

@@ -15,5 +15,6 @@
 + (CGFloat)getWidthWithTitle:(NSString *)title font:(UIFont *)font;
 
 -(void)firstLineOfTheIndentationWithText:(NSString *)text;
-
+- (void)alignTop;
+- (void)alignBottom;
 @end

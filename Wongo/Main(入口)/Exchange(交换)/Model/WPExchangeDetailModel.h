@@ -59,5 +59,13 @@
  产品参数
  */
 @property (nonatomic,strong)NSString * goodsParameter;
+/**
+ 商品描述
+ */
+@property (nonatomic,strong)NSString * remark;
+/**
+ 库存
+ */
+@property (nonatomic,strong)NSString * repertory;
 
 @end

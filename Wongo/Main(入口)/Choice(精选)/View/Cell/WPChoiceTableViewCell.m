@@ -20,7 +20,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _goodsImage.contentMode = UIViewContentModeScaleAspectFill;
+    _goodsImage.contentMode = UIViewContentModeScaleAspectFit;
     _goodsImage.clipsToBounds = YES;
     self.icon.selected                  = NO;
     self.selectionStyle                 = UITableViewCellSelectionStyleNone;

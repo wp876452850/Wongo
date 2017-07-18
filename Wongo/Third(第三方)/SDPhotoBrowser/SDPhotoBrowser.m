@@ -255,6 +255,7 @@
 {
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     self.frame = window.bounds;
+    
     [window addObserver:self forKeyPath:@"frame" options:0 context:nil];
     [window addSubview:self];
 }
@@ -263,6 +264,9 @@
 {
     if ([keyPath isEqualToString:@"frame"]) {
         self.frame = object.bounds;
+        if (self.width <= 0) {
+            self.width = WINDOW_WIDTH;
+        }
         SDBrowserImageView *currentImageView = _scrollView.subviews[_currentImageIndex];
         if ([currentImageView isKindOfClass:[SDBrowserImageView class]]) {
             [currentImageView clear];
@@ -333,7 +337,6 @@
             }];
         }
     }
-    
     
     if (!_willDisappear) {
         _indexLabel.text = [NSString stringWithFormat:@"%d/%ld", index + 1, (long)self.imageCount];

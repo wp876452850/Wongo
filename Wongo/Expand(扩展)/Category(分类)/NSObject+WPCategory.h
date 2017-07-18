@@ -34,10 +34,25 @@
 
 -(BOOL)determineWhetherTheLoginWithViewController:(UIViewController*)viewController;
 
+
+
 //判断密码正则判断
 -(BOOL)checkPassword:(NSString *)password;
 //判断电话号码正则判断
 -(BOOL)isMobileNumber:(NSString *)mobileNum;
 //判断用户名正则判读
 -(BOOL)checkUserName:(NSString *)userName;
-@end
+
+/**点赞商品*/
+-(void)thumbUpGoods;
+/**关注用户*/
+-(void)focusOnTheUser;
+/**收藏商品*/
+-(void)collectionOfGoods;
+
+///**获取网络加载图url*/
+//-(CGSize)downloadImageSizeWithURL:(id)imageURL;
+
+/*-----------------------类方法-------------------------*/
+
+ @end
