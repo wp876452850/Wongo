@@ -121,17 +121,13 @@ static NSString * const commodityCell   = @"CommodityCell";
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
+//返回多少区
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    return 5;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 1&&_exchangeModel.commentsModelArray.count>0) {
-        if (_exchangeModel.commentsModelArray.count>=2) {
-            return 3;
-        }else{
-            return 2;
-        }
-    }
+
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -139,86 +135,82 @@ static NSString * const commodityCell   = @"CommodityCell";
         case 0:
         {
             WPExchangeCommodityInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             cell.model = _exchangeModel;
             return cell;
         }
             break;
         case 1:
         {
-            if (indexPath.row == 0) {
-                UITableViewCell * cell      = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-                NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
-                [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"宝贝评价".length,attributedString.length-@"宝贝评价".length)];
-                cell.textLabel.attributedText   = attributedString;
-                cell.textLabel.font             = [UIFont systemFontOfSize:15];
-                
-                cell.selectionStyle             = UITableViewCellSelectionStyleNone;
-                cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
-                return cell;
-            }
-            else{
-                WPExchangeCommentCell * cell    = [tableView dequeueReusableCellWithIdentifier:commentCell forIndexPath:indexPath];
-                cell.model                      = _exchangeModel.commentsModelArray[indexPath.row-1];
-                return cell;
-            }
+            UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"宝贝评价".length,attributedString.length-@"宝贝评价".length)];
             
+            cell.textLabel.attributedText   = attributedString;
+            cell.textLabel.font             = [UIFont systemFontOfSize:17];
+            
+            cell.selectionStyle             = UITableViewCellSelectionStyleNone;
+            cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            return cell;
         }
             break;
         case 2:
         {
             WPUserIntroductionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
             cell.model                              = _exchangeModel.userIntroductionModel;
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
+
         case 3:{
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.textLabel.text     = @"产品参数";
             cell.textLabel.font     = [UIFont systemFontOfSize:15];
             cell.accessoryType      = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         }
             break;
-        case 5:{
+        case 4:{
+            //标签：商品描述
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
             textLabel.text          = @"商品描述:";
             textLabel.font          = [UIFont systemFontOfSize:15];
             [cell.contentView addSubview:textLabel];
-
-            
+            //描述内容
             UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
             textView.text           = _exchangeModel.remark;
             textView.font           = [UIFont systemFontOfSize:15];
+            textLabel.userInteractionEnabled    = NO;
+            textView.userInteractionEnabled     = NO;
             [cell.contentView addSubview:textView];
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         }
     }
     
-    
     UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
-    
+    cell.backgroundColor = RandomColor;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
         case 0:
         {
-            return 95;
+            return 115;
         }
             break;
         case 1:
         {
-            if (indexPath.row == 0) {
-                return 30;
-            }
-            return 80;
-            
+            return 50;
         }
             break;
         case 2:
         {
-            return 90;
+            return 100;
         }
             break;
         case 3:
@@ -226,8 +218,8 @@ static NSString * const commodityCell   = @"CommodityCell";
             return 40;
         }
             break;
-        case 5:{
-            CGFloat rowHeight = [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 80, MAXFLOAT)].height + 10;
+        case 4:{
+            CGFloat rowHeight = [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 80, MAXFLOAT)].height + 40;
             if (rowHeight < 40) {
                 return 40;
             }else
@@ -245,6 +237,13 @@ static NSString * const commodityCell   = @"CommodityCell";
     }
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 3||section == 4) {
+        return 20;
+    }
+    return 0;
+}
 //创建底部视图
 -(void)createBottmView{
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40)];
@@ -257,7 +256,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         [exchangeButton setTitleColor:WhiteColor forState:UIControlStateNormal];
         [exchangeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-10);
-            make.top.mas_equalTo(0);
+            make.top.mas_equalTo(2.5);
             make.size.mas_equalTo(CGSizeMake(120, 35));
         }];
         exchangeButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -274,7 +273,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     [chatBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     [chatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(0);
+        make.top.mas_equalTo(2.5);
         make.size.mas_equalTo(CGSizeMake(120, 35));
     }];
     chatBtn.titleLabel.font = [UIFont systemFontOfSize:15];

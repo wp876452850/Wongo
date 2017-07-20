@@ -44,14 +44,12 @@
 -(BOOL)checkUserName:(NSString *)userName;
 
 /**点赞商品*/
--(void)thumbUpGoods;
+-(void)thumbUpGoodsWithSender:(UIButton *)sender gid:(NSString *)gid;
 /**关注用户*/
--(void)focusOnTheUser;
+-(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid;
 /**收藏商品*/
--(void)collectionOfGoods;
+-(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid;
 
-///**获取网络加载图url*/
-//-(CGSize)downloadImageSizeWithURL:(id)imageURL;
 
 /*-----------------------类方法-------------------------*/
 

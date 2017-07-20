@@ -143,11 +143,33 @@
     return [regextestmobile evaluateWithObject:mobileNum];
 }
 
--(void)thumbUpGoods{
+-(void)thumbUpGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
+    //判断是否登录
+    [self determineWhetherTheLogin];
+    
+    __block UIButton * button = sender;
+    if (!sender.selected) {
+//        [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightAddUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+//            button.selected = !button.selected;
+//        }];
+        [WPNetWorking createPostRequestMenagerWithUrlString:@"http://192.168.1.109:8080/change/updgdfreightAdd" params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            button.selected = !button.selected;
+        }];
+        return;
+    }
+    [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+        button.selected = !button.selected;
+    }];
 }
--(void)focusOnTheUser{
+
+-(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
+    //判断是否登录
+    [self determineWhetherTheLogin];
 }
--(void)collectionOfGoods{
+
+-(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
+    //判断是否登录
+    [self determineWhetherTheLogin];
 }
 
 

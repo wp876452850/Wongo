@@ -107,13 +107,16 @@
 #define QtQueryTypegdlist       @"http://119.23.32.206:8080/change/qtQueryTypegdlist"
 /**造梦支付 */
 #define AliPayProductUrl        @"http://119.23.32.206:8080/change/aliPayProduct"
-
 /**交换支付 */
 #define AliPayUrl               @"http://119.23.32.206:8080/change/aliPay"
-
 /**造梦发货 */
 #define UpdatePlorderUrl        @"http://119.23.32.206:8080/change/updatePlorder"
-
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   @"http://119.23.32.206:8080/change/updatePlorderState"
+/**点赞*/
+#define UpdgdfreightAddUrl      @"http://119.23.32.206:8080/change/updgdfreightAdd"
+/**取消点赞*/
+#define UpdgdfreightUrl         @"http://119.23.32.206:8080/change/updgdfreight"
+
+
 #endif /* WongoHttpMacros_h */

@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Exchange(&#x4ea4;&#x6362;)/Controller/WPExchangeViewController.m"
-            timestampString = "522064388.965896"
+            timestampString = "522151234.936823"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "363"
-            endingLineNumber = "363"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "-selfView:imageForIndex:currentImageView:"
             landmarkType = "7">
          </BreakpointContent>

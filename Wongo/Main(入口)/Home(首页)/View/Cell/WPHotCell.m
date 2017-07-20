@@ -43,8 +43,9 @@
 }
 //收藏
 - (IBAction)collect:(UIButton *)sender {
-    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
-    return;
+    
+//    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
+//    return;
     
     if (![self determineWhetherTheLogin]) {
         [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"您需要登陆后才能进行收藏" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
@@ -53,15 +54,7 @@
         }];
         return;
     }
-    
-    if (sender.selected) {
-        //取消收藏
-        [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightUrl params:@{@"gid":_model.gid,@"uid":[self getSelfUid]} datas:nil];
-    }else{
-        //收藏
-        [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightAddUrl params:@{@"gid":_model.gid,@"uid":[self getSelfUid]} datas:nil];
-    }
-    sender.selected = !sender.selected;
+    [self thumbUpGoodsWithSender:sender gid:_model.gid];
 }
 
 
