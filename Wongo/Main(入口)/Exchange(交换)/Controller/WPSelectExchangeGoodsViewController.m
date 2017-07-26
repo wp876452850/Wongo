@@ -49,7 +49,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerNib:[UINib nibWithNibName:@"WPSelectExchangeGoodsCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-        _tableView.rowHeight = 70;
+        _tableView.rowHeight = 90;
         _tableView.tableFooterView = [[UIView alloc] init];
     }
     return _tableView;

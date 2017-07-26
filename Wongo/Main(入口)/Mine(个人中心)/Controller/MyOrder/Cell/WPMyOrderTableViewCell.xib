@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="190.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine" translatesAutoresizingMaskIntoConstraints="NO" id="cMB-JH-MYo" userLabel="店铺标志">
@@ -223,7 +223,7 @@
                 <outlet property="totalNumber" destination="G4v-UB-Yht" id="Ice-9q-dGP"/>
                 <outlet property="totalPrice" destination="6b6-nU-3Ri" id="Wz3-ZK-BG7"/>
             </connections>
-            <point key="canvasLocation" x="-134" y="-14"/>
+            <point key="canvasLocation" x="-37" y="-8"/>
         </tableViewCell>
     </objects>
     <resources>

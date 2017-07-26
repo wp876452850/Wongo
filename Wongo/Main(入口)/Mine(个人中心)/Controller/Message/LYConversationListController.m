@@ -64,9 +64,9 @@
 //MARK:- 设置会话相关方法
 - (void)setConversationList{
     //设置需要显示哪些类型的会话
-    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),@1,@2,@3,@4,@5,@6,@7,@8,@9]];
+    [self setDisplayConversationTypes:@[@(ConversationType_PRIVATE),@2,@3,@4,@5,@6,@7,@8,@9]];
     [self setConversationAvatarStyle:RC_USER_AVATAR_CYCLE];
-    //    self.isShowNetworkIndicatorView = NO;
+    self.isShowNetworkIndicatorView = NO;
     self.showConnectingStatusOnNavigatorBar = YES;
     //设置列表为空时显示的View
     self.emptyConversationView = [[UIView alloc] init];

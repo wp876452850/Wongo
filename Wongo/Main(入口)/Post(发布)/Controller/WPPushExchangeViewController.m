@@ -16,8 +16,8 @@
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："]
-#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："/*,@"产品参数："*/]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"/*,@""*/	]
 
 static NSString * const dataCell        = @"DataCell";
 static NSString * const describeCell    = @"DescribeCell";
@@ -79,7 +79,7 @@ static NSString * const cell            = @"cell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 114) style:UITableViewStylePlain];
-        //_tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
@@ -131,8 +131,6 @@ static NSString * const cell            = @"cell";
                 [self showAlertWithAlertTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
                     [self dismissViewControllerAnimated:YES completion:nil];
                 }];
-                
-                
             }
             else{
                 [self showAlertWithAlertTitle:@"上传失败" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
@@ -145,12 +143,14 @@ static NSString * const cell            = @"cell";
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
+    return 1;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return Push_Titles.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (indexPath.row) {
+    switch (indexPath.section) {
         case 1:
         {
             WPDreamingDescribeTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:describeCell forIndexPath:indexPath];
@@ -158,7 +158,7 @@ static NSString * const cell            = @"cell";
             [cell getDescribeBlockWithBlock:^(NSString *str) {
                 _describe = str;
             }];
-            
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
@@ -174,6 +174,7 @@ static NSString * const cell            = @"cell";
                 [tableView reloadData];
             }];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
@@ -182,34 +183,34 @@ static NSString * const cell            = @"cell";
             //跳转地址选择控制器
             UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.textLabel.font = [UIFont systemFontOfSize:15];
-            cell.textLabel.text = Push_Titles[indexPath.row];
+            cell.textLabel.text = Push_Titles[indexPath.section];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (indexPath.row == 4) {
+            if (indexPath.section == 4) {
                  if (_species) {
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],_species];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],_species];
                  }
             }else{
                 if (_newOrOld) {
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],_newOrOld];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],_newOrOld];
                 }
             }
-
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
     }
     WPDreamingDataTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:dataCell forIndexPath:indexPath];
     cell.data.superView     = self.view;
-    cell.name.text          = Push_Titles[indexPath.row];
-    cell.data.placeholder   = Section_0_Placeholder[indexPath.row];
-    if (indexPath.row == 3) {
+    cell.name.text          = Push_Titles[indexPath.section];
+    cell.data.placeholder   = Section_0_Placeholder[indexPath.section];
+    if (indexPath.section == 3) {
         cell.data.text = _price;
         cell.data.keyboardType = UIKeyboardTypeDecimalPad;
         [cell getTextFieldDataWithBlock:^(NSString *str) {
             _price = cell.data.text;
         }];
     }
-    else if (indexPath.row == 6){
+    else if (indexPath.section == 6){
         cell.data.text              = _inventory;
         cell.data.openRisingView    = YES;
         cell.data.keyboardType      = UIKeyboardTypeNumberPad;
@@ -222,36 +223,46 @@ static NSString * const cell            = @"cell";
         [cell getTextFieldDataWithBlock:^(NSString *str) {
             _name = cell.data.text;
         }];
-
     }
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row ==1) {
+    if (indexPath.section ==1) {
         return describeCellHeight;
     }
-    else if (indexPath.row == 2){
+    else if (indexPath.section == 2){
         return imagesCellHeight;
     }
     return dataCellHeight;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 2) {
+        return 5;
+    }
+    if (section == Push_Titles.count - 1) {
+        return 5;
+    }
+    return 0;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-           if (indexPath.row == 4) {
+           if (indexPath.section == 4) {
                 WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string,NSString * gcid) {
                     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
                     
                     _species = string;
                     _specieid = gcid;
                 } selectedCategoryName:_species];
                [self.view addSubview:selectAlterView];
-            }else if (indexPath.row == 5){
+            }else if (indexPath.section == 5){
                 WPSelectAlterView * selectAlterView = [WPSelectAlterView createArraySelectAlterWithFrame:self.view.frame array:@[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"] block:^(NSString *string,NSString * gcid) {
                     UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
+                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
                     _newOrOld      = string;
                 } selectedCategoryName:_newOrOld];
                 [self.view addSubview:selectAlterView];

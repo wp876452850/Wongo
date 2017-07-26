@@ -23,6 +23,7 @@
 #import "UILabel+WPCategory.h"
 #import "UITextView+WPCategory.h"
 #import "NSObject+WPCategory.h"
+#import "UITableViewCell+HYBMasonryAutoCellHeight.h"
 
 #pragma mark - /*公用类*/
 #import "WPCostomTextField.h"
@@ -37,6 +38,11 @@
 #import "WPBezierPath.h"
 #import "TZImagePickerController.h"
 #import "SDPhotoBrowser.h"
+#import "ChatKeyBoard.h"
+#import "FaceSourceManager.h"
+#import "MoreItem.h"
+#import "ChatToolBarItem.h"
+#import "FaceThemeModel.h"
 
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>

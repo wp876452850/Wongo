@@ -19,6 +19,7 @@
 #import "WPParameterInformationView.h"
 #import "LYConversationController.h"
 #import "SDCollectionViewCell.h"
+#import "WPCommentViewController.h"
 
 static NSString * const commentCell     = @"CommentCell";
 static NSString * const userCell        = @"UserCell";
@@ -51,6 +52,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     if (!_tableView) {
         self.automaticallyAdjustsScrollViewInsets = NO;
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 40) style:UITableViewStylePlain];
+        _tableView.backgroundColor  = ColorWithRGB(246, 246, 246);
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
         _tableView.dataSource       = self;
@@ -70,7 +72,8 @@ static NSString * const commodityCell   = @"CommodityCell";
     if(!_cycleScrollView){
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:_exchangeModel.rollPlayImages];
         _cycleScrollView.height +=80;
-        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.currentPageDotColor = SelfOrangeColor;
+        _cycleScrollView.pageDotColor = ColorWithRGB(247, 247, 247);
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
         _cycleScrollView.delegate = self;
         _cycleScrollView.autoScroll = NO;
@@ -143,8 +146,8 @@ static NSString * const commodityCell   = @"CommodityCell";
         case 1:
         {
             UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"宝贝评价".length,attributedString.length-@"宝贝评价".length)];
+            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"     宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"     宝贝评价".length,attributedString.length-@"     宝贝评价".length)];
             
             cell.textLabel.attributedText   = attributedString;
             cell.textLabel.font             = [UIFont systemFontOfSize:17];
@@ -230,6 +233,18 @@ static NSString * const commodityCell   = @"CommodityCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //评论
+    if (indexPath.section == 1) {
+        if (_exchangeModel.commentsModelArray.count<=0) {
+            [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
+            //跳转评论界面
+                WPCommentViewController * vc = [[WPCommentViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }];
+        }else{
+            //跳转评论展示界面
+        }
+    }
     if (indexPath.section == 3) {
 #warning 产品参数传值
         WPParameterInformationView * vc = [WPParameterInformationView createParameterInformationWithUrlString:nil];
@@ -248,6 +263,7 @@ static NSString * const commodityCell   = @"CommodityCell";
 -(void)createBottmView{
     UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40)];
     [self.view addSubview:view];
+    [view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, 0) moveForPoint:CGPointMake(WINDOW_WIDTH, 0)]];
     view.backgroundColor = WhiteColor;
     if (!_fromOrder) {
         UIButton * exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -256,7 +272,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         [exchangeButton setTitleColor:WhiteColor forState:UIControlStateNormal];
         [exchangeButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(-10);
-            make.top.mas_equalTo(2.5);
+            make.top.mas_equalTo(3);
             make.size.mas_equalTo(CGSizeMake(120, 35));
         }];
         exchangeButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -273,7 +289,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     [chatBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
     [chatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
-        make.top.mas_equalTo(2.5);
+        make.top.mas_equalTo(3);
         make.size.mas_equalTo(CGSizeMake(120, 35));
     }];
     chatBtn.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -310,6 +326,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     }
 }
 
+
 #pragma mark SDCycleScrollViewDelegate
 //点击图片回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
@@ -345,14 +362,13 @@ static NSString * const commodityCell   = @"CommodityCell";
         [_cycleScrollView.mainView layoutIfNeeded];
         cell = (SDCollectionViewCell*)[_cycleScrollView.mainView cellForItemAtIndexPath:CellIndexPath];
     }
-
+    
     /**图片尺寸大小*/
     CGRect imageFrame = CGRectZero;
     CGFloat scale = (cell.contentView.height/cell.imageView.image.size.height)<(WINDOW_WIDTH/cell.imageView.image.size.width)?(cell.contentView.height/cell.imageView.image.size.height):(WINDOW_WIDTH/cell.imageView.image.size.width);
     imageFrame.size = CGSizeMake(cell.imageView.image.size.width * scale, cell.imageView.image.size.height * scale);
-    imageFrame.origin = CGPointMake((WINDOW_WIDTH - imageFrame.size.width)/2, cell.contentView.y);
+    imageFrame.origin = CGPointMake((WINDOW_WIDTH - imageFrame.size.width)/2, (cell.contentView.height - imageFrame.size.height)/2);
 
-    
     CGRect targetTemp = [cell.contentView convertRect:imageFrame toView:supperView];
     
     [UIView animateWithDuration:0.4f    animations:^{

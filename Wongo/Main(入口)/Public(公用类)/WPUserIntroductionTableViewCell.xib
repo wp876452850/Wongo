@@ -16,18 +16,18 @@
             <rect key="frame" x="0.0" y="0.0" width="445" height="102"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="445" height="102"/>
+                <rect key="frame" x="0.0" y="0.0" width="445" height="101.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ik4-En-5xW">
-                        <rect key="frame" x="48" y="13" width="50" height="50"/>
+                        <rect key="frame" x="38" y="13" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="sAe-9b-bFJ"/>
                             <constraint firstAttribute="height" constant="50" id="zy3-fh-3Y0"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gp-LI-jAJ">
-                        <rect key="frame" x="108" y="38.5" width="35.5" height="25"/>
+                        <rect key="frame" x="98" y="38.5" width="35.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="0fl-Vb-mGp"/>
                         </constraints>
@@ -47,7 +47,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alk-jN-dtn">
-                        <rect key="frame" x="55" y="67.5" width="37.5" height="25"/>
+                        <rect key="frame" x="45" y="67.5" width="37.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="FWg-JN-XIE"/>
                         </constraints>
@@ -60,7 +60,7 @@
                     <constraint firstItem="alk-jN-dtn" firstAttribute="centerX" secondItem="Ik4-En-5xW" secondAttribute="centerX" id="KTT-oT-Qjo"/>
                     <constraint firstItem="Ik4-En-5xW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Lbh-jO-rLS"/>
                     <constraint firstItem="5Gp-LI-jAJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lh0-OH-dVD"/>
-                    <constraint firstItem="Ik4-En-5xW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="VdM-AA-FZ8"/>
+                    <constraint firstItem="Ik4-En-5xW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="VdM-AA-FZ8"/>
                     <constraint firstItem="alk-jN-dtn" firstAttribute="top" secondItem="Ik4-En-5xW" secondAttribute="bottom" constant="5" id="aDu-sJ-aqH"/>
                     <constraint firstItem="DjI-vf-8Ut" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="cJ5-yC-LvO"/>
                     <constraint firstItem="5Gp-LI-jAJ" firstAttribute="leading" secondItem="Ik4-En-5xW" secondAttribute="trailing" constant="10" id="eVn-nF-17m"/>

@@ -25,9 +25,9 @@
 }
 
 +(CAShapeLayer *)cellBottomDrowLineWithTableViewCell:(UITableViewCell *)cell{
-    return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height-1) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height-1)];
+    return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height)];
 }
 +(CAShapeLayer *)cellBottomDrowLineWithCollectionCell:(UICollectionViewCell *)cell{
-    return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height-1) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height-1)];
+    return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height)];
 }
 @end

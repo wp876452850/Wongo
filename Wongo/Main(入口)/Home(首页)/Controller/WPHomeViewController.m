@@ -50,6 +50,7 @@ static NSString * contentOffset = @"contentOffset";
 @property (nonatomic,strong)NSMutableArray * reusableDataSource;
 //记录collectionView最后Y偏移
 @property (nonatomic,assign)CGFloat lastCollectionContentOffsetY;
+
 @property (nonatomic, strong) LYHomeResponse *response;
 @end
 
@@ -108,7 +109,6 @@ static NSString * contentOffset = @"contentOffset";
     [self.collectionView addSubview:self.homeHeaderView];
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
-    
 }
 
 -(void)addHeaderLoad{
@@ -217,7 +217,7 @@ static NSString * contentOffset = @"contentOffset";
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
 //    return self.dataSourceArray.count;
-    return 3;
+    return 4;
 }
 
 //每个section的item个数
@@ -246,7 +246,6 @@ static NSString * contentOffset = @"contentOffset";
 
 //配置单元格
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]) {
             LYHomeRectangleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"RectangleCellID" forIndexPath:indexPath];
             switch (indexPath.section) {
@@ -266,7 +265,7 @@ static NSString * contentOffset = @"contentOffset";
     } else{
         NSInteger index = 0;
         if ([self.response hasBanner:indexPath.section]) {
-            index = indexPath.row -1;
+            index = indexPath.row - 1;
         }else{
             index = indexPath.row;
         }
@@ -352,7 +351,7 @@ static NSString * contentOffset = @"contentOffset";
 
     UIColor * color = ColorWithRGB(0, 0, 0);
     
-    CGFloat alpha = MIN(1,collectionViewOffsetY/(headerViewMaxY-164));
+    CGFloat alpha = MIN(1,collectionViewOffsetY/(headerViewMaxY-164)  );
     
     self.homeHeaderSearchView.backgroundColor = color;
     self.homeHeaderSearchView.alpha = alpha;

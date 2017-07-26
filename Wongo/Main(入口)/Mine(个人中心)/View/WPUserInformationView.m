@@ -42,7 +42,7 @@
 //喜欢
 @property (nonatomic,strong)UILabel         * enjoyNumber;
 //消息按钮
-@property (nonatomic, strong) UIButton * message;
+@property (nonatomic,strong)UIButton        * message;
 @end
 
 @implementation WPUserInformationView
@@ -353,13 +353,13 @@
     self.message = message;
     [message mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).offset(44);
-        make.left.mas_equalTo(self).offset(10);
-        make.size.mas_equalTo(CGSizeMake(20, 17));
+        make.left.mas_equalTo(self).offset(20);
+        make.size.mas_equalTo(CGSizeMake(25, 21));
     }];
     [setUp mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self).offset(44);
-        make.right.mas_equalTo(self).offset(-10);
-        make.size.mas_equalTo(CGSizeMake(20, 20));
+        make.right.mas_equalTo(self).offset(-20);
+        make.size.mas_equalTo(CGSizeMake(25, 25));
     }];
     
     [setUp setBackgroundImage:[UIImage imageNamed:@"setup"] forState:UIControlStateNormal];

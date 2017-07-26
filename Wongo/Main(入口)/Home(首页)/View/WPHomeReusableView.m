@@ -1,4 +1,4 @@
-//
+	//
 //  WPHomeReusableView.m
 //  Wongo
 //
@@ -78,6 +78,7 @@
     }
     return self;
 }
+
 //约束布局
 -(void)subviewConstraintLayout{
     [_icon mas_makeConstraints:^(MASConstraintMaker *make) {

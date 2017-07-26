@@ -219,6 +219,7 @@
    
 }
 - (IBAction)connect:(UIButton *)sender {
+    [self determineWhetherTheLogin];
     NSString *uid = @"";
     NSString *title = @"";
     if ([[self getSelfUid] isEqualToString:self.model.fromuser]) {

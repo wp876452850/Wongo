@@ -82,7 +82,7 @@
 /*!
  列表的TableView
  */
-@property(nonatomic, strong) UITableView *conversationListTableView;
+@property(nonatomic, strong) UITableView * conversationListTableView;
 
 #pragma mark - 网络连接变化状态提醒
 
@@ -95,7 +95,7 @@
 
 /*!
  当连接状态变化SDK自动重连时，是否在NavigationBar中显示连接中的提示。
-
+ 
  @discussion 默认是是NO。
  */
 @property(nonatomic, assign) BOOL showConnectingStatusOnNavigatorBar;
