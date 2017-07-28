@@ -34,7 +34,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.backgroundColor = WhiteColor;
-        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }

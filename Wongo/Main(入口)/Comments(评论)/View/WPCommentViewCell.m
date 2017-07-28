@@ -7,22 +7,25 @@
 //
 
 #import "WPCommentViewCell.h"
+#import "WPCommentMessageCell.h"
 
-@interface WPCommentViewCell ()<UITableViewDelegate,UITableViewDataSource>
+@interface WPCommentViewCell ()
 /**头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *headPortrait;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UITextView *comment;
-@property (weak, nonatomic) IBOutlet UITableView *commentTabel;
-
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
+@property (nonatomic, strong) UILabel *contentLabel;
 @end
 
 @implementation WPCommentViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.headPortrait.layer.masksToBounds = YES;
+    self.headPortrait.layer.cornerRadius  = 17.5;
 }
 /**点赞*/
 - (IBAction)thumbUp:(UIButton *)sender {
@@ -33,14 +36,11 @@
     
 }
 
-
-
-
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 0;
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
-    return cell;
+-(void)setModel:(WPCommentModel *)model{
+    _model = model;
+    _headPortrait.image = model.headImage;
+    _name.text = model.uname;
+    _time.text = model.commentTime;
+    _comment.text = model.commentText;
 }
 @end

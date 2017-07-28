@@ -43,9 +43,11 @@
     _price.text     = [NSString stringWithFormat:@"%@%@",model.unit,model.price];
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
 }
-
+//收藏
 - (IBAction)collection:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    
+    [self collectionOfGoodsWithSender:sender gid:_model.gid];
+    
 }
 
 @end

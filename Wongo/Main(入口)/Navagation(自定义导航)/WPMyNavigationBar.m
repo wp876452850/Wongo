@@ -13,7 +13,6 @@
 @end
 @implementation WPMyNavigationBar
 
-
 -(UIButton *)rightButton
 {
     if (!_rightButton) {

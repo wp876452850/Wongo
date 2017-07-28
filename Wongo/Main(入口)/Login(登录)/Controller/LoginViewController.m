@@ -147,16 +147,18 @@
     self.view.userInteractionEnabled = NO;
    
     [WPNetWorking createPostRequestMenagerWithUrlString:LoginRequestUrl params:params datas:^(NSDictionary *responseObject) {
+        [[NSUserDefaults standardUserDefaults]setObject:responseObject[@"uname"] forKey:User_Name];
+        UIImageView * headimage = [[UIImageView alloc]init];
+        [headimage sd_setImageWithURL:[NSURL URLWithString:responseObject[@"url"]]];
+        NSData * imageData = [NSKeyedArchiver archivedDataWithRootObject:headimage.image];
+        [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:User_Head];
         //记录用户信息
-        
         if ([[responseObject objectForKey:@"flag"] isEqualToString:@"1"]) {
             [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
                 //记录token并登陆
                 NSDictionary * dic = [responseObject objectForKey:@"token"];
                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
-               
-                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
-                NSLog(@"uid------%@",[[NSUserDefaults standardUserDefaults]objectForKey:User_ID]);
+               [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
                 __weak LoginViewController * weakSelf = (LoginViewController *)self;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.navigationController popViewControllerAnimated:YES];

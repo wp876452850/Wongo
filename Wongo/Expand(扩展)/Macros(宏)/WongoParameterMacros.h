@@ -15,6 +15,8 @@
 #define User_ID             @"user_id"
 #define User_ID_ISChange    @"isChange"
 #define User_Token          @"user_token"
+#define User_Name           @"user_name"
+#define User_Head           @"user_head"
 
 /**融云开发环境:0开发,1生产 */
 #ifdef DEBUG

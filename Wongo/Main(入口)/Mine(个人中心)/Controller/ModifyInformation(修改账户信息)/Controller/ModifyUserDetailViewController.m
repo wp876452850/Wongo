@@ -69,7 +69,9 @@
     }
     WPMyViewController * vc = self.navigationController.viewControllers.firstObject;
     [WPNetWorking createPostRequestMenagerWithUrlString:UpdateUserUrl params:@{@"uname":uname,@"signature":_signatureTextView.text,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        [[NSUserDefaults standardUserDefaults]setObject:responseObject[@"uname"] forKey:User_Name];
         [self showAlertWithAlertTitle:@"提示" message:@"修改成功" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
+            
             [vc.userInformationView loadDatas];
             [self w_popViewController];
         }];

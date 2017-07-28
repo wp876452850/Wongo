@@ -10,4 +10,6 @@
 
 @interface WPCommentViewController : LYBaseController
 
+-(instancetype)initWithGid:(NSString *)gid;
+
 @end

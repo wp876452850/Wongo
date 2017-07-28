@@ -14,16 +14,17 @@
 @property(nonatomic,copy)NSString *commentId;
 /**用户id*/
 @property(nonatomic,copy)NSString *uid;
+/**商品id*/
+@property (nonatomic,strong)NSString * gid;
 /**用户名*/
 @property(nonatomic,copy)NSString *uname;
 /**头像*/
-@property(nonatomic,copy)NSString *headImage;
+@property(nonatomic,copy)UIImage *headImage;
 /**内容*/
 @property(nonatomic,copy)NSString *commentText;
 /**时间*/
-@property(nonatomic,copy)NSString *createDateStr;
-/**状态*/
-@property(nonatomic,copy)NSString *checkStatus;
+@property(nonatomic,copy)NSString *commentTime;
 /**二级评论数组*/
 @property (nonatomic,strong)NSMutableArray * comments;
+
 @end

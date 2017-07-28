@@ -32,6 +32,10 @@
 
 -(NSString *)getSelfUid;
 
+-(NSString *)getUserName;
+
+-(UIImage *)getUserHeadPortrait;
+
 -(BOOL)determineWhetherTheLoginWithViewController:(UIViewController*)viewController;
 
 

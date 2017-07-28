@@ -9,5 +9,10 @@
 #import "WPCommentModel.h"
 
 @implementation WPCommentModel
-
+-(NSMutableArray *)comments{
+    if (!_comments) {
+        _comments = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _comments;
+}
 @end

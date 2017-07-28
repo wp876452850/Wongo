@@ -146,8 +146,8 @@ static NSString * const commodityCell   = @"CommodityCell";
         case 1:
         {
             UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"     宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"     宝贝评价".length,attributedString.length-@"     宝贝评价".length)];
+            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
+            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length-@"  宝贝评价".length)];
             
             cell.textLabel.attributedText   = attributedString;
             cell.textLabel.font             = [UIFont systemFontOfSize:17];
@@ -238,7 +238,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         if (_exchangeModel.commentsModelArray.count<=0) {
             [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
             //跳转评论界面
-                WPCommentViewController * vc = [[WPCommentViewController alloc]init];
+                WPCommentViewController * vc = [[WPCommentViewController alloc]initWithGid:self.params[@"gid"]];
                 [self.navigationController pushViewController:vc animated:YES];
             }];
         }else{

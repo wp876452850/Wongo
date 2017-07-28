@@ -41,11 +41,11 @@
     _collectNumber.text     = model.collectNumber;
     _projectNumber.text     = [NSString stringWithFormat:@"￥%@",model.price];
 }
-//收藏
+//点赞
 - (IBAction)collect:(UIButton *)sender {
     
-//    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
-//    return;
+    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
+    return;
     
     if (![self determineWhetherTheLogin]) {
         [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"您需要登陆后才能进行收藏" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
@@ -54,7 +54,7 @@
         }];
         return;
     }
-    [self thumbUpGoodsWithSender:sender gid:_model.gid];
+
 }
 
 

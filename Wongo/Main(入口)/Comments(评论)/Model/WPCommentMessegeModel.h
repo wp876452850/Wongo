@@ -16,8 +16,6 @@
 @property(nonatomic,copy)NSString *uid;
 /**用户名*/
 @property(nonatomic,copy)NSString *uname;
-/**头像*/
-@property(nonatomic,copy)NSString *url;
 /**内容*/
 @property(nonatomic,copy)NSString *commentContent;
 /**对方id*/
@@ -25,9 +23,7 @@
 /**对方用户名*/
 @property(nonatomic,copy)NSString *byuname;
 /**时间*/
-@property(nonatomic,copy)NSString *createDateStr;
-/**状态*/
-@property(nonatomic,copy)NSString *checkStatus;
+@property(nonatomic,copy)NSString *commentTime;
 ///评论大图
 @property(nonatomic,copy)NSMutableArray *messageBigPicArray;
 // 评论数据

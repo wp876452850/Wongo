@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="273" id="KGk-i7-Jjw" customClass="WPCommentViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="411" height="273"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="KGk-i7-Jjw" customClass="WPCommentViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="411" height="273"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="176"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="10.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="V6h-gX-JKw">
@@ -27,20 +27,20 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wongo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbi-0o-aXJ">
-                        <rect key="frame" x="53" y="20.5" width="48.5" height="20"/>
+                        <rect key="frame" x="58" y="20.5" width="57.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Sa6-L8-X4e"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-12-10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UY-Ot-a3c">
-                        <rect key="frame" x="13" y="58" width="69.5" height="20"/>
+                        <rect key="frame" x="13" y="58" width="60" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="D53-Zx-7mf"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -54,14 +54,14 @@
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="我就看看不说话......................" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yxe-Tg-d9H">
-                        <rect key="frame" x="13" y="88" width="385" height="144.5"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="我就看看不说话......................" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Yxe-Tg-d9H">
+                        <rect key="frame" x="8" y="88" width="390" height="47.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zKP-rU-WDP">
-                        <rect key="frame" x="328" y="242.5" width="35" height="25"/>
+                        <rect key="frame" x="313" y="145.5" width="35" height="25"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="评论">
                             <color key="titleColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
@@ -70,19 +70,8 @@
                             <action selector="comment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IET-tp-0dT"/>
                         </connections>
                     </button>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eqc-wm-T8t">
-                        <rect key="frame" x="13" y="237.5" width="385" height="0.0"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" id="XTM-sZ-Jnq"/>
-                        </constraints>
-                        <connections>
-                            <outlet property="dataSource" destination="-1" id="b0D-cR-s3e"/>
-                            <outlet property="delegate" destination="-1" id="7nT-Kb-dJV"/>
-                        </connections>
-                    </tableView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR8-BX-54A">
-                        <rect key="frame" x="373" y="242.5" width="35" height="25"/>
+                        <rect key="frame" x="358" y="145.5" width="35" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="YJp-wK-1lw"/>
                             <constraint firstAttribute="width" constant="35" id="iyA-6s-9MZ"/>
@@ -97,6 +86,7 @@
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="mR8-BX-54A" firstAttribute="top" secondItem="Yxe-Tg-d9H" secondAttribute="bottom" constant="10" id="1Wb-LL-hca"/>
                     <constraint firstItem="mO8-Jp-mcf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="7ST-o5-vvV"/>
                     <constraint firstItem="mR8-BX-54A" firstAttribute="top" secondItem="zKP-rU-WDP" secondAttribute="top" id="EXp-xw-xou"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Yxe-Tg-d9H" secondAttribute="trailing" constant="5" id="FdZ-Xt-Mge"/>
@@ -107,27 +97,23 @@
                     <constraint firstItem="8UY-Ot-a3c" firstAttribute="top" secondItem="V6h-gX-JKw" secondAttribute="bottom" constant="10" id="abS-4C-7db"/>
                     <constraint firstItem="dbi-0o-aXJ" firstAttribute="centerY" secondItem="V6h-gX-JKw" secondAttribute="centerY" id="cTD-5H-tIz"/>
                     <constraint firstAttribute="bottom" secondItem="mR8-BX-54A" secondAttribute="bottom" constant="5" id="eEV-zy-3rh"/>
-                    <constraint firstItem="dbi-0o-aXJ" firstAttribute="leading" secondItem="V6h-gX-JKw" secondAttribute="trailing" constant="5" id="gA1-Ap-ELu"/>
+                    <constraint firstItem="dbi-0o-aXJ" firstAttribute="leading" secondItem="V6h-gX-JKw" secondAttribute="trailing" constant="10" id="gA1-Ap-ELu"/>
                     <constraint firstItem="Yxe-Tg-d9H" firstAttribute="top" secondItem="8UY-Ot-a3c" secondAttribute="bottom" constant="10" id="hBx-t0-hMu"/>
-                    <constraint firstItem="Yxe-Tg-d9H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="idh-JD-LJd"/>
-                    <constraint firstItem="mR8-BX-54A" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="neK-6V-LZa"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Eqc-wm-T8t" secondAttribute="trailing" constant="5" id="oxj-aH-qF0"/>
-                    <constraint firstItem="Eqc-wm-T8t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="pYU-RR-fHD"/>
-                    <constraint firstItem="Eqc-wm-T8t" firstAttribute="top" secondItem="Yxe-Tg-d9H" secondAttribute="bottom" constant="5" id="qMB-jd-ea7"/>
+                    <constraint firstItem="Yxe-Tg-d9H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="idh-JD-LJd"/>
+                    <constraint firstItem="mR8-BX-54A" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="neK-6V-LZa"/>
                     <constraint firstItem="V6h-gX-JKw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="tsN-Ye-qBv"/>
-                    <constraint firstItem="mR8-BX-54A" firstAttribute="top" secondItem="Eqc-wm-T8t" secondAttribute="bottom" constant="5" id="wvg-bp-8QA"/>
                     <constraint firstItem="V6h-gX-JKw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="xth-pm-89Y"/>
                     <constraint firstItem="mO8-Jp-mcf" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="zXj-Uh-GBX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="comment" destination="Yxe-Tg-d9H" id="MaR-69-5iP"/>
-                <outlet property="commentTabel" destination="Eqc-wm-T8t" id="nUB-in-22v"/>
+                <outlet property="commentButton" destination="zKP-rU-WDP" id="uSh-zG-VJ1"/>
                 <outlet property="headPortrait" destination="V6h-gX-JKw" id="mz0-Qc-9WN"/>
                 <outlet property="name" destination="dbi-0o-aXJ" id="fOb-8m-Onn"/>
                 <outlet property="time" destination="8UY-Ot-a3c" id="kTW-H2-4c5"/>
             </connections>
-            <point key="canvasLocation" x="-117" y="25"/>
+            <point key="canvasLocation" x="-56.5" y="15"/>
         </tableViewCell>
     </objects>
     <resources>

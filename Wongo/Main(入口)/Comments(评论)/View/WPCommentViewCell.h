@@ -21,4 +21,6 @@
 
 @property (nonatomic,assign)id<WPCommentViewCellDelegate> delegate;
 
+@property (nonatomic,strong)WPCommentModel * model;
+
 @end
