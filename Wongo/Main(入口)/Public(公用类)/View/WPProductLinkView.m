@@ -10,54 +10,51 @@
 
 @interface WPProductLinkView ()
 @property (nonatomic,strong)UIImageView * goodsImage;
-@property (nonatomic,strong)UILabel * gname;
+@property (nonatomic,strong)UITextView * gname;
 @property (nonatomic,strong)UILabel * price;
 @property (nonatomic,strong)NSString * gid;
+@property (nonatomic,strong)WPExchangeDetailModel * model;
 @end
 @implementation WPProductLinkView
 
-+(instancetype)productLinkWithGid:(NSString *)gid frame:(CGRect)frame{
++(instancetype)productLinkWithModel:(WPExchangeDetailModel *)model frame:(CGRect)frame{
     WPProductLinkView * productLinkView = [[WPProductLinkView alloc]initWithFrame:frame];
-    productLinkView.gid = gid;
-    [productLinkView loadDatas];
+    productLinkView.model = model;
+    [productLinkView setUpProductLinkSubView];
     return productLinkView;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        [self setUpProductLinkSubView];
         self.size = CGSizeMake(WINDOW_WIDTH - 20, 90);
-        self.backgroundColor = ColorWithRGB(247, 247, 247);
+        self.backgroundColor = ColorWithRGB(222, 222, 222);
     }
     return self;
 }
 
--(void)loadDatas{
 
-    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_gid} datas:^(NSDictionary *responseObject) {
-                _gname.text = responseObject[@"gname"];
-                [UILabel changeLineSpaceForLabel:_gname WithSpace:1];
-                _price.text = [NSString stringWithFormat:@"￥%@",responseObject[@"price"]];
-                [_goodsImage sd_setImageWithURL:[NSURL URLWithString:responseObject[@"listimg"][0][@"url"]] placeholderImage:nil];
-    }];
-
-}
 
 -(void)setUpProductLinkSubView{
     UIImageView * goodsImage = [[UIImageView alloc]init];
     [self addSubview:goodsImage];
+    goodsImage.layer.borderColor = ColorWithRGB(222, 222, 222).CGColor;
+    goodsImage.layer.borderWidth = 2.f;
+    [goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.rollPlayImages[0]] placeholderImage:nil];
     
-    UILabel * gname = [[UILabel alloc]init];
+    UITextView * gname = [[UITextView alloc]init];
     [self addSubview:gname];
-    gname.font = [UIFont systemFontOfSize:14];
-    gname.numberOfLines = 0;
-    
+    gname.text = _model.gname;
+    [UITextView changeWordSpaceForLabel:gname WithSpace:1.f];
+    gname.font = [UIFont systemFontOfSize:16];
+    gname.userInteractionEnabled = NO;
+    gname.backgroundColor = self.backgroundColor;
     
     UILabel * price = [[UILabel alloc]init];
     [self addSubview:price];
     price.font = [UIFont systemFontOfSize:14];
     price.textColor = SelfOrangeColor;
+    price.text = [NSString stringWithFormat:@"￥%@",_model.price];
     self.goodsImage = goodsImage;
     self.gname = gname;
     self.price = price;
@@ -68,15 +65,17 @@
     }];
     [gname mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(goodsImage.mas_right).offset(10);
-        make.top.mas_equalTo(self);
-        make.size.mas_equalTo(CGSizeMake(self.width-90, 60));
+        make.top.mas_equalTo(self).offset(5);
+        make.size.mas_equalTo(CGSizeMake(WINDOW_WIDTH - 110, 60));
     }];
     [price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(goodsImage.mas_right).offset(10);
-        make.bottom.mas_equalTo(self.bottom).offset(-5);
-        make.size.mas_equalTo(CGSizeMake(self.width-90, 30));
+        make.bottom.mas_equalTo(self.mas_bottom).offset(-5);
+        make.size.mas_equalTo(CGSizeMake(WINDOW_WIDTH - 110, 25));
     }];
-    
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
 }
 @end

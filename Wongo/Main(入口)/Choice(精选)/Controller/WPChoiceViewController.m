@@ -15,7 +15,7 @@
 #import "WPDreameChioceSubView.h"
 #import "WPChoiceSubCollectionView.h"
 
-#define Title_Array @[@"交换",@"新品",@"造梦计划"]//1.0
+#define Title_Array @[@"推荐",@"新品",@"造梦计划"]//1.0
 @interface WPChoiceViewController (){
     
 }

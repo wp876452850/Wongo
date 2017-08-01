@@ -40,7 +40,7 @@
  */
 @property (nonatomic,strong)NSString * neworold;
 /**
- 运费
+ 收藏状态
  */
 @property (nonatomic,strong)NSString * freight;
 /**

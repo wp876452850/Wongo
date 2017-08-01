@@ -16,7 +16,7 @@
 static NSString * const reuseIdentifier = @"Cell";
 -(UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64) style:UITableViewStyleGrouped];
         self.tableView.backgroundColor = ColorWithRGB(247, 247, 247);
     }
     return _tableView;

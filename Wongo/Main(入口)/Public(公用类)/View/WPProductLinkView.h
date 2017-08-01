@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WPProductLinkModel.h"
+#import "WPExchangeDetailModel.h"
+
 
 @interface WPProductLinkView : UIView
 
 
-+(instancetype)productLinkWithGid:(NSString *)gid frame:(CGRect)frame;
++(instancetype)productLinkWithModel:(WPExchangeDetailModel *)model frame:(CGRect)frame;
 
 @end

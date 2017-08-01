@@ -22,7 +22,7 @@
 //#define IconArray @[@"homepage",@"Selected",@"Release",@"My"];
 #define SelectIconArray @[@"Home_select",@"select_select",@"push_select",@"mine_select"];
 
-#define TitleArray @[@"首页",@"精选",@"发布",@"我的"]
+#define TitleArray @[@"首页",@"交换",@"发布",@"我的"]
 
 static id tabBar;
 

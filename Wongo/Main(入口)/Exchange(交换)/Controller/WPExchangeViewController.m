@@ -143,22 +143,20 @@ static NSString * const commodityCell   = @"CommodityCell";
             return cell;
         }
             break;
-        case 1:
+        case 2:
         {
             UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length-@"  宝贝评价".length)];
-            
+            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length - @"  宝贝评价".length)];
             cell.textLabel.attributedText   = attributedString;
             cell.textLabel.font             = [UIFont systemFontOfSize:17];
-            
             cell.selectionStyle             = UITableViewCellSelectionStyleNone;
             cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
-        case 2:
+        case 1:
         {
             WPUserIntroductionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
             cell.model                              = _exchangeModel.userIntroductionModel;
@@ -206,12 +204,12 @@ static NSString * const commodityCell   = @"CommodityCell";
             return 115;
         }
             break;
-        case 1:
+        case 2:
         {
             return 50;
         }
             break;
-        case 2:
+        case 1:
         {
             return 100;
         }
@@ -234,15 +232,18 @@ static NSString * const commodityCell   = @"CommodityCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //评论
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         if (_exchangeModel.commentsModelArray.count<=0) {
             [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
             //跳转评论界面
-                WPCommentViewController * vc = [[WPCommentViewController alloc]initWithGid:self.params[@"gid"]];
+                WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
                 [self.navigationController pushViewController:vc animated:YES];
+                [vc.commentKeyBoard keyboardUpforComment];
             }];
         }else{
             //跳转评论展示界面
+            WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     if (indexPath.section == 3) {

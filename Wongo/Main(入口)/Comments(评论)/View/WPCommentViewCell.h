@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WPCommentModel.h"
+#import "WPCommentMessegeModel.h"
 
 @class WPCommentViewCell;
 @protocol WPCommentViewCellDelegate <NSObject>
@@ -18,9 +19,10 @@
 @end
 
 @interface WPCommentViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UIButton *thumbUp;
+@property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (nonatomic,assign)id<WPCommentViewCellDelegate> delegate;
-
 @property (nonatomic,strong)WPCommentModel * model;
+@property (nonatomic,strong)WPCommentMessegeModel * commentMessageModel;
 
 @end

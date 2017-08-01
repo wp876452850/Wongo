@@ -18,6 +18,9 @@
 @property(nonatomic,copy)NSString *uname;
 /**内容*/
 @property(nonatomic,copy)NSString *commentContent;
+/**头像*/
+@property(nonatomic,copy)UIImage *headImage;
+
 /**对方id*/
 @property(nonatomic,copy)NSString *byuid;
 /**对方用户名*/

@@ -14,7 +14,7 @@
 
 @interface WPCommentViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
 
-@property (nonatomic,strong)ChatKeyBoard * commentKeyBoard;
+
 //记录最后点击cell的indexPath
 @property (nonatomic,strong)NSIndexPath * indexPath;
 /**数据数组*/
@@ -24,16 +24,16 @@
 /**缓存所有cell高度*/
 @property (nonatomic,strong)NSMutableArray * cellsHeight;
 
-@property (nonatomic,strong)NSString * gid;
+@property (nonatomic,strong)WPExchangeDetailModel * exchangeModel;
 @end
 
 @implementation WPCommentViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
--(instancetype)initWithGid:(NSString *)gid{
+-(instancetype)initWithModel:(WPExchangeDetailModel *)model{
     if (self = [super init]) {
-        self.gid = gid;
+        self.exchangeModel = model;
     }
     return self;
 }
@@ -100,7 +100,7 @@ static NSString * const reuseIdentifier = @"Cell";
 #pragma mark - ChatKeyBoardDelegate
 -(void)chatKeyBoardSendText:(NSString *)text{
     WPCommentModel * commentModel = [[WPCommentModel alloc]init];
-    commentModel.gid = self.gid;
+    commentModel.gid = self.exchangeModel.gid;
     commentModel.uname = [self getUserName];
     commentModel.uid = [self getSelfUid];
     commentModel.commentText = text;
@@ -138,7 +138,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     WPCommentModel * model = self.dataSource[indexPath.section];
     CGFloat cellHeight = 130 + [model.commentText getSizeWithFont:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
-    [self.cellsHeight addObject:[NSString stringWithFormat:@"%f",cellHeight]];
+    [self.cellsHeight insertObject:[NSString stringWithFormat:@"%f",cellHeight] atIndex:0];
     return cellHeight;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -150,7 +150,7 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.indexPath = indexPath;
     [self.view endEditing:YES];
-    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.dataSource[indexPath.section]];
+    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.dataSource[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
     [self.navigationController pushViewController:commentMessageVC animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

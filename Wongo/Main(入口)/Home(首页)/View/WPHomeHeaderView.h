@@ -10,7 +10,8 @@
 #import "LYHomeCategory.h"
 
 @interface WPHomeHeaderView : UIView
-//- (void)loadBanners;
+/**轮播图数组*/
 @property (nonatomic, strong) NSArray<LYHomeCategory *> *listhl;
+/**活动数组*/
 @property (nonatomic, strong) NSArray<LYHomeCategory *> *listhk;
 @end

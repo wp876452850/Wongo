@@ -7,9 +7,10 @@
 //
 
 #import "LYBaseController.h"
+#import "WPExchangeDetailModel.h"
 
 @interface WPCommentViewController : LYBaseController
 
--(instancetype)initWithGid:(NSString *)gid;
-
+-(instancetype)initWithModel:(WPExchangeDetailModel *)model;
+@property (nonatomic,strong)ChatKeyBoard * commentKeyBoard;
 @end

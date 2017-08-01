@@ -43,6 +43,7 @@
 #import "MoreItem.h"
 #import "ChatToolBarItem.h"
 #import "FaceThemeModel.h"
+#import "WPAttributedString.h"
 
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>

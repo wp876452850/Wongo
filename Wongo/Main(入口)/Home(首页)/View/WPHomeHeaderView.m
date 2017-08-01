@@ -37,6 +37,7 @@
 @property (nonatomic, strong) UIImageView *activityC;
 @property (nonatomic, strong) UIImageView *activityD;
 @property (nonatomic, strong) UIImageView *activityE;
+@property (nonatomic, strong) UIImageView *activityF;
 @property (nonatomic, strong) UIView *bottomLine;
 
 @property (nonatomic, strong) NSArray *bannerList;
@@ -54,45 +55,22 @@
         CGFloat h = 0.34 * WINDOW_WIDTH;
         CGFloat h2 = 0.29 *WINDOW_WIDTH;
         
-        _activityA = [[UIImageView alloc] initWithFrame:CGRectMake(0, 11, WINDOW_WIDTH * 0.5 - 0.5, h)];
-        _activityB = [[UIImageView alloc] initWithFrame:CGRectMake(WINDOW_WIDTH * 0.5, 11, WINDOW_WIDTH * 0.5, h)];
-        _activityC = [[UIImageView alloc] initWithFrame:CGRectMake(0, 12 + h, WINDOW_WIDTH * 0.33 , h2)];
-        _activityD = [[UIImageView alloc] initWithFrame:CGRectMake(WINDOW_WIDTH * 0.33 + 1, 12 + h, WINDOW_WIDTH * 0.33, h2)];
-        _activityE = [[UIImageView alloc] initWithFrame:CGRectMake(WINDOW_WIDTH * 0.66+2, 12 + h, WINDOW_WIDTH * 0.33, h2)];
+        _activityA = [self setUpActivityImageWithFrame:CGRectMake(0, 11, WINDOW_WIDTH * 0.33 , h)];
+        _activityB = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.33 + 1, 11, WINDOW_WIDTH * 0.33, h)];
+        _activityC = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.66 + 2, 11, WINDOW_WIDTH * 0.33, h)];
+        
+        _activityD = [self setUpActivityImageWithFrame:CGRectMake(0, 12 + h, WINDOW_WIDTH * 0.33 , h2)];
+        _activityE = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.33 + 1, 12 + h, WINDOW_WIDTH * 0.33, h2)];
+        _activityF = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.66 + 2, 12 + h, WINDOW_WIDTH * 0.33, h2)];
+        
         //点击手势
-        UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-        [_activityA addGestureRecognizer:tapA];
-        _activityA.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapB = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-        [_activityB addGestureRecognizer:tapB];
-        _activityB.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapC = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-        [_activityC addGestureRecognizer:tapC];
-        _activityC.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapD = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-        [_activityD addGestureRecognizer:tapD];
-        _activityD.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapE = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
-        [_activityE addGestureRecognizer:tapE];
-        _activityE.userInteractionEnabled = YES;
-
         _activityA.tag = 0;
         _activityB.tag = 1;
         _activityC.tag = 2;
         _activityD.tag = 3;
         _activityE.tag = 4;
+        _activityF.tag = 5;
         
-        _activityA.backgroundColor = [UIColor whiteColor];
-        _activityB.backgroundColor = [UIColor whiteColor];
-        _activityC.backgroundColor = [UIColor whiteColor];
-        _activityD.backgroundColor = [UIColor whiteColor];
-        _activityE.backgroundColor = [UIColor whiteColor];
-        
-        [_activityView addSubview:_activityA];
-        [_activityView addSubview:_activityB];
-        [_activityView addSubview:_activityC];
-        [_activityView addSubview:_activityD];
-        [_activityView addSubview:_activityE];
         
         //活动分栏最底部横条
         UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, h + h2 , WINDOW_WIDTH, 5)];
@@ -102,6 +80,16 @@
         
     }
     return _activityView;
+}
+
+-(UIImageView *)setUpActivityImageWithFrame:(CGRect)frame{
+    UIImageView * imageView = [[UIImageView alloc]initWithFrame:frame];
+    imageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+    [imageView addGestureRecognizer:tapA];
+    imageView.backgroundColor = [UIColor whiteColor];
+    [self.activityView addSubview:imageView];
+    return imageView;
 }
 -(instancetype)init{
     self = [super init];
@@ -163,23 +151,11 @@
     //如果数据存在，则返回数据滚动图，若不存在则用自定义图
     _cycleScrollView.imageURLStringsGroup = arr.count?arr:ROLLPLAYIMAGES;
 }
-//- (void)loadBanners{
-//    [WPNetWorking createPostRequestMenagerWithUrlString:GetHomeBannerUrl params:nil datas:^(NSDictionary *responseObject) {
-//        NSArray *array;
-//        if ([responseObject isKindOfClass:[NSDictionary class]] && [(array=responseObject[@"list"]) isKindOfClass:[NSArray class]]) {
-//            NSMutableArray *imgArr = [NSMutableArray array];
-//            _bannerList = [LYHomeBannerM mj_objectArrayWithKeyValuesArray:array];
-//            for (LYHomeBannerM *banner in _bannerList) {
-//                [imgArr addObject:banner.url];
-//            }
-//            _cycleScrollView.imageURLStringsGroup = imgArr.count?imgArr:ROLLPLAYIMAGES;
-//        }
-//    }];
-//}
+
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     
-        LYHomeCategory *category = self.listhl[index];
-        [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
+    LYHomeCategory *category = self.listhl[index];
+    [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
     
 }
 -(UIView *)fastView{

@@ -150,9 +150,52 @@ static const void   * limitLengthKey    = &limitLengthKey;
 }
 
 - (void)dealloc {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextViewTextDidChangeNotification
                                                   object:self];
+}
+
+#pragma mark -- 改变间距
++ (void)changeLineSpaceForLabel:(UITextView *)textView WithSpace:(float)space {
+    id text = nil;
+    NSMutableAttributedString *attributedString = nil;
+    if (textView.text.length>0) {
+        text = textView.text;
+        attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+    }
+    else{
+        text = textView.attributedText;
+        attributedString = text;
+    }
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:space];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    textView.attributedText = attributedString;
+    [textView sizeToFit];
+    
+}
+
++ (void)changeWordSpaceForLabel:(UITextView *)textView WithSpace:(float)space {
+    
+    NSString * text = textView.text;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSKernAttributeName:@(space)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    textView.attributedText = attributedString;
+    
+    [textView sizeToFit];
+}
+
++ (void)changeSpaceForLabel:(UITextView *)textView withLineSpace:(float)lineSpace WordSpace:(float)wordSpace{
+    
+    NSString *text = textView.text;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSKernAttributeName:@(wordSpace)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    textView.attributedText = attributedString;
+    [textView sizeToFit];
+    
 }
 @end

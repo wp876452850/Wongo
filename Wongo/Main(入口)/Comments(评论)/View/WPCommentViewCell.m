@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *time;
 @property (weak, nonatomic) IBOutlet UITextView *comment;
-@property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (nonatomic, strong) UILabel *contentLabel;
 @end
 
@@ -43,4 +42,12 @@
     _time.text = model.commentTime;
     _comment.text = model.commentText;
 }
+-(void)setCommentMessageModel:(WPCommentMessegeModel *)commentMessageModel{
+    _commentMessageModel = commentMessageModel;
+    _headPortrait.image = commentMessageModel.headImage;
+    _name.text = commentMessageModel.uname;
+    _time.text = commentMessageModel.commentTime;
+    _comment.text = commentMessageModel.commentContent;
+}
+
 @end

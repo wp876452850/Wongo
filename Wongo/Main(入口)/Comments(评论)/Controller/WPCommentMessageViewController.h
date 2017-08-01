@@ -8,9 +8,10 @@
 
 #import "WPTableBaseViewController.h"
 #import "WPCommentModel.h"
+#import "WPExchangeDetailModel.h"
 
 @interface WPCommentMessageViewController : WPTableBaseViewController
 
--(instancetype)initWithCommentModel:(WPCommentModel *)model;
+-(instancetype)initWithCommentModel:(WPCommentModel *)model goodsModel:(WPExchangeDetailModel *)goodsModel commentHeight:(CGFloat)commentHeight upKeyBoard:(BOOL)upKeyBoard;
 
 @end

@@ -99,7 +99,7 @@
                 <outlet property="icon" destination="IWD-dc-wBL" id="ySv-oq-4F0"/>
                 <outlet property="price" destination="IO0-cE-YiH" id="fcW-d6-gG9"/>
             </connections>
-            <point key="canvasLocation" x="-197" y="-245"/>
+            <point key="canvasLocation" x="-590" y="-273"/>
         </tableViewCell>
     </objects>
 </document>

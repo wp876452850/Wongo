@@ -34,7 +34,7 @@
             <connections>
                 <outlet property="cyImage" destination="6gN-un-nbv" id="GZZ-rK-Nyg"/>
             </connections>
-            <point key="canvasLocation" x="-26" y="55"/>
+            <point key="canvasLocation" x="-318" y="36"/>
         </collectionViewCell>
     </objects>
 </document>

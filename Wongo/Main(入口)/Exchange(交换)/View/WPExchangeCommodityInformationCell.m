@@ -38,16 +38,24 @@
 
 -(void)setModel:(WPExchangeDetailModel *)model{
     _model = model;
-    _goodsName.text = model.gname;
+    if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
+        NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang.jpg"] atIndex:0];
+    }else{
+        _goodsName.text = model.gname;
+    }
     _oldNew.text    = model.neworold;
-    _price.text     = [NSString stringWithFormat:@"%@%@",model.unit,model.price];
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
+    _price.text     = [NSString stringWithFormat:@" %@",model.price];
+    [UILabel changeWordSpaceForLabel:_price WithSpace:1.f];
+    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"qian"] atIndex:0];
+    if ([model.freight floatValue] == 1) {
+        self.collectionButoon.selected = YES;
+    }
 }
 //收藏
 - (IBAction)collection:(UIButton *)sender {
-    
     [self collectionOfGoodsWithSender:sender gid:_model.gid];
-    
 }
 
 @end

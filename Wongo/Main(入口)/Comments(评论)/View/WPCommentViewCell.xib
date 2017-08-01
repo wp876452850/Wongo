@@ -111,9 +111,10 @@
                 <outlet property="commentButton" destination="zKP-rU-WDP" id="uSh-zG-VJ1"/>
                 <outlet property="headPortrait" destination="V6h-gX-JKw" id="mz0-Qc-9WN"/>
                 <outlet property="name" destination="dbi-0o-aXJ" id="fOb-8m-Onn"/>
+                <outlet property="thumbUp" destination="mR8-BX-54A" id="fpU-a3-fsA"/>
                 <outlet property="time" destination="8UY-Ot-a3c" id="kTW-H2-4c5"/>
             </connections>
-            <point key="canvasLocation" x="-56.5" y="15"/>
+            <point key="canvasLocation" x="90" y="-199"/>
         </tableViewCell>
     </objects>
     <resources>
