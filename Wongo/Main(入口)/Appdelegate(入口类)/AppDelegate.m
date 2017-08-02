@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "WPTabBarController.h"
+#import "WPGuideViewController.h"
 #import "WPUserIntroductionModel.h"
 
 #define RONGCLOUD_IM_TOKEN  @"26yDFgVPSX8MPykDOdP86cpJiC88oLvizHSm/MXqzhfDeVfnPN76WyU+D/a3E1okCHM0fB1d5RVZjF4Wq3nO2Q=="//Token
@@ -19,10 +20,15 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
-    self.window.rootViewController = tabBar;
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    WPGuideViewController * vc = [[WPGuideViewController alloc]init];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    nav.navigationBarHidden = YES;
+//    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
+//    self.window.rootViewController = tabBar;
+//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+//    [UIApplication sharedApplication].statusBarHidden = NO;
     //初始化融云SDK
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
@@ -47,7 +53,6 @@
                 } error:^(RCConnectErrorCode status) {
                 } tokenIncorrect:^{
                 }];
-                
             }];
         }];
     }

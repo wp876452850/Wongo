@@ -19,6 +19,7 @@
 #import "LYActivityController.h"
 #import "LYHomeSectionFooter.h"
 
+
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
 
 #define RollPlayImages @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
@@ -52,6 +53,7 @@ static NSString * contentOffset = @"contentOffset";
 @property (nonatomic,assign)CGFloat lastCollectionContentOffsetY;
 
 @property (nonatomic, strong) LYHomeResponse *response;
+
 @end
 
 @implementation WPHomeViewController
@@ -60,7 +62,6 @@ static NSString * contentOffset = @"contentOffset";
 -(WPHomeHeaderSearchView *)homeHeaderSearchView{
     if (!_homeHeaderSearchView) {
         _homeHeaderSearchView = [[WPHomeHeaderSearchView alloc]init];
-        
     }
     return _homeHeaderSearchView;
 }
@@ -68,38 +69,31 @@ static NSString * contentOffset = @"contentOffset";
 {
     if (!_homeHeaderView) {
         _homeHeaderView = [[WPHomeHeaderView alloc] init];
-        
     }
     return _homeHeaderView;
 }
-
-
 -(UICollectionView *)collectionView{  
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
         layout.headerReferenceSize = CGSizeMake(WINDOW_WIDTH, 44);
-        
         _collectionView = [[UICollectionView alloc]initWithFrame:COLLECTIONVIEW_FRAME collectionViewLayout:layout];
-    
         _collectionView.backgroundColor = [UIColor whiteColor];
-        
         _collectionView.delegate = self;
-        
         _collectionView.dataSource = self;
         //注册
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSquareCell" bundle:nil] forCellWithReuseIdentifier:@"SquareCellID"];
-        
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeRectangleCell" bundle:nil] forCellWithReuseIdentifier:@"RectangleCellID"];
-        
         [_collectionView registerClass:[WPHomeReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSectionFooter" bundle:nil]  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID"];
         //添加监听
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
-        
         [_collectionView addObserver:self forKeyPath:contentOffset options:options context:nil];
     }
     return _collectionView;
 }
+
+#pragma mark - viewDidLoad
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -109,6 +103,7 @@ static NSString * contentOffset = @"contentOffset";
     [self.collectionView addSubview:self.homeHeaderView];
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
+    
 }
 
 -(void)addHeaderLoad{

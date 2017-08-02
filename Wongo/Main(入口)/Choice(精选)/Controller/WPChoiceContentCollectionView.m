@@ -53,6 +53,7 @@
     }else{
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     }
+    
     WPChoiceSubCollectionView *collectionView = [[WPChoiceSubCollectionView alloc]initWithFrame:CGRectMake(WINDOW_WIDTH, 0, chioceCollection.width, chioceCollection.height) collectionViewLayout:layout loadDatasUrl:chioceCollection.urls[1] cellClass:chioceCollection.subCellClass[1]];
      [chioceCollection addSubview:collectionView];
     
@@ -64,6 +65,7 @@
     
     WPDreameChioceSubView *collectionView2 = [[WPDreameChioceSubView alloc]initWithFrame:CGRectMake(2 * WINDOW_WIDTH, 0, chioceCollection.width, chioceCollection.height) collectionViewLayout:layout2 cellClass:chioceCollection.subCellClass[2]];
      [chioceCollection addSubview:collectionView2];
+    
     return chioceCollection;
 }
 @end

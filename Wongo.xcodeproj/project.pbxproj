@@ -310,6 +310,11 @@
 		3D1906371F29DB5C00E4EFFD /* WPProductLinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1906361F29DB5C00E4EFFD /* WPProductLinkModel.m */; };
 		3D1A6D161F1F2FDB0064EB23 /* 1_star_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1A6D141F1F2FDB0064EB23 /* 1_star_1@3x.png */; };
 		3D1A6D171F1F2FDB0064EB23 /* 1_star_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1A6D151F1F2FDB0064EB23 /* 1_star_2@3x.png */; };
+		3D27A9341F301FD800091646 /* guanggao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D27A9331F301FD800091646 /* guanggao.jpg */; };
+		3D27A9381F30259500091646 /* WPGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D27A9371F30259500091646 /* WPGuideViewController.m */; };
+		3D27A93B1F30272A00091646 /* yindao1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D27A9391F30272A00091646 /* yindao1.jpg */; };
+		3D27A93C1F30272A00091646 /* yundao2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D27A93A1F30272A00091646 /* yundao2.jpg */; };
+		3D27A96F1F3083DE00091646 /* WPProductDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D27A96E1F3083DE00091646 /* WPProductDetailsViewController.m */; };
 		3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */; };
 		3D2F20E41EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */; };
 		3D389C141EE63E9200B25DF4 /* LYAliPayResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */; };
@@ -1221,6 +1226,13 @@
 		3D1906361F29DB5C00E4EFFD /* WPProductLinkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPProductLinkModel.m; sourceTree = "<group>"; };
 		3D1A6D141F1F2FDB0064EB23 /* 1_star_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_star_1@3x.png"; sourceTree = "<group>"; };
 		3D1A6D151F1F2FDB0064EB23 /* 1_star_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_star_2@3x.png"; sourceTree = "<group>"; };
+		3D27A9331F301FD800091646 /* guanggao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guanggao.jpg; sourceTree = "<group>"; };
+		3D27A9361F30259500091646 /* WPGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGuideViewController.h; sourceTree = "<group>"; };
+		3D27A9371F30259500091646 /* WPGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGuideViewController.m; sourceTree = "<group>"; };
+		3D27A9391F30272A00091646 /* yindao1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yindao1.jpg; sourceTree = "<group>"; };
+		3D27A93A1F30272A00091646 /* yundao2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yundao2.jpg; sourceTree = "<group>"; };
+		3D27A96D1F3083DE00091646 /* WPProductDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPProductDetailsViewController.h; sourceTree = "<group>"; };
+		3D27A96E1F3083DE00091646 /* WPProductDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPProductDetailsViewController.m; sourceTree = "<group>"; };
 		3D2F20E01EEA4DD900045EF8 /* LYWanGaoUserAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWanGaoUserAgreementController.h; sourceTree = "<group>"; };
 		3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWanGaoUserAgreementController.m; sourceTree = "<group>"; };
 		3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWanGaoUserAgreementController.xib; sourceTree = "<group>"; };
@@ -3525,6 +3537,56 @@
 			path = "基类(Base)";
 			sourceTree = "<group>";
 		};
+		3D27A9351F30255300091646 /* 引导页(Guide) */ = {
+			isa = PBXGroup;
+			children = (
+				3D27A9361F30259500091646 /* WPGuideViewController.h */,
+				3D27A9371F30259500091646 /* WPGuideViewController.m */,
+			);
+			path = "引导页(Guide)";
+			sourceTree = "<group>";
+		};
+		3D27A9641F30826D00091646 /* Detail(商品详情页) */ = {
+			isa = PBXGroup;
+			children = (
+				3D27A9691F3082B600091646 /* Cell */,
+				3D27A9681F3082A200091646 /* Model */,
+				3D27A9651F30827900091646 /* View */,
+				3D27A9671F30829600091646 /* Controller */,
+			);
+			path = "Detail(商品详情页)";
+			sourceTree = "<group>";
+		};
+		3D27A9651F30827900091646 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3D27A9671F30829600091646 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D27A96D1F3083DE00091646 /* WPProductDetailsViewController.h */,
+				3D27A96E1F3083DE00091646 /* WPProductDetailsViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D27A9681F3082A200091646 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D27A9691F3082B600091646 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		3D6BA1241F2B2AA400EC165C /* WPAtrributeString(富文本) */ = {
 			isa = PBXGroup;
 			children = (
@@ -3667,6 +3729,7 @@
 		85187E431E8DF99300D3D64F /* 吃包子,测试用图 */ = {
 			isa = PBXGroup;
 			children = (
+				3D27A9331F301FD800091646 /* guanggao.jpg */,
 				85187E441E8DFA1700D3D64F /* DianPing */,
 			);
 			path = "吃包子,测试用图";
@@ -4749,6 +4812,7 @@
 			isa = PBXGroup;
 			children = (
 				8566A8D11E482A4300C08624 /* Info.Plist&&StoryBoard(StoryBoard和info.Plist文件) */,
+				3D27A9351F30255300091646 /* 引导页(Guide) */,
 				8566A7271E48259100C08624 /* Appdelegate(入口类) */,
 				3D1906281F29BDA200E4EFFD /* 基类(Base) */,
 				8566A7141E48220700C08624 /* TabBar(标签条) */,
@@ -4763,6 +4827,7 @@
 				855C970F1E63FA450089EF32 /* DreamingPlan(造梦计划) */,
 				859E8F8D1E7A705E007C1F65 /* Exchange(交换) */,
 				85345F681E67F956005E1AD5 /* Comments(评论) */,
+				3D27A9641F30826D00091646 /* Detail(商品详情页) */,
 			);
 			path = "Main(入口)";
 			sourceTree = "<group>";
@@ -4971,6 +5036,8 @@
 		8566A7261E48255500C08624 /* Image(图片) */ = {
 			isa = PBXGroup;
 			children = (
+				3D27A9391F30272A00091646 /* yindao1.jpg */,
+				3D27A93A1F30272A00091646 /* yundao2.jpg */,
 				3D1A6D141F1F2FDB0064EB23 /* 1_star_1@3x.png */,
 				3D1A6D151F1F2FDB0064EB23 /* 1_star_2@3x.png */,
 				85187E431E8DF99300D3D64F /* 吃包子,测试用图 */,
@@ -6252,6 +6319,7 @@
 				3D1732521F26F6C200BFF90D /* f_static_059@3x.png in Resources */,
 				8597EFB91E8A4E3E001E1BA5 /* WPProductParametersCell.xib in Resources */,
 				3D1731CE1F26F6C200BFF90D /* section0_emotion13@2x.png in Resources */,
+				3D27A93B1F30272A00091646 /* yindao1.jpg in Resources */,
 				3D1732381F26F6C200BFF90D /* f_static_046@3x.png in Resources */,
 				3D1731EC1F26F6C200BFF90D /* f_static_008@3x.png in Resources */,
 				85187F491E8DFA1800D3D64F /* dropdown_anim__00040@2x.png in Resources */,
@@ -6319,6 +6387,7 @@
 				3D1732841F26F6C200BFF90D /* f_static_084@3x.png in Resources */,
 				85187F061E8DFA1800D3D64F /* Contents.json in Resources */,
 				85187F1F1E8DFA1800D3D64F /* dropdown_anim__00021@2x.png in Resources */,
+				3D27A9341F301FD800091646 /* guanggao.jpg in Resources */,
 				3D17328D1F26F6C200BFF90D /* f_static_089@2x.png in Resources */,
 				3D17325D1F26F6C200BFF90D /* f_static_065@2x.png in Resources */,
 				3D17329C1F26F6C200BFF90D /* f_static_096@3x.png in Resources */,
@@ -6545,6 +6614,7 @@
 				85187F191E8DFA1800D3D64F /* dropdown_anim__00019@2x.png in Resources */,
 				854389E81E51A8E800B84CCB /* 8.jpg in Resources */,
 				3D17328C1F26F6C200BFF90D /* f_static_088@3x.png in Resources */,
+				3D27A93C1F30272A00091646 /* yundao2.jpg in Resources */,
 				3D17327C1F26F6C200BFF90D /* f_static_080@3x.png in Resources */,
 				3D1732061F26F6C200BFF90D /* f_static_021@3x.png in Resources */,
 				85187F6A1E8DFA1800D3D64F /* Contents.json in Resources */,
@@ -6902,6 +6972,7 @@
 				85F08F1A1E48504C00A07451 /* UIView+SDExtension.m in Sources */,
 				8525A6BA1E9DCDBE00FF0917 /* WPChioceSubTableView.m in Sources */,
 				8566A7D31E48265C00C08624 /* SKFCamera.m in Sources */,
+				3D27A96F1F3083DE00091646 /* WPProductDetailsViewController.m in Sources */,
 				85067BF21E8CDA970044E555 /* WPExchangeOrderGoodsModel.m in Sources */,
 				3D1732C81F26F6C200BFF90D /* RFRecordButton.m in Sources */,
 				3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */,
@@ -7107,6 +7178,7 @@
 				850E9F6C1EBAC5C10053C698 /* WPParameterInformationView.m in Sources */,
 				851E361E1EC4473A00C48AEF /* WPDreamingIntroduceImageModel.m in Sources */,
 				8566A7D01E48265C00C08624 /* LLSimpleCamera+Helper.m in Sources */,
+				3D27A9381F30259500091646 /* WPGuideViewController.m in Sources */,
 				3D19062E1F29BE0E00E4EFFD /* WPCommentMessageViewController.m in Sources */,
 				3DF8EDD21EE13F6A000F55BF /* LYExchangeOrderDetailController.m in Sources */,
 				3D1732DE1F273B7000BFF90D /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */,

@@ -9,7 +9,7 @@
 #import "LYBaseController.h"
 
 @interface LYBaseController ()
-
+@property (nonatomic,strong)UILabel * selfNavTitleLabel;
 @end
 
 @implementation LYBaseController
@@ -43,4 +43,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+-(void)setTitle:(NSString *)title{
+    [super setTitle:title];
+    self.selfNavTitleLabel.text = title;
+}
 @end
