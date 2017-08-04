@@ -45,6 +45,7 @@
 }
 //显示参数
 - (IBAction)showParameter:(UIButton *)sender {
+    
     [self.contentView bringSubviewToFront:self.parameterView];
 }
 //显示评论

@@ -41,12 +41,14 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     self.myNavItem.title = @"评论";
     self.view.backgroundColor = WhiteColor;
+    [self loadDatas];
     [self.view addSubview:self.tableView];
     [self createBottomCommentButton];
 }
 -(NSMutableArray *)dataSource{
     if (!_dataSource) {
         _dataSource = [NSMutableArray arrayWithCapacity:3];
+        _exchangeModel.commentsModelArray = _dataSource;
     }
     return _dataSource;
 }
@@ -97,7 +99,7 @@ static NSString * const reuseIdentifier = @"Cell";
     return nil;
 }
 
-#pragma mark - ChatKeyBoardDelegate
+#pragma mark - ChatKeyBoardDelegate 发送评论
 -(void)chatKeyBoardSendText:(NSString *)text{
     WPCommentModel * commentModel = [[WPCommentModel alloc]init];
     commentModel.gid = self.exchangeModel.gid;
@@ -106,11 +108,19 @@ static NSString * const reuseIdentifier = @"Cell";
     commentModel.commentText = text;
     commentModel.commentTime = [self getNowTime];
     commentModel.headImage = [self getUserHeadPortrait];
-    [self.dataSource insertObject:commentModel atIndex:0];
-    [self.tableView reloadData];
+    __block WPCommentViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":commentModel.uid,@"gid":commentModel.gid,@"comment":commentModel.commentText,@"commenttime":commentModel.commentTime} datas:^(NSDictionary *responseObject) {
+        [weakSelf.exchangeModel.commentsModelArray insertObject:commentModel atIndex:0];
+        [weakSelf.tableView reloadData];
+    }];
     [self.view endEditing:YES];
 }
-
+#pragma mark - 查询评论
+-(void)loadDatas{
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentUrl params:@{@"gid":_exchangeModel.gid} datas:^(NSDictionary *responseObject) {
+        
+    }];
+}
 #pragma mark - 更新单元格高度
 -(void)reloadCellHeightForModel:(WPCommentModel *)model atIndexPath:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -122,7 +132,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.dataSource.count;
+    return self.exchangeModel.commentsModelArray.count;
 }
 //section高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -136,21 +146,21 @@ static NSString * const reuseIdentifier = @"Cell";
     if (self.cellsHeight.count > indexPath.section) {
         return [self.cellsHeight[indexPath.section] floatValue];
     }
-    WPCommentModel * model = self.dataSource[indexPath.section];
+    WPCommentModel * model = self.exchangeModel.commentsModelArray[indexPath.section];
     CGFloat cellHeight = 130 + [model.commentText getSizeWithFont:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
     [self.cellsHeight insertObject:[NSString stringWithFormat:@"%f",cellHeight] atIndex:0];
     return cellHeight;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WPCommentViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.model = self.dataSource[indexPath.section];
+    cell.model = self.exchangeModel.commentsModelArray[indexPath.section];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.indexPath = indexPath;
     [self.view endEditing:YES];
-    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.dataSource[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
+    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.exchangeModel.commentsModelArray[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
     [self.navigationController pushViewController:commentMessageVC animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

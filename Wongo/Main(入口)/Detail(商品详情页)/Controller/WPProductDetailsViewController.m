@@ -63,6 +63,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
+            
         }
         weakSelf.tableView.tableHeaderView  = weakSelf.cycleScrollView;
         //获取用户信息
@@ -102,7 +103,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         }
         return self.userStoreRowHeight;
     }
-    else if (indexPath.section == 1){
+    else if (indexPath.section == 0){
         return 150;
     }
     return 0;
