@@ -121,6 +121,10 @@
 #define UpdgdfreightAddUrl      HttpHead(@"updgdfreightAdd")
 /**取消点赞*/
 #define UpdgdfreightUrl         HttpHead(@"updgdfreight")
+/**添加评论*/
+#define AddCommentUrl           HttpHead(@"addComment")
+/**查询评论*/
+#define QueryUserCommentUrl     HttpHead(@"queryUserComment")
 
 
 #endif /* WongoHttpMacros_h */

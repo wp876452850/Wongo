@@ -58,7 +58,7 @@
 /**
  产品参数
  */
-@property (nonatomic,strong)NSString * goodsParameter;
+@property (nonatomic,strong)NSMutableArray * parameters;
 /**
  商品描述
  */

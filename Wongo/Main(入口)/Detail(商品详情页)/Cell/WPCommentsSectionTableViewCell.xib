@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="272" id="KGk-i7-Jjw" customClass="WPCommentsSectionTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="566" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="566" height="272"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J7c-XU-f2G">
+                        <rect key="frame" x="8" y="8" width="275" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="LDE-7V-xKp"/>
+                        </constraints>
+                        <state key="normal" title="参数详情">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="showParameter:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="aJ4-NK-3we"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gF-ct-oIk">
+                        <rect key="frame" x="283" y="8" width="275" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="kMz-jW-lBl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="讨论区(0)">
+                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="showComment:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NlX-mn-Blb"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-eD-ymh">
+                        <rect key="frame" x="0.0" y="48" width="566" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="plR-bb-qRS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3gF-ct-oIk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="1jz-II-LtY"/>
+                    <constraint firstItem="J7c-XU-f2G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="3kN-Ce-f6I"/>
+                    <constraint firstItem="3gF-ct-oIk" firstAttribute="width" secondItem="J7c-XU-f2G" secondAttribute="width" id="8ep-dc-YVA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3gF-ct-oIk" secondAttribute="trailing" id="8pd-8h-8em"/>
+                    <constraint firstAttribute="trailing" secondItem="bFY-eD-ymh" secondAttribute="trailing" id="B1S-rm-nPG"/>
+                    <constraint firstItem="3gF-ct-oIk" firstAttribute="leading" secondItem="J7c-XU-f2G" secondAttribute="trailing" id="GHH-oV-u6M"/>
+                    <constraint firstItem="bFY-eD-ymh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IZM-Bm-TVv"/>
+                    <constraint firstItem="bFY-eD-ymh" firstAttribute="top" secondItem="3gF-ct-oIk" secondAttribute="bottom" id="UaZ-pQ-mUT"/>
+                    <constraint firstItem="J7c-XU-f2G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ypl-DB-qTs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="comment" destination="3gF-ct-oIk" id="dZX-bI-PLu"/>
+                <outlet property="parameter" destination="J7c-XU-f2G" id="ixx-NQ-qHd"/>
+            </connections>
+            <point key="canvasLocation" x="43" y="-337"/>
+        </tableViewCell>
+    </objects>
+</document>

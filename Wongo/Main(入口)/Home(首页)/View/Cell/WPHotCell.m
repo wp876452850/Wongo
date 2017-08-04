@@ -10,6 +10,7 @@
 #import "WPExchangeViewController.h"
 #import "LoginViewController.h"
 #import "WPDreamingDetailViewController.h"
+#import "WPProductDetailsViewController.h"
 
 @interface WPHotCell ()
 
@@ -54,7 +55,7 @@
         }];
         return;
     }
-
+    
 }
 
 
@@ -67,8 +68,12 @@
     if (!_model.gid.length) {
         return;
     }
-    WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
+    //    WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
+    //    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+    WPProductDetailsViewController * vc= [WPProductDetailsViewController productDetailsViewControllerWithGid:_model.gid];
+    [vc showExchangeBottomView];
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+    
 }
 
 @end

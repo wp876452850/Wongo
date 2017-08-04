@@ -34,12 +34,14 @@
 #define RandomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]
 #define ScreenThan 0.5
 #define GRAY_COLOR [UIColor colorWithRed:154/255.0 green:154/255.0 blue:154/255.0 alpha:1]
+#define AllBorderColor ColorWithRGB(217, 217, 217)
 
 #define ColorWithRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 #define WhiteColor ColorWithRGB(255,255,255)
 #define SelfOrangeColor ColorWithRGB(252,139,29)
 #define User_MobileVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 #define RollPlayFrame CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
+
 
 /**判断是否为我的二级界面,解决导航控制器问题*/
 #define IsMySubViewController @"isYesOrNo"
