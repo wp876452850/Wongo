@@ -1955,8 +1955,8 @@
 		859D7B6E1EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPUpDataUserInformationViewController.h; sourceTree = "<group>"; };
 		859D7B6F1EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPUpDataUserInformationViewController.m; sourceTree = "<group>"; };
 		859D7B701EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPUpDataUserInformationViewController.xib; sourceTree = "<group>"; };
-		859E8F911E7A7140007C1F65 /* WPExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPExchangeViewController.h; sourceTree = "<group>"; };
-		859E8F921E7A7140007C1F65 /* WPExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPExchangeViewController.m; sourceTree = "<group>"; };
+		859E8F911E7A7140007C1F65 /* WPExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPExchangeViewController.h; path = "../../Exchange(交换)/Controller/WPExchangeViewController.h"; sourceTree = "<group>"; };
+		859E8F921E7A7140007C1F65 /* WPExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPExchangeViewController.m; path = "../../Exchange(交换)/Controller/WPExchangeViewController.m"; sourceTree = "<group>"; };
 		85A2A4651EC943C2005F7D9D /* WPDreamingOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDreamingOrderTableViewCell.h; sourceTree = "<group>"; };
 		85A2A4661EC943C2005F7D9D /* WPDreamingOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDreamingOrderTableViewCell.m; sourceTree = "<group>"; };
 		85A2A4671EC943C2005F7D9D /* WPDreamingOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPDreamingOrderTableViewCell.xib; sourceTree = "<group>"; };
@@ -3600,6 +3600,8 @@
 			children = (
 				3DF7460D1F3426FB00A23B52 /* WPProductDetailsViewController.h */,
 				3DF7460E1F3426FB00A23B52 /* WPProductDetailsViewController.m */,
+				859E8F911E7A7140007C1F65 /* WPExchangeViewController.h */,
+				859E8F921E7A7140007C1F65 /* WPExchangeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5804,8 +5806,6 @@
 		859E8F8E1E7A705E007C1F65 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				859E8F911E7A7140007C1F65 /* WPExchangeViewController.h */,
-				859E8F921E7A7140007C1F65 /* WPExchangeViewController.m */,
 				8597EFBD1E8A6BAA001E1BA5 /* WPSelectExchangeGoodsViewController.h */,
 				8597EFBE1E8A6BAA001E1BA5 /* WPSelectExchangeGoodsViewController.m */,
 			);

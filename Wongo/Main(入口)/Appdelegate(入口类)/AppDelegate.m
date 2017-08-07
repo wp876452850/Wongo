@@ -20,15 +20,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    WPGuideViewController * vc = [[WPGuideViewController alloc]init];
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
-    self.window.rootViewController = nav;
-    nav.navigationBarHidden = YES;
-//    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
-//    self.window.rootViewController = tabBar;
-//    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-//    [UIApplication sharedApplication].statusBarHidden = NO;
+    NSString * first = [[NSUserDefaults standardUserDefaults]objectForKey:FirstTimeTosStart];
+    if (first.length<=0||!first) {
+        WPGuideViewController * vc = [[WPGuideViewController alloc]init];
+        UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+        nav.navigationBarHidden = YES;
+        [[NSUserDefaults standardUserDefaults]setObject:@"no" forKey:FirstTimeTosStart];
+    }else{
+        WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
+        self.window.rootViewController = tabBar;
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+        [UIApplication sharedApplication].statusBarHidden = NO;
+    }
+
     //初始化融云SDK
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];

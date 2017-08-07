@@ -46,6 +46,7 @@
     self.price.text = [NSString stringWithFormat:@"￥%@",model.price];
 }
 - (IBAction)colletionButtonClick:(id)sender {
+    
     [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
     return;
     self.icon.selected = !self.icon.selected;

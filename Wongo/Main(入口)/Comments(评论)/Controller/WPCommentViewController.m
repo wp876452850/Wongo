@@ -101,15 +101,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark - ChatKeyBoardDelegate 发送评论
 -(void)chatKeyBoardSendText:(NSString *)text{
+    if (![self determineWhetherTheLogin]) {
+        return;
+    }
     WPCommentModel * commentModel = [[WPCommentModel alloc]init];
     commentModel.gid = self.exchangeModel.gid;
     commentModel.uname = [self getUserName];
-    commentModel.uid = [self getSelfUid];
-    commentModel.commentText = text;
-    commentModel.commentTime = [self getNowTime];
+    commentModel.comment = text;
+    commentModel.commenttime = [self getNowTime];
     commentModel.headImage = [self getUserHeadPortrait];
-    __block WPCommentViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":commentModel.uid,@"gid":commentModel.gid,@"comment":commentModel.commentText,@"commenttime":commentModel.commentTime} datas:^(NSDictionary *responseObject) {
+   
+     __block WPCommentViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":[self getSelfUid],@"gid":commentModel.gid,@"comment":commentModel.comment,@"commenttime":commentModel.commenttime} datas:^(NSDictionary *responseObject) {
         [weakSelf.exchangeModel.commentsModelArray insertObject:commentModel atIndex:0];
         [weakSelf.tableView reloadData];
     }];
@@ -117,8 +120,11 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 #pragma mark - 查询评论
 -(void)loadDatas{
+     __block WPCommentViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentUrl params:@{@"gid":_exchangeModel.gid} datas:^(NSDictionary *responseObject) {
-        
+        weakSelf.exchangeModel.commentsModelArray = responseObject[@"list"];
+        [weakSelf.tableView reloadData];
+
     }];
 }
 #pragma mark - 更新单元格高度
@@ -147,7 +153,7 @@ static NSString * const reuseIdentifier = @"Cell";
         return [self.cellsHeight[indexPath.section] floatValue];
     }
     WPCommentModel * model = self.exchangeModel.commentsModelArray[indexPath.section];
-    CGFloat cellHeight = 130 + [model.commentText getSizeWithFont:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
+    CGFloat cellHeight = 130 + [model.comment getSizeWithFont:[UIFont systemFontOfSize:15] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
     [self.cellsHeight insertObject:[NSString stringWithFormat:@"%f",cellHeight] atIndex:0];
     return cellHeight;
 }

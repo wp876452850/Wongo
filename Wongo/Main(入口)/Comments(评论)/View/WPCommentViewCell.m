@@ -39,8 +39,8 @@
     _model = model;
     _headPortrait.image = model.headImage;
     _name.text = model.uname;
-    _time.text = model.commentTime;
-    _comment.text = model.commentText;
+    _time.text = [model.commenttime stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    _comment.text = model.comment;
 }
 -(void)setCommentMessageModel:(WPCommentMessegeModel *)commentMessageModel{
     _commentMessageModel = commentMessageModel;

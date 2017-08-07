@@ -11,7 +11,7 @@
 @interface WPCommentModel : NSObject
 
 /**评论id*/
-@property(nonatomic,copy)NSString *commentId;
+@property(nonatomic,copy)NSString *cid;
 /**用户id*/
 @property(nonatomic,copy)NSString *uid;
 /**商品id*/
@@ -21,9 +21,9 @@
 /**头像*/
 @property(nonatomic,copy)UIImage *headImage;
 /**内容*/
-@property(nonatomic,copy)NSString *commentText;
+@property(nonatomic,copy)NSString *comment;
 /**时间*/
-@property(nonatomic,copy)NSString *commentTime;
+@property(nonatomic,copy)NSString *commenttime;
 /**二级评论数组*/
 @property (nonatomic,strong)NSMutableArray * comments;
 

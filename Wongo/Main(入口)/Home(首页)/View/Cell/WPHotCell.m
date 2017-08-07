@@ -68,11 +68,10 @@
     if (!_model.gid.length) {
         return;
     }
-    //    WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
-    //    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
-    WPProductDetailsViewController * vc= [WPProductDetailsViewController productDetailsViewControllerWithGid:_model.gid];
+    WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
     [vc showExchangeBottomView];
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+   
     
 }
 

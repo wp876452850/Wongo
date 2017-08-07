@@ -9,10 +9,6 @@
 #import "WPExchangeViewController.h"
 #import "SDCycleScrollView.h"
 #import "WPExchangeDetailModel.h"
-#import "WPExchangeCommentsModel.h"
-#import "WPExchangeCommentCell.h"
-#import "WPUserIntroductionModel.h"
-#import "WPUserIntroductionTableViewCell.h"
 #import "WPExchangeCommodityInformationCell.h"
 #import "WPSelectExchangeGoodsViewController.h"
 #import "LoginViewController.h"
@@ -20,10 +16,12 @@
 #import "LYConversationController.h"
 #import "SDCollectionViewCell.h"
 #import "WPCommentViewController.h"
+#import "WPProductDetailUserStoreTableViewCell.h"
+#import "WPCommentsSectionTableViewCell.h"
 
-static NSString * const commentCell     = @"CommentCell";
-static NSString * const userCell        = @"UserCell";
-static NSString * const commodityCell   = @"CommodityCell";
+static NSString * const userCell            = @"UserCell";
+static NSString * const commodityCell       = @"CommodityCell";
+static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
 
 @interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate>
 //自动滚播器
@@ -33,7 +31,8 @@ static NSString * const commodityCell   = @"CommodityCell";
 @property (nonatomic,strong) NSString               * urlString;
 @property (nonatomic,strong) NSDictionary           * params;
 @property (nonatomic,strong) UIButton               * backButton;
-@property (nonatomic, assign) BOOL fromOrder;
+@property (nonatomic,assign) BOOL fromOrder;
+@property (nonatomic,assign) CGFloat userStoreRowHeight;
 @end
 
 @implementation WPExchangeViewController
@@ -47,33 +46,37 @@ static NSString * const commodityCell   = @"CommodityCell";
 }
 
 #pragma mark - lazyLoad
+-(UIView *)bottomView{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
+        _bottomView.backgroundColor = WhiteColor;
+    }
+    return _bottomView;
+}
 -(UITableView *)tableView
 {
     if (!_tableView) {
         self.automaticallyAdjustsScrollViewInsets = NO;
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 40) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) style:UITableViewStylePlain];
         _tableView.backgroundColor  = ColorWithRGB(246, 246, 246);
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
         _tableView.dataSource       = self;
-        _tableView.tableHeaderView  = self.cycleScrollView;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommentCell" bundle:nil] forCellReuseIdentifier:commentCell];
-        [_tableView registerNib:[UINib nibWithNibName:@"WPUserIntroductionTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
-        [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
-        [self createBottmView];
-        //创建按钮
         
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSection];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
+        //创建按钮        
     }
     return _tableView;
 }
 
 -(SDCycleScrollView *)cycleScrollView{
     if(!_cycleScrollView){
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:_exchangeModel.rollPlayImages];
-        _cycleScrollView.height +=80;
-        _cycleScrollView.currentPageDotColor = SelfOrangeColor;
-        _cycleScrollView.pageDotColor = ColorWithRGB(247, 247, 247);
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:_exchangeModel.rollPlayImages];
+        _cycleScrollView.currentPageDotColor = ColorWithRGB(45, 102, 139);
+        _cycleScrollView.pageDotColor = ColorWithRGB(45, 102, 139);
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
         _cycleScrollView.delegate = self;
         _cycleScrollView.autoScroll = NO;
@@ -103,24 +106,23 @@ static NSString * const commodityCell   = @"CommodityCell";
     [WPNetWorking createPostRequestMenagerWithUrlString:self.urlString params:self.params datas:^(NSDictionary *responseObject) {
         
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
-        
+        weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
         NSArray * images = [responseObject objectForKey:@"listimg"];
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
+            
         }
         
         //获取用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.exchangeModel.uid} datas:^(NSDictionary *responseObject) {
         
             weakSelf.exchangeModel.userIntroductionModel = [WPUserIntroductionModel mj_objectWithKeyValues:responseObject];
-            [self.view addSubview:self.tableView];
-            [self.view addSubview:self.backButton];
+            [weakSelf.view addSubview:weakSelf.tableView];
+            weakSelf.tableView.tableHeaderView = weakSelf.cycleScrollView;
+            [weakSelf.view addSubview:weakSelf.backButton];
         }];
-        
-        
     }];
-    
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -134,6 +136,7 @@ static NSString * const commodityCell   = @"CommodityCell";
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     switch (indexPath.section) {
         case 0:
         {
@@ -158,20 +161,19 @@ static NSString * const commodityCell   = @"CommodityCell";
             break;
         case 1:
         {
-            WPUserIntroductionTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
-            cell.model                              = _exchangeModel.userIntroductionModel;
+            WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
+
+            cell.model = _exchangeModel.userIntroductionModel;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
 
         case 3:{
-            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            cell.textLabel.text     = @"产品参数";
-            cell.textLabel.font     = [UIFont systemFontOfSize:15];
-            cell.accessoryType      = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle     = UITableViewCellSelectionStyleNone;
+            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
+            cell.model = self.exchangeModel;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            return cell;
         }
             break;
         case 4:{
@@ -211,12 +213,12 @@ static NSString * const commodityCell   = @"CommodityCell";
             break;
         case 1:
         {
-            return 100;
+            return 109;
         }
             break;
         case 3:
         {
-            return 40;
+            return 170;
         }
             break;
         case 4:{
@@ -260,55 +262,70 @@ static NSString * const commodityCell   = @"CommodityCell";
     }
     return 0;
 }
-//创建底部视图
--(void)createBottmView{
-    UIView * view = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40)];
-    [self.view addSubview:view];
-    [view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, 0) moveForPoint:CGPointMake(WINDOW_WIDTH, 0)]];
-    view.backgroundColor = WhiteColor;
-    if (!_fromOrder) {
-        UIButton * exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [view addSubview:exchangeButton];
-        [exchangeButton setTitle:@"申请交换" forState:UIControlStateNormal];
-        [exchangeButton setTitleColor:WhiteColor forState:UIControlStateNormal];
-        [exchangeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(-10);
-            make.top.mas_equalTo(3);
-            make.size.mas_equalTo(CGSizeMake(120, 35));
-        }];
-        exchangeButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        exchangeButton.backgroundColor = SelfOrangeColor;
-        exchangeButton.layer.masksToBounds = YES;
-        exchangeButton.layer.cornerRadius  = 15;
-        [exchangeButton addTarget:self action:@selector(goExchange) forControlEvents:UIControlEventTouchUpInside];        
-    }
-    
-    
-    UIButton * chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [view addSubview:chatBtn];
-    [chatBtn setTitle:@"联系Ta" forState:UIControlStateNormal];
-    [chatBtn setTitleColor:WhiteColor forState:UIControlStateNormal];
-    [chatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.top.mas_equalTo(3);
-        make.size.mas_equalTo(CGSizeMake(120, 35));
-    }];
-    chatBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    chatBtn.backgroundColor = SelfOrangeColor;
-    chatBtn.layer.masksToBounds = YES;
-    chatBtn.layer.cornerRadius  = 15;
-    [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+
+#pragma mark - 展示底部视图样式
+-(void)showExchangeBottomView{
+    self.tableView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50);
+    [self.view addSubview:self.bottomView];
+    UIButton * chat             = [self createChatButton];
+    UIButton * exchangeButton   = [UIButton buttonWithType:UIButtonTypeCustom];
+    exchangeButton.frame        = CGRectMake(chat.width, 0, WINDOW_WIDTH-chat.width, 50);
+    exchangeButton.backgroundColor = ColorWithRGB(105, 152, 192);
+    [exchangeButton setTitleColor:WhiteColor forState:UIControlStateNormal];
+    [exchangeButton setTitle:@"申请交换" forState:UIControlStateNormal];
+    [exchangeButton addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:exchangeButton];
 }
-//聊天
-- (void)chat{
+
+-(void)showShoppingBottomView{
+    self.tableView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50);
+    
+    [self.view addSubview:self.bottomView];
+    UIButton * chat = [self createChatButton];
+    //加入购物车
+    //    UIButton * shoppingCar      = [UIButton buttonWithType:UIButtonTypeCustom];
+    //    shoppingCar.frame           = CGRectMake(chat.width, 0, (WINDOW_WIDTH - chat.width)/2, 50);
+    //    shoppingCar.backgroundColor = ColorWithRGB(45, 102, 139);
+    //    [shoppingCar setTitleColor:WhiteColor forState:UIControlStateNormal];
+    //    [shoppingCar setTitle:@"加入购物车" forState:UIControlStateNormal];
+    //    [shoppingCar addTarget:self action:@selector(shoppingCar) forControlEvents:UIControlEventTouchUpInside];
+    //    [self.bottomView addSubview:shoppingCar];
+    
+    //立即购买
+    UIButton * buy      = [UIButton buttonWithType:UIButtonTypeCustom];
+    buy.frame           = CGRectMake(chat.right, 0, (WINDOW_WIDTH - chat.width), 50);
+    buy.backgroundColor = ColorWithRGB(105, 152, 192);
+    [buy setTitleColor:WhiteColor forState:UIControlStateNormal];
+    [buy setTitle:@"立即购买" forState:UIControlStateNormal];
+    [buy addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.bottomView addSubview:buy];
+}
+
+-(UIButton *)createChatButton{
+    UIButton * chat = [UIButton buttonWithType:UIButtonTypeCustom];
+    chat.frame = CGRectMake(0, 0, 50, 50);
+    chat.backgroundColor = ColorWithRGB(45, 102, 139);
+    [chat addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:chat];
+    return chat;
+}
+
+-(void)goChat{
     if ([self determineWhetherTheLogin]) {
         LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
         vc.title = self.exchangeModel.userIntroductionModel.uname;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
-//去交换
--(void)goExchange{
+
+-(void)buy{
+    
+}
+-(void)shoppingCar{
+    
+}//去交换
+-(void)exchange{
     if (![self determineCommodityIsMineWithUid:_exchangeModel.uid]) {
         NSString * uid = [[NSUserDefaults standardUserDefaults]objectForKey:User_ID];
         

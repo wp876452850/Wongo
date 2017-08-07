@@ -23,10 +23,16 @@
             UITextView * textView = [[UITextView alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3, 10, WINDOW_WIDTH/3, 90)];
             [_parameterView addSubview:textView];
             for (int j = 0; j < 5; j++) {
-                textView.text = [NSString stringWithFormat:@"%@\n%@",textView.text,self.model.parameters[5*i+j]];
+                if (textView.text.length > 0) {
+                    textView.text = [NSString stringWithFormat:@"%@\n%@",textView.text,self.model.parameters[5*i+j]];
+                }
+                else
+                    textView.text = self.model.parameters.firstObject;
             }
-            textView.font = [UIFont systemFontOfSize:14];            
+            textView.font = [UIFont systemFontOfSize:14];
+            textView.userInteractionEnabled = NO;
         }
+        [self.contentView addSubview:_parameterView];
     }
     return _parameterView;
 }
@@ -34,18 +40,17 @@
 -(UIView *)commentView{
     if (!_commentView) {
         _commentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.parameter.bottom, WINDOW_WIDTH, 110)];
+        [self.contentView addSubview:_commentView];
     }
     return _commentView;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.contentView addSubview:self.commentView];
-    [self.contentView addSubview:self.parameterView];
+    
 }
 //显示参数
 - (IBAction)showParameter:(UIButton *)sender {
-    
     [self.contentView bringSubviewToFront:self.parameterView];
 }
 //显示评论
@@ -53,4 +58,9 @@
     [self.contentView bringSubviewToFront:self.commentView];
 }
 
+-(void)setModel:(WPExchangeDetailModel *)model{
+    _model = model;
+    self.commentView.hidden = NO;
+    self.parameterView.hidden = NO;
+}
 @end

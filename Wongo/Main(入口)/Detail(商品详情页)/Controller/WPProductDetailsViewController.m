@@ -63,7 +63,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
-            
+            weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
         }
         weakSelf.tableView.tableHeaderView  = weakSelf.cycleScrollView;
         //获取用户信息
@@ -95,6 +95,18 @@ static NSString * const commodityCell   = @"CommodityCell";
 
 
 #pragma mark - TableViewDelegat&&TableViewDataSource
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.01f;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
+        return 20;
+    }
+    return 0.01f;
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section == 0) {
@@ -103,7 +115,7 @@ static NSString * const commodityCell   = @"CommodityCell";
         }
         return self.userStoreRowHeight;
     }
-    else if (indexPath.section == 0){
+    else if (indexPath.section == 1){
         return 150;
     }
     return 0;

@@ -11,7 +11,7 @@
 //外网
 #define HttpHead(url)                [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
 //内网
-//#define HttpHead(url)                [NSString stringWithFormat:@"http://192.168.1.109/change/%@",(url)]
+//#define HttpHead(url)                [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
 
 /**登录url*/
 #define LoginRequestUrl         HttpHead(@"userLogin")

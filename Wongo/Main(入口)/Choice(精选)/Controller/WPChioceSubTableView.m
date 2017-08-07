@@ -182,8 +182,10 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WPExchangeModel * model         = self.dataSourceArray[indexPath.row];
     WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":model.gid} fromOrder:NO];
+    [vc showExchangeBottomView];
     UINavigationController * nav    = [self getNavigationControllerOfCurrentView];
     [nav pushViewControllerAndHideBottomBar:vc animated:YES];
+    
 }
 
 -(void)toTop{
