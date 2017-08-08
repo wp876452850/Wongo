@@ -304,6 +304,8 @@
 		3D1732D71F2735BF00BFF90D /* WPCommentMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1732D61F2735BF00BFF90D /* WPCommentMessageCell.m */; };
 		3D1732DD1F273B7000BFF90D /* UITableView+HYBCacheHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1732DA1F273B7000BFF90D /* UITableView+HYBCacheHeight.m */; };
 		3D1732DE1F273B7000BFF90D /* UITableViewCell+HYBMasonryAutoCellHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1732DC1F273B7000BFF90D /* UITableViewCell+HYBMasonryAutoCellHeight.m */; };
+		3D181A211F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D181A1F1F383A2600CEE3FF /* WPEnjoyGoodsTableViewCell.m */; };
+		3D181A221F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D181A201F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.xib */; };
 		3D19062E1F29BE0E00E4EFFD /* WPCommentMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D19062D1F29BE0E00E4EFFD /* WPCommentMessageViewController.m */; };
 		3D1906311F29BF2900E4EFFD /* WPTableBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1906301F29BF2900E4EFFD /* WPTableBaseViewController.m */; };
 		3D1906341F29C99300E4EFFD /* WPProductLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1906331F29C99300E4EFFD /* WPProductLinkView.m */; };
@@ -1221,6 +1223,9 @@
 		3D1732DA1F273B7000BFF90D /* UITableView+HYBCacheHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+HYBCacheHeight.m"; sourceTree = "<group>"; };
 		3D1732DB1F273B7000BFF90D /* UITableViewCell+HYBMasonryAutoCellHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+HYBMasonryAutoCellHeight.h"; sourceTree = "<group>"; };
 		3D1732DC1F273B7000BFF90D /* UITableViewCell+HYBMasonryAutoCellHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+HYBMasonryAutoCellHeight.m"; sourceTree = "<group>"; };
+		3D181A1E1F383A2600CEE3FF /* WPEnjoyGoodsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPEnjoyGoodsTableViewCell.h; sourceTree = "<group>"; };
+		3D181A1F1F383A2600CEE3FF /* WPEnjoyGoodsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPEnjoyGoodsTableViewCell.m; sourceTree = "<group>"; };
+		3D181A201F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPEnjoyGoodsTableViewCell.xib; sourceTree = "<group>"; };
 		3D19062C1F29BE0E00E4EFFD /* WPCommentMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCommentMessageViewController.h; sourceTree = "<group>"; };
 		3D19062D1F29BE0E00E4EFFD /* WPCommentMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPCommentMessageViewController.m; sourceTree = "<group>"; };
 		3D19062F1F29BF2900E4EFFD /* WPTableBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTableBaseViewController.h; sourceTree = "<group>"; };
@@ -5355,7 +5360,7 @@
 				8566A8441E48281500C08624 /* CommodityManagement(商品管理) */,
 				852F80CF1E822D3500D0AB48 /* ExchangeOrder(交换订单) */,
 				8566A84B1E48281500C08624 /* Concern(关注的用户) */,
-				8566A84C1E48281500C08624 /* Enjoy(喜欢喜爱) */,
+				8566A84C1E48281500C08624 /* Enjoy(收藏的商品) */,
 				8566A84D1E48281500C08624 /* Fans(粉丝) */,
 				8566A84E1E48281500C08624 /* Message(消息) */,
 				8566A8511E48281500C08624 /* MyAddress(我的地址) */,
@@ -5403,13 +5408,16 @@
 			path = Concern;
 			sourceTree = "<group>";
 		};
-		8566A84C1E48281500C08624 /* Enjoy(喜欢喜爱) */ = {
+		8566A84C1E48281500C08624 /* Enjoy(收藏的商品) */ = {
 			isa = PBXGroup;
 			children = (
 				85DA3AD71EA0CE320075ABB6 /* WPEnjoyViewController.h */,
 				85DA3AD81EA0CE320075ABB6 /* WPEnjoyViewController.m */,
+				3D181A1E1F383A2600CEE3FF /* WPEnjoyGoodsTableViewCell.h */,
+				3D181A1F1F383A2600CEE3FF /* WPEnjoyGoodsTableViewCell.m */,
+				3D181A201F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.xib */,
 			);
-			name = "Enjoy(喜欢喜爱)";
+			name = "Enjoy(收藏的商品)";
 			path = Enjoy;
 			sourceTree = "<group>";
 		};
@@ -6492,6 +6500,7 @@
 				85187F171E8DFA1800D3D64F /* dropdown_anim__00018@2x.png in Resources */,
 				3D1732A81F26F6C200BFF90D /* f_static_102@3x.png in Resources */,
 				85F08EE01E4848A000A07451 /* 1.png in Resources */,
+				3D181A221F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.xib in Resources */,
 				85F08EED1E4848A000A07451 /* homepage.png in Resources */,
 				3D1731ED1F26F6C200BFF90D /* f_static_009@2x.png in Resources */,
 				85037E011E7102580094B32E /* WPDremingImagesCellTableViewCell.xib in Resources */,
@@ -7125,6 +7134,7 @@
 				85187E321E8DF19300D3D64F /* MJRefreshAutoStateFooter.m in Sources */,
 				858C45F11E67BD75005C8029 /* UILabel+WPCategory.m in Sources */,
 				3D64D2671F2F36D10084D4AB /* WPAdvertisingView.m in Sources */,
+				3D181A211F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.m in Sources */,
 				3DC63F761F01F126009C3768 /* LYHomeSectionFooter.m in Sources */,
 				851E36211EC4652A00C48AEF /* WPParticipateDreamingViewController.m in Sources */,
 				859E8F931E7A7140007C1F65 /* WPExchangeViewController.m in Sources */,

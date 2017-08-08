@@ -59,6 +59,8 @@
 #define UpdgdfreightAddUrl      HttpHead(@"updgdfreightAdd")
 /**取消收藏*/
 #define UpdgdfreightUrl         HttpHead(@"updgdfreight")
+/**查询收藏商品*/
+#define QueryUserCollectionUrl  HttpHead(@"queryUserCollection")
 /**修改用户头像*/
 #define UpdataUserHeaderImage   HttpHead(@"saveImage")
 /**注册*/

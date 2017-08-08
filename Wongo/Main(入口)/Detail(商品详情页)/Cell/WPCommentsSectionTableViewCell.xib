@@ -45,7 +45,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFY-eD-ymh">
-                        <rect key="frame" x="0.0" y="48" width="566" height="1"/>
+                        <rect key="frame" x="0.0" y="47" width="566" height="1"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="plR-bb-qRS"/>
@@ -63,7 +63,7 @@
                     <constraint firstAttribute="trailing" secondItem="bFY-eD-ymh" secondAttribute="trailing" id="B1S-rm-nPG"/>
                     <constraint firstItem="3gF-ct-oIk" firstAttribute="leading" secondItem="J7c-XU-f2G" secondAttribute="trailing" id="GHH-oV-u6M"/>
                     <constraint firstItem="bFY-eD-ymh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IZM-Bm-TVv"/>
-                    <constraint firstItem="bFY-eD-ymh" firstAttribute="top" secondItem="3gF-ct-oIk" secondAttribute="bottom" id="UaZ-pQ-mUT"/>
+                    <constraint firstItem="bFY-eD-ymh" firstAttribute="top" secondItem="3gF-ct-oIk" secondAttribute="bottom" constant="-1" id="UaZ-pQ-mUT"/>
                     <constraint firstItem="J7c-XU-f2G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ypl-DB-qTs"/>
                 </constraints>
             </tableViewCellContentView>

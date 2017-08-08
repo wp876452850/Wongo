@@ -393,9 +393,9 @@
             break;
         case 3:
         {
-            [self showAlter];
-//            WPEnjoyViewController * vc = [[WPEnjoyViewController alloc]init];
-//            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
+            //[self showAlter];
+            WPEnjoyViewController * vc = [[WPEnjoyViewController alloc]init];
+            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
         }
             break;
     }

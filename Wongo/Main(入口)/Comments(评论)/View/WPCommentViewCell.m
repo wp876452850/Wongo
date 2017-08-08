@@ -24,7 +24,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.headPortrait.layer.masksToBounds = YES;
-    self.headPortrait.layer.cornerRadius  = 17.5;
+    self.headPortrait.layer.cornerRadius  = 17.5f;
 }
 /**点赞*/
 - (IBAction)thumbUp:(UIButton *)sender {

@@ -19,6 +19,7 @@
 -(UIView *)parameterView{
     if (!_parameterView) {
         _parameterView = [[UIView alloc]initWithFrame:CGRectMake(0, self.parameter.bottom, WINDOW_WIDTH, 110)];
+        _parameterView.backgroundColor = WhiteColor;
         for (int i = 0; i < self.model.parameters.count/5; i++) {
             UITextView * textView = [[UITextView alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3, 10, WINDOW_WIDTH/3, 90)];
             [_parameterView addSubview:textView];
@@ -40,21 +41,26 @@
 -(UIView *)commentView{
     if (!_commentView) {
         _commentView = [[UIView alloc]initWithFrame:CGRectMake(0, self.parameter.bottom, WINDOW_WIDTH, 110)];
-        [self.contentView addSubview:_commentView];
+        _commentView.backgroundColor = WhiteColor;
+        [self.contentView addSubview:_commentView];        
+        UIButton * goCommentViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [goCommentViewButton setTitle:@"查看所有讨论内容" forState:UIControlStateNormal];
     }
     return _commentView;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 //显示参数
 - (IBAction)showParameter:(UIButton *)sender {
+    
     [self.contentView bringSubviewToFront:self.parameterView];
 }
 //显示评论
 - (IBAction)showComment:(UIButton *)sender {
+    
     [self.contentView bringSubviewToFront:self.commentView];
 }
 

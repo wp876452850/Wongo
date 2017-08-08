@@ -8,7 +8,8 @@
 
 #import "WPEnjoyViewController.h"
 #import "WPMyNavigationBar.h"
-#import "WPChoiceTableViewCell.h"
+#import "WPEnjoyGoodsTableViewCell.h"
+#import "WPExchangeModel.h"
 
 @interface WPEnjoyViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)WPMyNavigationBar * nav;
@@ -20,6 +21,12 @@
 
 @implementation WPEnjoyViewController
 
+-(NSMutableArray *)dataSourceArray{
+    if (!_dataSourceArray) {
+        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _dataSourceArray;
+}
 -(UITableView *)tableView
 {
     if (!_tableView) {
@@ -28,8 +35,8 @@
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
         _tableView.dataSource       = self;
-        _tableView.rowHeight        = 210.0f;
-        [_tableView registerNib:[UINib nibWithNibName:@"WPChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+        _tableView.rowHeight        = 110.0f;
+        [_tableView registerNib:[UINib nibWithNibName:@"WPEnjoyGoodsTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
         
     }
     return _tableView;
@@ -37,15 +44,21 @@
 -(WPMyNavigationBar *)nav{
     if (!_nav) {
         _nav = [[WPMyNavigationBar alloc]init];
-        _nav.title.text = @"我的喜欢";
+        _nav.title.text = @"我的收藏";
         [_nav.leftButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nav;
 }
 
 -(void)loadDatas{
-    [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":[[NSUserDefaults standardUserDefaults]objectForKey:User_ID]} datas:^(NSDictionary *responseObject) {
-        
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCollectionUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        NSArray * list = responseObject[@"list"];
+        for (int i = 0; i<list.count; i++) {
+            WPExchangeModel * model = [WPExchangeModel mj_objectWithKeyValues:list[i]];
+            model.url = list[i][@"listimg"][0][@"url"];
+            [_dataSourceArray addObject:model];
+        }
+        [_tableView reloadData];
     }];
     [self.view addSubview:self.tableView];
 }
@@ -58,12 +71,12 @@
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return self.dataSourceArray.count;
-    return 0;
+    return self.dataSourceArray.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WPChoiceTableViewCell * cell    = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    //cell.model = self.dataSourceArray[indexPath.row];
+    WPEnjoyGoodsTableViewCell * cell    = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    cell.model = self.dataSourceArray[indexPath.row];
     return cell;
 }
 

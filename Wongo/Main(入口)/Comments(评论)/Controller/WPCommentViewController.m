@@ -41,7 +41,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     self.myNavItem.title = @"评论";
     self.view.backgroundColor = WhiteColor;
-    [self loadDatas];
     [self.view addSubview:self.tableView];
     [self createBottomCommentButton];
 }
@@ -110,23 +109,17 @@ static NSString * const reuseIdentifier = @"Cell";
     commentModel.comment = text;
     commentModel.commenttime = [self getNowTime];
     commentModel.headImage = [self getUserHeadPortrait];
-   
-     __block WPCommentViewController * weakSelf = self;
+    
+    __block WPCommentModel * model = commentModel;
+    __block WPCommentViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":[self getSelfUid],@"gid":commentModel.gid,@"comment":commentModel.comment,@"commenttime":commentModel.commenttime} datas:^(NSDictionary *responseObject) {
-        [weakSelf.exchangeModel.commentsModelArray insertObject:commentModel atIndex:0];
+        
+        [weakSelf.exchangeModel.commentsModelArray insertObject:model atIndex:0];
         [weakSelf.tableView reloadData];
     }];
     [self.view endEditing:YES];
 }
-#pragma mark - 查询评论
--(void)loadDatas{
-     __block WPCommentViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentUrl params:@{@"gid":_exchangeModel.gid} datas:^(NSDictionary *responseObject) {
-        weakSelf.exchangeModel.commentsModelArray = responseObject[@"list"];
-        [weakSelf.tableView reloadData];
 
-    }];
-}
 #pragma mark - 更新单元格高度
 -(void)reloadCellHeightForModel:(WPCommentModel *)model atIndexPath:(NSIndexPath *)indexPath{
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
@@ -157,17 +150,22 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.cellsHeight insertObject:[NSString stringWithFormat:@"%f",cellHeight] atIndex:0];
     return cellHeight;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WPCommentViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.model = self.exchangeModel.commentsModelArray[indexPath.section];
+    cell.thumbUp.hidden = YES;
+    cell.commentButton.hidden = YES;
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.indexPath = indexPath;
-    [self.view endEditing:YES];
-    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.exchangeModel.commentsModelArray[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
-    [self.navigationController pushViewController:commentMessageVC animated:YES];
+    
+//    self.indexPath = indexPath;
+//    [self.view endEditing:YES];
+//    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.exchangeModel.commentsModelArray[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
+//    [self.navigationController pushViewController:commentMessageVC animated:YES];
+    
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
@@ -187,6 +185,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)commentGoods{
     [self.commentKeyBoard keyboardUpforComment];
+    
 }
 
 

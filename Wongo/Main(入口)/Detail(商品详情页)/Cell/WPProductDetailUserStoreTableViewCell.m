@@ -39,7 +39,9 @@
 }
 
 - (IBAction)collect:(UIButton *)sender {
-    
+    [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
+    return;
+    sender.selected = !sender.selected;
     [self focusOnTheUserWithSender:sender uid:_model.uid];
     
 }
@@ -53,7 +55,6 @@
     if (_rowHeightBlock) {
         _rowHeightBlock(self.line.bottom);
     }
-    
 }
 
 -(void)getRowHeightWithBlock:(RowHeightBlock)block{

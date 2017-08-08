@@ -18,6 +18,8 @@
 #import "WPCommentViewController.h"
 #import "WPProductDetailUserStoreTableViewCell.h"
 #import "WPCommentsSectionTableViewCell.h"
+#import "WPUserIntroductionTableViewCell.h"
+#import "WPCommentModel.h"
 
 static NSString * const userCell            = @"UserCell";
 static NSString * const commodityCell       = @"CommodityCell";
@@ -106,7 +108,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
     [WPNetWorking createPostRequestMenagerWithUrlString:self.urlString params:self.params datas:^(NSDictionary *responseObject) {
         
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
-        weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
+        //weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
         NSArray * images = [responseObject objectForKey:@"listimg"];
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
@@ -122,17 +124,27 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
             weakSelf.tableView.tableHeaderView = weakSelf.cycleScrollView;
             [weakSelf.view addSubview:weakSelf.backButton];
         }];
+#pragma mark - 查询评论
+        __block WPExchangeViewController * weakSelf = self;
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentUrl params:@{@"gid":_exchangeModel.gid} datas:^(NSDictionary *responseObject) {
+            NSArray * list = responseObject[@"list"];
+            for (int i = 0; i<list.count; i++) {
+                WPCommentModel * model = [WPCommentModel mj_objectWithKeyValues:list[i]];
+                [weakSelf.exchangeModel.commentsModelArray addObject:model];
+            }
+            [weakSelf.tableView reloadData];
+            
+        }];
     }];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return 5-1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -169,14 +181,14 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
         }
             break;
 
-        case 3:{
-            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
-            cell.model = self.exchangeModel;
-            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-            return cell;
-        }
+//        case 3:{
+//            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
+//            cell.model = self.exchangeModel;
+//            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+//            return cell;
+//        }
             break;
-        case 4:{
+        case 3:{
             //标签：商品描述
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
@@ -248,11 +260,6 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
-    if (indexPath.section == 3) {
-#warning 产品参数传值
-        WPParameterInformationView * vc = [WPParameterInformationView createParameterInformationWithUrlString:nil];
-        [self.view addSubview:vc];
-    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -308,6 +315,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
     chat.backgroundColor = ColorWithRGB(45, 102, 139);
     [chat addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView addSubview:chat];
+    [chat setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
     return chat;
 }
 
