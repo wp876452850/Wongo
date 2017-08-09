@@ -19,7 +19,7 @@
     CAShapeLayer * layer    = [CAShapeLayer layer];
     layer.path              = path.CGPath;
     layer.borderWidth       = 1.0f;
-    layer.strokeColor       = ColorWithRGB(235, 235, 235).CGColor;
+    layer.strokeColor       = AllBorderColor.CGColor;
     
     return layer;
 }
@@ -29,5 +29,10 @@
 }
 +(CAShapeLayer *)cellBottomDrowLineWithCollectionCell:(UICollectionViewCell *)cell{
     return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height)];
+}
++(void)beazierPathDrowAllRoundLineWithView:(UIView *)view lineColor:(UIColor *)lineColor lineWidth:(CGFloat)lineWidth{
+    view.layer.masksToBounds= YES;
+    view.layer.borderColor = lineColor.CGColor;
+    view.layer.borderWidth = lineWidth;
 }
 @end

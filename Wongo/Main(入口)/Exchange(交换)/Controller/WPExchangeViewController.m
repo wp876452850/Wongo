@@ -109,11 +109,11 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
         
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
         //weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
+        weakSelf.exchangeModel.parameters = [NSMutableArray arrayWithObject:@"本产品无参数"];
         NSArray * images = [responseObject objectForKey:@"listimg"];
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
-            
         }
         
         //获取用户信息
@@ -141,7 +141,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5-1;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -181,14 +181,14 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
         }
             break;
 
-//        case 3:{
-//            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
-//            cell.model = self.exchangeModel;
-//            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-//            return cell;
-//        }
-            break;
         case 3:{
+            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
+            cell.model = self.exchangeModel;
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            return cell;
+        }
+            break;
+        case 4:{
             //标签：商品描述
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];

@@ -21,7 +21,7 @@
 
 @property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
 
-
+@property (nonatomic,strong)NSMutableArray * itemsHeight;
 
 @end
 @implementation WPDreameChioceSubView
@@ -34,7 +34,12 @@
     return _cycleScrollView;
 }
 
-
+-(NSMutableArray *)itemsHeight{
+    if (!_itemsHeight) {
+        _itemsHeight = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _itemsHeight;
+}
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout cellClass:(Class)cellClass{
     if (self = [super initWithFrame:frame collectionViewLayout:layout])
     {
@@ -52,7 +57,11 @@
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-     return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH * 0.66);
+    if (indexPath.row+1>self.itemsHeight.count) {
+        CGFloat height = WINDOW_WIDTH*0.66;
+        [self.itemsHeight addObject:[NSString stringWithFormat:@"%f",height]];
+    }
+    return CGSizeMake(WINDOW_WIDTH, [self.itemsHeight[indexPath.row] floatValue]);
 }
 
 //设置每个item水平间距
@@ -78,9 +87,10 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //FIXME:功能暂未开放
-    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
-    return;
-    [self goDreameingDirectory:indexPath.row];
+//    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
+//    return;
+//    [self goDreameingDirectory:indexPath.row];
+    
 }
 //返回每个区头大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{

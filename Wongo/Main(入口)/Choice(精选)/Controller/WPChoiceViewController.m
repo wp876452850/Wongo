@@ -9,13 +9,12 @@
 #import "WPChoiceViewController.h"
 #import "WPNavigationBarView.h"
 
-#import "WPChoiceTableViewCell.h"
-#import "WPHotCell.h"
+#import "WPNewExchangeCollectionViewCell.h"
 
 #import "WPDreameChioceSubView.h"
 #import "WPChoiceSubCollectionView.h"
 
-#define Title_Array @[@"推荐",@"新品",@"造梦计划"]//1.0
+#define Title_Array @[@"交换",@"造梦计划"]//1.0
 @interface WPChoiceViewController (){
     
 }
@@ -27,7 +26,7 @@
 
 - (WPChoiceContentCollectionView *)choiceContentCollectionView{
     if (!_choiceContentCollectionView) {
-         _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) SubViewsClassArray:@[[UITableView class],[WPChoiceSubCollectionView class],[WPDreameChioceSubView class]] cellClassArray:@[[WPChoiceTableViewCell class],[WPHotCell class],[WPHotCell class]] loadDatasUrls:@[ExchangeHomePageUrl,ExchangeHomePageUrl,DreamingHomePageUrl]];
+         _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) SubViewsClassArray:@[[WPChoiceSubCollectionView class],[WPDreameChioceSubView class]] cellClassArray:@[[WPNewExchangeCollectionViewCell class],[WPNewExchangeCollectionViewCell class]] loadDatasUrls:@[ExchangeHomePageUrl,DreamingHomePageUrl]];
     }
     return _choiceContentCollectionView;
 }
@@ -37,6 +36,7 @@
     }
     return _navigationBar;
 }
+
 -(WPMenuScrollView *)menuScrollView{
     if (!_menuScrollView) {
         NSDictionary * options = @{@"titles":Title_Array,@"width":@(80),@"height":@(40)};
@@ -49,11 +49,13 @@
 }
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.choiceContentCollectionView];
     [self.view addSubview:self.menuScrollView];
     [self.view addSubview:self.navigationBar];
+    
 }
 
 

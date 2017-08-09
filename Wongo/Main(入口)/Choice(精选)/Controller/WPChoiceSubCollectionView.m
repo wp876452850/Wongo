@@ -7,12 +7,14 @@
 //
 
 #import "WPChoiceSubCollectionView.h"
-#import "WPHotCell.h"
-#import "WPHomeDataModel.h"
+#import "WPNewExchangeModel.h"
 #import "SDCycleScrollView.h"
+#import "WPNewExchangeCollectionViewCell.h"
+#import "WPClassificationTableView.h"
 
 #define HeaderMenuHeight 104
-#define Cell_Height (WINDOW_WIDTH*0.5 + 64)
+#define Cell_Height (WINDOW_WIDTH*0.5+60)
+#define SectionMenuTitles @[@"综合推荐 ",@"人气优先 ",@"分类 "]
 
 @interface WPChoiceSubCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     NSInteger _page;
@@ -20,12 +22,22 @@
     NSString * _primaryClassification;
     /**二级分类*/
     NSString * _secondaryClassification;
+    
+    UIButton * _memoryButton;
+    
+    BOOL _isOpen;
 }
 @property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
 
+@property (nonatomic,strong)NSMutableArray * rollPlayImages;
+
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
+//二级菜单
+@property (nonatomic,strong)UIView * menuView;
 
-
+@property (nonatomic,strong)NSString * url;
+//分类弹出菜单
+@property (nonatomic,strong)WPClassificationTableView * classificationTableView;
 @end
 @implementation WPChoiceSubCollectionView
 static NSString * const reuseIdentifier = @"Cell";
@@ -34,80 +46,173 @@ static NSString * const reuseIdentifier = @"Cell";
     if (!_cycleScrollView) {
 #warning 有后台记得改
         //_cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:self.rollPlayImages];
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
+        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
     }
     return _cycleScrollView;
 }
--(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout loadDatasUrl:(NSString *)url cellClass:(Class)cellClass{
+-(WPClassificationTableView *)classificationTableView{
+    if (!_classificationTableView) {
+        _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
+    }
+    return _classificationTableView;
+}
+-(UIView *)menuView{
+    if (!_menuView) {
+        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_WIDTH, WINDOW_WIDTH, 40)];
+        _menuView.backgroundColor = WhiteColor;
+        for (int i = 0; i < 3; i++) {
+            UIButton * menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            menuButton.frame = CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30);
+            menuButton.tag = i;
+            [menuButton setBackgroundColor:[UIColor clearColor]];
+            menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
+            if (i==0) {
+                menuButton.selected = YES;
+                _memoryButton = menuButton;
+            }
+            if (i<2) {
+                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom)];
+                [_menuView.layer addSublayer:layer];
+            }else{
+                self.classificationTableView.y = _menuView.bottom;
+                [self addSubview:self.classificationTableView];
+            }
+            
+            NSString * title = SectionMenuTitles[i];
+            
+//            NSAttributedString * attributedString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] andColor:GRAY_COLOR font:[UIFont systemFontOfSize:15] range:NSMakeRange(0, title.length)];
+            
+            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmunenormal"] atIndex:title.length imageBounds:CGRectMake(0, -2, 15, 15)] forState:UIControlStateNormal];
+            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, -2, 15, 15)] forState:UIControlStateSelected];
+            [menuButton addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
+            [_menuView addSubview: menuButton];
+        }
+    }
+    return _menuView;
+}
+
+-(void)menuClick:(UIButton *)sender{
+    if (_memoryButton == sender) {
+        return;
+    }
+    if (sender.tag != 2) {
+        _memoryButton.selected = !_memoryButton.selected;
+        sender.selected = !sender.selected;
+        _memoryButton = sender;
+        if (_isOpen) {
+            [self.classificationTableView menuClose];
+            _isOpen = !_isOpen;
+            
+        }
+    }else{
+        if (!_isOpen) {
+            [self.classificationTableView menuOpen];
+            __block UIButton * button = sender;
+            [self.classificationTableView getClassificationStringWithBlock:^(NSString *classification, NSInteger index) {
+                
+            }];
+            
+        }else{
+            [self.classificationTableView menuClose];
+        }
+        _isOpen = !_isOpen;
+    }
+    
+}
+
+-(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout loadDatasUrl:(NSString *)url{
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) 
-        if (cellClass == [WPHotCell class]) {
-            [self registerNib:[UINib nibWithNibName:@"WPHotCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+    {
+        [self registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
         _page = 1;
         self.backgroundColor = WhiteColor;
         self.delegate   = self;
         self.dataSource = self;
-        [self addFooterWithUrl:url];
-        [self addHeaderWithUrl:url];
+        self.url = url;
+        [self addSubview:self.cycleScrollView];
+        [self addSubview:self.menuView];
+        [self addFooter];
+        [self addHeader];
     }
     return self;
 }
-
+-(void)setRollPlayImages:(NSMutableArray *)rollPlayImages{
+    _rollPlayImages = rollPlayImages;
+    _cycleScrollView.imageURLStringsGroup = _rollPlayImages;
+}
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return _dataSourceArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    WPHotCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.model = _dataSourceArray[indexPath.row];
     return cell;
 }
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    
-     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 15, Cell_Height);
+     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 7.5, Cell_Height);
 }
 
 //设置每个item水平间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return 5;
 }
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 0;
+    return 10;
 }
 
-//设置每个item的UIEdgeInsets
+//设置边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(WINDOW_WIDTH+50, 5, 10, 5);
 }
+
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+   
+    if (_isOpen) {
+        [self.classificationTableView menuClose];
+        _isOpen = !_isOpen;
+    }
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    if (_isOpen) {
+        [self.classificationTableView menuClose];
+        _isOpen = !_isOpen;
+    }
+}
+
 #pragma mark - loadDatas
 
--(void)addHeaderWithUrl:(NSString *)url{
+-(void)addHeader{
     __weak WPChoiceSubCollectionView * weakSelf = self;
     self.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        [weakSelf loadNewDatasWithUrl:url];
+        [weakSelf loadNewDatas];
     }];
     [self.mj_header beginRefreshing];
 }
--(void)addFooterWithUrl:(NSString *)url{
+
+-(void)addFooter{
     __weak WPChoiceSubCollectionView * weakSelf = self;
     self.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [weakSelf loadMoreDatasWithUrl:url];
+        [weakSelf loadMoreDatas];
     }];
     [self.mj_footer beginRefreshing];
 }
 
--(void)loadNewDatasWithUrl:(NSString *)url{
-    
+-(void)loadNewDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:url params:@{@"currPage":@(1),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(1),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goods"];
         _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
         for (NSDictionary * item in goods) {
-            WPHomeDataModel * model = [WPHomeDataModel mj_objectWithKeyValues:item];
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
             [_dataSourceArray addObject:model];
         }
         // 刷新表格
@@ -120,17 +225,16 @@ static NSString * const reuseIdentifier = @"Cell";
     }];
 }
 
--(void)loadMoreDatasWithUrl:(NSString *)url{
+-(void)loadMoreDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:url params:@{@"currPage":@(_page),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_page),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goods"];
         if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        
         for (NSDictionary * item in goods) {
-            WPHomeDataModel * model = [WPHomeDataModel mj_objectWithKeyValues:item];
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
             [_dataSourceArray addObject:model];
         }
         // 刷新表格

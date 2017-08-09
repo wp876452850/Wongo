@@ -40,7 +40,7 @@
     _model = model;
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
         NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
-        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang.jpg"] atIndex:0];
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang.jpg"] atIndex:0 imageBounds:CGRectMake(0, -2, 36, 16)];
     }else{
         _goodsName.text = model.gname;
     }
@@ -48,14 +48,27 @@
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
     _price.text     = [NSString stringWithFormat:@" %@",model.price];
     [UILabel changeWordSpaceForLabel:_price WithSpace:1.f];
-    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"qian"] atIndex:0];
-    if ([model.freight floatValue] == 1) {
-        self.collectionButoon.selected = YES;
+    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 10, 20)];
+    //判断用户收藏的商品总是否有
+    //判断是否登录
+    if ([self getSelfUid].length>0) {
+        __block WPExchangeCommodityInformationCell * weakSelf = self;
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCollectionUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            NSArray * list = responseObject[@"list"];
+            for (NSDictionary * dic in list) {
+                NSString * gid = dic[@"gid"];
+                
+                if (_model.gid.floatValue == gid.floatValue) {
+                    weakSelf.collectionButoon.selected = YES;
+                }
+            }
+        }];
     }
 }
 //收藏
 - (IBAction)collection:(UIButton *)sender {
     [self collectionOfGoodsWithSender:sender gid:_model.gid];
 }
+
 
 @end

@@ -69,7 +69,7 @@
  *
  *  @return 插入指定位置图片的字符串
  */
-+(NSAttributedString*)attributedStringWithAttributedString:(NSAttributedString*)attributedString insertImage:(UIImage*)image atIndex:(NSInteger)index;
++(NSAttributedString*)attributedStringWithAttributedString:(NSAttributedString*)attributedString insertImage:(UIImage*)image atIndex:(NSInteger)index imageBounds:(CGRect)imageBounds;
 
 
 

@@ -35,38 +35,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Third(&#x7b2c;&#x4e09;&#x65b9;)/WPAtrributeString/WPAttributedString.m"
-            timestampString = "522925542.012305"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
-            landmarkName = "+attributedStringWithAttributedString:insertImage:atIndex:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Exchange(&#x4ea4;&#x6362;)/View/WPExchangeCommodityInformationCell.m"
-            timestampString = "523174586.358476"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-setModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Detail(&#x5546;&#x54c1;&#x8be6;&#x60c5;&#x9875;)/Cell/WPCommentsSectionTableViewCell.m"
             timestampString = "523764016.361978"
             startingColumnNumber = "9223372036854775807"
@@ -218,6 +186,22 @@
             startingLineNumber = "165"
             endingLineNumber = "165"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Third(&#x7b2c;&#x4e09;&#x65b9;)/WPAtrributeString/WPAttributedString.m"
+            timestampString = "523951383.416929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "+attributedStringWithAttributedString:insertImage:atIndex:fone:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

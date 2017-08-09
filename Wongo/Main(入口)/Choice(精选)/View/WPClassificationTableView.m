@@ -27,7 +27,7 @@
         self.layer.anchorPoint = CGPointMake(0.5,0);
         [self.layer setPosition:CGPointMake(self.layer.position.x + self.layer.bounds.size.width * (self.layer.anchorPoint.x - oldAnchorPoint.x),self.layer.position.y +self.layer.bounds.size.height * (self.layer.anchorPoint.y - oldAnchorPoint.y))];
         
-        
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.initBounds = self.bounds;
         self.bounds = CGRectMake(0, 0, self.width, 0);
         self.clipsToBounds = YES;
@@ -36,7 +36,6 @@
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        [self menuOpen];
     }
     return self;
 }
@@ -47,12 +46,14 @@
 }
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
     return self.dataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = self.dataSourceArray[indexPath.row];
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
     return cell;
 }
 
@@ -63,7 +64,7 @@
         oldCell.textLabel.textColor = [UIColor blackColor];
     }
     UITableViewCell * newCell = [tableView cellForRowAtIndexPath:indexPath];
-    newCell.textLabel.textColor = SelfOrangeColor;
+    newCell.textLabel.textColor = WongoBlueColor;
     
     if (_classificationBlock) {
         _classificationBlock(_dataSourceArray[indexPath.row],indexPath.row);

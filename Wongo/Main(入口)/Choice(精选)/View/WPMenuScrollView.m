@@ -24,6 +24,7 @@
 @property (nonatomic,assign)NSInteger select;
 //指示横条
 @property (nonatomic,strong)UILabel * informationalSign;
+
 @property (nonatomic,assign)CGFloat firstInformationalSignCenterX;
 
 @end
@@ -32,7 +33,7 @@ static NSString * contentOffset = @"contentOffset";
 -(UILabel *)informationalSign{
     if (!_informationalSign) {
         _informationalSign = [[UILabel alloc]initWithFrame:CGRectZero];
-        _informationalSign.backgroundColor = [UIColor redColor];
+        _informationalSign.backgroundColor = WongoBlueColor;
     }
     return _informationalSign;
 }
@@ -58,7 +59,7 @@ static NSString * contentOffset = @"contentOffset";
         [self addSubview:menuButton];
         [menuButton setTitle:_titles[i] forState:UIControlStateNormal];
         [menuButton setTitleColor:ColorWithRGB(0, 0, 0) forState:UIControlStateNormal];
-        [menuButton setTitleColor:ColorWithRGB(255, 164, 51) forState:UIControlStateSelected];
+        [menuButton setTitleColor:WongoBlueColor forState:UIControlStateSelected];
         menuButton.titleLabel.font = [UIFont systemFontOfSize:14];
         
         CGRect frame = _titles.count*self.buttonWidth>=Window_Width?CGRectMake(i * self.buttonWidth, 20, self.buttonWidth, self.buttonHeight) : CGRectMake(i * Window_Width / _titles.count, 20, Window_Width / _titles.count, self.buttonHeight);

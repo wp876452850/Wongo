@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WPChoiceSubCollectionView : UICollectionView
--(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout loadDatasUrl:(NSString *)url cellClass:(Class)cellClass;
+-(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout loadDatasUrl:(NSString *)url;
 @end

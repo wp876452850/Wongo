@@ -171,12 +171,12 @@
     if ([self determineWhetherTheLogin]) {
         __block UIButton * button = sender;
         if (!sender.selected) {
-            [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:CollectionAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
             }];
             return;
         }
-        [WPNetWorking createPostRequestMenagerWithUrlString:UpdgdfreightUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:CollectionCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
             button.selected = !button.selected;
         }];
     }

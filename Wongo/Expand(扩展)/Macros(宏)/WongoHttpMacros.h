@@ -9,9 +9,9 @@
 #ifndef WongoHttpMacros_h
 #define WongoHttpMacros_h
 //外网
-#define HttpHead(url)                [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
+//#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
 //内网
-//#define HttpHead(url)                [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
+#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
 
 /**登录url*/
 #define LoginRequestUrl         HttpHead(@"userLogin")
@@ -56,9 +56,9 @@
 /**修改默认地址*/
 #define UpdAddressedStateUrl    HttpHead(@"updAddressedState")
 /**添加收藏*/
-#define UpdgdfreightAddUrl      HttpHead(@"updgdfreightAdd")
+#define CollectionAddUrl        HttpHead(@"CollectionAdd")
 /**取消收藏*/
-#define UpdgdfreightUrl         HttpHead(@"updgdfreight")
+#define CollectionCancelUrl     HttpHead(@"CollectionCancel")
 /**查询收藏商品*/
 #define QueryUserCollectionUrl  HttpHead(@"queryUserCollection")
 /**修改用户头像*/

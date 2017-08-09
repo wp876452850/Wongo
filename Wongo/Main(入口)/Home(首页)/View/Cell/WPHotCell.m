@@ -10,7 +10,7 @@
 #import "WPExchangeViewController.h"
 #import "LoginViewController.h"
 #import "WPDreamingDetailViewController.h"
-#import "WPProductDetailsViewController.h"
+
 
 @interface WPHotCell ()
 
@@ -71,8 +71,6 @@
     WPExchangeViewController * vc   = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
     [vc showExchangeBottomView];
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
-   
-    
 }
 
 @end

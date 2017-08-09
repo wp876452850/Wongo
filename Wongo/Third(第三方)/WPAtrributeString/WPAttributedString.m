@@ -214,16 +214,16 @@
 }
 
 
-+(NSAttributedString*)attributedStringWithAttributedString:(NSAttributedString*)attributedString insertImage:(UIImage*)image atIndex:(NSInteger)index
++(NSAttributedString*)attributedStringWithAttributedString:(NSAttributedString*)attributedString insertImage:(UIImage*)image atIndex:(NSInteger)index imageBounds:(CGRect)imageBounds
 {
+    
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc]initWithAttributedString:attributedString];
     
     NSTextAttachment *textAttachment = [[NSTextAttachment alloc]init];
     
     textAttachment.image = image;
-    CGFloat scale = image.size.height/(attstr.size.height);
     
-    textAttachment.bounds = CGRectMake(0, 0, image.size.width/scale+2*scale, attstr.size.height +2);
+    textAttachment.bounds = imageBounds;
     
     NSAttributedString *att_str = [NSAttributedString attributedStringWithAttachment:textAttachment];
     

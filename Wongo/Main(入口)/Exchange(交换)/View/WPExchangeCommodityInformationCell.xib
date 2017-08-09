@@ -73,7 +73,7 @@
                 <outlet property="oldNew" destination="TMF-ii-ANv" id="7VM-eC-d3O"/>
                 <outlet property="price" destination="5w7-LG-C9h" id="06H-uC-Rt1"/>
             </connections>
-            <point key="canvasLocation" x="-179" y="23"/>
+            <point key="canvasLocation" x="-277" y="22"/>
         </tableViewCell>
     </objects>
 </document>

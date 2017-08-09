@@ -42,8 +42,7 @@
     [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
     return;
     sender.selected = !sender.selected;
-    [self focusOnTheUserWithSender:sender uid:_model.uid];
-    
+    [self focusOnTheUserWithSender:sender uid:_model.uid];    
 }
 
 -(void)setModel:(WPUserIntroductionModel *)model{
