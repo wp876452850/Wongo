@@ -18,6 +18,7 @@
 #import "LYHomeRectangleCell.h"
 #import "LYActivityController.h"
 #import "LYHomeSectionFooter.h"
+#import "WPNewExchangeCollectionViewCell.h"
 
 
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
@@ -37,7 +38,7 @@
 static NSString * contentOffset = @"contentOffset";
 @interface WPHomeViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    
+    NSInteger _page;
 }
 @property (nonatomic,strong)WPHomeHeaderView * homeHeaderView;
 
@@ -85,6 +86,7 @@ static NSString * contentOffset = @"contentOffset";
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeRectangleCell" bundle:nil] forCellWithReuseIdentifier:@"RectangleCellID"];
         [_collectionView registerClass:[WPHomeReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSectionFooter" bundle:nil]  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"GoodsCell"];
         //添加监听
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
         [_collectionView addObserver:self forKeyPath:contentOffset options:options context:nil];
@@ -103,7 +105,6 @@ static NSString * contentOffset = @"contentOffset";
     [self.collectionView addSubview:self.homeHeaderView];
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
-    
 }
 
 -(void)addHeaderLoad{
@@ -115,12 +116,6 @@ static NSString * contentOffset = @"contentOffset";
 - (NSMutableArray *)dataSourceArray{
     if (!_dataSourceArray) {
         _dataSourceArray = [NSMutableArray arrayWithCapacity:Theme2NameArray.count];
-        NSMutableArray * newArray = [NSMutableArray arrayWithCapacity:3];
-        NSMutableArray * exchangeArray = [NSMutableArray arrayWithCapacity:3];
-        NSMutableArray * hotArray = [NSMutableArray arrayWithCapacity:3];
-        [_dataSourceArray addObject:hotArray];
-        [_dataSourceArray addObject:newArray];
-        [_dataSourceArray addObject:exchangeArray];
     }
     return _dataSourceArray;
 }
@@ -147,37 +142,39 @@ static NSString * contentOffset = @"contentOffset";
         self.response = response;
         self.homeHeaderView.listhl = response.listhl;
         self.homeHeaderView.listhk = response.listhk;
-        [self.collectionView reloadData];
-
+        
+        [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
+            NSArray * goods = [responseObject objectForKey:@"goods"];
+            _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+            for (NSDictionary * item in goods) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+                [_dataSourceArray addObject:model];
+            }
+            _page++;
+            [self.collectionView reloadData];
+        }];
     }failureBlock:^{
         [self.collectionView.mj_header endRefreshing];
     }];
-    
-    
 }
 
+-(void)footer{
+    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(_page)} datas:^(NSDictionary *responseObject) {
+        NSArray * goods = [responseObject objectForKey:@"goods"];
+        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+        for (NSDictionary * item in goods) {
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+            [_dataSourceArray addObject:model];
+        }
+        _page++;
+        [self.collectionView reloadData];
+    }];
 
+}
 #pragma mark - collectionViewDelegate && collectionViewDataSource
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     LYHomeCategory *category;
-    if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]) {
-//        switch (indexPath.section) {
-//            case 0:
-//                category = self.response.listxl;
-//                break;
-//            case 1:
-//                category = self.response.listfl;
-//                break;
-//            case 2:
-//                cell.categorys = self.response.listzl;
-//                break;
-//            default:
-//                break;
-//        }
-        
-    } else{
         NSInteger index = 0;
         if ([self.response hasBanner:indexPath.section]) {
             index = indexPath.row -1;
@@ -197,7 +194,7 @@ static NSString * contentOffset = @"contentOffset";
             default:
                 break;
         }
-    }
+
     [self.navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
 }
 
@@ -206,13 +203,15 @@ static NSString * contentOffset = @"contentOffset";
     if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]) {
         return CGSizeMake(WINDOW_WIDTH - 10, Cell_HeightSigleLine);
     }
+    if (indexPath.section == 4) {
+        return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
+    }
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, Cell_HeightDouble);
 }
 
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-//    return self.dataSourceArray.count;
-    return 4;
+    return 5;
 }
 
 //每个section的item个数
@@ -233,8 +232,12 @@ static NSString * contentOffset = @"contentOffset";
             return num > 5?5:num;
         }
             break;
-        default:
+        case 3:{
             return 0;
+        }
+            break;
+        default:
+            return _dataSourceArray.count;
             break;
     }
 }
@@ -257,7 +260,12 @@ static NSString * contentOffset = @"contentOffset";
                     break;
             }
             return cell;
-    } else{
+    }else if (indexPath.section == 4){
+        WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsCell" forIndexPath:indexPath];
+        cell.model = self.dataSourceArray[indexPath.row];
+        return cell;
+    }
+    else{
         NSInteger index = 0;
         if ([self.response hasBanner:indexPath.section]) {
             index = indexPath.row - 1;
@@ -280,7 +288,6 @@ static NSString * contentOffset = @"contentOffset";
         }
         return cell;
     }
-    
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(8, 8, 8, 8);
@@ -344,7 +351,7 @@ static NSString * contentOffset = @"contentOffset";
 
     CGFloat headerViewMaxY = CGRectGetHeight(self.homeHeaderView.frame);
 
-    UIColor * color = ColorWithRGB(0, 0, 0);
+    UIColor * color = ColorWithRGB(33, 34, 36);
     
     CGFloat alpha = MIN(1,collectionViewOffsetY/(headerViewMaxY-164)  );
     

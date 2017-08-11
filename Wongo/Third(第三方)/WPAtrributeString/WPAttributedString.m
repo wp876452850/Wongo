@@ -381,4 +381,23 @@
     
     return attributedString;
 }
+
++ (NSAttributedString *)changeWordSpaceForText:(NSString *)text WithSpace:(float)space {
+
+
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSKernAttributeName:@(space)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    return attributedString;
+}
+
++ (NSAttributedString *)changeSpaceForText:(NSString *)text withLineSpace:(float)lineSpace WordSpace:(float)wordSpace {
+    
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSKernAttributeName:@(wordSpace)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    return attributedString;
+}
+
 @end

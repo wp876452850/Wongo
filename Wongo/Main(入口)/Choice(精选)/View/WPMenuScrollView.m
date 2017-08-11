@@ -91,7 +91,6 @@ static NSString * contentOffset = @"contentOffset";
     if (_titles) {
         self.informationalSign.center = CGPointMake(_firstInformationalSignCenterX+scrollView.contentOffset.x / _titles.count, self.informationalSign.centerY);
     }
-
     int x = scrollView.contentOffset.x;
     int y = Window_Width;
     
@@ -106,13 +105,11 @@ static NSString * contentOffset = @"contentOffset";
             [self menuButtonClick:button];
         }
     }
- 
 }
-
 
 -(void)menuButtonClick:(UIButton *)sender{
     static NSInteger i = MAXFLOAT;
-    if (self.selectButton&&sender!=self.selectButton) {
+    if (self.selectButton && sender!=self.selectButton) {
         if (sender.tag!=i) {
             i = sender.tag;
             self.collectionView.contentOffset = CGPointMake(WINDOW_WIDTH * sender.tag, 0);

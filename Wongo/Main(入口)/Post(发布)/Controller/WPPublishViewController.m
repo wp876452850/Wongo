@@ -72,15 +72,16 @@
 -(void)createButton{
     for (int i = 0; i<PushTypeTitle.count; i++)
     {
+        UIImage * image = [UIImage imageNamed:PushButtonIcon[i]];
         UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
-        button.bounds = CGRectMake(0, 0, 117, 117);
+        button.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
         button.centerX = self.view.width*(i%2*2+1)/4;
         button.centerY = self.view.centerY;
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
-        [button setBackgroundImage:[UIImage imageNamed:PushButtonIcon[i]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:PushButtonSelectIcon[i]] forState:UIControlStateHighlighted];
+        [button setImage:image forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:PushButtonSelectIcon[i]] forState:UIControlStateHighlighted];
         
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH/3, 30)];
         label.top = button.bottom+10;

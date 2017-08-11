@@ -40,7 +40,7 @@
     _model = model;
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
         NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
-        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang.jpg"] atIndex:0 imageBounds:CGRectMake(0, -2, 36, 16)];
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang"] atIndex:0 imageBounds:CGRectMake(0, -2.5, 28, 16)];
     }else{
         _goodsName.text = model.gname;
     }

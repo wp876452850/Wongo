@@ -167,8 +167,8 @@
 }
 
 -(void)createWizardButton{
-    NSArray * titles = @[@"交换",@"发布",@"造梦",@"交换流程"];
-    NSArray * images = @[@"mainExchange",@"mainPush",@"mainDreaming",@"mainCourse"];
+    NSArray * titles = @[@"交换",@"造梦",@"发布",@"交换流程"];
+    NSArray * images = @[@"mainExchange",@"mainDreaming",@"mainPush",@"mainCourse"];
     CGFloat w = WINDOW_WIDTH * 0.133;
     NSUInteger count = images.count;
     CGFloat m = (WINDOW_WIDTH - count * w)/(count+1);
@@ -205,12 +205,12 @@
         return;
     }
     NSInteger i = sender.tag;
-    if (sender.tag == 3) {
+    if (sender.tag == 2) {
         sender.tag = 1;
     }
     WPTabBarController * tabbar = [WPTabBarController sharedTabbarController];
     [tabbar btnClick:sender];
-    if (i == 3 || i == 1) {
+    if (i == 1 || i == 2) {
         UINavigationController * nav = [tabbar selectedViewController];
         WPChoiceViewController * vc = [nav.viewControllers lastObject];
         [vc.menuScrollView selectMenuWithIndex:i-1];

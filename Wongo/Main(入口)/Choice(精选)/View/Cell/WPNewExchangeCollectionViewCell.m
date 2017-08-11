@@ -35,17 +35,17 @@
     NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:gname];
     //判断是否官方商品
     if (model.uid.floatValue == 1.f||model.uid.floatValue == 2) {
-        attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"guanfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 27, 12)];
+        attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"guanfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 20, 12)];
     }
     //判断是否新上架
-    
     
     //设置价格标识
     _goodsName.attributedText = attributeString;
     
-    NSAttributedString * priceAttributeString = [[NSAttributedString alloc]initWithString:model.price];
+    NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.5f];
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
     
+    [UILabel changeWordSpaceForLabel:_price WithSpace:0.5f];
     _price.attributedText = priceAttributeString;
 }
 

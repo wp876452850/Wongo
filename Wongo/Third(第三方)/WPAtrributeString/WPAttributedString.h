@@ -88,4 +88,7 @@
 
 +(NSAttributedString*)attributedWithAttributedString:(NSAttributedString *)attributedString font:(UIFont *)font range:(NSRange)range;
 
++ (NSAttributedString *)changeWordSpaceForText:(NSString *)text WithSpace:(float)space;
+
++ (NSAttributedString *)changeSpaceForText:(NSString *)text withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
 @end

@@ -30,7 +30,7 @@ static NSString * contentOffset = @"contantOffset";
     self = [super init];
     if (self) {
         self.frame = CGRectMake(0, 0, WINDOW_WIDTH, 64);
-        self.backgroundColor = ColorWithRGB(23, 23, 23);
+        self.backgroundColor = ColorWithRGB(33, 34, 36);
         [self selfSubViewsFrame];
         self.shoppingCarButton.hidden = YES;
         self.positioningButton.hidden = YES;

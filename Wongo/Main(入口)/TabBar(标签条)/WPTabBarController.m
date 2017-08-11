@@ -91,7 +91,7 @@ static id tabBar;
 {
     if (!_footView) {
         _footView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 49)];
-        _footView.backgroundColor = [UIColor whiteColor];
+        _footView.backgroundColor = ColorWithRGB(33, 34, 36);
         _redDot = [[UIView alloc] initWithFrame:CGRectMake(WINDOW_WIDTH * 0.89 , 5, 6.5, 6.5)];
         _redDot.backgroundColor = [UIColor redColor];
         _redDot.layer.cornerRadius = 3.25;
@@ -227,23 +227,24 @@ static id tabBar;
         lab.center = CGPointMake(i * WINDOW_WIDTH / 4 + WINDOW_WIDTH / 8, 40);
         lab.text = self.titleArray[i];
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.font = [UIFont systemFontOfSize:14];
-        lab.textColor = ColorWithRGB(101, 101, 101);
+        lab.font = [UIFont systemFontOfSize:11.5f];
+        lab.textColor = WhiteColor;
         [self.footView addSubview:lab];
         
+        UIImage * image = [UIImage imageNamed:self.iconArray[i]];
         
-        UIImageView * img = [[UIImageView alloc]initWithImage:[UIImage imageNamed:self.iconArray[i]]];
-        img.bounds = CGRectMake(0,0,24,24);
+        UIImageView * img = [[UIImageView alloc]initWithImage:image];
+        img.contentMode = UIViewContentModeScaleAspectFit;
+        img.bounds = CGRectMake(0,0,image.size.width,image.size.height);
         img.center = CGPointMake(i * WINDOW_WIDTH / 4 + WINDOW_WIDTH / 8, 17);
         [self.footView addSubview:img];
         img.tag = i;
         
-       
         if (i == 0)
         {
             img.image = [UIImage imageNamed:self.selectIconArray[i]];
             self.imageView = img;
-            lab.textColor = ColorWithRGB(255, 145, 5);
+            lab.textColor = ColorWithRGB(72, 135, 190);
             self.label = lab;
         }
         [self.titleLabels addObject:lab];
@@ -257,9 +258,10 @@ static id tabBar;
         [self postBtnClick];
         return;
     }
-    self.label.textColor = ColorWithRGB(101, 101, 101);
+    
+    self.label.textColor = WhiteColor;
     UILabel * lab = self.titleLabels[btn.tag];
-    lab.textColor = ColorWithRGB(255, 145, 5);
+    lab.textColor = ColorWithRGB(72, 135, 190);
     self.label = lab;
     self.imageView.image = [UIImage imageNamed:self.iconArray[_imageView.tag]];
     UIImageView * img = self.icons[btn.tag];
@@ -267,7 +269,6 @@ static id tabBar;
 
     self.imageView = img;
     self.selectedIndex = btn.tag;
-    
 }
 
 
