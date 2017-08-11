@@ -23,7 +23,19 @@
     
     return layer;
 }
-
++(CAShapeLayer *)drowLineWithMoveToPoint:(CGPoint)toPoint moveForPoint:(CGPoint)forPoints lineColor:(UIColor *)color{
+    
+    UIBezierPath * path = [UIBezierPath bezierPath];
+    [path moveToPoint:toPoint];
+    [path addLineToPoint:forPoints];
+    
+    CAShapeLayer * layer    = [CAShapeLayer layer];
+    layer.path              = path.CGPath;
+    layer.borderWidth       = 1.0f;
+    layer.strokeColor       = color.CGColor;
+    
+    return layer;
+}
 +(CAShapeLayer *)cellBottomDrowLineWithTableViewCell:(UITableViewCell *)cell{
     return [WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, cell.height) moveForPoint:CGPointMake(WINDOW_WIDTH, cell.height)];
 }

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,17 +18,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="455" height="229"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="600.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ubR-Fh-RKO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="90.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ubR-Fh-RKO">
                         <rect key="frame" x="0.0" y="0.0" width="455" height="229"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dreamingDirectory" translatesAutoresizingMaskIntoConstraints="NO" id="t7q-g7-Sze">
-                        <rect key="frame" x="58" y="94.5" width="339" height="40"/>
+                        <rect key="frame" x="103" y="89.5" width="249" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="msx-OP-3TS"/>
+                            <constraint firstAttribute="width" constant="249" id="8bn-CJ-sMD"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="MUq-D3-pu3"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="情人节" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbV-ky-oHh">
-                        <rect key="frame" x="63" y="104" width="329" height="20.5"/>
+                        <rect key="frame" x="103" y="104" width="249" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="8CV-Bg-WBy"/>
                         </constraints>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与人数:150" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw1-aC-pbM">
-                        <rect key="frame" x="167" y="139.5" width="120" height="20"/>
+                        <rect key="frame" x="167" y="144.5" width="120" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="THA-Vt-KZs"/>
                             <constraint firstAttribute="height" constant="20" id="jw9-f4-i3O"/>
@@ -52,13 +52,10 @@
                     <constraint firstItem="ubR-Fh-RKO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2X0-uE-MTN"/>
                     <constraint firstItem="SbV-ky-oHh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="9nM-rf-ZTK"/>
                     <constraint firstItem="t7q-g7-Sze" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Eyv-9f-2K4"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="t7q-g7-Sze" secondAttribute="trailing" constant="50" id="H51-Bq-Zzf"/>
-                    <constraint firstItem="t7q-g7-Sze" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="Xgm-vb-ebr"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="SbV-ky-oHh" secondAttribute="trailing" constant="55" id="b7V-rR-WqP"/>
+                    <constraint firstItem="SbV-ky-oHh" firstAttribute="width" secondItem="t7q-g7-Sze" secondAttribute="width" id="NjL-jY-y44"/>
                     <constraint firstItem="t7q-g7-Sze" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hwR-WN-3Md"/>
                     <constraint firstAttribute="trailing" secondItem="ubR-Fh-RKO" secondAttribute="trailing" id="itG-YV-wfS"/>
                     <constraint firstItem="SbV-ky-oHh" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="jI2-NM-sB5"/>
-                    <constraint firstItem="SbV-ky-oHh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="55" id="k3h-yM-q8w"/>
                     <constraint firstAttribute="bottom" secondItem="ubR-Fh-RKO" secondAttribute="bottom" id="oBV-y9-ErK"/>
                     <constraint firstItem="gw1-aC-pbM" firstAttribute="top" secondItem="t7q-g7-Sze" secondAttribute="bottom" constant="5" id="qqt-lr-g5i"/>
                     <constraint firstItem="ubR-Fh-RKO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wbZ-Zh-J2v"/>
@@ -74,7 +71,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="600.jpg" width="375" height="180"/>
-        <image name="dreamingDirectory" width="138" height="27"/>
+        <image name="90.jpg" width="188" height="180"/>
+        <image name="dreamingDirectory" width="251" height="50"/>
     </resources>
 </document>

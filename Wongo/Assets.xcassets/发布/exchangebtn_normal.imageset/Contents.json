@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "pushBtn.png",
+      "filename" : "exchangebtn_normal.PNG",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "pushBtn@2x.png",
+      "filename" : "exchangebtn_normal@2x.PNG",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "pushBtn@3x.png",
+      "filename" : "exchangebtn_normal@3x.PNG",
       "scale" : "3x"
     }
   ],

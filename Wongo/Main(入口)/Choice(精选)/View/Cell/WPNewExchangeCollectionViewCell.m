@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *price;
 @property (weak, nonatomic) IBOutlet UIButton *thumpUp;
 
+
 @end
 @implementation WPNewExchangeCollectionViewCell
 
@@ -46,8 +47,6 @@
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
     
     _price.attributedText = priceAttributeString;
-    
-    
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -55,4 +54,5 @@
     [vc showExchangeBottomView];
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
 }
+
 @end

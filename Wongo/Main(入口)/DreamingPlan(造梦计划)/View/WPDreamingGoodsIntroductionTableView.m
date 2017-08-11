@@ -23,6 +23,7 @@ static NSString * const introduceCell   = @"introduceCell";
     if (self = [super initWithFrame:frame style:style]) {
         [self registerNib:[UINib nibWithNibName:@"WPDreamingImageTableViewCell" bundle:nil] forCellReuseIdentifier:imageCell];
         [self registerNib:[UINib nibWithNibName:@"WPDreamingIntroduceTableViewCell" bundle:nil] forCellReuseIdentifier:introduceCell];
+        
         NSDictionary *dic = @{@"Cell":imageCell,@"isOpen":@(NO)};
         NSArray *array =@[dic,dic,dic,dic];
         
@@ -52,16 +53,11 @@ static NSString * const introduceCell   = @"introduceCell";
         WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
         return cell;
     }
-    
-    
-    
-    
     return nil;
 }
 
 #pragma mark - Table View delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     if ([[tableView cellForRowAtIndexPath:indexPath] class] == [WPDreamingImageTableViewCell class]) {
         NSIndexPath *path = nil;
         if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell]) {

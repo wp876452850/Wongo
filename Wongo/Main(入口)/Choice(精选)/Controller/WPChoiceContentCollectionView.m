@@ -45,22 +45,12 @@
     
     layout.sectionInset = UIEdgeInsetsMake(WINDOW_WIDTH, 0, 0, 0);
     
-    //第一个展示表
+    //交换表
     WPChoiceSubCollectionView *collectionView = [[WPChoiceSubCollectionView alloc]initWithFrame:CGRectMake(0, 0, chioceCollection.width, chioceCollection.height) collectionViewLayout:layout loadDatasUrl:chioceCollection.urls[0]];
      [chioceCollection addSubview:collectionView];
+
     
-    
-//    UICollectionViewFlowLayout *layout2  = [[UICollectionViewFlowLayout alloc] init];
-//    layout2.minimumLineSpacing           = 0;
-//    layout2.minimumInteritemSpacing      = 0;
-//    layout2.itemSize                     = ChoiceCellItmeSize;
-//    layout2.sectionInset                 = UIEdgeInsetsMake(0, 0, 0, 0);
-    
-    
-    //第二个展示表
-//    WPDreameChioceSubView *collectionView2 = [[WPDreameChioceSubView alloc]initWithFrame:CGRectMake( WINDOW_WIDTH, 0, chioceCollection.width, chioceCollection.height) collectionViewLayout:layout2 cellClass:chioceCollection.subCellClass[1]];
-//     [chioceCollection addSubview:collectionView2];
-    
+    //造梦表
     WPChoiceSubTableView * tableView = [[WPChoiceSubTableView alloc]initWithFrame:CGRectMake(WINDOW_WIDTH, 0, chioceCollection.width, chioceCollection.height) style:UITableViewStyleGrouped url:chioceCollection.urls[1]];
     [chioceCollection addSubview:tableView];
     

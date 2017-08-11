@@ -10,11 +10,15 @@
 #import "WPDreamingMainGoodsModel.h"
 #import "WPNewDreamingTableViewCell.h"
 #import "WPNewDreamingChoiceHeaderView.h"
+#import "WPNewDreamingSignUpTableViewCell.h"
+#import "WPNewDreamingModel.h"
 
 @interface WPChoiceSubTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
     
 }
+@property (nonatomic,strong)NSMutableArray * cellsArray;
+
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 @property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
@@ -24,19 +28,34 @@
 @property (nonatomic,strong)NSString * url;
 
 @property (nonatomic,strong)WPNewDreamingChoiceHeaderView * headerView;
+
 @end
+
 @implementation WPChoiceSubTableView
 
+static NSString * const projectCell = @"ProjectCell";
+static NSString * const signUp = @"SignUp";
 
 #pragma mark - loadDatas
 
 #pragma mark - LoadData
+-(NSMutableArray *)cellsArray{
+    if (!_cellsArray) {
+        _cellsArray = [NSMutableArray arrayWithCapacity:3];
+    }
+    return _cellsArray;
+}
 -(WPNewDreamingChoiceHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[WPNewDreamingChoiceHeaderView alloc]initWithPostersImages:@[@""]];
+        [_headerView menuButtonDidSelectedWithBlock:^(NSInteger tag) {
+            //修改url
+            [self addHeader];
+        }];
     }
     return _headerView;
 }
+#pragma mark - init
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style url:(NSString *)url{
     if (self = [super initWithFrame:frame style:style]) {
         self.delegate = self;
@@ -44,27 +63,70 @@
         self.url = url;
         self.rowHeight = 200;
         self.tableHeaderView = self.headerView;
-        [self registerNib:[UINib nibWithNibName:@"WPNewDreamingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+        [self registerNib:[UINib nibWithNibName:@"WPNewDreamingTableViewCell" bundle:nil] forCellReuseIdentifier:projectCell];
+        [self registerNib:[UINib nibWithNibName:@"WPNewDreamingSignUpTableViewCell" bundle:nil] forCellReuseIdentifier:signUp];
+        [self addHeader];
     }
     return self;
 }
 
 #pragma mark - UITableViewDeletage && UITableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0.01f;
+    if (section == 0) {
+        return 20.0f;
+    }
+    return 10.0f;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([[self.cellsArray[section] objectForKey:@"isOpen"] boolValue]) {
+        return 2;
+    }
     return 1;
 }
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    return cell;
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.cellsArray.count;
 }
-
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0)
+    {
+        WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:projectCell forIndexPath:indexPath];
+        return cell;
+    }else{
+        WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        return cell;
+    }
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        if ([[tableView cellForRowAtIndexPath:indexPath] class] == [WPNewDreamingTableViewCell class]) {
+            NSIndexPath * path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
+            if ([[self.cellsArray[indexPath.section] objectForKey:@"isOpen"] boolValue]) {
+                // 关闭附加cell
+                NSDictionary * dic = @{@"Cell": @"cell",@"isOpen":@(NO)};
+                self.cellsArray[(path.section)] = dic;
+                [self beginUpdates];
+                [self deleteRowsAtIndexPaths:@[path]  withRowAnimation:UITableViewRowAnimationMiddle];
+                [self endUpdates];
+            }else{
+                // 打开附加cell
+                NSDictionary * dic = @{@"Cell": projectCell,@"isOpen":@(YES)};
+                self.cellsArray[(path.section)] = dic;
+                [self beginUpdates];
+                [self insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
+                [self endUpdates];
+                }
+            }
+    }
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 200;
+    }
+    return 500;
+}
 
 #pragma mark - LoadDatas
 -(void)addHeader{
@@ -83,6 +145,11 @@
         for (int i = 0; i < array.count; i++) {
             WPDreamingMainGoodsModel * model = [WPDreamingMainGoodsModel mj_objectWithKeyValues:array[i]];
             [_dataSourceArray addObject:model];
+        }
+        [_cellsArray removeAllObjects];
+        for (int i = 0; i<_dataSourceArray.count; i++) {
+            NSDictionary *dic = @{@"Cell":projectCell,@"isOpen":@(NO)};
+            [_cellsArray addObject:dic];;
         }
         // 刷新表格
         [weakSelf reloadData];

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^WPNewDreameingChoiceMenuButtonClickBlock)(NSString *parame);
+typedef void(^WPNewDreameingChoiceMenuButtonClickBlock)(NSInteger tag);
 
 @interface WPNewDreamingChoiceHeaderView : UIView
 
 -(instancetype)initWithPostersImages:(NSArray *)postersImages;
 
+-(void)menuButtonDidSelectedWithBlock:(WPNewDreameingChoiceMenuButtonClickBlock)block;
 @end

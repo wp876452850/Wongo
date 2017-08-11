@@ -11,28 +11,61 @@
 @interface WPCustomButton ()
 
 
-
 @end
 
 @implementation WPCustomButton
+
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
         _titleLabel.bounds = CGRectMake(0, 0, self.width, 20);
-        _titleLabel.centerY = self.height/2;
+        _titleLabel.center = CGPointMake(self.width/2, self.height/2);
+        
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = [UIColor clearColor];
     }
     return _titleLabel;
 }
+
 -(void)setSelected:(BOOL)selected{
     _selected = selected;
     if (_selected) {
         self.titleLabel.attributedText = self.selectedAttrobuteString;
+        self.titleLabel.textColor = self.selectedTitleColor;
     }else{
         self.titleLabel.attributedText = self.normalAttrobuteString;
+        self.titleLabel.textColor = self.normalTitleColor;
     }
 }
+
+-(void)setNormalTitleColor:(UIColor *)normalTitleColor{
+    _normalTitleColor = normalTitleColor;
+    if (!self.selected) {
+        _titleLabel.textColor = normalTitleColor;
+    }
+}
+
+-(void)setNormalAttrobuteString:(NSAttributedString *)normalAttrobuteString{
+    _normalAttrobuteString = normalAttrobuteString;
+    if (!self.selected) {
+    _titleLabel.attributedText = normalAttrobuteString;
+    }
+}
+
+-(void)setSelectedTitleColor:(UIColor *)selectedTitleColor{
+    _selectedTitleColor = selectedTitleColor;
+    if (self.selected) {
+        self.titleLabel.textColor = selectedTitleColor;
+    }
+}
+
+-(void)setSelectedAttrobuteString:(NSAttributedString *)selectedAttrobuteString{
+    _selectedAttrobuteString = selectedAttrobuteString;
+    if (self.selected) {
+        self.titleLabel.attributedText = selectedAttrobuteString;
+    }
+}
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.titleLabel];

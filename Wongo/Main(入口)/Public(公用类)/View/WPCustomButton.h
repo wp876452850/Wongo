@@ -14,7 +14,9 @@
 
 @property (nonatomic,strong)NSString * title;
 
-@property (nonatomic,strong)UIColor * titleColor;
+@property (nonatomic,strong)UIColor * normalTitleColor;
+
+@property (nonatomic,strong)UIColor * selectedTitleColor;
 
 @property (nonatomic,strong)UILabel * titleLabel;
 
