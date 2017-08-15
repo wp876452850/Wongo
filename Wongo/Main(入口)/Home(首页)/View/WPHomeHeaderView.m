@@ -17,8 +17,8 @@
 #define FOURTH_IMG_URL @"http://img14.3lian.com/201605/13/74aa1cf4a1110713146b8295967fdfc6.jpg"
 #define ROLLPLAYIMAGES @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
 #define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, (WINDOW_WIDTH*0.28))
-#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.fastView.frame),WINDOW_WIDTH,(WINDOW_WIDTH*0.68)+5)
-#define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.fastView.frame))
+#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.fastView.frame),WINDOW_WIDTH,465/2+20)
+#define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.fastView.frame)+CGRectGetHeight(self.activityView.frame))
 #define LabelFont [UIFont systemFontOfSize:12]
 
 @interface WPHomeHeaderView ()<SDCycleScrollViewDelegate>
@@ -44,36 +44,29 @@
 @end
 
 @implementation WPHomeHeaderView
-//活动视图(5个小的分类)
+//活动视图(3个小的分类)
 - (UIView *)activityView{
     if (!_activityView) {
         _activityView = [[UIView alloc] initWithFrame:ActivityViewFrame];
-        _activityView.backgroundColor = ColorWithRGB(239, 239, 239);
+        _activityView.backgroundColor = WhiteColor;
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 5, WINDOW_WIDTH, 5)];
         line.backgroundColor = [UIColor whiteColor];
         [_activityView addSubview:line];
-        CGFloat h = 0.34 * WINDOW_WIDTH;
-        CGFloat h2 = 0.29 *WINDOW_WIDTH;
         
-        _activityA = [self setUpActivityImageWithFrame:CGRectMake(0, 11, WINDOW_WIDTH * 0.33 , h)];
-        _activityB = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.33 + 1, 11, WINDOW_WIDTH * 0.33, h)];
-        _activityC = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.66 + 2, 11, WINDOW_WIDTH * 0.33, h)];
+        CGFloat w  = 142;
+        CGFloat h  = 465/2;
         
-        _activityD = [self setUpActivityImageWithFrame:CGRectMake(0, 12 + h, WINDOW_WIDTH * 0.33 , h2)];
-        _activityE = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.33 + 1, 12 + h, WINDOW_WIDTH * 0.33, h2)];
-        _activityF = [self setUpActivityImageWithFrame:CGRectMake(WINDOW_WIDTH * 0.66 + 2, 12 + h, WINDOW_WIDTH * 0.33, h2)];
+        _activityA = [self setUpActivityImageWithFrame:CGRectMake(2.5, 10, w , h)];
+        _activityB = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, 10, WINDOW_WIDTH-7.5-w, (h-2.5)/2)];
+        _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2)];
         
         //点击手势
         _activityA.tag = 0;
         _activityB.tag = 1;
         _activityC.tag = 2;
-        _activityD.tag = 3;
-        _activityE.tag = 4;
-        _activityF.tag = 5;
-        
         
         //活动分栏最底部横条
-        UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, h + h2 , WINDOW_WIDTH, 5)];
+        UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, h  , WINDOW_WIDTH, 5)];
         bottomLine.top = _activityE.bottom + 1;
         bottomLine.backgroundColor = [UIColor whiteColor];
         [_activityView addSubview:bottomLine];
@@ -88,7 +81,7 @@
     UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
     [imageView addGestureRecognizer:tapA];
     imageView.backgroundColor = [UIColor whiteColor];
-    [self.activityView addSubview:imageView];
+    [_activityView addSubview:imageView];
     return imageView;
 }
 -(instancetype)init{
@@ -124,22 +117,14 @@
     if (listhk.count <= 0) {
         return;
     }
-    [_activityA sd_setImageWithURL:[NSURL URLWithString:listhk[0].url] placeholderImage:nil];
-    CGFloat h = 0.34 * WINDOW_WIDTH + 12;
-    self.height = SelfFrame.size.height + h + 6;
-    self.bottomLine.y = h;
-    if (listhk.count >= 2) {
-        [_activityB sd_setImageWithURL:[NSURL URLWithString:listhk[1].url] placeholderImage:nil];
-    }
-    if (listhk.count >= 5) {
-        CGFloat h2 = 0.29 *WINDOW_WIDTH + 12;
-        self.height = SelfFrame.size.height + h + h2 + 6;
-        self.bottomLine.y = h + h2;
-        [_activityC sd_setImageWithURL:[NSURL URLWithString:listhk[2].url] placeholderImage:nil];
-        [_activityD sd_setImageWithURL:[NSURL URLWithString:listhk[3].url] placeholderImage:nil];
-        [_activityE sd_setImageWithURL:[NSURL URLWithString:listhk[4].url] placeholderImage:nil];
-    }
-    
+    _activityA.image = [UIImage imageNamed:@"activity1.jpg"];
+    _activityB.image = [UIImage imageNamed:@"activity2.jpg"];
+    _activityC.image = [UIImage imageNamed:@"activity3.jpg"];
+//    [_activityA sd_setImageWithURL:[NSURL URLWithString:listhk[0].url] placeholderImage:nil];
+//    
+//    [_activityB sd_setImageWithURL:[NSURL URLWithString:listhk[1].url] placeholderImage:nil];
+//    
+//    [_activityC sd_setImageWithURL:[NSURL URLWithString:listhk[2].url] placeholderImage:nil];
 }
 
 - (void)setListhl:(NSArray<LYHomeCategory *> *)listhl{
@@ -153,10 +138,8 @@
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
     LYHomeCategory *category = self.listhl[index];
     [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
-    
 }
 -(UIView *)fastView{
     if (!_fastView) {
@@ -195,7 +178,6 @@
             make.centerX.mas_equalTo(button.mas_centerX);
             make.top.mas_equalTo(button.mas_bottom).offset(mL);
         }];
-        
     }
 }
 -(void)buttonClick:(UIButton *)sender{
@@ -208,7 +190,11 @@
     if (sender.tag == 2) {
         sender.tag = 1;
     }
+    
     WPTabBarController * tabbar = [WPTabBarController sharedTabbarController];
+    if (sender.tag == 3) {
+        sender.tag = 2;
+    }
     [tabbar btnClick:sender];
     if (i == 1 || i == 2) {
         UINavigationController * nav = [tabbar selectedViewController];

@@ -26,10 +26,10 @@
 #define RollPlayImages @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
 
 
-#define ThemeNameArray      @[@"NEW PRODUCTS",@"CHANGE SIDES",@"DREAM"]
-#define Theme2NameArray     @[@"新品",@"交换",@"造梦"]
-#define ThemeIconArray      @[@"newthemeicon",@"exchangethemeicon",@"hotthemeicon"]
-#define ThemeNameColorArray @[ColorWithRGB(97, 213, 200),ColorWithRGB(125, 153, 224),ColorWithRGB(250, 130, 1)]
+#define ThemeNameArray      @[@"HOT",@"CHANGE SIDES",@"DREAM"]
+#define Theme2NameArray     @[@"热门",@"交换",@"造梦"]
+#define ThemeIconArray      @[@"hotthemeicon",@"exchangethemeicon",@"hotthemeicon"]
+#define ThemeNameColorArray @[ColorWithRGB(255, 129, 37),ColorWithRGB(125, 153, 224),ColorWithRGB(250, 130, 1)]
 
 #define Cell_HeightDouble (WINDOW_WIDTH*0.5 )
 #define Cell_HeightSigleLine (0.54*WINDOW_WIDTH)
@@ -306,11 +306,7 @@ static NSString * contentOffset = @"contentOffset";
     if (section == 0) {
         return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame) + ReusableView_Height);
     }
-    if ([self.response hasCategory:section]) {
-        return CGSizeMake(WINDOW_WIDTH, ReusableView_Height);
-    }else{
-        return CGSizeZero;
-    }
+    return CGSizeMake(WINDOW_WIDTH, ReusableView_Height);
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -325,12 +321,30 @@ static NSString * contentOffset = @"contentOffset";
 //返回区头
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
+    
     if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
         return [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID" forIndexPath:indexPath];
     }else{
+        
+        if (indexPath.section == 4) {
+            UICollectionReusableView * reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];;
+            UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+            title.center = CGPointMake(WINDOW_WIDTH/2, ReusableView_Height/2);
+            title.text = @"精品推荐";
+            title.font = [UIFont systemFontOfSize:19];
+            title.textColor = AllBorderColor;
+            title.textAlignment = NSTextAlignmentCenter;
+            [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(50, title.centerY) moveForPoint:CGPointMake(title.left - 20, title.centerY) lineColor:AllBorderColor]];
+            [reusableView addSubview:title];
+            [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 50, title.centerY) moveForPoint:CGPointMake(title.right + 20, title.centerY) lineColor:AllBorderColor]];
+            return reusableView;
+        }
+        
         WPHomeReusableView * reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
-        WPHomeReusableModel * model = self.reusableDataSource[indexPath.section];
-        reusableView.model = model;
+        if (indexPath.section < 3) {
+            WPHomeReusableModel * model = self.reusableDataSource[indexPath.section];
+            reusableView.model = model;
+        }
         return reusableView;
     }
 }

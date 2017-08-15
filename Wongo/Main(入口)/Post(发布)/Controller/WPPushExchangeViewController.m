@@ -16,8 +16,8 @@
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："/*,@"产品参数："*/]
-#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"/*,@""*/	]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
 
 static NSString * const dataCell        = @"DataCell";
 static NSString * const describeCell    = @"DescribeCell";
@@ -58,17 +58,22 @@ static NSString * const cell            = @"cell";
 @property (nonatomic,strong)NSMutableArray * images;
 //自定义导航
 @property (nonatomic,strong)WPMyNavigationBar * nav;
+//参数
+@property (nonatomic,strong)NSMutableDictionary * parameters;
 @end
 
 @implementation WPPushExchangeViewController
-
+-(NSMutableDictionary *)parameters{
+    if (!_parameters) {
+        _parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+    }
+    return _parameters;
+}
 -(WPMyNavigationBar *)nav{
     if (!_nav) {
         _nav = [[WPMyNavigationBar alloc]init];
         _nav.title.text = @"发布宝贝";
         [_nav.leftButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
-        //_nav.leftButton.hidden = YES;
-        
     }
     return _nav;
 }
@@ -88,6 +93,7 @@ static NSString * const cell            = @"cell";
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDescribeTableViewCell" bundle:nil] forCellReuseIdentifier:describeCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDremingImagesCellTableViewCell" bundle:nil] forCellReuseIdentifier:imagesCell];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell];
+        
         dataCellHeight = 50;
         describeCellHeight = 130;
     }
@@ -103,9 +109,9 @@ static NSString * const cell            = @"cell";
     self.images = [NSMutableArray arrayWithCapacity:3];
     
     UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor  = SelfOrangeColor;
+    button.backgroundColor  = WongoBlueColor;
+    button.titleLabel.font = [UIFont systemFontOfSize:19];
     [button setTitle:@"发布" forState:UIControlStateNormal];
-    button.titleLabel.font  = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(goNextVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -196,6 +202,19 @@ static NSString * const cell            = @"cell";
             }
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
+        }
+            break;
+        case 7:{
+            if (indexPath.row == self.parameters.count) {
+                UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+                button.bounds = CGRectMake(0, 0, 100, 40);
+                button.center = CGPointMake(WINDOW_WIDTH/2, 25);
+                [button setTitle:@"添加参数" forState:UIControlStateNormal];
+                return cell;
+            }else{
+                
+            }
         }
             break;
     }
