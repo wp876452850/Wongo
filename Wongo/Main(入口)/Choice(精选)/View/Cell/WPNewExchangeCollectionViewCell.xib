@@ -49,6 +49,9 @@
                             <constraint firstAttribute="height" constant="30" id="yyS-7Y-1iL"/>
                         </constraints>
                         <state key="normal" image="thumup_normal"/>
+                        <connections>
+                            <action selector="thumUp:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6R2-Dk-KKM"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -76,7 +79,7 @@
                 <outlet property="price" destination="sz3-FY-0iH" id="sjb-6R-6JA"/>
                 <outlet property="thumpUp" destination="Avj-b5-uSP" id="iZU-dt-ZA0"/>
             </connections>
-            <point key="canvasLocation" x="-427" y="11"/>
+            <point key="canvasLocation" x="-627" y="11"/>
         </collectionViewCell>
     </objects>
     <resources>

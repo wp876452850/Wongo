@@ -7,6 +7,7 @@
 //
 
 #import "WPNewDreamingSignUpTableViewCell.h"
+
 #define ImageWidth (WINDOW_WIDTH / 2 - 7.5)
 
 @interface WPNewDreamingSignUpTableViewCell ()
@@ -25,7 +26,13 @@
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 10.0f;
         [self.contentView addSubview:imageView];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+        [imageView addGestureRecognizer:tap];
     }
+}
+
+-(void)tap:(UITapGestureRecognizer *)tap{
+    
 }
 
 - (IBAction)close:(UIButton *)sender {

@@ -9,7 +9,7 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "WPCustomButton.h"
-#define SectionMenuTitles @[@"热门推荐 ",@"筹备中 ",@"进行中 "]
+#define SectionMenuTitles @[@" 热门推荐 ",@" 筹备中 ",@" 进行中 "]
 
 @interface WPNewDreamingChoiceHeaderView ()
 {
@@ -52,7 +52,7 @@
             menuButton.selectedTitleColor = WongoBlueColor;
             NSString * title = SectionMenuTitles[i];
             
-            menuButton.normalAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmunenormal"] atIndex:title.length imageBounds:CGRectMake(0, -3, 15, 15)];
+            menuButton.normalAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@""] atIndex:title.length imageBounds:CGRectMake(0, -3, 15, 15)];
             
             menuButton.selectedAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, -3, 15, 15)];
             

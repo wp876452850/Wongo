@@ -15,6 +15,7 @@
 #import "WPMyNavigationBar.h"
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
+#import "WPPushParameterTableViewCell.h"
 
 #define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
 #define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
@@ -23,6 +24,7 @@ static NSString * const dataCell        = @"DataCell";
 static NSString * const describeCell    = @"DescribeCell";
 static NSString * const imagesCell      = @"ImageCell";
 static NSString * const cell            = @"cell";
+static NSString * const parameter       = @"Parameter";
 
 @interface WPPushExchangeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -52,6 +54,8 @@ static NSString * const cell            = @"cell";
     //是否同意协议说明
     BOOL       _isAgreed;
     
+    //参数单元格数量
+    NSInteger  _parameterCellNumber;
 }
 @property (nonatomic,strong)UITableView * tableView;
 
@@ -59,13 +63,13 @@ static NSString * const cell            = @"cell";
 //自定义导航
 @property (nonatomic,strong)WPMyNavigationBar * nav;
 //参数
-@property (nonatomic,strong)NSMutableDictionary * parameters;
+@property (nonatomic,strong)NSMutableArray * parameters;
 @end
 
 @implementation WPPushExchangeViewController
--(NSMutableDictionary *)parameters{
+-(NSMutableArray *)parameters{
     if (!_parameters) {
-        _parameters = [NSMutableDictionary dictionaryWithCapacity:3];
+        _parameters = [NSMutableArray arrayWithCapacity:3];
     }
     return _parameters;
 }
@@ -92,6 +96,7 @@ static NSString * const cell            = @"cell";
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDataTableViewCell" bundle:nil] forCellReuseIdentifier:dataCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDescribeTableViewCell" bundle:nil] forCellReuseIdentifier:describeCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDremingImagesCellTableViewCell" bundle:nil] forCellReuseIdentifier:imagesCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPPushParameterTableViewCell" bundle:nil] forCellReuseIdentifier:parameter];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell];
         
         dataCellHeight = 50;
@@ -123,8 +128,23 @@ static NSString * const cell            = @"cell";
 #pragma mark - 发布交换
 -(void)goNextVC{
     __weak WPPushExchangeViewController * weakSelf = (WPPushExchangeViewController*)self;
-    if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_inventory.length!=0&&_newOrOld.length!=0) {
+    [self.parameters removeAllObjects];
+    //收编参数集
+    for (int i = 0; i < _parameterCellNumber; i++) {
+        NSIndexPath * indexPath = [NSIndexPath indexPathForRow:i inSection:7];
+        WPPushParameterTableViewCell * cell = [self.tableView cellForRowAtIndexPath:indexPath];
         
+        if (cell.parameterName.titleLabel.text.length > 0&&cell.parameter.text.length > 0) {
+            NSDictionary * dic = @{@"parameterName":cell.parameterName.titleLabel.text,@"parameter":cell.parameter.text};
+            [self.parameters addObject:dic];
+        }else if((cell.parameterName.titleLabel.text.length > 0&&cell.parameter.text.length <= 0)||(cell.parameterName.titleLabel.text.length <= 0&&cell.parameter.text.length > 0)){
+            [self showAlertWithAlertTitle:@"提示" message:@"请输入完整的参数" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+            return;
+        }
+    }
+    
+    if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_inventory.length!=0&&_newOrOld.length!=0) {
+       
         NSString * timeStr = [self getNowTime];
         
         NSDictionary * params = @{@"pubtime":timeStr,@"gname":_name,@"remark":_describe,@"gcid":_specieid,@"price":@([_price floatValue]),@"repertory":@([_inventory integerValue]),@"neworold":_newOrOld,@"uid":[[NSUserDefaults standardUserDefaults]objectForKey:User_ID]};
@@ -149,6 +169,9 @@ static NSString * const cell            = @"cell";
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 7) {
+       return _parameterCellNumber + 1;
+    }
     return 1;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -205,15 +228,22 @@ static NSString * const cell            = @"cell";
         }
             break;
         case 7:{
-            if (indexPath.row == self.parameters.count) {
+            if (indexPath.row == _parameterCellNumber) {
                 UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
                 button.bounds = CGRectMake(0, 0, 100, 40);
                 button.center = CGPointMake(WINDOW_WIDTH/2, 25);
+                [button setTitleColor:WongoBlueColor forState:UIControlStateNormal];
                 [button setTitle:@"添加参数" forState:UIControlStateNormal];
+                button.userInteractionEnabled = NO;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                [cell.contentView addSubview:button];
+                [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
                 return cell;
             }else{
-                
+                WPPushParameterTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:parameter forIndexPath:indexPath];
+                [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+                return cell;
             }
         }
             break;
@@ -248,7 +278,7 @@ static NSString * const cell            = @"cell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section ==1) {
+    if (indexPath.section == 1) {
         return describeCellHeight;
     }
     else if (indexPath.section == 2){
@@ -269,24 +299,30 @@ static NSString * const cell            = @"cell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-           if (indexPath.section == 4) {
-                WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string,NSString * gcid) {
-                    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
-                    
-                    _species = string;
-                    _specieid = gcid;
-                } selectedCategoryName:_species];
-               [self.view addSubview:selectAlterView];
-            }else if (indexPath.section == 5){
-                WPSelectAlterView * selectAlterView = [WPSelectAlterView createArraySelectAlterWithFrame:self.view.frame array:@[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"] block:^(NSString *string,NSString * gcid) {
-                    UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-                    cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
-                    _newOrOld      = string;
-                } selectedCategoryName:_newOrOld];
-                [self.view addSubview:selectAlterView];
-            }
+        if (indexPath.section == 4) {
+            WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string,NSString * gcid) {
+                UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
+                
+                _species = string;
+                _specieid = gcid;
+            } selectedCategoryName:_species];
+           [self.view addSubview:selectAlterView];
+        }else if (indexPath.section == 5){
+            WPSelectAlterView * selectAlterView = [WPSelectAlterView createArraySelectAlterWithFrame:self.view.frame array:@[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"] block:^(NSString *string,NSString * gcid) {
+                UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+                cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.section],string];
+                _newOrOld      = string;
+            } selectedCategoryName:_newOrOld];
+            [self.view addSubview:selectAlterView];
+        }
     
+    if (indexPath.section == 7&&indexPath.row == _parameterCellNumber) {
+        _parameterCellNumber ++;
+        NSIndexPath * addIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:7];
+        [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        [tableView scrollToRowAtIndexPath:addIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+    }
     [self.view endEditing:YES];
 }
 

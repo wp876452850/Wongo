@@ -7,6 +7,7 @@
 //
 
 #import "WPPushParameterTableViewCell.h"
+#import "DLPickerView.h"
 
 @interface WPPushParameterTableViewCell ()<UITextFieldDelegate>
 {
@@ -14,25 +15,36 @@
     WPPushParameterNameBlock    _parameterNameBlock;
 }
 
-@property (weak, nonatomic) IBOutlet UITextField *parameterName;
-@property (weak, nonatomic) IBOutlet UITextField *parameter;
+
 
 @end
 @implementation WPPushParameterTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [_parameter addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
-    [_parameterName addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _parameterName.layer.masksToBounds  = YES;
+    _parameterName.layer.cornerRadius   = 5;
+    _parameterName.layer.borderWidth    = .5f;
+    _parameterName.layer.borderColor    = ColorWithRGB(210, 210, 210).CGColor;
+    [_parameter addTarget:self action: @selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
 -(void)textFieldChange:(UITextField *)textField{
     //tag值在xib中设置
-    if (textField.tag == 1) {
-        _parameterBlock(textField.text);
-    }else{
-        _parameterNameBlock(textField.text);
+    if (_parameterBlock) {
+       _parameterBlock(textField.text);
     }
+}
+
+- (IBAction)parameterNameSelected:(UIButton *)sender {
+    DLPickerView *pickerView = [[DLPickerView alloc] initWithDataSource:@[@"Man",@"Woman"]
+                                                       withSelectedItem:sender.titleLabel.text
+                                                      withSelectedBlock:^(id selectedItem) {
+                                                          [sender setTitle:selectedItem forState:UIControlStateNormal];
+                                                      }
+                                ];    
+    [pickerView show];
 }
 
 -(void)getPushParameterWithBlock:(WPPushParameterBlock)pushParameterBlock{
@@ -41,4 +53,5 @@
 -(void)getPushParameterNameWithBlock:(WPPushParameterNameBlock)pushParameterNameBlock{
     _parameterNameBlock = pushParameterNameBlock;
 }
+
 @end

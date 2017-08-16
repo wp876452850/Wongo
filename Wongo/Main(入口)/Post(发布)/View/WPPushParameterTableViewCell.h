@@ -11,6 +11,9 @@
 typedef void(^WPPushParameterBlock)(NSString * parameter);
 typedef void(^WPPushParameterNameBlock)(NSString * parameterName);
 @interface WPPushParameterTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIButton *parameterName;
+
+@property (weak, nonatomic) IBOutlet UITextField *parameter;
 
 -(void)getPushParameterWithBlock:(WPPushParameterBlock)pushParameterBlock;
 -(void)getPushParameterNameWithBlock:(WPPushParameterNameBlock)pushParameterNameBlock;

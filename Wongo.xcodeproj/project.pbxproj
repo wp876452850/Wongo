@@ -350,6 +350,7 @@
 		3D6C34DB1F4197B600630FC7 /* WPPushParameterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D6C34D91F4197B600630FC7 /* WPPushParameterTableViewCell.xib */; };
 		3D827A301EF10A320030B0D1 /* LYConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A2F1EF10A320030B0D1 /* LYConversationListController.m */; };
 		3D827A331EF10A680030B0D1 /* LYConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A321EF10A680030B0D1 /* LYConversationController.m */; };
+		3D89B4B61F42D60D00B79689 /* DLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D89B4B51F42D60D00B79689 /* DLPickerView.m */; };
 		3DC63F761F01F126009C3768 /* LYHomeSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */; };
 		3DC63F771F01F126009C3768 /* LYHomeSectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */; };
 		3DF746131F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF746071F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m */; };
@@ -1312,6 +1313,8 @@
 		3D827A311EF10A680030B0D1 /* LYConversationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYConversationController.h; sourceTree = "<group>"; };
 		3D827A321EF10A680030B0D1 /* LYConversationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYConversationController.m; sourceTree = "<group>"; };
 		3D827A341EF122E90030B0D1 /* Wongo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wongo.entitlements; sourceTree = "<group>"; };
+		3D89B4B41F42D60D00B79689 /* DLPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPickerView.h; sourceTree = "<group>"; };
+		3D89B4B51F42D60D00B79689 /* DLPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPickerView.m; sourceTree = "<group>"; };
 		3DC63F731F01F126009C3768 /* LYHomeSectionFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSectionFooter.h; sourceTree = "<group>"; };
 		3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSectionFooter.m; sourceTree = "<group>"; };
 		3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSectionFooter.xib; sourceTree = "<group>"; };
@@ -3605,6 +3608,15 @@
 			path = WPAtrributeString;
 			sourceTree = "<group>";
 		};
+		3D89B4B31F42D60D00B79689 /* DLPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				3D89B4B41F42D60D00B79689 /* DLPickerView.h */,
+				3D89B4B51F42D60D00B79689 /* DLPickerView.m */,
+			);
+			path = DLPickerView;
+			sourceTree = "<group>";
+		};
 		3DF746041F3426FB00A23B52 /* Detail(商品详情页) */ = {
 			isa = PBXGroup;
 			children = (
@@ -5053,6 +5065,7 @@
 		8566A7221E4824EF00C08624 /* Third(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				3D89B4B31F42D60D00B79689 /* DLPickerView */,
 				3D6BA1241F2B2AA400EC165C /* WPAtrributeString(富文本) */,
 				3D1732D81F273B7000BFF90D /* HYBMasonryAutoCellHeight(表高自动布局约束) */,
 				3D1730211F26F6C100BFF90D /* KeyBoard(键盘框) */,
@@ -7344,6 +7357,7 @@
 				8566A7A71E48265C00C08624 /* MASCompositeConstraint.m in Sources */,
 				3DFDCCFE1EE56033000249F7 /* LYAliPayResult.m in Sources */,
 				8566A7D11E48265C00C08624 /* LLSimpleCamera.m in Sources */,
+				3D89B4B61F42D60D00B79689 /* DLPickerView.m in Sources */,
 				8566A7AE1E48265C00C08624 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

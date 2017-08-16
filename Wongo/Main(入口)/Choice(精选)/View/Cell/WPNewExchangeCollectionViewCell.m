@@ -54,5 +54,8 @@
     [vc showExchangeBottomView];
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
 }
+- (IBAction)thumUp:(UIButton *)sender {
+    [self thumbUpGoodsWithSender:sender gid:_model.gid];
+}
 
 @end

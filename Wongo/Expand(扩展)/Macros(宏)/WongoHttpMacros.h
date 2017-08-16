@@ -58,7 +58,7 @@
 /**添加收藏*/
 #define CollectionAddUrl        HttpHead(@"CollectionAdd")
 /**取消收藏*/
-#define CollectionCancelUrl     HttpHead(@"CollectionCancel")
+#define CollectionCancelUrl     HttpHead(@"updgdfreight")
 /**查询收藏商品*/
 #define QueryUserCollectionUrl  HttpHead(@"queryUserCollection")
 /**修改用户头像*/
@@ -120,9 +120,9 @@
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
 /**点赞*/
-#define UpdgdfreightAddUrl      HttpHead(@"updgdfreightAdd")
+#define ThumUpAddUrl            HttpHead(@"IncensesAdd")
 /**取消点赞*/
-#define UpdgdfreightUrl         HttpHead(@"updgdfreight")
+#define ThumUpCancelUrl         HttpHead(@"IncensesDel")
 /**添加评论*/
 #define AddCommentUrl           HttpHead(@"addComment")
 /**查询评论*/

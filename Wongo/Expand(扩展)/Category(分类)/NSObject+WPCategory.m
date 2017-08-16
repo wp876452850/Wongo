@@ -157,9 +157,20 @@
 
 -(void)thumbUpGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
     //判断是否登录
-    [self determineWhetherTheLogin];
-    
+    if ([self determineWhetherTheLogin]) {
+        __block UIButton * button = sender;
+        if (!sender.selected) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+            }];
+        }
+        else{
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+            }];
+        }
     }
+}
 
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
     //判断是否登录
@@ -181,6 +192,5 @@
         }];
     }
 }
-
 
 @end
