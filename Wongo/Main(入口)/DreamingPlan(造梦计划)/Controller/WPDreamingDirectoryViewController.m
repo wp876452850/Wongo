@@ -181,7 +181,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    WPDreamingDirectoryModel *model = self.dataSourceArray[indexPath.row];
+    WPDreamingDirectoryModel *model  = self.dataSourceArray[indexPath.row];
     WPDreamingDetailViewController *vc = [WPDreamingDetailViewController createDreamingDetailWithPlid:model.plid subid:self.subid];
     [self.navigationController pushViewController:vc animated:YES];
 }

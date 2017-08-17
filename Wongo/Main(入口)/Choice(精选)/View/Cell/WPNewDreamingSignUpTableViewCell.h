@@ -10,4 +10,6 @@
 
 @interface WPNewDreamingSignUpTableViewCell : UITableViewCell
 
+@property (nonatomic,strong)NSMutableArray * dataSource;
+
 @end

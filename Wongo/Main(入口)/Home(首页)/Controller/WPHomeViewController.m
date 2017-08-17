@@ -19,6 +19,7 @@
 #import "LYActivityController.h"
 #import "LYHomeSectionFooter.h"
 #import "WPNewExchangeCollectionViewCell.h"
+#import "WPHomeDreamingCollectionViewCell.h"
 
 
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
@@ -28,8 +29,8 @@
 
 #define ThemeNameArray      @[@"HOT",@"CHANGE SIDES",@"DREAM"]
 #define Theme2NameArray     @[@"热门",@"交换",@"造梦"]
-#define ThemeIconArray      @[@"hotthemeicon",@"exchangethemeicon",@"hotthemeicon"]
-#define ThemeNameColorArray @[ColorWithRGB(255, 129, 37),ColorWithRGB(125, 153, 224),ColorWithRGB(250, 130, 1)]
+#define ThemeIconArray      @[@"hotthemeicon",@"exchangethemeicon",@"homedreamingicon"]
+#define ThemeNameColorArray @[ColorWithRGB(255, 129, 37),ColorWithRGB(125, 153, 224),ColorWithRGB(0, 123, 249)]
 
 #define Cell_HeightDouble (WINDOW_WIDTH*0.5 )
 #define Cell_HeightSigleLine (0.54*WINDOW_WIDTH)
@@ -87,6 +88,7 @@ static NSString * contentOffset = @"contentOffset";
         [_collectionView registerClass:[WPHomeReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSectionFooter" bundle:nil]  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID"];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"GoodsCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPHomeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeDreamingCell"];
         //添加监听
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
         [_collectionView addObserver:self forKeyPath:contentOffset options:options context:nil];
@@ -203,15 +205,18 @@ static NSString * contentOffset = @"contentOffset";
     if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]) {
         return CGSizeMake(WINDOW_WIDTH - 10, Cell_HeightSigleLine);
     }
-    if (indexPath.section == 4) {
+    if (indexPath.section == 3) {
         return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
+    }
+    if (indexPath.section == 2) {
+        return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*194.5f/375);
     }
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, Cell_HeightDouble);
 }
 
 //返回section个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 5;
+    return 4;
 }
 
 //每个section的item个数
@@ -228,12 +233,7 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            NSInteger num = self.response.listzk.count + (self.response.listzl.count?1:0);
-            return num > 5?5:num;
-        }
-            break;
-        case 3:{
-            return 0;
+            return 2;
         }
             break;
         default:
@@ -256,13 +256,18 @@ static NSString * contentOffset = @"contentOffset";
                 case 2:
                     cell.categorys = self.response.listzl;
                     break;
-                default:
-                    break;
             }
             return cell;
-    }else if (indexPath.section == 4){
+        
+    }
+    else if (indexPath.section == 3){
         WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GoodsCell" forIndexPath:indexPath];
         cell.model = self.dataSourceArray[indexPath.row];
+        return cell;
+    }
+    else if (indexPath.section == 2){
+        WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
+        
         return cell;
     }
     else{
@@ -288,6 +293,8 @@ static NSString * contentOffset = @"contentOffset";
         }
         return cell;
     }
+    
+    return nil;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(8, 8, 8, 8);
@@ -326,7 +333,7 @@ static NSString * contentOffset = @"contentOffset";
         return [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID" forIndexPath:indexPath];
     }else{
         
-        if (indexPath.section == 4) {
+        if (indexPath.section == 3) {
             UICollectionReusableView * reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];;
             UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
             title.center = CGPointMake(WINDOW_WIDTH/2, ReusableView_Height/2);
