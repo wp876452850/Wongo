@@ -19,10 +19,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exchangebackimage" translatesAutoresizingMaskIntoConstraints="NO" id="wKY-rP-3AE">
-                        <rect key="frame" x="0.0" y="0.0" width="470" height="386"/>
+                        <rect key="frame" x="1" y="1" width="468" height="384"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RPP-fw-pKW">
-                        <rect key="frame" x="1" y="1" width="468" height="310"/>
+                        <rect key="frame" x="2" y="2" width="466" height="309"/>
                     </imageView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rmb-oN-bhb">
                         <rect key="frame" x="3" y="311" width="464" height="40"/>
@@ -39,7 +39,7 @@
                             <constraint firstAttribute="height" constant="20" id="a84-NK-L1I"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="1" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.95294117649999999" green="0.39607843139999999" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-b5-uSP">
@@ -48,7 +48,6 @@
                             <constraint firstAttribute="width" constant="30" id="IRQ-ib-q3Z"/>
                             <constraint firstAttribute="height" constant="30" id="yyS-7Y-1iL"/>
                         </constraints>
-                        <state key="normal" image="thumup_normal"/>
                         <connections>
                             <action selector="thumUp:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6R2-Dk-KKM"/>
                         </connections>
@@ -57,20 +56,20 @@
             </view>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Rmb-oN-bhb" secondAttribute="trailing" constant="3" id="1qo-9I-H2B"/>
-                <constraint firstAttribute="trailing" secondItem="wKY-rP-3AE" secondAttribute="trailing" id="Jvb-Rk-W24"/>
+                <constraint firstAttribute="trailing" secondItem="wKY-rP-3AE" secondAttribute="trailing" constant="1" id="Jvb-Rk-W24"/>
                 <constraint firstAttribute="trailing" secondItem="Avj-b5-uSP" secondAttribute="trailing" constant="5" id="LSq-iq-ehJ"/>
                 <constraint firstItem="Avj-b5-uSP" firstAttribute="centerY" secondItem="sz3-FY-0iH" secondAttribute="centerY" id="LWU-SV-2Ac"/>
                 <constraint firstItem="Rmb-oN-bhb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="Mh3-Hn-lYt"/>
                 <constraint firstItem="sz3-FY-0iH" firstAttribute="top" secondItem="Rmb-oN-bhb" secondAttribute="bottom" constant="5" id="Oej-8b-3C9"/>
                 <constraint firstAttribute="bottom" secondItem="sz3-FY-0iH" secondAttribute="bottom" constant="10" id="Otq-va-9mB"/>
                 <constraint firstItem="Rmb-oN-bhb" firstAttribute="top" secondItem="RPP-fw-pKW" secondAttribute="bottom" id="bI4-FP-NRg"/>
-                <constraint firstAttribute="trailing" secondItem="RPP-fw-pKW" secondAttribute="trailing" constant="1" id="egT-7g-hMu"/>
-                <constraint firstItem="wKY-rP-3AE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fhK-pe-a1S"/>
-                <constraint firstAttribute="bottom" secondItem="wKY-rP-3AE" secondAttribute="bottom" id="kWG-Sf-o8A"/>
+                <constraint firstAttribute="trailing" secondItem="RPP-fw-pKW" secondAttribute="trailing" constant="2" id="egT-7g-hMu"/>
+                <constraint firstItem="wKY-rP-3AE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="fhK-pe-a1S"/>
+                <constraint firstAttribute="bottom" secondItem="wKY-rP-3AE" secondAttribute="bottom" constant="1" id="kWG-Sf-o8A"/>
                 <constraint firstItem="sz3-FY-0iH" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="l4O-i7-8lI"/>
-                <constraint firstItem="RPP-fw-pKW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="ukM-9g-Cf8"/>
-                <constraint firstItem="RPP-fw-pKW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="1" id="voO-5O-gvV"/>
-                <constraint firstItem="wKY-rP-3AE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zC5-cF-Sgd"/>
+                <constraint firstItem="RPP-fw-pKW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="ukM-9g-Cf8"/>
+                <constraint firstItem="RPP-fw-pKW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="voO-5O-gvV"/>
+                <constraint firstItem="wKY-rP-3AE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="1" id="zC5-cF-Sgd"/>
             </constraints>
             <size key="customSize" width="470" height="386"/>
             <connections>
@@ -84,6 +83,5 @@
     </objects>
     <resources>
         <image name="exchangebackimage" width="174" height="235"/>
-        <image name="thumup_normal" width="14" height="12"/>
     </resources>
 </document>

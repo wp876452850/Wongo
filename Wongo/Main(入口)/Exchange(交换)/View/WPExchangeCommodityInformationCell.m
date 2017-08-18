@@ -38,17 +38,17 @@
 
 -(void)setModel:(WPExchangeDetailModel *)model{
     _model = model;
+    NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
-        NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
-        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"guanfang"] atIndex:0 imageBounds:CGRectMake(0, -2.5, 28, 16)];
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }else{
-        _goodsName.text = model.gname;
+         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];;
     }
     _oldNew.text    = model.neworold;
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
     _price.text     = [NSString stringWithFormat:@" %@",model.price];
-    [UILabel changeWordSpaceForLabel:_price WithSpace:1.f];
-    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 10, 20)];
+    [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
+    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, 0, 12.5, 25)];
     //判断用户收藏的商品总是否有
     //判断是否登录
     if ([self getSelfUid].length>0) {

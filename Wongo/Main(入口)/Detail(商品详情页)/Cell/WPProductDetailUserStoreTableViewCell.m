@@ -39,16 +39,22 @@
 }
 
 - (IBAction)collect:(UIButton *)sender {
+    
     [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
     return;
-    sender.selected = !sender.selected;
+    
     [self focusOnTheUserWithSender:sender uid:_model.uid];    
 }
 
 -(void)setModel:(WPUserIntroductionModel *)model{
     [self.headPortrait sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
     self.uname.text = model.uname;
-    self.other.text = model.signature;
+    if (model.signature.length > 0) {
+        self.other.text = model.signature;
+    }
+    else{
+        self.other.text = @"用户暂无签名";
+    }
     self.collect.selected = [model.collect floatValue];
     //判断是否有其他推荐，没有则返回分割线位置
     if (_rowHeightBlock) {

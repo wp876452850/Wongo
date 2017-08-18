@@ -72,7 +72,7 @@
 /**精选-造梦计划*/
 #define QuerySubUrl             HttpHead(@"querySub")
 /**发布(报名)造梦计划*/
-#define AddProduct              HttpHead(@"addProduct")
+#define AddProduct              HttpHead(@"joinPro")
 /**发布造梦图片*/
 #define UpProFileUrl            HttpHead(@"upProFile")
 /**加入他人造梦*/

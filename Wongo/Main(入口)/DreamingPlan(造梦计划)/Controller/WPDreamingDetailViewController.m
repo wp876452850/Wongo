@@ -16,6 +16,7 @@
 #import "WPDreamingModel.h"
 #import "WPProgressTableViewCell.h"
 #import "WPParticipateDreamingViewController.h"
+#import "LYConversationController.h"
 
 
 static NSString * const userCell        = @"UserCell";
@@ -42,7 +43,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 @property (nonatomic,strong)UIButton * backBtn;
 
-
+@property (nonatomic,strong)UIButton * chatBtn;
 @end
 
 @implementation WPDreamingDetailViewController
@@ -59,21 +60,33 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 }
 -(SDCycleScrollView *)rollPlay{
     if (!_rollPlay) {
-        _rollPlay = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 260) imageURLStringsGroup:_rollPlayImages];
+        _rollPlay = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:_rollPlayImages];
     }
     return _rollPlay;
+}
+
+
+-(UIButton *)chatBtn{
+    if (!_chatBtn) {
+        _chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _chatBtn.frame = CGRectMake(0, WINDOW_HEIGHT - 50, 50, 50);
+        _chatBtn.backgroundColor = ColorWithRGB(45, 102, 139);
+        [_chatBtn addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_chatBtn];
+        [_chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+
+    }
+    return _chatBtn;
 }
 -(UIButton *)joinDreaming{
     if (!_joinDreaming) {
         _joinDreaming = [UIButton buttonWithType:UIButtonTypeCustom];
-        _joinDreaming.frame = CGRectMake(5, WINDOW_HEIGHT - 45, WINDOW_WIDTH - 10, 40);
+        _joinDreaming.frame = CGRectMake(self.chatBtn.right, WINDOW_HEIGHT - 50, WINDOW_WIDTH - 50, 50);
         [_joinDreaming setTitle:@"参与造梦" forState:UIControlStateNormal];
         _joinDreaming.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_joinDreaming setBackgroundColor:SelfOrangeColor];
+        [_joinDreaming setBackgroundColor:ColorWithRGB(105, 152, 192)];
         [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateNormal];
         [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateHighlighted];
-        _joinDreaming.layer.masksToBounds = YES;
-        _joinDreaming.layer.cornerRadius = 5;
         [_joinDreaming addTarget:self action:@selector(goNextViewController) forControlEvents:UIControlEventTouchUpInside];
     }
     return _joinDreaming;
@@ -117,9 +130,9 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     self.model          = [[WPDreamingModel alloc]init];
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
     
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"subid":_subid,@"plid":_plid} datas:^(NSDictionary *responseObject) {
-        
-    }];
+//    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"subid":_subid,@"plid":_plid} datas:^(NSDictionary *responseObject) {
+//        
+//    }];
     
     [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343696607&di=6b2b2d9170e81866eb10ce92ffd729b1&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa2cc7cd98d1001e9460fd63bbd0e7bec54e797d7.jpg"];
     [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343753469&di=bd25b0ec8294590994f1d587d50bb702&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb2de9c82d158ccbf79a00f8c1cd8bc3eb1354163.jpg"];
@@ -312,7 +325,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
-    if (scrollView.contentOffset.y >= 400) {
+    if (scrollView.contentOffset.y >= 500) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
         dv.model = self.model.introduceModel;
@@ -326,5 +339,13 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 -(void)goNextViewController{
     WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)goChat{
+    if ([self determineWhetherTheLogin]) {
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.model.userModel.uid];
+        vc.title = self.model.userModel.uname;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

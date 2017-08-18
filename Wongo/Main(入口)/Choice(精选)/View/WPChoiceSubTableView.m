@@ -72,10 +72,7 @@ static NSString * const signUp = @"SignUp";
 
 #pragma mark - UITableViewDeletage && UITableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 20.0f;
-    }
-    return 10.0f;
+    return 5.0f;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
@@ -124,7 +121,7 @@ static NSString * const signUp = @"SignUp";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 200;
+        return 190;
     }
     return 500;
 }

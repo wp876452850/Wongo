@@ -12,6 +12,8 @@
 #import "WPDreamingIntroduceModel.h"
 
 @interface WPDreamingModel : NSObject
+/**用户uid*/
+@property (nonatomic,strong)NSString * uid;
 /**图片数组*/
 @property (nonatomic,strong)NSMutableArray * images_url;
 /**金额*/

@@ -124,7 +124,7 @@ static NSString * const cell            = @"cell";
     self.images = [NSMutableArray arrayWithCapacity:3];
     
     UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor  = SelfOrangeColor;
+    button.backgroundColor  = ColorWithRGB(105, 152, 192);
     [button setTitle:@"参与造梦" forState:UIControlStateNormal];
     button.titleLabel.font  = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(goNextVC) forControlEvents:UIControlEventTouchUpInside];

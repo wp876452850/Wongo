@@ -22,7 +22,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    [_thumpUp setImage:[UIImage imageNamed:@"thumup_select"] forState:UIControlStateSelected];
+    [_thumpUp setImage:[UIImage imageNamed:@"thumup_normal"] forState:UIControlStateNormal];
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
@@ -32,17 +33,19 @@
     if (model.gname.length >= 20) {
         gname = [NSString stringWithFormat:@"%@...",[gname substringToIndex:20]];
     }
-    NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:gname];
+    NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",gname]];
     //判断是否官方商品
     if (model.uid.floatValue == 1.f||model.uid.floatValue == 2) {
-        attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"guanfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 20, 12)];
+        attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"goodsshowguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.2, 20, 10)];
+    }else{
+         attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"goodsshownew"] atIndex:0 imageBounds:CGRectMake(0, -1.2, 20, 10)];
     }
     //判断是否新上架
     
     //设置价格标识
     _goodsName.attributedText = attributeString;
     
-    NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.5f];
+    NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.0f];
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
     
     [UILabel changeWordSpaceForLabel:_price WithSpace:0.5f];

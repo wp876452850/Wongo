@@ -32,14 +32,14 @@
     [_attention setTitle:@"+ 关注" forState:UIControlStateNormal];
     [_attention setTitle:@"已关注" forState:UIControlStateSelected];
     _attention.layer.masksToBounds  = YES;
-    _attention.layer.cornerRadius   = _attention.height/2;
+    _attention.layer.cornerRadius   = 5;
     _attention.layer.borderWidth    = 1;
     _attention.titleLabel.font      = [UIFont systemFontOfSize:15];
     
     _chat.layer.masksToBounds   = YES;
     _chat.layer.borderWidth     = 1;
     _chat.layer.borderColor     = SelfOrangeColor.CGColor;
-    _chat.layer.cornerRadius    = _chat.height/2;
+    _chat.layer.cornerRadius    = 5;
     _chat.titleLabel.font       = [UIFont systemFontOfSize:15];
     [_chat setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
     [_chat setTitle:@"发私信" forState:UIControlStateNormal];

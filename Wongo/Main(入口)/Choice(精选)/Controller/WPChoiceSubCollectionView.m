@@ -46,7 +46,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (!_cycleScrollView) {
 #warning 有后台记得改
         //_cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:self.rollPlayImages];
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
     }
     return _cycleScrollView;
@@ -59,20 +59,20 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(UIView *)menuView{
     if (!_menuView) {
-        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_WIDTH, WINDOW_WIDTH, 40)];
+        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 50)];
         _menuView.backgroundColor = WhiteColor;
         for (int i = 0; i < 3; i++) {
             UIButton * menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            menuButton.frame = CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30);
+            menuButton.frame = CGRectMake(i*WINDOW_WIDTH/3+i, 10, WINDOW_WIDTH/3-1, 30);
             menuButton.tag = i;
             [menuButton setBackgroundColor:[UIColor clearColor]];
-            menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
+            menuButton.titleLabel.font = [UIFont systemFontOfSize:9];
             if (i==0) {
                 menuButton.selected = YES;
                 _memoryButton = menuButton;
             }
             if (i<2) {
-                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom)];
+                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y +2.5) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom-2.5)];
                 [_menuView.layer addSublayer:layer];
             }else{
                 self.classificationTableView.y = _menuView.bottom;
@@ -81,10 +81,13 @@ static NSString * const reuseIdentifier = @"Cell";
             
             NSString * title = SectionMenuTitles[i];
             
-//            NSAttributedString * attributedString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] andColor:GRAY_COLOR font:[UIFont systemFontOfSize:15] range:NSMakeRange(0, title.length)];
+            NSAttributedString * attributedString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] andColor:ColorWithRGB(100, 100, 100) font:[UIFont systemFontOfSize:15] range:NSMakeRange(0, title.length)];
             
-            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmunenormal"] atIndex:title.length imageBounds:CGRectMake(0, -2, 15, 15)] forState:UIControlStateNormal];
-            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, -2, 15, 15)] forState:UIControlStateSelected];
+            
+            
+            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"exchangesectionmunenormal"] atIndex:title.length imageBounds:CGRectMake(0, 0, 10, 10)] forState:UIControlStateNormal];
+            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, 0, 10,10)] forState:UIControlStateSelected];
+            
             [menuButton addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
             [_menuView addSubview: menuButton];
         }
@@ -169,7 +172,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 //设置边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(WINDOW_WIDTH+50, 5, 10, 5);
+    return UIEdgeInsetsMake(WINDOW_WIDTH - 40, 5, 10, 5);
 }
 
 

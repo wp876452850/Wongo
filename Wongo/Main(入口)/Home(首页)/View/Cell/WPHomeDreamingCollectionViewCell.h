@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WPHomeDreamingModel.h"
+#import "WPDreamingDirectoryModel.h"
 
 @interface WPHomeDreamingCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic,strong)WPHomeDreamingModel * model;
+@property (nonatomic,strong)WPDreamingDirectoryModel * model;
 
 @end

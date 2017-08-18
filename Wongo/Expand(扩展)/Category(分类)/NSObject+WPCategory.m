@@ -160,12 +160,12 @@
     if ([self determineWhetherTheLogin]) {
         __block UIButton * button = sender;
         if (!sender.selected) {
-            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
             }];
         }
         else{
-            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":gid} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
             }];
         }
