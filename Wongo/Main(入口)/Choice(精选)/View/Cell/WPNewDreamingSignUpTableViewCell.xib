@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="397" height="439"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="evG-NU-SHG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewDreamingBg" translatesAutoresizingMaskIntoConstraints="NO" id="evG-NU-SHG">
                         <rect key="frame" x="0.0" y="0.0" width="397" height="438.5"/>
                         <color key="backgroundColor" red="1" green="0.51372549020000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
@@ -34,20 +34,73 @@
                             <action selector="close:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IM0-nX-Zjx"/>
                         </connections>
                     </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dreamingDirectory" translatesAutoresizingMaskIntoConstraints="NO" id="iIE-UN-NHd">
+                        <rect key="frame" x="73.5" y="28" width="249" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="249" id="Peb-cZ-Id2"/>
+                            <constraint firstAttribute="height" constant="50" id="VX3-Cj-feW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进入数码时代" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-nK-IOe">
+                        <rect key="frame" x="93" y="43.5" width="210" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Bgw-Yh-bFk"/>
+                            <constraint firstAttribute="width" constant="210" id="eLn-e2-7Dz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浏览数量:110535" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cll-xq-lek">
+                        <rect key="frame" x="58" y="88" width="281" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="gzP-f2-CjK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="梦想就是让你感到坚持就是幸福的东西升值起可以视为一种信仰" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aTq-Ky-mcm">
+                        <rect key="frame" x="38" y="113" width="321" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="irN-kS-6pS"/>
+                        </constraints>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="evG-NU-SHG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0jj-XI-5y9"/>
+                    <constraint firstItem="aTq-Ky-mcm" firstAttribute="top" secondItem="Cll-xq-lek" secondAttribute="bottom" constant="5" id="2kJ-1M-cjp"/>
                     <constraint firstAttribute="bottom" secondItem="evG-NU-SHG" secondAttribute="bottom" id="Dg6-Qe-gQG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Cll-xq-lek" secondAttribute="trailing" constant="50" id="DsS-xw-zhw"/>
+                    <constraint firstItem="ZEK-nK-IOe" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="EIv-Ih-Pyr"/>
+                    <constraint firstItem="iIE-UN-NHd" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ENy-C7-EWq"/>
+                    <constraint firstItem="aTq-Ky-mcm" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="GKo-ID-kca"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="aTq-Ky-mcm" secondAttribute="trailing" constant="30" id="Grz-oj-Ygt"/>
                     <constraint firstItem="eBs-U3-xOA" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Ho9-iR-AEj"/>
+                    <constraint firstItem="Cll-xq-lek" firstAttribute="top" secondItem="iIE-UN-NHd" secondAttribute="bottom" constant="10" id="RM8-8e-qh5"/>
+                    <constraint firstItem="Cll-xq-lek" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="a0c-YJ-6HH"/>
+                    <constraint firstItem="ZEK-nK-IOe" firstAttribute="centerY" secondItem="iIE-UN-NHd" secondAttribute="centerY" id="fB8-Mr-mIs"/>
+                    <constraint firstItem="aTq-Ky-mcm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="muZ-Uo-hdk"/>
                     <constraint firstItem="evG-NU-SHG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sZL-ok-rnh"/>
                     <constraint firstAttribute="trailing" secondItem="evG-NU-SHG" secondAttribute="trailing" id="xRD-tI-q8m"/>
+                    <constraint firstItem="iIE-UN-NHd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="y4B-kS-AXS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="eBs-U3-xOA" secondAttribute="bottom" constant="20" id="zMA-hW-oW0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="bgImage" destination="evG-NU-SHG" id="QSV-DD-NfK"/>
+                <outlet property="browseNumber" destination="Cll-xq-lek" id="Si2-d4-n6Y"/>
+                <outlet property="instructions" destination="aTq-Ky-mcm" id="kBd-CT-DgD"/>
+                <outlet property="title" destination="ZEK-nK-IOe" id="cKs-Df-oyc"/>
             </connections>
-            <point key="canvasLocation" x="-123" y="-7"/>
+            <point key="canvasLocation" x="-392" y="-158"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="NewDreamingBg" width="750" height="1381"/>
+        <image name="dreamingDirectory" width="251" height="50"/>
+    </resources>
 </document>

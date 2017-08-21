@@ -48,7 +48,7 @@
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
     _price.text     = [NSString stringWithFormat:@" %@",model.price];
     [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
-    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, 0, 12.5, 25)];
+    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
     //判断用户收藏的商品总是否有
     //判断是否登录
     if ([self getSelfUid].length>0) {

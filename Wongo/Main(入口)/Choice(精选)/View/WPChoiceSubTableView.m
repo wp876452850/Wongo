@@ -12,10 +12,11 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "WPNewDreamingSignUpTableViewCell.h"
 #import "WPNewDreamingModel.h"
+#import "WPNewDreamingNotSignUpTableViewCell.h"
 
 @interface WPChoiceSubTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
-    
+    NSInteger _memoryButtonTag;
 }
 @property (nonatomic,strong)NSMutableArray * cellsArray;
 
@@ -35,6 +36,7 @@
 
 static NSString * const projectCell = @"ProjectCell";
 static NSString * const signUp = @"SignUp";
+static NSString * const notSignUpCell   = @"notSignUpCell";
 
 #pragma mark - loadDatas
 
@@ -51,6 +53,7 @@ static NSString * const signUp = @"SignUp";
         [_headerView menuButtonDidSelectedWithBlock:^(NSInteger tag) {
             //修改url
             [self addHeader];
+            _memoryButtonTag = tag;
         }];
     }
     return _headerView;
@@ -65,6 +68,7 @@ static NSString * const signUp = @"SignUp";
         self.tableHeaderView = self.headerView;
         [self registerNib:[UINib nibWithNibName:@"WPNewDreamingTableViewCell" bundle:nil] forCellReuseIdentifier:projectCell];
         [self registerNib:[UINib nibWithNibName:@"WPNewDreamingSignUpTableViewCell" bundle:nil] forCellReuseIdentifier:signUp];
+        [self registerNib:[UINib nibWithNibName:@"WPNewDreamingNotSignUpTableViewCell" bundle:nil] forCellReuseIdentifier:notSignUpCell];
         [self addHeader];
     }
     return self;
@@ -87,11 +91,17 @@ static NSString * const signUp = @"SignUp";
     return self.cellsArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     if (indexPath.row == 0)
     {
         WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:projectCell forIndexPath:indexPath];
         return cell;
     }else{
+        if (_memoryButtonTag == 0) {
+            WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
+            return cell;
+        }
         WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
         return cell;
     }
@@ -123,7 +133,10 @@ static NSString * const signUp = @"SignUp";
     if (indexPath.row == 0) {
         return 190;
     }
-    return 500;
+    if (_memoryButtonTag == 0) {
+        return 430;
+    }
+    return 660;
 }
 
 #pragma mark - LoadDatas

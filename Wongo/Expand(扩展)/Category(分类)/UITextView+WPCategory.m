@@ -156,6 +156,7 @@ static const void   * limitLengthKey    = &limitLengthKey;
 }
 
 #pragma mark -- 改变间距
+#pragma mark - 行间距
 + (void)changeLineSpaceForLabel:(UITextView *)textView WithSpace:(float)space {
     id text = nil;
     NSMutableAttributedString *attributedString = nil;
@@ -172,10 +173,18 @@ static const void   * limitLengthKey    = &limitLengthKey;
     [paragraphStyle setLineSpacing:space];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
     textView.attributedText = attributedString;
-    [textView sizeToFit];
-    
+    //[textView sizeToFit];
 }
 
++ (void)changeLineSpaceForLabel:(UITextView *)textView WithSpace:(float)space foneSize:(CGFloat)foneSize{
+    [self changeLineSpaceForLabel:textView WithSpace:space];
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithAttributedString:textView.attributedText];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AdobeHeitiStd-Regular" size:foneSize] range:NSMakeRange(0, [textView.attributedText length])];
+    textView.attributedText = attributedString;    
+    [textView sizeToFit];
+}
+
+#pragma mark - 字间距
 + (void)changeWordSpaceForLabel:(UITextView *)textView WithSpace:(float)space {
     
     NSString * text = textView.text;
@@ -186,7 +195,7 @@ static const void   * limitLengthKey    = &limitLengthKey;
     
     [textView sizeToFit];
 }
-
+#pragma mark - 字与行间距
 + (void)changeSpaceForLabel:(UITextView *)textView withLineSpace:(float)lineSpace WordSpace:(float)wordSpace{
     
     NSString *text = textView.text;

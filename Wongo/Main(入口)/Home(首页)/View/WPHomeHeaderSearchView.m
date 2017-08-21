@@ -96,7 +96,7 @@ static NSString * contentOffset = @"contantOffset";
         _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_searchButton setTitleColor:ColorWithRGB(102, 102, 102) forState:UIControlStateNormal];
         [_searchButton addTarget:self action:@selector(goSearchGuide) forControlEvents:UIControlEventTouchUpInside];
-        _searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shoppingCarButton.frame)) - 35, 30);
+        _searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shoppingCarButton.frame)) - 35, 28);
         [_searchButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 16, 0, 0)];
         [self addSubview:_searchButton];
     }

@@ -24,6 +24,11 @@
  */
 + (void)changeSpaceForLabel:(UITextView *)textView withLineSpace:(float)lineSpace WordSpace:(float)wordSpace;
 
+/**
+ *  改变行间距并设置字体大小
+ */
++ (void)changeLineSpaceForLabel:(UITextView *)textView WithSpace:(float)space foneSize:(CGFloat)foneSize;
+
 @property (nonatomic,strong) NSString *placeholder;//占位符
 @property (copy, nonatomic) NSNumber *limitLength;//限制字数
 

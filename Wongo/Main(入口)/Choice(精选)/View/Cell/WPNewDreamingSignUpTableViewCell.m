@@ -14,6 +14,10 @@
 
 @interface WPNewDreamingSignUpTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *browseNumber;
+@property (weak, nonatomic) IBOutlet UITextView *instructions;
+
 @property (nonatomic,strong)NSMutableArray * images;
 @end
 @implementation WPNewDreamingSignUpTableViewCell
@@ -27,8 +31,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     for (int i = 0; i<4; i++) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1), ImageWidth, ImageWidth)];
-        
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1)+_instructions.bottom, ImageWidth, ImageWidth)];
         imageView.backgroundColor = WongoBlueColor;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 10.0f;
@@ -37,6 +40,7 @@
         [imageView addGestureRecognizer:tap];
         [_images addObject:imageView];
     }
+    
 }
 
 -(void)setDataSource:(NSMutableArray *)dataSource{

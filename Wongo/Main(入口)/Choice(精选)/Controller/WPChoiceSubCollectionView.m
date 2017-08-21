@@ -11,6 +11,8 @@
 #import "SDCycleScrollView.h"
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPClassificationTableView.h"
+#import "WPCustomButton.h"
+#import "WPNewDreamingNotSignUpTableViewCell.h"
 
 #define HeaderMenuHeight 104
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
@@ -23,7 +25,7 @@
     /**二级分类*/
     NSString * _secondaryClassification;
     
-    UIButton * _memoryButton;
+    WPCustomButton * _memoryButton;
     
     BOOL _isOpen;
 }
@@ -42,6 +44,7 @@
 @implementation WPChoiceSubCollectionView
 static NSString * const reuseIdentifier = @"Cell";
 
+
 -(SDCycleScrollView *)cycleScrollView{
     if (!_cycleScrollView) {
 #warning 有后台记得改
@@ -53,7 +56,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
-        _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
+        _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
+        
     }
     return _classificationTableView;
 }
@@ -62,44 +66,42 @@ static NSString * const reuseIdentifier = @"Cell";
         _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 50)];
         _menuView.backgroundColor = WhiteColor;
         for (int i = 0; i < 3; i++) {
-            UIButton * menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            menuButton.frame = CGRectMake(i*WINDOW_WIDTH/3+i, 10, WINDOW_WIDTH/3-1, 30);
-            menuButton.tag = i;
-            [menuButton setBackgroundColor:[UIColor clearColor]];
-            menuButton.titleLabel.font = [UIFont systemFontOfSize:9];
-            if (i==0) {
+            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];
+            if (i == 0) {
                 menuButton.selected = YES;
                 _memoryButton = menuButton;
+                
             }
             if (i<2) {
-                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y +2.5) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom-2.5)];
+                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y+2.5) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom-2.5) lineColor:ColorWithRGB(210, 210, 210)];
                 [_menuView.layer addSublayer:layer];
-            }else{
-                self.classificationTableView.y = _menuView.bottom;
-                [self addSubview:self.classificationTableView];
             }
             
+            menuButton.tag = i;
+            [menuButton setBackgroundColor:[UIColor clearColor]];
+            menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
+            menuButton.normalTitleColor = ColorWithRGB(100, 100, 100);
+            menuButton.selectedTitleColor = WongoBlueColor;
             NSString * title = SectionMenuTitles[i];
             
-            NSAttributedString * attributedString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] andColor:ColorWithRGB(100, 100, 100) font:[UIFont systemFontOfSize:15] range:NSMakeRange(0, title.length)];
+            menuButton.normalAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@""] atIndex:title.length imageBounds:CGRectMake(0, 0, 9, 9)];
             
+            menuButton.selectedAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, 0, 9, 9)];
             
-            
-            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"exchangesectionmunenormal"] atIndex:title.length imageBounds:CGRectMake(0, 0, 10, 10)] forState:UIControlStateNormal];
-            [menuButton setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"exchangesectionmuneselect"] atIndex:title.length imageBounds:CGRectMake(0, 0, 10,10)] forState:UIControlStateSelected];
-            
-            [menuButton addTarget:self action:@selector(menuClick:) forControlEvents:UIControlEventTouchUpInside];
+            UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(menuClick:)];
+            [menuButton addGestureRecognizer:tap];
             [_menuView addSubview: menuButton];
         }
     }
     return _menuView;
 }
 
--(void)menuClick:(UIButton *)sender{
-    if (_memoryButton == sender) {
+-(void)menuClick:(UITapGestureRecognizer *)tap{
+     WPCustomButton * sender = (WPCustomButton *)tap.view;
+    if (_memoryButton == tap.view) {
         return;
     }
-    if (sender.tag != 2) {
+    if (tap.view.tag != 2) {
         _memoryButton.selected = !_memoryButton.selected;
         sender.selected = !sender.selected;
         _memoryButton = sender;
@@ -111,7 +113,7 @@ static NSString * const reuseIdentifier = @"Cell";
     }else{
         if (!_isOpen) {
             [self.classificationTableView menuOpen];
-            __block UIButton * button = sender;
+            __block WPCustomButton * button = sender;
             [self.classificationTableView getClassificationStringWithBlock:^(NSString *classification, NSInteger index) {
                 
             }];
@@ -128,6 +130,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) 
     {
         [self registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+        
         _page = 1;
         self.backgroundColor = WhiteColor;
         self.delegate   = self;
@@ -135,6 +138,7 @@ static NSString * const reuseIdentifier = @"Cell";
         self.url = url;
         [self addSubview:self.cycleScrollView];
         [self addSubview:self.menuView];
+        [self addSubview:self.classificationTableView];
         [self addFooter];
         [self addHeader];
     }
@@ -150,6 +154,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.model = _dataSourceArray[indexPath.row];
     return cell;

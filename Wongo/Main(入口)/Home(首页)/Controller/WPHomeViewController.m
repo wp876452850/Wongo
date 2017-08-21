@@ -100,6 +100,7 @@ static NSString * contentOffset = @"contentOffset";
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self w_backGroudColor:ColorWithRGB(0, 255, 255)];
     [self.view addSubview:self.collectionView];
