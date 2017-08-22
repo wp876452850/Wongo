@@ -55,7 +55,6 @@
     [self.view addSubview:self.choiceContentCollectionView];
     [self.view addSubview:self.menuScrollView];
     [self.view addSubview:self.navigationBar];
-    
 }
 
 

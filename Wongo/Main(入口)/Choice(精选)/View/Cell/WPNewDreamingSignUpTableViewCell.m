@@ -33,6 +33,7 @@
     for (int i = 0; i<4; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1)+_instructions.bottom, ImageWidth, ImageWidth)];
         imageView.backgroundColor = WongoBlueColor;
+        imageView.userInteractionEnabled = YES;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 10.0f;
         [self.contentView addSubview:imageView];
@@ -55,8 +56,9 @@
 -(void)tap:(UITapGestureRecognizer *)tap{
     
     WPDreamingDirectoryModel * model  = self.dataSource[tap.view.tag];
-    WPDreamingDetailViewController *vc = [WPDreamingDetailViewController createDreamingDetailWithPlid:model.plid subid:model.subid];
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithPlid:model.plid subid:model.subid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (IBAction)close:(UIButton *)sender {

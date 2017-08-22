@@ -12,6 +12,8 @@
 #import "WPDreamingIntroduceModel.h"
 
 @interface WPDreamingModel : NSObject
+/**subid*/
+@property (nonatomic,strong)NSString * subid;
 /**用户uid*/
 @property (nonatomic,strong)NSString * uid;
 /**图片数组*/
@@ -30,4 +32,5 @@
 @property (nonatomic,strong)NSMutableArray* commentsModelArray;
 /**cell行高*/
 @property (nonatomic,assign)CGFloat rowHeight;
+
 @end

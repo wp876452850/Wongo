@@ -36,7 +36,7 @@
 
 - (IBAction)goSignUp:(UIButton *)sender
 {
-    
+    [[self findViewController:self]showAlertWithAlertTitle:@"提示" message:@"造梦活动暂未开始" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
 }
 
 @end

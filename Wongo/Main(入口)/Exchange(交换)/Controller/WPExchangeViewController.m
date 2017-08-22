@@ -20,12 +20,14 @@
 #import "WPCommentsSectionTableViewCell.h"
 #import "WPUserIntroductionTableViewCell.h"
 #import "WPCommentModel.h"
+#import "WPRecommendationView.h"
 
 static NSString * const userCell            = @"UserCell";
 static NSString * const commodityCell       = @"CommodityCell";
-static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
+static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
 
-@interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate>
+@interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,WPRecommendationViewDelegate>
+
 //自动滚播器
 @property (nonatomic,strong) SDCycleScrollView      * cycleScrollView;
 @property (nonatomic,strong) WPExchangeDetailModel  * exchangeModel;
@@ -35,6 +37,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
 @property (nonatomic,strong) UIButton               * backButton;
 @property (nonatomic,assign) BOOL fromOrder;
 @property (nonatomic,assign) CGFloat userStoreRowHeight;
+@property (nonatomic,strong) WPRecommendationView * recommendationView;
 @end
 
 @implementation WPExchangeViewController
@@ -48,6 +51,13 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
 }
 
 #pragma mark - lazyLoad
+-(WPRecommendationView *)recommendationView{
+    if (!_recommendationView) {
+        _recommendationView = [[WPRecommendationView alloc]initWithFrame:CGRectMake(0,self.tableView.bottom , WINDOW_WIDTH, self.tableView.height) dataSourceArray:nil];
+        _recommendationView.delegate = self;
+    }
+    return _recommendationView;
+}
 -(UIView *)bottomView{
     if (!_bottomView) {
         _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
@@ -69,6 +79,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
         [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSection];
         [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
+        
         //创建按钮        
     }
     return _tableView;
@@ -203,9 +214,10 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
             textView.userInteractionEnabled     = NO;
             [cell.contentView addSubview:textView];
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            return cell;
         }
+            break;
     }
-    
     UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
     cell.backgroundColor = RandomColor;
@@ -240,6 +252,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
             }else
             return rowHeight;
         }
+            break;
     }
     return 40;
 }
@@ -265,7 +278,7 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 3||section == 4) {
-        return 20;
+        return 10;
     }
     return 0;
 }
@@ -404,5 +417,17 @@ static NSString * const commentsSection   = @"WPCommentsSectionTableViewCell";
         [supperView removeFromSuperview];
     }];
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"%.2f",self.tableView.contentOffset.y);
+    if (self.tableView.contentOffset.y >= 319) {
+        
+        //self.tableView.y = self.tableView.contentOffset.y - 319;
+        //self.recommendationView.y = self.tableView.bottom;
+    }
+}
+-(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
+    
+}
+
 
 @end

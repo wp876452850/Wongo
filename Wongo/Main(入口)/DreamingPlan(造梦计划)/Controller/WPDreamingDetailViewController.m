@@ -17,8 +17,12 @@
 #import "WPProgressTableViewCell.h"
 #import "WPParticipateDreamingViewController.h"
 #import "LYConversationController.h"
+#import "WPDreamingDetailListTableViewCell.h"
+#import "WPDreamingDetailIntroduceTableViewCell.h"
 
 
+static NSString * const listCell        = @"listCell";
+static NSString * const introduceCell   = @"introduceCell";
 static NSString * const userCell        = @"UserCell";
 static NSString * const progressCell    = @"ProgressCell";
 static NSString * const reuseIdentifier = @"ReuseIdentifier";
@@ -101,12 +105,13 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"WPSearchUserTableViewCell"  bundle:nil]forCellReuseIdentifier:userCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailIntroduceTableViewCell" bundle:nil] forCellReuseIdentifier:introduceCell];
         [_tableView registerClass:[WPProgressTableViewCell class] forCellReuseIdentifier:progressCell];
+        [_tableView registerClass:[WPDreamingDetailListTableViewCell class] forCellReuseIdentifier:listCell];
         
         _tableView.tableHeaderView  = self.rollPlay;
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundView.backgroundColor = WhiteColor;
-        
     }
     return _tableView;
 }
@@ -177,11 +182,11 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 4) {
         if (_model.commentsModelArray.count >= 5) {
             return 5;
         }
@@ -191,25 +196,35 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        WPDreamingDetailListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
+        cell.subid = self.subid;
+        cell.dataSourceArray = [NSMutableArray arrayWithObjects:@"123",@"123",@"123",@"123",@"123",@"123",@"123",@"123",@"123",@"123",nil];
+        return cell;
+    }
+    if (indexPath.section == 1) {
         WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
         cell.model = _model;
         return cell;
     }
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         WPSearchUserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
         cell.model = _model.userModel;;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
-    else if (indexPath.section == 2){
+    if (indexPath.section == 3) {
+        WPDreamingDetailIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+        
+        return cell;
+    }
+    else if (indexPath.section == 4){
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
         WPDreamingCommentsModel * model = _model.commentsModelArray[indexPath.row];
         [self createCommentsLabelWithModel:model cell:cell];
         return cell;
     }
-    else if (indexPath.section == 3){
+    else if (indexPath.section == 5){
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
         [self createCommentsTextFieldWithCell:cell];
         return cell;
@@ -223,12 +238,18 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return (WINDOW_WIDTH - 80)/3+40;
+        return 65;
     }
     if (indexPath.section == 1) {
+        return (WINDOW_WIDTH - 80)/3+40;
+    }
+    if (indexPath.section == 2) {
         return 80;
     }
-    else if (indexPath.section == 2){
+    if (indexPath.section == 3) {
+        return 160;
+    }
+    else if (indexPath.section == 4){
         NSArray * array = _model.commentsModelArray;
         WPDreamingCommentsModel * model = array[indexPath.row];
         NSString * name = model.name;
@@ -237,17 +258,17 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         CGSize size = [totle getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)];
         return size.height;
     }
-    else if (indexPath.section == 3){
+    else if (indexPath.section == 5){
         return 40;
     }
     return 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 2) {
+    if (section == 4) {
         return 50;
     }
-    if (section == 3) {
+    if (section == 5||section == 0) {
         return 0;
     }
     return 20;
@@ -261,7 +282,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 {
     UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
     view.backgroundColor = WhiteColor;
-    if (section == 2) {
+    if (section == 4) {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WINDOW_WIDTH, 20)];
         label.backgroundColor = WhiteColor;
         NSArray * array = _model.commentsModelArray;
@@ -277,6 +298,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     view.tintColor = WhiteColor;
     
 }
+
 //创建评论信息内容
 -(void)createCommentsLabelWithModel:(WPDreamingCommentsModel*)model cell:(UITableViewCell *)cell{
     [cell.contentView removeAllSubviews];
@@ -325,7 +347,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
-    if (scrollView.contentOffset.y >= 500) {
+    if (scrollView.contentOffset.y >= 700) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
         dv.model = self.model.introduceModel;
