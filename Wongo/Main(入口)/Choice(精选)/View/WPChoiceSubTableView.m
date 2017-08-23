@@ -91,8 +91,6 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     return self.cellsArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
     if (indexPath.row == 0)
     {
         WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:projectCell forIndexPath:indexPath];

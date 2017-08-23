@@ -319,7 +319,7 @@ static NSString * const cell            = @"cell";
         
         NSString * timeStr = [self getNowTime];
         
-        NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"story":_story,@"contents":_contents,@"subid":_subid,@"pubtime":timeStr};
+        NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"story":_story,@"contents":_contents,@"subid":_subid,@"pubtime":timeStr,@"want":@"123"};
         
         [WPNetWorking createPostRequestMenagerWithUrlString:AddProduct params:params datas:^(NSDictionary *responseObject) {
             NSString * flag = [responseObject objectForKey:@"flag"];

@@ -24,7 +24,6 @@
     _introduceTextView.frame = CGRectMake(10, _icon.bottom + 5, WINDOW_WIDTH - 20, 100);
 }
 
-
 -(void)setName:(NSString *)name{
     _name = name;
     _nameLabel.text = name;
@@ -42,4 +41,5 @@
 -(void)getCellheightWithBlock:(WPDreamingDetailIntroduceBlock)block{
     _block = block;
 }
+
 @end
