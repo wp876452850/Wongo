@@ -120,6 +120,9 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"18"} datas:^(NSDictionary *responseObject) {
+        
+    }];
 }
 
 @end

@@ -67,26 +67,15 @@
 #define UseraddUrl              HttpHead(@"useradd")
 /**修改用户信息*/
 #define UpdateUserUrl           HttpHead(@"updateUser")
-/**造梦计划主页展示数据URL*/
-#define DreamingHomePageUrl     HttpHead(@"querySub")
-/**精选-造梦计划*/
-#define QuerySubUrl             HttpHead(@"querySub")
-/**发布(报名)造梦计划*/
-#define AddProduct              HttpHead(@"addProduct")
-/**发布造梦图片*/
-#define UpProFileUrl            HttpHead(@"upProFile")
-/**加入他人造梦*/
-#define JoinProUrl              HttpHead(@"joinPro")
-/**指定主题内的造梦计划查询*/
-#define QueryPlanRul            HttpHead(@"queryPlan")
-/**造梦计划详情查询*/
-#define GetPlanUrl              HttpHead(@"getPlan")
-/**造梦订单查询*/
-#define QueryPlordersUrl        HttpHead(@"queryPlorders")
+
+
+
+
+
+
 /**搜索用户*/
 #define UserQueryNameUrl        HttpHead(@"userQueryName")
-/**搜索造梦*/
-#define QueryProductOneUrl      HttpHead(@"queryProductOne")
+
 /**搜索页-查询交换商品*/
 #define GetClassGoodsUrl        HttpHead(@"getClassGoods")
 /**搜索页-查询造梦商品*/
@@ -111,18 +100,46 @@
 #define QtQueryType             HttpHead(@"qtQueryType")
 /**查询某一分类下的物品 */
 #define QtQueryTypegdlist       HttpHead(@"qtQueryTypegdlist")
-/**造梦支付 */
-#define AliPayProductUrl        HttpHead(@"aliPayProduct")
 /**交换支付 */
 #define AliPayUrl               HttpHead(@"aliPay")
+
+
+/**
+ *      造梦
+ */
+/**主页造梦*/
+#define HtQueryProductStatePlan HttpHead(@"queryPlanById")
+/**造梦计划主页展示数据URL*/
+#define DreamingHomePageUrl     HttpHead(@"querySub")
+/**发布(报名)造梦计划*/
+#define AddProduct              HttpHead(@"addProduct")
+/**指定主题内的造梦计划查询*/
+#define QueryPlanRul            HttpHead(@"queryPlan")
+/**精选-造梦计划*/
+#define QuerySubUrl             HttpHead(@"querySub")
+/**发布造梦图片*/
+#define UpProFileUrl            HttpHead(@"upProFile")
+/**加入他人造梦*/
+#define JoinProUrl              HttpHead(@"joinPro")
+/**造梦计划详情查询*/
+#define GetPlanUrl              HttpHead(@"getPlan")
+/**造梦订单查询*/
+#define QueryPlordersUrl        HttpHead(@"queryPlorders")
+/**搜索造梦*/
+#define QueryProductOneUrl      HttpHead(@"queryProductOne")
 /**造梦发货 */
 #define UpdatePlorderUrl        HttpHead(@"updatePlorder")
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
+/**造梦支付 */
+#define AliPayProductUrl        HttpHead(@"aliPayProduct")
+
+
 /**点赞*/
 #define ThumUpAddUrl            HttpHead(@"IncensesAdd")
 /**取消点赞*/
 #define ThumUpCancelUrl         HttpHead(@"IncensesDel")
+
 /**添加评论*/
 #define AddCommentUrl           HttpHead(@"addComment")
 /**查询评论*/

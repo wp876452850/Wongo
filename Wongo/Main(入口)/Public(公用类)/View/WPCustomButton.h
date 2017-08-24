@@ -10,6 +10,8 @@
 
 @interface WPCustomButton : UIView
 
+@property (nonatomic,strong)UIImageView * image;
+
 @property (nonatomic,assign)BOOL selected;
 
 @property (nonatomic,strong)NSString * title;

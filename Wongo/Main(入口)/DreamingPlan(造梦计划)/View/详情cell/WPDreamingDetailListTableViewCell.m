@@ -7,6 +7,7 @@
 //
 
 #import "WPDreamingDetailListTableViewCell.h"
+#import "WPListxiViewController.h"
 #define ListWidth WINDOW_WIDTH - 50
 #define ImageWidthAndHeight (ListWidth - 15 - 6*8) / 8
 
@@ -37,6 +38,7 @@
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(WINDOW_WIDTH-50, 15, 50, 50);
     button.backgroundColor = SelfOrangeColor;
+    [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:button];
     
     NSInteger imageCount = _dataSourceArray.count;
@@ -51,5 +53,9 @@
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = imageView.height /2;
     }
+}
+-(void)buttonClick:(UIButton *)sender{
+    WPListxiViewController * vc = [[WPListxiViewController alloc]initWithSubid:self.subid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

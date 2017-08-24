@@ -43,7 +43,7 @@
         {
             datas(dic);
         }
-        NSLog(@"return datas ===== %@",dic);
+        NSLog(@"return datas!!! %@ ===== %@",urlString,dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
@@ -63,7 +63,7 @@
         {
             datas(dic);
         }
-        NSLog(@"%@",dic);
+        NSLog(@"return datas!!! %@ ===== %@",urlString,dic);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];

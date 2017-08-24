@@ -147,6 +147,7 @@ static NSString * contentOffset = @"contentOffset";
         self.homeHeaderView.listhk = response.listhk;
         
         [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
+            
             NSArray * goods = [responseObject objectForKey:@"goods"];
             _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
             for (NSDictionary * item in goods) {
@@ -156,8 +157,12 @@ static NSString * contentOffset = @"contentOffset";
             _page++;
             [self.collectionView reloadData];
         }];
+        
     }failureBlock:^{
         [self.collectionView.mj_header endRefreshing];
+    }];
+    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"18"} datas:^(NSDictionary *responseObject) {
+        
     }];
 }
 

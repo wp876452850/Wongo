@@ -15,6 +15,13 @@
 
 @implementation WPCustomButton
 
+-(UIImageView *)image{
+    if (!_image) {
+        _image = [[UIImageView alloc]initWithFrame:CGRectZero];
+        
+    }
+    return _image;
+}
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]init];
@@ -30,8 +37,10 @@
 -(void)setSelected:(BOOL)selected{
     _selected = selected;
     if (_selected) {
-        self.titleLabel.attributedText = self.selectedAttrobuteString;
-        self.titleLabel.textColor = self.selectedTitleColor;
+        if (_selectedAttrobuteString.length>0) {
+            self.titleLabel.attributedText = self.selectedAttrobuteString;
+            self.titleLabel.textColor = self.selectedTitleColor;
+        }
     }else{
         self.titleLabel.attributedText = self.normalAttrobuteString;
         self.titleLabel.textColor = self.normalTitleColor;
@@ -68,6 +77,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        //[self addSubview:self.image];
         [self addSubview:self.titleLabel];
     }return self;
 }

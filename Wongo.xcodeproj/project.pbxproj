@@ -356,12 +356,12 @@
 		3D827A331EF10A680030B0D1 /* LYConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A321EF10A680030B0D1 /* LYConversationController.m */; };
 		3D87B8DA1F4425EB002139D2 /* WPHomeDreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87B8D91F4425EB002139D2 /* WPHomeDreamingModel.m */; };
 		3D883C6A1F4C14CC00A990D6 /* UIButton+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C691F4C14CC00A990D6 /* UIButton+runtime.m */; };
-		3D883C711F4C25BA00A990D6 /* WPListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C701F4C25BA00A990D6 /* WPListViewController.m */; };
 		3D883C7E1F4C2FD900A990D6 /* WPListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C7C1F4C2FD900A990D6 /* WPListFirstTableViewCell.m */; };
 		3D883C7F1F4C2FD900A990D6 /* WPListFirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D883C7D1F4C2FD900A990D6 /* WPListFirstTableViewCell.xib */; };
 		3D883C831F4C2FEF00A990D6 /* WPListOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C811F4C2FEF00A990D6 /* WPListOtherTableViewCell.m */; };
 		3D883C841F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D883C821F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib */; };
 		3D89B4B61F42D60D00B79689 /* DLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D89B4B51F42D60D00B79689 /* DLPickerView.m */; };
+		3DBED2741F4D51E7009B4731 /* WPListxiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBED2731F4D51E6009B4731 /* WPListxiViewController.m */; };
 		3DC63F761F01F126009C3768 /* LYHomeSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */; };
 		3DC63F771F01F126009C3768 /* LYHomeSectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */; };
 		3DD67D3C1F46896000C2359D /* AdobeHeitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3DD67D3B1F46896000C2359D /* AdobeHeitiStd-Regular.otf */; };
@@ -1340,8 +1340,6 @@
 		3D87B8D91F4425EB002139D2 /* WPHomeDreamingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHomeDreamingModel.m; sourceTree = "<group>"; };
 		3D883C681F4C14CC00A990D6 /* UIButton+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+runtime.h"; sourceTree = "<group>"; };
 		3D883C691F4C14CC00A990D6 /* UIButton+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+runtime.m"; sourceTree = "<group>"; };
-		3D883C6F1F4C25BA00A990D6 /* WPListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPListViewController.h; path = ../WPListViewController.h; sourceTree = "<group>"; };
-		3D883C701F4C25BA00A990D6 /* WPListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPListViewController.m; path = ../WPListViewController.m; sourceTree = "<group>"; };
 		3D883C7B1F4C2FD900A990D6 /* WPListFirstTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPListFirstTableViewCell.h; sourceTree = "<group>"; };
 		3D883C7C1F4C2FD900A990D6 /* WPListFirstTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPListFirstTableViewCell.m; sourceTree = "<group>"; };
 		3D883C7D1F4C2FD900A990D6 /* WPListFirstTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPListFirstTableViewCell.xib; sourceTree = "<group>"; };
@@ -1350,6 +1348,8 @@
 		3D883C821F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPListOtherTableViewCell.xib; sourceTree = "<group>"; };
 		3D89B4B41F42D60D00B79689 /* DLPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPickerView.h; sourceTree = "<group>"; };
 		3D89B4B51F42D60D00B79689 /* DLPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPickerView.m; sourceTree = "<group>"; };
+		3DBED2721F4D51E6009B4731 /* WPListxiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPListxiViewController.h; sourceTree = "<group>"; };
+		3DBED2731F4D51E6009B4731 /* WPListxiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPListxiViewController.m; sourceTree = "<group>"; };
 		3DC63F731F01F126009C3768 /* LYHomeSectionFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSectionFooter.h; sourceTree = "<group>"; };
 		3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSectionFooter.m; sourceTree = "<group>"; };
 		3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSectionFooter.xib; sourceTree = "<group>"; };
@@ -3704,8 +3704,8 @@
 		3D883C751F4C2F7200A990D6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3D883C6F1F4C25BA00A990D6 /* WPListViewController.h */,
-				3D883C701F4C25BA00A990D6 /* WPListViewController.m */,
+				3DBED2721F4D51E6009B4731 /* WPListxiViewController.h */,
+				3DBED2731F4D51E6009B4731 /* WPListxiViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7162,7 +7162,6 @@
 				85CA47DC1EBC1C4500109C98 /* ModifyUserDetailViewController.m in Sources */,
 				85F08E911E482E3E00A07451 /* SDWebImageDownloader.m in Sources */,
 				85C748FA1E7FD3BD000E1B65 /* AFAutoPurgingImageCache.m in Sources */,
-				3D883C711F4C25BA00A990D6 /* WPListViewController.m in Sources */,
 				859D7B711EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.m in Sources */,
 				852D0D8A1E5A990200B8EE93 /* WPSearchUserModel.m in Sources */,
 				3D1906371F29DB5C00E4EFFD /* WPProductLinkModel.m in Sources */,
@@ -7404,6 +7403,7 @@
 				3DF746151F3426FB00A23B52 /* WPProductDetailUserStoreTableViewCell.m in Sources */,
 				851819061E53E65600AF012A /* SMVerticalSegmentedControl.m in Sources */,
 				8597EFB41E8A470A001E1BA5 /* WPProductParametersView.m in Sources */,
+				3DBED2741F4D51E7009B4731 /* WPListxiViewController.m in Sources */,
 				3DF8EDCF1EE1152C000F55BF /* LYNavgationController.m in Sources */,
 				853B7B021E9CBBBA008BAA4D /* MJDictionaryCache.m in Sources */,
 				8566A8B81E48290300C08624 /* WPMyNavigationBar.m in Sources */,
