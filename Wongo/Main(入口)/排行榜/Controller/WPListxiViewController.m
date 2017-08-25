@@ -9,6 +9,7 @@
 #import "WPListxiViewController.h"
 #import "WPListOtherTableViewCell.h"
 #import "WPListFirstTableViewCell.h"
+#import "WPStoreViewController.h"
 
 @interface WPListxiViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -25,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"排行榜";
+    self.myNavItem.title = @"排行榜";
     [self setupTableView];
 }
 
@@ -59,5 +60,11 @@
     }
     WPListOtherTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"other" forIndexPath:indexPath];
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:@"1"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

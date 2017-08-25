@@ -73,7 +73,7 @@
 
 
 
-/**搜索用户*/
+/**搜索用户信息*/
 #define UserQueryNameUrl        HttpHead(@"userQueryName")
 
 /**搜索页-查询交换商品*/

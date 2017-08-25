@@ -23,6 +23,8 @@
 		3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773031F18AF560084E409 /* SDWaitingView.m */; };
 		3D07730A1F18BAEF0084E409 /* WPPushImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */; };
 		3D07730B1F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */; };
+		3D0DF8561F4E68CE00BA1615 /* WPStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8551F4E68CE00BA1615 /* WPStoreViewController.m */; };
+		3D0DF8591F4E6E8300BA1615 /* WPStoreUserInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */; };
 		3D13B8251F16227000C1A20F /* WPBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13B8241F16227000C1A20F /* WPBezierPath.m */; };
 		3D17301D1F26F37500BFF90D /* WPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D17301C1F26F37500BFF90D /* WPCommentModel.m */; };
 		3D1730201F26F49100BFF90D /* WPCommentMessegeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D17301F1F26F49100BFF90D /* WPCommentMessegeModel.m */; };
@@ -945,6 +947,10 @@
 		3D0773071F18BAEF0084E409 /* WPPushImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPushImageCollectionViewCell.h; sourceTree = "<group>"; };
 		3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPushImageCollectionViewCell.m; sourceTree = "<group>"; };
 		3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPushImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D0DF8541F4E68CE00BA1615 /* WPStoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStoreViewController.h; sourceTree = "<group>"; };
+		3D0DF8551F4E68CE00BA1615 /* WPStoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStoreViewController.m; sourceTree = "<group>"; };
+		3D0DF8571F4E6E8300BA1615 /* WPStoreUserInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStoreUserInformationView.h; sourceTree = "<group>"; };
+		3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStoreUserInformationView.m; sourceTree = "<group>"; };
 		3D13B8231F16227000C1A20F /* WPBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBezierPath.h; sourceTree = "<group>"; };
 		3D13B8241F16227000C1A20F /* WPBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBezierPath.m; sourceTree = "<group>"; };
 		3D17301B1F26F37500BFF90D /* WPCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCommentModel.h; sourceTree = "<group>"; };
@@ -2348,6 +2354,49 @@
 			);
 			name = "SDPhotoBrowser(图片浏览器)";
 			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		3D0DF8491F4E632800BA1615 /* 店铺 */ = {
+			isa = PBXGroup;
+			children = (
+				3D0DF84C1F4E636200BA1615 /* Model */,
+				3D0DF84D1F4E636200BA1615 /* View */,
+				3D0DF84B1F4E636200BA1615 /* Controller */,
+				3D0DF84A1F4E636200BA1615 /* Cell */,
+			);
+			path = "店铺";
+			sourceTree = "<group>";
+		};
+		3D0DF84A1F4E636200BA1615 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3D0DF84B1F4E636200BA1615 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D0DF8541F4E68CE00BA1615 /* WPStoreViewController.h */,
+				3D0DF8551F4E68CE00BA1615 /* WPStoreViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D0DF84C1F4E636200BA1615 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D0DF84D1F4E636200BA1615 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3D0DF8571F4E6E8300BA1615 /* WPStoreUserInformationView.h */,
+				3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		3D13B8221F16222900C1A20F /* WPBezier(画线) */ = {
@@ -5013,6 +5062,7 @@
 				855C970F1E63FA450089EF32 /* DreamingPlan(造梦计划) */,
 				859E8F8D1E7A705E007C1F65 /* Exchange(交换) */,
 				85345F681E67F956005E1AD5 /* Comments(评论) */,
+				3D0DF8491F4E632800BA1615 /* 店铺 */,
 				3D883C6B1F4C1E0500A990D6 /* 排行榜 */,
 				3DF746041F3426FB00A23B52 /* Detail(商品详情页) */,
 			);
@@ -7188,6 +7238,7 @@
 				85187E381E8DF19300D3D64F /* MJRefreshStateHeader.m in Sources */,
 				8566A7A61E48265C00C08624 /* CityPickView.m in Sources */,
 				8566A8961E48281500C08624 /* WPAddressTableViewCell.m in Sources */,
+				3D0DF8591F4E6E8300BA1615 /* WPStoreUserInformationView.m in Sources */,
 				8548908B1E56954000138282 /* WPTypeChooseMune.m in Sources */,
 				85F08F1A1E48504C00A07451 /* UIView+SDExtension.m in Sources */,
 				8566A7D31E48265C00C08624 /* SKFCamera.m in Sources */,
@@ -7339,6 +7390,7 @@
 				851E36141EC4472E00C48AEF /* WPDreamingGoodsIntroductionTableView.m in Sources */,
 				851DC51D1EAEF1830051E5EE /* WPGoodsDetailViewController.m in Sources */,
 				8566A89C1E48281500C08624 /* WPMyOrderViewController.m in Sources */,
+				3D0DF8561F4E68CE00BA1615 /* WPStoreViewController.m in Sources */,
 				851515DE1E497832001583D6 /* WPHomeHeaderSearchView.m in Sources */,
 				85C748F21E7FD3BD000E1B65 /* AFHTTPSessionManager.m in Sources */,
 				85A641911EC557EC008BDD60 /* WPDreamingMainGoodsModel.m in Sources */,
