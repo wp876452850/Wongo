@@ -9,9 +9,15 @@
 #import "WPStoreViewController.h"
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPStoreUserInformationView.h"
+#import "WPStroeDreamingCollectionViewCell.h"
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 
 @interface WPStoreViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+
+{
+    NSInteger _menuTag;
+}
+
 @property (nonatomic,strong)NSString * uid;
 
 @property (nonatomic,strong)UICollectionView * collectionView;
@@ -19,13 +25,21 @@
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 @property (nonatomic,strong)WPStoreUserInformationView * storeUserInformationView;
+
+
 @end
 
 @implementation WPStoreViewController
 static NSString * const reuseIdentifier = @"Cell";
+static NSString * const storeCell       = @"StoreCell";
 -(WPStoreUserInformationView *)storeUserInformationView{
     if (!_storeUserInformationView) {
         _storeUserInformationView = [[WPStoreUserInformationView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) uid:self.uid];
+        __block WPStoreViewController * weakSelf = self;
+        [_storeUserInformationView getmuneTagWithBlock:^(NSInteger tag) {
+            _menuTag = tag;
+            [weakSelf.collectionView reloadData];
+        }];
     }
     return _storeUserInformationView;
 }
@@ -36,14 +50,16 @@ static NSString * const reuseIdentifier = @"Cell";
         layout.sectionInset = UIEdgeInsetsMake(WINDOW_WIDTH, 0, 0, 0);
         
         //collectionView
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH + 20, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+        
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPStroeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
         
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.delegate   = self;
         _collectionView.dataSource = self;
         [_collectionView addSubview:self.storeUserInformationView];
-
+        
     }
     return _collectionView;
 }
@@ -69,9 +85,12 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    //cell.model = _dataSourceArray[indexPath.row];
+    if (_menuTag == 0) {
+        WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+        //cell.model = _dataSourceArray[indexPath.row];
+        return cell;
+    }
+    WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
     return cell;
 }
 

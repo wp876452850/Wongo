@@ -19,6 +19,7 @@
 #import "LYConversationController.h"
 #import "WPDreamingDetailListTableViewCell.h"
 #import "WPDreamingDetailIntroduceTableViewCell.h"
+#import "WPCommentModel.h"
 
 
 static NSString * const listCell        = @"listCell";
@@ -27,7 +28,7 @@ static NSString * const userCell        = @"UserCell";
 static NSString * const progressCell    = @"ProgressCell";
 static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
-@interface WPDreamingDetailViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface WPDreamingDetailViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
 //参与交换
 @property (nonatomic,strong)UIButton * joinDreaming;
 
@@ -48,6 +49,8 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 @property (nonatomic,strong)UIButton * backBtn;
 
 @property (nonatomic,strong)UIButton * chatBtn;
+
+@property (nonatomic,strong)ChatKeyBoard * commentKeyBoard;
 @end
 
 @implementation WPDreamingDetailViewController
@@ -69,6 +72,21 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     return _rollPlay;
 }
 
+-(ChatKeyBoard *)commentKeyBoard{
+    if (!_commentKeyBoard) {
+        _commentKeyBoard = [ChatKeyBoard keyBoardWithNavgationBarTranslucent:YES];
+        _commentKeyBoard.delegate = self;
+        _commentKeyBoard.dataSource = self;
+        _commentKeyBoard.allowVoice = NO;
+        _commentKeyBoard.allowFace = NO;
+        _commentKeyBoard.allowMore = NO;
+        _commentKeyBoard.allowSwitchBar = NO;
+        _commentKeyBoard.keyBoardStyle = KeyBoardStyleComment;
+        [self.view addSubview:_commentKeyBoard];
+        [self.view bringSubviewToFront:_commentKeyBoard];
+    }
+    return _commentKeyBoard;
+}
 
 -(UIButton *)chatBtn{
     if (!_chatBtn) {
@@ -298,7 +316,28 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     view.tintColor = WhiteColor;
     
 }
-
+#pragma mark - ChatKeyBoardDelegate 发送评论
+-(void)chatKeyBoardSendText:(NSString *)text{
+    if (![self determineWhetherTheLogin]) {
+        return;
+    }
+    WPCommentModel * commentModel = [[WPCommentModel alloc]init];
+    commentModel.subid = self.subid;
+    commentModel.uname = [self getUserName];
+    commentModel.comment = text;
+    commentModel.commenttime = [self getNowTime];
+    commentModel.headImage = [self getUserHeadPortrait];
+    
+//    __block WPCommentModel * model = commentModel;
+//    __block WPDreamingDetailViewController * weakSelf = self;
+//    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":[self getSelfUid],@"gid":commentModel.gid,@"comment":commentModel.comment,@"commenttime":commentModel.commenttime} datas:^(NSDictionary *responseObject) {
+//        
+//        [weakSelf.exchangeModel.commentsModelArray insertObject:model atIndex:0];
+//        [weakSelf.tableView reloadData];
+//    }];
+    
+    [self.view endEditing:YES];
+}
 //创建评论信息内容
 -(void)createCommentsLabelWithModel:(WPDreamingCommentsModel*)model cell:(UITableViewCell *)cell{
     [cell.contentView removeAllSubviews];
@@ -326,7 +365,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     commentsTextField.layer.masksToBounds   = YES;
     commentsTextField.layer.cornerRadius    = 15;
     commentsTextField.font = [UIFont systemFontOfSize:15];
-    
+    [commentsTextField addTarget:self action:@selector(commentGoods) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:commentsTextField];
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -340,6 +379,12 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     [cell.contentView addSubview:button];
     
 }
+
+-(void)commentGoods{
+    [self.commentKeyBoard keyboardUpforComment];
+}
+
+
 
 -(void)pushComments{
     

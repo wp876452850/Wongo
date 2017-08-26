@@ -12,7 +12,8 @@
 #define MenuTitles @[@"交换商品",@"造梦商品"]
 @interface WPStoreUserInformationView ()
 {
-    WPCustomButton * _selectButton;
+    UIButton * _selectButton;
+    WPStoreUserInformationBlock _blcok;
 }
 @property (nonatomic,strong)NSString * uid;
 @property (nonatomic,strong)UIImageView * bgimage;
@@ -61,7 +62,7 @@
         _collectionNumber.textColor = WhiteColor;
         _collectionNumber.y = _uname.bottom+20;
         _collectionNumber.right = WINDOW_WIDTH/2;
-        [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(_collectionNumber.right - 0.5f, _collectionNumber.y) moveForPoint:CGPointMake(_collectionNumber.right - 0.5f, _collectionNumber.bottom) lineColor:WhiteColor]];
+        
     }
     return _collectionNumber;
 }
@@ -85,6 +86,7 @@
         [self addSubview:self.uname];
         [self addSubview:self.collectionNumber];
         [self addSubview:self.fansNumber];
+        [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(_collectionNumber.right - 0.5f, _collectionNumber.y) moveForPoint:CGPointMake(_collectionNumber.right - 0.5f, _collectionNumber.bottom) lineColor:WhiteColor]];
         for (UIView * view in self.subviews) {
             view.backgroundColor = RandomColor;
         }
@@ -95,42 +97,51 @@
 
 -(void)createButton{
     for (int i = 0; i<2; i++) {
-        WPCustomButton * menuButton = [[WPCustomButton alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/2, 0, WINDOW_WIDTH/2, 40)];
+        UIButton * menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        menuButton.frame = CGRectMake(i*WINDOW_WIDTH/2, 0, WINDOW_WIDTH/2, 40);
+        menuButton.backgroundColor = ColorWithRGB(0, 0, 0);
+       
+        menuButton.y = self.height - 80;
+        menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        [menuButton setTitleColor:WongoBlueColor forState:UIControlStateNormal];
+        [menuButton setTitleColor:ColorWithRGB(0, 0, 0) forState:UIControlStateSelected];
+        [menuButton setTitle: MenuTitles[i] forState:UIControlStateNormal];
+        menuButton.tag = i;
         if (i == 0) {
             _selectButton = menuButton;
-            menuButton.selected = YES;
-            menuButton.backgroundColor = ColorWithRGB(0, 0, 0);
+            menuButton.selected         = YES;
+            menuButton.backgroundColor  = WhiteColor;
+            menuButton.height           = 45.f;
+            _selectButton.y             -= 5.f;
         }
-        menuButton.y = self.height - 40;
-        menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        menuButton.normalTitleColor = ColorWithRGB(0, 0, 0);
-        menuButton.selectedTitleColor = WongoBlueColor;        
-        menuButton.backgroundColor = WhiteColor;
-       // menuButton.normalAttrobuteString = MenuTitles[i];
-        menuButton.tag = i;
-        
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-        [menuButton addGestureRecognizer:tap];
+        [menuButton addTarget:self action:@selector(tap:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:menuButton];
     }
 }
 
--(void)tap:(UITapGestureRecognizer *)tap{
-    WPCustomButton * munuButton = (WPCustomButton *)tap.view;
-    if (_selectButton == munuButton) {
+-(void)tap:(UIButton *)sender{
+    if (_selectButton == sender) {
         return;
     }
     _selectButton.selected  = !_selectButton.selected;
-    _selectButton.y        -=20.f;
-    _selectButton.height    = 60.f;
-    munuButton.selected     = !munuButton.selected;
-    munuButton.y           +=20.f;
-    munuButton.height       = 40.f;
-    _selectButton           = munuButton;
-    
+    _selectButton.y        += 5.f;
+    _selectButton.height    = 40.f;
+    _selectButton.backgroundColor = ColorWithRGB(0, 0, 0);
+    sender.selected         = !sender.selected;
+    sender.y               -= 5.f;
+    sender.height           = 45.f;
+    sender.backgroundColor  = WhiteColor;
+    _selectButton           = sender;
+    if (_blcok) {
+        _blcok(sender.tag);
+    }
 }
 
 -(void)loadDatas{
     
+}
+
+-(void)getmuneTagWithBlock:(WPStoreUserInformationBlock)block{
+    _blcok = block;
 }
 @end

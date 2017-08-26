@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^WPStoreUserInformationBlock)(NSInteger tag);
 @interface WPStoreUserInformationView : UIView
 
 -(instancetype)initWithFrame:(CGRect)frame uid:(NSString *)uid;
+
+-(void)getmuneTagWithBlock:(WPStoreUserInformationBlock)block;
 
 @end

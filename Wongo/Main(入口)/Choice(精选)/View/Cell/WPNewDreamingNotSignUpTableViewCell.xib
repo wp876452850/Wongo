@@ -60,8 +60,8 @@
                             <constraint firstAttribute="width" constant="31" id="bRI-D2-IHi"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与人数:354" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YU-zG-Nqj">
-                        <rect key="frame" x="69" y="378.5" width="93" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参与人数:0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9YU-zG-Nqj">
+                        <rect key="frame" x="69" y="378.5" width="75" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="4cX-bq-ilh"/>
                         </constraints>

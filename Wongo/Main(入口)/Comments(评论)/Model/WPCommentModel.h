@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface WPCommentModel : NSObject
-
+/**造梦id*/
+@property (nonatomic,strong)NSString * subid;
 /**评论id*/
 @property(nonatomic,copy)NSString *cid;
 /**用户id*/
