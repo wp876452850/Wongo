@@ -14,6 +14,6 @@
  @param plid 商品id
  @param subid 主题id
  */
-+(instancetype)createDreamingDetailWithPlid:(NSString *)plid subid:(NSString *)subid;
++(instancetype)createDreamingDetailWithProid:(NSString *)proid subid:(NSString *)subid;
 
 @end

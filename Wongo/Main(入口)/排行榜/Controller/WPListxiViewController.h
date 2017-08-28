@@ -9,5 +9,5 @@
 #import "WPTableBaseViewController.h"
 
 @interface WPListxiViewController : WPTableBaseViewController
--(instancetype)initWithSubid:(NSString *)subid;
+-(instancetype)initWithSubid:(NSString *)proid;
 @end

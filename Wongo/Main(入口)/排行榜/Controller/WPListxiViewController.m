@@ -12,14 +12,14 @@
 #import "WPStoreViewController.h"
 
 @interface WPListxiViewController ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic,strong)NSString * proid;
 @end
 
 @implementation WPListxiViewController
 
--(instancetype)initWithSubid:(NSString *)subid{
+-(instancetype)initWithSubid:(NSString *)proid{
     if (self = [super init]) {
-        
+        self.proid = proid;
     }
     return self;
 }
@@ -38,6 +38,14 @@
     [self.view addSubview:self.tableView];
 }
 
+-(void)loadDatas{
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":self.proid} datas:^(NSDictionary *responseObject) {
+        
+    }];
+}
+
+
+#pragma mark - TableViewDelegate && TableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 0.01f;
 }

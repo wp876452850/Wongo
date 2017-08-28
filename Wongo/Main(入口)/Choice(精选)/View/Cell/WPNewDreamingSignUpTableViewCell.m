@@ -57,7 +57,7 @@
     [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
     return;
     WPDreamingDirectoryModel * model  = self.dataSource[tap.view.tag];
-    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithPlid:model.plid subid:model.subid];
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid subid:model.subid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
     
 }

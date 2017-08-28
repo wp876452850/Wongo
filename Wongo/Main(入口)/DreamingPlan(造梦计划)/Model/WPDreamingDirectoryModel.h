@@ -12,7 +12,7 @@
 /**标题*/
 @property (nonatomic,strong)NSString * contents;
 /**造梦计划ID*/
-@property (nonatomic,strong)NSString * plid;
+@property (nonatomic,strong)NSString * proid;
 
 @property (nonatomic,strong)NSString * subid;
 /**造梦故事*/

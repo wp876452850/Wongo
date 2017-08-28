@@ -10,12 +10,16 @@
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPStoreUserInformationView.h"
 #import "WPStroeDreamingCollectionViewCell.h"
+#import "LYConversationController.h"
+#import "WPUserIntroductionModel.h"
+
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 
 @interface WPStoreViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 {
     NSInteger _menuTag;
+    WPUserIntroductionModel * _model;
 }
 
 @property (nonatomic,strong)NSString * uid;
@@ -26,12 +30,21 @@
 
 @property (nonatomic,strong)WPStoreUserInformationView * storeUserInformationView;
 
-
+@property (nonatomic,strong)UIView * bottomView;
 @end
 
 @implementation WPStoreViewController
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const storeCell       = @"StoreCell";
+
+#pragma mark - 懒加载
+-(UIView *)bottomView{
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
+        _bottomView.backgroundColor = WhiteColor;
+    }
+    return _bottomView;
+}
 -(WPStoreUserInformationView *)storeUserInformationView{
     if (!_storeUserInformationView) {
         _storeUserInformationView = [[WPStoreUserInformationView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) uid:self.uid];
@@ -47,10 +60,10 @@ static NSString * const storeCell       = @"StoreCell";
     if (!_collectionView) {
         //layout
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
-        layout.sectionInset = UIEdgeInsetsMake(WINDOW_WIDTH, 0, 0, 0);
+        layout.sectionInset = UIEdgeInsetsMake(WINDOW_WIDTH + 20, 0, 0, 0);
         
         //collectionView
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH + 20, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
         
         [_collectionView registerNib:[UINib nibWithNibName:@"WPStroeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
@@ -170,5 +183,44 @@ static NSString * const storeCell       = @"StoreCell";
     } failureBlock:^{
         [weakSelf.collectionView.mj_footer endRefreshing];
     }];
+}
+#pragma mark - 展示底部视图样式
+
+-(void)showShoppingBottomView{
+    [self.view addSubview:self.bottomView];
+    UIButton * chat = [self createChatButton];
+    //立即购买
+    UIButton * collect      = [UIButton buttonWithType:UIButtonTypeCustom];
+    collect.frame           = CGRectMake(chat.right, 0, (WINDOW_WIDTH - chat.width), 50);
+    collect.backgroundColor = ColorWithRGB(105, 152, 192);
+    [collect setTitleColor:WhiteColor forState:UIControlStateNormal];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注" ] insertImage:[UIImage imageNamed:@""] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] insertImage:[UIImage imageNamed:@""] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateSelected];
+
+    [collect addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.bottomView addSubview:collect];
+}
+
+-(UIButton *)createChatButton{
+    UIButton * chat = [UIButton buttonWithType:UIButtonTypeCustom];
+    chat.frame = CGRectMake(0, 0, WINDOW_WIDTH/2, 50);
+    chat.backgroundColor = ColorWithRGB(45, 102, 139);
+    [chat addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottomView addSubview:chat];
+    [chat setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+    return chat;
+}
+
+-(void)goChat{
+    if ([self determineWhetherTheLogin]) {
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.uid];
+        vc.title = _model.uname;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+-(void)collect:(UIButton *)sender{
+    
 }
 @end

@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "UIView+Extension.h"
 #define Window_Width [UIScreen mainScreen].bounds.size.width
+#define ImageWidth (Window_Width-70)/4
 
 @interface WPDreamingIntroduceTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
@@ -32,6 +33,12 @@
         make.top.mas_equalTo(_goodsIntroduce.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(10);
     }];
+    
+    for (int i = 0; i < 4; i++) {
+        UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(i*(ImageWidth+10)+20,_goodsIntroduce.bottom,ImageWidth,ImageWidth)];
+        image.backgroundColor = RandomColor;
+        [self.contentView addSubview:image];
+    }
 }
 
 -(void)setModel:(WPDreamingGoodsIntroduceModel *)model{

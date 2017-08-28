@@ -29,7 +29,7 @@
 /***/
 @property (nonatomic,strong)NSString * subid;
 /***/
-@property (nonatomic,strong)NSString * plid;
+@property (nonatomic,strong)NSString * proid;
 /***/
 @property (nonatomic,strong)NSString * proname;
 /***/

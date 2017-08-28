@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,11 +66,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="50.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="gc3-62-jO8">
-                        <rect key="frame" x="8" y="296" width="312" height="202"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.67786871839999996" green="0.99215686270000003" blue="0.12932491730000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Lvx-Ek-EtC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="AVV-CV-sfD"/>
@@ -89,18 +84,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="goodsImage" destination="gc3-62-jO8" id="uIi-XH-osa"/>
                 <outlet property="goodsIntroduce" destination="kIX-bi-KtP" id="alb-fF-YHg"/>
                 <outlet property="goodsName" destination="KYW-Vz-evm" id="urs-NW-Sw6"/>
                 <outlet property="headerView" destination="Lvx-Ek-EtC" id="xLR-ny-khu"/>
                 <outlet property="pushTime" destination="A2v-qd-1vy" id="Gdx-Vi-2hS"/>
                 <outlet property="userName" destination="i3a-26-8p2" id="gJO-M2-wlJ"/>
             </connections>
-            <point key="canvasLocation" x="-42" y="123"/>
+            <point key="canvasLocation" x="-42" y="122.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="1.png" width="69" height="70"/>
-        <image name="50.jpg" width="188" height="180"/>
     </resources>
 </document>

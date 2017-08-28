@@ -134,9 +134,9 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     return _tableView;
 }
 
-+(instancetype)createDreamingDetailWithPlid:(NSString *)plid subid:(NSString *)subid{
++(instancetype)createDreamingDetailWithProid:(NSString *)proid subid:(NSString *)subid{
     WPDreamingDetailViewController * vc = [[WPDreamingDetailViewController alloc]init];
-    vc.plid = plid;
+    vc.plid = proid;
     vc.subid = subid;
     return vc;
 }
@@ -152,10 +152,25 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 -(void)loadDatas{
     self.model          = [[WPDreamingModel alloc]init];
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
+    _plid = @"1";
+    /**查询商品所有信息*/
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":_plid} datas:^(NSDictionary *responseObject) {
+        
+        
+        
+    }];
+    /**轮播图*/
+    [WPNetWorking createPostRequestMenagerWithUrlString:SelectProduct params:nil datas:^(NSDictionary *responseObject) {
+        NSArray * array = responseObject[@"list"];
+        NSMutableArray * images = [NSMutableArray arrayWithCapacity:3];
+        for (int i = 0 ; i < array.count; i++) {
+            NSDictionary * dic = array[i];
+            [images addObject:dic[@"url"]];
+        }
+        _rollPlay.imageURLStringsGroup = images;
+    }];
     
-//    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"subid":_subid,@"plid":_plid} datas:^(NSDictionary *responseObject) {
-//        
-//    }];
+    
     
     [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343696607&di=6b2b2d9170e81866eb10ce92ffd729b1&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa2cc7cd98d1001e9460fd63bbd0e7bec54e797d7.jpg"];
     [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343753469&di=bd25b0ec8294590994f1d587d50bb702&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb2de9c82d158ccbf79a00f8c1cd8bc3eb1354163.jpg"];
