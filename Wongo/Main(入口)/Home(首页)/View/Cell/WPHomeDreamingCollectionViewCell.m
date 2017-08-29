@@ -13,6 +13,7 @@
 @interface WPHomeDreamingCollectionViewCell ()
 //指示图标
 @property (nonatomic,strong)UIImageView * instructions;
+@property (weak, nonatomic) IBOutlet UIImageView *nowGoods;
 
 @end
 @implementation WPHomeDreamingCollectionViewCell
@@ -29,13 +30,19 @@
     
 }
 
+-(void)setUrl:(NSString *)url{
+    _url = url;
+    [self.nowGoods sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil];
+    
+}
+
 -(void)setModel:(WPDreamingDirectoryModel *)model{
     _model = model;
 }
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     //[[self findViewController:self] showAlertNotOpenedWithBlock:nil];
     //return;
-    WPDreamingDetailViewController *vc = [WPDreamingDetailViewController createDreamingDetailWithProid:_model.proid subid:_model.subid];
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:self.proid subid:nil];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

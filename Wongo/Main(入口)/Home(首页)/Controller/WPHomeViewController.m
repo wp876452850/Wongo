@@ -49,6 +49,8 @@ static NSString * contentOffset = @"contentOffset";
 //内容数据
 //一级数据数组(存放所有区数据数组)
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
+//造梦数据数组
+@property (nonatomic,strong)NSMutableArray * dreamings;
 //区头数据
 @property (nonatomic,strong)NSMutableArray * reusableDataSource;
 //记录collectionView最后Y偏移
@@ -142,9 +144,9 @@ static NSString * contentOffset = @"contentOffset";
     [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
         [self.collectionView.mj_header endRefreshing];
         LYHomeResponse *response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
-        self.response = response;
-        self.homeHeaderView.listhl = response.listhl;
-        self.homeHeaderView.listhk = response.listhk;
+        _response = response;
+        _homeHeaderView.listhl = response.listhl;
+        _homeHeaderView.listhk = response.listhk;
         
         [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
             
@@ -155,15 +157,22 @@ static NSString * contentOffset = @"contentOffset";
                 [_dataSourceArray addObject:model];
             }
             _page++;
-            [self.collectionView reloadData];
+            
+            [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"18"} datas:^(NSDictionary *responseObject) {
+                _dreamings = [NSMutableArray arrayWithCapacity:3];
+                [_dreamings addObject:responseObject];
+                [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"19"} datas:^(NSDictionary *responseObject) {
+                    [_dreamings addObject:responseObject];
+                    [_collectionView reloadData];
+                }];
+            }];
+            
         }];
         
     }failureBlock:^{
         [self.collectionView.mj_header endRefreshing];
     }];
-    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"18"} datas:^(NSDictionary *responseObject) {
-        
-    }];
+    
 }
 
 -(void)footer{
@@ -273,7 +282,9 @@ static NSString * contentOffset = @"contentOffset";
     }
     else if (indexPath.section == 2){
         WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-        
+        NSDictionary * dic = _dreamings[indexPath.row];
+        cell.proid = dic[@"proid"];
+        cell.url = dic[@"url"];
         return cell;
     }
     else{

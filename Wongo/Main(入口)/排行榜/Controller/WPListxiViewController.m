@@ -13,23 +13,35 @@
 
 @interface WPListxiViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)NSString * proid;
+@property (nonatomic,strong)NSMutableArray * dataSourceArray;
 @end
 
 @implementation WPListxiViewController
 
 -(instancetype)initWithSubid:(NSString *)proid{
     if (self = [super init]) {
+        [self setupTableView];
         self.proid = proid;
+        //[self loadDatas];
     }
     return self;
 }
-
+-(instancetype)initWithDataSourceArray:(NSArray *)dataSourceArray{
+    if (self = [super init]) {
+        [self setupTableView];
+        self.dataSourceArray = [NSMutableArray arrayWithArray:dataSourceArray];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myNavItem.title = @"排行榜";
-    [self setupTableView];
 }
 
+-(void)setDataSourceArray:(NSMutableArray *)dataSourceArray{
+    _dataSourceArray = dataSourceArray;
+    [self.tableView reloadData];
+}
 -(void)setupTableView{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -59,14 +71,22 @@
     return 70;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    if (self.dataSourceArray.count <= 3&&self.dataSourceArray.count>0) {
+        return 1;
+    }
+    else if (self.dataSourceArray.count <= 0){
+        return 0;
+    }
+    return self.dataSourceArray.count - 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         WPListFirstTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"first" forIndexPath:indexPath];
+        cell.dataSourceArray = self.dataSourceArray;
         return cell;
     }
     WPListOtherTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"other" forIndexPath:indexPath];
+    cell.model = self.dataSourceArray[indexPath.row + 2];
     return cell;
 }
 

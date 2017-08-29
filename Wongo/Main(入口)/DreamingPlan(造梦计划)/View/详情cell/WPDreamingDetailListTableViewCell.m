@@ -8,6 +8,7 @@
 
 #import "WPDreamingDetailListTableViewCell.h"
 #import "WPListxiViewController.h"
+#import "WPListModel.h"
 #define ListWidth WINDOW_WIDTH - 50
 #define ImageWidthAndHeight (ListWidth - 15 - 6*8) / 8
 
@@ -47,15 +48,17 @@
     }
     for (int i = 0; i< imageCount; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * 45 + 15, 20, ImageWidthAndHeight , ImageWidthAndHeight)];
+        WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
         imageView.centerY = button.centerY;
         [self.contentView addSubview:imageView];
         imageView.backgroundColor = WongoBlueColor;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = imageView.height /2;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
     }
 }
 -(void)buttonClick:(UIButton *)sender{
-    WPListxiViewController * vc = [[WPListxiViewController alloc]initWithSubid:self.subid];
+    WPListxiViewController * vc = [[WPListxiViewController alloc]initWithDataSourceArray:self.dataSourceArray];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPListModel.h"
 
 @interface WPListOtherTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)WPListModel * model;
 
 @end

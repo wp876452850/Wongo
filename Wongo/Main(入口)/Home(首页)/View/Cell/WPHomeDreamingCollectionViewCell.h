@@ -13,4 +13,7 @@
 
 @property (nonatomic,strong)WPDreamingDirectoryModel * model;
 
+@property (nonatomic,strong)NSString * proid;
+
+@property (nonatomic,strong)NSString * url;
 @end

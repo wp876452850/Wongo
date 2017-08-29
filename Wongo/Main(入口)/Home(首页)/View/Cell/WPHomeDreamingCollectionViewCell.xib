@@ -50,7 +50,10 @@
                 <constraint firstItem="cad-Eq-zbK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12.5" id="kdF-7r-C90"/>
             </constraints>
             <size key="customSize" width="577" height="366"/>
-            <point key="canvasLocation" x="-136.5" y="-24.5"/>
+            <connections>
+                <outlet property="nowGoods" destination="ZDC-qv-TdR" id="t4A-6z-7hG"/>
+            </connections>
+            <point key="canvasLocation" x="-269" y="-41"/>
         </collectionViewCell>
     </objects>
     <resources>

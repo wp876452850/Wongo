@@ -35,6 +35,7 @@
     _attention.layer.masksToBounds  = YES;
     _attention.layer.cornerRadius   = 5;
     _attention.layer.borderWidth    = 1;
+    _attention.layer.borderColor    = SelfOrangeColor.CGColor;
     _attention.titleLabel.font      = [UIFont systemFontOfSize:15];
     
     _chat.layer.masksToBounds   = YES;
@@ -57,13 +58,13 @@
     [_headImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"broken"]];
     
     _userName.text                  = model.uname;
-    _signature.text                 = model.signature;
-    _fansNumber.text                = @"粉丝：0";
-    _goodsNumber.text               = [NSString stringWithFormat:@"商品：%@",model.goodsNum];
-    _attention.selected             = [model.attention boolValue];
-    UIColor * color                 = _attention.selected?GRAY_COLOR:SelfOrangeColor;
-    _attention.layer.borderColor    = color.CGColor;
-    
+//    _signature.text                 = model.signature;
+//    _fansNumber.text                = @"粉丝：0";
+//    _goodsNumber.text               = [NSString stringWithFormat:@"商品：%@",model.goodsNum];
+//    _attention.selected             = [model.attention boolValue];
+//    UIColor * color                 = _attention.selected?GRAY_COLOR:SelfOrangeColor;
+//    _attention.layer.borderColor    = color.CGColor;
+//    
     _userID                         = model.uid;
     
 }
@@ -83,7 +84,6 @@
 }
 
 - (IBAction)chatClick:(UIButton *)sender {
-    
     if ([self determineWhetherTheLogin]) {
         if (_chatBlock) {
             _chatBlock(_userID);
@@ -92,7 +92,6 @@
 }
 
 -(void)goChatWithBlock:(ChatBlock)block{
-    
     _chatBlock = block;
 }
 

@@ -10,4 +10,5 @@
 
 @interface WPListxiViewController : WPTableBaseViewController
 -(instancetype)initWithSubid:(NSString *)proid;
+-(instancetype)initWithDataSourceArray:(NSArray *)dataSourceArray;
 @end

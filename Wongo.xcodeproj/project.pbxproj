@@ -381,6 +381,7 @@
 		3DF8EDCE1EE1152C000F55BF /* LYBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8EDCB1EE1152C000F55BF /* LYBaseController.m */; };
 		3DF8EDCF1EE1152C000F55BF /* LYNavgationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8EDCD1EE1152C000F55BF /* LYNavgationController.m */; };
 		3DF8EDD21EE13F6A000F55BF /* LYExchangeOrderDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF8EDD11EE13F6A000F55BF /* LYExchangeOrderDetailController.m */; };
+		3DFAFF7F1F53EFA000E336F4 /* WPListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFAFF7E1F53EFA000E336F4 /* WPListModel.m */; };
 		3DFDCCFA1EE4EB95000249F7 /* LYDreamSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFDCCF81EE4EB95000249F7 /* LYDreamSubjectCell.m */; };
 		3DFDCCFB1EE4EB95000249F7 /* LYDreamSubjectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DFDCCF91EE4EB95000249F7 /* LYDreamSubjectCell.xib */; };
 		3DFDCCFE1EE56033000249F7 /* LYAliPayResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFDCCFD1EE56033000249F7 /* LYAliPayResult.m */; };
@@ -1386,6 +1387,8 @@
 		3DF8EDCD1EE1152C000F55BF /* LYNavgationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYNavgationController.m; sourceTree = "<group>"; };
 		3DF8EDD01EE13F69000F55BF /* LYExchangeOrderDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYExchangeOrderDetailController.h; sourceTree = "<group>"; };
 		3DF8EDD11EE13F6A000F55BF /* LYExchangeOrderDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYExchangeOrderDetailController.m; sourceTree = "<group>"; };
+		3DFAFF7D1F53EFA000E336F4 /* WPListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPListModel.h; sourceTree = "<group>"; };
+		3DFAFF7E1F53EFA000E336F4 /* WPListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPListModel.m; sourceTree = "<group>"; };
 		3DFDCCF71EE4EB95000249F7 /* LYDreamSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYDreamSubjectCell.h; sourceTree = "<group>"; };
 		3DFDCCF81EE4EB95000249F7 /* LYDreamSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYDreamSubjectCell.m; sourceTree = "<group>"; };
 		3DFDCCF91EE4EB95000249F7 /* LYDreamSubjectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYDreamSubjectCell.xib; sourceTree = "<group>"; };
@@ -3754,6 +3757,8 @@
 		3D883C741F4C2F6800A990D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DFAFF7D1F53EFA000E336F4 /* WPListModel.h */,
+				3DFAFF7E1F53EFA000E336F4 /* WPListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7379,6 +7384,7 @@
 				854B29061E7B866D00289554 /* WPUserIntroductionTableViewCell.m in Sources */,
 				85187E331E8DF19300D3D64F /* MJRefreshBackGifFooter.m in Sources */,
 				3D1732C01F26F6C200BFF90D /* FacePageView.m in Sources */,
+				3DFAFF7F1F53EFA000E336F4 /* WPListModel.m in Sources */,
 				853B7B091E9CBBBA008BAA4D /* MJPropertyKey.m in Sources */,
 				8566A7BF1E48265C00C08624 /* View+MASAdditions.m in Sources */,
 				8566A8941E48281500C08624 /* WPShoppingCarModel.m in Sources */,

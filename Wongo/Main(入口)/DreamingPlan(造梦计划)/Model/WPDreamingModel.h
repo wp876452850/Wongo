@@ -12,6 +12,36 @@
 #import "WPDreamingIntroduceModel.h"
 
 @interface WPDreamingModel : NSObject
+/**收货地址id*/
+@property (nonatomic,strong)NSString * adid;
+/**主题内容*/
+@property (nonatomic,strong)NSString * contents;
+/**商品类型*/
+@property (nonatomic,strong)NSString * gcid;
+/**造梦计划id*/
+@property (nonatomic,strong)NSString * plid;
+/**是否精选*/
+@property (nonatomic,strong)NSString * isrecommend;
+/**点赞数*/
+@property (nonatomic,strong)NSString * praise;
+/**商品id*/
+@property (nonatomic,strong)NSString * proid;
+/**发布时间*/
+@property (nonatomic,strong)NSString * pubtime;
+/**商品描述*/
+@property (nonatomic,strong)NSString * remark;
+/**商品故事*/
+@property (nonatomic,strong)NSString * story;
+/**用户名*/
+@property (nonatomic,strong)NSString * uname;
+/**头像*/
+@property (nonatomic,strong)NSString * url;
+/**目标物品*/
+@property (nonatomic,strong)NSString * want;
+/**商品名*/
+@property (nonatomic,strong)NSString * proname;
+
+
 /**subid*/
 @property (nonatomic,strong)NSString * subid;
 /**用户uid*/

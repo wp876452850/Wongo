@@ -28,6 +28,12 @@
     return _name;
 }
 
+-(void)setModel:(WPListModel *)model{
+    _model = model;
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+    self.number.text = model.praise;
+    self.name.text = model.uname;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];

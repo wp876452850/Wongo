@@ -108,7 +108,7 @@
  *      造梦
  */
 /**主页造梦*/
-#define HtQueryProductStatePlan HttpHead(@"queryPlanById")
+#define HtQueryProductStatePlan HttpHead(@"queryProductById")
 /**造梦计划主页展示数据URL*/
 #define DreamingHomePageUrl     HttpHead(@"querySub")
 /**发布(报名)造梦计划*/

@@ -7,6 +7,7 @@
 //
 
 #import "WPListFirstTableViewCell.h"
+#import "WPListModel.h"
 
 @interface WPListFirstTableViewCell ()
 /**3个头像*/
@@ -38,7 +39,7 @@
         _oneLabel.textAlignment = NSTextAlignmentCenter;
         _oneLabel.clipsToBounds = YES;
         _oneLabel.text = @"蛇皮袋";
-        _oneLabel.font = [UIFont systemFontOfSize:15.f];
+        _oneLabel.font = [UIFont systemFontOfSize:13.f];
         _oneLabel.textColor = WhiteColor;
         
         UILabel * bg = [[UILabel alloc]initWithFrame:_oneLabel.frame];
@@ -58,7 +59,7 @@
         _twoLabel.textAlignment = NSTextAlignmentCenter;
         _twoLabel.clipsToBounds = YES;
         _twoLabel.text = @"蛇皮袋";
-        _twoLabel.font = [UIFont systemFontOfSize:13.f];
+        _twoLabel.font = [UIFont systemFontOfSize:11.f];
         _twoLabel.textColor = WhiteColor;
         
         UILabel * bg = [[UILabel alloc]initWithFrame:_twoLabel.frame];
@@ -78,7 +79,7 @@
         _threeLabel.textAlignment = NSTextAlignmentCenter;
         _threeLabel.clipsToBounds = YES;
         _threeLabel.text = @"蛇皮袋";
-        _threeLabel.font = [UIFont systemFontOfSize:13.f];
+        _threeLabel.font = [UIFont systemFontOfSize:11.f];
         _threeLabel.textColor = WhiteColor;
         
         UILabel * bg = [[UILabel alloc]initWithFrame:_threeLabel.frame];
@@ -131,4 +132,37 @@
     
 }
 
+
+-(void)setDataSourceArray:(NSArray *)dataSourceArray{
+    _dataSourceArray = dataSourceArray;
+    
+    NSInteger dataSourceArrayCount = dataSourceArray.count;
+    if (dataSourceArrayCount >= 3) {
+        dataSourceArrayCount = 3;
+    }
+    for (int i = 0; i < dataSourceArrayCount; i++) {
+        WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
+        switch (i) {
+            case 0:
+            {
+                [_one sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                _onenumber.text = model.praise;
+                _oneLabel.text = model.uname;
+                
+            }break;
+            case 1:{
+                [_two sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                _twoLabel.text = model.uname;
+                _twonumber = model.praise;
+            }
+                break;
+            case 2:{
+                [_three sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                _threeLabel.text = model.uname;
+                _threenumber.text = model.praise;
+            }
+                break;
+        }
+    }
+}
 @end

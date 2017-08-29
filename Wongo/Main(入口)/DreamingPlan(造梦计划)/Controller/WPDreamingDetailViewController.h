@@ -11,7 +11,7 @@
 @interface WPDreamingDetailViewController : UIViewController
 
 /**
- @param plid 商品id
+ @param proid 商品id
  @param subid 主题id
  */
 +(instancetype)createDreamingDetailWithProid:(NSString *)proid subid:(NSString *)subid;

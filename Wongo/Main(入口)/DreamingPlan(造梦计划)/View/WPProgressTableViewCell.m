@@ -13,6 +13,14 @@
 static NSString * price;
 static NSString * unit;
 static NSString * progress;
+
+@interface WPProgressTableViewCell ()
+{
+    ProgressView * priceProgress;
+    ProgressView * progressProgress;
+    ProgressView * dateProgress;
+}
+@end
 @implementation WPProgressTableViewCell
 
 - (void)awakeFromNib {
@@ -38,27 +46,38 @@ static NSString * progress;
 }
 //创建进度条
 -(void)createProgress{
-    //创建金额进度条
-    ProgressView * priceProgress    = [ProgressView createProgressWithFrame:CGRectMake(20, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(188, 229, 219) color:ColorWithRGB(72, 208, 180) proportion:1];
-    priceProgress.data              = [NSString stringWithFormat:@"%@%@",unit,price];
+    if (!priceProgress) {
+        //创建金额进度条
+        priceProgress    = [ProgressView createProgressWithFrame:CGRectMake(20, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(188, 229, 219) color:ColorWithRGB(72, 208, 180) proportion:1];
+        [self.contentView addSubview:priceProgress];
+    }
+    if (!progressProgress) {
+        //创建进度进度条
+        progressProgress    = [ProgressView createProgressWithFrame:CGRectMake(30+Progress_Width_Height, 0, Progress_Width_Height+20, Progress_Width_Height+20) backColor:ColorWithRGB(252, 211, 145) color:ColorWithRGB(252, 114, 0) proportion:[progress floatValue]];
+        [self.contentView addSubview:progressProgress];
+    }
+    if (!dateProgress) {
+        //创建时间进度条
+        dateProgress    = [ProgressView createProgressWithFrame:CGRectMake(60 +Progress_Width_Height*2, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(203, 192, 221) color:ColorWithRGB(146, 117, 179) proportion:1];
+        [self.contentView addSubview:dateProgress];
+    }
+ 
+    priceProgress.data              = [NSString stringWithFormat:@"￥%@",price];
     priceProgress.dataName          = @"金额";
     [priceProgress showContentData];
     
-    //创建进度进度条
-    ProgressView * progressProgress    = [ProgressView createProgressWithFrame:CGRectMake(30+Progress_Width_Height, 0, Progress_Width_Height+20, Progress_Width_Height+20) backColor:ColorWithRGB(252, 211, 145) color:ColorWithRGB(252, 114, 0) proportion:[progress floatValue]];
+    
     progressProgress.data              = [NSString stringWithFormat:@"%.0f%%",[progress floatValue]*100];
     progressProgress.dataName          = @"进度";
     [progressProgress showContentData];
     progressProgress.dataLabelFont = 25;
     progressProgress.dataLabelBold = YES;
-    //创建时间进度条
-    ProgressView * dateProgress    = [ProgressView createProgressWithFrame:CGRectMake(60 +Progress_Width_Height*2, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(203, 192, 221) color:ColorWithRGB(146, 117, 179) proportion:1];
+    
     dateProgress.data              = [NSString stringWithFormat:@"10:20"];
     dateProgress.dataName          = @"时间";
     [dateProgress showContentData];
     
-    [self.contentView addSubview:priceProgress];
-    [self.contentView addSubview:progressProgress];
-    [self.contentView addSubview:dateProgress];
+   
+    
 }
 @end

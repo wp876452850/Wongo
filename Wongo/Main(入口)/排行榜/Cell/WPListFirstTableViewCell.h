@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WPListFirstTableViewCell : UITableViewCell
+@property (nonatomic,strong) NSArray * dataSourceArray;
 
 @end
