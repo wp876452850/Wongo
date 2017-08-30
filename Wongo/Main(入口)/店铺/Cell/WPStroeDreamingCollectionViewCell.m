@@ -19,7 +19,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    [self.thumup setImage:[UIImage imageNamed:@"shopDreamingthumup_normal"] forState:UIControlStateNormal];
+    [self.thumup setImage:[UIImage imageNamed:@"shopDreamingthumup_select"] forState:UIControlStateSelected];
 }
 
 @end

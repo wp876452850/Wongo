@@ -10,6 +10,7 @@
 #import "WPListOtherTableViewCell.h"
 #import "WPListFirstTableViewCell.h"
 #import "WPStoreViewController.h"
+#import "WPListModel.h"
 
 @interface WPListxiViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)NSString * proid;
@@ -86,7 +87,8 @@
         return cell;
     }
     WPListOtherTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"other" forIndexPath:indexPath];
-    cell.model = self.dataSourceArray[indexPath.row + 2];
+    WPListModel * model = [WPListModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.row + 2]];
+    cell.model = model;
     return cell;
 }
 

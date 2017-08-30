@@ -34,6 +34,7 @@
 }
 
 +(void)createPostRequestMenagerWithUrlString:(NSString *)urlString params:(NSDictionary *)params datas:(DataBlock)datas{
+    
     NSLog(@"%@",urlString);
     NSLog(@"%@",params);
     AFHTTPSessionManager * manager = [WPNetWorking createManager];

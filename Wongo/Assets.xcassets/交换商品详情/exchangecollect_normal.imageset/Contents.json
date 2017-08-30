@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "addImage.png",
+      "filename" : "exchangecollect_normal.PNG",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "addImage@2x.png",
+      "filename" : "exchangecollect_normal@2x.PNG",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "addImage@3x.png",
+      "filename" : "exchangecollect_normal@3x.PNG",
       "scale" : "3x"
     }
   ],

@@ -21,7 +21,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     _introduceTextView.frame = CGRectMake(10, _icon.bottom + 5, WINDOW_WIDTH - 20, 100);
 }
 
@@ -33,7 +33,7 @@
     _introduce = introduce;
     _introduceTextView.text = introduce;
     CGFloat height = [introduce getSizeWithFont:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake(WINDOW_WIDTH - 20, MAXFLOAT)].height;
-    _introduceTextView.height = height;
+    _introduceTextView.height = height + 10;
     if (_block) {
         _block(_introduceTextView.bottom);
     }

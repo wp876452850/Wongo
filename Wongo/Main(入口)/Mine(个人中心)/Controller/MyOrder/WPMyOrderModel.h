@@ -39,7 +39,6 @@
 @property (nonatomic, assign) CGFloat money;
 /**收货人所支付保证金金额 */
 @property (nonatomic, assign) CGFloat paymoney;
-
 /**造梦商品新旧程度 */
 @property (nonatomic, strong) NSString *neworold;
 /**造梦人等级*/

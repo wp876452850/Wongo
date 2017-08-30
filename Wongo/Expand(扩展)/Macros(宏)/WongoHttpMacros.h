@@ -122,7 +122,7 @@
 /**加入他人造梦*/
 #define JoinProUrl              HttpHead(@"joinPro")
 /**造梦计划详情查询*/
-#define GetPlanUrl              HttpHead(@"queryProductIda")
+#define GetPlanUrl              HttpHead(@"getPruductById")
 /**造梦订单查询*/
 #define QueryPlordersUrl        HttpHead(@"queryPlorders")
 /**搜索造梦*/
@@ -142,18 +142,26 @@
 /**取消点赞*/
 #define ThumUpCancelUrl         HttpHead(@"IncensesDel")
 
+#define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
+
+#define IncensesproductDel      HttpHead(@"IncensesproductDel")
 /**
  *  评论
  */
-/**添加评论*/
+/**添加交换评论*/
 #define AddCommentUrl           HttpHead(@"addComment")
-/**查询评论*/
+/**查询交换评论*/
 #define QueryUserCommentUrl     HttpHead(@"queryUserComment")
+/**添加造梦评论*/
+#define CommentproductsUrl      HttpHead(@"CommentproductsAdd")
+/**查询造梦评论*/
+#define QueryUserCommentproduct HttpHead(@"queryUserCommentproduct")
 
 /**
  *  排行榜
  */
- #define QueryProductUser       HttpHead(@"queryProductUser")
+/**查询排行榜*/
+#define QueryProductUser       HttpHead(@"queryProductUser")
 
 
 #endif /* WongoHttpMacros_h */

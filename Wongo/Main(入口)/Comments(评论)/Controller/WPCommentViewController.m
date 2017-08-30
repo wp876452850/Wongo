@@ -165,7 +165,6 @@ static NSString * const reuseIdentifier = @"Cell";
 //    [self.view endEditing:YES];
 //    WPCommentMessageViewController * commentMessageVC = [[WPCommentMessageViewController alloc]initWithCommentModel:self.exchangeModel.commentsModelArray[indexPath.section] goodsModel:_exchangeModel commentHeight:[self.cellsHeight[indexPath.section] floatValue] upKeyBoard:NO];
 //    [self.navigationController pushViewController:commentMessageVC animated:YES];
-    
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
@@ -185,7 +184,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)commentGoods{
     [self.commentKeyBoard keyboardUpforComment];
-    
 }
 
 

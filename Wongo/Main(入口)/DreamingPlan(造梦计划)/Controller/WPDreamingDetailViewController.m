@@ -31,6 +31,9 @@ static NSString * const progressCell    = @"ProgressCell";
 static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 @interface WPDreamingDetailViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
+{
+    UITextField * _comment;
+}
 //参与交换
 @property (nonatomic,strong)UIButton * joinDreaming;
 
@@ -55,6 +58,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 @property (nonatomic,strong)UIButton * chatBtn;
 
 @property (nonatomic,strong)ChatKeyBoard * commentKeyBoard;
+
 @end
 
 @implementation WPDreamingDetailViewController
@@ -158,18 +162,25 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     __block WPDreamingDetailViewController * weakSelf = self;
-    _plid = @"1";
     /**查询商品所有信息*/
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":_plid} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
         
-        weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject[@"list"][0]];
-        [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":_plid} datas:^(NSDictionary *responseObject) {
+        weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
             NSArray * list = responseObject[@"list"];
             for (int i = 0;  i < list.count; i++) {
                 WPListModel * model = list[i];
-                [_listDatas addObject:model];
-                [self.tableView reloadData];
+                [weakSelf.listDatas addObject:model];
             }
+            [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
+                NSArray * list = responseObject[@"list"];
+                for (int i = 0;  i<list.count; i++) {
+                    WPDreamingCommentsModel * model = [WPDreamingCommentsModel mj_objectWithKeyValues:list[i]];
+                    [weakSelf.model.commentsModelArray addObject:model];
+                }
+                [weakSelf.tableView reloadData];
+            }];
+
         }];
     }];
     /**轮播图*/
@@ -182,49 +193,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         }
         _rollPlay.imageURLStringsGroup = images;
     }];
-    
-    
-//    
-//    [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343696607&di=6b2b2d9170e81866eb10ce92ffd729b1&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fa2cc7cd98d1001e9460fd63bbd0e7bec54e797d7.jpg"];
-//    [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343753469&di=bd25b0ec8294590994f1d587d50bb702&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb2de9c82d158ccbf79a00f8c1cd8bc3eb1354163.jpg"];
-//    [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343764929&di=c9611e27e8ac4193f78590e3ef862c8a&imgtype=0&src=http%3A%2F%2Fg.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F55e736d12f2eb93895023c7fd7628535e4dd6fcb.jpg"];
-//    [_rollPlayImages addObject:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488343781255&di=ba9989ee0369ff1e81b45f49cad2befe&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F1e30e924b899a901760b8f321f950a7b0208f5fc.jpg"];
-//    _model.images_url   = _rollPlayImages;
-//    
-//    WPSearchUserModel * userModel = [[WPSearchUserModel alloc]init];
-//    userModel.url           = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488344992155&di=844982cc46812af732872ffe8609c6ce&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F08f790529822720e561834f379cb0a46f31fabe1.jpg";
-//    userModel.uname         = @"优品家居";
-//    userModel.signature     = @"klllll;";
-//    userModel.attention     = @"1";
-//    userModel.fansNumber    = @"123";
-//    userModel.goodsNum      = @"45";
-//    userModel.uid           = @"1111";
-//    _model.userModel = userModel;
-//    
-//    NSMutableArray * commentArray               = [NSMutableArray arrayWithCapacity:3];
-//    for (int i = 0; i<4; i++) {
-//        WPDreamingCommentsModel * commentsModel = [[WPDreamingCommentsModel alloc]init];
-//        commentsModel.name = @"Random";
-//        commentsModel.comments                  = @"这卖的是什么鬼玩意垃圾坑死人了，大家不要被他骗 了，真的黑心商家，去你妹的混蛋的点点滴滴多";
-//        [commentArray addObject:commentsModel];
-//    }
-//    _model.commentsModelArray                   = commentArray;
-//    
-//    
-//    WPDreamingIntroduceModel * introduceModel   = [[WPDreamingIntroduceModel alloc]init];
-//    
-//    introduceModel.dreamingIntroduce    = @"吉欧斯额衣服哦私有化覅搜一苏覅护士看见对方换了卡健身房苦涩合肥路设法看似简单护肤开始交电话费了速尔还管一UR涵盖了客家话粒子开始交电话费构建动画进入韩国如何管理局开始离开惊魂甫定蓝思科技东方红赶快来就肯定会放假了可是看见的复合弓快捷快递健身房韩国肯定就是发过火流口水的脚后跟故人具借款人离开在路上的人工湖软件管理看似简单立刻感觉";
-//    introduceModel.dreamingRules        = @"我们的规则就是:会计核算的购房款三国杀要发个一uetfgbuygsirugbjaskjdfblkjblkjasbdkjf极乐空间如果邻居家哈哈无色偶记哈维尔 为很快就好   几块了好人纷纷离开文件 啦看江山如画了案例为客户发热";
-//    introduceModel.dreamingStory        = @"我的故事是:空间的书房里就开始点开链接刚回到家空间链接拉市人大良好看到了；看见对方；离开金额非人工 ser；沟通困了就睡的；更健康吃饭了接口；立刻进入；觉得愧疚；记录大雪纷飞快递费更健康劳动者发来了登录；科技六路董事长卡罗拉的高素质开了蓝灯个同时了；空间的风格；空间相册；铝扣板功能老师";
-//    _model.introduceModel               = introduceModel;
-//    
-//    
-//    NSString * price        = @"120";
-//    NSString * unit         = @"￥";
-//    NSString * progress     = @"0.3";
-//    _model.price            = price;
-//    _model.unit             = unit;
-//    _model.progress         = progress;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -273,6 +241,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     else if (indexPath.section == 4){
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
         WPDreamingCommentsModel * model = _model.commentsModelArray[indexPath.row];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [self createCommentsLabelWithModel:model cell:cell];
         return cell;
     }
@@ -304,11 +273,11 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     else if (indexPath.section == 4){
         NSArray * array = _model.commentsModelArray;
         WPDreamingCommentsModel * model = array[indexPath.row];
-        NSString * name = model.name;
-        NSString * comments = model.comments;
+        NSString * name = model.uname;
+        NSString * comments = model.comment;
         NSString * totle = [NSString stringWithFormat:@"%@:%@",name,comments];
         CGSize size = [totle getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)];
-        return size.height;
+        return size.height+5;
     }
     else if (indexPath.section == 5){
         return 40;
@@ -361,7 +330,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     commentModel.comment = text;
     commentModel.commenttime = [self getNowTime];
     commentModel.headImage = [self getUserHeadPortrait];
-    
+    _comment.text = text;
 //    __block WPCommentModel * model = commentModel;
 //    __block WPDreamingDetailViewController * weakSelf = self;
 //    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":[self getSelfUid],@"gid":commentModel.gid,@"comment":commentModel.comment,@"commenttime":commentModel.commenttime} datas:^(NSDictionary *responseObject) {
@@ -376,18 +345,22 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 -(void)createCommentsLabelWithModel:(WPDreamingCommentsModel*)model cell:(UITableViewCell *)cell{
     [cell.contentView removeAllSubviews];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
-    NSString * name         = model.name;
-    NSString * comments     = model.comments;
+    NSString * uname         = model.uname;
+    NSString * comments     = model.comment
     
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@:%@",name,comments]];
-    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, name.length+comments.length+1)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, name.length)];
+    ;
+    
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@:%@",uname,comments]];
+    [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, uname.length+comments.length+1)];
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, uname.length)];
     
     cell.textLabel.numberOfLines    = 0;
     cell.textLabel.attributedText   = attributedString;
-    [cell.textLabel yb_addAttributeTapActionWithStrings:@[name] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
-        
-    }];
+    if (uname) {
+        [cell.textLabel yb_addAttributeTapActionWithStrings:@[uname] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
+            
+        }];
+    }
 }
 
 //创建评论框
@@ -396,11 +369,24 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     [cell.contentView removeAllSubviews];
     UITextField * commentsTextField = [[UITextField alloc]initWithFrame:CGRectMake(20, 5, WINDOW_WIDTH - 110, 30)];
     commentsTextField.placeholder = @"我来说两句";
-    commentsTextField.layer.masksToBounds   = YES;
-    commentsTextField.layer.cornerRadius    = 15;
+    
     commentsTextField.font = [UIFont systemFontOfSize:15];
     [commentsTextField addTarget:self action:@selector(commentGoods) forControlEvents:UIControlEventTouchUpInside];
+
     [cell.contentView addSubview:commentsTextField];
+    commentsTextField.userInteractionEnabled = NO;
+    _comment = commentsTextField;
+    
+    UIButton * comment = [UIButton buttonWithType:UIButtonTypeCustom];
+    comment.frame = commentsTextField.frame;
+    comment.x-=5;
+    comment.width+=5;
+    comment.layer.masksToBounds   = YES;
+    comment.layer.cornerRadius    = 5;
+    comment.layer.borderColor     = GRAY_COLOR.CGColor;
+    comment.layer.borderWidth     = 0.5f;
+    [comment addTarget:self action:@selector(commentGoods) forControlEvents:UIControlEventTouchUpInside];
+    [cell.contentView addSubview:comment];
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"发送" forState:UIControlStateNormal];
@@ -411,17 +397,23 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     button.titleLabel.font = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(pushComments) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:button];
-    
 }
+
 
 -(void)commentGoods{
     [self.commentKeyBoard keyboardUpforComment];
+    
 }
 
-
-
 -(void)pushComments{
-    
+    //发布评论
+    [WPNetWorking createPostRequestMenagerWithUrlString:CommentproductsUrl params:@{@"proid":self.model.proid,@"uid":[self getSelfUid],@"comment":_comment.text,@"commenttime":[self getNowTime]} datas:^(NSDictionary *responseObject) {
+        WPDreamingCommentsModel * model = [[WPDreamingCommentsModel alloc]init];
+        model.uname = [self getUserName];
+        model.comment = _comment.text;
+        [_model.commentsModelArray insertObject:model atIndex:0];
+        [_tableView reloadData];
+    }];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -431,7 +423,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:indexPath];
     CGRect rect = [self.tableView convertRect:rectInTableView toView:[self.tableView superview]];
     
-    if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y) {
+    if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y+80) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
         self.model.introduceModel.dreamingStory = self.model.story;
@@ -439,7 +431,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         [vc.view addSubview:dv];
         [self presentViewController:vc animated:YES completion:nil];
     }
-    
 }
 
 #pragma mark 界面跳转

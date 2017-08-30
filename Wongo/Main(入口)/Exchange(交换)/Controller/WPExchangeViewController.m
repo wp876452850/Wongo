@@ -21,10 +21,12 @@
 #import "WPUserIntroductionTableViewCell.h"
 #import "WPCommentModel.h"
 #import "WPRecommendationView.h"
+#import "WPExchangeImageShowTableViewCell.h"
 
 static NSString * const userCell            = @"UserCell";
 static NSString * const commodityCell       = @"CommodityCell";
-static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
+static NSString * const commentsSectionCell = @"WPCommentsSectionTableViewCell";
+static NSString * const imageShowCell       = @"ImageShowCell";
 
 @interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,WPRecommendationViewDelegate>
 
@@ -76,9 +78,10 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
         _tableView.dataSource       = self;
         
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSection];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSectionCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
+        [_tableView registerClass:[WPExchangeImageShowTableViewCell class] forCellReuseIdentifier:imageShowCell];
         
         //创建按钮        
     }
@@ -152,7 +155,7 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -193,7 +196,7 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
             break;
 
         case 3:{
-            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSection forIndexPath:indexPath];
+            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
             cell.model = self.exchangeModel;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
@@ -217,10 +220,15 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
             return cell;
         }
             break;
+        case 5:{
+            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.selectionStyle     = UITableViewCellSelectionStyleNone;
+            return cell;
+        }
+            break;
     }
-    UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.selectionStyle     = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = RandomColor;
+    WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
+    cell.images = self.exchangeModel.rollPlayImages;
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -253,8 +261,13 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
             return rowHeight;
         }
             break;
+        case 5:{
+            return 40;
+        }
+            break;
     }
-    return 40;
+    
+    return (WINDOW_WIDTH+40)*self.exchangeModel.rollPlayImages.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -418,7 +431,7 @@ static NSString * const commentsSection     = @"WPCommentsSectionTableViewCell";
     }];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSLog(@"%.2f",self.tableView.contentOffset.y);
+    //NSLog(@"%.2f",self.tableView.contentOffset.y);
     if (self.tableView.contentOffset.y >= 319) {
         
         //self.tableView.y = self.tableView.contentOffset.y - 319;

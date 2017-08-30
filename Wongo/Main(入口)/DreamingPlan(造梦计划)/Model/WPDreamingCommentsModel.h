@@ -10,7 +10,13 @@
 
 @interface WPDreamingCommentsModel : NSObject
 //评论人
-@property (nonatomic,strong)NSString * name;
+@property (nonatomic,strong)NSString * uname;
 //评论信息
-@property (nonatomic,strong)NSString * comments;
+@property (nonatomic,strong)NSString * comment;
+
+@property (nonatomic,strong)NSString * proid;
+
+@property (nonatomic,strong)NSString * cpid;
+
+@property (nonatomic,strong)NSString * commenttime;
 @end

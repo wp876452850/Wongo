@@ -32,8 +32,8 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"1_star_1@3x"] forState:UIControlStateNormal];
-    [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"1_star_2@3x"] forState:UIControlStateSelected];
+    [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"exchangecollect_normal"] forState:UIControlStateNormal];
+    [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"exchangecollect_select"] forState:UIControlStateSelected];
 }
 
 -(void)setModel:(WPExchangeDetailModel *)model{

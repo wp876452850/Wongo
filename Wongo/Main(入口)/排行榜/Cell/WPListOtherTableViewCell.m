@@ -11,27 +11,23 @@
 
 @interface WPListOtherTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
-@property (nonatomic,strong)UILabel * name;
+
+@property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIButton *thumup;
 @property (weak, nonatomic) IBOutlet UILabel *number;
 
 @end
 @implementation WPListOtherTableViewCell
 
--(UILabel *)name{
-    if (!_name) {
-        _name = [[UILabel alloc]init];
-        _name.bounds = CGRectMake(0, 0, 200, 20);
-        _name.y = _headerImage.y + 5;
-        _name.x = _headerImage.right + 5;
-    }
-    return _name;
-}
-
 -(void)setModel:(WPListModel *)model{
     _model = model;
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
-    self.number.text = model.praise;
+    if (model.praise) {
+        self.number.text = model.praise;
+    }
+    else{
+        self.number.text = @"0";
+    }
     self.name.text = model.uname;
 }
 
@@ -41,8 +37,6 @@
     self.headerImage.layer.masksToBounds = YES;
     self.headerImage.layer.cornerRadius = 30;
     
-    
-    [self.contentView addSubview:self.name];
     [_thumup setImage:[UIImage imageNamed:@"listthumup_normal"] forState:UIControlStateNormal];
     [_thumup setImage:[UIImage imageNamed:@"listthumup_black"] forState:UIControlStateSelected];
 }

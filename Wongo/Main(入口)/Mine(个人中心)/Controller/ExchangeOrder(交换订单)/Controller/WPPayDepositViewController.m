@@ -52,7 +52,7 @@
     [self.view addSubview:self.nav];
     _pay.layer.masksToBounds = YES;
     _pay.layer.cornerRadius  = 5;
-    self.payAmountField.text = [NSString stringWithFormat:@"%.2f",[self notRounding:self.myAmount * 0.3 afterPoint:2]];
+    self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount /3 afterPoint:2]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:@"ALIPAY_DONE" object:nil];
 }
 - (void)dealloc{
@@ -86,7 +86,8 @@
 - (IBAction)jumpPayThird:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
     // NOTE: 调用支付结果开始支付
-    CGFloat f = [self notRounding:self.payAmountField.text.floatValue afterPoint:2];
+    CGFloat f = [self notRounding:[self.payAmountField.text substringFromIndex:1].floatValue afterPoint:2];
+    NSLog(@"%@",[self.payAmountField.text substringFromIndex:1]);
     CGFloat v = [self notRounding:self.myAmount * 0.3 afterPoint:2];
     if (f >= v) {
         NSString *parm1 = self.isDream?@"ploid":@"oid";
