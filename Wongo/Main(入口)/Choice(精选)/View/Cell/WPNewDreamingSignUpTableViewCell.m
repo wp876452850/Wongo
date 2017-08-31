@@ -12,7 +12,9 @@
 
 #define ImageWidth (WINDOW_WIDTH / 2 - 7.5)
 
-@interface WPNewDreamingSignUpTableViewCell ()
+@interface WPNewDreamingSignUpTableViewCell (){
+    WPNewDreamingSignUpTableViewCellClose _block;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *browseNumber;
@@ -59,13 +61,15 @@
     WPDreamingDirectoryModel * model  = self.dataSource[tap.view.tag];
     WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid subid:model.subid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
-    
 }
 
 - (IBAction)close:(UIButton *)sender {
-    
-    
-    
+    if (_block) {
+        _block();
+    }
 }
 
+-(void)closeWithBlock:(WPNewDreamingSignUpTableViewCellClose)block{
+    _block = block;
+}
 @end

@@ -158,10 +158,12 @@ static NSString * contentOffset = @"contentOffset";
             }
             _page++;
             
-            [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"18"} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:QueryProduct params:nil datas:^(NSDictionary *responseObject) {
+                
                 _dreamings = [NSMutableArray arrayWithCapacity:3];
                 [_dreamings addObject:responseObject];
-                [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":@"19"} datas:^(NSDictionary *responseObject) {
+                
+                [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":responseObject[@"list"][0]} datas:^(NSDictionary *responseObject) {
                     [_dreamings addObject:responseObject];
                     [_collectionView reloadData];
                 }];

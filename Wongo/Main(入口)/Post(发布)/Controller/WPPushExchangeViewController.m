@@ -209,7 +209,7 @@ static NSString * const parameter       = @"Parameter";
             break;
         case 4:case 5:
         {
-            //跳转地址选择控制器
+            
             UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.text = Push_Titles[indexPath.section];
@@ -329,6 +329,4 @@ static NSString * const parameter       = @"Parameter";
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
-
-
 @end

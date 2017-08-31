@@ -21,7 +21,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.image.layer.masksToBounds = YES;
     self.image.layer.cornerRadius = 20;
     self.image.layer.borderColor = WhiteColor.CGColor;

@@ -175,6 +175,8 @@
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
     //判断是否登录
     [self determineWhetherTheLogin];
+    
+    
 }
 
 -(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{

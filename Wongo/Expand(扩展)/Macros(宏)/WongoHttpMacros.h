@@ -107,6 +107,8 @@
 /**
  *      造梦
  */
+/**查询所有造梦计划*/
+#define QueryProduct            HttpHead(@"queryPlanById")
 /**主页造梦*/
 #define HtQueryProductStatePlan HttpHead(@"queryProductById")
 /**造梦计划主页展示数据URL*/
@@ -135,16 +137,18 @@
 #define AliPayProductUrl        HttpHead(@"aliPayProduct")
 /***/
 #define SelectProduct           HttpHead(@"selectProduct")
+
 /**
  *  点赞
  */
-#define ThumUpAddUrl            HttpHead(@"IncensesAdd")
+#define ThumUpAddUrl            HttpHead(@"incensesAdd")
 /**取消点赞*/
-#define ThumUpCancelUrl         HttpHead(@"IncensesDel")
+#define ThumUpCancelUrl         HttpHead(@"incensesDel")
+/**造梦点赞*/
+#define IncensesproductAdd      HttpHead(@"incensesproductAdd")
+/**造梦取消点赞*/
+#define IncensesproductDel      HttpHead(@"incensesproductDel")
 
-#define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
-
-#define IncensesproductDel      HttpHead(@"IncensesproductDel")
 /**
  *  评论
  */
@@ -153,9 +157,14 @@
 /**查询交换评论*/
 #define QueryUserCommentUrl     HttpHead(@"queryUserComment")
 /**添加造梦评论*/
-#define CommentproductsUrl      HttpHead(@"CommentproductsAdd")
+#define CommentproductsUrl      HttpHead(@"commentproductsAdd")
 /**查询造梦评论*/
 #define QueryUserCommentproduct HttpHead(@"queryUserCommentproduct")
+
+/**
+ *  关注
+ */
+#define AttentionnumAddUrl      HttpHead(@"attentionnumAdd")
 
 /**
  *  排行榜

@@ -99,8 +99,16 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         if (_memoryButtonTag == 0) {
             WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
             return cell;
+            
         }
         WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        [cell closeWithBlock:^{
+            NSDictionary * dic = @{@"Cell": @"cell",@"isOpen":@(NO)};
+            self.cellsArray[(indexPath.section)] = dic;
+            [self beginUpdates];
+            [self deleteRowsAtIndexPaths:@[indexPath]  withRowAnimation:UITableViewRowAnimationMiddle];
+            [self endUpdates];
+        }];
         return cell;
     }
 }
@@ -122,9 +130,11 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
                 [self beginUpdates];
                 [self insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
                 [self endUpdates];
+                [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
                 }
             }
     }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

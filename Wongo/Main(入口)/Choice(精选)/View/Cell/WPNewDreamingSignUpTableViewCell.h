@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^WPNewDreamingSignUpTableViewCellClose)(void);
 @interface WPNewDreamingSignUpTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)NSMutableArray * dataSource;
+
+-(void)closeWithBlock:(WPNewDreamingSignUpTableViewCellClose)block;
 
 @end

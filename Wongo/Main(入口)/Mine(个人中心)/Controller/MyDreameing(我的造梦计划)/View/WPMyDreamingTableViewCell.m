@@ -1,14 +1,14 @@
 //
-//  WPDreamingOrderTableViewCell.m
+//  WPMyDreamingTableViewCell.m
 //  Wongo
 //
-//  Created by rexsu on 2017/5/15.
+//  Created by  WanGao on 2017/8/30.
 //  Copyright © 2017年 Winny. All rights reserved.
 //
 
-#import "WPDreamingOrderTableViewCell.h"
+#import "WPMyDreamingTableViewCell.h"
 
-@implementation WPDreamingOrderTableViewCell
+@implementation WPMyDreamingTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -18,7 +18,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

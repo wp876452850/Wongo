@@ -23,8 +23,7 @@
     if (!_nav) {
         _nav = [[WPMyNavigationBar alloc]init];
         [_nav.leftButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
-        _nav.title.text = @"造梦计划";
-        
+        _nav.title.text = @"造梦计划";        
     }
     return _nav;
 }

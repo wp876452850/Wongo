@@ -84,6 +84,7 @@ static NSString * const storeCell       = @"StoreCell";
         [self.view addSubview:self.collectionView];
         //[self addFooter];
         [self addHeader];
+        [self showShoppingBottomView];
     }
     return self;
 }
@@ -194,8 +195,8 @@ static NSString * const storeCell       = @"StoreCell";
     collect.frame           = CGRectMake(chat.right, 0, (WINDOW_WIDTH - chat.width), 50);
     collect.backgroundColor = ColorWithRGB(105, 152, 192);
     [collect setTitleColor:WhiteColor forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注" ] insertImage:[UIImage imageNamed:@""] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] insertImage:[UIImage imageNamed:@""] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateSelected];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注" ] insertImage:[UIImage imageNamed:@"storecollect_normal"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] insertImage:[UIImage imageNamed:@"storecollect_select"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateSelected];
 
     [collect addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -221,6 +222,11 @@ static NSString * const storeCell       = @"StoreCell";
 }
 
 -(void)collect:(UIButton *)sender{
+    sender.selected = !sender.selected;
+    [self focusOnTheUserWithSender:sender uid:self.uid];
+}
+
+-(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
     
 }
 @end

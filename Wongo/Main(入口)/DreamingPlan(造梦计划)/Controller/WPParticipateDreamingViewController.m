@@ -299,9 +299,9 @@ static NSString * const cell            = @"cell";
         
 #warning plid修改
         
-        NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"want":_want,@"pubtime":timeStr,@"plid":@"1"};
+        NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"want":_want,@"pubtime":timeStr,@"plid":_plid};
         
-        [WPNetWorking createPostRequestMenagerWithUrlString:AddProduct params:params datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:JoinProUrl params:params datas:^(NSDictionary *responseObject) {
             NSString * flag = [responseObject objectForKey:@"flag"];
             if ([flag integerValue] == 1) {
                 //上传图片
