@@ -10,8 +10,12 @@
 
 @interface WPDreamingImageTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
+/**状态(进行中)*/
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
-
+/**状态框(已完成)*/
+@property (weak, nonatomic) IBOutlet UILabel *logoLabelOK;
+/**状态(已完成)*/
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageOK;
 @end
 @implementation WPDreamingImageTableViewCell
 
@@ -22,6 +26,16 @@
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
-    
+}
+-(void)showOK{
+    self.logoImageOK.hidden = NO;
+    self.logoLabelOK.hidden = NO;
+    self.logoImage.hidden = YES;
+    }
+-(void)showOngoing
+{
+    self.logoImage.hidden = NO;
+    self.logoImageOK.hidden = YES;
+    self.logoLabelOK.hidden = YES;
 }
 @end

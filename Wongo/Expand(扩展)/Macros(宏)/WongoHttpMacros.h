@@ -69,10 +69,6 @@
 #define UpdateUserUrl           HttpHead(@"updateUser")
 
 
-
-
-
-
 /**搜索用户信息*/
 #define UserQueryNameUrl        HttpHead(@"userQueryName")
 
@@ -100,9 +96,6 @@
 #define QtQueryType             HttpHead(@"qtQueryType")
 /**查询某一分类下的物品 */
 #define QtQueryTypegdlist       HttpHead(@"qtQueryTypegdlist")
-/**交换支付 */
-#define AliPayUrl               HttpHead(@"aliPay")
-
 
 /**
  *      造梦
@@ -133,10 +126,16 @@
 #define UpdatePlorderUrl        HttpHead(@"updatePlorder")
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
-/**造梦支付 */
-#define AliPayProductUrl        HttpHead(@"aliPayProduct")
 /***/
 #define SelectProduct           HttpHead(@"selectProduct")
+
+/**
+ *  支付
+ */
+/**造梦支付 */
+#define AliPayProductUrl        HttpHead(@"aliPayProduct")
+/**交换支付 */
+#define AliPayUrl               HttpHead(@"aliPay")
 
 /**
  *  点赞

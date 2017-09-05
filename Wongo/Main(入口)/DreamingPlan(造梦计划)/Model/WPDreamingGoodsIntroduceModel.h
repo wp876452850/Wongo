@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface WPDreamingGoodsIntroduceModel : NSObject
-
-
-
+@property (nonatomic,strong)NSString * url;
+@property (nonatomic,strong)NSString * uname;
+@property (nonatomic,strong)NSString * pubtime;
+@property (nonatomic,strong)NSArray * list;
+@property (nonatomic,strong)NSString * remark;
 @end

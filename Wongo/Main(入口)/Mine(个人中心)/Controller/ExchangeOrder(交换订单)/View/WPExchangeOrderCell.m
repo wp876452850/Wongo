@@ -12,6 +12,7 @@
 #import "WPExchangeViewController.h"
 
 #define TransactionStatus   @[@"交易关闭",@"申请中",@"等待同意",@"待支付保证金",@"待发货",@"待确认",@"待退保证金",@"退款成功",@"平台介入",@""]
+
 #define RightButtonTitles   @[@"",@"申请中",@"同意交换",@"支付保证金", @"发货",  @"确认收货",@"待退保证金",@"退款成功",@"平台介入",@""]
 
 
@@ -156,6 +157,7 @@
             break;
         case 3:
         {
+            
             //支付保证金
             WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] dream:NO];
 //            vc.model = self.model;

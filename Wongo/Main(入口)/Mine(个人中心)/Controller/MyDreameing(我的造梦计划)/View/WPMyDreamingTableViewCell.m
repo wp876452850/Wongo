@@ -8,11 +8,22 @@
 
 #import "WPMyDreamingTableViewCell.h"
 
+
+@interface WPMyDreamingTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *stateImage;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImage;
+
+@property (weak, nonatomic) IBOutlet UIButton *button;
+
+@end
 @implementation WPMyDreamingTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.button.layer.masksToBounds = YES;
+    self.button.layer.cornerRadius = 5.f;
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

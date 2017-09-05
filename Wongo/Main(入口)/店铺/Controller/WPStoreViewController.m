@@ -195,8 +195,8 @@ static NSString * const storeCell       = @"StoreCell";
     collect.frame           = CGRectMake(chat.right, 0, (WINDOW_WIDTH - chat.width), 50);
     collect.backgroundColor = ColorWithRGB(105, 152, 192);
     [collect setTitleColor:WhiteColor forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注" ] insertImage:[UIImage imageNamed:@"storecollect_normal"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] insertImage:[UIImage imageNamed:@"storecollect_select"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateSelected];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注"] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, 2)] insertImage:[UIImage imageNamed:@"storecollect_normal"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, 3)] insertImage:[UIImage imageNamed:@"storecollect_select"] atIndex:0 imageBounds:CGRectZero]  forState:UIControlStateSelected];
 
     [collect addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     

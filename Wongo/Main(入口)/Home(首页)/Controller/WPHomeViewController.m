@@ -159,16 +159,17 @@ static NSString * contentOffset = @"contentOffset";
             _page++;
             
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryProduct params:nil datas:^(NSDictionary *responseObject) {
-                
+                NSArray * dreamings = responseObject[@"list"];
                 _dreamings = [NSMutableArray arrayWithCapacity:3];
-                [_dreamings addObject:responseObject];
-                
-                [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"proid":responseObject[@"list"][0]} datas:^(NSDictionary *responseObject) {
-                    [_dreamings addObject:responseObject];
-                    [_collectionView reloadData];
-                }];
+                for (int i = 0; i < dreamings.count; i++) {
+                    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
+                        [_dreamings addObject:responseObject];
+                        if (i==dreamings.count-1) {
+                            [_collectionView reloadData];
+                        }
+                    }];
+                }
             }];
-            
         }];
         
     }failureBlock:^{
@@ -284,7 +285,7 @@ static NSString * contentOffset = @"contentOffset";
     }
     else if (indexPath.section == 2){
         WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-        NSDictionary * dic = _dreamings[indexPath.row];
+        NSDictionary * dic = _dreamings[indexPath.row][@"list"][0];
         cell.proid = dic[@"proid"];
         cell.url = dic[@"url"];
         return cell;

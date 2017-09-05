@@ -33,7 +33,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 //自动滚播器
 @property (nonatomic,strong) SDCycleScrollView      * cycleScrollView;
 @property (nonatomic,strong) WPExchangeDetailModel  * exchangeModel;
-@property (nonatomic,strong) UITableView            * tableView;
+
 @property (nonatomic,strong) NSString               * urlString;
 @property (nonatomic,strong) NSDictionary           * params;
 @property (nonatomic,strong) UIButton               * backButton;

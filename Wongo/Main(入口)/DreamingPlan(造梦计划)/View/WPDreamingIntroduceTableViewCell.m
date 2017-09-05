@@ -12,36 +12,73 @@
 #define Window_Width [UIScreen mainScreen].bounds.size.width
 #define ImageWidth (Window_Width-70)/4
 
-@interface WPDreamingIntroduceTableViewCell ()
+@interface WPDreamingIntroduceTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *pushTime;
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
 @property (weak, nonatomic) IBOutlet UILabel *goodsIntroduce;
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
+@property (nonatomic,strong)UICollectionView * collectionView;
+
+@property (nonatomic,strong)NSMutableArray * images;
 
 @end
 @implementation WPDreamingIntroduceTableViewCell
+
+-(UICollectionView *)collectionView{
+    if (!_collectionView) {
+        UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];
+        layout.itemSize = CGSizeMake(80, 80);
+        //设置横向
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        //设置最小行间距
+        layout.minimumLineSpacing = 10.f;
+        
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, _userName.bottom+20, WINDOW_WIDTH-20, 80) collectionViewLayout:layout];
+        _collectionView.backgroundColor = WhiteColor;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+    }
+    return _collectionView;
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _headerView.layer.masksToBounds = YES;
-    _headerView.layer.cornerRadius  = _headerView.height/2;
+    _headerView.layer.cornerRadius  = 25.f;
     [_goodsImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(Window_Width - 20, Window_Width-20));
         make.top.mas_equalTo(_goodsIntroduce.mas_bottom).mas_offset(10);
         make.left.mas_equalTo(10);
     }];
-    
-    for (int i = 0; i < 4; i++) {
-        UIImageView * image = [[UIImageView alloc]initWithFrame:CGRectMake(i*(ImageWidth+10)+20,_goodsIntroduce.bottom,ImageWidth,ImageWidth)];
-        image.backgroundColor = RandomColor;
-        [self.contentView addSubview:image];
-    }
+    self.images = [NSMutableArray arrayWithCapacity:3];
+    [self.contentView addSubview:self.collectionView];
 }
 
 -(void)setModel:(WPDreamingGoodsIntroduceModel *)model{
     _model = model;
+    _collectionView.contentOffset = CGPointMake(0, 0);
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 40;
+}
+
+-(void)setImages:(NSMutableArray *)images{
+    _images = images;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    [cell.contentView removeAllSubviews];
+    UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
+    image.backgroundColor = RandomColor;
+    [cell addSubview:image];
+    return cell;
 }
 @end

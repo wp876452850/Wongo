@@ -8,6 +8,7 @@
 //
 
 #import "WPProductDetailUserStoreTableViewCell.h"
+#import "WPStoreViewController.h"
 
 
 @interface WPProductDetailUserStoreTableViewCell ()
@@ -36,13 +37,20 @@
     [self.collect setTitle:@"取消关注" forState:UIControlStateSelected];
     [self.collect setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.collect setTitleColor:ColorWithRGB(3, 74, 107) forState:UIControlStateSelected];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [self.headPortrait addGestureRecognizer:tap];
+}
+
+-(void)tap{
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+    
 }
 
 - (IBAction)collect:(UIButton *)sender {
-    
     [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
     return;
-    
     [self focusOnTheUserWithSender:sender uid:_model.uid];    
 }
 

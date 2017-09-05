@@ -78,10 +78,12 @@
         });
     }
 }
+
 /**选择支付方式按钮*/
 - (IBAction)selectPayStyle:(UIButton *)sender {
     _pay.tag = 111;
 }
+
 /**前往选择的支付第三方*/
 - (IBAction)jumpPayThird:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
@@ -92,7 +94,7 @@
     if (f >= v) {
         NSString *parm1 = self.isDream?@"ploid":@"oid";
         NSString *url = self.isDream?AliPayProductUrl:AliPayUrl;
-        NSDictionary *params = @{parm1:self.oid,@"amount":[NSString stringWithFormat:@"%.2f",self.payAmountField.text.floatValue]};
+        NSDictionary *params = @{parm1:self.oid,@"amount":@(0.01)};
         [WPNetWorking createPostRequestMenagerWithUrlString:url params:params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
@@ -115,6 +117,7 @@
  
     return roundedOunces.floatValue;
 }
+
 /**限制输入的金额格式*/
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {

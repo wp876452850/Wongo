@@ -10,6 +10,7 @@
 
 @interface WPExchangeViewController : UIViewController
 @property (nonatomic,strong)UIView * bottomView;
+@property (nonatomic,strong)UITableView            * tableView;
 +(instancetype)createExchangeGoodsWithUrlString:(NSString *)url params:(NSDictionary *)params fromOrder:(BOOL)fromOrder;
 
 -(void)showExchangeBottomView;

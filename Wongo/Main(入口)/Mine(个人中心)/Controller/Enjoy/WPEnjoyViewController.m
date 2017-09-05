@@ -35,7 +35,7 @@
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
         _tableView.dataSource       = self;
-        _tableView.rowHeight        = 110.0f;
+        _tableView.rowHeight        = 115.0f;
         [_tableView registerNib:[UINib nibWithNibName:@"WPEnjoyGoodsTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
         
     }
@@ -76,10 +76,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WPEnjoyGoodsTableViewCell * cell    = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
     cell.model = self.dataSourceArray[indexPath.row];
     return cell;
 }
-
-
 
 @end

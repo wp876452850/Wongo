@@ -63,7 +63,7 @@
         switch (model.state) {
             case 0:
                 statusTitle = @"等待对方支付保证金";
-                self.rightButton.hidden = YES;
+                self.rightButton.hidden = NO;
                 break;
             case 1:
                 statusTitle = @"待发货";
@@ -173,7 +173,7 @@
     }else{//收货人
         switch (self.model.state) {
             case 0:{//支付保证金
-                WPPayDepositViewController *payVC = [[WPPayDepositViewController alloc] initWithOrderNumber:self.model.ploid price:self.model.money dream:YES];
+                WPPayDepositViewController *payVC = [[WPPayDepositViewController alloc] initWithOrderNumber:self.model.ploid price:[self.model.price floatValue] dream:YES];
                 [[self findViewController:self].navigationController pushViewController:payVC animated:YES];
             }
                 break;

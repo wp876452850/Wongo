@@ -12,5 +12,6 @@
 @interface WPDreamingImageTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)WPDreamingIntroduceImageModel * model;
-
+-(void)showOK;
+-(void)showOngoing;
 @end

@@ -49,9 +49,7 @@
 }
 
 -(void)setModel:(WPDreamingIntroduceModel *)model{
-    model.dreamingRules = @"哇塞大三大四打算";
     _model = model;
-    self.contentShowLabel.text = model.dreamingIntroduce;
 }
 
 -(instancetype)initWithFrame:(CGRect)frame{

@@ -21,13 +21,15 @@
 -(UIImageView *)instructions{
     if (!_instructions) {
         _instructions = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"positioning"]];
+        
     }
     return _instructions;
 }
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    _nowGoods.layer.masksToBounds = YES;
+    _nowGoods.layer.cornerRadius = _nowGoods.height/2;
 }
 
 -(void)setUrl:(NSString *)url{

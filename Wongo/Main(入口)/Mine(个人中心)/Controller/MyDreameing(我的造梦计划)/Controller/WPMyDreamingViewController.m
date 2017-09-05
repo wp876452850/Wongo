@@ -8,6 +8,7 @@
 
 #import "WPMyDreamingViewController.h"
 #import "WPMyNavigationBar.h"
+#import "WPMyDreamingTableViewCell.h"
 
 @interface WPMyDreamingViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -36,7 +37,8 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        _tableView.rowHeight = 245.f;
+        [_tableView registerNib:[UINib nibWithNibName:@"WPMyDreamingTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         
     }
     return _tableView;
@@ -47,8 +49,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self.view addSubview:self.nav];
+    [self.view addSubview:self.tableView];
     [self loadDatas];
-    
 }
 
 -(void)loadDatas{
@@ -64,7 +66,8 @@
     return 3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    WPMyDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

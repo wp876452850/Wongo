@@ -10,7 +10,7 @@
 
 @interface WPDreamingIntroduceModel : NSObject
 //造门图集
-@property (nonatomic,strong)NSString * dreamingIntroduce;
+@property (nonatomic,strong)NSArray  * dreamingIntroduces;
 //造梦规则
 @property (nonatomic,strong)NSString * dreamingRules;
 //造梦故事

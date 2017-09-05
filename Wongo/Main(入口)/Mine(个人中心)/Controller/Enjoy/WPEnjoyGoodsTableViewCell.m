@@ -7,6 +7,7 @@
 //
 
 #import "WPEnjoyGoodsTableViewCell.h"
+#import "WPExchangeViewController.h"
 
 @interface WPEnjoyGoodsTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -18,7 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -31,6 +32,12 @@
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
     _goodsName.text = model.gname;
     _price.text = [NSString stringWithFormat:@"%.2f",model.price.floatValue];
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    WPExchangeViewController * vc = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":self.model.gid} fromOrder:YES];
+    vc.tableView.frame = vc.view.bounds;
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 
 @end

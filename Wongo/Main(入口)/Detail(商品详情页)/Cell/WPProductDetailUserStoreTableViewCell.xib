@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="524" height="278"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="524" height="278"/>
+                <rect key="frame" x="0.0" y="0.0" width="524" height="277.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="110.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-uA-xSG">
@@ -27,16 +27,16 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="福建烤老鼠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-TU-2Xp">
-                        <rect key="frame" x="83" y="30" width="308" height="20"/>
+                        <rect key="frame" x="83" y="30" width="308" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Na7-0O-eRf"/>
+                            <constraint firstAttribute="height" constant="22" id="Na7-0O-eRf"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人气:500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b42-2B-wwV">
-                        <rect key="frame" x="83" y="60" width="308" height="20"/>
+                        <rect key="frame" x="83" y="62" width="308" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="dxq-ld-hUr"/>
                         </constraints>

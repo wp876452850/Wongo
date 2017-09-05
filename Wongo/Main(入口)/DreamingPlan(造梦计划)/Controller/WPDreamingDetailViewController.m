@@ -164,7 +164,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     __block WPDreamingDetailViewController * weakSelf = self;
     /**查询商品所有信息*/
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-        
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
         [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
             NSArray * list = responseObject[@"list"];
@@ -172,6 +171,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 WPListModel * model = list[i];
                 [weakSelf.listDatas addObject:model];
             }
+            
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
                 NSArray * list = responseObject[@"list"];
                 for (int i = 0;  i<list.count; i++) {

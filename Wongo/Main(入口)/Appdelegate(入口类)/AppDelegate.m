@@ -20,6 +20,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    //判断是否第一次登录
     NSString * first = [[NSUserDefaults standardUserDefaults]objectForKey:FirstTimeTosStart];
     if (first.length<=0||!first) {
         WPGuideViewController * vc = [[WPGuideViewController alloc]init];
@@ -33,7 +35,7 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [UIApplication sharedApplication].statusBarHidden = NO;
     }
-
+    
     //初始化融云SDK
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
@@ -62,7 +64,28 @@
         }];
     }
     
-
+    /**
+     *    远程推送
+     */
+    
+    /**
+     * 统计推送打开率
+     */
+    [[RCIMClient sharedRCIMClient] recordLaunchOptionsEvent:launchOptions];
+    
+    /**
+     * 获取融云推送服务扩展字段
+     * nil 表示该启动事件不包含来自融云的推送服务
+     */
+    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromLaunchOptions:launchOptions];
+    if (pushServiceData) {
+        NSLog(@"该启动事件包含来自融云的推送服务");
+        for (id key in [pushServiceData allKeys]) {
+            NSLog(@"%@", pushServiceData[key]);
+        }
+    } else {
+        NSLog(@"该启动事件不包含来自融云的推送服务");
+    }
     
     if ([application
          respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -89,6 +112,7 @@
  *  将得到的devicetoken 传给融云用于离线状态接收push ，您的app后台要上传推送证书
  */
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
     NSString *token =
     [[[[deviceToken description] stringByReplacingOccurrencesOfString:@"<"
                                                            withString:@""]
@@ -98,6 +122,30 @@
      withString:@""];
     
     [[RCIMClient sharedRCIMClient] setDeviceToken:token];
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    /**
+     * 统计推送打开率
+     */
+    [[RCIMClient sharedRCIMClient] recordRemoteNotificationEvent:userInfo];
+    
+    /**
+     * 获取融云推送服务扩展字段
+     * nil 表示该启动事件不包含来自融云的推送服务
+     */
+    NSDictionary *pushServiceData = [[RCIMClient sharedRCIMClient] getPushExtraFromRemoteNotification:userInfo];
+    if (pushServiceData) {
+        NSLog(@"该远程推送包含来自融云的推送服务");
+        for (id key in [pushServiceData allKeys]) {
+            NSLog(@"key = %@, value = %@", key, pushServiceData[key]);
+        }
+    } else {
+        NSLog(@"该远程推送不包含来自融云的推送服务");
+    }
+    
 }
 
 

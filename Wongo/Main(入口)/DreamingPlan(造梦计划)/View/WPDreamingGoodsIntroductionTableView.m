@@ -12,7 +12,7 @@
 #import "WPDreamingGoodsIntroduceModel.h"
 
 @interface WPDreamingGoodsIntroductionTableView ()<UITableViewDelegate,UITableViewDataSource>
-
+@property (nonatomic,strong)NSMutableArray * cellsHeight;
 @end
 @implementation WPDreamingGoodsIntroductionTableView
 static NSString * const imageCell       = @"imageCell";
@@ -23,7 +23,7 @@ static NSString * const introduceCell   = @"introduceCell";
     if (self = [super initWithFrame:frame style:style]) {
         [self registerNib:[UINib nibWithNibName:@"WPDreamingImageTableViewCell" bundle:nil] forCellReuseIdentifier:imageCell];
         [self registerNib:[UINib nibWithNibName:@"WPDreamingIntroduceTableViewCell" bundle:nil] forCellReuseIdentifier:introduceCell];
-        
+        self.cellsHeight = [NSMutableArray arrayWithCapacity:3];
         NSDictionary *dic = @{@"Cell":imageCell,@"isOpen":@(NO)};
         NSArray *array =@[dic,dic,dic,dic];
         
@@ -44,13 +44,16 @@ static NSString * const introduceCell   = @"introduceCell";
     
     if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell])
     {
-        
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
+        if (indexPath.row+1<self.dataArray.count) {
+            [cell showOK];
+        }else [cell showOngoing];
         return cell;
         
     }else if([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:introduceCell]){
         
         WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+        
         return cell;
     }
     return nil;
@@ -98,11 +101,14 @@ static NSString * const introduceCell   = @"introduceCell";
     
     if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell]) {
         //tableViewCell自身的高的
-        return WINDOW_WIDTH * 0.4;
+        return 230;
         
     }else{
         //弹出cell的高度
-        return 500;
+        if (indexPath.section >= self.cellsHeight.count) {
+            return 300;
+        }
+        return [self.cellsHeight[indexPath.section] floatValue];
     }
 }
 
