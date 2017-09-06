@@ -91,7 +91,6 @@ static NSString * const storeCell       = @"StoreCell";
 
 
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 10;
@@ -130,7 +129,6 @@ static NSString * const storeCell       = @"StoreCell";
 
 
 #pragma mark - loadDatas
-
 -(void)addHeader{
     __weak WPStoreViewController * weakSelf = self;
     self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
@@ -149,6 +147,7 @@ static NSString * const storeCell       = @"StoreCell";
 
 -(void)loadNewDatas{
     __weak WPStoreViewController * weakSelf = self;
+    
     [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"currPage":@(1),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goods"];
         _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
@@ -185,8 +184,8 @@ static NSString * const storeCell       = @"StoreCell";
         [weakSelf.collectionView.mj_footer endRefreshing];
     }];
 }
-#pragma mark - 展示底部视图样式
 
+#pragma mark - 展示底部视图样式
 -(void)showShoppingBottomView{
     [self.view addSubview:self.bottomView];
     UIButton * chat = [self createChatButton];
