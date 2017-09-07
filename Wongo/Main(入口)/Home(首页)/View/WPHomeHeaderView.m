@@ -135,6 +135,7 @@
     }
     //如果数据存在，则返回数据滚动图，若不存在则用自定义图
     _cycleScrollView.imageURLStringsGroup = arr.count?arr:ROLLPLAYIMAGES;
+//    _cycleScrollView.imageURLStringsGroup = ROLLPLAYIMAGES;
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{

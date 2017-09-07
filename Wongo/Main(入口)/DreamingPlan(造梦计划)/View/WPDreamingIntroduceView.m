@@ -10,6 +10,7 @@
 #import "WPDreamingGoodsIntroductionTableView.h"
 #define Titles @[@"参加商品",@"造梦规则",@"造梦故事"]
 #define TitlesImages @[@"dreamingitemsisintroduced",@"dreamingrules",@"dreamingstory"]
+#define TitlesSelectImages @[@"dreamingitemsisintroduced_select",@"dreamingrules_select",@"dreamingstory_select"]
 
 @interface WPDreamingIntroduceView ()
 @property (nonatomic,strong)UIButton * selectButton;
@@ -70,6 +71,7 @@
         button.frame = CGRectMake(i*WINDOW_WIDTH/3, 20, WINDOW_WIDTH/3, 40);
         [button setTitle:Titles[i] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:TitlesImages[i]] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:TitlesSelectImages[i]] forState:UIControlStateSelected];
         button.backgroundColor = WhiteColor;
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [button setTitleColor:WongoBlueColor forState:UIControlStateSelected];

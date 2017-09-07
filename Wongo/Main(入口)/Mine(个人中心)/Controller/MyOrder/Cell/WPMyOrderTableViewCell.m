@@ -63,7 +63,7 @@
         switch (model.state) {
             case 0:
                 statusTitle = @"等待对方支付保证金";
-                self.rightButton.hidden = NO;
+                self.rightButton.hidden = YES;
                 break;
             case 1:
                 statusTitle = @"待发货";
@@ -179,7 +179,9 @@
                 break;
 
             case 2://确认收货
-            {   [SVProgressHUD showWithStatus:@"确认中..."];
+            {
+            
+                [SVProgressHUD showWithStatus:@"确认中..."];
                 [WPNetWorking createPostRequestMenagerWithUrlString:UpdatePlorderStateUrl params:@{@"ploid":self.model.ploid} datas:^(NSDictionary *responseObject) {
                     if ([responseObject isKindOfClass:[NSDictionary class]] && [responseObject[@"flag"] intValue] == 1) {
                         self.model.state = 3;
