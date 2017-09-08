@@ -16,6 +16,7 @@
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
 #import "WPPushParameterTableViewCell.h"
+#import "WPGoodsClassModel.h"
 
 #define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
 #define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
@@ -142,7 +143,12 @@ static NSString * const parameter       = @"Parameter";
             return;
         }
     }
-    
+    if ([_price floatValue]<0) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得小于0" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+    if ([_price floatValue]>999999) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
     if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_inventory.length!=0&&_newOrOld.length!=0) {
        
         NSString * timeStr = [self getNowTime];

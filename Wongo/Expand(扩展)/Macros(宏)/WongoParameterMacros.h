@@ -37,10 +37,11 @@
 
 #define ColorWithRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 //自定义色
-#define AllBorderColor  ColorWithRGB(217, 217, 217)
-#define WongoBlueColor  ColorWithRGB(27, 74, 108)
-#define WhiteColor      ColorWithRGB(255,255,255)
-#define SelfOrangeColor ColorWithRGB(252,139,29)
+#define WongoGrayColor    ColorWithRGB(241, 240, 244)
+#define AllBorderColor      ColorWithRGB(217, 217, 217)
+#define WongoBlueColor      ColorWithRGB(27, 74, 108)
+#define WhiteColor          ColorWithRGB(255,255,255)
+#define SelfOrangeColor     ColorWithRGB(252,139,29)
 #define User_MobileVersion [[[UIDevice currentDevice] systemVersion] floatValue]
 #define RollPlayFrame CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
 

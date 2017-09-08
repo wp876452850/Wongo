@@ -335,6 +335,7 @@
 		3D389C1F1EE6A0C300B25DF4 /* LYExchangeOrderDetialModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D389C1E1EE6A0C300B25DF4 /* LYExchangeOrderDetialModel.m */; };
 		3D43CE8F1EF2293B0047A23C /* LYHomeBannerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D43CE8E1EF2293B0047A23C /* LYHomeBannerM.m */; };
 		3D43CE951EF23E540047A23C /* LYActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D43CE941EF23E540047A23C /* LYActivityController.m */; };
+		3D5737651F60E26200ECF3AB /* WPGoodsClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5737641F60E26200ECF3AB /* WPGoodsClassModel.m */; };
 		3D5B36D21F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B36D01F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.m */; };
 		3D5B36D31F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D5B36D11F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.xib */; };
 		3D5B36D61F3C56B90065E61E /* WPNewDreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5B36D51F3C56B90065E61E /* WPNewDreamingModel.m */; };
@@ -1321,6 +1322,8 @@
 		3D43CE8E1EF2293B0047A23C /* LYHomeBannerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeBannerM.m; sourceTree = "<group>"; };
 		3D43CE931EF23E540047A23C /* LYActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYActivityController.h; sourceTree = "<group>"; };
 		3D43CE941EF23E540047A23C /* LYActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYActivityController.m; sourceTree = "<group>"; };
+		3D5737631F60E26200ECF3AB /* WPGoodsClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPGoodsClassModel.h; path = "Wongo/Main(入口)/Mine(个人中心)/Controller/MyDreameing(我的造梦计划)/View/WPGoodsClassModel.h"; sourceTree = SOURCE_ROOT; };
+		3D5737641F60E26200ECF3AB /* WPGoodsClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPGoodsClassModel.m; path = "Wongo/Main(入口)/Mine(个人中心)/Controller/MyDreameing(我的造梦计划)/View/WPGoodsClassModel.m"; sourceTree = SOURCE_ROOT; };
 		3D5B36CF1F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewDreamingSignUpTableViewCell.h; sourceTree = "<group>"; };
 		3D5B36D01F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNewDreamingSignUpTableViewCell.m; sourceTree = "<group>"; };
 		3D5B36D11F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPNewDreamingSignUpTableViewCell.xib; sourceTree = "<group>"; };
@@ -5699,6 +5702,8 @@
 		8566A8401E4827F600C08624 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D5737631F60E26200ECF3AB /* WPGoodsClassModel.h */,
+				3D5737641F60E26200ECF3AB /* WPGoodsClassModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7676,6 +7681,7 @@
 				85F08F161E48504C00A07451 /* TADotView.m in Sources */,
 				854196281E55866F002210C7 /* WPSearchResultsViewController.m in Sources */,
 				8597EFBF1E8A6BAA001E1BA5 /* WPSelectExchangeGoodsViewController.m in Sources */,
+				3D5737651F60E26200ECF3AB /* WPGoodsClassModel.m in Sources */,
 				3D1906341F29C99300E4EFFD /* WPProductLinkView.m in Sources */,
 				85D595591E5C1C6F00AB5869 /* WPSearchGoodsChildController.m in Sources */,
 				3D603BEC1F3953C200E983AE /* WPNewExchangeModel.m in Sources */,

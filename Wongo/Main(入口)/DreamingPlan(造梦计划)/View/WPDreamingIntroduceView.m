@@ -29,8 +29,9 @@
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(5, WINDOW_HEIGHT - 35, WINDOW_WIDTH - 10, 30);
-        _backButton.backgroundColor = SelfOrangeColor;
+        _backButton.frame = CGRectMake(5, WINDOW_HEIGHT - 55, WINDOW_WIDTH - 10, 50);
+        [_backButton setTitle:@"关闭详情" forState:UIControlStateNormal];
+        _backButton.backgroundColor = WongoBlueColor;
         [_backButton addTarget:[self findViewController:self] action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backButton;
@@ -43,7 +44,7 @@
 }
 -(UITextView *)contentShowLabel{
     if (!_contentShowLabel) {
-        _contentShowLabel = [[UITextView alloc]initWithFrame:CGRectMake(5, 65, WINDOW_WIDTH - 10, WINDOW_HEIGHT - 105)];
+        _contentShowLabel = [[UITextView alloc]initWithFrame:CGRectMake(5, 65, WINDOW_WIDTH - 10, WINDOW_HEIGHT - 125)];
         _contentShowLabel.font = [UIFont systemFontOfSize:15];
         _contentShowLabel.userInteractionEnabled = NO;
     }

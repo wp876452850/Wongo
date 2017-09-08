@@ -16,9 +16,9 @@
 #define THIRD_IMG_URL @"http://img14.3lian.com/201605/13/6d7f1ae0bef9f44aa3789dc043ff90eb.jpg"
 #define FOURTH_IMG_URL @"http://img14.3lian.com/201605/13/74aa1cf4a1110713146b8295967fdfc6.jpg"
 #define ROLLPLAYIMAGES @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
-#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, (WINDOW_WIDTH*0.28))
-#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.fastView.frame),WINDOW_WIDTH,465/2+20)
-#define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.fastView.frame)+CGRectGetHeight(self.activityView.frame))
+#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, 127.5)
+#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.announcementView.frame)+8,WINDOW_WIDTH,465/2+20)
+#define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.activityView.frame))
 #define LabelFont [UIFont systemFontOfSize:12]
 
 @interface WPHomeHeaderView ()<SDCycleScrollViewDelegate>
@@ -39,11 +39,30 @@
 @property (nonatomic, strong) UIImageView *activityE;
 @property (nonatomic, strong) UIImageView *activityF;
 @property (nonatomic, strong) UIView *bottomLine;
+/**公告*/
+@property (nonatomic,strong)UIView * announcementView;
 
 @property (nonatomic, strong) NSArray *bannerList;
 @end
 
 @implementation WPHomeHeaderView
+
+-(UIView *)announcementView{
+    if (!_announcementView) {
+        _announcementView = [[UIView alloc]initWithFrame:CGRectMake(0, self.fastView.bottom, WINDOW_WIDTH, 40)];
+        [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, self.fastView.bottom) moveForPoint:CGPointMake(WINDOW_WIDTH, self.fastView.bottom)]];
+        _announcementView.backgroundColor = WhiteColor;
+        
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, WINDOW_WIDTH, 40);
+        button.titleLabel.font = [UIFont boldSystemFontOfSize:10.f];
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitle:@"  系统公告:9月7日4:00系统维护" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"horn"] forState:UIControlStateNormal];
+        [_announcementView addSubview:button];
+    }
+    return _announcementView;
+}
 //活动视图(3个小的分类)
 - (UIView *)activityView{
     if (!_activityView) {
@@ -65,9 +84,11 @@
         _activityB.tag = 1;
         _activityC.tag = 2;
         
+        
+        
         //活动分栏最底部横条
         UIView * bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, h  , WINDOW_WIDTH, 5)];
-        bottomLine.top = _activityE.bottom + 1;
+        bottomLine.top = _activityC.bottom + 1;
         bottomLine.backgroundColor = [UIColor whiteColor];
         [_activityView addSubview:bottomLine];
         
@@ -79,6 +100,7 @@
     UIImageView * imageView = [[UIImageView alloc]initWithFrame:frame];
     imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+    self.backgroundColor = WongoGrayColor;
     [imageView addGestureRecognizer:tapA];
     imageView.backgroundColor = [UIColor whiteColor];
     [_activityView addSubview:imageView];
@@ -90,9 +112,11 @@
         self.clipsToBounds = YES;
         [self addSubview:self.cycleScrollView];
         [self addSubview:self.fastView];
+        [self addSubview:self.announcementView];
         [self addSubview:self.activityView];
         self.frame = SelfFrame;
         [self createWizardButton];
+        
     }
     return self;
 }

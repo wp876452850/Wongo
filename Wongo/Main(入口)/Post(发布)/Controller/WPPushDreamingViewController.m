@@ -314,6 +314,12 @@ static NSString * const cell            = @"cell";
     if (!self.subid) {
         self.subid = @"1";
     }
+    if ([_price floatValue]<0) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得小于0" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+    if ([_price floatValue]>999999) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
     __weak WPPushDreamingViewController * weakSelf = (WPPushDreamingViewController*)self;
     if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0) {
         

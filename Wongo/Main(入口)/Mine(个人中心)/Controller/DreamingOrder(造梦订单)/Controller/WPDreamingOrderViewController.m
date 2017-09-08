@@ -50,15 +50,19 @@
 }
 -(void)loadDatas{
     self.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        NSArray * listm = [responseObject objectForKey:@"listm"];
-        
-        for (int i = 0; i < listm.count; i++) {
-            WPMyOrderModel * model = [WPMyOrderModel mj_objectWithKeyValues:listm[i]];
-            [self.dataSourceArray addObject:model];
-        }
-        [_tableView reloadData];
+    self.tableView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            NSArray * listm = [responseObject objectForKey:@"listm"];
+            
+            for (int i = 0; i < listm.count; i++) {
+                WPMyOrderModel * model = [WPMyOrderModel mj_objectWithKeyValues:listm[i]];
+                [_dataSourceArray addObject:model];
+            }
+            [_tableView reloadData];
+            [_tableView.mj_header endRefreshing];
+        }];
     }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource

@@ -8,8 +8,10 @@
 
 #import "WPSelectAlterView.h"
 #import "WPSelectAlterViewCell.h"
+#import "WPGoodsClassModel.h"
 
 #define SelectItemSize CGSizeMake(WINDOW_WIDTH / 5, 40)
+#define ReusableView_Height 44
 static SelectAlertBlock _selectAlertBlock;
 @interface WPSelectAlterView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -41,7 +43,9 @@ static SelectAlertBlock _selectAlertBlock;
         
         _collectionView = [[UICollectionView alloc]initWithFrame:self.selectView.bounds collectionViewLayout:layout];
         _collectionView.backgroundColor     = WhiteColor;
+        //注册
         [_collectionView registerNib:[UINib nibWithNibName:@"WPSelectAlterViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
         _collectionView.delegate            = self;
         _collectionView.dataSource          = self;
     }
@@ -94,18 +98,17 @@ static SelectAlertBlock _selectAlertBlock;
 }
 //请求分类数据
 -(void)loadDatasWithUrlString:(NSString *)urlString params:(NSDictionary *)params{
+    self.dataSource = [NSMutableArray arrayWithCapacity:3];
     [WPNetWorking createPostRequestMenagerWithUrlString:urlString params:params datas:^(NSDictionary *responseObject) {
-        NSArray * dataSource = [responseObject objectForKey:@"goodClass"];
-        NSMutableArray * dataSourceTitle = [ NSMutableArray arrayWithCapacity:3];
-        NSMutableArray * gcids           = [ NSMutableArray arrayWithCapacity:3];
         
-        for (NSDictionary *dic in dataSource) {
-            [gcids addObject:[dic objectForKey:@"gcid"]];
-            [dataSourceTitle addObject:[dic objectForKey:@"gcname"]];
+        if (responseObject) {
+            NSArray * dataSource = [responseObject objectForKey:@"goodClass"];
+            for ( int i = 0;  i < dataSource.count; i++) {
+                WPGoodsClassModel * model = [WPGoodsClassModel mj_objectWithKeyValues:dataSource[i]];
+                [_dataSource addObject:model];
+            }
+                [_collectionView reloadData];
         }
-        [_dataSource addObject:dataSourceTitle];
-        [_gcids addObject:gcids];
-        [_collectionView reloadData];
     }];
 }
 
@@ -132,24 +135,62 @@ static SelectAlertBlock _selectAlertBlock;
 }
 
 #pragma mark - Collection
+//返回区头大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(WINDOW_WIDTH, ReusableView_Height);
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    if (_dataSource.count>0) {
+        if (![self.dataSource[0] isKindOfClass:[WPGoodsClassModel class]]){
+            return 1;
+        }
+    }    
+    return _dataSource.count;
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     if (_dataSource.count <= 0) {
         return 0;
     }
+    if ([self.dataSource[section] isKindOfClass:[WPGoodsClassModel class]]){
+        WPGoodsClassModel * model = _dataSource[section];
+        return model.listgc.count;
+    }
     NSArray * array = _dataSource[section];
     return array.count;
 }
+
+//返回区头
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView * reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
+    [reusableView removeAllSubviews];
+
+    if ([self.dataSource[indexPath.section] isKindOfClass:[WPGoodsClassModel class]]){
+                WPGoodsClassModel * model = _dataSource[indexPath.section];
+        UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+        title.center = CGPointMake(WINDOW_WIDTH/2, ReusableView_Height/2);
+        title.text = model.cname;
+        title.font = [UIFont systemFontOfSize:19];
+        title.textColor = AllBorderColor;
+        title.textAlignment = NSTextAlignmentCenter;
+        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(50, title.centerY) moveForPoint:CGPointMake(title.left - 20, title.centerY) lineColor:AllBorderColor]];
+        [reusableView addSubview:title];
+        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 50, title.centerY) moveForPoint:CGPointMake(title.right + 20, title.centerY) lineColor:AllBorderColor]];
+        
+    }
+    return reusableView;
+}
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WPSelectAlterViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    [cell.selectButton setTitle:_dataSource[indexPath.section][indexPath.row] forState:UIControlStateNormal];
+    if (![self.dataSource[indexPath.section] isKindOfClass:[WPGoodsClassModel class]]) {
+        [cell.selectButton setTitle:_dataSource[indexPath.section][indexPath.row] forState:UIControlStateNormal];
+    }else{
+        WPGoodsClassModel * model = self.dataSource[indexPath.section];
+        [cell.selectButton setTitle:model.listgc[indexPath.row][@"gcname"] forState:UIControlStateNormal];
+    }
     return cell;
-}
-
-//section大小
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
-{
-    CGSize size = {WINDOW_WIDTH, 30};
-    return size;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -159,11 +200,13 @@ static SelectAlertBlock _selectAlertBlock;
     }
     WPSelectAlterViewCell * cell = (WPSelectAlterViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.selectButton.selected = !cell.selectButton.selected;
-    
-    _selectAlertBlock(_dataSource[indexPath.section][indexPath.row],_gcids[indexPath.section][indexPath.row]);
+    if (![self.dataSource[indexPath.section] isKindOfClass:[WPGoodsClassModel class]]){
+        _selectAlertBlock(_dataSource[indexPath.section][indexPath.row],_gcids[indexPath.section][indexPath.row]);
+    }else{
+        WPGoodsClassModel * model = self.dataSource[indexPath.section];
+        _selectAlertBlock(model.listgc[indexPath.row][@"gcname"],model.listgc[indexPath.row][@"gcid"]);
+    }
     [self tap];
 }
-
-
 
 @end

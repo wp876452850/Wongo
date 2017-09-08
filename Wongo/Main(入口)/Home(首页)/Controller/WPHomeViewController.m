@@ -164,9 +164,10 @@ static NSString * contentOffset = @"contentOffset";
                 for (int i = 0; i < dreamings.count; i++) {
                     [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
                         [_dreamings addObject:responseObject];
-                        if (i==dreamings.count-1) {
+                        if (i == dreamings.count-1) {
                             [_collectionView reloadData];
                         }
+                        
                     }];
                 }
             }];
@@ -251,7 +252,7 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            return 2;
+            return _dreamings.count;
         }
             break;
         default:

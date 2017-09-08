@@ -19,7 +19,7 @@
     CAShapeLayer * layer    = [CAShapeLayer layer];
     layer.path              = path.CGPath;
     layer.borderWidth       = 1.0f;
-    layer.strokeColor       = AllBorderColor.CGColor;
+    layer.strokeColor       = WongoGrayColor.CGColor;
     
     return layer;
 }
@@ -47,4 +47,5 @@
     view.layer.borderColor = lineColor.CGColor;
     view.layer.borderWidth = lineWidth;
 }
+
 @end

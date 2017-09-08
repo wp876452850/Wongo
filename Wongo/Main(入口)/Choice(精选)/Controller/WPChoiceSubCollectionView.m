@@ -63,7 +63,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 -(UIView *)menuView{
     if (!_menuView) {
-        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 50)];
+        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 40)];
         _menuView.backgroundColor = WhiteColor;
         for (int i = 0; i < 3; i++) {
             WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];
@@ -177,7 +177,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 //设置边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(WINDOW_WIDTH - 40, 5, 10, 5);
+    return UIEdgeInsetsMake(WINDOW_WIDTH - 70, 5, 10, 5);
 }
 
 

@@ -292,13 +292,18 @@ static NSString * const cell            = @"cell";
         [self showAlertWithAlertTitle:@"提示" message:@"需要同意《造梦计划平台说明协议》规则后才能发布造梦计划" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
         return;
     }
+    if ([_price floatValue]<0) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得小于0" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+    if ([_price floatValue]>999999) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
     __weak WPParticipateDreamingViewController * weakSelf = (WPParticipateDreamingViewController*)self;
     if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_want.length!=0&&_newOrOld.length!=0&&_adid.length!=0) {
         
         NSString * timeStr = [self getNowTime];
         
 #warning plid修改
-        
         NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"want":_want,@"pubtime":timeStr,@"plid":_plid};
         
         [WPNetWorking createPostRequestMenagerWithUrlString:JoinProUrl params:params datas:^(NSDictionary *responseObject) {
