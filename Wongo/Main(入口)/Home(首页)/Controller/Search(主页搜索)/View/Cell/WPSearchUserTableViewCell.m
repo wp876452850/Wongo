@@ -27,7 +27,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:self]];
+    
     [_attention setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
     [_attention setTitleColor:GRAY_COLOR forState:UIControlStateSelected];
     [_attention setTitle:@"+ 关注" forState:UIControlStateNormal];
@@ -97,8 +97,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    
 }
 
 

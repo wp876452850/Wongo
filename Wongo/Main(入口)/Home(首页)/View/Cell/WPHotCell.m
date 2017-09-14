@@ -32,8 +32,7 @@
 }
 
 -(void)setModel:(WPHomeDataModel *)model{
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        NSLog(@"------%@------",error);
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
     }];
     
     _model                  = model;

@@ -43,10 +43,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avj-b5-uSP">
-                        <rect key="frame" x="435" y="351" width="30" height="30"/>
+                        <rect key="frame" x="445" y="356" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="IRQ-ib-q3Z"/>
-                            <constraint firstAttribute="height" constant="30" id="yyS-7Y-1iL"/>
+                            <constraint firstAttribute="width" constant="20" id="IRQ-ib-q3Z"/>
+                            <constraint firstAttribute="height" constant="20" id="yyS-7Y-1iL"/>
                         </constraints>
                         <connections>
                             <action selector="thumUp:" destination="gTV-IL-0wX" eventType="touchUpInside" id="6R2-Dk-KKM"/>

@@ -126,7 +126,7 @@ static NSString * const cell            = @"cell";
     
     self.images = [NSMutableArray arrayWithCapacity:3];
     UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor  = SelfOrangeColor;
+    button.backgroundColor  = WongoBlueColor;
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font  = [UIFont systemFontOfSize:15];
     [button addTarget:self action:@selector(goNextVC) forControlEvents:UIControlEventTouchUpInside];
@@ -201,14 +201,13 @@ static NSString * const cell            = @"cell";
                 NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",name,comments]];
                 [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, name.length+comments.length)];
                 
-                [attributedString addAttribute:NSForegroundColorAttributeName value:SelfOrangeColor range:NSMakeRange(name.length, comments.length)];
+                [attributedString addAttribute:NSForegroundColorAttributeName value:WongoBlueColor range:NSMakeRange(name.length, comments.length)];
                 
                 cell.textLabel.numberOfLines    = 0;
                 cell.textLabel.attributedText   = attributedString;
                 [cell.textLabel yb_addAttributeTapActionWithStrings:@[comments] tapClicked:^(NSString *string, NSRange range, NSInteger index) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self showAlertWithAlertTitle:@"《造梦计划平台说明协议》" message:@"您不得利用碗糕发表、传送、传播、储存违反国家法律、危害国家安全、祖国统一、社会稳定、公序良俗的内容，或任何不当的、侮辱诽谤的、淫秽的、暴力的及任何违反国家法律法规政策的内容或侵害他人知识产权、商业秘密权、隐私权等合法权利的内容，也不得传送或散布以其他方式实现传送含有受到知识产权法律保护的图像、相片、软件或其他资料的文件，除非用户拥有或控制着相应的权利或已得到所有必要的认可。否则，一经发现或收到举报，碗糕有权删除并处理" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
-                        
                     });
                 }];
                 [cell.contentView addSubview:self.button];
@@ -239,6 +238,7 @@ static NSString * const cell            = @"cell";
     }
     else if (indexPath.row == 6){
         cell.data.text = _story;
+        cell.wordsNumber = 99999999;
         cell.data.openRisingView = YES;
         [cell getTextFieldDataWithBlock:^(NSString *str) {
             _story = cell.data.text;
@@ -252,6 +252,7 @@ static NSString * const cell            = @"cell";
     }
     else if (indexPath.row == 7){
         cell.data.text = _contents;
+        cell.wordsNumber = 99999999;
         cell.data.openRisingView = YES;
         [cell getTextFieldDataWithBlock:^(NSString *str) {
             _contents = cell.data.text;

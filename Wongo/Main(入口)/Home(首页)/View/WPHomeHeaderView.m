@@ -11,13 +11,13 @@
 #import "LYHomeBannerM.h"
 #import "LYActivityController.h"
 
-#define FIRST_IMG_URL @"http://pic.58pic.com/58pic/12/60/18/41b58PIC9Mx.jpg"
+#define FIRST_IMG_URL @""
 #define SECOND_IMG_URL @"http://pic35.photophoto.cn/20150512/0018031445748020_b.jpg"
 #define THIRD_IMG_URL @"http://img14.3lian.com/201605/13/6d7f1ae0bef9f44aa3789dc043ff90eb.jpg"
 #define FOURTH_IMG_URL @"http://img14.3lian.com/201605/13/74aa1cf4a1110713146b8295967fdfc6.jpg"
 #define ROLLPLAYIMAGES @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
 #define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, 127.5)
-#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.announcementView.frame)+8,WINDOW_WIDTH,465/2+20)
+#define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.announcementView.frame)+8,WINDOW_WIDTH,232.5*(WINDOW_WIDTH/375)+20)
 #define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.activityView.frame))
 #define LabelFont [UIFont systemFontOfSize:12]
 
@@ -57,7 +57,7 @@
         button.frame = CGRectMake(0, 0, WINDOW_WIDTH, 40);
         button.titleLabel.font = [UIFont boldSystemFontOfSize:10.f];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setTitle:@"  系统公告:9月7日4:00系统维护" forState:UIControlStateNormal];
+        [button setTitle:@"  活动公告:(开学啦!同学有礼)分享可得大礼" forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:@"horn"] forState:UIControlStateNormal];
         [_announcementView addSubview:button];
     }
@@ -72,8 +72,8 @@
         line.backgroundColor = [UIColor whiteColor];
         [_activityView addSubview:line];
         
-        CGFloat w  = 142;
-        CGFloat h  = 465/2;
+        CGFloat w  = 142*(WINDOW_WIDTH/375);
+        CGFloat h  = 232.5*(WINDOW_WIDTH/375);
         
         _activityA = [self setUpActivityImageWithFrame:CGRectMake(2.5, 10, w , h)];
         _activityB = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, 10, WINDOW_WIDTH-7.5-w, (h-2.5)/2)];
@@ -133,6 +133,7 @@
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame delegate:self placeholderImage:nil];
         _cycleScrollView.currentPageDotColor = [UIColor redColor];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
     }
     return _cycleScrollView;
 }
@@ -149,6 +150,7 @@
 //    [_activityB sd_setImageWithURL:[NSURL URLWithString:listhk[1].url] placeholderImage:nil];
 //    
 //    [_activityC sd_setImageWithURL:[NSURL URLWithString:listhk[2].url] placeholderImage:nil];
+    
 }
 
 - (void)setListhl:(NSArray<LYHomeCategory *> *)listhl{
@@ -159,7 +161,6 @@
     }
     //如果数据存在，则返回数据滚动图，若不存在则用自定义图
     _cycleScrollView.imageURLStringsGroup = arr.count?arr:ROLLPLAYIMAGES;
-//    _cycleScrollView.imageURLStringsGroup = ROLLPLAYIMAGES;
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{

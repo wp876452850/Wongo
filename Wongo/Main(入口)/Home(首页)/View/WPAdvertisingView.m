@@ -21,8 +21,8 @@
     if (!_advertisingImageView) {
         _advertisingImageView = [[UIImageView alloc]initWithFrame:self.frame];
         _advertisingImageView.backgroundColor = WhiteColor;
-        //测试图
-        _advertisingImageView.image = [UIImage imageNamed:@"guanggao.jpg"];
+        //广告图
+        _advertisingImageView.image = [UIImage imageNamed:@"advertisingfigure.jpg"];
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15, 44, 30, 15)];
         label.text = @"广告";
         label.textAlignment = NSTextAlignmentCenter;

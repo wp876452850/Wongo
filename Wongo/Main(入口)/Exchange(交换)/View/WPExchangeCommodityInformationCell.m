@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *freight;
 /**收藏*/
 @property (weak, nonatomic) IBOutlet UIButton *collectionButoon;
+/**活动链接*/
+@property (weak, nonatomic) IBOutlet UILabel *activeLink;
 
 @end
 
@@ -28,6 +30,18 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:_activeLink.text attributes:attribtDic];    
+    //赋值
+    _activeLink.attributedText = attribtStr;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpActive:)];
+    [_activeLink addGestureRecognizer:tap];
+}
+
+/**跳转活动页*/
+-(void)jumpActive:(UITapGestureRecognizer *)tap{
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

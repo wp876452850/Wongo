@@ -70,14 +70,12 @@
 -(BOOL)determineWhetherTheLoginWithViewController:(UIViewController*)viewController{
     NSString * uid = [[NSUserDefaults standardUserDefaults] objectForKey:User_ID];
     if (uid.length<=0) {
-
         [viewController showAlertWithAlertTitle:@"提示" message:@"当前未登录,是否前往登录" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
             LoginViewController * login = [[LoginViewController alloc]init];
           
             [viewController dismissViewControllerAnimated:YES completion:nil];
             [[self getNavigationControllerOfCurrentView] pushViewController:login animated:YES];
         }];
-        
         return NO;
     }
     return YES;

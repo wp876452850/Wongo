@@ -125,14 +125,9 @@
         }
             break;
         case 2:
-        {
-            
-            CGFloat cacheSize = [[SDImageCache sharedImageCache] getDiskCount];
-            if (cacheSize/1000.0/1000 <= 0.01) {
-                [self showAlertWithAlertTitle:@"提示" message:@"应用无缓存数据" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
-                return;
-            }
-            [self showAlertWithAlertTitle:@"提示" message:[NSString stringWithFormat:@"是否清楚所有缓存数据(%.2fMb)",cacheSize/1000.0/1000] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
+        {            
+//            CGFloat cacheSize = [[SDImageCache sharedImageCache] getDiskCount];
+                        [self showAlertWithAlertTitle:@"提示" message:[NSString stringWithFormat:@"是否清楚所有缓存数据"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
                 [[SDImageCache sharedImageCache] clearDisk];
             }];
         }

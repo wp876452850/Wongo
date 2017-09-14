@@ -7,7 +7,7 @@
 //
 
 #import "WPCommodityManagementTableViewCell.h"
-#import "WPGoodsDetailViewController.h"
+#import "WPExchangeViewController.h"
 
 @interface WPCommodityManagementTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -29,13 +29,14 @@
 
 -(void)setModel:(WPMyGoodsInformationModel *)model{
     _model = model;
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gname;
     _price.text     = [NSString stringWithFormat:@"￥%@",model.price ];
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    WPGoodsDetailViewController * vc = [[WPGoodsDetailViewController alloc]initWithGid:_model.gid];
+    WPExchangeViewController * vc = [WPExchangeViewController createExchangeGoodsWithUrlString:ExchangeDetailGoodsUrl params:@{@"gid":_model.gid} fromOrder:NO];
+    
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

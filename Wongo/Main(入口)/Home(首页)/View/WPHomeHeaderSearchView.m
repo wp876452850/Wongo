@@ -9,19 +9,22 @@
 #import "WPHomeHeaderSearchView.h"
 #import "WPSearchGuideViewController.h"
 #import <MapKit/MapKit.h>
+#import "JFCityViewController.h"
 
-@interface WPHomeHeaderSearchView ()<UICollectionViewDelegate,CLLocationManagerDelegate>
+@interface WPHomeHeaderSearchView ()<UICollectionViewDelegate,CLLocationManagerDelegate,JFCityViewControllerDelegate>
 {
     CGFloat headerViewHeight;
 }
-
+/**定位按钮*/
 @property (nonatomic,strong)UIButton * positioningButton;
-
+/**搜索框按钮*/
 @property (nonatomic,strong)UIButton * searchButton;
-
+/***/
 @property (nonatomic,strong)UIButton * shoppingCarButton;
 
-@property (strong,nonatomic) CLLocationManager* locationManager;
+@property (strong,nonatomic)CLLocationManager* locationManager;
+/**城市选择器*/
+@property (nonatomic,strong)JFCityViewController * cityViewController;
 @end
 static NSString * contentOffset = @"contantOffset";
 
@@ -147,10 +150,19 @@ static NSString * contentOffset = @"contantOffset";
         _positioningButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _positioningButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
         [self addSubview:_positioningButton];
+        [_positioningButton addTarget:self action:@selector(goSelectCity) forControlEvents:UIControlEventTouchUpInside];
     }
     return _positioningButton;
 }
-
+-(void)goSelectCity{
+    JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
+    //  设置代理
+    cityViewController.delegate = self;
+    cityViewController.title = @"城市";
+    //  给JFCityViewController添加一个导航控制器
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
+    [[self findViewController:self ] presentViewController:navigationController animated:YES completion:nil];
+}
 -(UIButton *)searchButton{
     if (!_searchButton) {
          _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -191,4 +203,8 @@ static NSString * contentOffset = @"contantOffset";
     [super willMoveToSuperview:newSuperview];
 }
 
+#pragma mark - JFCityViewControllerDelegate
+- (void)cityName:(NSString *)name {
+    [_positioningButton setTitle:name forState:UIControlStateNormal];
+}
 @end

@@ -33,6 +33,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 @interface WPDreamingDetailViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UITextField * _comment;
+    CGFloat _detailIntroduceTableViewCellHeight;
 }
 //参与交换
 @property (nonatomic,strong)UIButton * joinDreaming;
@@ -76,6 +77,8 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 -(SDCycleScrollView *)rollPlay{
     if (!_rollPlay) {
         _rollPlay = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:_rollPlayImages];
+        _rollPlay.placeholderImage = [UIImage imageNamed:@"loadimage"];
+        _rollPlay.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
     }
     return _rollPlay;
 }
@@ -165,20 +168,30 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     /**查询商品所有信息*/
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
+        //查询用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
             NSArray * list = responseObject[@"list"];
             for (int i = 0;  i < list.count; i++) {
                 WPListModel * model = list[i];
                 [weakSelf.listDatas addObject:model];
             }
-            
+            //查询评论信息
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
                 NSArray * list = responseObject[@"list"];
                 for (int i = 0;  i<list.count; i++) {
                     WPDreamingCommentsModel * model = [WPDreamingCommentsModel mj_objectWithKeyValues:list[i]];
                     [weakSelf.model.commentsModelArray addObject:model];
                 }
-                [weakSelf.tableView reloadData];
+                //查询造梦故事
+                [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+                    //查询参与商品
+                    weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
+                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersOne params:nil datas:^(NSDictionary *responseObject) {
+                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
+                        [weakSelf.tableView reloadData];
+                    }];
+                }];
+                
             }];
 
         }];
@@ -191,8 +204,9 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
             NSDictionary * dic = array[i];
             [images addObject:dic[@"url"]];
         }
-        _rollPlay.imageURLStringsGroup = images;
+        weakSelf.rollPlay.imageURLStringsGroup = images;
     }];
+    
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -223,6 +237,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     
     if (indexPath.section == 2) {
         WPSearchUserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
+        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         WPSearchUserModel * model = [[WPSearchUserModel alloc]init];
         model.uid = self.model.uid;
         model.uname = self.model.uname;
@@ -232,10 +247,16 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         return cell;
     }
     if (indexPath.section == 3) {
-        WPDreamingDetailIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+        WPDreamingDetailIntroduceTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (!cell) {
+            cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+        }
+
         cell.name =_model.proname;
-        cell.introduce = _model.remark;
-         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+        if (!cell.introduce) {
+            cell.introduce = _model.remark;
+        }
+        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         return cell;
     }
     else if (indexPath.section == 4){
@@ -253,22 +274,24 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     WPDreamingIntroduceView * view = [[WPDreamingIntroduceView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 240)];
-    view.model = self.model.introduceModel;
+    view.dataSource = self.model.introduceModel.dreamingIntroduces;
+    
     [cell.contentView addSubview:view];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 65;
+        return 70;
     }
     if (indexPath.section == 1) {
-        return (WINDOW_WIDTH - 80)/3+40;
+        return (WINDOW_WIDTH - 80)/3+20;
     }
     if (indexPath.section == 2) {
-        return 80;
+        return 70;
     }
     if (indexPath.section == 3) {
-        return 160;
+        CGFloat cellHeight = [self.model.remark getSizeWithFont:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
+        return cellHeight + 70;
     }
     else if (indexPath.section == 4){
         NSArray * array = _model.commentsModelArray;
@@ -289,10 +312,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     if (section == 4) {
         return 50;
     }
-    if (section == 5||section == 0) {
-        return 0;
-    }
-    return 20;
+    return .1f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -331,25 +351,29 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     commentModel.commenttime = [self getNowTime];
     commentModel.headImage = [self getUserHeadPortrait];
     _comment.text = text;
-//    __block WPCommentModel * model = commentModel;
-//    __block WPDreamingDetailViewController * weakSelf = self;
-//    [WPNetWorking createPostRequestMenagerWithUrlString:AddCommentUrl params:@{@"uid":[self getSelfUid],@"gid":commentModel.gid,@"comment":commentModel.comment,@"commenttime":commentModel.commenttime} datas:^(NSDictionary *responseObject) {
-//        
-//        [weakSelf.exchangeModel.commentsModelArray insertObject:model atIndex:0];
-//        [weakSelf.tableView reloadData];
-//    }];
-    
     [self.view endEditing:YES];
 }
+#pragma mark ChatKeyBoardDataSource
+- (NSArray<ChatToolBarItem *> *)chatKeyBoardToolbarItems
+{
+    ChatToolBarItem *item1 = [ChatToolBarItem barItemWithKind:kBarItemFace normal:@"face" high:@"face_HL" select:@"keyboard"];
+    return @[item1];
+}
+- (NSArray<FaceThemeModel *> *)chatKeyBoardFacePanelSubjectItems
+{
+    return [FaceSourceManager loadFaceSource];
+}
+- (NSArray<MoreItem *> *)chatKeyBoardMorePanelItems{
+    return nil;
+}
+#pragma mark 设置评论信息
 //创建评论信息内容
 -(void)createCommentsLabelWithModel:(WPDreamingCommentsModel*)model cell:(UITableViewCell *)cell{
     [cell.contentView removeAllSubviews];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
     NSString * uname         = model.uname;
     NSString * comments     = model.comment
-    
-    ;
-    
+    ;    
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@:%@",uname,comments]];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, uname.length+comments.length+1)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, uname.length)];
@@ -407,12 +431,13 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 -(void)pushComments{
     //发布评论
+    __block WPDreamingDetailViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:CommentproductsUrl params:@{@"proid":self.model.proid,@"uid":[self getSelfUid],@"comment":_comment.text,@"commenttime":[self getNowTime]} datas:^(NSDictionary *responseObject) {
         WPDreamingCommentsModel * model = [[WPDreamingCommentsModel alloc]init];
         model.uname = [self getUserName];
         model.comment = _comment.text;
-        [_model.commentsModelArray insertObject:model atIndex:0];
-        [_tableView reloadData];
+        [weakSelf.model.commentsModelArray insertObject:model atIndex:0];
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -426,9 +451,10 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y+80) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
-        self.model.introduceModel.dreamingStory = self.model.story;
-        dv.model = self.model.introduceModel;
+        dv.dreamingStory = self.model.introduceModel.dreamingStory;
+        dv.dataSource = self.model.introduceModel.dreamingIntroduces;        
         [vc.view addSubview:dv];
+        
         [self presentViewController:vc animated:YES completion:nil];
     }
 }

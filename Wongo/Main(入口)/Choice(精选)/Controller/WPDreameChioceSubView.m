@@ -30,6 +30,7 @@
     if (!_cycleScrollView) {
 #warning 有后台记得改
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
     }
     return _cycleScrollView;
 }

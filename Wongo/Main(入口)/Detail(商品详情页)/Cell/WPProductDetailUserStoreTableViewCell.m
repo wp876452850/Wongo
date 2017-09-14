@@ -29,6 +29,9 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.headPortrait.layer.masksToBounds = YES;
     self.headPortrait.layer.cornerRadius = 30;
+    self.headPortrait.layer.borderWidth = 0.5f;
+    self.headPortrait.layer.borderColor = WongoGrayColor.CGColor;
+    
     self.collect.layer.masksToBounds = YES;
     self.collect.layer.cornerRadius = 5;
     self.collect.layer.borderColor = AllBorderColor.CGColor;

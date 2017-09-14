@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface WPDreamingGoodsIntroductionTableView : UITableView
+
 @property (nonatomic, strong) NSMutableArray *dataArray;
+
+@property (nonatomic,strong)NSArray * dataSourceArray;
 @end

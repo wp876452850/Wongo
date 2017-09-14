@@ -8,7 +8,7 @@
 
 #import "WPDreamingIntroduceView.h"
 #import "WPDreamingGoodsIntroductionTableView.h"
-#define Titles @[@"参加商品",@"造梦规则",@"造梦故事"]
+#define Titles @[@" 参加商品",@" 造梦规则",@" 造梦故事"]
 #define TitlesImages @[@"dreamingitemsisintroduced",@"dreamingrules",@"dreamingstory"]
 #define TitlesSelectImages @[@"dreamingitemsisintroduced_select",@"dreamingrules_select",@"dreamingstory_select"]
 
@@ -51,12 +51,7 @@
     return _contentShowLabel;
 }
 
--(void)setModel:(WPDreamingIntroduceModel *)model{
-    _model = model;
-}
-
 -(instancetype)initWithFrame:(CGRect)frame{
-    
     if (self = [super initWithFrame:frame]) {
         [self initSubView];
         [self addSubview:self.contentShowLabel];
@@ -66,6 +61,7 @@
     }
     return self;
 }
+
 -(void)initSubView{
     for (int i = 0; i < 3; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -94,11 +90,11 @@
             break;
         case 1:{
             [self bringSubviewToFront:self.contentShowLabel];
-            self.contentShowLabel.text = self.model.dreamingRules;}
+            self.contentShowLabel.text = @"";}
             break;
         case 2:{
             [self bringSubviewToFront:self.contentShowLabel];
-            self.contentShowLabel.text = self.model.dreamingStory;}
+            self.contentShowLabel.text = self.dreamingStory;}
             break;
     }
     _selectButton.selected = !_selectButton.selected;
@@ -121,4 +117,12 @@
         [[self findViewController:self] w_dismissViewControllerAnimated];
     }
 }
+
+-(void)setDataSource:(NSArray *)dataSource{
+    _dataSource = dataSource;
+    if (dataSource) {
+        self.tableView.dataSourceArray = dataSource;
+    }
+}
+
 @end

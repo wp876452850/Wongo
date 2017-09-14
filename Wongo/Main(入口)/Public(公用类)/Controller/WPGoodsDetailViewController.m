@@ -76,6 +76,7 @@ static NSString * const commodityCell   = @"CommodityCell";
 -(SDCycleScrollView *)cycleScrollView{
     if(!_cycleScrollView){
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:_exchangeModel.rollPlayImages];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
         _cycleScrollView.height +=80;
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;

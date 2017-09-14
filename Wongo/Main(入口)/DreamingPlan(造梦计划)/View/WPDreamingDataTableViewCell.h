@@ -12,6 +12,8 @@
 typedef void(^WPPushDataBlock)(NSString * str);
 
 @interface WPDreamingDataTableViewCell : UITableViewCell
+/**输入框限制字数 默认50*/
+@property (nonatomic,assign)NSInteger wordsNumber;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet  WPCostomTextField *data;
 @property (nonatomic,assign)NSInteger rowHeight;

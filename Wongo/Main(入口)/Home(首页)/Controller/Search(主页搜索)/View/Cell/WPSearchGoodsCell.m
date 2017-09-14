@@ -24,7 +24,7 @@
 -(void)setModel:(WPSearchModel *)model
 {
     _model = model;
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"broken"]];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gcname;
 }
 @end

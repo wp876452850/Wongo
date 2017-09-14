@@ -7,7 +7,7 @@
 //
 
 #import "WPGuideViewController.h"
-#define GuideImages @[@"guanggao.jpg",@"yindao1.jpg",@"yundao2.jpg"]
+#define GuideImages @[@"yindao1",@"yindao2.jpg",@"yindao3.jpg"]
 #import "WPTabBarController.h"
 
 @interface WPGuideViewController ()<UIScrollViewDelegate>

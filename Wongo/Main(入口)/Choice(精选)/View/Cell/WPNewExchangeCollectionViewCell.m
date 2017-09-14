@@ -27,7 +27,7 @@
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     //商品名
     NSString * gname = model.gname;
     if (model.gname.length >= 20) {

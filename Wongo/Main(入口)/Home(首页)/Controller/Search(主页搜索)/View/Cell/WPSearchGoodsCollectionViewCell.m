@@ -32,7 +32,7 @@
 
 -(void)setModel:(WPSearchGoodsModel *)model{
     _model = model;
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"broken"]];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gname;
     _collectNumber.text = model.freight;
     _collect.selected = [model.collect boolValue];

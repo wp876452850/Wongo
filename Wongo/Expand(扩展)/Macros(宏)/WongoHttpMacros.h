@@ -128,7 +128,10 @@
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
 /***/
 #define SelectProduct           HttpHead(@"selectProduct")
-
+/**查询用户商品故事*/
+#define QueryPlanStory          HttpHead(@"queryPlanStory")
+/***/
+#define QueryPlordersOne           HttpHead(@"queryPlordersOne")
 /**
  *  支付
  */

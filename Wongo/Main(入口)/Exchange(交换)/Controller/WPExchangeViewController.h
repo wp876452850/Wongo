@@ -15,4 +15,6 @@
 
 -(void)showExchangeBottomView;
 -(void)showShoppingBottomView;
+
+
 @end

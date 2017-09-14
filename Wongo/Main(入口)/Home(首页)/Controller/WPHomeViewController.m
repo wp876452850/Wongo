@@ -157,8 +157,9 @@ static NSString * contentOffset = @"contentOffset";
                 [_dataSourceArray addObject:model];
             }
             _page++;
-            
+            [_collectionView reloadData];
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryProduct params:nil datas:^(NSDictionary *responseObject) {
+                
                 NSArray * dreamings = responseObject[@"list"];
                 _dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
@@ -167,7 +168,6 @@ static NSString * contentOffset = @"contentOffset";
                         if (i == dreamings.count-1) {
                             [_collectionView reloadData];
                         }
-                        
                     }];
                 }
             }];
@@ -176,7 +176,6 @@ static NSString * contentOffset = @"contentOffset";
     }failureBlock:^{
         [self.collectionView.mj_header endRefreshing];
     }];
-    
 }
 
 -(void)footer{
@@ -190,7 +189,6 @@ static NSString * contentOffset = @"contentOffset";
         _page++;
         [self.collectionView reloadData];
     }];
-
 }
 #pragma mark - collectionViewDelegate && collectionViewDataSource
 
@@ -215,7 +213,6 @@ static NSString * contentOffset = @"contentOffset";
             default:
                 break;
         }
-
     [self.navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
 }
 
@@ -252,7 +249,11 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            return _dreamings.count;
+            if (_dreamings.count>2) {
+                return 2;
+            }else{
+                return _dreamings.count;
+            }
         }
             break;
         default:
@@ -410,6 +411,5 @@ static NSString * contentOffset = @"contentOffset";
 -(void)dealloc{
     [self.collectionView removeObserver:self forKeyPath:contentOffset context:nil];
 }
-
 
 @end

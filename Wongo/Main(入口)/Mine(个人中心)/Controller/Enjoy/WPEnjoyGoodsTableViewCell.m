@@ -29,7 +29,7 @@
 
 -(void)setModel:(WPExchangeModel *)model{
     _model = model;
-    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gname;
     _price.text = [NSString stringWithFormat:@"%.2f",model.price.floatValue];
 }

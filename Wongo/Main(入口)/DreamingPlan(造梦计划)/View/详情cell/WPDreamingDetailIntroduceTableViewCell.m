@@ -23,6 +23,8 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     _introduceTextView.frame = CGRectMake(10, _icon.bottom + 5, WINDOW_WIDTH - 20, 100);
+    self.hyb_lastViewInCell = self.introduceTextView;
+    self.hyb_bottomOffsetToCell = 5.f;
 }
 
 -(void)setName:(NSString *)name{
@@ -33,7 +35,7 @@
     _introduce = introduce;
     _introduceTextView.text = introduce;
     CGFloat height = [introduce getSizeWithFont:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake(WINDOW_WIDTH - 20, MAXFLOAT)].height;
-    _introduceTextView.height = height + 10;
+    _introduceTextView.height = height + 20;
     if (_block) {
         _block(_introduceTextView.bottom);
     }

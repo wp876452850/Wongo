@@ -52,7 +52,7 @@
                 <outlet property="introduceTextView" destination="W8l-ap-ekq" id="qJ6-8C-NDM"/>
                 <outlet property="nameLabel" destination="ebE-6D-KRP" id="ElJ-Sn-MFX"/>
             </connections>
-            <point key="canvasLocation" x="-579" y="-12"/>
+            <point key="canvasLocation" x="-883" y="-65"/>
         </tableViewCell>
     </objects>
     <resources>

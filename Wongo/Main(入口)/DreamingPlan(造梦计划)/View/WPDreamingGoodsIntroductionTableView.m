@@ -24,15 +24,19 @@ static NSString * const introduceCell   = @"introduceCell";
         [self registerNib:[UINib nibWithNibName:@"WPDreamingImageTableViewCell" bundle:nil] forCellReuseIdentifier:imageCell];
         [self registerNib:[UINib nibWithNibName:@"WPDreamingIntroduceTableViewCell" bundle:nil] forCellReuseIdentifier:introduceCell];
         self.cellsHeight = [NSMutableArray arrayWithCapacity:3];
-        NSDictionary *dic = @{@"Cell":imageCell,@"isOpen":@(NO)};
-        NSArray *array =@[dic,dic,dic,dic];
-        
-        self.dataArray = [[NSMutableArray alloc]init];
-        self.dataArray = [NSMutableArray arrayWithArray:array];
         self.delegate = self;
         self.dataSource = self;
     }
     return self;
+}
+
+-(void)setDataSourceArray:(NSArray *)dataSourceArray{
+    _dataSourceArray = dataSourceArray;
+    NSDictionary *dic = @{@"Cell":imageCell,@"isOpen":@(NO)};
+    for (int i = 0; i<dataSourceArray.count; i++) {
+        self.dataArray = [[NSMutableArray alloc]init];
+        [self.dataArray addObject:dic];
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -51,9 +55,7 @@ static NSString * const introduceCell   = @"introduceCell";
         return cell;
         
     }else if([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:introduceCell]){
-        
         WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
-        
         return cell;
     }
     return nil;

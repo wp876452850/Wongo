@@ -26,7 +26,8 @@
 -(SDCycleScrollView *)posters{
     if (!_posters) {
         //_posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:self.postersImages];
-        _posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH-110) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg"]];
+        _posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg"]];
+        //_posters.placeholderImage = [UIImage imageNamed:@"loadimage"];
         _posters.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
     }
     return _posters;

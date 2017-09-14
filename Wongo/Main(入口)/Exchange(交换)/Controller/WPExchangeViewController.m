@@ -71,7 +71,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 {
     if (!_tableView) {
         self.automaticallyAdjustsScrollViewInsets = NO;
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT) style:UITableViewStylePlain];
         _tableView.backgroundColor  = ColorWithRGB(246, 246, 246);
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
@@ -91,6 +91,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 -(SDCycleScrollView *)cycleScrollView{
     if(!_cycleScrollView){
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:_exchangeModel.rollPlayImages];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
         _cycleScrollView.currentPageDotColor = ColorWithRGB(45, 102, 139);
         _cycleScrollView.pageDotColor = ColorWithRGB(45, 102, 139);
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;

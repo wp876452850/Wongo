@@ -27,11 +27,11 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wongo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dbi-0o-aXJ">
-                        <rect key="frame" x="58" y="20.5" width="57.5" height="20"/>
+                        <rect key="frame" x="58" y="18.5" width="54.5" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Sa6-L8-X4e"/>
+                            <constraint firstAttribute="height" constant="24" id="Sa6-L8-X4e"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
