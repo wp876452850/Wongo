@@ -22,4 +22,8 @@
 /**背景图片*/
 @property (nonatomic,strong)NSString * prourl;
 
+@property (nonatomic,strong)NSString * plid;
+/**商品图片*/
+@property (nonatomic,strong)NSString * url;
+
 @end

@@ -15,5 +15,7 @@
 
 @property (nonatomic,strong)NSString * proid;
 
+@property (nonatomic,strong)NSString * plid;
+
 @property (nonatomic,strong)NSString * url;
 @end

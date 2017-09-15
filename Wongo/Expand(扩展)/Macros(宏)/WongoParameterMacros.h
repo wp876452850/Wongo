@@ -20,6 +20,7 @@
 //首次开启应用
 #define FirstTimeTosStart   @"firsttimetostart"
 
+
 /**融云开发环境:0开发,1生产 */
 #ifdef DEBUG
 #define RCIMDEVTYPE @"0"

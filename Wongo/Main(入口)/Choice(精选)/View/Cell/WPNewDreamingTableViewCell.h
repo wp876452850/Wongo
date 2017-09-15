@@ -7,7 +7,9 @@
 //  新版造梦主题展示单元格
 
 #import <UIKit/UIKit.h>
+#import "WPDreamingMainGoodsModel.h"
 
 @interface WPNewDreamingTableViewCell : UITableViewCell
 
+@property (nonatomic,strong)WPDreamingMainGoodsModel * model;
 @end

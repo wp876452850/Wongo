@@ -12,6 +12,13 @@
 #import "WPUserIntroductionModel.h"
 
 #define RONGCLOUD_IM_TOKEN  @"26yDFgVPSX8MPykDOdP86cpJiC88oLvizHSm/MXqzhfDeVfnPN76WyU+D/a3E1okCHM0fB1d5RVZjF4Wq3nO2Q=="//Token
+/**友盟appkey*/
+#define USHARE_APPKEY @"59ba345b75ca351ed90000a6"
+
+/**
+ *
+ */
+
 @interface AppDelegate ()<RCIMConnectionStatusDelegate,RCIMUserInfoDataSource,RCIMReceiveMessageDelegate>
 
 @end
@@ -20,7 +27,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+#pragma mark - 引导页
     //判断是否第一次登录
     NSString * first = [[NSUserDefaults standardUserDefaults]objectForKey:FirstTimeTosStart];
     if (first.length<=0||!first) {
@@ -35,7 +42,7 @@
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
         [UIApplication sharedApplication].statusBarHidden = NO;
     }
-    
+#pragma mark - 即时聊天
     //初始化融云SDK
     [[RCIM sharedRCIM] initWithAppKey:RONGCLOUD_IM_APPKEY];
     [[RCIM sharedRCIM] setConnectionStatusDelegate:self];
@@ -98,8 +105,72 @@
         [application registerUserNotificationSettings:settings];
     }
     
+#pragma mark - 分享
+    
+    /* 打开调试日志 */
+    [[UMSocialManager defaultManager] openLog:YES];
+    
+    /* 设置友盟appkey */
+    [[UMSocialManager defaultManager] setUmSocialAppkey:USHARE_APPKEY];
+    
+    [self configUSharePlatforms];
+    
+    [self confitUShareSettings];
     return YES;
 }
+
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    //[UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+}
+
+- (void)configUSharePlatforms
+{
+    /*
+     设置微信的appKey和appSecret
+     [微信平台从U-Share 4/5升级说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_1
+     */
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx0917670ee24434e4" appSecret:@"0bcd448e908ed9c1bbe94949701db0e1" redirectURL:nil];
+    
+    /* 设置分享到QQ互联的appID
+     * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
+     100424468.no permission of union id
+     [QQ/QZone平台集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_3
+     */
+    //[[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1105821097"/*设置QQ平台的appID*/  appSecret:nil redirectURL:@"http://mobile.umeng.com/social"];
+    
+    /*
+     设置新浪的appKey和appSecret
+     [新浪微博集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_2
+     */
+    //[[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"3921700954"  appSecret:@"04b48b094faeb16683c32669824ebdad" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
+    
+}
+#pragma mark 分享回调
+// 支持所有iOS系统
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+    if (!result) {
+        // 其他如支付等SDK的回调
+    }
+    return result;
+}
+//**********************************************************************************//
+
 //注册用户通知设置
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     // register to receive notifications
@@ -192,10 +263,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     }];
 }
 
-- (BOOL)application:(UIApplication *)application
-            openURL:(NSURL *)url
-  sourceApplication:(NSString *)sourceApplication
-         annotation:(id)annotation {
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果

@@ -72,7 +72,7 @@
                 <outlet property="pushTime" destination="A2v-qd-1vy" id="Gdx-Vi-2hS"/>
                 <outlet property="userName" destination="i3a-26-8p2" id="gJO-M2-wlJ"/>
             </connections>
-            <point key="canvasLocation" x="-137" y="70"/>
+            <point key="canvasLocation" x="-347" y="45"/>
         </tableViewCell>
     </objects>
     <resources>

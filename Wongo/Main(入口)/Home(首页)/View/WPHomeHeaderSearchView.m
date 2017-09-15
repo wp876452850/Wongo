@@ -19,8 +19,8 @@
 @property (nonatomic,strong)UIButton * positioningButton;
 /**搜索框按钮*/
 @property (nonatomic,strong)UIButton * searchButton;
-/***/
-@property (nonatomic,strong)UIButton * shoppingCarButton;
+/**分享按钮*/
+@property (nonatomic,strong)UIButton * shareButton;
 
 @property (strong,nonatomic)CLLocationManager* locationManager;
 /**城市选择器*/
@@ -30,8 +30,45 @@ static NSString * contentOffset = @"contantOffset";
 
 
 @implementation WPHomeHeaderSearchView
+-(UIButton *)positioningButton{
+    if (!_positioningButton) {
+        _positioningButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _positioningButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
+        [self addSubview:_positioningButton];
+        [_positioningButton addTarget:self action:@selector(goSelectCity) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _positioningButton;
+}
+-(UIButton *)searchButton{
+    if (!_searchButton) {
+        _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_searchButton setBackgroundImage:[UIImage imageNamed:@"SearchBarBG"] forState:UIControlStateNormal];
+        [_searchButton setImage:[UIImage imageNamed:@"searchbtn"] forState:UIControlStateNormal];
+        [_searchButton setTitle:@"输入商品名称" forState:UIControlStateNormal];
+        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_searchButton setTitleColor:ColorWithRGB(102, 102, 102) forState:UIControlStateNormal];
+        [_searchButton addTarget:self action:@selector(goSearchGuide) forControlEvents:UIControlEventTouchUpInside];
+        _searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shareButton.frame)) - 35, 28);
+        [_searchButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 16, 0, 0)];
+        [self addSubview:_searchButton];
+    }
+    return _searchButton;
+}
 
-
+-(UIButton *)shareButton{
+    if (!_shareButton) {
+        _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _shareButton.backgroundColor = ColorWithRGB(23, 23, 23);
+        [self addSubview:_shareButton];
+        [_shareButton addTarget:self action:@selector(actionShare) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _shareButton;
+}
+-(void)actionShare{
+    
+    
+    
+}
 -(instancetype)init{
     self = [super init];
     if (self) {
@@ -39,7 +76,6 @@ static NSString * contentOffset = @"contantOffset";
         self.backgroundColor = ColorWithRGB(33, 34, 36);
         [self selfSubViewsFrame];
         [self startLocation];
-        self.shoppingCarButton.hidden = YES;
     }
     return self;
 }
@@ -49,9 +85,10 @@ static NSString * contentOffset = @"contantOffset";
     self.searchButton.hidden = NO;
     self.searchButton.alpha = self.alpha;
     [UIView animateWithDuration:0.25 animations:^{
-        self.searchButton.frame = CGRectMake( - CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - CGRectGetMidX(self.shoppingCarButton.frame) - 20, 30);
+        self.searchButton.frame = CGRectMake( - CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - CGRectGetMidX(self.shareButton.frame) - 20, 30);
     }];
 }
+#pragma mark - 定位
 //开始定位
 -(void)startLocation{
     if ([CLLocationManager locationServicesEnabled]) {
@@ -78,7 +115,6 @@ static NSString * contentOffset = @"contantOffset";
         default:break;
     }
 }
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     
     
@@ -121,15 +157,15 @@ static NSString * contentOffset = @"contantOffset";
 }
 -(void)hidenSearchView{
     self.hidden = YES;
-    
     self.searchButton.hidden = YES;
 }
+//-------------------------------------------------------------
 -(void)animationForSearchButton{
     [UIView animateWithDuration:0.25 animations:^{
         self.positioningButton.alpha = 1;
         self.searchButton.alpha = 1;
-        self.shoppingCarButton.alpha = 1;
-        self.searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shoppingCarButton.frame)) - 35, 30);
+        self.shareButton.alpha = 1;
+        self.searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shareButton.frame)) - 35, 30);
     }];
 }
 -(void)selfSubViewsFrame{
@@ -138,22 +174,14 @@ static NSString * contentOffset = @"contantOffset";
         make.centerY.mas_equalTo(self.mas_centerY).offset(10);
         make.size.mas_equalTo(CGSizeMake(50, 30));
     }];
-    [self.shoppingCarButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(-25);
         make.centerY.mas_equalTo(self.mas_centerY).offset(10);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
 }
 
--(UIButton *)positioningButton{
-    if (!_positioningButton) {
-        _positioningButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _positioningButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
-        [self addSubview:_positioningButton];
-        [_positioningButton addTarget:self action:@selector(goSelectCity) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _positioningButton;
-}
+
 -(void)goSelectCity{
     JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
     //  设置代理
@@ -162,30 +190,6 @@ static NSString * contentOffset = @"contantOffset";
     //  给JFCityViewController添加一个导航控制器
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cityViewController];
     [[self findViewController:self ] presentViewController:navigationController animated:YES completion:nil];
-}
--(UIButton *)searchButton{
-    if (!_searchButton) {
-         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_searchButton setBackgroundImage:[UIImage imageNamed:@"SearchBarBG"] forState:UIControlStateNormal];
-        [_searchButton setImage:[UIImage imageNamed:@"searchbtn"] forState:UIControlStateNormal];
-        [_searchButton setTitle:@"输入商品名称" forState:UIControlStateNormal];
-        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_searchButton setTitleColor:ColorWithRGB(102, 102, 102) forState:UIControlStateNormal];
-        [_searchButton addTarget:self action:@selector(goSearchGuide) forControlEvents:UIControlEventTouchUpInside];
-        _searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shoppingCarButton.frame)) - 35, 28);
-        [_searchButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 16, 0, 0)];
-        [self addSubview:_searchButton];
-    }
-    return _searchButton;
-}
-
--(UIButton *)shoppingCarButton{
-    if (!_shoppingCarButton) {
-         _shoppingCarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _shoppingCarButton.backgroundColor = ColorWithRGB(23, 23, 23);
-        [self addSubview:_shoppingCarButton];
-    }
-    return _shoppingCarButton;
 }
 
 -(void)goSearchGuide{

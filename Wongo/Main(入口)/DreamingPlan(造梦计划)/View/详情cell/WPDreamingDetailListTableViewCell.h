@@ -12,6 +12,5 @@
 
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
-@property (nonatomic,strong)NSString * subid;
 
 @end

@@ -131,7 +131,9 @@
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
 /***/
-#define QueryPlordersOne           HttpHead(@"queryPlordersOne")
+#define QueryProductImg         HttpHead(@"queryProductImg")
+
+#define QueryPlordersOne        HttpHead(@"queryPlordersOne")
 /**
  *  支付
  */

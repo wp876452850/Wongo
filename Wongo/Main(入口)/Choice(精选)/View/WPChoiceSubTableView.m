@@ -94,14 +94,18 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     if (indexPath.row == 0)
     {
         WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:projectCell forIndexPath:indexPath];
+        cell.model = self.dataSourceArray[indexPath.section];
         return cell;
     }else{
         if (_memoryButtonTag == 0) {
             WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
-            return cell;
             
+            return cell;
         }
         WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
+        cell.dataSource = [NSMutableArray arrayWithArray:model.listplan];
+        
         [cell closeWithBlock:^{
             NSDictionary * dic = @{@"Cell": @"cell",@"isOpen":@(NO)};
             self.cellsArray[(indexPath.section)] = dic;
@@ -164,6 +168,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         for (int i = 0; i < array.count; i++) {
             WPDreamingMainGoodsModel * model = [WPDreamingMainGoodsModel mj_objectWithKeyValues:array[i]];
             [_dataSourceArray addObject:model];
+            
         }
         [_cellsArray removeAllObjects];
         for (int i = 0; i<_dataSourceArray.count; i++) {

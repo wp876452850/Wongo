@@ -52,7 +52,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 @property (nonatomic,strong)NSString * plid;
 
-@property (nonatomic,strong)NSString * subid;
+@property (nonatomic,strong)NSString * proid;
 
 @property (nonatomic,strong)UIButton * backBtn;
 
@@ -145,10 +145,10 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     return _tableView;
 }
 
-+(instancetype)createDreamingDetailWithProid:(NSString *)proid subid:(NSString *)subid{
++(instancetype)createDreamingDetailWithProid:(NSString *)proid plid:(NSString *)plid{
     WPDreamingDetailViewController * vc = [[WPDreamingDetailViewController alloc]init];
-    vc.plid = proid;
-    vc.subid = subid;
+    vc.plid = plid;
+    vc.proid = proid;
     return vc;
 }
 - (void)viewDidLoad {
@@ -166,10 +166,12 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     __block WPDreamingDetailViewController * weakSelf = self;
     /**查询商品所有信息*/
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
+        
+        
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
         //查询用户信息
-        [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
             NSArray * list = responseObject[@"list"];
             for (int i = 0;  i < list.count; i++) {
                 WPListModel * model = list[i];
@@ -186,8 +188,8 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
                     //查询参与商品
                     weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
-                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersOne params:nil datas:^(NSDictionary *responseObject) {
-                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
+                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductImg params:nil datas:^(NSDictionary *responseObject) {
+//                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
                         [weakSelf.tableView reloadData];
                     }];
                 }];
@@ -225,7 +227,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         WPDreamingDetailListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
-        cell.subid = self.subid;
         cell.dataSourceArray = self.listDatas;
         return cell;
     }
@@ -275,7 +276,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     WPDreamingIntroduceView * view = [[WPDreamingIntroduceView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 240)];
     view.dataSource = self.model.introduceModel.dreamingIntroduces;
-    
+    view.dreamingStory = self.model.introduceModel.dreamingStory;
     [cell.contentView addSubview:view];
     return cell;
 }
@@ -290,8 +291,13 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         return 70;
     }
     if (indexPath.section == 3) {
-        CGFloat cellHeight = [self.model.remark getSizeWithFont:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height;
-        return cellHeight + 70;
+        if (_detailIntroduceTableViewCellHeight > 70) {
+            return _detailIntroduceTableViewCellHeight;
+        }else{
+            CGFloat cellHeight = [self.model.remark getSizeWithFont:[UIFont systemFontOfSize:14.f] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)].height + 70;
+            _detailIntroduceTableViewCellHeight = cellHeight;
+            return cellHeight;
+        }
     }
     else if (indexPath.section == 4){
         NSArray * array = _model.commentsModelArray;
@@ -345,7 +351,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         return;
     }
     WPCommentModel * commentModel = [[WPCommentModel alloc]init];
-    commentModel.subid = self.subid;
     commentModel.uname = [self getUserName];
     commentModel.comment = text;
     commentModel.commenttime = [self getNowTime];

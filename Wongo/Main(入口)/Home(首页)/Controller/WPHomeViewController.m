@@ -51,12 +51,16 @@ static NSString * contentOffset = @"contentOffset";
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 //造梦数据数组
 @property (nonatomic,strong)NSMutableArray * dreamings;
+//造梦plid
+@property (nonatomic,strong)NSMutableArray * plids;
 //区头数据
 @property (nonatomic,strong)NSMutableArray * reusableDataSource;
 //记录collectionView最后Y偏移
 @property (nonatomic,assign)CGFloat lastCollectionContentOffsetY;
 
 @property (nonatomic, strong) LYHomeResponse *response;
+
+
 
 @end
 
@@ -141,32 +145,36 @@ static NSString * contentOffset = @"contentOffset";
 }
 //请求数据
 -(void)loadData{
+    _plids = [NSMutableArray arrayWithCapacity:3];
+    __block WPHomeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
-        [self.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_header endRefreshing];
         LYHomeResponse *response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
-        _response = response;
-        _homeHeaderView.listhl = response.listhl;
-        _homeHeaderView.listhk = response.listhk;
+        weakSelf.response = response;
+        weakSelf.homeHeaderView.listhl = response.listhl;
+        weakSelf.homeHeaderView.listhk = response.listhk;
         
         [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
             
             NSArray * goods = [responseObject objectForKey:@"goods"];
-            _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+            weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
             for (NSDictionary * item in goods) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
                 [_dataSourceArray addObject:model];
             }
             _page++;
-            [_collectionView reloadData];
+            [weakSelf.collectionView reloadData];
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryProduct params:nil datas:^(NSDictionary *responseObject) {
                 
                 NSArray * dreamings = responseObject[@"list"];
-                _dreamings = [NSMutableArray arrayWithCapacity:3];
+                
+                weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
+                    [weakSelf.plids addObject:dreamings[i][@"plid"]];
                     [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
-                        [_dreamings addObject:responseObject];
-                        if (i == dreamings.count-1) {
-                            [_collectionView reloadData];
+                        [weakSelf.dreamings addObject:responseObject];
+                        if (i == dreamings.count - 1) {
+                            [weakSelf.collectionView reloadData];
                         }
                     }];
                 }
@@ -290,6 +298,7 @@ static NSString * contentOffset = @"contentOffset";
         NSDictionary * dic = _dreamings[indexPath.row][@"list"][0];
         cell.proid = dic[@"proid"];
         cell.url = dic[@"url"];
+        cell.plid = _plids[indexPath.row];
         return cell;
     }
     else{
@@ -367,7 +376,6 @@ static NSString * contentOffset = @"contentOffset";
             [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 50, title.centerY) moveForPoint:CGPointMake(title.right + 20, title.centerY) lineColor:AllBorderColor]];
             return reusableView;
         }
-        
         WPHomeReusableView * reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         if (indexPath.section < 3) {
             WPHomeReusableModel * model = self.reusableDataSource[indexPath.section];

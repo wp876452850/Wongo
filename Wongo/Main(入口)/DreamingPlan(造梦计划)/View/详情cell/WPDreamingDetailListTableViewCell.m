@@ -19,7 +19,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -56,7 +55,7 @@
         imageView.backgroundColor = WongoGrayColor;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = imageView.height /2;
-        [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     }
 }
 -(void)buttonClick:(UIButton *)sender{

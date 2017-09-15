@@ -24,6 +24,11 @@
     
 }
 
+-(void)setModel:(WPDreamingMainGoodsModel *)model{
+    _model = model;
+    [self.bgImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    self.subjectName.text = model.subname;
+}
 
 
 @end

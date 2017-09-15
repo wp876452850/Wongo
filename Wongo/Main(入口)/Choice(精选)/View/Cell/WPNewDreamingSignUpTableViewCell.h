@@ -7,11 +7,14 @@
 //  新版造梦已报名展开单元格
 
 #import <UIKit/UIKit.h>
+#import "WPDreamingMainGoodsModel.h"
+
 
 typedef void(^WPNewDreamingSignUpTableViewCellClose)(void);
 @interface WPNewDreamingSignUpTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)NSMutableArray * dataSource;
+
 
 -(void)closeWithBlock:(WPNewDreamingSignUpTableViewCellClose)block;
 

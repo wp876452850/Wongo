@@ -32,34 +32,41 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    for (int i = 0; i<4; i++) {
+    
+//    for (int i = 0; i<4; i++) {
+//        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1)+_instructions.bottom, ImageWidth, ImageWidth)];
+//        imageView.userInteractionEnabled = YES;
+//        imageView.layer.masksToBounds = YES;
+//        imageView.layer.cornerRadius = 10.0f;
+//        [self.contentView addSubview:imageView];
+//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+//        [imageView addGestureRecognizer:tap];
+//        [_images addObject:imageView];
+//    }
+    
+}
+
+-(void)setDataSource:(NSMutableArray *)dataSource{
+    
+    _dataSource = dataSource;
+    for (int i = 0; i<_dataSource.count; i++) {
+        WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:_dataSource[i]];
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1)+_instructions.bottom, ImageWidth, ImageWidth)];
-        imageView.backgroundColor = WongoBlueColor;
         imageView.userInteractionEnabled = YES;
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = 10.0f;
         [self.contentView addSubview:imageView];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
         [imageView addGestureRecognizer:tap];
-        [_images addObject:imageView];
-    }
-    
-}
-
--(void)setDataSource:(NSMutableArray *)dataSource{
-    _dataSource = dataSource;
-    for (int i = 0; i<_dataSource.count; i++) {
-        WPDreamingDirectoryModel * model = _dataSource[i];
-        UIImageView * image = _images[i];
-        [image sd_setImageWithURL:[NSURL URLWithString:model.prourl] placeholderImage:nil];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+        self.title.text = model.contents;
     }
 }
 
 -(void)tap:(UITapGestureRecognizer *)tap{
-    [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
-    return;
+    
     WPDreamingDirectoryModel * model  = self.dataSource[tap.view.tag];
-    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid subid:model.subid];
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid plid:model.plid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 

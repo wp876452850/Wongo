@@ -26,6 +26,7 @@
 		3D0DF8561F4E68CE00BA1615 /* WPStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8551F4E68CE00BA1615 /* WPStoreViewController.m */; };
 		3D0DF8591F4E6E8300BA1615 /* WPStoreUserInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */; };
 		3D13B8251F16227000C1A20F /* WPBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13B8241F16227000C1A20F /* WPBezierPath.m */; };
+		3D1454791F6A7852003CD7D8 /* WPShareController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1454781F6A7852003CD7D8 /* WPShareController.m */; };
 		3D17301D1F26F37500BFF90D /* WPCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D17301C1F26F37500BFF90D /* WPCommentModel.m */; };
 		3D1730201F26F49100BFF90D /* WPCommentMessegeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D17301F1F26F49100BFF90D /* WPCommentMessegeModel.m */; };
 		3D1731BA1F26F6C200BFF90D /* NSString+Emoji.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1730241F26F6C100BFF90D /* NSString+Emoji.m */; };
@@ -972,6 +973,8 @@
 		3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStoreUserInformationView.m; sourceTree = "<group>"; };
 		3D13B8231F16227000C1A20F /* WPBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBezierPath.h; sourceTree = "<group>"; };
 		3D13B8241F16227000C1A20F /* WPBezierPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBezierPath.m; sourceTree = "<group>"; };
+		3D1454771F6A7852003CD7D8 /* WPShareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPShareController.h; sourceTree = "<group>"; };
+		3D1454781F6A7852003CD7D8 /* WPShareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPShareController.m; sourceTree = "<group>"; };
 		3D17301B1F26F37500BFF90D /* WPCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCommentModel.h; sourceTree = "<group>"; };
 		3D17301C1F26F37500BFF90D /* WPCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPCommentModel.m; sourceTree = "<group>"; };
 		3D17301E1F26F49100BFF90D /* WPCommentMessegeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCommentMessegeModel.h; sourceTree = "<group>"; };
@@ -2480,6 +2483,15 @@
 			);
 			name = "WPBezier(画线)";
 			path = "../../Third(第三方)/WPBezier";
+			sourceTree = "<group>";
+		};
+		3D1454761F6A77CF003CD7D8 /* 第三方分享 */ = {
+			isa = PBXGroup;
+			children = (
+				3D1454771F6A7852003CD7D8 /* WPShareController.h */,
+				3D1454781F6A7852003CD7D8 /* WPShareController.m */,
+			);
+			path = "第三方分享";
 			sourceTree = "<group>";
 		};
 		3D1730211F26F6C100BFF90D /* KeyBoard(键盘框) */ = {
@@ -5473,6 +5485,7 @@
 		8566A7201E48240900C08624 /* Tool(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				3D1454761F6A77CF003CD7D8 /* 第三方分享 */,
 				3D13B8221F16222900C1A20F /* WPBezier(画线) */,
 				8566A7DF1E48268D00C08624 /* WPPhotoLibrary.h */,
 				8566A7E01E48268D00C08624 /* WPPhotoLibrary.m */,
@@ -7572,6 +7585,7 @@
 				8566A88D1E48281500C08624 /* WPAddressOtherTableViewCell.m in Sources */,
 				3D76D95A1F67B806005A6080 /* README.markdown in Sources */,
 				85C748F91E7FD3BD000E1B65 /* README.md in Sources */,
+				3D1454791F6A7852003CD7D8 /* WPShareController.m in Sources */,
 				8566A8921E48281500C08624 /* WPShopingCarTableViewCell.m in Sources */,
 				3D5C2AD41EFA271F001D82CA /* LYHomeRectangleCell.m in Sources */,
 				8559811E1EA458D200F58BD6 /* WPConcernUserViewController.m in Sources */,

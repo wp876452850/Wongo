@@ -44,7 +44,7 @@
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 //    [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
 //    return;
-    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:self.proid subid:nil];
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:self.proid plid:self.plid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

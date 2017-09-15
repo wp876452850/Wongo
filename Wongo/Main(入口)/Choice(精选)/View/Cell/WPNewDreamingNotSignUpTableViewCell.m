@@ -7,6 +7,7 @@
 //
 
 #import "WPNewDreamingNotSignUpTableViewCell.h"
+#import "WPPushDreamingViewController.h"
 
 @interface WPNewDreamingNotSignUpTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
@@ -36,7 +37,8 @@
 
 - (IBAction)goSignUp:(UIButton *)sender
 {
-    [[self findViewController:self]showAlertWithAlertTitle:@"提示" message:@"造梦活动暂未开始" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+//    [[self findViewController:self]showAlertWithAlertTitle:@"提示" message:@"造梦活动暂未开始" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:[WPPushDreamingViewController new] animated:YES];
 }
 
 @end

@@ -48,4 +48,4 @@
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>
 #import <RongIMKit/RongIMKit.h>
-
+#import <UMSocialCore/UMSocialCore.h>

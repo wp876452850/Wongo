@@ -34,6 +34,9 @@
 @property (nonatomic,strong)NSString * proname;
 /***/
 @property (nonatomic,strong)NSString * contents;
+/***/
+@property (nonatomic,strong)NSString * plid;
+
 
 
 @end

@@ -201,9 +201,9 @@
     
     _userName.text          = @"                               ";
     _signature.text         = @"                               ";
-    _attentionNumber.text   = @" ";
-    _fansNumber.text        = @" ";
-    _enjoyNumber.text       = @" ";
+    _attentionNumber.text   = @"0";
+    _fansNumber.text        = @"0";
+    _enjoyNumber.text       = @"0";
     //设置居中
     _userName.textAlignment = NSTextAlignmentCenter;
     _signature.textAlignment = NSTextAlignmentCenter;
