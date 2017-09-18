@@ -167,7 +167,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     __block WPDreamingDetailViewController * weakSelf = self;
     /**查询商品所有信息*/
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
-        
+
         
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
         //查询用户信息

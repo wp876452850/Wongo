@@ -13,4 +13,7 @@
 @property (nonatomic,strong)NSString * subid;
 
 @property (nonatomic,assign)BOOL isPush;
+
+-(instancetype)initWithSubid:(NSString *)subid;
+
 @end

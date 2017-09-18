@@ -7,8 +7,8 @@
 //  新版造梦未报名展开单元格
 
 #import <UIKit/UIKit.h>
-
+#import "WPDreamingMainGoodsModel.h"
 
 @interface WPNewDreamingNotSignUpTableViewCell : UITableViewCell
-
+@property (nonatomic,strong)WPDreamingMainGoodsModel * model;
 @end

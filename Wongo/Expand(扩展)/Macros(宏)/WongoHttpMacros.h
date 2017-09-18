@@ -96,6 +96,10 @@
 #define QtQueryType             HttpHead(@"qtQueryType")
 /**查询某一分类下的物品 */
 #define QtQueryTypegdlist       HttpHead(@"qtQueryTypegdlist")
+/**进行中造梦(主页造梦也用此方法)*/
+#define QuerySubIng             HttpHead(@"querySubIng")
+/**筹备中造梦*/
+#define QuerySub                HttpHead(@"querySub")
 
 /**
  *      造梦

@@ -111,18 +111,18 @@ static NSString * const cell            = @"cell";
     }
     return _tableView;
 }
--(instancetype)init{
+-(instancetype)initWithSubid:(NSString *)subid{
     if (self = [super init]) {
-        self.view.backgroundColor = WhiteColor;
-        [self.view addSubview:self.tableView];
-        [self.view addSubview:self.nav];
+        self.subid = subid;
     }
     return self;
 }
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+    self.view.backgroundColor = WhiteColor;
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.nav];
     
     self.images = [NSMutableArray arrayWithCapacity:3];
     UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -308,6 +308,9 @@ static NSString * const cell            = @"cell";
 }
 #pragma mark - 发布(报名)造梦
 -(void)goNextVC{
+    if (![self determineWhetherTheLogin]) {
+        return;
+    }
     if (!self.button.selected) {
         [self showAlertWithAlertTitle:@"提示" message:@"需要同意《造梦计划平台说明协议》规则后才能发布造梦计划" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
         return;

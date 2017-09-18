@@ -44,6 +44,7 @@
 #import "ChatToolBarItem.h"
 #import "FaceThemeModel.h"
 #import "WPAttributedString.h"
+#import "WPShareController.h"
 
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>

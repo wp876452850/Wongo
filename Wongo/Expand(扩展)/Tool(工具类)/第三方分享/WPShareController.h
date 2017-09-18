@@ -10,7 +10,7 @@
 
 @interface WPShareController : NSObject
 /**主页分享app*/
-+(void)shareApp;
++(void)shareAppWithCurrentViewController:(UIViewController *)currentViewController;
 /**分享交换商品链接*/
 
 @end

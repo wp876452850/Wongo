@@ -162,21 +162,26 @@ static NSString * contentOffset = @"contentOffset";
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
                 [_dataSourceArray addObject:model];
             }
+            
             _page++;
             [weakSelf.collectionView reloadData];
-            [WPNetWorking createPostRequestMenagerWithUrlString:QueryProduct params:nil datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:QuerySub params:nil datas:^(NSDictionary *responseObject) {
                 
-                NSArray * dreamings = responseObject[@"list"];
+                NSArray * dreamings = responseObject[@"listSub"][0][@"listplan"];
                 
                 weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
-                    [weakSelf.plids addObject:dreamings[i][@"plid"]];
-                    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
-                        [weakSelf.dreamings addObject:responseObject];
-                        if (i == dreamings.count - 1) {
-                            [weakSelf.collectionView reloadData];
-                        }
-                    }];
+                    WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:dreamings[i]];
+                    [_dreamings addObject:model];
+                    [weakSelf.collectionView reloadData];
+//                    [weakSelf.plids addObject:dreamings[i][@"plid"]];
+//                    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
+//                        [weakSelf.dreamings addObject:responseObject];
+//                        if (i == dreamings.count - 1) {
+//                            [weakSelf.collectionView reloadData];
+//                        }
+//                    }];
+                    
                 }
             }];
         }];
@@ -295,10 +300,13 @@ static NSString * contentOffset = @"contentOffset";
     }
     else if (indexPath.section == 2){
         WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-        NSDictionary * dic = _dreamings[indexPath.row][@"list"][0];
-        cell.proid = dic[@"proid"];
-        cell.url = dic[@"url"];
-        cell.plid = _plids[indexPath.row];
+
+        cell.model = _dreamings[indexPath.row];
+//NSDictionary * dic = _dreamings[indexPath.row][@"list"][0];
+        
+//        cell.proid = dic[@"proid"];
+//        cell.url = dic[@"url"];
+//        cell.plid = _plids[indexPath.row];
         return cell;
     }
     else{

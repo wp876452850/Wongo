@@ -38,9 +38,8 @@ static NSString * const projectCell = @"ProjectCell";
 static NSString * const signUp = @"SignUp";
 static NSString * const notSignUpCell   = @"notSignUpCell";
 
-#pragma mark - loadDatas
 
-#pragma mark - LoadData
+
 -(NSMutableArray *)cellsArray{
     if (!_cellsArray) {
         _cellsArray = [NSMutableArray arrayWithCapacity:3];
@@ -99,7 +98,6 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     }else{
         if (_memoryButtonTag == 0) {
             WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
-            
             return cell;
         }
         WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
@@ -164,7 +162,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     __weak WPChoiceSubTableView * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{} datas:^(NSDictionary *responseObject) {
         NSArray * array = [responseObject objectForKey:@"listSub"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+        _dataSourceArray = [NSMutableArray arrayWithCapacity	:3];
         for (int i = 0; i < array.count; i++) {
             WPDreamingMainGoodsModel * model = [WPDreamingMainGoodsModel mj_objectWithKeyValues:array[i]];
             [_dataSourceArray addObject:model];

@@ -65,15 +65,14 @@ static NSString * contentOffset = @"contantOffset";
     return _shareButton;
 }
 -(void)actionShare{
-    
-    
-    
+    [WPShareController shareAppWithCurrentViewController:[self findViewController:self]];
 }
 -(instancetype)init{
     self = [super init];
     if (self) {
         self.frame = CGRectMake(0, 0, WINDOW_WIDTH, 64);
         self.backgroundColor = ColorWithRGB(33, 34, 36);
+        self.shareButton.hidden = YES;
         [self selfSubViewsFrame];
         [self startLocation];
     }
