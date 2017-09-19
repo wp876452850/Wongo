@@ -8,6 +8,7 @@
 
 #import "WPDreamingGoodsIntroductionTableView.h"
 #import "WPDreamingImageTableViewCell.h"
+#import "WPDreamingIntroduceImageModel.h"
 #import "WPDreamingIntroduceTableViewCell.h"
 #import "WPDreamingGoodsIntroduceModel.h"
 
@@ -37,6 +38,7 @@ static NSString * const introduceCell   = @"introduceCell";
         self.dataArray = [[NSMutableArray alloc]init];
         [self.dataArray addObject:dic];
     }
+    [self reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -49,6 +51,7 @@ static NSString * const introduceCell   = @"introduceCell";
     if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell])
     {
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
+        cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
         if (indexPath.row+1<self.dataArray.count) {
             [cell showOK];
         }else [cell showOngoing];
@@ -56,6 +59,7 @@ static NSString * const introduceCell   = @"introduceCell";
         
     }else if([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:introduceCell]){
         WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+         cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
         return cell;
     }
     return nil;

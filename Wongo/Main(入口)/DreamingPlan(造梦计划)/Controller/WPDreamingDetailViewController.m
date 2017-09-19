@@ -8,6 +8,7 @@
 
 #import "WPDreamingDetailViewController.h"
 #import "SDCycleScrollView.h"
+#import "WPDreamingGoodsIntroduceModel.h"
 #import "WPDreamingCommentsModel.h"
 #import "WPSearchModel.h"
 #import "WPSearchUserTableViewCell.h"
@@ -69,7 +70,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backBtn addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
-        [_backBtn setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_backBtn setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
         _backBtn.frame = CGRectMake(10, 20, 30, 30);
     }
     return _backBtn;
@@ -167,7 +168,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     __block WPDreamingDetailViewController * weakSelf = self;
     /**查询商品所有信息*/
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
-
         
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
         //查询用户信息
@@ -188,8 +188,8 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
                     //查询参与商品
                     weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
-                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductImg params:nil datas:^(NSDictionary *responseObject) {
-//                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
+                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersOne params:nil datas:^(NSDictionary *responseObject) {
+                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
                         [weakSelf.tableView reloadData];
                     }];
                 }];

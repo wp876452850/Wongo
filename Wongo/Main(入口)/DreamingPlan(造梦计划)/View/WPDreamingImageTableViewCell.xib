@@ -78,11 +78,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="goodsImage" destination="m00-gV-n0j" id="yJZ-xi-Xtu"/>
+                <outlet property="goodsName" destination="wRT-2N-C5o" id="V6j-Au-eiY"/>
+                <outlet property="isFirst" destination="beD-60-6UP" id="YH6-Rc-Weh"/>
                 <outlet property="logoImage" destination="psd-2n-Rl9" id="ECd-Mr-vwv"/>
                 <outlet property="logoImageOK" destination="kEm-ex-g0c" id="NNy-Zo-Afl"/>
                 <outlet property="logoLabelOK" destination="74x-us-Ils" id="RWK-NC-1cW"/>
             </connections>
-            <point key="canvasLocation" x="-553" y="-100"/>
+            <point key="canvasLocation" x="-612" y="-37"/>
         </tableViewCell>
     </objects>
     <resources>

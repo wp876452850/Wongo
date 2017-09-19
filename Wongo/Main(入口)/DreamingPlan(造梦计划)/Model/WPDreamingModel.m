@@ -13,6 +13,7 @@
 -(instancetype)init{
     if (self = [super init]) {
         self.commentsModelArray = [NSMutableArray arrayWithCapacity:3];
+        self.introduceModel = [[WPDreamingIntroduceModel alloc]init];
     }
     return self;
 }

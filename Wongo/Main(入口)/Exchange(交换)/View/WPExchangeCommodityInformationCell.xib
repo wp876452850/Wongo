@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="146" id="KGk-i7-Jjw" customClass="WPExchangeCommodityInformationCell">
-            <rect key="frame" x="0.0" y="0.0" width="359" height="146"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="190" id="KGk-i7-Jjw" customClass="WPExchangeCommodityInformationCell">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="190"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="359" height="145.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="359" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbK-F4-Akc">
@@ -44,8 +44,8 @@
                             <action selector="collection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hpx-CC-lsz"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本商品源于闲置换新活动" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-cW-XZg">
-                        <rect key="frame" x="10" y="53" width="146" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本商品暂无参与活动" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-cW-XZg">
+                        <rect key="frame" x="10" y="53" width="119.5" height="16"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                         <color key="textColor" red="0.2236888111" green="0.39865952729999998" blue="0.55391877889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -62,12 +62,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="Pyl-hU-gVK" firstAttribute="bottom" secondItem="TMF-ii-ANv" secondAttribute="bottom" id="0a4-Zl-d4e"/>
-                    <constraint firstItem="tbK-F4-Akc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="A8m-WX-3h7"/>
                     <constraint firstItem="TMF-ii-ANv" firstAttribute="top" secondItem="hZS-cW-XZg" secondAttribute="bottom" constant="24" id="FP8-NZ-RqK"/>
                     <constraint firstItem="5w7-LG-C9h" firstAttribute="top" secondItem="hZS-cW-XZg" secondAttribute="bottom" constant="10" id="Fdx-by-5mL"/>
                     <constraint firstItem="5w7-LG-C9h" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="KIe-t9-dH3"/>
                     <constraint firstItem="hZS-cW-XZg" firstAttribute="leading" secondItem="tbK-F4-Akc" secondAttribute="leading" id="Ysp-0r-ThW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="tbK-F4-Akc" secondAttribute="trailing" id="ccr-6l-l9b"/>
+                    <constraint firstItem="tbK-F4-Akc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="f44-bO-xV2"/>
                     <constraint firstItem="5w7-LG-C9h" firstAttribute="height" secondItem="tbK-F4-Akc" secondAttribute="height" id="gHX-75-N07"/>
                     <constraint firstItem="hZS-cW-XZg" firstAttribute="top" secondItem="tbK-F4-Akc" secondAttribute="bottom" id="h3P-4k-hyE"/>
                     <constraint firstItem="TMF-ii-ANv" firstAttribute="leading" secondItem="5w7-LG-C9h" secondAttribute="trailing" constant="8" id="h76-br-Ejj"/>
@@ -82,7 +82,7 @@
                 <outlet property="oldNew" destination="TMF-ii-ANv" id="7VM-eC-d3O"/>
                 <outlet property="price" destination="5w7-LG-C9h" id="06H-uC-Rt1"/>
             </connections>
-            <point key="canvasLocation" x="-745" y="-9"/>
+            <point key="canvasLocation" x="-884.5" y="77"/>
         </tableViewCell>
     </objects>
 </document>

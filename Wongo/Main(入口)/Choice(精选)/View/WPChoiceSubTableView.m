@@ -18,6 +18,8 @@
 {
     NSInteger _memoryButtonTag;
 }
+@property (nonatomic,strong)NSMutableArray * images;
+
 @property (nonatomic,strong)NSMutableArray * cellsArray;
 
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
@@ -48,7 +50,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
 }
 -(WPNewDreamingChoiceHeaderView *)headerView{
     if (!_headerView) {
-        _headerView = [[WPNewDreamingChoiceHeaderView alloc]initWithPostersImages:@[@""]];
+        _headerView = [[WPNewDreamingChoiceHeaderView alloc]initWithPostersImages:self.images];
         [_headerView menuButtonDidSelectedWithBlock:^(NSInteger tag) {
             //修改url
             [self addHeader];

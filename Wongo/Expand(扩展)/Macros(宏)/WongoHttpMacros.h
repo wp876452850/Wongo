@@ -55,12 +55,7 @@
 #define DeleteAddressedUrl      HttpHead(@"deleteAddressed")
 /**修改默认地址*/
 #define UpdAddressedStateUrl    HttpHead(@"updAddressedState")
-/**添加收藏*/
-#define CollectionAddUrl        HttpHead(@"CollectionAdd")
-/**取消收藏*/
-#define CollectionCancelUrl     HttpHead(@"updgdfreight")
-/**查询收藏商品*/
-#define QueryUserCollectionUrl  HttpHead(@"queryUserCollection")
+
 /**修改用户头像*/
 #define UpdataUserHeaderImage   HttpHead(@"saveImage")
 /**注册*/
@@ -106,8 +101,8 @@
  */
 /**查询所有造梦计划*/
 #define QueryProduct            HttpHead(@"queryPlanById")
-/**主页造梦*/
-#define HtQueryProductStatePlan HttpHead(@"queryProductById")
+/**某个造梦计划的参与造梦*/
+#define QueryProductById        HttpHead(@"queryProductById")
 /**造梦计划主页展示数据URL*/
 #define DreamingHomePageUrl     HttpHead(@"querySub")
 /**发布(报名)造梦计划*/
@@ -136,7 +131,7 @@
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
 /***/
 #define QueryProductImg         HttpHead(@"queryProductImg")
-
+/**某个造梦计划的参与造梦*/
 #define QueryPlordersOne        HttpHead(@"queryPlordersOne")
 /**
  *  支付
@@ -156,6 +151,16 @@
 #define IncensesproductAdd      HttpHead(@"incensesproductAdd")
 /**造梦取消点赞*/
 #define IncensesproductDel      HttpHead(@"incensesproductDel")
+
+/**
+ *  收藏
+ */
+/**添加收藏*/
+#define CollectionAddUrl        HttpHead(@"CollectionAdd")
+/**取消收藏*/
+#define CollectionCancelUrl     HttpHead(@"delCollection")
+/**查询收藏商品*/
+#define QueryUserCollectionUrl  HttpHead(@"queryUserCollection")
 
 /**
  *  评论

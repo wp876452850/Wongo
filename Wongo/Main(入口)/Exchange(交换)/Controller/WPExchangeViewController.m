@@ -98,6 +98,10 @@ static NSString * const imageShowCell       = @"ImageShowCell";
         _cycleScrollView.delegate = self;
         _cycleScrollView.autoScroll = NO;
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
+        
+        UIImageView * goodsimageshadow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"goodsimageshadow"]];
+        goodsimageshadow.frame = CGRectMake(0, _cycleScrollView.bottom-19, WINDOW_WIDTH, 19);
+        [self.tableView addSubview:goodsimageshadow];
     }
     return _cycleScrollView;
 }
@@ -106,7 +110,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
-        [_backButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_backButton setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
         _backButton.frame = CGRectMake(10, 20, 30, 30);
     }
     return _backButton;

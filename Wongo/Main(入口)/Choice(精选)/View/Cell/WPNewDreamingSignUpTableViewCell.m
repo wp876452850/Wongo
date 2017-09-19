@@ -65,18 +65,9 @@
 }
 
 -(void)tap:(UITapGestureRecognizer *)tap{
-    
-    __block WPNewDreamingSignUpTableViewCell * weakSelf = self;
     WPDreamingDirectoryModel * model  = [WPDreamingDirectoryModel mj_objectWithKeyValues:self.dataSource[tap.view.tag]];
-    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":model.plid} datas:^(NSDictionary *responseObject) {
-        NSArray * list = responseObject[@"list"];
-        NSString * proid = list[0][@"proid"];
-        WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:proid plid:model.plid];
-        [[weakSelf findViewController:weakSelf].navigationController pushViewController:vc animated:YES];
-        
-    }];
-    
-    
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid plid:model.plid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)close:(UIButton *)sender {

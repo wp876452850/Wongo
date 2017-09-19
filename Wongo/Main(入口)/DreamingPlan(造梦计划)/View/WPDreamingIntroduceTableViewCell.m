@@ -60,13 +60,21 @@
     [self.contentView addSubview:self.collectionView];
 }
 
--(void)setModel:(WPDreamingGoodsIntroduceModel *)model{
+-(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
     _collectionView.contentOffset = CGPointMake(0, 0);
+    _userName.text = _model.uname;
+    _goodsIntroduce.text = _model.remark;
+    _images = [NSMutableArray arrayWithCapacity:3];
+    
+    for (int i = 0; i<_model.listimg.count; i++) {
+        [_images addObject:_model.listimg[i][@"url"]];
+    }
+    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 40;
+    return _images.count;
 }
 
 -(void)setImages:(NSMutableArray *)images{
@@ -78,7 +86,10 @@
     [cell.contentView removeAllSubviews];
     UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
     image.backgroundColor = RandomColor;
+    [image sd_setImageWithURL:[NSURL URLWithString:self.images[indexPath.row]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     [cell addSubview:image];
+    image.layer.borderWidth = 0.5f;
+    image.layer.borderColor = WongoGrayColor.CGColor;
     return cell;
 }
 @end

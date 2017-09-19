@@ -41,6 +41,8 @@ static NSString * progress;
     price       = model.price;
     unit        = model.unit;
     progress    = model.progress;
+    
+    
     [self createProgress];
     
 }

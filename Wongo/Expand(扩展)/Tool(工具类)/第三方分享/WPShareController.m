@@ -13,7 +13,7 @@
 @property (nonatomic,strong)UIViewController * currentViewController;
 @end
 @implementation WPShareController
-
+//分享app
 +(void)shareAppWithCurrentViewController:(UIViewController *)currentViewController
 {
     [self setPreDefinePlat];
@@ -23,6 +23,7 @@
     
     
 }
+//展示分享框
 - (void)showBottomNormalView
 {
     [UMSocialUIManager removeAllCustomPlatformWithoutFilted];
@@ -55,7 +56,6 @@
     [UMSocialUIManager setPreDefinePlatforms:@[@(UMSocialPlatformType_WechatSession),
                                                @(UMSocialPlatformType_WechatTimeLine),
                                                @(UMSocialPlatformType_QQ),
-                                               @(UMSocialPlatformType_Tim),
                                                @(UMSocialPlatformType_Qzone),
                                                @(UMSocialPlatformType_Sina),
                                                ]];
@@ -67,8 +67,7 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    NSString* thumbURL =  @"http://119.23.32.206:8080/change/touxiang/0.png";
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"碗糕-让您的闲置帮您创造梦想" descr:@"碗糕app是一款以交换物品为基础，以小换大的交易方式，独特“众筹”模式为特色的应用软件" thumImage:thumbURL];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"碗糕-让您的闲置帮您创造梦想" descr:@"碗糕app是一款以交换物品为基础，以小换大的交易方式，独特“众筹”模式为特色的应用软件" thumImage:[UIImage imageNamed:@"80"]];
     //设置网页地址
     shareObject.webpageUrl = @"https://itunes.apple.com/cn/app/%E7%A2%97%E7%B3%95-%E8%AE%A9%E4%BD%A0%E7%9A%84%E9%97%B2%E7%BD%AE%E5%B8%AE%E4%BD%A0%E5%88%9B%E9%80%A0%E6%A2%A6%E6%83%B3/id1237071053?mt=8";
     

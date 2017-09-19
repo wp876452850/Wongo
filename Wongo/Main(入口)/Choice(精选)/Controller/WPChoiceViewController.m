@@ -26,7 +26,7 @@
 
 - (WPChoiceContentCollectionView *)choiceContentCollectionView{
     if (!_choiceContentCollectionView) {
-         _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) SubViewsClassArray:@[[WPChoiceSubCollectionView class],[WPDreameChioceSubView class]] cellClassArray:@[[WPNewExchangeCollectionViewCell class],[WPNewExchangeCollectionViewCell class]] loadDatasUrls:@[ExchangeHomePageUrl,DreamingHomePageUrl]];
+         _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) SubViewsClassArray:@[[WPChoiceSubCollectionView class],[WPDreameChioceSubView class]] cellClassArray:@[[WPNewExchangeCollectionViewCell class],[WPNewExchangeCollectionViewCell class]] loadDatasUrls:@[ExchangeHomePageUrl,QuerySubIng]];
     }
     return _choiceContentCollectionView;
 }

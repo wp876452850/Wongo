@@ -10,6 +10,7 @@
 #import "WPChoiceViewController.h"
 #import "LYHomeBannerM.h"
 #import "LYActivityController.h"
+#import "LYBaseController.h"
 
 #define FIRST_IMG_URL @""
 #define SECOND_IMG_URL @"http://pic35.photophoto.cn/20150512/0018031445748020_b.jpg"
@@ -208,8 +209,12 @@
 }
 -(void)buttonClick:(UIButton *)sender{
     if (sender.tag == 4) {
-        //FIXME:未开放
-        [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
+        LYBaseController * vc = [[LYBaseController alloc]init];
+        vc.myNavItem.title = @"交换流程";
+        UIImageView * image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jiaohuanliucheng"]];
+        image.frame = CGRectMake(0, 64, WINDOW_WIDTH, 293*WINDOW_WIDTH/375);
+        [vc.view addSubview:image];
+        [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];;
         return;
     }
     NSInteger i = sender.tag;

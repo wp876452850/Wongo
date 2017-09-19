@@ -181,7 +181,6 @@ static NSString * contentOffset = @"contentOffset";
 //                            [weakSelf.collectionView reloadData];
 //                        }
 //                    }];
-                    
                 }
             }];
         }];
@@ -300,13 +299,7 @@ static NSString * contentOffset = @"contentOffset";
     }
     else if (indexPath.section == 2){
         WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-
         cell.model = _dreamings[indexPath.row];
-//NSDictionary * dic = _dreamings[indexPath.row][@"list"][0];
-        
-//        cell.proid = dic[@"proid"];
-//        cell.url = dic[@"url"];
-//        cell.plid = _plids[indexPath.row];
         return cell;
     }
     else{

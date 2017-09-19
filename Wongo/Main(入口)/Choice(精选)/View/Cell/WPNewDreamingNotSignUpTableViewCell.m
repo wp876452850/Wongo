@@ -41,7 +41,10 @@
 - (IBAction)goSignUp:(UIButton *)sender
 {
 //    [[self findViewController:self]showAlertWithAlertTitle:@"提示" message:@"造梦活动暂未开始" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
-    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:[[WPPushDreamingViewController alloc]initWithSubid:_model.subid] animated:YES];
+    WPPushDreamingViewController * vc = [[WPPushDreamingViewController alloc]initWithSubid:_model.subid];
+    vc.isPush = YES;
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+    
 }
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WPDreamingGoodsIntroduceModel.h"
+#import "WPDreamingIntroduceImageModel.h"
 
 @interface WPDreamingIntroduceTableViewCell : UITableViewCell
 
-@property (nonatomic,strong)WPDreamingGoodsIntroduceModel * model;
+@property (nonatomic,strong)WPDreamingIntroduceImageModel * model;
 
 @end

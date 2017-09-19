@@ -58,7 +58,7 @@ static NSString * contentOffset = @"contantOffset";
 -(UIButton *)shareButton{
     if (!_shareButton) {
         _shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _shareButton.backgroundColor = ColorWithRGB(23, 23, 23);
+        [_shareButton setImage:[UIImage imageNamed:@"homeshare"] forState:UIControlStateNormal];
         [self addSubview:_shareButton];
         [_shareButton addTarget:self action:@selector(actionShare) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -72,7 +72,6 @@ static NSString * contentOffset = @"contantOffset";
     if (self) {
         self.frame = CGRectMake(0, 0, WINDOW_WIDTH, 64);
         self.backgroundColor = ColorWithRGB(33, 34, 36);
-        self.shareButton.hidden = YES;
         [self selfSubViewsFrame];
         [self startLocation];
     }
