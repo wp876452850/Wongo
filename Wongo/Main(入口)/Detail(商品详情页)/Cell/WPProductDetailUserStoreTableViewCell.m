@@ -30,7 +30,7 @@
     self.headPortrait.layer.masksToBounds = YES;
     self.headPortrait.layer.cornerRadius = 30;
     self.headPortrait.layer.borderWidth = 0.5f;
-    self.headPortrait.layer.borderColor = WongoGrayColor.CGColor;
+    self.headPortrait.layer.borderColor =ColorWithRGB(24, 24, 24).CGColor;
     
     self.collect.layer.masksToBounds = YES;
     self.collect.layer.cornerRadius = 5;
@@ -52,12 +52,12 @@
 }
 
 - (IBAction)collect:(UIButton *)sender {
-    [[self findViewController:self] showAlertNotOpenedWithBlock:nil];
-    return;
-    [self focusOnTheUserWithSender:sender uid:_model.uid];    
+    
+    [self focusOnTheUserWithSender:sender uid:_model.uid];
 }
 
 -(void)setModel:(WPUserIntroductionModel *)model{
+    _model = model;
     [self.headPortrait sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
     self.uname.text = model.uname;
     if (model.signature.length > 0) {

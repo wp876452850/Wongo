@@ -83,8 +83,8 @@
 #define  UpdateOrderLogUrl      HttpHead(@"updateOrderLog")
 /**获取首页轮播信息 */
 #define  GetHomeBannerUrl       HttpHead(@"getGoodsList")
-/**获取活动物品列表 */
-#define GetGoodClassList        HttpHead(@"getGoodClassList")
+/**点击二级分类时查询商品方法 */
+#define QueryGoodClassBiId        HttpHead(@"queryGoodClassBiId")
 /**申请平台介入 */
 #define UpdateOrderFalse        HttpHead(@"updateOrderFalse")
 /**查询首页分类 */

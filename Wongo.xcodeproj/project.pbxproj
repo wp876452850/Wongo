@@ -392,6 +392,7 @@
 		3D883C831F4C2FEF00A990D6 /* WPListOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C811F4C2FEF00A990D6 /* WPListOtherTableViewCell.m */; };
 		3D883C841F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D883C821F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib */; };
 		3D89B4B61F42D60D00B79689 /* DLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D89B4B51F42D60D00B79689 /* DLPickerView.m */; };
+		3D95E3481F71057F003BE63F /* WPSearchClassificationGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D95E3471F71057F003BE63F /* WPSearchClassificationGoodsViewController.m */; };
 		3D98245F1F566DE100FDD412 /* WPDreamingOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D98245D1F566DE100FDD412 /* WPDreamingOrderTableViewCell.m */; };
 		3D9824601F566DE100FDD412 /* WPDreamingOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D98245E1F566DE100FDD412 /* WPDreamingOrderTableViewCell.xib */; };
 		3D9824641F56A87A00FDD412 /* WPMyDreamingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9824621F56A87A00FDD412 /* WPMyDreamingTableViewCell.m */; };
@@ -1425,6 +1426,8 @@
 		3D883C821F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPListOtherTableViewCell.xib; sourceTree = "<group>"; };
 		3D89B4B41F42D60D00B79689 /* DLPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLPickerView.h; sourceTree = "<group>"; };
 		3D89B4B51F42D60D00B79689 /* DLPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPickerView.m; sourceTree = "<group>"; };
+		3D95E3461F71057F003BE63F /* WPSearchClassificationGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSearchClassificationGoodsViewController.h; sourceTree = "<group>"; };
+		3D95E3471F71057F003BE63F /* WPSearchClassificationGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSearchClassificationGoodsViewController.m; sourceTree = "<group>"; };
 		3D98245C1F566DE100FDD412 /* WPDreamingOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPDreamingOrderTableViewCell.h; path = "Wongo/Main(入口)/Detail(商品详情页)/Cell/WPDreamingOrderTableViewCell.h"; sourceTree = SOURCE_ROOT; };
 		3D98245D1F566DE100FDD412 /* WPDreamingOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPDreamingOrderTableViewCell.m; path = "Wongo/Main(入口)/Detail(商品详情页)/Cell/WPDreamingOrderTableViewCell.m"; sourceTree = SOURCE_ROOT; };
 		3D98245E1F566DE100FDD412 /* WPDreamingOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WPDreamingOrderTableViewCell.xib; path = "Wongo/Main(入口)/Detail(商品详情页)/Cell/WPDreamingOrderTableViewCell.xib"; sourceTree = SOURCE_ROOT; };
@@ -5074,6 +5077,8 @@
 				85D595581E5C1C6F00AB5869 /* WPSearchGoodsChildController.m */,
 				852D0D731E5A966E00B8EE93 /* WPSearchUserViewController.h */,
 				852D0D741E5A966E00B8EE93 /* WPSearchUserViewController.m */,
+				3D95E3461F71057F003BE63F /* WPSearchClassificationGoodsViewController.h */,
+				3D95E3471F71057F003BE63F /* WPSearchClassificationGoodsViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7768,6 +7773,7 @@
 				3D1731BB1F26F6C200BFF90D /* ChatKeyBoard.m in Sources */,
 				3D17301D1F26F37500BFF90D /* WPCommentModel.m in Sources */,
 				8526950F1E4AEE720056EEE3 /* UIView+Extension.m in Sources */,
+				3D95E3481F71057F003BE63F /* WPSearchClassificationGoodsViewController.m in Sources */,
 				85187E3B1E8DF19300D3D64F /* NSBundle+MJRefresh.m in Sources */,
 				3D0772F91F18A7F70084E409 /* TZPhotoPreviewController.m in Sources */,
 				851E361D1EC4473A00C48AEF /* WPDreamingGoodsIntroduceModel.m in Sources */,

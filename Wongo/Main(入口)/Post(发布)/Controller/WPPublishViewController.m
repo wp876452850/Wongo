@@ -120,6 +120,9 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryGoodClassBiId params:@{@"gcid":@"1"} datas:^(NSDictionary *responseObject) {
+        
+    }];
 }
 
 @end

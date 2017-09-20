@@ -32,18 +32,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-//    for (int i = 0; i<4; i++) {
-//        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1)+_instructions.bottom, ImageWidth, ImageWidth)];
-//        imageView.userInteractionEnabled = YES;
-//        imageView.layer.masksToBounds = YES;
-//        imageView.layer.cornerRadius = 10.0f;
-//        [self.contentView addSubview:imageView];
-//        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
-//        [imageView addGestureRecognizer:tap];
-//        [_images addObject:imageView];
-//    }
-    
 }
 
 -(void)setDataSource:(NSMutableArray *)dataSource{

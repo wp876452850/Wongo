@@ -201,10 +201,13 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             break;
 
         case 3:{
-            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
-            cell.model = self.exchangeModel;
-            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+           UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             return cell;
+            /**参数cell暂时隐藏*/
+//            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
+//            cell.model = self.exchangeModel;
+//            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+//            return cell;
         }
             break;
         case 4:{
@@ -255,7 +258,8 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             break;
         case 3:
         {
-            return 170;
+            //暂时先隐藏
+            return 0;
         }
             break;
         case 4:{
@@ -267,12 +271,13 @@ static NSString * const imageShowCell       = @"ImageShowCell";
         }
             break;
         case 5:{
-            return 40;
+            //暂时先隐藏
+            return 0;
         }
             break;
     }
     
-    return (WINDOW_WIDTH+40)*self.exchangeModel.rollPlayImages.count;
+    return (WINDOW_WIDTH+10)*self.exchangeModel.rollPlayImages.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -295,7 +300,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 3||section == 4) {
+    if (section == 4) {
         return 10;
     }
     return 0;

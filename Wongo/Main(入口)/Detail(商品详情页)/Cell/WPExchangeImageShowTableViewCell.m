@@ -24,7 +24,7 @@
 -(void)setImages:(NSArray *)images{
     _images = images;
     for (int i = 0; i < images.count; i++) {
-        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (WINDOW_WIDTH+40)*i+20, WINDOW_WIDTH, WINDOW_WIDTH)];
+        UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (WINDOW_WIDTH+10)*i, WINDOW_WIDTH, WINDOW_WIDTH)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:images[i]] placeholderImage:nil];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:imageView];

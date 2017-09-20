@@ -49,7 +49,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (!_cycleScrollView) {
 #warning 有后台记得改
         //_cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:self.rollPlayImages];
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:@[@"5.jpg",@"6.jpg",@"7.jpg",@"8.jpg"]];
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:ExchangePosters];
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
         //_cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
     }

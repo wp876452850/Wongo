@@ -168,12 +168,12 @@ static NSString * contentOffset = @"contantOffset";
 }
 -(void)selfSubViewsFrame{
     [self.positioningButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(25);
+        make.left.mas_equalTo(10);
         make.centerY.mas_equalTo(self.mas_centerY).offset(10);
         make.size.mas_equalTo(CGSizeMake(50, 30));
     }];
     [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-25);
+        make.right.mas_equalTo(-20);
         make.centerY.mas_equalTo(self.mas_centerY).offset(10);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -192,8 +192,8 @@ static NSString * contentOffset = @"contantOffset";
 
 -(void)goSearchGuide{
     //FIXME:功能暂未开放
-    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
-    return;
+//    [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
+//    return;
     WPSearchGuideViewController * vc = [[WPSearchGuideViewController alloc]init];
     WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
     UINavigationController * nav = [tabBar.childViewControllers firstObject];

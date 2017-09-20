@@ -39,7 +39,7 @@
     
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(WINDOW_WIDTH-50, 20, 50, 50);
-    [button setImage:[UIImage imageNamed:@"arrow_right"] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:@"celljiantou"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:button];
     

@@ -27,6 +27,7 @@ static NSString * const introduceCell   = @"introduceCell";
         self.cellsHeight = [NSMutableArray arrayWithCapacity:3];
         self.delegate = self;
         self.dataSource = self;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }

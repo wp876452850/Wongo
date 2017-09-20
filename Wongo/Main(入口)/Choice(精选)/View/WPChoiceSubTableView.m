@@ -17,6 +17,8 @@
 @interface WPChoiceSubTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger _memoryButtonTag;
+    NSMutableArray * _tagOneItemsHeight;
+    NSMutableArray * _tagTwoItemsHeight;
 }
 @property (nonatomic,strong)NSMutableArray * images;
 
@@ -25,8 +27,6 @@
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 @property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
-
-@property (nonatomic,strong)NSMutableArray * itemsHeight;
 
 @property (nonatomic,strong)NSString * url;
 
@@ -148,11 +148,29 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     if (_memoryButtonTag == 0) {
         return 430;
     }
-    return 660;
+    WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
+    CGFloat cellHeight = 269 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2);
+    if (_memoryButtonTag == 1) {
+        if (_tagOneItemsHeight.count<=indexPath.row) {
+            [_tagOneItemsHeight addObject:@(cellHeight)];
+            return cellHeight;
+        }else
+            return [_tagOneItemsHeight[indexPath.row] floatValue];
+    }
+    if (_memoryButtonTag == 2) {
+        if (_tagTwoItemsHeight.count<=indexPath.row) {
+            [_tagTwoItemsHeight addObject:@(cellHeight)];
+            return cellHeight;
+        }else
+            return [_tagTwoItemsHeight[indexPath.row] floatValue];
+    }
+    return 0;
 }
 
 #pragma mark - LoadDatas
 -(void)addHeader{
+    _tagOneItemsHeight = [NSMutableArray arrayWithCapacity:3];
+    _tagTwoItemsHeight = [NSMutableArray arrayWithCapacity:3];
     __weak WPChoiceSubTableView * weakSelf = self;
     self.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewDatas];
@@ -164,11 +182,10 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     __weak WPChoiceSubTableView * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{} datas:^(NSDictionary *responseObject) {
         NSArray * array = [responseObject objectForKey:@"listSub"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity	:3];
+        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
         for (int i = 0; i < array.count; i++) {
             WPDreamingMainGoodsModel * model = [WPDreamingMainGoodsModel mj_objectWithKeyValues:array[i]];
             [_dataSourceArray addObject:model];
-            
         }
         [_cellsArray removeAllObjects];
         for (int i = 0; i<_dataSourceArray.count; i++) {

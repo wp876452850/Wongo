@@ -69,6 +69,9 @@
     for (int i = 0; i < 3; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(i*WINDOW_WIDTH/3, 20, WINDOW_WIDTH/3, 40);
+        if (i!=0) {
+            [button.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, 12) moveForPoint:CGPointMake(0, button.height-12) lineColor:WongoBlueColor]];
+        }
         [button setTitle:Titles[i] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:TitlesImages[i]] forState:UIControlStateNormal];
         [button setImage:[UIImage imageNamed:TitlesSelectImages[i]] forState:UIControlStateSelected];

@@ -38,14 +38,15 @@
 
 #define ColorWithRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 //自定义色
-#define WongoGrayColor    ColorWithRGB(241, 240, 244)
+#define WongoGrayColor      ColorWithRGB(241, 240, 244)
 #define AllBorderColor      ColorWithRGB(217, 217, 217)
 #define WongoBlueColor      ColorWithRGB(27, 74, 108)
 #define WhiteColor          ColorWithRGB(255,255,255)
 #define SelfOrangeColor     ColorWithRGB(252,139,29)
-#define User_MobileVersion [[[UIDevice currentDevice] systemVersion] floatValue]
-#define RollPlayFrame CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
-
+#define User_MobileVersion  [[[UIDevice currentDevice] systemVersion] floatValue]
+#define RollPlayFrame       CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
+//交换主页海报图集
+#define ExchangePosters     @[@"ExchangePosters1.jpg"]
 
 /**判断是否为我的二级界面,解决导航控制器问题*/
 #define IsMySubViewController @"isYesOrNo"

@@ -96,7 +96,7 @@
                 <outlet property="instructions" destination="aTq-Ky-mcm" id="kBd-CT-DgD"/>
                 <outlet property="title" destination="ZEK-nK-IOe" id="cKs-Df-oyc"/>
             </connections>
-            <point key="canvasLocation" x="-372" y="-168"/>
+            <point key="canvasLocation" x="-372.5" y="-168.5"/>
         </tableViewCell>
     </objects>
     <resources>

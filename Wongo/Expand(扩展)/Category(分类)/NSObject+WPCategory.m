@@ -169,10 +169,22 @@
         }
     }
 }
-
+/**关注*/
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
     //判断是否登录
     [self determineWhetherTheLogin];
+     __block UIButton * button = sender;
+    if (!sender.selected) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:AttentionnumAddUrl params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+            button.selected = !button.selected;
+        }];
+    }
+    else{
+        [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+            button.selected = !button.selected;
+        }];
+    }
+
     
     
 }

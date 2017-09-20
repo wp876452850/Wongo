@@ -7,6 +7,7 @@
 //
 
 #import "WPSearchGuideViewController.h"
+#import "WPGoodsClassModel.h"
 #import "WPSearchGoodsCell.h"
 #import "WPSearchNavigationBar.h"
 #import "WPSearchResultsViewController.h"
@@ -31,9 +32,10 @@ static NSString * const reusable = @"Reusable";
 -(WPTypeChooseMune *)typeChooseMenu{
     if (!_typeChooseMenu) {
         _typeChooseMenu = [[WPTypeChooseMune alloc]initWithFrame:CGRectMake(40, 68, 70, 85)];
+        __block WPSearchGuideViewController * weakSelf = self;
         [_typeChooseMenu changeTypeWithBlock:^(NSString *type) {
             [self.searchNavigationBar.choose setTitle:type forState:UIControlStateNormal];
-            _type = type;
+            weakSelf.type = type;
         }];
     }
     return _typeChooseMenu;
@@ -62,8 +64,7 @@ static NSString * const reusable = @"Reusable";
             [self.view endEditing:YES];
             if (vc) {
                 [self.navigationController pushViewController:vc animated:YES];
-            }
-           
+            }           
         }];
         //choose按钮
         [_searchNavigationBar chooseButtonClickWithBlock:^{
@@ -93,11 +94,11 @@ static NSString * const reusable = @"Reusable";
         //设置默认的选中按钮
         _segmentedControl.selectedSegmentIndex = 0;
         
+        __block WPSearchGuideViewController * weakSelf = self;
         [self.segmentedControl indexChangeBlock:^(NSInteger index) {
             NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:index];
             
-            [_collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
-           
+            [weakSelf.collectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
         }];
     }
     return _segmentedControl;
@@ -120,8 +121,6 @@ static NSString * const reusable = @"Reusable";
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     [self loadDataWithtype:@"造梦"];
-    [self.view addSubview:self.segmentedControl];
-    [self.view addSubview:self.collectionView];
     [self.view addSubview:self.searchNavigationBar];
     [self.view addSubview:self.typeChooseMenu];
     
@@ -131,48 +130,29 @@ static NSString * const reusable = @"Reusable";
     
     self.dataSource = [NSMutableArray arrayWithCapacity:10];
     self.titles = [NSMutableArray arrayWithCapacity:3];
-/*
+    //交换分类
+    __block WPSearchGuideViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneUrl params:nil datas:^(NSDictionary *responseObject) {
-        NSArray * listc = [responseObject objectForKey:@"listc"];
-        for (int i = 0; i<listc.count; i++) {
-            NSDictionary * dic = listc[i];
-            WPSearchModel * model = [WPSearchModel mj_objectWithKeyValues:dic];
-            [_titles addObject:model.cname];
-            NSMutableArray * array = [NSMutableArray arrayWithCapacity:3];
-            for (int j = 0; j<model.listgc.count; j++) {
-                NSDictionary * dic1 = listc[j];
-                WPSearchModel * subModel = [WPSearchModel mj_objectWithKeyValues:dic1];
-                [array addObject:subModel];
-            }
-            [_dataSource addObject:array];
+        NSArray * listc = responseObject[@"listc"];
+        for (int i = 0; i < listc.count; i++) {
+            WPGoodsClassModel * model = [WPGoodsClassModel mj_objectWithKeyValues:listc[i]];
+            [weakSelf.dataSource addObject:model];
+            [weakSelf.titles addObject:model.cname];
         }
+        [weakSelf.view addSubview:weakSelf.segmentedControl];
+        [weakSelf.view addSubview:weakSelf.collectionView];
+        [weakSelf.collectionView reloadData];
     }];
-*/
-    for (int i = 0; i < 10; i++) {
-        NSString * title = [NSString stringWithFormat:@"分栏--%d",i];
-        [self.titles addObject:title];
-        
-        NSMutableArray * array = [NSMutableArray arrayWithCapacity:3];
-        for (int j = 0 ; j < arc4random()%5+10; j++) {
-            WPSearchModel * model = [[WPSearchModel alloc]init];
-            model.url = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1487133044008&di=7218cee2cc89392ecda5da88165d7ed8&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd058ccbf6c81800a1499200eb33533fa828b47b5.jpg";
-            model.gcname = [NSString stringWithFormat:@"商品--%d",j];
-            [array addObject:model];
-        }
-        [self.dataSource addObject:array];
-    }
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    NSArray * array = self.dataSource[section];
-    return array.count;
+    WPGoodsClassModel * model = self.dataSource[section];
+    return model.listgc.count;
 }
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     WPSearchGoodsCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:itemCell forIndexPath:indexPath];
-    NSArray * array = self.dataSource[indexPath.section];
-    WPSearchModel * model = array[indexPath.row];
-    cell.model = model;
+    WPGoodsClassModel * model = self.dataSource[indexPath.section];
+    cell.model = [WPSearchModel mj_objectWithKeyValues:model.listgc[indexPath.row]];
     return cell;
 }
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -182,7 +162,8 @@ static NSString * const reusable = @"Reusable";
     
     //添加label
     UILabel *label = [[UILabel alloc]initWithFrame:headerCell.bounds];
-    
+    label.width = 150;
+    label.centerX = headerCell.width/2;
     label.text = self.titles[indexPath.section];
     
     label.textAlignment = NSTextAlignmentCenter;
@@ -192,6 +173,8 @@ static NSString * const reusable = @"Reusable";
     //添加到头视图上
     [headerCell addSubview:label];
     
+    [headerCell.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(15,label.centerY ) moveForPoint:CGPointMake(label.left- 15, label.centerY) lineColor:ColorWithRGB(24, 24, 24)]];
+    [headerCell.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(label.right + 15, label.centerY) moveForPoint:CGPointMake(headerCell.width - 15, label.centerY) lineColor:ColorWithRGB(24, 24, 24)]];
     return headerCell;
 }
 
