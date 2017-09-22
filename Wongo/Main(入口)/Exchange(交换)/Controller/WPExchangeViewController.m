@@ -22,14 +22,21 @@
 #import "WPCommentModel.h"
 #import "WPRecommendationView.h"
 #import "WPExchangeImageShowTableViewCell.h"
+#import "WPExchangeFunctionMenu.h"
+#import "WPGoodsRecommendedTableViewCell.h"
+#import "LYHomeResponse.h"
+#import "LYActivityController.h"
+#define RecommendCellHeight (WINDOW_WIDTH*0.5+65)
 
 static NSString * const userCell            = @"UserCell";
 static NSString * const commodityCell       = @"CommodityCell";
 static NSString * const commentsSectionCell = @"WPCommentsSectionTableViewCell";
 static NSString * const imageShowCell       = @"ImageShowCell";
+static NSString * const goodsRecommended    = @"GoodsRecommended";
 
 @interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,WPRecommendationViewDelegate>
-
+//活动数据模型
+@property (nonatomic, strong) LYHomeResponse *response;
 //自动滚播器
 @property (nonatomic,strong) SDCycleScrollView      * cycleScrollView;
 @property (nonatomic,strong) WPExchangeDetailModel  * exchangeModel;
@@ -40,6 +47,10 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 @property (nonatomic,assign) BOOL fromOrder;
 @property (nonatomic,assign) CGFloat userStoreRowHeight;
 @property (nonatomic,strong) WPRecommendationView * recommendationView;
+//右侧功能按钮
+@property (nonatomic,strong) UIButton * functionButton;
+@property (nonatomic,strong) WPExchangeFunctionMenu * menu;
+@property (nonatomic,strong)NSMutableArray * goodsRecommendDatas;
 @end
 
 @implementation WPExchangeViewController
@@ -53,6 +64,40 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 }
 
 #pragma mark - lazyLoad
+
+-(WPExchangeFunctionMenu *)menu{
+    if (!_menu) {
+        _menu = [[WPExchangeFunctionMenu alloc]initWithFrame:_functionButton.frame menuImages:nil menuTitles:@[@"举报",@"帮助"]];
+        [_menu functionMenuClickWithBlock:^(NSInteger tag) {
+            
+        }];
+        [self.view addSubview:_menu];
+    }
+    return _menu;
+}
+-(UIButton *)functionButton{
+    if (!_functionButton) {
+        _functionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _functionButton.size = _backButton.size;
+        _functionButton.right = WINDOW_WIDTH - _backButton.left;
+        _functionButton.y = _backButton.y;
+        _functionButton.backgroundColor = [UIColor blackColor];
+        [_functionButton setTitle:@"···" forState:UIControlStateNormal];
+        
+        _functionButton.layer.masksToBounds = YES;
+        _functionButton.layer.cornerRadius = _functionButton.width/2;
+        _functionButton.alpha = 0.4f;
+        [_functionButton addTarget:self action:@selector(clickfunctionButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _functionButton;
+}
+-(void)clickfunctionButton{
+    if (self.menu.isOpen) {
+        [self.menu menuClose];
+    }else{
+        [self.menu menuOpen];
+    }
+}
 -(WPRecommendationView *)recommendationView{
     if (!_recommendationView) {
         _recommendationView = [[WPRecommendationView alloc]initWithFrame:CGRectMake(0,self.tableView.bottom , WINDOW_WIDTH, self.tableView.height) dataSourceArray:nil];
@@ -81,6 +126,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
         [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSectionCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPGoodsRecommendedTableViewCell" bundle:nil] forCellReuseIdentifier:goodsRecommended];
         [_tableView registerClass:[WPExchangeImageShowTableViewCell class] forCellReuseIdentifier:imageShowCell];
         
         //创建按钮        
@@ -111,7 +157,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
         [_backButton setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(10, 20, 30, 30);
+        _backButton.frame = CGRectMake(30, 20, 30, 30);
     }
     return _backButton;
 }
@@ -124,15 +170,29 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 
 -(void)loadDatas{
     __weak WPExchangeViewController * weakSelf = self;
+    //获取活动数据
+    [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
+        weakSelf.response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
+    }];
+    
+    //获取推荐商品
+    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(2)} datas:^(NSDictionary *responseObject) {
+        NSArray * goods = [responseObject objectForKey:@"goods"];
+        weakSelf.goodsRecommendDatas = [NSMutableArray arrayWithCapacity:3];
+        for (NSDictionary * item in goods) {
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+            [_goodsRecommendDatas addObject:model];
+            
+        }}];
+    
     [WPNetWorking createPostRequestMenagerWithUrlString:self.urlString params:self.params datas:^(NSDictionary *responseObject) {
-        
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
-        //weakSelf.exchangeModel.parameters         = [NSMutableArray arrayWithObjects:@"流行款式:其它",@"质地:UP",@"适用对象:青年",@"背包:斜挎式",@"风格:摇滚",@"成色:全新",@"颜色:黑",@"软硬:软",@"闭合方式:拉链",@"运费:很贵", nil];
         weakSelf.exchangeModel.parameters = [NSMutableArray arrayWithObject:@"本产品无参数"];
         NSArray * images = [responseObject objectForKey:@"listimg"];
         for (int i = 0; i < images.count; i++) {
             NSDictionary * dic = images[i];
             [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
+            
         }
         
         //获取用户信息
@@ -142,6 +202,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             [weakSelf.view addSubview:weakSelf.tableView];
             weakSelf.tableView.tableHeaderView = weakSelf.cycleScrollView;
             [weakSelf.view addSubview:weakSelf.backButton];
+            [weakSelf.view addSubview:weakSelf.functionButton];
         }];
 #pragma mark - 查询评论
         __block WPExchangeViewController * weakSelf = self;
@@ -160,10 +221,13 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 7;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 7) {
+        return 4;
+    }
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -174,6 +238,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             WPExchangeCommodityInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             cell.model = _exchangeModel;
+            cell.listhk = self.response.listhk;
             return cell;
         }
             break;
@@ -213,6 +278,7 @@ static NSString * const imageShowCell       = @"ImageShowCell";
         case 4:{
             //标签：商品描述
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            [cell.contentView removeAllSubviews];
             UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
             textLabel.text          = @"商品描述:";
             textLabel.font          = [UIFont systemFontOfSize:15];
@@ -234,10 +300,17 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             return cell;
         }
             break;
+        case 6:{
+            WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
+            cell.images = self.exchangeModel.rollPlayImages;
+            return cell;
+        }break;
     }
-    WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
-    cell.images = self.exchangeModel.rollPlayImages;
+    WPGoodsRecommendedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:goodsRecommended forIndexPath:indexPath];
+    cell.row = indexPath.row;
+    cell.dataSouceArray = _goodsRecommendDatas;
     return cell;
+    
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
@@ -275,9 +348,12 @@ static NSString * const imageShowCell       = @"ImageShowCell";
             return 0;
         }
             break;
+        case 6:{
+            return (WINDOW_WIDTH+10)*self.exchangeModel.rollPlayImages.count;
+        }
+            break;
     }
-    
-    return (WINDOW_WIDTH+10)*self.exchangeModel.rollPlayImages.count;
+    return RecommendCellHeight;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -400,7 +476,6 @@ static NSString * const imageShowCell       = @"ImageShowCell";
     browser.imageCount = _exchangeModel.rollPlayImages.count;
     browser.delegate = self;
     [browser show];
-
 }
 
 #pragma mark - SDPhotoBrowserDelegate

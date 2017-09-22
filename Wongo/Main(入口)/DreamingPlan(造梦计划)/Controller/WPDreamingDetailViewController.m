@@ -188,27 +188,26 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
                     //查询参与商品
                     weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
-                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlordersOne params:nil datas:^(NSDictionary *responseObject) {
-                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"listm"];
+                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
                         [weakSelf.tableView reloadData];
                     }];
                 }];
-                
             }];
-
         }];
     }];
-    /**轮播图*/
-    [WPNetWorking createPostRequestMenagerWithUrlString:SelectProduct params:nil datas:^(NSDictionary *responseObject) {
-        NSArray * array = responseObject[@"list"];
-        NSMutableArray * images = [NSMutableArray arrayWithCapacity:3];
-        for (int i = 0 ; i < array.count; i++) {
-            NSDictionary * dic = array[i];
-            [images addObject:dic[@"url"]];
-        }
-        weakSelf.rollPlay.imageURLStringsGroup = images;
-    }];
     
+    /**轮播图*/
+    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
+        
+//        NSArray * array = responseObject[@"list"];
+//        NSMutableArray * images = [NSMutableArray arrayWithCapacity:3];
+//        for (int i = 0 ; i < array.count; i++) {
+//            NSDictionary * dic = array[i];
+//            [images addObject:dic[@"url"]];
+//        }
+        //weakSelf.rollPlay.imageURLStringsGroup = images;
+    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -453,7 +452,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:indexPath];
     CGRect rect = [self.tableView convertRect:rectInTableView toView:[self.tableView superview]];
     
-    if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y+80) {
+    if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y+WINDOW_WIDTH-WINDOW_HEIGHT+80) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
         dv.dreamingStory = self.model.introduceModel.dreamingStory;

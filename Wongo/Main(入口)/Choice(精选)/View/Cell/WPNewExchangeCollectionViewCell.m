@@ -14,8 +14,10 @@
 @property (weak, nonatomic) IBOutlet UITextView *goodsName;
 
 @property (weak, nonatomic) IBOutlet UILabel *price;
+//
 @property (weak, nonatomic) IBOutlet UIButton *thumpUp;
-
+//想换
+@property (weak, nonatomic) IBOutlet UILabel *wantExchange;
 
 @end
 @implementation WPNewExchangeCollectionViewCell
@@ -27,6 +29,7 @@
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
+    _wantExchange.text = [NSString stringWithFormat:@"%ld想换",[_model.praise integerValue]];
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     //商品名
     NSString * gname = model.gname;
@@ -59,6 +62,17 @@
 }
 - (IBAction)thumUp:(UIButton *)sender {
     [self thumbUpGoodsWithSender:sender gid:_model.gid];
+}
+- (IBAction)wangExchangeClick:(UIButton *)sender {
+    //点赞数
+    NSInteger praise = [_model.praise integerValue];
+    if (!sender.selected) {
+        self.wantExchange.text = [NSString stringWithFormat:@"%ld想换",praise+1];
+    }else{
+        self.wantExchange.text = [NSString stringWithFormat:@"%ld想换",praise];
+    }
+    [self thumbUpGoodsWithSender:sender gid:_model.gid];
+    
 }
 
 @end

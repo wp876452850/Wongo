@@ -125,8 +125,8 @@
 #define UpdatePlorderUrl        HttpHead(@"updatePlorder")
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
-/***/
-#define SelectProduct           HttpHead(@"selectProduct")
+/**当前造梦初始用户的商品图片(轮播图)*/
+#define QuerySubIng             HttpHead(@"querySubIng")
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
 /***/
@@ -144,13 +144,13 @@
 /**
  *  点赞
  */
-#define ThumUpAddUrl            HttpHead(@"incensesAdd")
+#define ThumUpAddUrl            HttpHead(@"IncensesAdd")
 /**取消点赞*/
-#define ThumUpCancelUrl         HttpHead(@"incensesDel")
+#define ThumUpCancelUrl         HttpHead(@"IncensesDel")
 /**造梦点赞*/
-#define IncensesproductAdd      HttpHead(@"incensesproductAdd")
+#define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
 /**造梦取消点赞*/
-#define IncensesproductDel      HttpHead(@"incensesproductDel")
+#define IncensesproductDel      HttpHead(@"IncensesproductDel")
 
 /**
  *  收藏
@@ -183,7 +183,7 @@
  *  排行榜
  */
 /**查询排行榜*/
-#define QueryProductUser       HttpHead(@"queryProductUser")
+#define QueryProductUser        HttpHead(@"queryProductUser")
 
 
 #endif /* WongoHttpMacros_h */

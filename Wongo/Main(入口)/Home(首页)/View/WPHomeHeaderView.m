@@ -125,6 +125,7 @@
     if (tap.view.tag >= self.listhk.count) {
         return;
     }
+    
     LYHomeCategory *category = self.listhk[tap.view.tag];
     [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
 }
@@ -140,6 +141,8 @@
 }
 - (void)setListhk:(NSArray<LYHomeCategory *> *)listhk{
     _listhk = listhk;
+    
+    
     if (listhk.count <= 0) {
         return;
     }

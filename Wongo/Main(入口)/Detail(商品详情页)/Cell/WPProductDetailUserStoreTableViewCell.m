@@ -52,7 +52,6 @@
 }
 
 - (IBAction)collect:(UIButton *)sender {
-    
     [self focusOnTheUserWithSender:sender uid:_model.uid];
 }
 

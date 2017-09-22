@@ -19,13 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/View/WPStoreUserInformationView.m"
-            timestampString = "525340912.927764"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/WPChoiceSubTableView.m"
+            timestampString = "527668654.981371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-createButton"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x6392;&#x884c;&#x699c;/Controller/WPListxiViewController.m"
-            timestampString = "525671396.44195"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/WPChoiceSubTableView.m"
+            timestampString = "527668619.051257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-loadDatas"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x6392;&#x884c;&#x699c;/Controller/WPListxiViewController.m"
-            timestampString = "525671396.44195"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/WPChoiceSubTableView.m"
+            timestampString = "527668744.67495"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,44 +67,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x6392;&#x884c;&#x699c;/Controller/WPListxiViewController.m"
-            timestampString = "525671396.44195"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/WPChoiceSubTableView.m"
+            timestampString = "527668745.666953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-setupTableView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/Controller/WPDreamingDetailViewController.m"
-            timestampString = "527422188.33541"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "453"
-            endingLineNumber = "453"
-            landmarkName = "-scrollViewDidScroll:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x6392;&#x884c;&#x699c;/Controller/WPListxiViewController.m"
-            timestampString = "525671396.44195"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,76 +84,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/Controller/WPDreamingDetailViewController.m"
-            timestampString = "527422188.33541"
+            timestampString = "527671466.334878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
-            landmarkName = "-tableView:viewForHeaderInSection:"
+            startingLineNumber = "455"
+            endingLineNumber = "455"
+            landmarkName = "-scrollViewDidScroll:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Public(&#x516c;&#x7528;&#x7c7b;)/Controller/WPGoodsDetailViewController.m"
-            timestampString = "526806400.614214"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Exchange(&#x4ea4;&#x6362;)/View/WPExchangeCommodityInformationCell.m"
+            timestampString = "527680154.125075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"
             endingLineNumber = "50"
-            landmarkName = "-initWithGid:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/WPHomeViewController.m"
-            timestampString = "527162820.247789"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-loadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/Controller/WPDreamingDetailViewController.m"
-            timestampString = "527422188.33541"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "-loadDatas"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/View/WPProgressTableViewCell.m"
-            timestampString = "527394910.816803"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-setModel:"
+            landmarkName = "-jumpActive"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -195,45 +115,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/Search(&#x4e3b;&#x9875;&#x641c;&#x7d22;)/Controller/WPSearchClassificationGoodsViewController.m"
-            timestampString = "527504054.697901"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/View/WPHomeHeaderView.m"
+            timestampString = "527677520.234453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-loadDatas"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/Search(&#x4e3b;&#x9875;&#x641c;&#x7d22;)/Controller/WPSearchGuideViewController.m"
-            timestampString = "527506715.469391"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-segmentedControl"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/Search(&#x4e3b;&#x9875;&#x641c;&#x7d22;)/Controller/WPSearchGuideViewController.m"
-            timestampString = "527506782.859544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
-            landmarkName = "-segmentedControl"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
+            landmarkName = "-tapImage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

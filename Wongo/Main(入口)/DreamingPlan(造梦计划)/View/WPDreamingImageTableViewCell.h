@@ -10,7 +10,8 @@
 #import "WPDreamingIntroduceImageModel.h"
 
 @interface WPDreamingImageTableViewCell : UITableViewCell
-
+/**是否是发起者*/
+@property (weak, nonatomic) IBOutlet UILabel *isFirst;
 @property (nonatomic,strong)WPDreamingIntroduceImageModel * model;
 -(void)showOK;
 -(void)showOngoing;

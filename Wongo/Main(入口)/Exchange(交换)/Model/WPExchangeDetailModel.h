@@ -11,6 +11,8 @@
 #import "WPUserIntroductionModel.h"
 
 @interface WPExchangeDetailModel : NSObject
+/**活动状态*/
+@property (nonatomic,strong)NSString * state;
 /**
  滚播图片数组
  */

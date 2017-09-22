@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="369" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="369" height="567.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="568"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NewDreamingBg" translatesAutoresizingMaskIntoConstraints="NO" id="DTn-xK-QYx">
@@ -82,6 +82,16 @@
                             <action selector="goSignUp:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CKA-L2-HjO"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3Z-Mt-oTQ">
+                        <rect key="frame" x="328" y="28" width="13" height="13"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="13" id="dAc-os-dbW"/>
+                        </constraints>
+                        <state key="normal" image="questionmark"/>
+                        <connections>
+                            <action selector="help:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="LAe-RM-Yav"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="DTn-xK-QYx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0u2-kI-QgI"/>
@@ -89,6 +99,8 @@
                     <constraint firstItem="vMY-wj-Pxx" firstAttribute="centerY" secondItem="CGg-u8-YrD" secondAttribute="centerY" id="EPp-Wy-wcK"/>
                     <constraint firstItem="3He-Lm-cwi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="H5s-ER-l4V"/>
                     <constraint firstItem="vMY-wj-Pxx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="ODj-ee-i2P"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="y3Z-Mt-oTQ" secondAttribute="trailing" constant="20" id="Rwn-W4-fka"/>
+                    <constraint firstItem="y3Z-Mt-oTQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="W1q-Fn-k1A"/>
                     <constraint firstItem="rxh-xm-U1P" firstAttribute="top" secondItem="rhS-eM-mhh" secondAttribute="bottom" constant="15" id="WUO-PS-Trf"/>
                     <constraint firstAttribute="trailing" secondItem="DTn-xK-QYx" secondAttribute="trailing" id="WeL-VV-HiU"/>
                     <constraint firstItem="rxh-xm-U1P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="X99-E4-e0i"/>
@@ -115,11 +127,12 @@
                 <outlet property="title" destination="3He-Lm-cwi" id="kIa-1w-OBV"/>
                 <outlet property="userbg" destination="CGg-u8-YrD" id="IBk-B3-c0i"/>
             </connections>
-            <point key="canvasLocation" x="-155" y="68"/>
+            <point key="canvasLocation" x="-604" y="7"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="NewDreamingBg" width="750" height="1381"/>
+        <image name="questionmark" width="13" height="13"/>
         <image name="user" width="31" height="31"/>
     </resources>
 </document>

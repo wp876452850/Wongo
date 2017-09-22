@@ -54,33 +54,12 @@
 
 -(void)setModel:(WPSearchUserModel *)model{
     _model = model;
-    
     [_headImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"broken"]];
-    
     _userName.text                  = model.uname;
-//    _signature.text                 = model.signature;
-//    _fansNumber.text                = @"粉丝：0";
-//    _goodsNumber.text               = [NSString stringWithFormat:@"商品：%@",model.goodsNum];
-//    _attention.selected             = [model.attention boolValue];
-//    UIColor * color                 = _attention.selected?GRAY_COLOR:SelfOrangeColor;
-//    _attention.layer.borderColor    = color.CGColor;
-//    
     _userID                         = model.uid;
-    
 }
 - (IBAction)attentionClick:(UIButton *)sender {
-    
-    if ([self determineWhetherTheLogin]) {
-        _attention.selected         = !_attention.selected;
-        UIColor * color             = sender.selected?GRAY_COLOR:SelfOrangeColor;
-        sender.layer.borderColor    = color.CGColor;
-        [self requestServer];
-    }
-}
-//关注
--(void)requestServer{
-    //请求服务器点击时进行操作
-    
+    [self focusOnTheUserWithSender:sender uid:_model.uid];
 }
 
 - (IBAction)chatClick:(UIButton *)sender {

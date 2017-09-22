@@ -17,6 +17,7 @@
 #define User_Token          @"user_token"
 #define User_Name           @"user_name"
 #define User_Head           @"user_head"
+#define ActivityKey         @"activity"
 //首次开启应用
 #define FirstTimeTosStart   @"firsttimetostart"
 

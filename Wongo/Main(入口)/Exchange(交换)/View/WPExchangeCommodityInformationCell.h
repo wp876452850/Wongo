@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "WPExchangeDetailModel.h"
+#import "LYHomeCategory.h"
 
 @interface WPExchangeCommodityInformationCell : UITableViewCell
 @property (nonatomic,strong)WPExchangeDetailModel * model;
+/**活动数组*/
+@property (nonatomic, strong) NSArray<LYHomeCategory *> *listhk;
 @end

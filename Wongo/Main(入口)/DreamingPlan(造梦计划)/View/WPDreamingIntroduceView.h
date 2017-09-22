@@ -14,4 +14,5 @@
 @property (nonatomic,strong)NSString * dreamingStory;
 
 @property (nonatomic,strong)NSArray * dataSource;
+
 @end

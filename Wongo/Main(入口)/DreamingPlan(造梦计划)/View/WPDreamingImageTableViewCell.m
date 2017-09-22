@@ -9,8 +9,6 @@
 #import "WPDreamingImageTableViewCell.h"
 
 @interface WPDreamingImageTableViewCell ()
-/**是否是发起者*/
-@property (weak, nonatomic) IBOutlet UILabel *isFirst;
 
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -30,9 +28,8 @@
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
-    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.plorurl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
-    _goodsName.text = _model.pname;
-    
+    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.prourl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    _goodsName.text = _model.proname;
 }
 -(void)showOK{
     self.logoImageOK.hidden = NO;

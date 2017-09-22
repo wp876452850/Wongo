@@ -153,7 +153,7 @@ static NSString * contentOffset = @"contentOffset";
         weakSelf.response = response;
         weakSelf.homeHeaderView.listhl = response.listhl;
         weakSelf.homeHeaderView.listhk = response.listhk;
-        
+        //查询交换
         [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
             
             NSArray * goods = [responseObject objectForKey:@"goods"];
@@ -165,6 +165,7 @@ static NSString * contentOffset = @"contentOffset";
             
             _page++;
             [weakSelf.collectionView reloadData];
+            //查询造梦计划
             [WPNetWorking createPostRequestMenagerWithUrlString:QuerySub params:nil datas:^(NSDictionary *responseObject) {
                 
                 NSArray * dreamings = responseObject[@"listSub"][0][@"listplan"];
@@ -174,17 +175,9 @@ static NSString * contentOffset = @"contentOffset";
                     WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:dreamings[i]];
                     [_dreamings addObject:model];
                     [weakSelf.collectionView reloadData];
-//                    [weakSelf.plids addObject:dreamings[i][@"plid"]];
-//                    [WPNetWorking createPostRequestMenagerWithUrlString:HtQueryProductStatePlan params:@{@"plid":dreamings[i][@"plid"]} datas:^(NSDictionary *responseObject) {
-//                        [weakSelf.dreamings addObject:responseObject];
-//                        if (i == dreamings.count - 1) {
-//                            [weakSelf.collectionView reloadData];
-//                        }
-//                    }];
                 }
             }];
         }];
-        
     }failureBlock:^{
         [self.collectionView.mj_header endRefreshing];
     }];
@@ -251,8 +244,10 @@ static NSString * contentOffset = @"contentOffset";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     switch (section) {
         case 0:{
-            NSInteger num = self.response.listxk.count + (self.response.listxl.count?1:0);
-            return num > 5?5:num;
+            //隐藏热门
+//            NSInteger num = self.response.listxk.count + (self.response.listxl.count?1:0);
+//            return num > 5?5:num;
+            return 0;
         }
             break;
         case 1:{
@@ -344,12 +339,16 @@ static NSString * contentOffset = @"contentOffset";
 //返回每个区头大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame) + ReusableView_Height);
+        //隐藏热门
+//        return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame) + ReusableView_Height);
+        return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame));
     }
+    
     return CGSizeMake(WINDOW_WIDTH, ReusableView_Height);
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    
     if ([self.response hasCategory:section]) {
         return CGSizeMake(WINDOW_WIDTH, 31);
     }else{

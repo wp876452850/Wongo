@@ -13,13 +13,17 @@
 #import "WPNewDreamingSignUpTableViewCell.h"
 #import "WPNewDreamingModel.h"
 #import "WPNewDreamingNotSignUpTableViewCell.h"
+#define Urls @[QuerySubIng,QuerySub,QuerySubIng]
 
 @interface WPChoiceSubTableView ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSInteger _memoryButtonTag;
-    NSMutableArray * _tagOneItemsHeight;
-    NSMutableArray * _tagTwoItemsHeight;
+    
 }
+@property (nonatomic,strong)NSMutableArray * tagOneItemsHeight;
+
+@property (nonatomic,strong)NSMutableArray * tagTwoItemsHeight;
+
 @property (nonatomic,strong)NSMutableArray * images;
 
 @property (nonatomic,strong)NSMutableArray * cellsArray;
@@ -53,8 +57,9 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         _headerView = [[WPNewDreamingChoiceHeaderView alloc]initWithPostersImages:self.images];
         [_headerView menuButtonDidSelectedWithBlock:^(NSInteger tag) {
             //修改url
-            [self addHeader];
+            self.url = Urls[tag];
             _memoryButtonTag = tag;
+            [self addHeader];
         }];
     }
     return _headerView;
@@ -92,6 +97,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     return self.cellsArray.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (indexPath.row == 0)
     {
         WPNewDreamingTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:projectCell forIndexPath:indexPath];
@@ -102,7 +108,11 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
             WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
             return cell;
         }
-        WPNewDreamingSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        
+        WPNewDreamingSignUpTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (cell == nil||![cell isKindOfClass:[WPNewDreamingSignUpTableViewCell class]]) {
+            cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        }
         WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
         cell.dataSource = [NSMutableArray arrayWithArray:model.listplan];
         
@@ -137,8 +147,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
                 [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
                 }
             }
-    }
-    
+    }    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -149,28 +158,27 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         return 430;
     }
     WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
-    CGFloat cellHeight = 269 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2);
+    CGFloat cellHeight = 269 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2.f);
     if (_memoryButtonTag == 1) {
-        if (_tagOneItemsHeight.count<=indexPath.row) {
+        if (_tagOneItemsHeight.count<=indexPath.section) {
             [_tagOneItemsHeight addObject:@(cellHeight)];
             return cellHeight;
         }else
-            return [_tagOneItemsHeight[indexPath.row] floatValue];
+            return [_tagOneItemsHeight[indexPath.section] floatValue];
     }
     if (_memoryButtonTag == 2) {
-        if (_tagTwoItemsHeight.count<=indexPath.row) {
+        if (_tagTwoItemsHeight.count<=indexPath.section) {
             [_tagTwoItemsHeight addObject:@(cellHeight)];
             return cellHeight;
         }else
-            return [_tagTwoItemsHeight[indexPath.row] floatValue];
+            return [_tagTwoItemsHeight[indexPath.section] floatValue];
     }
-    return 0;
+    return 400;
 }
 
 #pragma mark - LoadDatas
 -(void)addHeader{
-    _tagOneItemsHeight = [NSMutableArray arrayWithCapacity:3];
-    _tagTwoItemsHeight = [NSMutableArray arrayWithCapacity:3];
+   
     __weak WPChoiceSubTableView * weakSelf = self;
     self.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewDatas];
@@ -180,6 +188,8 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
 
 -(void)loadNewDatas{
     __weak WPChoiceSubTableView * weakSelf = self;
+    weakSelf.tagOneItemsHeight = [NSMutableArray arrayWithCapacity:3];
+    weakSelf.tagTwoItemsHeight = [NSMutableArray arrayWithCapacity:3];
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{} datas:^(NSDictionary *responseObject) {
         NSArray * array = [responseObject objectForKey:@"listSub"];
         _dataSourceArray = [NSMutableArray arrayWithCapacity:3];

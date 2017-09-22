@@ -136,6 +136,6 @@
     self.price.text         = @"进入专题";
     self.goIcon.image       = [UIImage imageNamed:@"goIcon"];
     [self.icon sd_setImageWithURL:[NSURL URLWithString:dreamingMainGoodsModel.url]];
-    
 }
+
 @end

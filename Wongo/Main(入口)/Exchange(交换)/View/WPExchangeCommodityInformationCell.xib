@@ -44,7 +44,7 @@
                             <action selector="collection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hpx-CC-lsz"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本商品暂无参与活动" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-cW-XZg">
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本商品暂无参与活动" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZS-cW-XZg">
                         <rect key="frame" x="10" y="53" width="119.5" height="16"/>
                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="13"/>
                         <color key="textColor" red="0.2236888111" green="0.39865952729999998" blue="0.55391877889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

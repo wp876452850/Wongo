@@ -7,6 +7,9 @@
 //
 
 #import "WPExchangeCommodityInformationCell.h"
+#import "LYActivityController.h"
+
+#define ActivityStateTitle @[@"",@"本商品已参与分享换新活动",@"本商品已参与公益换新活动",@"本商品已参与闲置换新活动"]
 
 @interface WPExchangeCommodityInformationCell ()
 
@@ -21,7 +24,7 @@
 /**收藏*/
 @property (weak, nonatomic) IBOutlet UIButton *collectionButoon;
 /**活动链接*/
-@property (weak, nonatomic) IBOutlet UILabel *activeLink;
+@property (weak, nonatomic) IBOutlet UILabel * activeLink;
 
 @end
 
@@ -30,18 +33,22 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:_activeLink.text attributes:attribtDic];    
-    //赋值
-    _activeLink.attributedText = attribtStr;
     
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpActive:)];
-    [_activeLink addGestureRecognizer:tap];
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = _activeLink.frame;
+    [button addTarget:self action:@selector(jumpActive) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:button];
 }
 
 /**跳转活动页*/
--(void)jumpActive:(UITapGestureRecognizer *)tap{
-    
+-(void)jumpActive{
+   
+    if ([_model.state integerValue] <= 0) {
+        
+        return;
+    }
+    LYHomeCategory *category = self.listhk[[_model.state integerValue] -1 ];
+    [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -52,6 +59,16 @@
 
 -(void)setModel:(WPExchangeDetailModel *)model{
     _model = model;
+    //测试用
+    _model.state = [NSString stringWithFormat:@"%u",arc4random()%3];
+    
+    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSInteger state = [_model.state integerValue];
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:ActivityStateTitle[state] attributes:attribtDic];
+    //赋值
+    _activeLink.userInteractionEnabled = YES;
+    _activeLink.attributedText = attribtStr;
+    
     NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];

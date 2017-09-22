@@ -18,6 +18,7 @@
 @implementation WPDreamingGoodsIntroductionTableView
 static NSString * const imageCell       = @"imageCell";
 static NSString * const introduceCell   = @"introduceCell";
+static NSString * const projectCell     = @"ProjectCell";
 
 -(instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 {
@@ -35,81 +36,75 @@ static NSString * const introduceCell   = @"introduceCell";
 -(void)setDataSourceArray:(NSArray *)dataSourceArray{
     _dataSourceArray = dataSourceArray;
     NSDictionary *dic = @{@"Cell":imageCell,@"isOpen":@(NO)};
-    for (int i = 0; i<dataSourceArray.count; i++) {
-        self.dataArray = [[NSMutableArray alloc]init];
+    self.dataArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i<dataSourceArray.count; i++) {       
         [self.dataArray addObject:dic];
     }
     [self reloadData];
 }
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return _dataSourceArray.count;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return self.dataArray.count;
+    if ([[self.dataArray[section] objectForKey:@"isOpen"] boolValue]) {
+        return 2;
+    }
+    return 1;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell])
+    if (indexPath.row == 0)
     {
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
+        
+        if (indexPath.section!=0) {
+            cell.isFirst.text = @"(参与者)";
+        }else{
+            cell.isFirst.text = @"(发起者)";
+        }
         cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
-        if (indexPath.row+1<self.dataArray.count) {
+        if (indexPath.section+1<self.dataArray.count) {
             [cell showOK];
         }else [cell showOngoing];
         return cell;
-        
-    }else if([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:introduceCell]){
-        WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
-         cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
-        return cell;
+
     }
-    return nil;
+    WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+     cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
+    return cell;
 }
 
 #pragma mark - Table View delegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if ([[tableView cellForRowAtIndexPath:indexPath] class] == [WPDreamingImageTableViewCell class]) {
-        NSIndexPath *path = nil;
-        if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell]) {
-            path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
-        }else{
-            path = indexPath;
-        }
-        
-        if ([[self.dataArray[indexPath.row] objectForKey:@"isOpen"] boolValue]) {
+        NSIndexPath * path = [NSIndexPath indexPathForItem:(indexPath.row+1) inSection:indexPath.section];
+        if ([[self.dataArray[indexPath.section] objectForKey:@"isOpen"] boolValue]) {
             // 关闭附加cell
-            NSDictionary * dic = @{@"Cell": imageCell,@"isOpen":@(NO)};
-            self.dataArray[(path.row-1)] = dic;
-            [self.dataArray removeObjectAtIndex:path.row];
-            
+            NSDictionary * dic = @{@"Cell": @"cell",@"isOpen":@(NO)};
+            self.dataArray[(path.section)] = dic;
             [self beginUpdates];
             [self deleteRowsAtIndexPaths:@[path]  withRowAnimation:UITableViewRowAnimationMiddle];
             [self endUpdates];
-            
         }else{
             // 打开附加cell
-            NSDictionary * dic = @{@"Cell": imageCell,@"isOpen":@(YES)};
-            self.dataArray[(path.row-1)] = dic;
-            NSDictionary * addDic = @{@"Cell": introduceCell,@"isOpen":@(YES)};
-            [self.dataArray insertObject:addDic atIndex:path.row];
-            
-            
+            NSDictionary * dic = @{@"Cell":introduceCell,@"isOpen":@(YES)};
+            self.dataArray[(path.section)] = dic;
             [self beginUpdates];
             [self insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationMiddle];
             [self endUpdates];
-            
+            [tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
-
     }
-    
 }
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell]) {
         //tableViewCell自身的高的
         return 230;
-        
     }else{
         //弹出cell的高度
         if (indexPath.section >= self.cellsHeight.count) {
@@ -119,8 +114,7 @@ static NSString * const introduceCell   = @"introduceCell";
     }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{    
     if (scrollView.contentOffset.y<=-150)
     {
         [[self findViewController:self] w_dismissViewControllerAnimated];

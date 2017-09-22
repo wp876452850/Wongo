@@ -21,5 +21,10 @@
 @property (nonatomic,strong)NSString * gname;
 
 @property (nonatomic,strong)NSString * uid;
+//点赞数
+@property (nonatomic,strong)NSString * praise;
+
+@property (nonatomic,strong)NSString * repertory;
+
 
 @end
