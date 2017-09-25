@@ -11,5 +11,5 @@
 @interface WPStoreViewController : UIViewController
 
 -(instancetype)initWithUid:(NSString *)uid;
-
+@property (nonatomic,assign)BOOL isPresen;
 @end

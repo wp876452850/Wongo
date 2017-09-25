@@ -30,7 +30,7 @@
         CGPoint oldAnchorPoint = self.layer.anchorPoint;
         self.layer.anchorPoint = CGPointMake(0.5,0);
         [self.layer setPosition:CGPointMake(self.layer.position.x + self.layer.bounds.size.width * (self.layer.anchorPoint.x - oldAnchorPoint.x),self.layer.position.y +self.layer.bounds.size.height * (self.layer.anchorPoint.y - oldAnchorPoint.y))];
-        self.bounds = CGRectMake(0, 0, 70, 0);
+        self.bounds = CGRectMake(0, 0, 90, 0);
         self.clipsToBounds = YES;
         [self createSubView];
     }
@@ -55,14 +55,13 @@
         //设置居中
         button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         button.contentEdgeInsets = UIEdgeInsetsMake(3, 0, 0, 0);
-        
+        button.tag = i;
         button.titleLabel.font = [UIFont systemFontOfSize:15];
         [button setTitle:self.menuTitles[i] forState:UIControlStateNormal];
-        button.frame = CGRectMake(0, i * 40 + 5, 70, 40);
+        button.frame = CGRectMake(0, i * 40 + 5, 90, 40);
         [button addTarget:self action:@selector(changeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         [button setTitleColor:WhiteColor forState:UIControlStateNormal];
-        [button setTitleColor:WongoBlueColor forState:UIControlStateSelected];
         if (i == 0) {
             button.selected = YES;
             self.selectButton = button;

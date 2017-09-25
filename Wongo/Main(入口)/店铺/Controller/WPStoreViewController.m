@@ -18,19 +18,21 @@
 @interface WPStoreViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 {
-    NSInteger _menuTag;
-    WPUserIntroductionModel * _model;
+    NSInteger                   _menuTag;
+    WPUserIntroductionModel *   _model;
 }
 
-@property (nonatomic,strong)NSString * uid;
+@property (nonatomic,strong)NSString                    * uid;
 
-@property (nonatomic,strong)UICollectionView * collectionView;
+@property (nonatomic,strong)UICollectionView            * collectionView;
 
-@property (nonatomic,strong)NSMutableArray * dataSourceArray;
+@property (nonatomic,strong)NSMutableArray              * dataSourceArray;
 
-@property (nonatomic,strong)WPStoreUserInformationView * storeUserInformationView;
+@property (nonatomic,strong)WPStoreUserInformationView  * storeUserInformationView;
 
-@property (nonatomic,strong)UIView * bottomView;
+@property (nonatomic,strong)UIView                      * bottomView;
+
+@property (nonatomic,strong) UIButton                   * backButton;
 @end
 
 @implementation WPStoreViewController
@@ -38,6 +40,20 @@ static NSString * const reuseIdentifier = @"Cell";
 static NSString * const storeCell       = @"StoreCell";
 
 #pragma mark - 懒加载
+
+//返回按钮
+-(UIButton *)backButton{
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
+        if (self.isPresen) {
+            [_backButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+        }
+        [_backButton setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
+        _backButton.frame = CGRectMake(10, 20, 30, 30);
+    }
+    return _backButton;
+}
 -(UIView *)bottomView{
     if (!_bottomView) {
         _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
@@ -82,6 +98,7 @@ static NSString * const storeCell       = @"StoreCell";
         self.uid = uid;
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.view addSubview:self.collectionView];
+        [self.view addSubview:self.backButton];
         //[self addFooter];
         [self addHeader];
         [self showShoppingBottomView];
@@ -132,7 +149,7 @@ static NSString * const storeCell       = @"StoreCell";
 -(void)addHeader{
     __weak WPStoreViewController * weakSelf = self;
     self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        [weakSelf loadNewDatas];
+        //[weakSelf loadNewDatas];
     }];
     [self.collectionView.mj_header beginRefreshing];
 }

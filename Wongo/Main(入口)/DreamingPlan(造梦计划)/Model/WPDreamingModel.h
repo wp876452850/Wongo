@@ -34,7 +34,10 @@
 @property (nonatomic,strong)NSString * story;
 /**用户名*/
 @property (nonatomic,strong)NSString * uname;
-/**头像*/
+/**轮播图*/
+@property (nonatomic,strong)NSArray  * listimg;
+
+/**商品主图*/
 @property (nonatomic,strong)NSString * url;
 /**目标物品*/
 @property (nonatomic,strong)NSString * want;

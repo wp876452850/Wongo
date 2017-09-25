@@ -377,7 +377,8 @@ static NSString * contentOffset = @"contentOffset";
             return reusableView;
         }
         WPHomeReusableView * reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
-        if (indexPath.section < 3) {
+        //隐藏热门区头
+        if (indexPath.section < 3&&indexPath.section!=0) {
             WPHomeReusableModel * model = self.reusableDataSource[indexPath.section];
             reusableView.model = model;
         }

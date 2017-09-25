@@ -213,10 +213,15 @@
 -(void)buttonClick:(UIButton *)sender{
     if (sender.tag == 4) {
         LYBaseController * vc = [[LYBaseController alloc]init];
-        vc.myNavItem.title = @"交换流程";
-        UIImageView * image = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jiaohuanliucheng"]];
-        image.frame = CGRectMake(0, 64, WINDOW_WIDTH, 293*WINDOW_WIDTH/375);
-        [vc.view addSubview:image];
+        vc.myNavItem.title = @"教程";
+        UIScrollView * sv = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64)];
+        
+        UIImage * image = [UIImage imageNamed:@"jiaocheng.jpg"];
+        UIImageView * imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.frame = CGRectMake(0, 0, WINDOW_WIDTH, image.size.height/2*WINDOW_WIDTH/375);
+        sv.contentSize = imageView.size;
+        [vc.view addSubview:sv];
+        [sv addSubview:imageView];
         [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];;
         return;
     }

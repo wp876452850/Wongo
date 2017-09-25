@@ -50,7 +50,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 //右侧功能按钮
 @property (nonatomic,strong) UIButton * functionButton;
 @property (nonatomic,strong) WPExchangeFunctionMenu * menu;
-@property (nonatomic,strong)NSMutableArray * goodsRecommendDatas;
+@property (nonatomic,strong) NSMutableArray * goodsRecommendDatas;
 @end
 
 @implementation WPExchangeViewController
@@ -67,8 +67,19 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 
 -(WPExchangeFunctionMenu *)menu{
     if (!_menu) {
-        _menu = [[WPExchangeFunctionMenu alloc]initWithFrame:_functionButton.frame menuImages:nil menuTitles:@[@"举报",@"帮助"]];
+        _menu = [[WPExchangeFunctionMenu alloc]initWithFrame:_functionButton.frame menuImages:nil menuTitles:@[@"举报商品",@"联系客服"]];
         [_menu functionMenuClickWithBlock:^(NSInteger tag) {
+            if (tag == 0) {
+                NSLog(@"举报");
+            }
+            if (tag == 1) {
+                if ([self determineWhetherTheLogin]) {
+                    LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
+                    vc.title = @"碗糕客服";
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+            }
+            
             
         }];
         [self.view addSubview:_menu];
@@ -116,7 +127,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 {
     if (!_tableView) {
         self.automaticallyAdjustsScrollViewInsets = NO;
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT) style:UITableViewStyleGrouped];
         _tableView.backgroundColor  = ColorWithRGB(246, 246, 246);
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
@@ -220,10 +231,10 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 8;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 7) {
         return 4;
@@ -267,6 +278,8 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 
         case 3:{
            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            cell.selectionStyle     = UITableViewCellSelectionStyleNone;
+            [cell.contentView removeAllSubviews];
             return cell;
             /**参数cell暂时隐藏*/
 //            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
@@ -277,31 +290,38 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             break;
         case 4:{
             //标签：商品描述
-            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            [cell.contentView removeAllSubviews];
-            UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
-            textLabel.text          = @"商品描述:";
-            textLabel.font          = [UIFont systemFontOfSize:15];
-            [cell.contentView addSubview:textLabel];
-            //描述内容
-            UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
-            textView.text           = _exchangeModel.remark;
-            textView.font           = [UIFont systemFontOfSize:15];
-            textLabel.userInteractionEnabled    = NO;
-            textView.userInteractionEnabled     = NO;
-            [cell.contentView addSubview:textView];
-            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            UITableViewCell * cell  = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
+            if (!cell) {
+                cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                [cell.contentView removeAllSubviews];
+                [cell.layer removeFromSuperlayer];
+                UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
+                textLabel.text          = @"商品描述:";
+                textLabel.font          = [UIFont systemFontOfSize:15];
+                [cell.contentView addSubview:textLabel];
+                //描述内容
+                UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
+                textView.text           = _exchangeModel.remark;
+                textView.font           = [UIFont systemFontOfSize:15];
+                textLabel.userInteractionEnabled    = NO;
+                textView.userInteractionEnabled     = NO;
+                [cell.contentView addSubview:textView];
+                [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            }
             return cell;
         }
             break;
         case 5:{
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            [cell.contentView removeAllSubviews];
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
             return cell;
         }
             break;
         case 6:{
             WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
+            [cell.contentView removeAllSubviews];
             cell.images = self.exchangeModel.rollPlayImages;
             return cell;
         }break;
@@ -373,15 +393,32 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         }
     }
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01f;
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 4) {
         return 10;
     }
-    return 0;
+    if (section == 7) {
+        return 30;
+    }
+    return 0.01f;
 }
-
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section == 7) {
+        UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 30)];
+        label.text = @"推荐商品";
+        label.backgroundColor = WhiteColor;
+        label.textColor = ColorWithRGB(100, 100, 100);
+        label.font = [UIFont systemFontOfSize:19.f];
+        label.textAlignment = NSTextAlignmentCenter;
+        return label;
+    }
+    return nil;
+}
 #pragma mark - 展示底部视图样式
 -(void)showExchangeBottomView{
     self.tableView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50);
@@ -468,6 +505,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 #pragma mark SDCycleScrollViewDelegate
 //点击图片回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
     NSIndexPath * indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     SDCollectionViewCell * cell = (SDCollectionViewCell *)[cycleScrollView.mainView cellForItemAtIndexPath:indexPath];
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 0)];
@@ -515,15 +553,9 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         [supperView removeFromSuperview];
     }];
 }
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    //NSLog(@"%.2f",self.tableView.contentOffset.y);
-    if (self.tableView.contentOffset.y >= 319) {
-        
-        //self.tableView.y = self.tableView.contentOffset.y - 319;
-        //self.recommendationView.y = self.tableView.bottom;
-    }
-}
+
 -(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
+    
     
 }
 

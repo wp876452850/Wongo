@@ -31,6 +31,8 @@
     self.headPortrait.layer.cornerRadius = 30;
     self.headPortrait.layer.borderWidth = 0.5f;
     self.headPortrait.layer.borderColor =ColorWithRGB(24, 24, 24).CGColor;
+    self.headPortrait.userInteractionEnabled = YES;
+    
     
     self.collect.layer.masksToBounds = YES;
     self.collect.layer.cornerRadius = 5;

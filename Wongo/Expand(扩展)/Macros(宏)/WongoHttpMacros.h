@@ -66,7 +66,6 @@
 
 /**搜索用户信息*/
 #define UserQueryNameUrl        HttpHead(@"userQueryName")
-
 /**搜索页-查询交换商品*/
 #define GetClassGoodsUrl        HttpHead(@"getClassGoods")
 /**搜索页-查询造梦商品*/
@@ -78,13 +77,13 @@
 /**添加订单的地址 */
 #define UpdateOrderAddressUrl   HttpHead(@"updateOrderAddress")
 /**确认收货时修改订单状态接口 */
-#define  ConfirmReceiptUrl      HttpHead(@"updateOrderState")
+#define ConfirmReceiptUrl      HttpHead(@"updateOrderState")
 /**添加物流信息接口 */
-#define  UpdateOrderLogUrl      HttpHead(@"updateOrderLog")
+#define UpdateOrderLogUrl      HttpHead(@"updateOrderLog")
 /**获取首页轮播信息 */
-#define  GetHomeBannerUrl       HttpHead(@"getGoodsList")
+#define GetHomeBannerUrl       HttpHead(@"getGoodsList")
 /**点击二级分类时查询商品方法 */
-#define QueryGoodClassBiId        HttpHead(@"queryGoodClassBiId")
+#define QueryGoodClassBiId      HttpHead(@"queryGoodClassBiId")
 /**申请平台介入 */
 #define UpdateOrderFalse        HttpHead(@"updateOrderFalse")
 /**查询首页分类 */
@@ -116,7 +115,7 @@
 /**加入他人造梦*/
 #define JoinProUrl              HttpHead(@"joinPro")
 /**造梦计划详情查询*/
-#define GetPlanUrl              HttpHead(@"getPruductById")
+#define GetPlanUrl              HttpHead(@"queryPlanByIdOne")
 /**造梦订单查询*/
 #define QueryPlordersUrl        HttpHead(@"queryPlorders")
 /**搜索造梦*/

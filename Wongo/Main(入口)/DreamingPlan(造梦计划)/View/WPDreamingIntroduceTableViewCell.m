@@ -9,10 +9,12 @@
 #import "WPDreamingIntroduceTableViewCell.h"
 #import "Masonry.h"
 #import "UIView+Extension.h"
+#import "WPStoreViewController.h"
+
 #define Window_Width [UIScreen mainScreen].bounds.size.width
 #define ImageWidth (Window_Width-70)/4
 
-@interface WPDreamingIntroduceTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface WPDreamingIntroduceTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate,SDPhotoBrowserDelegate,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *pushTime;
@@ -49,8 +51,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    _headerView.userInteractionEnabled = YES;
     _headerView.layer.masksToBounds = YES;
     _headerView.layer.cornerRadius  = 25.f;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goStore)];
+    [_headerView addGestureRecognizer:tap];
     [_goodsImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(Window_Width - 20, Window_Width-20));
         make.top.mas_equalTo(_goodsIntroduce.mas_bottom).mas_offset(10);
@@ -58,6 +63,13 @@
     }];
     self.images = [NSMutableArray arrayWithCapacity:3];
     [self.contentView addSubview:self.collectionView];
+}
+//前往店铺
+-(void)goStore{
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
+    [[self findViewController:self]presentViewController:vc animated:YES completion:nil];
+    vc.isPresen = YES;
+    
 }
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
@@ -82,7 +94,8 @@
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    UICollectionViewCell * cell =
+    [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     [cell.contentView removeAllSubviews];
     UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
     image.backgroundColor = RandomColor;
@@ -92,4 +105,43 @@
     image.layer.borderColor = WongoGrayColor.CGColor;
     return cell;
 }
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    WPDreamingIntroduceTableViewCell *cell =(WPDreamingIntroduceTableViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+    
+//    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+//    browser.currentImageIndex = indexPath.row;
+//    browser.sourceImagesContainerView = cell.contentView;
+//    browser.imageCount = self.images.count;
+//    browser.delegate = self;
+//    [browser show];
+}
+
+#pragma mark - SDPhotoBrowserDelegate
+//展示的图片与对应的index
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    UIImage *image = self.images[index];
+    return image;
+}
+//点击缩小图片至什么位置
+- (void)selfView:(UIView *)supperView imageForIndex:(NSInteger)index currentImageView:(UIImageView *)imageview {
+    
+    NSIndexPath *CellIndexPath = [NSIndexPath indexPathForRow: index inSection:0];
+    WPDreamingIntroduceTableViewCell *cell = (WPDreamingIntroduceTableViewCell *)[self.collectionView cellForItemAtIndexPath:CellIndexPath];
+    //如果cell不存在，从重用池中取出cell
+    if (!cell) {
+        [self.collectionView scrollToItemAtIndexPath:CellIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+        [_collectionView layoutIfNeeded];
+        cell = (WPDreamingIntroduceTableViewCell*)[_collectionView cellForItemAtIndexPath:CellIndexPath];
+    }
+    CGRect targetTemp = [cell.contentView convertRect:cell.contentView.frame toView:supperView];
+    [UIView animateWithDuration:0.4f    animations:^{
+        imageview.frame = targetTemp;
+        supperView.backgroundColor = [UIColor clearColor];
+    } completion:^(BOOL finished) {
+        [supperView removeFromSuperview];
+    }];
+}
+
 @end

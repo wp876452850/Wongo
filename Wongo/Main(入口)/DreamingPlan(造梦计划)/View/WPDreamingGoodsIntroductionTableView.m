@@ -102,7 +102,7 @@ static NSString * const projectCell     = @"ProjectCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([[self.dataArray[indexPath.row] objectForKey:@"Cell"] isEqualToString:imageCell]) {
+    if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
         //tableViewCell自身的高的
         return 230;
     }else{

@@ -11,7 +11,7 @@
 #import "WPPushExchangeViewController.h"
 #import "WPPushDreamingViewController.h"
 
-#define PushTypeTitle   @[@"发布",@"造梦计划"]
+#define PushTypeTitle   @[@"发布"]
 #define PushButtonIcon  @[@"exchangebtn_normal",@"pushDreaming_normal"]
 #define PushButtonSelectIcon @[@"exchangebtn_selected",@"pushDreaming_selected"]
 
@@ -76,7 +76,8 @@
         UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
         button.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-        button.centerX = self.view.width*(i%2*2+1)/4;
+        //button.centerX = self.view.width*(i%2*2+1)/4;
+        button.centerX = self.view.width/2;
         button.centerY = self.view.centerY;
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
@@ -84,12 +85,22 @@
         [button setImage:[UIImage imageNamed:PushButtonSelectIcon[i]] forState:UIControlStateHighlighted];
         
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH/3, 30)];
-        label.top = button.bottom+10;
+        label.top = button.bottom;
+        label.font = [UIFont boldSystemFontOfSize:19.f];
         label.centerX = button.centerX;
         label.textColor = WhiteColor;
         label.textAlignment = NSTextAlignmentCenter;
         label.text = PushTypeTitle[i];
         [self.view addSubview:label];
+        
+        UILabel * label1 = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH/2, 30)];
+        label1.top = label.bottom;
+        label1.font = [UIFont systemFontOfSize:14.f];
+        label1.centerX = button.centerX;
+        label1.textColor = WhiteColor;
+        label1.textAlignment = NSTextAlignmentCenter;
+        label1.text = @"平台担保安全交换";
+        [self.view addSubview:label1];
     }
 }
 
@@ -120,9 +131,6 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryGoodClassBiId params:@{@"gcid":@"1"} datas:^(NSDictionary *responseObject) {
-        
-    }];
 }
 
 @end

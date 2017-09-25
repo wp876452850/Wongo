@@ -172,6 +172,14 @@
 /**关注*/
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
     //判断是否登录
+    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
+    UINavigationController * nav = tabBar.selectedViewController;
+    UIViewController * vc = nav.viewControllers.lastObject;
+    [vc showAlertWithAlertTitle:@"提示" message:@"关注功能暂未开放" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
+        LoginViewController * login = [[LoginViewController alloc]init];
+        [nav pushViewControllerAndHideBottomBar:login animated:YES];
+        
+    }];
     [self determineWhetherTheLogin];
      __block UIButton * button = sender;
     if (!sender.selected) {

@@ -96,6 +96,7 @@ static NSString * contentOffset = @"contentOffset";
     }
     return _menuScrollView;
 }
+
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];;

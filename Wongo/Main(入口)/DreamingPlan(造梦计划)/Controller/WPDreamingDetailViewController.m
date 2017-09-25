@@ -167,17 +167,18 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     __block WPDreamingDetailViewController * weakSelf = self;
     /**查询商品所有信息*/
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
-        
-        weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:responseObject];
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+        NSDictionary * list = responseObject[@"list"][0];
+        weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:list];
+        NSMutableArray * rollPlays = [NSMutableArray arrayWithCapacity:3];
+        for (int i = 0; i <weakSelf.model.listimg.count; i++) {
+            [rollPlays addObject:weakSelf.model.listimg[i][@"proimg"]];
+        }
+        weakSelf.rollPlay.imageURLStringsGroup = rollPlays;
         //查询用户信息
-        [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":weakSelf.proid} datas:^(NSDictionary *responseObject) {
-            NSArray * list = responseObject[@"list"];
-            for (int i = 0;  i < list.count; i++) {
-                WPListModel * model = list[i];
-                [weakSelf.listDatas addObject:model];
-            }
+        [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.model.uid} datas:^(NSDictionary *responseObject) {
             //查询评论信息
+            weakSelf.model.url = responseObject[@"url"];
             [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
                 NSArray * list = responseObject[@"list"];
                 for (int i = 0;  i<list.count; i++) {
@@ -196,6 +197,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
             }];
         }];
     }];
+
     
     /**轮播图*/
     [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {

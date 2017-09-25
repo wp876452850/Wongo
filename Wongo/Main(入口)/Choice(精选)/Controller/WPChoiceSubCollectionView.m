@@ -47,18 +47,14 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(SDCycleScrollView *)cycleScrollView{
     if (!_cycleScrollView) {
-#warning 有后台记得改
-        //_cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:RollPlayFrame imageURLStringsGroup:self.rollPlayImages];
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:ExchangePosters];
         _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
-        //_cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
     }
     return _cycleScrollView;
 }
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
         _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
-        
     }
     return _classificationTableView;
 }

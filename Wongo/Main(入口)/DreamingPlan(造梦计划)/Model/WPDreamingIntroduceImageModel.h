@@ -24,4 +24,6 @@
 
 @property (nonatomic,strong)NSString * uname;
 
+@property (nonatomic,strong)NSString * uid;
+
 @end
