@@ -17,10 +17,7 @@
 @interface WPDreamingIntroduceTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate,SDPhotoBrowserDelegate,UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIImageView *headerView;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
-@property (weak, nonatomic) IBOutlet UILabel *pushTime;
-@property (weak, nonatomic) IBOutlet UILabel *goodsName;
 @property (weak, nonatomic) IBOutlet UILabel *goodsIntroduce;
-@property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
 @property (nonatomic,strong)UICollectionView * collectionView;
 
 @property (nonatomic,strong)NSMutableArray * images;
@@ -56,11 +53,6 @@
     _headerView.layer.cornerRadius  = 25.f;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goStore)];
     [_headerView addGestureRecognizer:tap];
-    [_goodsImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(Window_Width - 20, Window_Width-20));
-        make.top.mas_equalTo(_goodsIntroduce.mas_bottom).mas_offset(10);
-        make.left.mas_equalTo(10);
-    }];
     self.images = [NSMutableArray arrayWithCapacity:3];
     [self.contentView addSubview:self.collectionView];
 }
@@ -69,7 +61,6 @@
     WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
     [[self findViewController:self]presentViewController:vc animated:YES completion:nil];
     vc.isPresen = YES;
-    
 }
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
@@ -107,7 +98,7 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    WPDreamingIntroduceTableViewCell *cell =(WPDreamingIntroduceTableViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+//    WPDreamingIntroduceTableViewCell *cell =(WPDreamingIntroduceTableViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
     
 //    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
 //    browser.currentImageIndex = indexPath.row;
@@ -115,6 +106,7 @@
 //    browser.imageCount = self.images.count;
 //    browser.delegate = self;
 //    [browser show];
+    
 }
 
 #pragma mark - SDPhotoBrowserDelegate

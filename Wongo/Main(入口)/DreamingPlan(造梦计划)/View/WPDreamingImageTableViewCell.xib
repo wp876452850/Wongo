@@ -20,41 +20,50 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="90.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="m00-gV-n0j" userLabel="商品图">
-                        <rect key="frame" x="18" y="8" width="372" height="180"/>
+                        <rect key="frame" x="18" y="38" width="372" height="180"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="180" id="oqk-io-18G"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单反相机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-2N-C5o">
-                        <rect key="frame" x="18" y="198" width="57.5" height="17"/>
+                        <rect key="frame" x="18" y="228" width="57.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(发起者)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beD-60-6UP">
-                        <rect key="frame" x="337.5" y="198" width="52.5" height="17"/>
+                        <rect key="frame" x="337.5" y="228" width="52.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEm-ex-g0c" userLabel="阴影">
-                        <rect key="frame" x="18" y="8" width="372" height="180"/>
+                        <rect key="frame" x="18" y="38" width="372" height="180"/>
                         <color key="backgroundColor" red="0.055832249780000003" green="0.064117167680000003" blue="0.050567676339999999" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="state_ongoing" translatesAutoresizingMaskIntoConstraints="NO" id="psd-2n-Rl9" userLabel="状态">
-                        <rect key="frame" x="18" y="8" width="88" height="88"/>
+                        <rect key="frame" x="18" y="38" width="88" height="88"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="88" id="Q2N-bW-zOV"/>
                             <constraint firstAttribute="width" constant="88" id="YMa-jt-8Qa"/>
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74x-us-Ils">
-                        <rect key="frame" x="150" y="78.5" width="109.5" height="40"/>
+                        <rect key="frame" x="150" y="108.5" width="109.5" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Z7c-Et-sXB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtK-Et-JZB">
+                        <rect key="frame" x="18" y="8" width="37.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="dFB-lf-8rv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -66,13 +75,15 @@
                     <constraint firstItem="beD-60-6UP" firstAttribute="centerY" secondItem="wRT-2N-C5o" secondAttribute="centerY" id="OyP-QR-PBW"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="top" secondItem="m00-gV-n0j" secondAttribute="top" id="Pst-dg-7mb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="m00-gV-n0j" secondAttribute="trailing" constant="10" id="S8L-Fh-DXX"/>
+                    <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="NtK-Et-JZB" secondAttribute="leading" id="amh-54-BZi"/>
+                    <constraint firstItem="NtK-Et-JZB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="c8H-qg-AND"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="trailing" secondItem="m00-gV-n0j" secondAttribute="trailing" id="ipX-og-guI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="beD-60-6UP" secondAttribute="trailing" constant="10" id="nFm-cH-8cL"/>
                     <constraint firstItem="wRT-2N-C5o" firstAttribute="top" secondItem="kEm-ex-g0c" secondAttribute="bottom" constant="10" id="naM-4y-Xjx"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="m00-gV-n0j" secondAttribute="leading" id="o0e-GO-PGb"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="top" secondItem="psd-2n-Rl9" secondAttribute="top" id="qjy-TQ-9ii"/>
                     <constraint firstItem="74x-us-Ils" firstAttribute="centerX" secondItem="kEm-ex-g0c" secondAttribute="centerX" id="r08-xQ-7Wz"/>
-                    <constraint firstItem="m00-gV-n0j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tp4-AD-flv"/>
+                    <constraint firstItem="m00-gV-n0j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="30" id="tp4-AD-flv"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="psd-2n-Rl9" secondAttribute="leading" id="yvT-DD-ThZ"/>
                 </constraints>
             </tableViewCellContentView>
@@ -83,8 +94,9 @@
                 <outlet property="logoImage" destination="psd-2n-Rl9" id="ECd-Mr-vwv"/>
                 <outlet property="logoImageOK" destination="kEm-ex-g0c" id="NNy-Zo-Afl"/>
                 <outlet property="logoLabelOK" destination="74x-us-Ils" id="RWK-NC-1cW"/>
+                <outlet property="pushTime" destination="NtK-Et-JZB" id="Y8M-8p-f34"/>
             </connections>
-            <point key="canvasLocation" x="-938" y="-60"/>
+            <point key="canvasLocation" x="-1234" y="-136"/>
         </tableViewCell>
     </objects>
     <resources>

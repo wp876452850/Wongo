@@ -113,8 +113,7 @@
     browser.sourceImagesContainerView = cell.contentView;
     browser.imageCount = self.images.count;
     browser.delegate = self;
-    [browser show];
-    
+    [browser show];    
 }
 - (CGSize) collectionView:(UICollectionView *)collectionView
                    layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

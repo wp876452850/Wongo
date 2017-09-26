@@ -125,7 +125,7 @@
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
 /**当前造梦初始用户的商品图片(轮播图)*/
-#define QuerySubIng             HttpHead(@"querySubIng")
+#define QuerySubIng             HttpHead(@"queryPlanByIdOne")
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
 /***/

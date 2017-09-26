@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *logoLabelOK;
 /**状态(已完成)*/
 @property (weak, nonatomic) IBOutlet UIImageView *logoImageOK;
+/**发布时间*/
+@property (weak, nonatomic) IBOutlet UILabel *pushTime;
+
 @end
 @implementation WPDreamingImageTableViewCell
 
@@ -30,6 +33,7 @@
     _model = model;
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.prourl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = _model.proname;
+    _pushTime.text = _model.pbutime;
 }
 -(void)showOK{
     self.logoImageOK.hidden = NO;

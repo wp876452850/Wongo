@@ -187,8 +187,9 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 }
                 //查询造梦故事
                 [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-                    //查询参与商品
+                    
                     weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
+                    //查询参与商品
                     [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
                         weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
                         [weakSelf.tableView reloadData];
@@ -200,16 +201,16 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
     
     /**轮播图*/
-    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
-        
+//    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+//        
 //        NSArray * array = responseObject[@"list"];
 //        NSMutableArray * images = [NSMutableArray arrayWithCapacity:3];
 //        for (int i = 0 ; i < array.count; i++) {
 //            NSDictionary * dic = array[i];
 //            [images addObject:dic[@"url"]];
 //        }
-        //weakSelf.rollPlay.imageURLStringsGroup = images;
-    }];
+//        weakSelf.rollPlay.imageURLStringsGroup = images;
+//    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
