@@ -10,6 +10,8 @@
 
 @interface WPCollectionBaseViewController : LYBaseController
 
+-(instancetype)initWithGcid:(NSString *)gcid;
+
 @property (nonatomic,strong)UICollectionView * collectionView;
 
 @property (nonatomic,strong)NSArray * dataSource;

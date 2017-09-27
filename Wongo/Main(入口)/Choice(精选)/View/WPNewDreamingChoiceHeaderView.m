@@ -34,6 +34,8 @@
 -(UIView *)menuView{
     if (!_menuView) {
         _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _posters.bottom, WINDOW_WIDTH, 40)];
+        _menuView.layer.borderColor = WongoGrayColor.CGColor;
+        _menuView.backgroundColor = WhiteColor;
         _menuView.backgroundColor = ColorWithRGB(30, 35, 36);
         for (int i = 0; i < 3; i++) {
             WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];

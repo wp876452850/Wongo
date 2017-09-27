@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "goodsgongyi.PNG",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "goodsgongyi@2x.PNG",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "goodsgongyi@3x.PNG",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

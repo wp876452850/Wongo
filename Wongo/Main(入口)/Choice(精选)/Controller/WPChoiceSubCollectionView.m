@@ -19,25 +19,27 @@
 #define SectionMenuTitles @[@"综合推荐 ",@"人气优先 ",@"分类 "]
 
 @interface WPChoiceSubCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
-    NSInteger _page;
+    NSInteger       _page;
     /**一级分类*/
-    NSString * _primaryClassification;
+    NSString        * _primaryClassification;
     /**二级分类*/
-    NSString * _secondaryClassification;
+    NSString        * _secondaryClassification;
     
-    WPCustomButton * _memoryButton;
+    WPCustomButton  * _memoryButton;
+    
+    NSString        * _cid;
     
     BOOL _isOpen;
 }
-@property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
+@property (nonatomic,strong)SDCycleScrollView   * cycleScrollView;
 
-@property (nonatomic,strong)NSMutableArray * rollPlayImages;
+@property (nonatomic,strong)NSMutableArray      * rollPlayImages;
 
-@property (nonatomic,strong)NSMutableArray * dataSourceArray;
+@property (nonatomic,strong)NSMutableArray      * dataSourceArray;
 //二级菜单
-@property (nonatomic,strong)UIView * menuView;
+@property (nonatomic,strong)UIView              * menuView;
 
-@property (nonatomic,strong)NSString * url;
+@property (nonatomic,strong)NSString            * url;
 //分类弹出菜单
 @property (nonatomic,strong)WPClassificationTableView * classificationTableView;
 @end
@@ -55,12 +57,15 @@ static NSString * const reuseIdentifier = @"Cell";
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
         _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
+        __block WPChoiceSubCollectionView * weakSelf = self;
     }
     return _classificationTableView;
 }
 -(UIView *)menuView{
     if (!_menuView) {
         _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 40)];
+        _menuView.layer.borderWidth = 0.5f;
+        _menuView.layer.borderColor = WongoGrayColor.CGColor;
         _menuView.backgroundColor = WhiteColor;
         for (int i = 0; i < 3; i++) {
             WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];
@@ -105,14 +110,16 @@ static NSString * const reuseIdentifier = @"Cell";
         if (_isOpen) {
             [self.classificationTableView menuClose];
             _isOpen = !_isOpen;
-            
         }
     }else{
         if (!_isOpen) {
             [self.classificationTableView menuOpen];
             __block WPCustomButton * button = sender;
-            [self.classificationTableView getClassificationStringWithBlock:^(NSString *classification, NSInteger index) {
-                
+            __block WPChoiceSubCollectionView * weakSelf = self;
+            [self.classificationTableView getClassificationStringWithBlock:^(NSString *cname, NSString *cid) {
+                button.titleLabel.text = cname;
+                _cid = cid;
+                [weakSelf addHeader];
             }];
             
         }else{

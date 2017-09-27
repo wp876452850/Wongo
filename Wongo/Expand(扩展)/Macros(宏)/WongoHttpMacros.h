@@ -82,22 +82,26 @@
 #define UpdateOrderLogUrl      HttpHead(@"updateOrderLog")
 /**获取首页轮播信息 */
 #define GetHomeBannerUrl       HttpHead(@"getGoodsList")
-/**点击二级分类时查询商品方法 */
-#define QueryGoodClassBiId      HttpHead(@"queryGoodClassBiId")
 /**申请平台介入 */
 #define UpdateOrderFalse        HttpHead(@"updateOrderFalse")
 /**查询首页分类 */
 #define QtQueryType             HttpHead(@"qtQueryType")
 /**查询某一分类下的物品 */
 #define QtQueryTypegdlist       HttpHead(@"qtQueryTypegdlist")
-/**进行中造梦(主页造梦也用此方法)*/
-#define QuerySubIng             HttpHead(@"querySubIng")
-/**筹备中造梦*/
-#define QuerySub                HttpHead(@"querySub")
+
+/**
+ *      分类
+ */
+/**点击二级分类时查询商品方法 */
+#define QueryGoodById           HttpHead(@"queryGoodById")
 
 /**
  *      造梦
  */
+/**进行中造梦(主页造梦也用此方法)*/
+#define QuerySubIng             HttpHead(@"querySubIng")
+/**筹备中造梦*/
+#define QuerySub                HttpHead(@"querySub")
 /**查询所有造梦计划*/
 #define QueryProduct            HttpHead(@"queryPlanById")
 /**某个造梦计划的参与造梦*/
@@ -132,6 +136,8 @@
 #define QueryProductImg         HttpHead(@"queryProductImg")
 /**某个造梦计划的参与造梦*/
 #define QueryPlordersOne        HttpHead(@"queryPlordersOne")
+
+
 /**
  *  支付
  */

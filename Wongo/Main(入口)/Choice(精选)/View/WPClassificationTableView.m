@@ -7,6 +7,7 @@
 //
 
 #import "WPClassificationTableView.h"
+#import "WPGoodsClassModel.h"
 
 
 @interface WPClassificationTableView ()<UITableViewDelegate,UITableViewDataSource>
@@ -36,29 +37,41 @@
         self.delegate = self;
         self.dataSource = self;
         [self registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        [self loadDatas];
     }
     return self;
 }
 
--(void)setDataSourceArray:(NSArray *)dataSourceArray{
-    _dataSourceArray = dataSourceArray;
-    [self reloadData];
+
+-(void)loadDatas{
+    self.dataSourceArray = [NSMutableArray arrayWithCapacity:10];
+    //交换分类
+    __block WPClassificationTableView * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneUrl params:nil datas:^(NSDictionary *responseObject) {
+        NSArray * listc = responseObject[@"listc"];
+        for (int i = 0; i < listc.count; i++) {
+            WPGoodsClassModel * model = [WPGoodsClassModel mj_objectWithKeyValues:listc[i]];
+            [weakSelf.dataSourceArray addObject:model];
+        }
+        [weakSelf reloadData];
+    }];
 }
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
     return self.dataSourceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.dataSourceArray[indexPath.row];
+    WPGoodsClassModel * model = self.dataSourceArray[indexPath.row];
+    cell.textLabel.text = model.cname;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    WPGoodsClassModel * model = self.dataSourceArray[indexPath.row];
     if (self.indexPath) {
         UITableViewCell * oldCell = [tableView cellForRowAtIndexPath:self.indexPath];
         oldCell.textLabel.textColor = [UIColor blackColor];
@@ -67,7 +80,7 @@
     newCell.textLabel.textColor = WongoBlueColor;
     
     if (_classificationBlock) {
-        _classificationBlock(_dataSourceArray[indexPath.row],indexPath.row);
+        _classificationBlock(model.cname,model.cid);
     }
     [self menuClose];
     self.indexPath = indexPath;

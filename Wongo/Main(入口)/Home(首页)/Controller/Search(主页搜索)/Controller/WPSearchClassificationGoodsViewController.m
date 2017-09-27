@@ -30,7 +30,7 @@
 -(void)loadDatas{
     self.dataSource = [NSMutableArray arrayWithCapacity:3];
     __block WPSearchClassificationGoodsViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryGoodClassBiId params:@{@"gcid":self.gcid} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryGoodById params:@{@"gcid":self.gcid} datas:^(NSDictionary *responseObject) {
         NSArray * list = responseObject[@"list"];
         for (int i = 1; i<list.count;i++) {
             WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:list[i]];

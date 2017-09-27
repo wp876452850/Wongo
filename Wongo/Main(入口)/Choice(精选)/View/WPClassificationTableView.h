@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^TableViewSelectClassification)(NSString *classification,NSInteger index);
+typedef void(^TableViewSelectClassification)(NSString * cname,NSString * cid);
 
 @interface WPClassificationTableView : UITableView
 
 
 @property (nonatomic,strong)NSIndexPath * indexPath;
-@property (nonatomic,strong)NSArray * dataSourceArray;
+@property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 -(void)getClassificationStringWithBlock:(TableViewSelectClassification)block;
 

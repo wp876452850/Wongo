@@ -33,18 +33,26 @@
 
 #define Ali_App_Id          @"2016080200150163"
 
+#define User_MobileVersion  [[[UIDevice currentDevice] systemVersion] floatValue]
+
+//自定义色
 #define RandomColor [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1]
 #define ScreenThan 0.5
 #define GRAY_COLOR [UIColor colorWithRed:154/255.0 green:154/255.0 blue:154/255.0 alpha:1]
-
 #define ColorWithRGB(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
 //自定义色
 #define WongoGrayColor      ColorWithRGB(241, 240, 244)
-#define AllBorderColor      ColorWithRGB(217, 217, 217)
 #define WongoBlueColor      ColorWithRGB(27, 74, 108)
-#define WhiteColor          ColorWithRGB(255,255,255)
+#define WongoGreenColor     ColorWithRGB(2, 188, 118)
+
+#define TitleGreenColor     ColorWithRGB(34, 34, 34)
 #define SelfOrangeColor     ColorWithRGB(252,139,29)
-#define User_MobileVersion  [[[UIDevice currentDevice] systemVersion] floatValue]
+#define AllBorderColor      ColorWithRGB(217, 217, 217)
+
+#define WhiteColor          ColorWithRGB(255,255,255)
+#define BlackColor          ColorWithRGB(0,0,0)
+
+//海报大小
 #define RollPlayFrame       CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
 //交换主页海报图集
 #define ExchangePosters     @[@"ExchangePosters1.jpg"]

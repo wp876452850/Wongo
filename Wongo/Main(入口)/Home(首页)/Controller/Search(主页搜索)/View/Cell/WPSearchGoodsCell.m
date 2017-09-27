@@ -7,6 +7,7 @@
 //
 
 #import "WPSearchGoodsCell.h"
+#import "WPCollectionBaseViewController.h"
 
 @interface WPSearchGoodsCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -26,5 +27,13 @@
     _model = model;
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gcname;
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    WPCollectionBaseViewController * vc = [[WPCollectionBaseViewController alloc]initWithGcid:_model.gcid];
+    vc.url = QueryGoodById;
+    vc.myNavItem.title = _model.gcname;
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 @end

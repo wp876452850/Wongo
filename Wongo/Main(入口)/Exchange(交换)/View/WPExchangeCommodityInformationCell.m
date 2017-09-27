@@ -10,6 +10,7 @@
 #import "LYActivityController.h"
 
 #define ActivityStateTitle @[@"",@"本商品已参与分享换新活动",@"本商品已参与公益换新活动",@"本商品已参与闲置换新活动"]
+#define ActivityStateIcon @[@"",@"goodsfenxiang",@"goodsgongyi",@"goodsxianzhi"]
 
 @interface WPExchangeCommodityInformationCell ()
 
@@ -44,7 +45,6 @@
 -(void)jumpActive{
    
     if ([_model.state integerValue] <= 0) {
-        
         return;
     }
     LYHomeCategory *category = self.listhk[[_model.state integerValue] -1 ];
@@ -73,7 +73,10 @@
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }else{
-         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];;
+         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
+    }
+    if (state!=0) {
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:ActivityStateIcon[state]] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }
     _oldNew.text    = model.neworold;
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
