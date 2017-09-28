@@ -166,9 +166,9 @@ static NSString * contentOffset = @"contentOffset";
             _page++;
             [weakSelf.collectionView reloadData];
             //查询造梦计划
-            [WPNetWorking createPostRequestMenagerWithUrlString:QuerySub params:nil datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
                 
-                NSArray * dreamings = responseObject[@"listSub"][0][@"listplan"];
+                NSArray * dreamings = responseObject[@"listSub"][1][@"listplan"];
                 
                 weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {

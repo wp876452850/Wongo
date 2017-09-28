@@ -49,7 +49,7 @@
         self.delegate   = self;
         self.dataSource = self;
         [self addSubview:self.cycleScrollView];
-        [self addHeaderWithUrl:QuerySubUrl];
+        [self addHeaderWithUrl:QuerySub];
     }
     return self;
 }

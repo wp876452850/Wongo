@@ -43,12 +43,18 @@
 //自定义色
 #define WongoGrayColor      ColorWithRGB(241, 240, 244)
 #define WongoBlueColor      ColorWithRGB(27, 74, 108)
-#define WongoGreenColor     ColorWithRGB(2, 188, 118)
-
-#define TitleGreenColor     ColorWithRGB(34, 34, 34)
+//活动页自定义色
+#define WongoActivitGreenColor      ColorWithRGB(2, 188, 118)
+#define WongoActivitYellowColor     ColorWithRGB(255, 188, 1)
+#define WongoActivitBlueColor       ColorWithRGB(89, 203, 209)
+//文字色
+#define TitleBlackColor     ColorWithRGB(34, 34, 34)
+#define TitleGrayColor      ColorWithRGB(128, 128, 128)
+//橘色
 #define SelfOrangeColor     ColorWithRGB(252,139,29)
+//线条颜色
 #define AllBorderColor      ColorWithRGB(217, 217, 217)
-
+//基础色
 #define WhiteColor          ColorWithRGB(255,255,255)
 #define BlackColor          ColorWithRGB(0,0,0)
 

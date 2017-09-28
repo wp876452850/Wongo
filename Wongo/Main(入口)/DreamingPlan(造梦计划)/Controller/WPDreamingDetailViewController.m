@@ -47,7 +47,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 
 @property (nonatomic,strong)NSMutableArray * rollPlayImages;
 
-@property (nonatomic,strong)WPDreamingModel * model;
+
 
 @property (nonatomic,strong)NSMutableArray * listDatas;
 
@@ -108,7 +108,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         [_chatBtn addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_chatBtn];
         [_chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
-
     }
     return _chatBtn;
 }
@@ -171,9 +170,10 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         NSDictionary * list = responseObject[@"list"][0];
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:list];
         NSMutableArray * rollPlays = [NSMutableArray arrayWithCapacity:3];
-        for (int i = 0; i <weakSelf.model.listimg.count; i++) {
-            [rollPlays addObject:weakSelf.model.listimg[i][@"proimg"]];
-        }
+//        for (int i = 0; i <weakSelf.model.listimg.count; i++) {
+//            [rollPlays addObject:weakSelf.model.listimg[i][@"proimg"]];
+//        }
+        [rollPlays addObject:list[@"url"]];
         weakSelf.rollPlay.imageURLStringsGroup = rollPlays;
         //查询用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.model.uid} datas:^(NSDictionary *responseObject) {
@@ -187,7 +187,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
                 }
                 //查询造梦故事
                 [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-                    
                     weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
                     //查询参与商品
                     [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
@@ -277,6 +276,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     WPDreamingIntroduceView * view = [[WPDreamingIntroduceView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 240)];
+    view.vc = self;
     view.dataSource = self.model.introduceModel.dreamingIntroduces;
     view.dreamingStory = self.model.introduceModel.dreamingStory;
     [cell.contentView addSubview:view];
@@ -458,6 +458,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     if (scrollView.contentOffset.y >= rect.size.height+rect.origin.y+WINDOW_WIDTH-WINDOW_HEIGHT+80) {
         UIViewController * vc = [[UIViewController alloc]init];
         WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
+        dv.vc = self;
         dv.dreamingStory = self.model.introduceModel.dreamingStory;
         dv.dataSource = self.model.introduceModel.dreamingIntroduces;        
         [vc.view addSubview:dv];

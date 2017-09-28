@@ -11,6 +11,9 @@
 #import "LYHomeCategory.h"
 
 @interface LYActivityController : LYBaseController
+//活动类别,判断活动展示不同界面
+@property (nonatomic,assign)NSInteger activityState;
 + (instancetype)controllerWith:(LYHomeBannerM *)banner;
 + (instancetype)controllerWithCategory:(LYHomeCategory *)Category;
+
 @end

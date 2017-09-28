@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "thumup_green_normal.png",
+      "filename" : "thumup_green_normal.PNG",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "thumup_green_normal@2x.png",
+      "filename" : "thumup_green_normal@2x.PNG",
       "scale" : "2x"
     },
     {

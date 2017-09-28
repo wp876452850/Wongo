@@ -104,7 +104,7 @@ static NSString * const projectCell     = @"ProjectCell";
     
     if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
         //tableViewCell自身的高的
-        return 230;
+        return 250;
     }else{
         //弹出cell的高度
         if (indexPath.section >= self.cellsHeight.count) {
@@ -115,10 +115,11 @@ static NSString * const projectCell     = @"ProjectCell";
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{    
-    if (scrollView.contentOffset.y<=-150)
+    if (scrollView.contentOffset.y<=-80)
     {
         [[self findViewController:self] w_dismissViewControllerAnimated];
     }
 }
+
 
 @end

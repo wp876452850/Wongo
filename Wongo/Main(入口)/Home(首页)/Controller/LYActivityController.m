@@ -7,11 +7,11 @@
 //
 
 #import "LYActivityController.h"
-#import "WPHotCell.h"
+#import "WPActivityGoodsCollectionViewCell.h"
 #import "WPExchangeDetailModel.h"
 #import "WPExchangeModel.h"
 
-#define Cell_HeightDouble (0.5*WINDOW_WIDTH + 64)
+#define Cell_HeightDouble (WINDOW_WIDTH + 125)
 @interface LYActivityController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 //首页轮播模型
 @property (nonatomic, strong) LYHomeBannerM  *banner;
@@ -72,7 +72,7 @@
         [_collectionView addSubview:self.introduceView];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerNib:[UINib nibWithNibName:@"WPHotCell" bundle:nil] forCellWithReuseIdentifier:@"hotCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPActivityGoodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
     }
     return _collectionView;
 }
@@ -106,14 +106,8 @@
                 [self.goods removeAllObjects];
                 for (NSDictionary * item in goods) {
                     WPExchangeModel * model = [WPExchangeModel mj_objectWithKeyValues:item];
-                    NSArray *imgArr;
-                    if ([(imgArr = item[@"listimg"]) isKindOfClass:[NSArray class]] && imgArr.count > 0 && [imgArr[0] isKindOfClass:[NSDictionary class]]) {
-                        model.url = imgArr[0][@"url"];
-                    }
-                    
                     [self.goods addObject:model];
                 }
-                
                 [self.collectionView reloadData];
             }
         }
@@ -124,7 +118,7 @@
 #pragma mark - collectionViewDelegate && collectionViewDataSource
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    return CGSizeMake(WINDOW_WIDTH * 0.5 - 15, Cell_HeightDouble);
+    return CGSizeMake(WINDOW_WIDTH , Cell_HeightDouble);
 }
 
 //返回section个数
@@ -136,31 +130,30 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.goods.count;
 }
-
 //配置单元格
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    WPHotCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"hotCell" forIndexPath:indexPath];
+    WPActivityGoodsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.model = self.goods[indexPath.row];
+    cell.activityState = self.activityState;
     return cell;
-}
-
-//设置每个item水平间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 10;
-}
-
-//设置每个item垂直间距
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 10;
 }
 //返回每个区头大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(WINDOW_WIDTH, self.introduceView.height + 10);
 }
-//设置每个item的UIEdgeInsets
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
-}
+
+////设置每个item水平间距
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+//    return 0;
+//}
+////设置每个item垂直间距
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+//    return 10;
+//}
+////设置每个item的UIEdgeInsets
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+//    return UIEdgeInsetsMake(10, 10, 10, 10);
+//}
 
 
 

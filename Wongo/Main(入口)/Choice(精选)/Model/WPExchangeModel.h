@@ -18,5 +18,6 @@
 @property (nonatomic,strong)NSString * gcid;
 @property (nonatomic,strong)NSString * gid;
 @property (nonatomic,strong)NSString * gname;
+@property (nonatomic,strong)NSArray  * listimg;
 
 @end

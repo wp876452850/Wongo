@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "WPDreamingIntroduceModel.h"
+#import "WPDreamingDetailViewController.h"
 
 @interface WPDreamingIntroduceView : UIView
 
 @property (nonatomic,strong)NSString * dreamingStory;
 
 @property (nonatomic,strong)NSArray * dataSource;
+
+@property (nonatomic,strong)WPDreamingDetailViewController * vc;
 
 @end

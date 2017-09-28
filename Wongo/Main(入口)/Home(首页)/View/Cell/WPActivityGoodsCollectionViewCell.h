@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPExchangeModel.h"
+
 
 @interface WPActivityGoodsCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic,assign)NSInteger activityState;
+
+@property (nonatomic,strong)WPExchangeModel * model;
+
+
 
 @end

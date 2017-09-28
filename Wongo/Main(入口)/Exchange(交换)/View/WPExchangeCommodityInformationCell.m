@@ -9,8 +9,8 @@
 #import "WPExchangeCommodityInformationCell.h"
 #import "LYActivityController.h"
 
-#define ActivityStateTitle @[@"",@"本商品已参与分享换新活动",@"本商品已参与公益换新活动",@"本商品已参与闲置换新活动"]
-#define ActivityStateIcon @[@"",@"goodsfenxiang",@"goodsgongyi",@"goodsxianzhi"]
+#define ActivityStateTitle @[@"",@"本商品已参与闲置换新活动",@"本商品已参与公益换新活动",@"本商品已参与分享换新活动"]
+#define ActivityStateIcon @[@"",@"goodsxianzhi",@"goodsgongyi",@"goodsfenxiang"]
 
 @interface WPExchangeCommodityInformationCell ()
 
@@ -43,14 +43,29 @@
 
 /**跳转活动页*/
 -(void)jumpActive{
-   
     if ([_model.state integerValue] <= 0) {
         return;
     }
-    LYHomeCategory *category = self.listhk[[_model.state integerValue] -1 ];
-    [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
+    LYHomeCategory *category = self.listhk[[_model.state integerValue] - 1];
+    LYActivityController * vc = [LYActivityController controllerWithCategory:category];
+    vc.activityState = [_model.state integerValue] - 1;
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 
+-(void)setActivityState:(NSInteger)activityState
+{
+    _activityState = activityState;
+    _model.state = [NSString stringWithFormat:@"%ld",activityState];
+    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:ActivityStateTitle[activityState] attributes:attribtDic];
+    //赋值
+    _activeLink.userInteractionEnabled = YES;
+    _activeLink.attributedText = attribtStr;
+    if (activityState!=0) {
+            NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",_model.gname]];
+        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:ActivityStateIcon[activityState]] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
+    }
+}
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"exchangecollect_normal"] forState:UIControlStateNormal];
@@ -59,24 +74,12 @@
 
 -(void)setModel:(WPExchangeDetailModel *)model{
     _model = model;
-    //测试用
-    _model.state = [NSString stringWithFormat:@"%u",arc4random()%3];
-    
-    NSDictionary *attribtDic = @{NSUnderlineStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-    NSInteger state = [_model.state integerValue];
-    NSMutableAttributedString *attribtStr = [[NSMutableAttributedString alloc]initWithString:ActivityStateTitle[state] attributes:attribtDic];
-    //赋值
-    _activeLink.userInteractionEnabled = YES;
-    _activeLink.attributedText = attribtStr;
     
     NSAttributedString * attributedString = [[NSAttributedString alloc]initWithString:[NSString stringWithFormat:@" %@",model.gname]];
     if ([model.uid floatValue] == 1 ||[model.uid floatValue] == 2) {
         _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }else{
          _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
-    }
-    if (state!=0) {
-        _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:ActivityStateIcon[state]] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }
     _oldNew.text    = model.neworold;
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];

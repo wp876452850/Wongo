@@ -7,6 +7,7 @@
 //  造梦详情页
 
 #import <UIKit/UIKit.h>
+#import "WPDreamingModel.h"
 
 @interface WPDreamingDetailViewController : UIViewController
 
@@ -14,6 +15,7 @@
  @param proid 商品id
  @param subid 主题id
  */
+@property (nonatomic,strong)WPDreamingModel * model;
 +(instancetype)createDreamingDetailWithProid:(NSString *)proid plid:(NSString *)plid;
 
 @end

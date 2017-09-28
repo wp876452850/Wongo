@@ -12,6 +12,8 @@
 
 @interface WPExchangeCommodityInformationCell : UITableViewCell
 @property (nonatomic,strong)WPExchangeDetailModel * model;
+
+@property (nonatomic,assign)NSInteger activityState;
 /**活动数组*/
 @property (nonatomic, strong) NSArray<LYHomeCategory *> *listhk;
 @end

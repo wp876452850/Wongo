@@ -52,8 +52,9 @@
             <size key="customSize" width="577" height="366"/>
             <connections>
                 <outlet property="nowGoods" destination="ZDC-qv-TdR" id="t4A-6z-7hG"/>
+                <outlet property="targetGoods" destination="UhO-EB-RC7" id="el7-hC-DVV"/>
             </connections>
-            <point key="canvasLocation" x="-269" y="-41"/>
+            <point key="canvasLocation" x="-888" y="-58"/>
         </collectionViewCell>
     </objects>
     <resources>

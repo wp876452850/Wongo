@@ -112,8 +112,6 @@
 #define AddProduct              HttpHead(@"addProduct")
 /**指定主题内的造梦计划查询*/
 #define QueryPlanRul            HttpHead(@"queryPlan")
-/**精选-造梦计划*/
-#define QuerySubUrl             HttpHead(@"querySub")
 /**发布造梦图片*/
 #define UpProFileUrl            HttpHead(@"upProFile")
 /**加入他人造梦*/
@@ -128,8 +126,6 @@
 #define UpdatePlorderUrl        HttpHead(@"updatePlorder")
 /**造梦确认收货 */
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
-/**当前造梦初始用户的商品图片(轮播图)*/
-#define QuerySubIng             HttpHead(@"queryPlanByIdOne")
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
 /***/

@@ -76,9 +76,9 @@
         CGFloat w  = 142*(WINDOW_WIDTH/375);
         CGFloat h  = 232.5*(WINDOW_WIDTH/375);
         
-        _activityA = [self setUpActivityImageWithFrame:CGRectMake(2.5, 10, w , h)];
-        _activityB = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, 10, WINDOW_WIDTH-7.5-w, (h-2.5)/2)];
-        _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2)];
+        _activityA = [self setUpActivityImageWithFrame:CGRectMake(2.5, 10, w , h) actitvityState:0];
+        _activityB = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, 10, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:1];
+        _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:3];
         
         //点击手势
         _activityA.tag = 0;
@@ -97,8 +97,9 @@
     return _activityView;
 }
 
--(UIImageView *)setUpActivityImageWithFrame:(CGRect)frame{
+-(UIImageView *)setUpActivityImageWithFrame:(CGRect)frame actitvityState:(NSInteger)actitvityState{
     UIImageView * imageView = [[UIImageView alloc]initWithFrame:frame];
+    imageView.tag = actitvityState;
     imageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
     self.backgroundColor = WongoGrayColor;
@@ -125,9 +126,10 @@
     if (tap.view.tag >= self.listhk.count) {
         return;
     }
-    
     LYHomeCategory *category = self.listhk[tap.view.tag];
-    [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
+    LYActivityController * vc = [LYActivityController controllerWithCategory:category];
+    vc.activityState = tap.view.tag;
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 -(SDCycleScrollView *)cycleScrollView
 {
@@ -141,20 +143,12 @@
 }
 - (void)setListhk:(NSArray<LYHomeCategory *> *)listhk{
     _listhk = listhk;
-    
-    
     if (listhk.count <= 0) {
         return;
     }
     _activityA.image = [UIImage imageNamed:@"activity1.jpg"];
     _activityB.image = [UIImage imageNamed:@"activity2.jpg"];
     _activityC.image = [UIImage imageNamed:@"activity3.jpg"];
-//    [_activityA sd_setImageWithURL:[NSURL URLWithString:listhk[0].url] placeholderImage:nil];
-//    
-//    [_activityB sd_setImageWithURL:[NSURL URLWithString:listhk[1].url] placeholderImage:nil];
-//    
-//    [_activityC sd_setImageWithURL:[NSURL URLWithString:listhk[2].url] placeholderImage:nil];
-    
 }
 
 - (void)setListhl:(NSArray<LYHomeCategory *> *)listhl{

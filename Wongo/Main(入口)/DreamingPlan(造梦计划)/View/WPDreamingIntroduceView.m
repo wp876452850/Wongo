@@ -8,6 +8,9 @@
 
 #import "WPDreamingIntroduceView.h"
 #import "WPDreamingGoodsIntroductionTableView.h"
+#import "LYConversationController.h"
+#import "WPParticipateDreamingViewController.h"
+
 #define Titles @[@" 造梦详情",@" 造梦故事",@" 造梦规则"]
 #define TitlesImages @[@"dreamingitemsisintroduced",@"dreamingrules",@"dreamingstory"]
 #define TitlesSelectImages @[@"dreamingitemsisintroduced_select",@"dreamingrules_select",@"dreamingstory_select"]
@@ -19,22 +22,37 @@
 
 @property (nonatomic,strong)WPDreamingGoodsIntroductionTableView * tableView;
 
-@property (nonatomic,strong)UIButton * backButton;
+@property (nonatomic,strong)UIButton * joinDreaming;
+
+@property (nonatomic,strong)UIButton * chatBtn;
 
 @end
 
 @implementation WPDreamingIntroduceView
 
--(UIButton *)backButton{
-    if (!_backButton) {
-        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backButton setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(5, WINDOW_HEIGHT - 55, WINDOW_WIDTH - 10, 50);
-        [_backButton setTitle:@"关闭详情" forState:UIControlStateNormal];
-        _backButton.backgroundColor = WongoBlueColor;
-        [_backButton addTarget:[self findViewController:self] action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+-(UIButton *)chatBtn{
+    if (!_chatBtn) {
+        _chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _chatBtn.frame = CGRectMake(0, WINDOW_HEIGHT - 50, 50, 50);
+        _chatBtn.backgroundColor = ColorWithRGB(45, 102, 139);
+        [_chatBtn addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_chatBtn];
+        [_chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
     }
-    return _backButton;
+    return _chatBtn;
+}
+-(UIButton *)joinDreaming{
+    if (!_joinDreaming) {
+        _joinDreaming = [UIButton buttonWithType:UIButtonTypeCustom];
+        _joinDreaming.frame = CGRectMake(self.chatBtn.right, WINDOW_HEIGHT - 50, WINDOW_WIDTH - 50, 50);
+        [_joinDreaming setTitle:@"参与造梦" forState:UIControlStateNormal];
+        _joinDreaming.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_joinDreaming setBackgroundColor:ColorWithRGB(105, 152, 192)];
+        [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateNormal];
+        [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateHighlighted];
+        [_joinDreaming addTarget:self action:@selector(goNextViewController) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _joinDreaming;
 }
 
 -(WPDreamingGoodsIntroductionTableView *)tableView{
@@ -59,7 +77,7 @@
         [self initSubView];
         [self addSubview:self.contentShowLabel];
         [self addSubview:self.tableView];
-        [self addSubview:self.backButton];
+        [self addSubview:self.joinDreaming];
         self.backgroundColor = WhiteColor;
     }
     return self;
@@ -131,5 +149,21 @@
         self.tableView.dataSourceArray = dataSource;
     }
 }
+#pragma mark 界面跳转
+-(void)goNextViewController{
+    WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]initWithProid:self.vc.model.plid];
+    [[self findViewController:self]dismissViewControllerAnimated:YES completion:nil];
+    [self.vc.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)goChat{
+    if ([self determineWhetherTheLogin]) {
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.vc.model.userModel.uid];
+        vc.title = self.vc.model.userModel.uname;
+        [[self findViewController:self]dismissViewControllerAnimated:YES completion:nil];
+        [self.vc.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 
 @end

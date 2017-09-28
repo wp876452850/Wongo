@@ -63,6 +63,11 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
     return exchangeGoodsVC;
 }
 
++(instancetype)createExchangeGoodsWithParams:(NSDictionary *)params{
+    WPExchangeViewController * exchangeGoodsVC = [[WPExchangeViewController alloc]init];
+    exchangeGoodsVC.params                     = params;
+    return exchangeGoodsVC;
+}
 #pragma mark - lazyLoad
 
 -(WPExchangeFunctionMenu *)menu{
@@ -196,7 +201,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             
         }}];
     
-    [WPNetWorking createPostRequestMenagerWithUrlString:self.urlString params:self.params datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeDetailGoodsUrl params:self.params datas:^(NSDictionary *responseObject) {
         weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
         weakSelf.exchangeModel.parameters = [NSMutableArray arrayWithObject:@"本产品无参数"];
         NSArray * images = [responseObject objectForKey:@"listimg"];
@@ -249,6 +254,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             WPExchangeCommodityInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             cell.model = _exchangeModel;
+            cell.activityState = self.activityState;
             cell.listhk = self.response.listhk;
             return cell;
         }

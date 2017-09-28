@@ -89,7 +89,7 @@
     [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     [cell.contentView removeAllSubviews];
     UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
-    image.backgroundColor = RandomColor;
+    image.contentMode = UIViewContentModeScaleAspectFit;
     [image sd_setImageWithURL:[NSURL URLWithString:self.images[indexPath.row]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     [cell addSubview:image];
     image.layer.borderWidth = 0.5f;
