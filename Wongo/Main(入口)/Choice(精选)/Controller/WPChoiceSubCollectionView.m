@@ -17,6 +17,7 @@
 #define HeaderMenuHeight 104
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 #define SectionMenuTitles @[@"综合推荐 ",@"人气优先 ",@"分类 "]
+#define SortingUrl @[QueryUserGoodCtid,QueryUserGoodCtid]
 
 @interface WPChoiceSubCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     NSInteger       _page;
@@ -104,9 +105,11 @@ static NSString * const reuseIdentifier = @"Cell";
         return;
     }
     if (tap.view.tag != 2) {
+        self.url = SortingUrl[tap.view.tag];
         _memoryButton.selected = !_memoryButton.selected;
         sender.selected = !sender.selected;
         _memoryButton = sender;
+        [self addHeader];
         if (_isOpen) {
             [self.classificationTableView menuClose];
             _isOpen = !_isOpen;
@@ -143,6 +146,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [self addSubview:self.cycleScrollView];
         [self addSubview:self.menuView];
         [self addSubview:self.classificationTableView];
+        _cid = @"1";
         [self addFooter];
         [self addHeader];
     }
@@ -220,34 +224,49 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)loadNewDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(1),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-        for (NSDictionary * item in goods) {
-            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_dataSourceArray addObject:model];
+    weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(1),@"cid":_cid} datas:^(NSDictionary *responseObject) {
+        if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
+            [weakSelf.mj_footer endRefreshing];
+            return;
         }
+        NSArray * list = [responseObject objectForKey:@"list"];
+        for (int i = 0; i<list.count; i++) {
+            NSDictionary * dic = list[i];
+            NSArray *listg = dic[@"listg"];
+            for (int j = 0; j<listg.count; j++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+                [_dataSourceArray addObject:model];
+            }
+        }
+
         // 刷新表格
         [weakSelf reloadData];
         // 隐藏当前的上拉刷新控件
         [weakSelf.mj_header endRefreshing];
         _page++;
     } failureBlock:^{
-        [weakSelf.mj_header endRefreshing];
+        [weakSelf.mj_header endRefreshing
+         ];
     }];
 }
 
 -(void)loadMoreDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_page),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_page),@"cid":_cid} datas:^(NSDictionary *responseObject) {
         if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        for (NSDictionary * item in goods) {
-            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_dataSourceArray addObject:model];
+        
+        NSArray * list = [responseObject objectForKey:@"list"];
+        for (int i = 0; i<list.count; i++) {
+            NSDictionary * dic = list[i];
+            NSArray *listg = dic[@"listg"];
+            for (int j = 0; j<listg.count; j++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+                [_dataSourceArray addObject:model];
+            }
         }
         // 刷新表格
         [weakSelf reloadData];

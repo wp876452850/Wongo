@@ -83,7 +83,7 @@
     }
     _oldNew.text    = model.neworold;
     _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
-    _price.text     = [NSString stringWithFormat:@" %@",model.price];
+    _price.text     = [NSString stringWithFormat:@" %.2f",[model.price floatValue]];
     [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
     _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
     //判断用户收藏的商品总是否有

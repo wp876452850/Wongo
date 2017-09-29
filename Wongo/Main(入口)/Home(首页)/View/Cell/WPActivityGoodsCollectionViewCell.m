@@ -60,17 +60,21 @@
     _goodsName.text = model.gname;
     [_goodsImageOne sd_setImageWithURL:model.listimg[0][@"url"] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     
-    self.price.attributedText = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc] initWithString:model.price] insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
+    self.price.attributedText = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f",[model.price floatValue]]] insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
 }
 - (IBAction)thumup:(UIButton *)sender {
     sender.selected = !sender.selected;
 }
 - (IBAction)goExchange:(id)sender
 {
-    WPExchangeViewController * vc = [WPExchangeViewController createExchangeGoodsWithParams:@{@"gid":_model.gid}];
-    vc.activityState = _activityState + 1;
-    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
     
 }
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    WPExchangeViewController * vc = [WPExchangeViewController createExchangeGoodsWithParams:@{@"gid":_model.gid}];
+    vc.activityState = _activityState + 1;
+    [vc showExchangeBottomView];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+   
+}
 @end

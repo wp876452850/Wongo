@@ -47,14 +47,11 @@
     return self;
 }
 
-
 - (void)didMoveToSuperview
 {
     [self setupScrollView];
-    
     [self setupToolbars];
 }
-
 - (void)dealloc
 {
     [[UIApplication sharedApplication].keyWindow removeObserver:self forKeyPath:@"frame"];
@@ -153,7 +150,6 @@
         [imageView addGestureRecognizer:doubleTap];
         [_scrollView addSubview:imageView];
     }
-    
     [self setupImageOfImageViewForIndex:self.currentImageIndex];
     
 }
@@ -276,8 +272,7 @@
 
 - (void)showFirstImage
 {
-//    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
-      UIView *sourceView = self.sourceImagesContainerView;
+    UIView *sourceView = self.sourceImagesContainerView;
     CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
     
     UIImageView *tempView = [[UIImageView alloc] init];
@@ -323,7 +318,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     int index = (scrollView.contentOffset.x + _scrollView.bounds.size.width * 0.5) / _scrollView.bounds.size.width;
-    
     // 有过缩放的图片在拖动一定距离后清除缩放
     CGFloat margin = 150;
     CGFloat x = scrollView.contentOffset.x;
@@ -343,7 +337,5 @@
     }
     [self setupImageOfImageViewForIndex:index];
 }
-
-
 
 @end

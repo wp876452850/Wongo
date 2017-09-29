@@ -35,10 +35,10 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activities_green" translatesAutoresizingMaskIntoConstraints="NO" id="9L4-fG-Oac" userLabel="活动icon">
-                        <rect key="frame" x="5" y="0.0" width="27" height="29"/>
+                        <rect key="frame" x="5" y="0.0" width="40" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="29" id="czM-dL-Kw5"/>
-                            <constraint firstAttribute="width" constant="27" id="emT-Ng-esD"/>
+                            <constraint firstAttribute="height" constant="44" id="czM-dL-Kw5"/>
+                            <constraint firstAttribute="width" constant="40" id="emT-Ng-esD"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="把啦啦啦啦啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHO-3U-XIU" userLabel="活动名">
@@ -136,7 +136,7 @@
     </objects>
     <resources>
         <image name="110.jpg" width="188" height="180"/>
-        <image name="activities_green" width="26" height="29"/>
+        <image name="activities_green" width="40" height="44"/>
         <image name="activities_shadow" width="750" height="83"/>
         <image name="activities_shadow_big" width="750" height="595"/>
         <image name="thumup_green_normal" width="13" height="12"/>

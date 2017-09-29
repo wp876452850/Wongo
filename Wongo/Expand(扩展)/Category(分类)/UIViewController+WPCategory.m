@@ -54,9 +54,18 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+-(void)showAlertWithAlertTitle:(NSString *)alertTitle message:(NSString *)message preferredStyle:(UIAlertControllerStyle)preferredStyle actions:(NSArray *)actions{
+    UIAlertController * alert = [UIAlertController alertControllerWithTitle:alertTitle message:message preferredStyle:preferredStyle];
+    for (int i = 0; i < actions.count; i++) {
+        UIAlertAction * action = actions[i];
+        [alert addAction:action];
+    }
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
 - (void)showAlertNotOpenedWithBlock:(WPAlertBlock)block{
     UIAlertController * alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"功能暂未开放" preferredStyle:UIAlertControllerStyleAlert];
-
     UIAlertAction * action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if (block) {
             block();
@@ -65,6 +74,8 @@
     [alert addAction:action];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+
 -(void)navigationLeftPop{
 //    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
 }

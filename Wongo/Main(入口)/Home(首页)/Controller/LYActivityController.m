@@ -11,7 +11,7 @@
 #import "WPExchangeDetailModel.h"
 #import "WPExchangeModel.h"
 
-#define Cell_HeightDouble (WINDOW_WIDTH + 125)
+#define Cell_HeightDouble (WINDOW_WIDTH + 130)
 @interface LYActivityController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 //首页轮播模型
 @property (nonatomic, strong) LYHomeBannerM  *banner;

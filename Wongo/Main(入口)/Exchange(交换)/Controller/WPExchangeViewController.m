@@ -26,6 +26,8 @@
 #import "WPGoodsRecommendedTableViewCell.h"
 #import "LYHomeResponse.h"
 #import "LYActivityController.h"
+#import "WPReportBox.h"
+
 #define RecommendCellHeight (WINDOW_WIDTH*0.5+65)
 
 static NSString * const userCell            = @"UserCell";
@@ -49,7 +51,6 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 @property (nonatomic,strong) WPRecommendationView * recommendationView;
 //右侧功能按钮
 @property (nonatomic,strong) UIButton * functionButton;
-@property (nonatomic,strong) WPExchangeFunctionMenu * menu;
 @property (nonatomic,strong) NSMutableArray * goodsRecommendDatas;
 @end
 
@@ -70,27 +71,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 }
 #pragma mark - lazyLoad
 
--(WPExchangeFunctionMenu *)menu{
-    if (!_menu) {
-        _menu = [[WPExchangeFunctionMenu alloc]initWithFrame:_functionButton.frame menuImages:nil menuTitles:@[@"举报商品",@"联系客服"]];
-        [_menu functionMenuClickWithBlock:^(NSInteger tag) {
-            if (tag == 0) {
-                NSLog(@"举报");
-            }
-            if (tag == 1) {
-                if ([self determineWhetherTheLogin]) {
-                    LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
-                    vc.title = @"碗糕客服";
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }
-            
-            
-        }];
-        [self.view addSubview:_menu];
-    }
-    return _menu;
-}
+
 -(UIButton *)functionButton{
     if (!_functionButton) {
         _functionButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -108,12 +89,30 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
     return _functionButton;
 }
 -(void)clickfunctionButton{
-    if (self.menu.isOpen) {
-        [self.menu menuClose];
-    }else{
-        [self.menu menuOpen];
-    }
+    UIAlertAction * report = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        LYBaseController * vc = [[LYBaseController alloc]init];
+        vc.myNavItem.title = @"请选择举报原因";
+        WPReportBox * reportBox = [WPReportBox createReportBoxWithGid:self.params[@"gid"]];
+        [vc.view addSubview:reportBox];
+        [vc.view sendSubviewToBack:reportBox];
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+    UIAlertAction * help = [UIAlertAction actionWithTitle:@"帮助" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if ([self determineWhetherTheLogin]) {
+            LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
+            vc.title = @"官方客服";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+    UIAlertAction * share = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    [self showAlertWithAlertTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet actions:@[report,help,share,cancle]];
 }
+
 -(WPRecommendationView *)recommendationView{
     if (!_recommendationView) {
         _recommendationView = [[WPRecommendationView alloc]initWithFrame:CGRectMake(0,self.tableView.bottom , WINDOW_WIDTH, self.tableView.height) dataSourceArray:nil];
@@ -173,7 +172,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
         [_backButton setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
-        _backButton.frame = CGRectMake(30, 20, 30, 30);
+        _backButton.frame = CGRectMake(10, 20, 30, 30);
     }
     return _backButton;
 }

@@ -41,14 +41,14 @@
     if (model.uid.floatValue == 1.f||model.uid.floatValue == 2) {
         attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"goodsshowguangfang"] atIndex:0 imageBounds:CGRectMake(0, -1.2, 20, 10)];
     }else{
+        //判断是否新上架
          attributeString = [WPAttributedString attributedStringWithAttributedString:attributeString insertImage:[UIImage imageNamed:@"goodsshownew"] atIndex:0 imageBounds:CGRectMake(0, -1.2, 20, 10)];
     }
-    //判断是否新上架
-    
-    //设置价格标识
     _goodsName.attributedText = attributeString;
     
+    //设置价格标识
     NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.0f];
+    
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
     
     [UILabel changeWordSpaceForLabel:_price WithSpace:0.5f];

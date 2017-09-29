@@ -12,4 +12,8 @@
 /**是否为交换物品举报*/
 @property (nonatomic,assign)BOOL isExchange;
 
++(instancetype)createReportBoxWithGid:(NSString *)gid;
+
++(instancetype)createReportBoxWithPlid:(NSString *)plid;
+
 @end

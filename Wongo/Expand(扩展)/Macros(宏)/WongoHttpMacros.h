@@ -96,6 +96,12 @@
 #define QueryGoodById           HttpHead(@"queryGoodById")
 
 /**
+ *      交换详情
+ */
+/***/
+#define QueryUserGoodCtid       HttpHead(@"queryUserGoodCtid")
+
+/**
  *      造梦
  */
 /**进行中造梦(主页造梦也用此方法)*/
