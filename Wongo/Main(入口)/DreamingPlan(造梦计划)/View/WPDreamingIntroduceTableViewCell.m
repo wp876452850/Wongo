@@ -71,7 +71,7 @@
     _images = [NSMutableArray arrayWithCapacity:3];
     
     for (int i = 0; i<_model.listimg.count; i++) {
-        [_images addObject:_model.listimg[i][@"proimg"]];
+        [_images addObject:_model.listimg[i][@"url"]];
     }
     [self.collectionView reloadData];
 }
@@ -89,7 +89,7 @@
     [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     [cell.contentView removeAllSubviews];
     UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
-    image.contentMode = UIViewContentModeScaleAspectFit;
+//    image.contentMode = UIViewContentModeScaleAspectFit;
     [image sd_setImageWithURL:[NSURL URLWithString:self.images[indexPath.row]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     [cell addSubview:image];
     image.layer.borderWidth = 0.5f;

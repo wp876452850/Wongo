@@ -31,7 +31,7 @@
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
-    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.prourl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = _model.proname;
     _pushTime.text = _model.pbutime;
 }

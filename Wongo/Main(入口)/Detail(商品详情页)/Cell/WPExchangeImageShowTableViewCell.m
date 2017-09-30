@@ -10,11 +10,6 @@
 
 @implementation WPExchangeImageShowTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -30,4 +25,5 @@
         [self.contentView addSubview:imageView];
     }
 }
+
 @end

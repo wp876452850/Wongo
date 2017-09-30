@@ -213,11 +213,11 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 7;
+    return 8;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 4) {
+    if (section == 5) {
         if (_model.commentsModelArray.count >= 5) {
             return 5;
         }
@@ -226,18 +226,25 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //商品信息
     if (indexPath.section == 0) {
         WPDreamingDetailListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
         cell.dataSourceArray = self.listDatas;
         return cell;
     }
+    //平台推荐
+    if (indexPath.section == 2) {
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+        return cell;
+    }
+    //进度条
     if (indexPath.section == 1) {
         WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
         cell.model = _model;
         return cell;
     }
-    
-    if (indexPath.section == 2) {
+    //用户信息
+    if (indexPath.section == 3) {
         WPSearchUserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         WPSearchUserModel * model = [[WPSearchUserModel alloc]init];
@@ -248,7 +255,8 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    if (indexPath.section == 3) {
+    
+    if (indexPath.section == 4) {
         WPDreamingDetailIntroduceTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
         if (!cell) {
             cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
@@ -261,14 +269,14 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         return cell;
     }
-    else if (indexPath.section == 4){
+    else if (indexPath.section == 5){
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
         WPDreamingCommentsModel * model = _model.commentsModelArray[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [self createCommentsLabelWithModel:model cell:cell];
         return cell;
     }
-    else if (indexPath.section == 5){
+    else if (indexPath.section == 6){
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
         [self createCommentsTextFieldWithCell:cell];
         return cell;
@@ -290,9 +298,12 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         return (WINDOW_WIDTH - 80)/3+20;
     }
     if (indexPath.section == 2) {
-        return 70;
+        return 0;
     }
     if (indexPath.section == 3) {
+        return 70;
+    }
+    if (indexPath.section == 4) {
         if (_detailIntroduceTableViewCellHeight > 70) {
             return _detailIntroduceTableViewCellHeight;
         }else{
@@ -301,7 +312,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
             return cellHeight;
         }
     }
-    else if (indexPath.section == 4){
+    else if (indexPath.section == 5){
         NSArray * array = _model.commentsModelArray;
         WPDreamingCommentsModel * model = array[indexPath.row];
         NSString * name = model.uname;
@@ -310,14 +321,14 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         CGSize size = [totle getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)];
         return size.height+5;
     }
-    else if (indexPath.section == 5){
+    else if (indexPath.section == 6){
         return 40;
     }
     return 60;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 4) {
+    if (section == 5) {
         return 50;
     }
     return .1f;
@@ -331,7 +342,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 {
     UIView * view = [[UIView alloc]initWithFrame:self.view.bounds];
     view.backgroundColor = WhiteColor;
-    if (section == 4) {
+    if (section == 5) {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, WINDOW_WIDTH, 20)];
         label.backgroundColor = WhiteColor;
         NSArray * array = _model.commentsModelArray;
@@ -451,7 +462,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
     //获取造梦规则菜单位置
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:5];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:6];
     CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:indexPath];
     CGRect rect = [self.tableView convertRect:rectInTableView toView:[self.tableView superview]];
     
