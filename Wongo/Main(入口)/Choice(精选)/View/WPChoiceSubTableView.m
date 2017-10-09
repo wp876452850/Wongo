@@ -111,7 +111,10 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         
         WPNewDreamingSignUpTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil||![cell isKindOfClass:[WPNewDreamingSignUpTableViewCell class]]) {
-            cell = [tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+            cell = (WPNewDreamingSignUpTableViewCell * )[tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
+        }
+        if (_memoryButtonTag == 2) {
+            cell.isongoing = YES;
         }
         WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
         cell.dataSource = [NSMutableArray arrayWithArray:model.listplan];
@@ -158,9 +161,10 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         return 430;
     }
     WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
-    CGFloat cellHeight = 269 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2.f);
+    
     if (_memoryButtonTag == 1) {
         if (_tagOneItemsHeight.count<=indexPath.section) {
+            CGFloat cellHeight = 279 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2.f);
             [_tagOneItemsHeight addObject:@(cellHeight)];
             return cellHeight;
         }else
@@ -168,6 +172,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     }
     if (_memoryButtonTag == 2) {
         if (_tagTwoItemsHeight.count<=indexPath.section) {
+             CGFloat cellHeight = 279 + WINDOW_WIDTH * model.listplan.count;
             [_tagTwoItemsHeight addObject:@(cellHeight)];
             return cellHeight;
         }else

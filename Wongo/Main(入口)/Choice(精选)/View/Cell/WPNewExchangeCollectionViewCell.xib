@@ -34,10 +34,9 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz3-FY-0iH">
-                        <rect key="frame" x="15" y="356" width="370" height="20"/>
+                        <rect key="frame" x="15" y="356" width="35.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="a84-NK-L1I"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="pOj-cU-yga"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.95294117649999999" green="0.39607843139999999" blue="0.10980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,8 +67,8 @@
                             <action selector="wangExchangeClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="f2u-TA-zCP"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100想换" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eil-Ea-ejm">
-                        <rect key="frame" x="383" y="356" width="67" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100想换" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eil-Ea-ejm">
+                        <rect key="frame" x="385" y="356" width="65" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -89,7 +88,6 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Rmb-oN-bhb" secondAttribute="trailing" constant="3" id="1qo-9I-H2B"/>
                 <constraint firstItem="Y5k-Vn-YBf" firstAttribute="leading" secondItem="eil-Ea-ejm" secondAttribute="leading" id="6cI-zg-kRa"/>
-                <constraint firstItem="Y5k-Vn-YBf" firstAttribute="leading" secondItem="sz3-FY-0iH" secondAttribute="trailing" id="79U-qU-0j1"/>
                 <constraint firstAttribute="trailing" secondItem="wKY-rP-3AE" secondAttribute="trailing" constant="1" id="Jvb-Rk-W24"/>
                 <constraint firstItem="Y5k-Vn-YBf" firstAttribute="bottom" secondItem="eil-Ea-ejm" secondAttribute="bottom" id="KRG-WO-K5c"/>
                 <constraint firstAttribute="trailing" secondItem="Avj-b5-uSP" secondAttribute="trailing" constant="5" id="LSq-iq-ehJ"/>
@@ -120,7 +118,7 @@
                 <outlet property="thumpUp" destination="Avj-b5-uSP" id="iZU-dt-ZA0"/>
                 <outlet property="wantExchange" destination="eil-Ea-ejm" id="ZkM-fn-WUF"/>
             </connections>
-            <point key="canvasLocation" x="-1281" y="-35"/>
+            <point key="canvasLocation" x="-1409" y="-117"/>
         </collectionViewCell>
     </objects>
     <resources>

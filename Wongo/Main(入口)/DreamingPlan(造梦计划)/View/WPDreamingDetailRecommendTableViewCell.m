@@ -7,6 +7,7 @@
 //
 
 #import "WPDreamingDetailRecommendTableViewCell.h"
+#import "WPDreamingDetailRecommendPageViewController.h"
 
 @implementation WPDreamingDetailRecommendTableViewCell
 
@@ -17,7 +18,8 @@
 
 - (IBAction)goRecommend:(UIButton *)sender
 {
-    
+    WPDreamingDetailRecommendPageViewController * vc = [[WPDreamingDetailRecommendPageViewController alloc]initWithCurrentPage:sender.tag];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 
 @end

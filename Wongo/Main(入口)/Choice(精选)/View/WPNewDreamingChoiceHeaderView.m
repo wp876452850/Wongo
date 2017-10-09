@@ -9,7 +9,7 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "WPCustomButton.h"
-#define SectionMenuTitles @[@" 热门推荐 ",@" 筹备中 ",@" 进行中 "]
+#define SectionMenuTitles @[@" 报名中 ",@" 筹备中 ",@" 进行中 "]
 
 @interface WPNewDreamingChoiceHeaderView ()
 {

@@ -15,7 +15,8 @@ typedef void(^WPNewDreamingSignUpTableViewCellClose)(void);
 
 @property (nonatomic,strong)NSMutableArray * dataSource;
 
-
+@property (nonatomic,assign)BOOL isongoing;
 -(void)closeWithBlock:(WPNewDreamingSignUpTableViewCellClose)block;
+
 
 @end

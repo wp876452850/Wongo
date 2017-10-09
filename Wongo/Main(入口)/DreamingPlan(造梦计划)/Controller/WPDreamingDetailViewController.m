@@ -23,6 +23,7 @@
 #import "WPCommentModel.h"
 #import "WPListModel.h"
 #import "WPSearchUserModel.h"
+#import "WPDreamingDetailRecommendTableViewCell.h"
 
 
 static NSString * const listCell        = @"listCell";
@@ -30,6 +31,7 @@ static NSString * const introduceCell   = @"introduceCell";
 static NSString * const userCell        = @"UserCell";
 static NSString * const progressCell    = @"ProgressCell";
 static NSString * const reuseIdentifier = @"ReuseIdentifier";
+static NSString * const recommendCell   = @"recommendCell";
 
 @interface WPDreamingDetailViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
 {
@@ -135,6 +137,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:reuseIdentifier];
         [_tableView registerNib:[UINib nibWithNibName:@"WPSearchUserTableViewCell"  bundle:nil]forCellReuseIdentifier:userCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailIntroduceTableViewCell" bundle:nil] forCellReuseIdentifier:introduceCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailRecommendTableViewCell" bundle:nil] forCellReuseIdentifier:recommendCell];
         [_tableView registerClass:[WPProgressTableViewCell class] forCellReuseIdentifier:progressCell];
         [_tableView registerClass:[WPDreamingDetailListTableViewCell class] forCellReuseIdentifier:listCell];
         
@@ -198,7 +201,6 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         }];
     }];
 
-    
     /**轮播图*/
 //    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
 //        
@@ -234,7 +236,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     }
     //平台推荐
     if (indexPath.section == 2) {
-        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+        WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
         return cell;
     }
     //进度条
@@ -298,7 +300,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
         return (WINDOW_WIDTH - 80)/3+20;
     }
     if (indexPath.section == 2) {
-        return 0;
+        return (WINDOW_WIDTH - 160)/4 +65;
     }
     if (indexPath.section == 3) {
         return 70;
@@ -394,8 +396,7 @@ static NSString * const reuseIdentifier = @"ReuseIdentifier";
     ;    
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@:%@",uname,comments]];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, uname.length+comments.length+1)];
-    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, uname.length)];
-    
+    [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, uname.length)];    
     cell.textLabel.numberOfLines    = 0;
     cell.textLabel.attributedText   = attributedString;
     if (uname) {
