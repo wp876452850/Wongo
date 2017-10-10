@@ -69,7 +69,6 @@ static NSString * const projectCell     = @"ProjectCell";
             [cell showOK];
         }else [cell showOngoing];
         return cell;
-
     }
     WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
      cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];

@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = YES;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.myNavBar];
     self.myNavBar.items = @[self.myNavItem];
     self.view.backgroundColor = [UIColor whiteColor];

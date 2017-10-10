@@ -16,7 +16,9 @@
 #define ThumupIcon_Select @[@"thumup_green_select",@"thumup_yellow_select",@"thumup_blue_select"]
 
 @interface WPActivityGoodsCollectionViewCell ()
-
+{
+    NSInteger _wantNumber;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *activityIcon;
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageOne;
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
@@ -32,14 +34,7 @@
     [super awakeFromNib];
     self.thumup.layer.cornerRadius = 10.f;
     self.goExchange.layer.cornerRadius = 10.f;
-    
-   
-    
     self.thumup.layer.borderWidth = 0.5f;
-    
-   
-    
-    
 }
 
 -(void)setActivityState:(NSInteger)activityState{
@@ -58,18 +53,33 @@
 -(void)setModel:(WPExchangeModel *)model{
     _model = model;
     _goodsName.text = model.gname;
+    _wantNumber = [model.praise integerValue];
     [_goodsImageOne sd_setImageWithURL:model.listimg[0][@"url"] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    self.wantExchange.text = [NSString stringWithFormat:@"%ld人想换",_wantNumber];
     
     self.price.attributedText = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%.2f",[model.price floatValue]]] insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
 }
 - (IBAction)thumup:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    //判断是否登录
+    if ([self determineWhetherTheLogin]) {
+        __block UIButton * button = sender;
+        if (!sender.selected) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":_model.gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+                _wantNumber++;
+                self.wantExchange.text = [NSString stringWithFormat:@"%ld人想换",_wantNumber];
+            }];
+        }
+        else{
+            [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":_model.gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+               _wantNumber--;
+                self.wantExchange.text = [NSString stringWithFormat:@"%ld人想换",_wantNumber];
+            }];
+        }
+        
+    }
 }
-- (IBAction)goExchange:(id)sender
-{
-    
-}
-
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     WPExchangeViewController * vc = [WPExchangeViewController createExchangeGoodsWithParams:@{@"gid":_model.gid}];
     vc.activityState = _activityState + 1;

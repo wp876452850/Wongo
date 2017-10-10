@@ -22,6 +22,7 @@
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, (WINDOW_WIDTH+10)*i, WINDOW_WIDTH, WINDOW_WIDTH)];
         [imageView sd_setImageWithURL:[NSURL URLWithString:images[i]] placeholderImage:nil];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds = YES;
         [self.contentView addSubview:imageView];
     }
 }

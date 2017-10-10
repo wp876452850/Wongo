@@ -34,7 +34,7 @@
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sz3-FY-0iH">
-                        <rect key="frame" x="15" y="356" width="35.5" height="20"/>
+                        <rect key="frame" x="15" y="356" width="370" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="a84-NK-L1I"/>
                         </constraints>
@@ -86,6 +86,7 @@
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="eil-Ea-ejm" firstAttribute="leading" secondItem="sz3-FY-0iH" secondAttribute="trailing" id="0et-g5-l3Q"/>
                 <constraint firstAttribute="trailing" secondItem="Rmb-oN-bhb" secondAttribute="trailing" constant="3" id="1qo-9I-H2B"/>
                 <constraint firstItem="Y5k-Vn-YBf" firstAttribute="leading" secondItem="eil-Ea-ejm" secondAttribute="leading" id="6cI-zg-kRa"/>
                 <constraint firstAttribute="trailing" secondItem="wKY-rP-3AE" secondAttribute="trailing" constant="1" id="Jvb-Rk-W24"/>

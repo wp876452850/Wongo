@@ -16,9 +16,5 @@
     [self.selectButton setImage:[UIImage imageNamed:@"select_normal_address"] forState:UIControlStateNormal];
     [self.selectButton setImage:[UIImage imageNamed:@"select_select_address"] forState:UIControlStateSelected];
 }
-- (IBAction)select:(UIButton *)sender {
-    sender.selected = !sender.selected;
-}
-
 
 @end

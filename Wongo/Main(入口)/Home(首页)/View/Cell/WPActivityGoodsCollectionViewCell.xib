@@ -79,7 +79,7 @@
                             <action selector="thumup:" destination="gTV-IL-0wX" eventType="touchUpInside" id="21B-bu-C3d"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AW-jd-wlf">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9AW-jd-wlf">
                         <rect key="frame" x="324" y="504.5" width="90" height="30"/>
                         <color key="backgroundColor" red="0.0078431372549019607" green="0.73725490196078436" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

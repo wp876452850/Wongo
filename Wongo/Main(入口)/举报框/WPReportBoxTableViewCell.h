@@ -10,5 +10,6 @@
 
 @interface WPReportBoxTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIButton *selectButton;
+@property (weak, nonatomic) IBOutlet UILabel *title;
 
 @end

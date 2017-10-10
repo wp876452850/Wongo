@@ -510,7 +510,6 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 #pragma mark SDCycleScrollViewDelegate
 //点击图片回调
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    
     NSIndexPath * indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     SDCollectionViewCell * cell = (SDCollectionViewCell *)[cycleScrollView.mainView cellForItemAtIndexPath:indexPath];
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 0)];

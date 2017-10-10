@@ -19,5 +19,7 @@
 @property (nonatomic,strong)NSString * gid;
 @property (nonatomic,strong)NSString * gname;
 @property (nonatomic,strong)NSArray  * listimg;
+//点赞数
+@property (nonatomic,strong)NSString * praise;
 
 @end

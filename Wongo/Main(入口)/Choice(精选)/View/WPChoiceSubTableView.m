@@ -183,7 +183,6 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
 
 #pragma mark - LoadDatas
 -(void)addHeader{
-   
     __weak WPChoiceSubTableView * weakSelf = self;
     self.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
         [weakSelf loadNewDatas];

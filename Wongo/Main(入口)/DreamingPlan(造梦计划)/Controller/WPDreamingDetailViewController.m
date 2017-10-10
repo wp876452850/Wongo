@@ -200,18 +200,6 @@ static NSString * const recommendCell   = @"recommendCell";
             }];
         }];
     }];
-
-    /**轮播图*/
-//    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-//        
-//        NSArray * array = responseObject[@"list"];
-//        NSMutableArray * images = [NSMutableArray arrayWithCapacity:3];
-//        for (int i = 0 ; i < array.count; i++) {
-//            NSDictionary * dic = array[i];
-//            [images addObject:dic[@"url"]];
-//        }
-//        weakSelf.rollPlay.imageURLStringsGroup = images;
-//    }];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -292,6 +280,7 @@ static NSString * const recommendCell   = @"recommendCell";
     [cell.contentView addSubview:view];
     return cell;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         return 70;

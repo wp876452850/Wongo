@@ -41,6 +41,7 @@
         _report.frame = CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40);
         [_report setTitle:@"确认举报" forState:UIControlStateNormal];
         _report.backgroundColor = WongoBlueColor;
+        [_report addTarget:self action:@selector(reportGoods) forControlEvents:UIControlEventTouchUpInside];
     }
     return _report;
 }
@@ -50,7 +51,6 @@
         reportBox.params = @{@"uid":[reportBox getUserName],@"gid":gid};
         [reportBox setupSubView];
     }
-    
     return reportBox;
 }
 
@@ -71,13 +71,14 @@
 }
 
 //上传
--(void)upData{
-    
+-(void)reportGoods{
     [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:self.params datas:^(NSDictionary *responseObject) {
         
         
     }];
-    
+    [[self findViewController:self] showAlertWithAlertTitle:@"举报成功" message:@"感谢您的举报信息,请耐心等待平台审核,若情况属实,平台会给予商家相应惩罚" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]  block:^{
+        [[self findViewController:self] w_popViewController];
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -91,8 +92,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WPReportBoxTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.dataSourceArray[indexPath.row];
-    
+    cell.title.text = self.dataSourceArray[indexPath.row];
     return cell;
 }
 

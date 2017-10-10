@@ -50,8 +50,6 @@
     NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.0f];
     
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
-    
-    [UILabel changeWordSpaceForLabel:_price WithSpace:0.5f];
     _price.attributedText = priceAttributeString;
 }
 
