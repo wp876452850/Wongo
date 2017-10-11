@@ -47,7 +47,7 @@
     _goodsName.attributedText = attributeString;
     
     //设置价格标识
-    NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %@",model.price] WithSpace:.0f];
+    NSAttributedString * priceAttributeString = [WPAttributedString changeWordSpaceForText:[NSString stringWithFormat:@" %.2f",[model.price floatValue]] WithSpace:.0f];
     
     priceAttributeString = [WPAttributedString attributedStringWithAttributedString:priceAttributeString insertImage:[UIImage imageNamed:@"price"] atIndex:0 imageBounds:CGRectMake(0, -1, 6, 12)];
     _price.attributedText = priceAttributeString;

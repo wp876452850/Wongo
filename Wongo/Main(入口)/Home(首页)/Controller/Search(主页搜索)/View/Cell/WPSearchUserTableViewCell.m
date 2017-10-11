@@ -28,26 +28,27 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    [_attention setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+    [_attention setTitleColor:WongoBlueColor forState:UIControlStateNormal];
     [_attention setTitleColor:GRAY_COLOR forState:UIControlStateSelected];
     [_attention setTitle:@"+ 关注" forState:UIControlStateNormal];
     [_attention setTitle:@"已关注" forState:UIControlStateSelected];
     _attention.layer.masksToBounds  = YES;
     _attention.layer.cornerRadius   = 5;
     _attention.layer.borderWidth    = 1;
-    _attention.layer.borderColor    = SelfOrangeColor.CGColor;
+    _attention.layer.borderColor    = WongoBlueColor.CGColor;
     _attention.titleLabel.font      = [UIFont systemFontOfSize:15];
     
     _chat.layer.masksToBounds   = YES;
     _chat.layer.borderWidth     = 1;
-    _chat.layer.borderColor     = SelfOrangeColor.CGColor;
+    _chat.layer.borderColor     = WongoBlueColor.CGColor;
     _chat.layer.cornerRadius    = 5;
     _chat.titleLabel.font       = [UIFont systemFontOfSize:15];
-    [_chat setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+    [_chat setTitleColor:WongoBlueColor forState:UIControlStateNormal];
     [_chat setTitle:@"发私信" forState:UIControlStateNormal];
-    
     _headImage.layer.masksToBounds  = YES;
     _headImage.layer.cornerRadius   = _headImage.width/2;
+    _headImage.layer.borderColor    = WongoGrayColor.CGColor;
+    _headImage.layer.borderWidth    = 0.5f;
     
     
 }

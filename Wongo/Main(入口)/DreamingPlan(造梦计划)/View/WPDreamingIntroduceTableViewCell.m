@@ -71,7 +71,7 @@
     _images = [NSMutableArray arrayWithCapacity:3];
     
     for (int i = 0; i<_model.listimg.count; i++) {
-        [_images addObject:_model.listimg[i][@"url"]];
+        [_images addObject:_model.listimg[i][@"proimg"]];
     }
     [self.collectionView reloadData];
 }

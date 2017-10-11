@@ -51,7 +51,6 @@
 }
 
 -(BOOL)determineWhetherTheLogin{
-
     NSString * uid = [[NSUserDefaults standardUserDefaults] objectForKey:User_ID];
     if (uid.length<=0) {
         WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
@@ -172,28 +171,19 @@
 /**关注*/
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
     //判断是否登录
-    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
-    UINavigationController * nav = tabBar.selectedViewController;
-    UIViewController * vc = nav.viewControllers.lastObject;
-    [vc showAlertWithAlertTitle:@"提示" message:@"关注功能暂未开放" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
-        LoginViewController * login = [[LoginViewController alloc]init];
-        [nav pushViewControllerAndHideBottomBar:login animated:YES];
-        
-    }];
-    [self determineWhetherTheLogin];
-     __block UIButton * button = sender;
-    if (!sender.selected) {
-        [WPNetWorking createPostRequestMenagerWithUrlString:AttentionnumAddUrl params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
-            button.selected = !button.selected;
-        }];
+    if ([self determineWhetherTheLogin]) {
+        __block UIButton * button = sender;
+        if (!sender.selected) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:AttentionnumAddUrl params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+            }];
+        }
+        else{
+            [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+            }];
+        }
     }
-    else{
-        [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
-            button.selected = !button.selected;
-        }];
-    }
-
-    
     
 }
 

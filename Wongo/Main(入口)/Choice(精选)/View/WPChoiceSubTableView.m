@@ -116,6 +116,9 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         if (_memoryButtonTag == 2) {
             cell.isongoing = YES;
         }
+        else{
+            cell.isongoing = NO;
+        }
         WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
         cell.dataSource = [NSMutableArray arrayWithArray:model.listplan];
         

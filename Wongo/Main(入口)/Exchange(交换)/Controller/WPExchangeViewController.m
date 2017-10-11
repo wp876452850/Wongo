@@ -398,6 +398,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         }
     }
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
@@ -412,6 +413,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
     }
     return 0.01f;
 }
+
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 7) {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 30)];
@@ -424,6 +426,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
     }
     return nil;
 }
+
 #pragma mark - 展示底部视图样式
 -(void)showExchangeBottomView{
     self.tableView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50);
@@ -484,9 +487,11 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 -(void)buy{
     
 }
+
 -(void)shoppingCar{
     
 }//去交换
+
 -(void)exchange{
     if (![self determineCommodityIsMineWithUid:_exchangeModel.uid]) {
         NSString * uid = [[NSUserDefaults standardUserDefaults]objectForKey:User_ID];

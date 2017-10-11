@@ -64,12 +64,12 @@ static NSString * progress;
         [self.contentView addSubview:dateProgress];
     }
  
-    priceProgress.data              = [NSString stringWithFormat:@"￥%@",price];
-    priceProgress.dataName          = @"金额";
+    priceProgress.data              = @"造梦商品";
+    priceProgress.dataName          = @"商品";
     [priceProgress showContentData];
     
     
-    progressProgress.data              = [NSString stringWithFormat:@"%.0f%%",[progress floatValue]*100];
+    progressProgress.data              = [NSString stringWithFormat:@"%u%%",arc4random()%10*10];
     progressProgress.dataName          = @"进度";
     [progressProgress showContentData];
     progressProgress.dataLabelFont = 25;

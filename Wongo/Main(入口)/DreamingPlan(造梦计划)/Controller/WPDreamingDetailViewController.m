@@ -225,6 +225,7 @@ static NSString * const recommendCell   = @"recommendCell";
     //平台推荐
     if (indexPath.section == 2) {
         WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
+        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         return cell;
     }
     //进度条
@@ -289,10 +290,10 @@ static NSString * const recommendCell   = @"recommendCell";
         return (WINDOW_WIDTH - 80)/3+20;
     }
     if (indexPath.section == 2) {
-        return (WINDOW_WIDTH - 160)/4 +65;
+        return (WINDOW_WIDTH - 160)/4 +70;
     }
     if (indexPath.section == 3) {
-        return 70;
+        return 80;
     }
     if (indexPath.section == 4) {
         if (_detailIntroduceTableViewCellHeight > 70) {
@@ -310,7 +311,7 @@ static NSString * const recommendCell   = @"recommendCell";
         NSString * comments = model.comment;
         NSString * totle = [NSString stringWithFormat:@"%@:%@",name,comments];
         CGSize size = [totle getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH, MAXFLOAT)];
-        return size.height+5;
+        return size.height + 5;
     }
     else if (indexPath.section == 6){
         return 40;
@@ -354,12 +355,12 @@ static NSString * const recommendCell   = @"recommendCell";
     if (![self determineWhetherTheLogin]) {
         return;
     }
-    WPCommentModel * commentModel = [[WPCommentModel alloc]init];
-    commentModel.uname = [self getUserName];
-    commentModel.comment = text;
-    commentModel.commenttime = [self getNowTime];
-    commentModel.headImage = [self getUserHeadPortrait];
-    _comment.text = text;
+    WPCommentModel * commentModel   = [[WPCommentModel alloc]init];
+    commentModel.uname              = [self getUserName];
+    commentModel.comment            = text;
+    commentModel.commenttime        = [self getNowTime];
+    commentModel.headImage          = [self getUserHeadPortrait];
+    _comment.text                   = text;
     [self.view endEditing:YES];
 }
 #pragma mark ChatKeyBoardDataSource
@@ -380,9 +381,8 @@ static NSString * const recommendCell   = @"recommendCell";
 -(void)createCommentsLabelWithModel:(WPDreamingCommentsModel*)model cell:(UITableViewCell *)cell{
     [cell.contentView removeAllSubviews];
     cell.selectionStyle     = UITableViewCellSelectionStyleNone;
-    NSString * uname         = model.uname;
-    NSString * comments     = model.comment
-    ;    
+    NSString * uname        = model.uname;
+    NSString * comments     = model.comment;
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@:%@",uname,comments]];
     [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, uname.length+comments.length+1)];
     [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0, uname.length)];    
@@ -452,7 +452,7 @@ static NSString * const recommendCell   = @"recommendCell";
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
     //获取造梦规则菜单位置
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:6];
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:0 inSection:7];
     CGRect rectInTableView = [self.tableView rectForRowAtIndexPath:indexPath];
     CGRect rect = [self.tableView convertRect:rectInTableView toView:[self.tableView superview]];
     
@@ -463,8 +463,8 @@ static NSString * const recommendCell   = @"recommendCell";
         dv.dreamingStory = self.model.introduceModel.dreamingStory;
         dv.dataSource = self.model.introduceModel.dreamingIntroduces;        
         [vc.view addSubview:dv];
-        
         [self presentViewController:vc animated:YES completion:nil];
+        scrollView.contentOffset = CGPointMake(0, rect.size.height+rect.origin.y+WINDOW_WIDTH-WINDOW_HEIGHT+80);
     }
 }
 

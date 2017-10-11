@@ -58,8 +58,6 @@
 -(WPDreamingGoodsIntroductionTableView *)tableView{
     if (!_tableView) {
         _tableView = [[WPDreamingGoodsIntroductionTableView alloc]initWithFrame:self.contentShowLabel.frame style:UITableViewStylePlain];
-        _tableView.dataSourceArray = self.dataSource;
-        
     }
     return _tableView;
 }
@@ -147,7 +145,7 @@
 
 -(void)setDataSource:(NSArray *)dataSource{
     _dataSource = dataSource;
-    if (dataSource) {
+    if (dataSource!=nil) {
         self.tableView.dataSourceArray = dataSource;
     }
 }

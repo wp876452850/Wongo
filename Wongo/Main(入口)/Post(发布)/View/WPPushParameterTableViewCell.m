@@ -38,7 +38,7 @@
 }
 
 - (IBAction)parameterNameSelected:(UIButton *)sender {
-    DLPickerView *pickerView = [[DLPickerView alloc] initWithDataSource:@[@"Man",@"Woman"]
+    DLPickerView *pickerView = [[DLPickerView alloc] initWithDataSource:@[@"暂无参数"]
                                                        withSelectedItem:sender.titleLabel.text
                                                       withSelectedBlock:^(id selectedItem) {
                                                           [sender setTitle:selectedItem forState:UIControlStateNormal];
