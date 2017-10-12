@@ -12,7 +12,7 @@
 
 typedef void(^WPNewDreamingSignUpTableViewCellClose)(void);
 @interface WPNewDreamingSignUpTableViewCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *browseNumber;
 @property (nonatomic,strong)NSMutableArray * dataSource;
 
 @property (nonatomic,assign)BOOL isongoing;

@@ -17,7 +17,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIImageView *bgImage;
 @property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *browseNumber;
+
 @property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (nonatomic,strong)UIView * imagebg;
 

@@ -27,8 +27,8 @@
 -(void)setModel:(WPDreamingMainGoodsModel *)model{
     _model = model;
     [self.bgImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    self.participation.text = [NSString stringWithFormat:@"参与人数:10"];
     self.subjectName.text = model.subname;
 }
-
 
 @end

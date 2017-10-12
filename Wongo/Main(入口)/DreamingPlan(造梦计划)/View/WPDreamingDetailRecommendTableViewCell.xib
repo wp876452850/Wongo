@@ -22,7 +22,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8o0-7T-ABV">
                         <rect key="frame" x="43" y="28" width="42.5" height="42.5"/>
-                        <state key="normal" image="danbaojiaohuan"/>
+                        <state key="normal" image="danbaotuijian"/>
                         <connections>
                             <action selector="goRecommend:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ixx-sD-SVk"/>
                         </connections>
@@ -116,7 +116,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="danbaojiaohuan" width="45" height="45"/>
+        <image name="danbaotuijian" width="45" height="45"/>
         <image name="kefu" width="45" height="45"/>
         <image name="lianxidianhua" width="45" height="45"/>
         <image name="weixingongzhonghao" width="45" height="45"/>

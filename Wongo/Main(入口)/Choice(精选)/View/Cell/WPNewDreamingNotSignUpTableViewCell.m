@@ -11,8 +11,6 @@
 
 @interface WPNewDreamingNotSignUpTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
-@property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (weak, nonatomic) IBOutlet UILabel *signUpNumber;
 @property (weak, nonatomic) IBOutlet UIButton *signUp;
 @property (weak, nonatomic) IBOutlet UIImageView *userbg;

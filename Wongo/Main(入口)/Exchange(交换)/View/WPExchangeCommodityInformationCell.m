@@ -9,8 +9,8 @@
 #import "WPExchangeCommodityInformationCell.h"
 #import "LYActivityController.h"
 
-#define ActivityStateTitle @[@"",@"本商品已参与闲置换新活动",@"本商品已参与公益换新活动",@"本商品已参与分享换新活动"]
-#define ActivityStateIcon @[@"",@"goodsxianzhi",@"goodsgongyi",@"goodsfenxiang"]
+#define ActivityStateTitle @[@"",@"本商品已参与分享换新活动",@"本商品已参与公益换新活动",@"本商品已参与闲置换新活动"]
+#define ActivityStateIcon @[@"",@"goodsfenxiang",@"goodsgongyi",@"goodsxianzhi"]
 
 @interface WPExchangeCommodityInformationCell ()
 

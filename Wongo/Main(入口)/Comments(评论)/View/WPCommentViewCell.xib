@@ -114,7 +114,7 @@
                 <outlet property="thumbUp" destination="mR8-BX-54A" id="fpU-a3-fsA"/>
                 <outlet property="time" destination="8UY-Ot-a3c" id="kTW-H2-4c5"/>
             </connections>
-            <point key="canvasLocation" x="90" y="-199"/>
+            <point key="canvasLocation" x="-491" y="-269"/>
         </tableViewCell>
     </objects>
     <resources>

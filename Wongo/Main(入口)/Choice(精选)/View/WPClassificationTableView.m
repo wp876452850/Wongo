@@ -53,6 +53,10 @@
             WPGoodsClassModel * model = [WPGoodsClassModel mj_objectWithKeyValues:listc[i]];
             [weakSelf.dataSourceArray addObject:model];
         }
+        WPGoodsClassModel * model = [[WPGoodsClassModel alloc]init];
+        model.cid = @"876452850";
+        model.cname = @"全部分类";
+        [weakSelf.dataSourceArray insertObject:model atIndex:0];
         [weakSelf reloadData];
     }];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "WPDreamingDetailRecommendPageViewController.h"
-#define RecommendImages @[@"yindao1",@"yindao1",@"yindao1",@"yindao1"]
+#define RecommendImages @[@"danbaojiaohuan.jpg",@"zaixiankefu.jpg",@"kefudianhua.jpg",@"guanfangweixin.jpg"]
 
 @interface WPDreamingDetailRecommendPageViewController ()<UIScrollViewDelegate>
 
@@ -58,6 +58,18 @@
         _guideScrollView.contentOffset = CGPointMake(WINDOW_WIDTH*self.currentPage, 0);
         for (int i = 0; i<RecommendImages.count; i++) {
             UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:RecommendImages[i]]];
+            imageView.userInteractionEnabled = YES;
+            if (i == 1){
+                
+            }
+            else if (i == 2){
+                UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+                button.bounds = CGRectMake(0, 0, 80, 40);
+            }
+            else if (i == 3){
+                
+                
+            }
             imageView.frame = CGRectMake(WINDOW_WIDTH * i, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
             imageView.backgroundColor = WhiteColor;
             [_guideScrollView addSubview:imageView];

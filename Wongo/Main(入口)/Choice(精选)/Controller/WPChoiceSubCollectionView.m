@@ -1,4 +1,4 @@
-//
+    //
 //  WPChoiceSubCollectionView.m
 //  Wongo
 //
@@ -16,11 +16,16 @@
 
 #define HeaderMenuHeight 104
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
-#define SectionMenuTitles @[@"综合推荐 ",@"人气优先 ",@"分类 "]
-#define SortingUrl @[QueryUserGoodCtid,QueryUserGoodCtid]
-
+#define SectionMenuTitles @[@"综合推荐",@"人气优先",@"全部分类"]
+//全部分类排序
+#define AllSortingUrl @[QueryGoodsListNew,QueryGoodsListPraise]
+//指定分类排序
+#define ClassificationSortingUrl @[QueryUserGoodCtid,QueryUserGoodsCtidDate]
 @interface WPChoiceSubCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+    //分页
     NSInteger       _page;
+    //菜单排序区分
+    NSInteger       _tag;
     /**一级分类*/
     NSString        * _primaryClassification;
     /**二级分类*/
@@ -29,6 +34,8 @@
     WPCustomButton  * _memoryButton;
     
     NSString        * _cid;
+    
+    NSInteger       _d;
     
     BOOL _isOpen;
 }
@@ -58,7 +65,6 @@ static NSString * const reuseIdentifier = @"Cell";
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
         _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
-        __block WPChoiceSubCollectionView * weakSelf = self;
     }
     return _classificationTableView;
 }
@@ -101,11 +107,18 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)menuClick:(UITapGestureRecognizer *)tap{
      WPCustomButton * sender = (WPCustomButton *)tap.view;
+    
     if (_memoryButton == tap.view) {
         return;
     }
+    
     if (tap.view.tag != 2) {
-        self.url = SortingUrl[tap.view.tag];
+        _tag = sender.tag;
+        if ([_cid isEqualToString:@"876452850"]) {
+            self.url = AllSortingUrl[tap.view.tag];
+        }else{
+            self.url = ClassificationSortingUrl[tap.view.tag];
+        }
         _memoryButton.selected = !_memoryButton.selected;
         sender.selected = !sender.selected;
         _memoryButton = sender;
@@ -122,6 +135,11 @@ static NSString * const reuseIdentifier = @"Cell";
             [self.classificationTableView getClassificationStringWithBlock:^(NSString *cname, NSString *cid) {
                 button.titleLabel.text = cname;
                 _cid = cid;
+                if ([_cid isEqualToString:@"876452850"]) {
+                    weakSelf.url = AllSortingUrl[_tag];
+                }else{
+                    weakSelf.url = ClassificationSortingUrl[_tag];
+                }
                 [weakSelf addHeader];
             }];
             
@@ -130,14 +148,13 @@ static NSString * const reuseIdentifier = @"Cell";
         }
         _isOpen = !_isOpen;
     }
-    
 }
 
 -(instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout loadDatasUrl:(NSString *)url{
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) 
     {
         [self registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
-        
+        _tag = 0;
         _page = 1;
         self.backgroundColor = WhiteColor;
         self.delegate   = self;
@@ -146,7 +163,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [self addSubview:self.cycleScrollView];
         [self addSubview:self.menuView];
         [self addSubview:self.classificationTableView];
-        _cid = @"1";
+        _cid = @"876452850";
         [self addFooter];
         [self addHeader];
     }
@@ -225,20 +242,37 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)loadNewDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
     weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(1),@"cid":_cid} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(1),@"cid":_cid,@"pubtime":@"1",@"praise":@"1"} datas:^(NSDictionary *responseObject) {
         if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        NSArray * list = [responseObject objectForKey:@"list"];
-        for (int i = 0; i<list.count; i++) {
-            NSDictionary * dic = list[i];
-            NSArray *listg = dic[@"listg"];
-            for (int j = 0; j<listg.count; j++) {
-                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]) {
+            NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
+            for (int i = 0; i<goodsRm.count; i++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
                 [_dataSourceArray addObject:model];
             }
         }
+        if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
+            NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
+            for (int i = 0; i<goodsNew.count; i++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsNew[i]];
+                [_dataSourceArray addObject:model];
+            }
+        }
+        else{
+            NSArray * list = [responseObject objectForKey:@"list"];
+            for (int i = 0; i<list.count; i++) {
+                NSDictionary * dic = list[i];
+                NSArray *listg = dic[@"listg"];
+                for (int j = 0; j<listg.count; j++) {
+                    WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+                    [_dataSourceArray addObject:model];
+                }
+            }
+        }
+        
 
         // 刷新表格
         [weakSelf reloadData];
@@ -258,14 +292,22 @@ static NSString * const reuseIdentifier = @"Cell";
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        
-        NSArray * list = [responseObject objectForKey:@"list"];
-        for (int i = 0; i<list.count; i++) {
-            NSDictionary * dic = list[i];
-            NSArray *listg = dic[@"listg"];
-            for (int j = 0; j<listg.count; j++) {
-                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+        if (_tag==0) {
+            NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
+            for (int i = 0; i<goodsNew.count; i++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsNew[i]];
                 [_dataSourceArray addObject:model];
+            }
+        }
+        else{
+            NSArray * list = [responseObject objectForKey:@"list"];
+            for (int i = 0; i<list.count; i++) {
+                NSDictionary * dic = list[i];
+                NSArray *listg = dic[@"listg"];
+                for (int j = 0; j<listg.count; j++) {
+                    WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
+                    [_dataSourceArray addObject:model];
+                }
             }
         }
         // 刷新表格

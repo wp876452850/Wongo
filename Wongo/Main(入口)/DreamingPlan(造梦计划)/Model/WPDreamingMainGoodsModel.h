@@ -17,6 +17,10 @@
 @property (nonatomic,strong)NSString * contents;
 
 @property (nonatomic,strong)NSString * subid;
+/**浏览数*/
+@property (nonatomic,strong)NSString * readview;
+/**参与数*/
+@property (nonatomic,strong)NSString * count;
 
 @property (nonatomic,strong)NSArray  * listplan;
 

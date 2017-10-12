@@ -10,5 +10,7 @@
 #import "WPDreamingMainGoodsModel.h"
 
 @interface WPNewDreamingNotSignUpTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UITextView *instructions;
 @property (nonatomic,strong)WPDreamingMainGoodsModel * model;
 @end

@@ -10,10 +10,10 @@
 #import "WPExchangeViewController.h"
 
 #define ActivityTitles      @[@"分享换新",@"公益换新",@"闲置换新"]
-#define ActivityIcons       @[@"activities_green",@"activities_yellow",@"activities_blue"]
-#define ActivityColors      @[WongoActivitGreenColor,WongoActivitYellowColor,WongoActivitBlueColor]
-#define ThumupIcon_Normal @[@"thumup_green_normal",@"thumup_yellow_normal",@"thumup_blue_normal"]
-#define ThumupIcon_Select @[@"thumup_green_select",@"thumup_yellow_select",@"thumup_blue_select"]
+#define ActivityIcons       @[@"activities_blue",@"activities_yellow",@"activities_green"]
+#define ActivityColors      @[WongoActivitBlueColor,WongoActivitYellowColor,WongoActivitGreenColor]
+#define ThumupIcon_Normal @[@"thumup_blue_normal",@"thumup_yellow_normal",@"thumup_green_normal"]
+#define ThumupIcon_Select @[@"thumup_blue_select",@"thumup_yellow_select",@"thumup_green_select"]
 
 @interface WPActivityGoodsCollectionViewCell ()
 {
@@ -42,7 +42,7 @@
     UIColor * color = ActivityColors[activityState];
     self.thumup.layer.borderColor = color.CGColor;
     self.goExchange.backgroundColor = color;
-    
+    [self.goExchange setTitle:ActivityTitles[activityState] forState:UIControlStateNormal];    
     [self.thumup setImage:[UIImage imageNamed:ThumupIcon_Normal[activityState]] forState:UIControlStateNormal];
     [self.thumup setImage:[UIImage imageNamed:ThumupIcon_Select[activityState]] forState:UIControlStateSelected];
     [self.thumup setTitleColor:color forState:UIControlStateNormal];

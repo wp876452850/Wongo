@@ -58,7 +58,6 @@ static NSString * const projectCell     = @"ProjectCell";
     if (indexPath.row == 0)
     {
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
-        
         if (indexPath.section!=0) {
             cell.isFirst.text = @"(参与者)";
         }else{
@@ -71,6 +70,7 @@ static NSString * const projectCell     = @"ProjectCell";
         return cell;
     }
     WPDreamingIntroduceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
      cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
     return cell;
 }

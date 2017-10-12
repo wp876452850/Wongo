@@ -93,7 +93,6 @@
 }
 
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
 //    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:@"1"];
 //    [self.navigationController pushViewController:vc animated:YES];
 //}

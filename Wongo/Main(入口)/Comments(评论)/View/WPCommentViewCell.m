@@ -8,6 +8,7 @@
 
 #import "WPCommentViewCell.h"
 #import "WPCommentMessageCell.h"
+#import "WPStoreViewController.h"
 
 @interface WPCommentViewCell ()
 /**头像*/
@@ -25,6 +26,13 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.headPortrait.layer.masksToBounds = YES;
     self.headPortrait.layer.cornerRadius  = 17.5f;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap)];
+    [self.headPortrait addGestureRecognizer:tap];
+}
+
+-(void)tap{
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:@"1"];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 /**点赞*/
 - (IBAction)thumbUp:(UIButton *)sender {
