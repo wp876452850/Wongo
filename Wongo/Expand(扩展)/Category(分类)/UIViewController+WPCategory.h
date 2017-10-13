@@ -15,7 +15,8 @@ typedef void(^WPAlertBlock)(void);
 - (void)w_backGroudColor:(UIColor *)color;
 - (void)w_changeBtnSelect:(UIButton *)sender;
 
-
+-(void)clickfunctionButtonWithGid:(NSString *)gid;
+-(void)clickfunctionButtonWithplid:(NSString *)plid;
 /**
  创建提示框,并有多个回调
 

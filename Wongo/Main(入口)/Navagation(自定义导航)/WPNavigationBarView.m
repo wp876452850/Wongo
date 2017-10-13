@@ -80,7 +80,7 @@
     [rightBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(navigationItem).offset(-10);
         make.centerY.mas_equalTo(navigationItem.mas_centerY);
-        make.size.mas_equalTo(CGSizeMake(25, 20));
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
 
     

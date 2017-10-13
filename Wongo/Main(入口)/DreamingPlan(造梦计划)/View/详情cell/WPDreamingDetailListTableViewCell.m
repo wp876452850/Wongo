@@ -32,7 +32,7 @@
     
     [self.contentView removeAllSubviews];
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(17, 5, 200, 15)];
-    label.text = [NSString stringWithFormat:@"%ld  人参与",_dataSourceArray.count];
+    label.text = [NSString stringWithFormat:@"%ld  人参与支持",_dataSourceArray.count];
     label.font = [UIFont boldSystemFontOfSize:12.f];
     label.textColor = ColorWithRGB(46, 119, 160);
     [self.contentView addSubview:label];

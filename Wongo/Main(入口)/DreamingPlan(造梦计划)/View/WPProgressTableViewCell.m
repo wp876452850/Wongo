@@ -48,6 +48,7 @@ static NSString * progress;
 }
 //创建进度条
 -(void)createProgress{
+    progress = [NSString stringWithFormat:@"%u",arc4random()%10];
     if (!priceProgress) {
         //创建金额进度条
         priceProgress    = [ProgressView createProgressWithFrame:CGRectMake(20, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(188, 229, 219) color:ColorWithRGB(72, 208, 180) proportion:1];
@@ -55,7 +56,7 @@ static NSString * progress;
     }
     if (!progressProgress) {
         //创建进度进度条
-        progressProgress    = [ProgressView createProgressWithFrame:CGRectMake(30+Progress_Width_Height, 0, Progress_Width_Height+20, Progress_Width_Height+20) backColor:ColorWithRGB(252, 211, 145) color:ColorWithRGB(252, 114, 0) proportion:[progress floatValue]];
+        progressProgress    = [ProgressView createProgressWithFrame:CGRectMake(30+Progress_Width_Height, 0, Progress_Width_Height+20, Progress_Width_Height+20) backColor:ColorWithRGB(252, 211, 145) color:ColorWithRGB(252, 114, 0) proportion:[progress floatValue]/10];
         [self.contentView addSubview:progressProgress];
     }
     if (!dateProgress) {
@@ -64,13 +65,13 @@ static NSString * progress;
         [self.contentView addSubview:dateProgress];
     }
  
-    priceProgress.data              = @"造梦商品";
-    priceProgress.dataName          = @"商品";
+    priceProgress.data              = @"造梦中";
+    priceProgress.dataName          = @"造梦状态";
     [priceProgress showContentData];
     
     
-    progressProgress.data              = [NSString stringWithFormat:@"%u%%",arc4random()%10*10];
-    progressProgress.dataName          = @"进度";
+    progressProgress.data              = [NSString stringWithFormat:@"第%@轮",progress];
+    progressProgress.dataName          = @"轮次";
     [progressProgress showContentData];
     progressProgress.dataLabelFont = 25;
     progressProgress.dataLabelBold = YES;
@@ -78,8 +79,5 @@ static NSString * progress;
     dateProgress.data              = [NSString stringWithFormat:@"10:20"];
     dateProgress.dataName          = @"时间";
     [dateProgress showContentData];
-    
-   
-    
 }
 @end

@@ -61,7 +61,8 @@
 //海报大小
 #define RollPlayFrame       CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6)
 //交换主页海报图集
-#define ExchangePosters     @[@"ExchangePosters1.jpg"]
+#define ExchangePosters     @[@"ExchangePosters2.jpg"]
+#define DreamingPosters     @[@"ExchangePosters1.jpg"]
 
 /**判断是否为我的二级界面,解决导航控制器问题*/
 #define IsMySubViewController @"isYesOrNo"

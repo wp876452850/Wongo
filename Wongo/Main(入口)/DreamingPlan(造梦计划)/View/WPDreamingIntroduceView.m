@@ -45,7 +45,7 @@
     if (!_joinDreaming) {
         _joinDreaming = [UIButton buttonWithType:UIButtonTypeCustom];
         _joinDreaming.frame = CGRectMake(self.chatBtn.right, WINDOW_HEIGHT - 50, WINDOW_WIDTH - 50, 50);
-        [_joinDreaming setTitle:@"参与造梦" forState:UIControlStateNormal];
+        [_joinDreaming setTitle:@"参与造梦帮助梦想人实现梦想" forState:UIControlStateNormal];
         _joinDreaming.titleLabel.font = [UIFont systemFontOfSize:15];
         [_joinDreaming setBackgroundColor:ColorWithRGB(105, 152, 192)];
         [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateNormal];

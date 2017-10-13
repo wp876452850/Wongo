@@ -80,9 +80,9 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y3Z-Mt-oTQ">
-                        <rect key="frame" x="328" y="28" width="13" height="13"/>
+                        <rect key="frame" x="321" y="28" width="20" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="13" id="dAc-os-dbW"/>
+                            <constraint firstAttribute="height" constant="20" id="dAc-os-dbW"/>
                         </constraints>
                         <state key="normal" image="questionmark"/>
                         <connections>
@@ -130,7 +130,7 @@
     </objects>
     <resources>
         <image name="NewDreamingBg" width="750" height="1381"/>
-        <image name="questionmark" width="13" height="13"/>
+        <image name="questionmark" width="20" height="20"/>
         <image name="user" width="31" height="31"/>
     </resources>
 </document>

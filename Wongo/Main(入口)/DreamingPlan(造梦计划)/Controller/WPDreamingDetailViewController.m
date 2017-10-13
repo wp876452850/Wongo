@@ -62,11 +62,31 @@ static NSString * const recommendCell   = @"recommendCell";
 @property (nonatomic,strong)UIButton * chatBtn;
 
 @property (nonatomic,strong)ChatKeyBoard * commentKeyBoard;
+//右侧功能按钮
+@property (nonatomic,strong)UIButton * functionButton;
 
 @end
 
 @implementation WPDreamingDetailViewController
-
+-(UIButton *)functionButton{
+    if (!_functionButton) {
+        _functionButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _functionButton.size = _backBtn.size;
+        _functionButton.right = WINDOW_WIDTH - _backBtn.left;
+        _functionButton.y = _backBtn.y;
+        _functionButton.backgroundColor = [UIColor blackColor];
+        [_functionButton setTitle:@"···" forState:UIControlStateNormal];
+        
+        _functionButton.layer.masksToBounds = YES;
+        _functionButton.layer.cornerRadius = _functionButton.width/2;
+        _functionButton.alpha = 0.4f;
+        [_functionButton addTarget:self action:@selector(clickfunctionButton) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _functionButton;
+}
+-(void)clickfunctionButton{
+    [self clickfunctionButtonWithplid:self.plid];
+}
 
 -(UIButton *)backBtn{
     if (!_backBtn) {
@@ -117,7 +137,7 @@ static NSString * const recommendCell   = @"recommendCell";
     if (!_joinDreaming) {
         _joinDreaming = [UIButton buttonWithType:UIButtonTypeCustom];
         _joinDreaming.frame = CGRectMake(self.chatBtn.right, WINDOW_HEIGHT - 50, WINDOW_WIDTH - 50, 50);
-        [_joinDreaming setTitle:@"参与造梦" forState:UIControlStateNormal];
+        [_joinDreaming setTitle:@"参与造梦帮助梦想人实现梦想" forState:UIControlStateNormal];
         _joinDreaming.titleLabel.font = [UIFont systemFontOfSize:15];
         [_joinDreaming setBackgroundColor:ColorWithRGB(105, 152, 192)];
         [_joinDreaming setTitleColor:WhiteColor forState:UIControlStateNormal];
@@ -161,6 +181,7 @@ static NSString * const recommendCell   = @"recommendCell";
     [self.view addSubview:self.joinDreaming];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.backBtn];
+    [self.tableView addSubview:self.functionButton];
 }
 
 -(void)loadDatas{

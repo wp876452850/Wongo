@@ -89,28 +89,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
     return _functionButton;
 }
 -(void)clickfunctionButton{
-    UIAlertAction * report = [UIAlertAction actionWithTitle:@"举报" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        LYBaseController * vc = [[LYBaseController alloc]init];
-        vc.myNavItem.title = @"请选择举报原因";
-        WPReportBox * reportBox = [WPReportBox createReportBoxWithGid:self.params[@"gid"]];
-        [vc.view addSubview:reportBox];
-        [vc.view sendSubviewToBack:reportBox];
-        [self.navigationController pushViewController:vc animated:YES];
-    }];
-    UIAlertAction * help = [UIAlertAction actionWithTitle:@"帮助" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        if ([self determineWhetherTheLogin]) {
-            LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
-            vc.title = @"官方客服";
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }];
-    UIAlertAction * share = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        
-    }];
-    [self showAlertWithAlertTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet actions:@[report,help,share,cancle]];
+    [self clickfunctionButtonWithGid:self.params[@"gid"]];
 }
 
 -(WPRecommendationView *)recommendationView{

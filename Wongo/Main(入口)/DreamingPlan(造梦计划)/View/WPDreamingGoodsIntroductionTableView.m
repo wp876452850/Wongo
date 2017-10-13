@@ -58,11 +58,8 @@ static NSString * const projectCell     = @"ProjectCell";
     if (indexPath.row == 0)
     {
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
-        if (indexPath.section!=0) {
-            cell.isFirst.text = @"(参与者)";
-        }else{
-            cell.isFirst.text = @"(发起者)";
-        }
+
+        cell.isFirst.text = [NSString stringWithFormat:@"第%ld轮",indexPath.section+1];
         cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
         if (indexPath.section+1<self.dataArray.count) {
             [cell showOK];
@@ -101,16 +98,25 @@ static NSString * const projectCell     = @"ProjectCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
-        //tableViewCell自身的高的
-        return 250;
-    }else{
-        //弹出cell的高度
-        if (indexPath.section >= self.cellsHeight.count) {
-            return 300;
-        }
-        return [self.cellsHeight[indexPath.section] floatValue];
+//    if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
+//        //tableViewCell自身的高的
+//        return 310;
+//    }else{
+//        //弹出cell的高度
+//        if (indexPath.section >= self.cellsHeight.count) {
+//            return 250;
+//        }
+//        return [self.cellsHeight[indexPath.section] floatValue];
+//    }
+    if (indexPath.row == 0) {
+        return 310;
     }
+    //弹出cell的高度
+    if (indexPath.section >= self.cellsHeight.count) {
+        return 250;
+    }
+    return [self.cellsHeight[indexPath.section] floatValue];
+
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{    
@@ -119,6 +125,5 @@ static NSString * const projectCell     = @"ProjectCell";
         [[self findViewController:self] w_dismissViewControllerAnimated];
     }
 }
-
 
 @end

@@ -20,7 +20,7 @@
 //全部分类排序
 #define AllSortingUrl @[QueryGoodsListNew,QueryGoodsListPraise]
 //指定分类排序
-#define ClassificationSortingUrl @[QueryUserGoodCtid,QueryUserGoodsCtidDate]
+#define ClassificationSortingUrl @[QueryUserGoodsCtidDate,QueryUserGoodCtid]
 @interface WPChoiceSubCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     //分页
     NSInteger       _page;

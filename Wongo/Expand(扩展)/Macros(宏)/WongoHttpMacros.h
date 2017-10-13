@@ -98,14 +98,18 @@
 /**
  *      交换详情
  */
-/**时间排序(分类)*/
-#define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
+
 /**时间排序(所有)*/
 #define QueryGoodsListNew       HttpHead(@"queryGoodsListNew")
-/**点赞排序(分类)*/
-#define QueryUserGoodCtid       HttpHead(@"queryUserGoodCtid")
 /**点赞排序(所有)*/
 #define QueryGoodsListPraise    HttpHead(@"queryGoodsListPraise")
+
+/**时间排序(分类)*/
+#define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
+/**点赞排序(分类)*/
+#define QueryUserGoodCtid       HttpHead(@"queryUserGoodCtid")
+
+
 /**
  *      造梦
  */

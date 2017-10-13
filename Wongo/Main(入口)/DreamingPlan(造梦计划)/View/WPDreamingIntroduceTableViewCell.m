@@ -34,7 +34,7 @@
         //设置最小行间距
         layout.minimumLineSpacing = 10.f;
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, _userName.bottom+20, WINDOW_WIDTH-20, 80) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(10, 20, WINDOW_WIDTH-20, 80) collectionViewLayout:layout];
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;

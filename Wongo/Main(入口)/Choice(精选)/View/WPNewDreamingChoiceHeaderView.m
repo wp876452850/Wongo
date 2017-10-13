@@ -9,7 +9,7 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "WPCustomButton.h"
-#define SectionMenuTitles @[@" 报名中 ",@" 筹备中 ",@" 进行中 "]
+#define SectionMenuTitles @[@" 成为造梦人",@" 造梦筹备",@" 造梦进行"]
 
 @interface WPNewDreamingChoiceHeaderView ()
 {
@@ -26,7 +26,7 @@
 -(SDCycleScrollView *)posters{
     if (!_posters) {
         //_posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:self.postersImages];
-        _posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:ExchangePosters];
+        _posters = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH - 110) imageNamesGroup:DreamingPosters];
         _posters.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
     }
     return _posters;

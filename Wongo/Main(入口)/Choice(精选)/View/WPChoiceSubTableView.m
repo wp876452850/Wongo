@@ -32,8 +32,6 @@
 
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
-@property (nonatomic,strong)SDCycleScrollView * cycleScrollView;
-
 @property (nonatomic,strong)NSString * url;
 
 @property (nonatomic,strong)WPNewDreamingChoiceHeaderView * headerView;

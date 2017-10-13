@@ -123,7 +123,6 @@ static NSString * const reusable = @"Reusable";
     [self loadDataWithtype:@"造梦"];
     [self.view addSubview:self.searchNavigationBar];
     [self.view addSubview:self.typeChooseMenu];
-    
 }
 
 -(void)loadDataWithtype:(NSString * )type{
@@ -141,6 +140,7 @@ static NSString * const reusable = @"Reusable";
         }
         [weakSelf.view addSubview:weakSelf.segmentedControl];
         [weakSelf.view addSubview:weakSelf.collectionView];
+        [weakSelf.view bringSubviewToFront:weakSelf.typeChooseMenu];
         [weakSelf.collectionView reloadData];
     }];
 }
