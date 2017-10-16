@@ -15,17 +15,34 @@
 {
     NSInteger _page;
     NSString * _gcid;
+    NSString * _tpid;
+    NSString * _imageUrl;
 }
 
+//介绍视图
+@property (nonatomic, strong) UIImageView *introduceView;
 
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 @end
 
 @implementation WPCollectionBaseViewController
+- (UIImageView *)introduceView{
+    if (!_introduceView) {
+        _introduceView = [[UIImageView alloc] init];
+    }
+    return _introduceView;
+}
 -(instancetype)initWithGcid:(NSString *)gcid{
     if (self = [super init]) {
         _gcid = gcid;
+    }
+    return self;
+}
+-(instancetype)initWithWithTpid:(NSString *)tpid imageUrl:(NSString *)imageUrl{
+    if (self = [super init]) {
+        _tpid = tpid;
+        _imageUrl = imageUrl;
     }
     return self;
 }
@@ -38,6 +55,7 @@
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.delegate   = self;
         _collectionView.dataSource = self;
+        [_collectionView addSubview:self.introduceView];
     }
     return _collectionView;
 }
@@ -49,12 +67,23 @@
 -(void)setUrl:(NSString *)url{
     _url = url;
     [self.view addSubview:self.collectionView];
+    [self.introduceView sd_setImageWithURL:[NSURL URLWithString:_imageUrl] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        if (!error) {
+            CGFloat w = image.size.width;
+            CGFloat h = image.size.height;
+            h = WINDOW_WIDTH/w*h;
+            self.introduceView.frame = CGRectMake(0, 0, WINDOW_WIDTH, h);
+            self.introduceView.image = image;
+            [self.collectionView reloadData];
+        }
+    }];
     [self addHeader];
     [self addFooter];
 }
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataSourceArray.count;
 }
+
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -69,7 +98,11 @@
 -(void)addHeader{
     __weak WPCollectionBaseViewController * weakSelf = self;
     self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        [weakSelf loadNewDatas];
+        if (_gcid.length>0) {
+            [weakSelf loadNewClassificationDatas];
+        }else{
+            [weakSelf loadNewActivityADatas];
+        }
     }];
     [self.collectionView.mj_header beginRefreshing];
 }
@@ -77,17 +110,52 @@
 -(void)addFooter{
     __weak WPCollectionBaseViewController * weakSelf = self;
     self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [weakSelf loadMoreDatas];
+        if (_gcid.length>0) {
+            [weakSelf loadMoreClassificationDatas];
+        }else{
+            [weakSelf loadMoreActivityDatas];
+        }
     }];
-    [self.collectionView.mj_footer beginRefreshing];
+    [weakSelf.collectionView.mj_footer beginRefreshing];
 }
 
--(void)loadNewDatas{
+#pragma mark - 获取活动商品数据
+-(void)loadNewActivityADatas{
+    if (!_tpid) {
+        return;
+    }
     __weak WPCollectionBaseViewController * weakSelf = self;
+    _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryTypegdlist params:@{@"tpid":_tpid} datas:^(NSDictionary *responseObject) {
+        [self.collectionView.mj_header endRefreshing];
+        if ([responseObject isKindOfClass:[NSDictionary class]] && [responseObject[@"flag"] intValue] == 1) {
+            NSMutableArray *goods;
+            if ([(goods=responseObject[@"list"]) isKindOfClass:[NSArray class]]) {
+                [weakSelf.dataSourceArray removeAllObjects];
+                for (NSDictionary * item in goods) {
+                    WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+                    if (model.listimg.count>0) {
+                        model.url = model.listimg[0][@"url"];
+                    }
+                    [weakSelf.dataSourceArray addObject:model];
+                }
+                [weakSelf.collectionView reloadData];
+            }
+        }
+    }failureBlock:^{
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
+
+}
+-(void)loadMoreActivityDatas{
+    
+}
+#pragma mark - 获取搜索分类数据
+-(void)loadNewClassificationDatas{
+    __weak WPCollectionBaseViewController * weakSelf = self;
+    _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
     [WPNetWorking createPostRequestMenagerWithUrlString:weakSelf.url params:@{@"currPage":@(1),@"gcid":_gcid} datas:^(NSDictionary *responseObject) {
-        
         NSArray * goods = [responseObject objectForKey:@"goodsFb"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
         for (NSDictionary * item in goods) {
             WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
             [_dataSourceArray addObject:model];
@@ -102,7 +170,7 @@
     }];
 }
 
--(void)loadMoreDatas{
+-(void)loadMoreClassificationDatas{
     __weak WPCollectionBaseViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:weakSelf.url params:@{@"currPage":@(_page),@"gcid":_gcid} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goodsFb"];
@@ -124,6 +192,13 @@
     } failureBlock:^{
         [weakSelf.collectionView.mj_footer endRefreshing];
     }];
+}
+
+#pragma mark - CollectionDelegate && CollectionDataSource
+
+//返回每个区头大小
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(WINDOW_WIDTH, self.introduceView.height + 10);
 }
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{

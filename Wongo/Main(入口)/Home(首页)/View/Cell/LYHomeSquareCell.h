@@ -10,5 +10,7 @@
 #import "LYHomeCategory.h"
 
 @interface LYHomeSquareCell : UICollectionViewCell
+
 @property (nonatomic, strong) LYHomeCategory *category;
+
 @end

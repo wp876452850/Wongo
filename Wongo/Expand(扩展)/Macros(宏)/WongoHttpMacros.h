@@ -63,13 +63,18 @@
 /**修改用户信息*/
 #define UpdateUserUrl           HttpHead(@"updateUser")
 
-
+/**
+ *  搜索
+ */
+/**搜索商品(用户名关键字)*/
+#define QueryGoodsGname         HttpHead(@"queryGoodsGname")
 /**搜索用户信息*/
 #define UserQueryNameUrl        HttpHead(@"userQueryName")
 /**搜索页-查询交换商品*/
 #define GetClassGoodsUrl        HttpHead(@"getClassGoods")
 /**搜索页-查询造梦商品*/
 #define GetClassProductUrl      HttpHead(@"getClassProduct")
+
 /**一级分类*/
 #define QueryClassoneUrl        HttpHead(@"queryClassone")
 /**同意时修改订单状态接口*/
@@ -167,7 +172,8 @@
 #define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
 /**造梦取消点赞*/
 #define IncensesproductDel      HttpHead(@"IncensesproductDel")
-
+/**查询点赞商品*/
+#define IncensesUidSelect       HttpHead(@"IncensesUidSelect")
 /**
  *  收藏
  */

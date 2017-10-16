@@ -12,7 +12,7 @@
 #import "WPPublishViewController.h"
 #import "WPChoiceViewController.h"
 #import "LYNavgationController.h"
-#import "WPAdvertisingView.h"
+
 
 #define Home_Icon_Name @"1"
 #define My_Icon_Name @"2"
@@ -46,8 +46,7 @@ static id tabBar;
 @property (nonatomic,strong)UIImageView * imageView;
 //消息红点
 @property (nonatomic, strong) UIView *redDot;
-/**广告页*/
-@property (nonatomic,strong)WPAdvertisingView * advertisingView;
+
 @end
 
 @implementation WPTabBarController
@@ -101,12 +100,7 @@ static id tabBar;
     }
     return _footView;
 }
--(WPAdvertisingView *)advertisingView{
-    if (!_advertisingView) {
-        _advertisingView = [[WPAdvertisingView alloc]init];
-    }
-    return _advertisingView;
-}
+
 - (void)changeRedDot{
     NSString * uid = [[NSUserDefaults standardUserDefaults] objectForKey:User_ID];
     if (uid.length > 0) {
@@ -152,15 +146,13 @@ static id tabBar;
 - (id)copyWithZone:(struct _NSZone *)zone {
     
     return tabBar;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self changeRedDot];
     //删除系统自带的tabBarButton
-    [self.view addSubview:self.advertisingView];
-    [self.view bringSubviewToFront:self.advertisingView];
+
     for (UIView *tabBarButton in self.tabBar.subviews)
     {
         if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")])

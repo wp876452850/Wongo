@@ -42,7 +42,7 @@
  */
 @property (nonatomic,strong)NSString * neworold;
 /**
- 收藏状态
+ 收藏数量
  */
 @property (nonatomic,strong)NSString * freight;
 /**

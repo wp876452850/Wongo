@@ -12,6 +12,8 @@
 
 -(instancetype)initWithGcid:(NSString *)gcid;
 
+-(instancetype)initWithWithTpid:(NSString *)tpid imageUrl:(NSString *)imageUrl;
+
 @property (nonatomic,strong)UICollectionView * collectionView;
 
 @property (nonatomic,strong)NSArray * dataSource;

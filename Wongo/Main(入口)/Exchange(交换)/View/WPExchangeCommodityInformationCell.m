@@ -13,15 +13,17 @@
 #define ActivityStateIcon @[@"",@"goodsfenxiang",@"goodsgongyi",@"goodsxianzhi"]
 
 @interface WPExchangeCommodityInformationCell ()
-
+{
+    NSInteger _freightNumber;
+}
+/**收藏数*/
+@property (weak, nonatomic) IBOutlet UILabel *collectionNumber;
 /**商品名*/
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
 /**价格*/
 @property (weak, nonatomic) IBOutlet UILabel *price;
 /**新旧度*/
 @property (weak, nonatomic) IBOutlet UILabel *oldNew;
-/**运费*/
-@property (weak, nonatomic) IBOutlet UILabel *freight;
 /**收藏*/
 @property (weak, nonatomic) IBOutlet UIButton *collectionButoon;
 /**活动链接*/
@@ -33,8 +35,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;    
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = _activeLink.frame;
     [button addTarget:self action:@selector(jumpActive) forControlEvents:UIControlEventTouchUpInside];
@@ -82,29 +83,33 @@
          _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }
     _oldNew.text    = model.neworold;
-    _freight.text   = [NSString stringWithFormat:@"%@%@",model.unit,model.freight];
-    _price.text     = [NSString stringWithFormat:@" %.2f",[model.price floatValue]];
-    [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
-    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
-    //判断用户收藏的商品总是否有
+    _price.text     = [NSString stringWithFormat:@"￥%.2f",[model.price floatValue]];
+//    [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
+//    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
+    
+    
+    _freightNumber = [_model.freight integerValue];
+    _collectionNumber.text = [NSString stringWithFormat:@"收藏量:%ld",_freightNumber];
     //判断是否登录
     if ([self getSelfUid].length>0) {
-        __block WPExchangeCommodityInformationCell * weakSelf = self;
-        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCollectionUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-            NSArray * list = responseObject[@"list"];
-            for (NSDictionary * dic in list) {
-                NSString * gid = dic[@"gid"];
-                
-                if (_model.gid.floatValue == gid.floatValue) {
-                    weakSelf.collectionButoon.selected = YES;
-                }
-            }
-        }];
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedCollectionArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", _model.gid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            _collectionButoon.selected = YES;
+        }
     }
 }
 //收藏
 - (IBAction)collection:(UIButton *)sender {
     [self collectionOfGoodsWithSender:sender gid:_model.gid];
+    if (sender.selected) {
+        _freightNumber--;
+    }
+    else{
+        _freightNumber++;
+    }
+    _collectionNumber.text = [NSString stringWithFormat:@"收藏量:%ld",_freightNumber];
 }
 
 

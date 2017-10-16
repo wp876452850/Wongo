@@ -11,6 +11,7 @@
 #import "LYHomeCategory.h"
 
 @interface WPExchangeCommodityInformationCell : UITableViewCell
+
 @property (nonatomic,strong)WPExchangeDetailModel * model;
 
 @property (nonatomic,assign)NSInteger activityState;

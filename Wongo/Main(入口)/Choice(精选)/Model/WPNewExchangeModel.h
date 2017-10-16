@@ -26,5 +26,7 @@
 
 @property (nonatomic,strong)NSString * repertory;
 
+@property (nonatomic,strong)NSArray * listimg;
+
 
 @end

@@ -40,7 +40,7 @@
     if (!_choose) {
         _choose = [UIButton buttonWithType:UIButtonTypeCustom];
         _choose.frame = CGRectMake(0, 0, 50, 30);
-        [_choose setTitle:@"造梦" forState:UIControlStateNormal];
+        [_choose setTitle:@"商品" forState:UIControlStateNormal];
         _choose.titleLabel.font = [UIFont systemFontOfSize:15];
         [_choose setTitleColor:WhiteColor forState:UIControlStateNormal];
         [_choose addTarget:self action:@selector(chooseTpyeClick) forControlEvents:UIControlEventTouchUpInside];

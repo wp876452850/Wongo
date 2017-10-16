@@ -24,6 +24,7 @@
 #import "UITextView+WPCategory.h"
 #import "NSObject+WPCategory.h"
 #import "UITableViewCell+HYBMasonryAutoCellHeight.h"
+#import "NSMutableArray+WPSingletonStorageArrays.h"
 
 #pragma mark - /*公用类*/
 #import "WPCostomTextField.h"

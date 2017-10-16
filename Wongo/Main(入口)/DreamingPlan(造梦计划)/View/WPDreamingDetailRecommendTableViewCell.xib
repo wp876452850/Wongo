@@ -44,7 +44,7 @@
                             <action selector="goRecommend:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0ck-fB-zYO"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="担保推荐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUl-Ew-CTA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="碗糕担保" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EUl-Ew-CTA">
                         <rect key="frame" x="23" y="80.5" width="82.5" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="gQT-7P-osS"/>

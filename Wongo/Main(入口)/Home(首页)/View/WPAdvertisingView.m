@@ -23,6 +23,8 @@
         _advertisingImageView.backgroundColor = WhiteColor;
         //广告图
         _advertisingImageView.image = [UIImage imageNamed:@"advertisingfigure.jpg"];
+        _advertisingImageView.userInteractionEnabled = YES;
+        
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(15, 44, 30, 15)];
         label.text = @"广告";
         label.textAlignment = NSTextAlignmentCenter;
@@ -40,7 +42,7 @@
     if (!_passButton) {
         _passButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _passButton.alpha = 0.7;
-        _passButton.frame = CGRectMake(WINDOW_WIDTH - 85, 44, 70, 25);
+        _passButton.frame = CGRectMake(WINDOW_WIDTH - 85, WINDOW_HEIGHT - 44, 70, 25);
         _passButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
         _passButton.layer.masksToBounds = YES;
         _passButton.layer.cornerRadius = 12.5f;

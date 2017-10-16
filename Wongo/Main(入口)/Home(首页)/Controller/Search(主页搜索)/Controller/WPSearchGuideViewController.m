@@ -4,7 +4,7 @@
 //
 //  Created by rexsu on 2017/2/13.
 //  Copyright © 2017年 Winny. All rights reserved.
-//
+//  搜索首页
 
 #import "WPSearchGuideViewController.h"
 #import "WPGoodsClassModel.h"
@@ -55,7 +55,7 @@ static NSString * const reusable = @"Reusable";
             //界面跳转
             UIViewController * vc;
             
-            if ([type isEqualToString:@"造梦"]||[type isEqualToString:@"交换"]) {
+            if ([type isEqualToString:@"造梦"]||[type isEqualToString:@"商品"]) {
                 vc = [[WPSearchResultsViewController alloc]initWithKeyWord:keyWord];
             }
             else if([type isEqualToString:@"用户"]){
@@ -67,7 +67,7 @@ static NSString * const reusable = @"Reusable";
             }           
         }];
         //choose按钮
-        [_searchNavigationBar chooseButtonClickWithBlock:^{
+        /*[_searchNavigationBar chooseButtonClickWithBlock:^{
             switch (self.typeChooseMenu.isOpen) {
                 case NO:
                     [self.typeChooseMenu menuOpen];
@@ -77,7 +77,7 @@ static NSString * const reusable = @"Reusable";
                     [self.typeChooseMenu menuClose];
                     break;
             }
-        }];
+        }];*/
     }
     return _searchNavigationBar;
 }
@@ -183,8 +183,7 @@ static NSString * const reusable = @"Reusable";
     return _titles.count;
 }
 //距离四周的距离
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{    
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }
 //设置头视图的大小

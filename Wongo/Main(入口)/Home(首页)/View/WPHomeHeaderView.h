@@ -14,4 +14,12 @@
 @property (nonatomic, strong) NSArray<LYHomeCategory *> *listhl;
 /**活动数组*/
 @property (nonatomic, strong) NSArray<LYHomeCategory *> *listhk;
+
+@property (nonatomic, strong) UIButton *activityA;
+@property (nonatomic, strong) UIButton *activityB;
+@property (nonatomic, strong) UIButton *activityC;
+@property (nonatomic, strong) UIButton *activityD;
+@property (nonatomic, strong) UIButton *activityE;
+@property (nonatomic, strong) UIButton *activityF;
+- (void)tapImage:(UIButton *)sender;
 @end

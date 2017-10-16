@@ -33,12 +33,7 @@
 @property (nonatomic, strong) UIView *noticeView;
 
 @property (nonatomic, strong) UIView *activityView;
-@property (nonatomic, strong) UIImageView *activityA;
-@property (nonatomic, strong) UIImageView *activityB;
-@property (nonatomic, strong) UIImageView *activityC;
-@property (nonatomic, strong) UIImageView *activityD;
-@property (nonatomic, strong) UIImageView *activityE;
-@property (nonatomic, strong) UIImageView *activityF;
+
 @property (nonatomic, strong) UIView *bottomLine;
 /**公告*/
 @property (nonatomic,strong)UIView * announcementView;
@@ -97,13 +92,12 @@
     return _activityView;
 }
 
--(UIImageView *)setUpActivityImageWithFrame:(CGRect)frame actitvityState:(NSInteger)actitvityState{
-    UIImageView * imageView = [[UIImageView alloc]initWithFrame:frame];
+-(UIButton *)setUpActivityImageWithFrame:(CGRect)frame actitvityState:(NSInteger)actitvityState{
+    UIButton * imageView = [UIButton buttonWithType:UIButtonTypeCustom];
+    imageView.frame = frame;
     imageView.tag = actitvityState;
-    imageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapA = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImage:)];
+    [imageView addTarget:self action:@selector(tapImage:) forControlEvents:UIControlEventTouchUpInside];
     self.backgroundColor = WongoGrayColor;
-    [imageView addGestureRecognizer:tapA];
     imageView.backgroundColor = [UIColor whiteColor];
     [_activityView addSubview:imageView];
     return imageView;
@@ -122,13 +116,14 @@
     }
     return self;
 }
-- (void)tapImage:(UITapGestureRecognizer *)tap{
-    if (tap.view.tag >= self.listhk.count) {
+
+- (void)tapImage:(UIButton *)sender{
+    if (sender.tag >= self.listhk.count) {
         return;
     }
-    LYHomeCategory *category = self.listhk[tap.view.tag];
+    LYHomeCategory *category = self.listhk[sender.tag];
     LYActivityController * vc = [LYActivityController controllerWithCategory:category];
-    vc.activityState = tap.view.tag;
+    vc.activityState = sender.tag;
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 -(SDCycleScrollView *)cycleScrollView
@@ -146,9 +141,9 @@
     if (listhk.count <= 0) {
         return;
     }
-    _activityA.image = [UIImage imageNamed:@"activity1.jpg"];
-    _activityB.image = [UIImage imageNamed:@"activity2.jpg"];
-    _activityC.image = [UIImage imageNamed:@"activity3.jpg"];
+    [_activityA setBackgroundImage:[UIImage imageNamed:@"activity1.jpg"] forState:UIControlStateNormal] ;
+    [_activityB setBackgroundImage:[UIImage imageNamed:@"activity2.jpg"] forState:UIControlStateNormal];
+    [_activityC setBackgroundImage:[UIImage imageNamed:@"activity3.jpg"] forState:UIControlStateNormal] ;
 }
 
 - (void)setListhl:(NSArray<LYHomeCategory *> *)listhl{

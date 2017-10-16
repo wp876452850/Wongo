@@ -13,15 +13,17 @@
 #import "WPSearchNavigationBar.h"
 #import "WPTypeChooseMune.h"
 #import "WPSearchUserViewController.h"
-
-#define Titles @[@"商品列表"]
+#import "WPNewExchangeCollectionViewCell.h"
+#import "WPNewExchangeModel.h"
 
 @interface WPSearchResultsViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
+{
+    NSInteger _page;
+}
 @property (nonatomic,strong)NSString * type;
 @property (nonatomic,strong)NSString * keyWord;
 @property (nonatomic,strong)NSMutableArray * dataSource;
 @property (nonatomic,strong)UICollectionView * collectionView;
-@property (nonatomic,strong)WPMenuScrollView * menuScrollView;
 @property (nonatomic,strong)WPSearchNavigationBar * searchNavigationBar;
 @property (nonatomic,strong)WPTypeChooseMune * typeChooseMenu;
 @end
@@ -68,7 +70,7 @@ static NSString * contentOffset = @"contentOffset";
             
         }];
         //choose按钮
-        [_searchNavigationBar chooseButtonClickWithBlock:^{
+       /* [_searchNavigationBar chooseButtonClickWithBlock:^{
             switch (self.typeChooseMenu.isOpen) {
                 case NO:
                     [self.typeChooseMenu menuOpen];
@@ -78,45 +80,25 @@ static NSString * contentOffset = @"contentOffset";
                     [self.typeChooseMenu menuClose];
                     break;
             }
-        }];
+        }];*/
     }
     return _searchNavigationBar;
-}
-
--(WPMenuScrollView *)menuScrollView{
-    if (!_menuScrollView) {
-        _menuScrollView = [[WPMenuScrollView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, 60) withOptions:@{@"titles":Titles,@"width":@(80),@"height":@(40)}];
-        NSKeyValueObservingOptions options  =   NSKeyValueObservingOptionOld|
-        NSKeyValueObservingOptionNew;        
-        [self.collectionView addObserver:self forKeyPath:contentOffset options:options context:nil];
-        
-        _menuScrollView.collectionView = self.collectionView;
-        _menuScrollView.height += 20;
-        _menuScrollView.y -= 20;
-    }
-    return _menuScrollView;
 }
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc]init];;
         //设置横向滑动
-        [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        layout.itemSize = CGSizeMake(WINDOW_WIDTH, WINDOW_HEIGHT-49);
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
         layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT-64) collectionViewLayout:layout];
+        _collectionView.backgroundColor = WhiteColor;
         _collectionView.pagingEnabled = YES;
-        _collectionView.showsHorizontalScrollIndicator = NO;
-        _collectionView.backgroundColor = [UIColor redColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-        for (int i = 0; i < Titles.count; i++) {
-            [self createSubCollectionViewWithPage:i];
-        }
-        
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
+
     }
     return _collectionView;
 }
@@ -129,60 +111,91 @@ static NSString * contentOffset = @"contentOffset";
     }
     return self;
 }
--(void)loadDatas{
-    
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.collectionView];
-    [self.view addSubview:self.menuScrollView];
     [self.view addSubview:self.searchNavigationBar];
     [self.view addSubview:self.typeChooseMenu];
+    [self addHeader];
 }
 
+#pragma mark - loadDatas
 
--(void)createSubCollectionViewWithPage:(NSInteger)page{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    
-    layout.minimumLineSpacing = 0;
-    layout.minimumInteritemSpacing = 0;
-    layout.sectionInset = UIEdgeInsetsMake(10,5,0,5);
-    layout.itemSize = CGSizeMake(WINDOW_WIDTH/2 - 10, 267);
-    WPSearchGoodsChildController * childVC;
-    
-    NSDictionary * options = @{@"keyWord":_keyWord,@"type":Titles[page]};
-    
-    childVC = [[WPSearchGoodsChildController alloc] initWithCollectionViewLayout:layout Options:options];
-    
-    childVC.view.frame = CGRectMake(0, 0, _collectionView.bounds.size.width,_collectionView.bounds.size.height);
-    
-    //[self addFooterWithCollection:childVC];
-    //[self addHeaderWithCollection:childVC];
-    [self addChildViewController:childVC];
-    
+-(void)addHeader{
+    __block WPSearchResultsViewController * weakSelf = self;
+    self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewDatas];
+    }];
+    [self.collectionView.mj_header beginRefreshing];
+}
+-(void)addFooter{
+    __weak WPSearchResultsViewController * weakSelf = self;
+    self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
+        [weakSelf loadMoreDatas];
+    }];
+    [self.collectionView.mj_footer beginRefreshing];
+}
+
+-(void)loadNewDatas{
+    __block WPSearchResultsViewController * weakSelf = self;
+    weakSelf.dataSource = [NSMutableArray arrayWithCapacity:3];
+    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"gname":_keyWord,@"currPage":@"1"} datas:^(NSDictionary *responseObject) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        NSArray * goods = [responseObject objectForKey:@"goods"];
+        weakSelf.dataSource= [NSMutableArray arrayWithCapacity:3];
+        for (NSDictionary * item in goods) {
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+            [weakSelf.dataSource addObject:model];
+        }
+        _page++;
+        [weakSelf.collectionView reloadData];
+
+    } failureBlock:^{
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
+}
+
+-(void)loadMoreDatas{
+    __block WPSearchResultsViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryGoodsGname params:@{@"gname":_keyWord} datas:^(NSDictionary *responseObject) {
+        [weakSelf.collectionView.mj_header endRefreshing];
+        NSArray * goods = [responseObject objectForKey:@"goods"];
+        weakSelf.dataSource= [NSMutableArray arrayWithCapacity:3];
+        for (NSDictionary * item in goods) {
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+            [weakSelf.dataSource addObject:model];
+        }
+        _page++;
+        [weakSelf.collectionView reloadData];
+    } failureBlock:^{
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
 }
 
 #pragma mark - collectionViewDataSource
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-     return Titles.count;
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return _dataSource.count;
 }
-         
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-         UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-         [cell.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-         WPSearchGoodsChildController *childVC = self.childViewControllers[indexPath.row];
-         [cell.contentView addSubview:childVC.view];
-        
-         return cell;
+    WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    cell.model = _dataSource[indexPath.row];
+    return cell;
+}
+//每个单元格返回的大小
+-(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
+    return CGSizeMake((WINDOW_WIDTH) * 0.5 - 7.5, WINDOW_WIDTH*0.5+60);
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
+//设置每个item水平间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+    return 5;
 }
--(void)dealloc{
-    [_menuScrollView.collectionView removeObserver:self forKeyPath:contentOffset context:nil];
+
+//设置每个item垂直间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 10;
 }
 @end

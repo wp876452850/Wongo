@@ -20,6 +20,7 @@
 #import "LYHomeSectionFooter.h"
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPHomeDreamingCollectionViewCell.h"
+#import "WPAdvertisingView.h"
 
 
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
@@ -59,14 +60,22 @@ static NSString * contentOffset = @"contentOffset";
 @property (nonatomic,assign)CGFloat lastCollectionContentOffsetY;
 
 @property (nonatomic, strong) LYHomeResponse *response;
-
-
+/**广告页*/
+@property (nonatomic,strong)WPAdvertisingView * advertisingView;
 
 @end
 
 @implementation WPHomeViewController
 
 #pragma mark - 懒加载
+-(WPAdvertisingView *)advertisingView{
+    if (!_advertisingView) {
+        _advertisingView = [[WPAdvertisingView alloc]init];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpAdvertisingLink)];
+        [_advertisingView addGestureRecognizer:tap];
+    }
+    return _advertisingView;
+}
 -(WPHomeHeaderSearchView *)homeHeaderSearchView{
     if (!_homeHeaderSearchView) {
         _homeHeaderSearchView = [[WPHomeHeaderSearchView alloc]init];
@@ -114,6 +123,7 @@ static NSString * contentOffset = @"contentOffset";
     [self.collectionView addSubview:self.homeHeaderView];
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
+    [[UIApplication sharedApplication].keyWindow addSubview:self.advertisingView];
 }
 
 -(void)addHeaderLoad{
@@ -160,7 +170,7 @@ static NSString * contentOffset = @"contentOffset";
             weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
             for (NSDictionary * item in goods) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
             
             _page++;
@@ -173,53 +183,56 @@ static NSString * contentOffset = @"contentOffset";
                 weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
                     WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:dreamings[i]];
-                    [_dreamings addObject:model];
+                    [weakSelf.dreamings addObject:model];
                     [weakSelf.collectionView reloadData];
                 }
             }];
         }];
     }failureBlock:^{
-        [self.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
 
 -(void)footer{
+    __block WPHomeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(_page)} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goods"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+        weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
         for (NSDictionary * item in goods) {
             WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_dataSourceArray addObject:model];
+            [weakSelf.dataSourceArray addObject:model];
         }
         _page++;
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
+    }failureBlock:^{
+        [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
 #pragma mark - collectionViewDelegate && collectionViewDataSource
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    LYHomeCategory *category;
-        NSInteger index = 0;
-        if ([self.response hasBanner:indexPath.section]) {
-            index = indexPath.row -1;
-        }else{
-            index = indexPath.row;
-        }
-        switch (indexPath.section) {
-            case 0:
-                category = self.response.listxk[index];
-                break;
-            case 1:
-                category = self.response.listfk[index];
-                break;
-            case 2:
-                category = self.response.listzk[index];
-                break;
-            default:
-                break;
-        }
-    [self.navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
-}
+//
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+//    LYHomeCategory *category;
+//        NSInteger index = 0;
+//        if ([self.response hasBanner:indexPath.section]) {
+//            index = indexPath.row -1;
+//        }else{
+//            index = indexPath.row;
+//        }
+//        switch (indexPath.section) {
+//            case 0:
+//                category = self.response.listxk[index];
+//                break;
+//            case 1:
+//                category = self.response.listfk[index];
+//                break;
+//            case 2:
+//                category = self.response.listzk[index];
+//                break;
+//            default:
+//                break;
+//        }
+//    [self.navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
+//}
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
@@ -389,9 +402,7 @@ static NSString * contentOffset = @"contentOffset";
 
 
 #pragma mark - obser
-
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    
     UICollectionView * collectionView = (UICollectionView *)object;
     if (collectionView != self.collectionView || ![keyPath isEqualToString:contentOffset]) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -421,4 +432,10 @@ static NSString * contentOffset = @"contentOffset";
     [self.collectionView removeObserver:self forKeyPath:contentOffset context:nil];
 }
 
+
+#pragma mark - 点击事件
+-(void)jumpAdvertisingLink{
+    [_advertisingView removeFromSuperview];
+    [_homeHeaderView tapImage:_homeHeaderView.activityA];
+}
 @end

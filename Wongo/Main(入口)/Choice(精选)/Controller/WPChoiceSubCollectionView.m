@@ -272,8 +272,6 @@ static NSString * const reuseIdentifier = @"Cell";
                 }
             }
         }
-        
-
         // 刷新表格
         [weakSelf reloadData];
         // 隐藏当前的上拉刷新控件
@@ -292,7 +290,14 @@ static NSString * const reuseIdentifier = @"Cell";
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        if (_tag==0) {
+        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]) {
+            NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
+            for (int i = 0; i<goodsRm.count; i++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
+                [_dataSourceArray addObject:model];
+            }
+        }
+        if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
             NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
             for (int i = 0; i<goodsNew.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsNew[i]];

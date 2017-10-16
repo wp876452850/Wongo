@@ -27,6 +27,7 @@
 #import "LYHomeResponse.h"
 #import "LYActivityController.h"
 #import "WPReportBox.h"
+#import "WPDreamingDetailRecommendTableViewCell.h"
 
 #define RecommendCellHeight (WINDOW_WIDTH*0.5+65)
 
@@ -35,6 +36,7 @@ static NSString * const commodityCell       = @"CommodityCell";
 static NSString * const commentsSectionCell = @"WPCommentsSectionTableViewCell";
 static NSString * const imageShowCell       = @"ImageShowCell";
 static NSString * const goodsRecommended    = @"GoodsRecommended";
+static NSString * const recommendCell       = @"recommendCell";
 
 @interface WPExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,WPRecommendationViewDelegate>
 //活动数据模型
@@ -122,6 +124,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPGoodsRecommendedTableViewCell" bundle:nil] forCellReuseIdentifier:goodsRecommended];
         [_tableView registerClass:[WPExchangeImageShowTableViewCell class] forCellReuseIdentifier:imageShowCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailRecommendTableViewCell" bundle:nil] forCellReuseIdentifier:recommendCell];
         
         //创建按钮        
     }
@@ -216,10 +219,10 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 //返回多少区
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 8;
+    return 9;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 7) {
+    if (section == 8) {
         return 4;
     }
     return 1;
@@ -237,7 +240,13 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             return cell;
         }
             break;
-        case 2:
+        case 1:{
+            WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
+            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            return cell;
+        }
+            break;
+        case 3:
         {
             UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
@@ -250,7 +259,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             return cell;
         }
             break;
-        case 1:
+        case 2:
         {
             WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
 
@@ -260,7 +269,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
         }
             break;
 
-        case 3:{
+        case 4:{
            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
             [cell.contentView removeAllSubviews];
@@ -272,7 +281,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 //            return cell;
         }
             break;
-        case 4:{
+        case 5:{
             //标签：商品描述
             UITableViewCell * cell  = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
             if (!cell) {
@@ -296,14 +305,14 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             return cell;
         }
             break;
-        case 5:{
+        case 6:{
             UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             [cell.contentView removeAllSubviews];
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
             return cell;
         }
             break;
-        case 6:{
+        case 7:{
             WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
             [cell.contentView removeAllSubviews];
             cell.images = self.exchangeModel.rollPlayImages;
@@ -323,23 +332,27 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             return 115;
         }
             break;
-        case 2:
+        case 1:{
+            return (WINDOW_WIDTH - 80)/3+20;
+        }
+            break;
+        case 3:
         {
             return 50;
         }
             break;
-        case 1:
+        case 2:
         {
             return 109;
         }
             break;
-        case 3:
+        case 4:
         {
             //暂时先隐藏
             return 0;
         }
             break;
-        case 4:{
+        case 5:{
             CGFloat rowHeight = [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 80, MAXFLOAT)].height + 40;
             if (rowHeight < 40) {
                 return 40;
@@ -347,12 +360,12 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
             return rowHeight;
         }
             break;
-        case 5:{
+        case 6:{
             //暂时先隐藏
             return 0;
         }
             break;
-        case 6:{
+        case 7:{
             return (WINDOW_WIDTH+10)*self.exchangeModel.rollPlayImages.count;
         }
             break;
@@ -362,7 +375,7 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //评论
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         if (_exchangeModel.commentsModelArray.count<=0) {
             [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
             //跳转评论界面
@@ -384,17 +397,17 @@ static NSString * const goodsRecommended    = @"GoodsRecommended";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 4) {
+    if (section == 5) {
         return 10;
     }
-    if (section == 7) {
+    if (section == 8) {
         return 30;
     }
     return 0.01f;
 }
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if (section == 7) {
+    if (section == 8) {
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 30)];
         label.text = @"推荐商品";
         label.backgroundColor = WhiteColor;

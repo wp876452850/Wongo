@@ -191,13 +191,17 @@
     //判断是否登录
     if ([self determineWhetherTheLogin]) {
         __block UIButton * button = sender;
+        __block NSMutableArray * collectionArray = [NSMutableArray sharedCollectionArray];
+        
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:CollectionAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
+                [collectionArray addObject:gid];
             }];
             return;
         }
         [WPNetWorking createPostRequestMenagerWithUrlString:CollectionCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            [collectionArray removeObject:gid];
             button.selected = !button.selected;
         }];
     }

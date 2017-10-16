@@ -37,8 +37,8 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyl-hU-gVK">
                         <rect key="frame" x="327" y="88" width="19" height="25"/>
                         <constraints>
+                            <constraint firstAttribute="width" constant="19" id="0JP-4y-yFs"/>
                             <constraint firstAttribute="height" constant="25" id="Xtf-gb-ZCe"/>
-                            <constraint firstAttribute="width" constant="19" id="rEW-6q-VxT"/>
                         </constraints>
                         <connections>
                             <action selector="collection:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hpx-CC-lsz"/>
@@ -59,8 +59,18 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUi-Vd-nfS">
+                        <rect key="frame" x="284.5" y="93" width="37.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="lJ7-iX-WUm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="Pyl-hU-gVK" firstAttribute="bottom" secondItem="uUi-Vd-nfS" secondAttribute="bottom" id="0AK-h6-RVl"/>
                     <constraint firstItem="Pyl-hU-gVK" firstAttribute="bottom" secondItem="TMF-ii-ANv" secondAttribute="bottom" id="0a4-Zl-d4e"/>
                     <constraint firstItem="TMF-ii-ANv" firstAttribute="top" secondItem="hZS-cW-XZg" secondAttribute="bottom" constant="24" id="FP8-NZ-RqK"/>
                     <constraint firstItem="5w7-LG-C9h" firstAttribute="top" secondItem="hZS-cW-XZg" secondAttribute="bottom" constant="10" id="Fdx-by-5mL"/>
@@ -72,17 +82,19 @@
                     <constraint firstItem="hZS-cW-XZg" firstAttribute="top" secondItem="tbK-F4-Akc" secondAttribute="bottom" id="h3P-4k-hyE"/>
                     <constraint firstItem="TMF-ii-ANv" firstAttribute="leading" secondItem="5w7-LG-C9h" secondAttribute="trailing" constant="8" id="h76-br-Ejj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Pyl-hU-gVK" secondAttribute="trailing" constant="5" id="o3j-mf-QDc"/>
+                    <constraint firstItem="Pyl-hU-gVK" firstAttribute="leading" secondItem="uUi-Vd-nfS" secondAttribute="trailing" constant="5" id="pvZ-nD-qXI"/>
                     <constraint firstItem="tbK-F4-Akc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="zXR-nX-WrE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="activeLink" destination="hZS-cW-XZg" id="bXq-Nx-t8c"/>
                 <outlet property="collectionButoon" destination="Pyl-hU-gVK" id="HeB-Im-HzD"/>
+                <outlet property="collectionNumber" destination="uUi-Vd-nfS" id="ukZ-zz-nua"/>
                 <outlet property="goodsName" destination="tbK-F4-Akc" id="A5U-pT-Dgr"/>
                 <outlet property="oldNew" destination="TMF-ii-ANv" id="7VM-eC-d3O"/>
                 <outlet property="price" destination="5w7-LG-C9h" id="06H-uC-Rt1"/>
             </connections>
-            <point key="canvasLocation" x="-884.5" y="77"/>
+            <point key="canvasLocation" x="-1094" y="22"/>
         </tableViewCell>
     </objects>
 </document>

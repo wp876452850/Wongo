@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28D099FA71FBF94054BCA0CF /* libPods-Wongo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC6F344167E7C137723A0A1 /* libPods-Wongo.a */; };
+		3D03E0181F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03E0171F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m */; };
 		3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E01F18A7F70084E409 /* TZAssetCell.m */; };
 		3D0772F31F18A7F70084E409 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E21F18A7F70084E409 /* TZAssetModel.m */; };
 		3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E41F18A7F70084E409 /* TZImageManager.m */; };
@@ -950,6 +951,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D03E0161F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+WPSingletonStorageArrays.h"; sourceTree = "<group>"; };
+		3D03E0171F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+WPSingletonStorageArrays.m"; sourceTree = "<group>"; };
 		3D0772DF1F18A7F70084E409 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		3D0772E01F18A7F70084E409 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		3D0772E11F18A7F70084E409 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -5525,6 +5528,8 @@
 				3D883C691F4C14CC00A990D6 /* UIButton+runtime.m */,
 				3DD67D431F468CE200C2359D /* UITextView+runtime.h */,
 				3DD67D441F468CE200C2359D /* UITextView+runtime.m */,
+				3D03E0161F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.h */,
+				3D03E0171F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m */,
 			);
 			name = "Category(类别)";
 			path = "Category(分类)";
@@ -7662,6 +7667,7 @@
 				3D6B18E41F7DDBA3004D8F2B /* WPDreamingDetailRecommendTableViewCell.m in Sources */,
 				8566A7F21E4826C900C08624 /* UIImageView+WPCategory.m in Sources */,
 				85109E6B1E6E8AC1001B5DBC /* WPAddImagesButton.m in Sources */,
+				3D03E0181F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m in Sources */,
 				85187E3A1E8DF19300D3D64F /* MJRefreshConst.m in Sources */,
 				85A6418A1EC54C96008BDD60 /* WPDreamingDirectoryTableViewCell.m in Sources */,
 				3D5C2AD01EFA1F98001D82CA /* LYHomeResponse.m in Sources */,
