@@ -153,6 +153,11 @@
 /**某个造梦计划的参与造梦*/
 #define QueryPlordersOne        HttpHead(@"queryPlordersOne")
 
+/**
+ *  个人中心(我的店铺)
+ */
+/**个人中心(我的店铺) uid*/
+#define QureygoodUid            HttpHead(@"qureygoodUid")
 
 /**
  *  支付
@@ -172,8 +177,9 @@
 #define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
 /**造梦取消点赞*/
 #define IncensesproductDel      HttpHead(@"IncensesproductDel")
-/**查询点赞商品*/
+/**查询点赞商品 uid*/
 #define IncensesUidSelect       HttpHead(@"IncensesUidSelect")
+
 /**
  *  收藏
  */

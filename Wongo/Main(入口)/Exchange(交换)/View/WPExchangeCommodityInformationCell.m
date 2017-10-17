@@ -91,13 +91,8 @@
     _freightNumber = [_model.freight integerValue];
     _collectionNumber.text = [NSString stringWithFormat:@"收藏量:%ld",_freightNumber];
     //判断是否登录
-    if ([self getSelfUid].length>0) {
-        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedCollectionArray]];
-        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", _model.gid];
-        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
-        if (results1.count>0) {
-            _collectionButoon.selected = YES;
-        }
+    if ([NSMutableArray collectionWithinArrayContainsGid:model.gid]) {
+        _collectionButoon.selected = YES;
     }
 }
 //收藏

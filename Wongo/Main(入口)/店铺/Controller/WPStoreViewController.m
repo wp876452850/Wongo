@@ -149,7 +149,7 @@ static NSString * const storeCell       = @"StoreCell";
 -(void)addHeader{
     __weak WPStoreViewController * weakSelf = self;
     self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        //[weakSelf loadNewDatas];
+        [weakSelf loadNewDatas];
     }];
     [self.collectionView.mj_header beginRefreshing];
 }
@@ -165,13 +165,8 @@ static NSString * const storeCell       = @"StoreCell";
 -(void)loadNewDatas{
     __weak WPStoreViewController * weakSelf = self;
     
-    [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"currPage":@(1),@"pubtime":@"sb"} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
-        _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-        for (NSDictionary * item in goods) {
-            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_dataSourceArray addObject:model];
-        }
+    [WPNetWorking createPostRequestMenagerWithUrlString:QureygoodUid params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+
         // 刷新表格
         [weakSelf.collectionView reloadData];
         // 隐藏当前的上拉刷新控件
@@ -183,16 +178,8 @@ static NSString * const storeCell       = @"StoreCell";
 
 -(void)loadMoreDatas{
     __weak WPStoreViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
-        if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
-            [weakSelf.collectionView.mj_footer endRefreshing];
-            return;
-        }
-        for (NSDictionary * item in goods) {
-            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_dataSourceArray addObject:model];
-        }
+    [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        
         // 刷新表格
         [weakSelf.collectionView reloadData];
         // 隐藏当前的上拉刷新控件

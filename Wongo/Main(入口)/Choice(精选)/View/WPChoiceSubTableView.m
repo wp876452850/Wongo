@@ -113,14 +113,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         WPNewDreamingSignUpTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil||![cell isKindOfClass:[WPNewDreamingSignUpTableViewCell class]]) {
             cell = (WPNewDreamingSignUpTableViewCell * )[tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
-        }
-        if (_memoryButtonTag == 2) {
-            cell.isongoing = YES;
-        }
-        else{
-            cell.isongoing = NO;
-        }
-        
+        }        
         WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
         cell.dataSource = [NSMutableArray arrayWithArray:model.listplan];
         cell.browseNumber.text = [NSString stringWithFormat:@"浏览量:%@",model.readview];
@@ -167,24 +160,12 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         return 390 + [string getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 60, MAXFLOAT)].height;
     }
     WPDreamingMainGoodsModel * model = self.dataSourceArray[indexPath.section];
-    
-    if (_memoryButtonTag == 1) {
-        if (_tagOneItemsHeight.count<=indexPath.section) {
-            CGFloat cellHeight = 279 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2.f);
-            [_tagOneItemsHeight addObject:@(cellHeight)];
-            return cellHeight;
-        }else
-            return [_tagOneItemsHeight[indexPath.section] floatValue];
-    }
-    if (_memoryButtonTag == 2) {
-        if (_tagTwoItemsHeight.count<=indexPath.section) {
-             CGFloat cellHeight = 279 + WINDOW_WIDTH * model.listplan.count;
-            [_tagTwoItemsHeight addObject:@(cellHeight)];
-            return cellHeight;
-        }else
-            return [_tagTwoItemsHeight[indexPath.section] floatValue];
-    }
-    return 400;
+    if (_tagOneItemsHeight.count<=indexPath.section) {
+        CGFloat cellHeight = 279 + (WINDOW_WIDTH / 2 - 7.5)*ceilf(model.listplan.count/2.f);
+        [_tagOneItemsHeight addObject:@(cellHeight)];
+        return cellHeight;
+    }else
+        return [_tagOneItemsHeight[indexPath.section] floatValue];
 }
 
 #pragma mark - LoadDatas

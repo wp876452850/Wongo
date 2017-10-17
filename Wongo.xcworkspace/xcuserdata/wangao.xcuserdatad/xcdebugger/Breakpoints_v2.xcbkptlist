@@ -19,13 +19,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/Controller/WPDreamingDetailViewController.m"
-            timestampString = "529488539.138782"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/View/Cell/WPActivityGoodsCollectionViewCell.m"
+            timestampString = "529817478.377186"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "217"
-            endingLineNumber = "217"
-            landmarkName = "-loadDatas"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -35,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "529320709.153537"
+            filePath = "Wongo/Expand(&#x6269;&#x5c55;)/Category(&#x5206;&#x7c7b;)/NSMutableArray+WPSingletonStorageArrays.m"
+            timestampString = "529830464.944982"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
-            landmarkName = "-getAuthWithUserInfoFromSina"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "-loadThumUpDatas"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +51,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "529320714.083039"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
+            timestampString = "529841241.509212"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
-            landmarkName = "-getAuthWithUserInfoFromQQ"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
+            landmarkName = "-loadMoreDatas"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,141 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/View/WPDreamingGoodsIntroductionTableView.m"
-            timestampString = "529470761.122614"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
+            timestampString = "529841242.779522"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/View/WPDreamingGoodsIntroductionTableView.m"
-            timestampString = "529470762.786711"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "-tableView:heightForRowAtIndexPath:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x7528;&#x6237;&#x70b9;&#x8d5e;:&#x5173;&#x6ce8;:&#x6536;&#x85cf;&#x5355;&#x4f8b;&#x6570;&#x7ec4;/WPThumupArray.m"
-            timestampString = "529558611.288459"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "-loadDatas"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x57fa;&#x7c7b;(Base)/WPCollectionBaseViewController.m"
-            timestampString = "529572822.837926"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "-collectionView:numberOfItemsInSection:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x57fa;&#x7c7b;(Base)/WPCollectionBaseViewController.m"
-            timestampString = "529575218.188593"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "-loadNewActivityADatas"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/Search(&#x4e3b;&#x9875;&#x641c;&#x7d22;)/Controller/WPSearchResultsViewController.m"
-            timestampString = "529577230.55856"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "-loadNewDatas"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[WPSearchResultsViewController loadNewDatas]_block_invoke"
-                  moduleName = "Wongo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangao/Desktop/GitHub/Wongo/Wongo/Main(%E5%85%A5%E5%8F%A3)/Home(%E9%A6%96%E9%A1%B5)/Controller/Search(%E4%B8%BB%E9%A1%B5%E6%90%9C%E7%B4%A2)/Controller/WPSearchResultsViewController.m"
-                  timestampString = "529577101.092475"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150"
-                  offsetFromSymbolStart = "592">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[WPSearchResultsViewController loadNewDatas]_block_invoke"
-                  moduleName = "Wongo"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wangao/Desktop/GitHub/Wongo/Wongo/Main(%E5%85%A5%E5%8F%A3)/Home(%E9%A6%96%E9%A1%B5)/Controller/Search(%E4%B8%BB%E9%A1%B5%E6%90%9C%E7%B4%A2)/Controller/WPSearchResultsViewController.m"
-                  timestampString = "529577101.094288"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "150"
-                  endingLineNumber = "150"
-                  offsetFromSymbolStart = "604">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/Search(&#x4e3b;&#x9875;&#x641c;&#x7d22;)/Controller/WPSearchResultsViewController.m"
-            timestampString = "529577230.55856"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-initWithKeyWord:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

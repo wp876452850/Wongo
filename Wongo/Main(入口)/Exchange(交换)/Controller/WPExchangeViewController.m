@@ -173,7 +173,7 @@ static NSString * const recommendCell       = @"recommendCell";
     }];
     
     //获取推荐商品
-    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(2)} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(arc4random()%10+1)} datas:^(NSDictionary *responseObject) {
         NSArray * goods = [responseObject objectForKey:@"goods"];
         weakSelf.goodsRecommendDatas = [NSMutableArray arrayWithCapacity:3];
         for (NSDictionary * item in goods) {

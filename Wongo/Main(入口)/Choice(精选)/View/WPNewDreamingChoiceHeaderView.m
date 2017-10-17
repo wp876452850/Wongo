@@ -9,7 +9,7 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "WPCustomButton.h"
-#define SectionMenuTitles @[@" 成为造梦人",@" 造梦筹备",@" 造梦进行"]
+#define SectionMenuTitles @[@" 成为梦想人",@" 成为造梦人"]
 
 @interface WPNewDreamingChoiceHeaderView ()
 {
@@ -37,16 +37,14 @@
         _menuView.layer.borderColor = WongoGrayColor.CGColor;
         _menuView.backgroundColor = WhiteColor;
         _menuView.backgroundColor = ColorWithRGB(30, 35, 36);
-        for (int i = 0; i < 3; i++) {
-            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];
+        for (int i = 0; i < 2; i++) {
+            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/2+i, 5, WINDOW_WIDTH/2-1, 30)];
             if (i == 0) {
                 menuButton.selected = YES;
                 _memoryButton = menuButton;
-            }
-            if (i<2) {
-                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right, menuButton.y+2.5) moveForPoint:CGPointMake(menuButton.right, menuButton.bottom-2.5) lineColor:WhiteColor];
+                CAShapeLayer * layer = [WPBezierPath drowLineWithMoveToPoint:CGPointMake(menuButton.right+1.5f, menuButton.y+2.5) moveForPoint:CGPointMake(menuButton.right+1.5f, menuButton.bottom-2.5) lineColor:WhiteColor];
                 [_menuView.layer addSublayer:layer];
-            }            
+            }                       
             menuButton.tag = i;
             [menuButton setBackgroundColor:[UIColor clearColor]];
             menuButton.titleLabel.font = [UIFont systemFontOfSize:15];

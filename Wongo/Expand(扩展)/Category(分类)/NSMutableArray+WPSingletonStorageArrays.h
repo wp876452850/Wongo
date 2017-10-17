@@ -12,4 +12,7 @@
 +(instancetype)sharedThumupArray;
 +(instancetype)sharedFocusArray;
 +(instancetype)sharedCollectionArray;
+
++(BOOL)thumUpWithinArrayContainsGid:(NSString *)gid;
++(BOOL)collectionWithinArrayContainsGid:(NSString *)gid;
 @end

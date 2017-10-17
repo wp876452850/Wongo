@@ -21,7 +21,7 @@ static id collectionArray;
             if(thumupArray == nil) {
                 
                 thumupArray = [[self alloc] init];
-                
+                [thumupArray loadThumUpDatas];
             }
         }
     }
@@ -67,7 +67,40 @@ static id collectionArray;
         }
     }];
 }
+-(void)loadThumUpDatas{
+    [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelect params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        
+    }];
+}
 -(void)loadFocusDatas{
+    
+}
 
+
+#pragma mark - predicate
+
++(BOOL)thumUpWithinArrayContainsGid:(NSString *)gid
+{
+    if ([self determineWhetherTheLogin]) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedThumupArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            return YES;
+        }
+    }
+    return NO;
+}
++(BOOL)collectionWithinArrayContainsGid:(NSString *)gid
+{
+    if ([self determineWhetherTheLogin]) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedCollectionArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            return YES;
+        }
+    }
+    return NO;
 }
 @end

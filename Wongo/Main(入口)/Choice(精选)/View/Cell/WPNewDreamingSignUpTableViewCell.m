@@ -47,15 +47,10 @@
     _imagebg.height = 0;
     [self.imagebg removeAllSubviews];
     
-    
     for (int i = 0; i<_dataSource.count; i++) {
         WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:_dataSource[i]];
         UIImageView * imageView = [[UIImageView alloc]init];
-        if (!_isongoing) {
-            imageView.frame = CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1), ImageWidth, ImageWidth);
-        }else{
-            imageView.frame = CGRectMake(0, 5, WINDOW_WIDTH, WINDOW_WIDTH);
-        }
+        imageView.frame = CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1), ImageWidth, ImageWidth);
         imageView.tag = i;
         imageView.userInteractionEnabled = YES;
         imageView.layer.masksToBounds = YES;
