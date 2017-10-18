@@ -150,20 +150,16 @@
 {
     /*
      设置微信的appKey和appSecret
-     [微信平台从U-Share 4/5升级说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_1
      */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx0917670ee24434e4" appSecret:@"0bcd448e908ed9c1bbe94949701db0e1" redirectURL:nil];
     
     /* 设置分享到QQ互联的appID
      * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。
-     100424468.no permission of union id
-     [QQ/QZone平台集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_3
      */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_QQ appKey:@"1106339547"/*设置QQ平台的appID*/  appSecret:@"KEYBrnRPsrMOfPIuIHB" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
     
     /*
      设置新浪的appKey和appSecret
-     [新浪微博集成说明]http://dev.umeng.com/social/ios/%E8%BF%9B%E9%98%B6%E6%96%87%E6%A1%A3#1_2
      */
     [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_Sina appKey:@"2803341004"  appSecret:@"38455b90bb576c0b39dca48c6cfe0ffe" redirectURL:@"https://sns.whalecloud.com/sina2/callback"];
 }
@@ -177,13 +173,15 @@
     }
     return result;
 }
+
 //**********************************************************************************//
 
-//注册用户通知设置
+//  注册用户通知设置
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
     // register to receive notifications
     [application registerForRemoteNotifications];
 }
+
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     NSLog(@"");
 }
@@ -274,19 +272,29 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     
-    if ([url.host isEqualToString:@"safepay"]) {
-        //跳转支付宝钱包进行支付，处理支付结果
-        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-            NSLog(@"result = %@",resultDic);
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAY_DONE" object:resultDic];
-        }];
+    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+    if (!result) {
+        //支付
+        if ([url.host isEqualToString:@"safepay"]) {
+            //跳转支付宝钱包进行支付，处理支付结果
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                NSLog(@"result = %@",resultDic);
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAY_DONE" object:resultDic];
+            }];
+        }
+        return YES;
     }
-    return YES;
+    return result;
+    
 }
 
 // NOTE: 9.0以后使用新API接口
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
 {
+    if(![[UMSocialManager defaultManager] handleOpenURL:url]) {
+        BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
+        return result;
+    }
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {

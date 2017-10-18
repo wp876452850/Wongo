@@ -80,6 +80,7 @@
             [[NSUserDefaults standardUserDefaults] setObject:nil forKey:User_Token];          
             [[RCIM sharedRCIM]disconnect];
             [self.navigationController popViewControllerAnimated:YES];
+            [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
         }];
         UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
         [alert addAction:request];

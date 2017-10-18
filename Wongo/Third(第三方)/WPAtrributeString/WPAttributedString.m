@@ -32,10 +32,8 @@
     NSString *urlStr  = nil;
     NSMutableAttributedString *attStr = nil;
     
-    
     if (rangeArr)
     {
-        
         //网页标识
         if (urlName==nil || [urlName isEqualToString:@""])
         {
@@ -61,17 +59,13 @@
                 }
                 
                 [attStr addAttributes:attrDict range:range];
-                
             }
-            
         }else
         {
             
             NSMutableArray *attrDict_Arr = [NSMutableArray array];
             NSMutableArray *urlRange_Arr = [NSMutableArray array];
             NSArray *url_Arr = [WPMatching urlArrWithString:string];
-            
-            
             
             NSString *sub_str = string;
             NSInteger index = 0;
@@ -222,8 +216,12 @@
     NSTextAttachment *textAttachment = [[NSTextAttachment alloc]init];
     
     textAttachment.image = image;
-    
-    textAttachment.bounds = CGRectMake(imageBounds.origin.x, imageBounds.origin.y, image.size.width, image.size.height);
+    if (imageBounds.size.width<=0||imageBounds.size.height<=0) {
+        textAttachment.bounds = CGRectMake(imageBounds.origin.x, imageBounds.origin.y, image.size.width, image.size.height);
+    }
+    else{
+        textAttachment.bounds = imageBounds;
+    }
     
     NSAttributedString *att_str = [NSAttributedString attributedStringWithAttachment:textAttachment];
     

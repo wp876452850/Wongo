@@ -243,12 +243,12 @@
 //新浪
 - (void)getAuthWithUserInfoFromSina
 {
+    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
             NSLog(@"error --- %@",error);
         } else {
             UMSocialUserInfoResponse *resp = result;
-            
             // 授权信息
             NSLog(@"Sina uid: %@", resp.uid);
             NSLog(@"Sina accessToken: %@", resp.accessToken);
@@ -258,8 +258,7 @@
             // 用户信息
             NSLog(@"Sina name: %@", resp.name);
             NSLog(@"Sina iconurl: %@", resp.iconurl);
-            NSLog(@"Sina gender: %@", resp.unionGender);
-            
+            NSLog(@"Sina gender: %@", resp.unionGender);            
             // 第三方平台SDK源数据
             NSLog(@"Sina originalResponse: %@", resp.originalResponse);
         }
@@ -268,12 +267,12 @@
 //QQ
 - (void)getAuthWithUserInfoFromQQ
 {
+    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
             
         } else {
             UMSocialUserInfoResponse *resp = result;
-            
             // 授权信息
             NSLog(@"QQ uid: %@", resp.uid);
             NSLog(@"QQ openid: %@", resp.openid);
@@ -294,6 +293,7 @@
 //微信
 - (void)getAuthWithUserInfoFromWechat
 {
+    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
             
