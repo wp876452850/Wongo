@@ -88,7 +88,7 @@
 //上传图片
 +(void)uploadedMorePhotosWithUrlString:(NSString *)urlString image:(UIImage *)image params:(NSDictionary *)params{
     
-       AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];//初始化请求对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];//初始化请求对象
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//设置服务器允许的请求格式内容
     //上传图片/文字，只能同POST
     

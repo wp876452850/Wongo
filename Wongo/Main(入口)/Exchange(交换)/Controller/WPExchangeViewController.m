@@ -179,7 +179,6 @@ static NSString * const recommendCell       = @"recommendCell";
         for (NSDictionary * item in goods) {
             WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
             [_goodsRecommendDatas addObject:model];
-            
         }}];
     
     [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeDetailGoodsUrl params:self.params datas:^(NSDictionary *responseObject) {

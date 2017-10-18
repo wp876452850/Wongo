@@ -245,7 +245,7 @@
 {
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
-            
+            NSLog(@"error --- %@",error);
         } else {
             UMSocialUserInfoResponse *resp = result;
             

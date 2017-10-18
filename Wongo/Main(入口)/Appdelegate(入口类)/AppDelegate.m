@@ -10,6 +10,9 @@
 #import "WPTabBarController.h"
 #import "WPGuideViewController.h"
 #import "WPUserIntroductionModel.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialWechatHandler.h"
 
 #define RONGCLOUD_IM_TOKEN  @"26yDFgVPSX8MPykDOdP86cpJiC88oLvizHSm/MXqzhfDeVfnPN76WyU+D/a3E1okCHM0fB1d5RVZjF4Wq3nO2Q=="//Token
 /**友盟appkey*/
@@ -116,8 +119,14 @@
     [self configUSharePlatforms];
     
     [self confitUShareSettings];
+    
+#pragma mark - 第三方登录
+
+    
     return YES;
 }
+
+
 
 - (void)confitUShareSettings
 {

@@ -18,7 +18,6 @@
     dispatch_group_t group = dispatch_group_create();
     
     for (NSInteger i = 0; i < images.count; i++) {
-        
         dispatch_sync(dispatch_queue_create("queue", DISPATCH_QUEUE_CONCURRENT), ^{
             [WPNetWorking uploadedMorePhotosWithUrlString:urlString image:images[i] params:params];
         });

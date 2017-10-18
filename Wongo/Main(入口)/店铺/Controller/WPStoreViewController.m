@@ -12,6 +12,8 @@
 #import "WPStroeDreamingCollectionViewCell.h"
 #import "LYConversationController.h"
 #import "WPUserIntroductionModel.h"
+#import "WPStoreModel.h"
+#import "WPNewExchangeModel.h"
 
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 
@@ -19,7 +21,6 @@
 
 {
     NSInteger                   _menuTag;
-    WPUserIntroductionModel *   _model;
 }
 
 @property (nonatomic,strong)NSString                    * uid;
@@ -32,7 +33,9 @@
 
 @property (nonatomic,strong)UIView                      * bottomView;
 
-@property (nonatomic,strong) UIButton                   * backButton;
+@property (nonatomic,strong)UIButton                    * backButton;
+
+@property (nonatomic,strong)WPStoreModel                * storeModel;
 @end
 
 @implementation WPStoreViewController
@@ -63,7 +66,7 @@ static NSString * const storeCell       = @"StoreCell";
 }
 -(WPStoreUserInformationView *)storeUserInformationView{
     if (!_storeUserInformationView) {
-        _storeUserInformationView = [[WPStoreUserInformationView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) uid:self.uid];
+        _storeUserInformationView = [[WPStoreUserInformationView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) storeModel:_storeModel];
         __block WPStoreViewController * weakSelf = self;
         [_storeUserInformationView getmuneTagWithBlock:^(NSInteger tag) {
             _menuTag = tag;
@@ -81,14 +84,11 @@ static NSString * const storeCell       = @"StoreCell";
         //collectionView
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
-        
         [_collectionView registerNib:[UINib nibWithNibName:@"WPStroeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
         
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.delegate   = self;
         _collectionView.dataSource = self;
-        [_collectionView addSubview:self.storeUserInformationView];
-        
     }
     return _collectionView;
 }
@@ -99,7 +99,6 @@ static NSString * const storeCell       = @"StoreCell";
         self.automaticallyAdjustsScrollViewInsets = NO;
         [self.view addSubview:self.collectionView];
         [self.view addSubview:self.backButton];
-        //[self addFooter];
         [self addHeader];
         [self showShoppingBottomView];
     }
@@ -110,14 +109,16 @@ static NSString * const storeCell       = @"StoreCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
-    return _dataSourceArray.count;
+    if (_menuTag == 0) {
+        return _storeModel.listg.count;
+    }
+    return _storeModel.listm.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (_menuTag == 0) {
         WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-        //cell.model = _dataSourceArray[indexPath.row];
+        cell.model = [WPNewExchangeModel mj_objectWithKeyValues:_storeModel.listg[indexPath.row]];
         return cell;
     }
     WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
@@ -141,7 +142,7 @@ static NSString * const storeCell       = @"StoreCell";
 
 //设置边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(WINDOW_WIDTH - 40, 5, 10, 5);
+    return UIEdgeInsetsMake(WINDOW_WIDTH - 30, 5, 10, 5);
 }
 
 
@@ -154,19 +155,11 @@ static NSString * const storeCell       = @"StoreCell";
     [self.collectionView.mj_header beginRefreshing];
 }
 
--(void)addFooter{
-    __weak WPStoreViewController * weakSelf = self;
-    self.collectionView.mj_footer = [MJRefreshBackGifFooter footerWithRefreshingBlock:^{
-        [weakSelf loadMoreDatas];
-    }];
-    [self.collectionView.mj_footer beginRefreshing];
-}
-
 -(void)loadNewDatas{
     __weak WPStoreViewController * weakSelf = self;
-    
-    [WPNetWorking createPostRequestMenagerWithUrlString:QureygoodUid params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-
+    [WPNetWorking createPostRequestMenagerWithUrlString:QureygoodUid params:@{@"uid":weakSelf.uid} datas:^(NSDictionary *responseObject) {
+        weakSelf.storeModel = [WPStoreModel mj_objectWithKeyValues:responseObject];
+        [weakSelf.collectionView addSubview:weakSelf.storeUserInformationView];
         // 刷新表格
         [weakSelf.collectionView reloadData];
         // 隐藏当前的上拉刷新控件
@@ -175,20 +168,6 @@ static NSString * const storeCell       = @"StoreCell";
         [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
-
--(void)loadMoreDatas{
-    __weak WPStoreViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        
-        // 刷新表格
-        [weakSelf.collectionView reloadData];
-        // 隐藏当前的上拉刷新控件
-        [weakSelf.collectionView.mj_footer endRefreshing];
-    } failureBlock:^{
-        [weakSelf.collectionView.mj_footer endRefreshing];
-    }];
-}
-
 #pragma mark - 展示底部视图样式
 -(void)showShoppingBottomView{
     [self.view addSubview:self.bottomView];
@@ -198,8 +177,10 @@ static NSString * const storeCell       = @"StoreCell";
     collect.frame           = CGRectMake(chat.right, 0, (WINDOW_WIDTH - chat.width), 50);
     collect.backgroundColor = ColorWithRGB(105, 152, 192);
     [collect setTitleColor:WhiteColor forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"关注"] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, 2)] insertImage:[UIImage imageNamed:@"storecollect_normal"] atIndex:0 imageBounds:CGRectZero] forState:UIControlStateNormal];
-    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@"已关注" ] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, 3)] insertImage:[UIImage imageNamed:@"storecollect_select"] atIndex:0 imageBounds:CGRectZero]  forState:UIControlStateSelected];
+    
+
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@" 关注"] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, @" 关注".length)] insertImage:[UIImage imageNamed:@"storecollect_normal"] atIndex:0 imageBounds:CGRectMake(0, -3, 0, 0)] forState:UIControlStateNormal];
+    [collect setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@" 已关注" ] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, @" 已关注".length)] insertImage:[UIImage imageNamed:@"storecollect_select"] atIndex:0 imageBounds:CGRectMake(0, -3, 0, 0)]  forState:UIControlStateSelected];
 
     [collect addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -212,14 +193,14 @@ static NSString * const storeCell       = @"StoreCell";
     chat.backgroundColor = ColorWithRGB(45, 102, 139);
     [chat addTarget:self action:@selector(goChat) forControlEvents:UIControlEventTouchUpInside];
     [self.bottomView addSubview:chat];
-    [chat setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+    [chat setAttributedTitle:[WPAttributedString attributedStringWithAttributedString:[WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:@" 联系用户"] andColor:WhiteColor font:[UIFont systemFontOfSize:16.f] range:NSMakeRange(0, @" 联系用户".length)] insertImage:[UIImage imageNamed:@"chat"] atIndex:0 imageBounds:CGRectMake(0, -5, 0, 0)] forState:UIControlStateNormal];
     return chat;
 }
 
 -(void)goChat{
     if ([self determineWhetherTheLogin]) {
         LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.uid];
-        vc.title = _model.uname;
+        vc.title = _storeModel.uname;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

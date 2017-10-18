@@ -35,13 +35,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
+            timestampString = "529925156.860665"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-goChat"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
             filePath = "Wongo/Expand(&#x6269;&#x5c55;)/Category(&#x5206;&#x7c7b;)/NSMutableArray+WPSingletonStorageArrays.m"
-            timestampString = "529830464.944982"
+            timestampString = "529925133.491898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "-loadThumUpDatas"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "+sharedThumupArray"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -51,13 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
-            timestampString = "529841241.509212"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
+            timestampString = "529925771.533595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "-loadMoreDatas"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "-getAuthWithUserInfoFromSina"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +83,45 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
-            timestampString = "529841242.779522"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
+            timestampString = "529925879.851553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "-loadNewDatas"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-getAuthWithUserInfoFromSina"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
+            timestampString = "529925903.20144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "-getAuthWithUserInfoFromQQ"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
+            timestampString = "529925903.795076"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "-getAuthWithUserInfoFromQQ"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

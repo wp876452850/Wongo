@@ -12,8 +12,10 @@
 static id thumupArray;
 static id focusArray;
 static id collectionArray;
+static const NSString * uid;
 
 +(instancetype)sharedThumupArray{
+    
     if (thumupArray == nil) {
         
         @synchronized(self) {
@@ -24,6 +26,10 @@ static id collectionArray;
                 [thumupArray loadThumUpDatas];
             }
         }
+    }
+    if (![uid isEqualToString:[uid getSelfUid]]) {
+        thumupArray = [[self alloc] init];
+        [thumupArray loadThumUpDatas];
     }
     return thumupArray;
 }
@@ -39,6 +45,10 @@ static id collectionArray;
             }
         }
     }
+    if (![uid isEqualToString:[uid getSelfUid]]) {
+        focusArray = [[self alloc] init];
+        [focusArray loadFocusDatas];
+    }
     return focusArray;
 }
 +(instancetype)sharedCollectionArray{
@@ -52,6 +62,10 @@ static id collectionArray;
                 [collectionArray loadCollectionDatas];
             }
         }
+    }
+    if (![uid isEqualToString:[uid getSelfUid]]) {
+        collectionArray = [[self alloc] init];
+        [collectionArray loadCollectionDatas];
     }
     return collectionArray;
 }

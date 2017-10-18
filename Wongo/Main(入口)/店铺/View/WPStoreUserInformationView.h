@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPStoreModel.h"
 
 typedef void(^WPStoreUserInformationBlock)(NSInteger tag);
 @interface WPStoreUserInformationView : UIView
 
--(instancetype)initWithFrame:(CGRect)frame uid:(NSString *)uid;
+-(instancetype)initWithFrame:(CGRect)frame storeModel:(WPStoreModel *)storeModel;
 
 -(void)getmuneTagWithBlock:(WPStoreUserInformationBlock)block;
 

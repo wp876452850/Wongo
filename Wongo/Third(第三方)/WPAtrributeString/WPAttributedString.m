@@ -223,7 +223,7 @@
     
     textAttachment.image = image;
     
-    textAttachment.bounds = imageBounds;
+    textAttachment.bounds = CGRectMake(imageBounds.origin.x, imageBounds.origin.y, image.size.width, image.size.height);
     
     NSAttributedString *att_str = [NSAttributedString attributedStringWithAttachment:textAttachment];
     

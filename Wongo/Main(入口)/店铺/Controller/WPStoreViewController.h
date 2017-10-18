@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface WPStoreViewController : UIViewController
 
 -(instancetype)initWithUid:(NSString *)uid;

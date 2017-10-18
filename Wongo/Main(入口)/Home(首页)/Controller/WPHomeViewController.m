@@ -434,6 +434,7 @@ static NSString * contentOffset = @"contentOffset";
 
 
 #pragma mark - 点击事件
+//广告页点击跳转活动页
 -(void)jumpAdvertisingLink{
     [_advertisingView removeFromSuperview];
     [_homeHeaderView tapImage:_homeHeaderView.activityA];

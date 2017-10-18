@@ -497,8 +497,8 @@ static NSString * const recommendCell   = @"recommendCell";
 
 -(void)goChat{
     if ([self determineWhetherTheLogin]) {
-        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.model.userModel.uid];
-        vc.title = self.model.userModel.uname;
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.model.uid];
+        vc.title = self.model.uname;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
