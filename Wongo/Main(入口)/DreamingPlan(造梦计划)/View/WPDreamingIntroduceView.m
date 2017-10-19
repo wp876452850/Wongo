@@ -155,6 +155,7 @@
         self.tableView.dataSourceArray = dataSource;
     }
 }
+
 #pragma mark 界面跳转
 -(void)goNextViewController{
     WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]initWithProid:self.vc.model.plid];
@@ -170,6 +171,5 @@
         [self.vc.navigationController pushViewController:vc animated:YES];
     }
 }
-
 
 @end

@@ -82,9 +82,11 @@ static const NSString * uid;
     }];
 }
 -(void)loadThumUpDatas{
-    [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelect params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        
-    }];
+    if ([self getSelfUid]) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelect params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            
+        }];
+    }
 }
 -(void)loadFocusDatas{
     
@@ -95,7 +97,7 @@ static const NSString * uid;
 
 +(BOOL)thumUpWithinArrayContainsGid:(NSString *)gid
 {
-    if ([self determineWhetherTheLogin]) {
+    if ([self getSelfUid]) {
         NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedThumupArray]];
         NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
         NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
@@ -107,7 +109,7 @@ static const NSString * uid;
 }
 +(BOOL)collectionWithinArrayContainsGid:(NSString *)gid
 {
-    if ([self determineWhetherTheLogin]) {
+    if ([self getSelfUid]) {
         NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedCollectionArray]];
         NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
         NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
