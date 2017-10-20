@@ -10,6 +10,9 @@
 
 @class ZYPhotoModel;
 @interface ZYPhotoCollectionView : UICollectionView
+
+
+@property(nonatomic, strong)UICollectionViewFlowLayout *layout;
 /**
  *  传入图片模型数组 会自动根据数组的数量 来布局展示图片
  

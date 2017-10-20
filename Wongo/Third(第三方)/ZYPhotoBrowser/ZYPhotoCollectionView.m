@@ -17,7 +17,7 @@
 #import "SDImageCache.h"
 
 @interface ZYPhotoCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, HZPhotoBrowserDelegate>
-@property(nonatomic, strong)UICollectionViewFlowLayout *layout;
+
 @property (nonatomic, assign) CGFloat width;
 @end
 
@@ -42,23 +42,7 @@
 
 #pragma mark - 布局 小图时展示图片控件的大小
 -(void)getLayoutSizeWithWidth:(CGFloat)width {
-    self.layout.itemSize = CGSizeMake(80, 80);
 
-    /*
-     ps: 如果是利用约束来布局的 则在这里利用约束固定 展示控件ZYPhotoCollectionView的高度 在这里约束控件的高度，在外界约束控件的top.left.width即可     把下面的frame两行代码注释掉。换上约束heigth的代码。
-     
-        English:
-        If it is used to layout here use constraints fixed display ZYPhotoCollectionView height control The height of the constrained control here, in the external constraint control top. Left. Width can frame the following two lines of code commented out.Change constraints heigth of the code.
-     */
-    //动态计算出控件的实际高度
-    //English: actual height of the calculated dynamic control
-    CGFloat height = 80;
-
-    //更新控件的高度
-    //English: The actual height of the calculated dynamic control
-    CGRect frame = self.frame;
-    self.frame = CGRectMake(frame.origin.x, frame.origin.y, width, height);
-    [self reloadData];
 }
 
 

@@ -42,6 +42,7 @@
 -(ZYPhotoCollectionView *)collectionView{
     if (!_collectionView) {
         _collectionView = [[ZYPhotoCollectionView alloc]initWithFrame:CGRectMake(10, 20, WINDOW_WIDTH-20, 80)];
+        _collectionView.layout.itemSize = CGSizeMake(80, 80);
     }
     return _collectionView;
 }

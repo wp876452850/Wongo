@@ -30,7 +30,7 @@
     } else {
         self.GIFLable.hidden = YES;
     }
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoModel.smallImageURL] placeholderImage:ZYPlaceholderImage];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoModel.smallImageURL] placeholderImage:[UIImage imageNamed:@"loadimage"]];
 }
 
 -(UIImageView *)imageView {
