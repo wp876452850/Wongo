@@ -421,6 +421,22 @@
 		3DD67D4A1F46D3CE00C2359D /* WPNewDreamingNotSignUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DD67D481F46D3CE00C2359D /* WPNewDreamingNotSignUpTableViewCell.xib */; };
 		3DDB02D11F95D93A00224892 /* WPStoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB02D01F95D93A00224892 /* WPStoreModel.m */; };
 		3DDB02D41F95E0DE00224892 /* WPStroeDreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDB02D31F95E0DE00224892 /* WPStroeDreamingModel.m */; };
+		3DE9ED8E1F9984DD00C01310 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED6E1F9984DD00C01310 /* MKAnnotationView+WebCache.m */; };
+		3DE9ED8F1F9984DD00C01310 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED701F9984DD00C01310 /* NSData+ImageContentType.m */; };
+		3DE9ED901F9984DD00C01310 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED721F9984DD00C01310 /* SDImageCache.m */; };
+		3DE9ED911F9984DD00C01310 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED741F9984DD00C01310 /* SDWebImageCompat.m */; };
+		3DE9ED921F9984DD00C01310 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED761F9984DD00C01310 /* SDWebImageDecoder.m */; };
+		3DE9ED931F9984DD00C01310 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED781F9984DD00C01310 /* SDWebImageDownloader.m */; };
+		3DE9ED941F9984DD00C01310 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED7A1F9984DD00C01310 /* SDWebImageDownloaderOperation.m */; };
+		3DE9ED951F9984DD00C01310 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED7C1F9984DD00C01310 /* SDWebImageManager.m */; };
+		3DE9ED961F9984DD00C01310 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED7F1F9984DD00C01310 /* SDWebImagePrefetcher.m */; };
+		3DE9ED971F9984DD00C01310 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED811F9984DD00C01310 /* UIButton+WebCache.m */; };
+		3DE9ED981F9984DD00C01310 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED831F9984DD00C01310 /* UIImage+GIF.m */; };
+		3DE9ED991F9984DD00C01310 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED851F9984DD00C01310 /* UIImage+MultiFormat.m */; };
+		3DE9ED9A1F9984DD00C01310 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED871F9984DD00C01310 /* UIImage+WebP.m */; };
+		3DE9ED9B1F9984DD00C01310 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED891F9984DD00C01310 /* UIImageView+HighlightedWebCache.m */; };
+		3DE9ED9C1F9984DD00C01310 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED8B1F9984DD00C01310 /* UIImageView+WebCache.m */; };
+		3DE9ED9D1F9984DD00C01310 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE9ED8D1F9984DD00C01310 /* UIView+WebCacheOperation.m */; };
 		3DF746131F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF746071F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m */; };
 		3DF746141F3426FB00A23B52 /* WPCommentsSectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF746081F3426FB00A23B52 /* WPCommentsSectionTableViewCell.xib */; };
 		3DF746151F3426FB00A23B52 /* WPProductDetailUserStoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF7460A1F3426FB00A23B52 /* WPProductDetailUserStoreTableViewCell.m */; };
@@ -872,22 +888,6 @@
 		85D595591E5C1C6F00AB5869 /* WPSearchGoodsChildController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85D595581E5C1C6F00AB5869 /* WPSearchGoodsChildController.m */; };
 		85DA3AD91EA0CE320075ABB6 /* WPEnjoyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DA3AD81EA0CE320075ABB6 /* WPEnjoyViewController.m */; };
 		85E8B8FE1EC9900E00488853 /* WPDreamingOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85E8B8FD1EC9900D00488853 /* WPDreamingOrderViewController.m */; };
-		85F08E8C1E482E3E00A07451 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E6C1E482E3E00A07451 /* MKAnnotationView+WebCache.m */; };
-		85F08E8D1E482E3E00A07451 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E6E1E482E3E00A07451 /* NSData+ImageContentType.m */; };
-		85F08E8E1E482E3E00A07451 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E701E482E3E00A07451 /* SDImageCache.m */; };
-		85F08E8F1E482E3E00A07451 /* SDWebImageCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E721E482E3E00A07451 /* SDWebImageCompat.m */; };
-		85F08E901E482E3E00A07451 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E741E482E3E00A07451 /* SDWebImageDecoder.m */; };
-		85F08E911E482E3E00A07451 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E761E482E3E00A07451 /* SDWebImageDownloader.m */; };
-		85F08E921E482E3E00A07451 /* SDWebImageDownloaderOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E781E482E3E00A07451 /* SDWebImageDownloaderOperation.m */; };
-		85F08E931E482E3E00A07451 /* SDWebImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E7A1E482E3E00A07451 /* SDWebImageManager.m */; };
-		85F08E941E482E3F00A07451 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E7D1E482E3E00A07451 /* SDWebImagePrefetcher.m */; };
-		85F08E951E482E3F00A07451 /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E7F1E482E3E00A07451 /* UIButton+WebCache.m */; };
-		85F08E961E482E3F00A07451 /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E811E482E3E00A07451 /* UIImage+GIF.m */; };
-		85F08E971E482E3F00A07451 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E831E482E3E00A07451 /* UIImage+MultiFormat.m */; };
-		85F08E981E482E3F00A07451 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E851E482E3E00A07451 /* UIImage+WebP.m */; };
-		85F08E991E482E3F00A07451 /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E871E482E3E00A07451 /* UIImageView+HighlightedWebCache.m */; };
-		85F08E9A1E482E3F00A07451 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E891E482E3E00A07451 /* UIImageView+WebCache.m */; };
-		85F08E9B1E482E3F00A07451 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F08E8B1E482E3E00A07451 /* UIView+WebCacheOperation.m */; };
 		85F08E9E1E48475800A07451 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F08E9D1E48475800A07451 /* AssetsLibrary.framework */; };
 		85F08EA01E48475F00A07451 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F08E9F1E48475F00A07451 /* AudioToolbox.framework */; };
 		85F08EA21E48476500A07451 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F08EA11E48476500A07451 /* AVFoundation.framework */; };
@@ -1489,6 +1489,39 @@
 		3DDB02D01F95D93A00224892 /* WPStoreModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStoreModel.m; sourceTree = "<group>"; };
 		3DDB02D21F95E0DE00224892 /* WPStroeDreamingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPStroeDreamingModel.h; sourceTree = "<group>"; };
 		3DDB02D31F95E0DE00224892 /* WPStroeDreamingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPStroeDreamingModel.m; sourceTree = "<group>"; };
+		3DE9ED6D1F9984DD00C01310 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
+		3DE9ED6E1F9984DD00C01310 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
+		3DE9ED6F1F9984DD00C01310 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
+		3DE9ED701F9984DD00C01310 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
+		3DE9ED711F9984DD00C01310 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
+		3DE9ED721F9984DD00C01310 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
+		3DE9ED731F9984DD00C01310 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
+		3DE9ED741F9984DD00C01310 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
+		3DE9ED751F9984DD00C01310 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
+		3DE9ED761F9984DD00C01310 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
+		3DE9ED771F9984DD00C01310 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
+		3DE9ED781F9984DD00C01310 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
+		3DE9ED791F9984DD00C01310 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
+		3DE9ED7A1F9984DD00C01310 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
+		3DE9ED7B1F9984DD00C01310 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
+		3DE9ED7C1F9984DD00C01310 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
+		3DE9ED7D1F9984DD00C01310 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
+		3DE9ED7E1F9984DD00C01310 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
+		3DE9ED7F1F9984DD00C01310 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
+		3DE9ED801F9984DD00C01310 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
+		3DE9ED811F9984DD00C01310 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
+		3DE9ED821F9984DD00C01310 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
+		3DE9ED831F9984DD00C01310 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
+		3DE9ED841F9984DD00C01310 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
+		3DE9ED851F9984DD00C01310 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
+		3DE9ED861F9984DD00C01310 /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		3DE9ED871F9984DD00C01310 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		3DE9ED881F9984DD00C01310 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
+		3DE9ED891F9984DD00C01310 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
+		3DE9ED8A1F9984DD00C01310 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
+		3DE9ED8B1F9984DD00C01310 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		3DE9ED8C1F9984DD00C01310 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
+		3DE9ED8D1F9984DD00C01310 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		3DF746061F3426FB00A23B52 /* WPCommentsSectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCommentsSectionTableViewCell.h; sourceTree = "<group>"; };
 		3DF746071F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPCommentsSectionTableViewCell.m; sourceTree = "<group>"; };
 		3DF746081F3426FB00A23B52 /* WPCommentsSectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPCommentsSectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -2263,39 +2296,6 @@
 		85DA3AD81EA0CE320075ABB6 /* WPEnjoyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPEnjoyViewController.m; sourceTree = "<group>"; };
 		85E8B8FC1EC9900D00488853 /* WPDreamingOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPDreamingOrderViewController.h; sourceTree = "<group>"; };
 		85E8B8FD1EC9900D00488853 /* WPDreamingOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPDreamingOrderViewController.m; sourceTree = "<group>"; };
-		85F08E6B1E482E3E00A07451 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
-		85F08E6C1E482E3E00A07451 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
-		85F08E6D1E482E3E00A07451 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
-		85F08E6E1E482E3E00A07451 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
-		85F08E6F1E482E3E00A07451 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
-		85F08E701E482E3E00A07451 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
-		85F08E711E482E3E00A07451 /* SDWebImageCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
-		85F08E721E482E3E00A07451 /* SDWebImageCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
-		85F08E731E482E3E00A07451 /* SDWebImageDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDecoder.h; sourceTree = "<group>"; };
-		85F08E741E482E3E00A07451 /* SDWebImageDecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDecoder.m; sourceTree = "<group>"; };
-		85F08E751E482E3E00A07451 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
-		85F08E761E482E3E00A07451 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
-		85F08E771E482E3E00A07451 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
-		85F08E781E482E3E00A07451 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
-		85F08E791E482E3E00A07451 /* SDWebImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
-		85F08E7A1E482E3E00A07451 /* SDWebImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
-		85F08E7B1E482E3E00A07451 /* SDWebImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
-		85F08E7C1E482E3E00A07451 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
-		85F08E7D1E482E3E00A07451 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
-		85F08E7E1E482E3E00A07451 /* UIButton+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
-		85F08E7F1E482E3E00A07451 /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
-		85F08E801E482E3E00A07451 /* UIImage+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
-		85F08E811E482E3E00A07451 /* UIImage+GIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
-		85F08E821E482E3E00A07451 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
-		85F08E831E482E3E00A07451 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
-		85F08E841E482E3E00A07451 /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
-		85F08E851E482E3E00A07451 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
-		85F08E861E482E3E00A07451 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
-		85F08E871E482E3E00A07451 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
-		85F08E881E482E3E00A07451 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
-		85F08E891E482E3E00A07451 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		85F08E8A1E482E3E00A07451 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
-		85F08E8B1E482E3E00A07451 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		85F08E9D1E48475800A07451 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		85F08E9F1E48475F00A07451 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		85F08EA11E48476500A07451 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -4101,6 +4101,46 @@
 			path = "WPCacheCellHeight(缓存Cell高,自适应高度)";
 			sourceTree = "<group>";
 		};
+		3DE9ED6C1F9984DD00C01310 /* SDWebImage */ = {
+			isa = PBXGroup;
+			children = (
+				3DE9ED6D1F9984DD00C01310 /* MKAnnotationView+WebCache.h */,
+				3DE9ED6E1F9984DD00C01310 /* MKAnnotationView+WebCache.m */,
+				3DE9ED6F1F9984DD00C01310 /* NSData+ImageContentType.h */,
+				3DE9ED701F9984DD00C01310 /* NSData+ImageContentType.m */,
+				3DE9ED711F9984DD00C01310 /* SDImageCache.h */,
+				3DE9ED721F9984DD00C01310 /* SDImageCache.m */,
+				3DE9ED731F9984DD00C01310 /* SDWebImageCompat.h */,
+				3DE9ED741F9984DD00C01310 /* SDWebImageCompat.m */,
+				3DE9ED751F9984DD00C01310 /* SDWebImageDecoder.h */,
+				3DE9ED761F9984DD00C01310 /* SDWebImageDecoder.m */,
+				3DE9ED771F9984DD00C01310 /* SDWebImageDownloader.h */,
+				3DE9ED781F9984DD00C01310 /* SDWebImageDownloader.m */,
+				3DE9ED791F9984DD00C01310 /* SDWebImageDownloaderOperation.h */,
+				3DE9ED7A1F9984DD00C01310 /* SDWebImageDownloaderOperation.m */,
+				3DE9ED7B1F9984DD00C01310 /* SDWebImageManager.h */,
+				3DE9ED7C1F9984DD00C01310 /* SDWebImageManager.m */,
+				3DE9ED7D1F9984DD00C01310 /* SDWebImageOperation.h */,
+				3DE9ED7E1F9984DD00C01310 /* SDWebImagePrefetcher.h */,
+				3DE9ED7F1F9984DD00C01310 /* SDWebImagePrefetcher.m */,
+				3DE9ED801F9984DD00C01310 /* UIButton+WebCache.h */,
+				3DE9ED811F9984DD00C01310 /* UIButton+WebCache.m */,
+				3DE9ED821F9984DD00C01310 /* UIImage+GIF.h */,
+				3DE9ED831F9984DD00C01310 /* UIImage+GIF.m */,
+				3DE9ED841F9984DD00C01310 /* UIImage+MultiFormat.h */,
+				3DE9ED851F9984DD00C01310 /* UIImage+MultiFormat.m */,
+				3DE9ED861F9984DD00C01310 /* UIImage+WebP.h */,
+				3DE9ED871F9984DD00C01310 /* UIImage+WebP.m */,
+				3DE9ED881F9984DD00C01310 /* UIImageView+HighlightedWebCache.h */,
+				3DE9ED891F9984DD00C01310 /* UIImageView+HighlightedWebCache.m */,
+				3DE9ED8A1F9984DD00C01310 /* UIImageView+WebCache.h */,
+				3DE9ED8B1F9984DD00C01310 /* UIImageView+WebCache.m */,
+				3DE9ED8C1F9984DD00C01310 /* UIView+WebCacheOperation.h */,
+				3DE9ED8D1F9984DD00C01310 /* UIView+WebCacheOperation.m */,
+			);
+			path = SDWebImage;
+			sourceTree = "<group>";
+		};
 		3DF746041F3426FB00A23B52 /* Detail(商品详情页) */ = {
 			isa = PBXGroup;
 			children = (
@@ -5581,6 +5621,7 @@
 		8566A7221E4824EF00C08624 /* Third(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				3DE9ED6C1F9984DD00C01310 /* SDWebImage */,
 				3D8BCD481F68DF7C00932408 /* WPCacheCellHeight(缓存Cell高,自适应高度) */,
 				3D76D9491F67B806005A6080 /* FMDB */,
 				3D76D9281F67B5CA005A6080 /* JFCityViewController(城市选择器-定位) */,
@@ -5597,7 +5638,6 @@
 				85187DFC1E8DF19300D3D64F /* MJRefresh(刷新) */,
 				851819031E53E65600AF012A /* SMVerticalSegmentedControl(分段菜单) */,
 				85F08F041E48504C00A07451 /* SDCycleScrollView(无限滚播) */,
-				85F08E6A1E482E3E00A07451 /* SDWebImage(图片缓存) */,
 				8566A7281E48265C00C08624 /* CityPickView(城市选择-地址) */,
 				8566A72C1E48265C00C08624 /* Masonry(自动布局) */,
 				8566A7881E48265C00C08624 /* SKFCamera(自定义相机) */,
@@ -6643,47 +6683,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		85F08E6A1E482E3E00A07451 /* SDWebImage(图片缓存) */ = {
-			isa = PBXGroup;
-			children = (
-				85F08E6B1E482E3E00A07451 /* MKAnnotationView+WebCache.h */,
-				85F08E6C1E482E3E00A07451 /* MKAnnotationView+WebCache.m */,
-				85F08E6D1E482E3E00A07451 /* NSData+ImageContentType.h */,
-				85F08E6E1E482E3E00A07451 /* NSData+ImageContentType.m */,
-				85F08E6F1E482E3E00A07451 /* SDImageCache.h */,
-				85F08E701E482E3E00A07451 /* SDImageCache.m */,
-				85F08E711E482E3E00A07451 /* SDWebImageCompat.h */,
-				85F08E721E482E3E00A07451 /* SDWebImageCompat.m */,
-				85F08E731E482E3E00A07451 /* SDWebImageDecoder.h */,
-				85F08E741E482E3E00A07451 /* SDWebImageDecoder.m */,
-				85F08E751E482E3E00A07451 /* SDWebImageDownloader.h */,
-				85F08E761E482E3E00A07451 /* SDWebImageDownloader.m */,
-				85F08E771E482E3E00A07451 /* SDWebImageDownloaderOperation.h */,
-				85F08E781E482E3E00A07451 /* SDWebImageDownloaderOperation.m */,
-				85F08E791E482E3E00A07451 /* SDWebImageManager.h */,
-				85F08E7A1E482E3E00A07451 /* SDWebImageManager.m */,
-				85F08E7B1E482E3E00A07451 /* SDWebImageOperation.h */,
-				85F08E7C1E482E3E00A07451 /* SDWebImagePrefetcher.h */,
-				85F08E7D1E482E3E00A07451 /* SDWebImagePrefetcher.m */,
-				85F08E7E1E482E3E00A07451 /* UIButton+WebCache.h */,
-				85F08E7F1E482E3E00A07451 /* UIButton+WebCache.m */,
-				85F08E801E482E3E00A07451 /* UIImage+GIF.h */,
-				85F08E811E482E3E00A07451 /* UIImage+GIF.m */,
-				85F08E821E482E3E00A07451 /* UIImage+MultiFormat.h */,
-				85F08E831E482E3E00A07451 /* UIImage+MultiFormat.m */,
-				85F08E841E482E3E00A07451 /* UIImage+WebP.h */,
-				85F08E851E482E3E00A07451 /* UIImage+WebP.m */,
-				85F08E861E482E3E00A07451 /* UIImageView+HighlightedWebCache.h */,
-				85F08E871E482E3E00A07451 /* UIImageView+HighlightedWebCache.m */,
-				85F08E881E482E3E00A07451 /* UIImageView+WebCache.h */,
-				85F08E891E482E3E00A07451 /* UIImageView+WebCache.m */,
-				85F08E8A1E482E3E00A07451 /* UIView+WebCacheOperation.h */,
-				85F08E8B1E482E3E00A07451 /* UIView+WebCacheOperation.m */,
-			);
-			name = "SDWebImage(图片缓存)";
-			path = SDWebImage;
-			sourceTree = "<group>";
-		};
 		85F08E9C1E48475700A07451 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7552,12 +7551,12 @@
 			files = (
 				85C749001E7FD3BD000E1B65 /* UIProgressView+AFNetworking.m in Sources */,
 				85CA47DC1EBC1C4500109C98 /* ModifyUserDetailViewController.m in Sources */,
-				85F08E911E482E3E00A07451 /* SDWebImageDownloader.m in Sources */,
 				3D76D9461F67B5CA005A6080 /* JFCityViewController.m in Sources */,
 				85C748FA1E7FD3BD000E1B65 /* AFAutoPurgingImageCache.m in Sources */,
 				3D6142541F4FD0A000D52297 /* WPStroeDreamingCollectionViewCell.m in Sources */,
 				859D7B711EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.m in Sources */,
 				852D0D8A1E5A990200B8EE93 /* WPSearchUserModel.m in Sources */,
+				3DE9ED901F9984DD00C01310 /* SDImageCache.m in Sources */,
 				3D1906371F29DB5C00E4EFFD /* WPProductLinkModel.m in Sources */,
 				852D0D871E5A98EC00B8EE93 /* WPSearchGoodsModel.m in Sources */,
 				3DF746131F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m in Sources */,
@@ -7566,8 +7565,8 @@
 				85187E421E8DF94B00D3D64F /* WPAnimationHeader.m in Sources */,
 				85187E361E8DF19300D3D64F /* MJRefreshGifHeader.m in Sources */,
 				3D1732C61F26F6C200BFF90D /* ChatToolBar.m in Sources */,
-				85F08E901E482E3E00A07451 /* SDWebImageDecoder.m in Sources */,
 				854B28FF1E7B75B300289554 /* WPExchangeDetailModel.m in Sources */,
+				3DE9ED991F9984DD00C01310 /* UIImage+MultiFormat.m in Sources */,
 				853B7B061E9CBBBA008BAA4D /* MJExtensionConst.m in Sources */,
 				3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */,
 				3D76D9421F67B5CA005A6080 /* JFCityCollectionFlowLayout.m in Sources */,
@@ -7577,12 +7576,14 @@
 				853B7B0E1E9CBBBA008BAA4D /* NSObject+MJProperty.m in Sources */,
 				8566A7A91E48265C00C08624 /* MASConstraintMaker.m in Sources */,
 				85C748F71E7FD3BD000E1B65 /* AFURLSessionManager.m in Sources */,
+				3DE9ED981F9984DD00C01310 /* UIImage+GIF.m in Sources */,
 				3D1CF0041F3B095E007EDA44 /* WPCustomButton.m in Sources */,
 				85DA3AD91EA0CE320075ABB6 /* WPEnjoyViewController.m in Sources */,
 				3D0772F61F18A7F70084E409 /* TZImagePickerController.m in Sources */,
 				3D76D95F1F67B806005A6080 /* FMResultSet.m in Sources */,
 				85187E381E8DF19300D3D64F /* MJRefreshStateHeader.m in Sources */,
 				8566A7A61E48265C00C08624 /* CityPickView.m in Sources */,
+				3DE9ED931F9984DD00C01310 /* SDWebImageDownloader.m in Sources */,
 				8566A8961E48281500C08624 /* WPAddressTableViewCell.m in Sources */,
 				3D0DF8591F4E6E8300BA1615 /* WPStoreUserInformationView.m in Sources */,
 				8548908B1E56954000138282 /* WPTypeChooseMune.m in Sources */,
@@ -7600,9 +7601,6 @@
 				851E36241EC46D0E00C48AEF /* WPDreamingDirectoryViewController.m in Sources */,
 				85A6418E1EC55154008BDD60 /* WPDreamingDirectoryModel.m in Sources */,
 				3D6BA1291F2B2AA400EC165C /* WPAttributedString.m in Sources */,
-				85F08E9A1E482E3F00A07451 /* UIImageView+WebCache.m in Sources */,
-				85F08E8E1E482E3E00A07451 /* SDImageCache.m in Sources */,
-				85F08E981E482E3F00A07451 /* UIImage+WebP.m in Sources */,
 				3D1732BA1F26F6C200BFF90D /* FaceThemeModel.m in Sources */,
 				3D883C7E1F4C2FD900A990D6 /* WPListFirstTableViewCell.m in Sources */,
 				3D98245F1F566DE100FDD412 /* WPDreamingOrderTableViewCell.m in Sources */,
@@ -7610,6 +7608,7 @@
 				8532813D1E5EBD40001AAAB1 /* WPFansModel.m in Sources */,
 				3D1732CF1F26F88400BFF90D /* WPCommentViewController.m in Sources */,
 				857E30771EADA925000F4328 /* WPExchangeOrderDetailModel.m in Sources */,
+				3DE9ED921F9984DD00C01310 /* SDWebImageDecoder.m in Sources */,
 				8597EFBC1E8A51B4001E1BA5 /* NSObject+WPCategory.m in Sources */,
 				8566A8911E48281500C08624 /* WPAddressViewController.m in Sources */,
 				8525A6AE1E9DCC1000FF0917 /* WPChoiceViewController.m in Sources */,
@@ -7625,9 +7624,6 @@
 				85C748FE1E7FD3BD000E1B65 /* UIButton+AFNetworking.m in Sources */,
 				853B7B0F1E9CBBBA008BAA4D /* NSString+MJExtension.m in Sources */,
 				3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */,
-				85F08E931E482E3E00A07451 /* SDWebImageManager.m in Sources */,
-				85F08E8D1E482E3E00A07451 /* NSData+ImageContentType.m in Sources */,
-				85F08E991E482E3F00A07451 /* UIImageView+HighlightedWebCache.m in Sources */,
 				853B7B0C1E9CBBBA008BAA4D /* NSObject+MJCoding.m in Sources */,
 				85FB6C521E836D7800520C0D /* WPPushExchangeViewController.m in Sources */,
 				8566A8D01E4829C700C08624 /* AppDelegate.m in Sources */,
@@ -7635,6 +7631,7 @@
 				3D883C6A1F4C14CC00A990D6 /* UIButton+runtime.m in Sources */,
 				8594C10F1EA88AAB006F028B /* NSDataEx.m in Sources */,
 				852A68671E6663F600318F4A /* WPDreamingCommentsModel.m in Sources */,
+				3DE9ED8E1F9984DD00C01310 /* MKAnnotationView+WebCache.m in Sources */,
 				3D603BF01F39585E00E983AE /* WPNewExchangeCollectionViewCell.m in Sources */,
 				3D389C141EE63E9200B25DF4 /* LYAliPayResultController.m in Sources */,
 				3D76D93F1F67B5CA005A6080 /* JFAreaDataManager.m in Sources */,
@@ -7642,6 +7639,7 @@
 				3D1732DD1F273B7000BFF90D /* UITableView+HYBCacheHeight.m in Sources */,
 				85CF0F4B1E52F3AD00013DD9 /* WPSearchGoodsCell.m in Sources */,
 				855D560A1E650AC400206BE0 /* WPDreamingDetailModel.m in Sources */,
+				3DE9ED9C1F9984DD00C01310 /* UIImageView+WebCache.m in Sources */,
 				85187E3D1E8DF19300D3D64F /* UIScrollView+MJRefresh.m in Sources */,
 				85C749021E7FD3BD000E1B65 /* UIWebView+AFNetworking.m in Sources */,
 				853B7B051E9CBBBA008BAA4D /* MJExtensionConfig.m in Sources */,
@@ -7653,6 +7651,7 @@
 				8566A89F1E48281500C08624 /* WPSetUpViewController.m in Sources */,
 				3D87B8DA1F4425EB002139D2 /* WPHomeDreamingModel.m in Sources */,
 				3DFDDAA11F175A1000EF799F /* WPSelectAlterViewCell.m in Sources */,
+				3DE9ED961F9984DD00C01310 /* SDWebImagePrefetcher.m in Sources */,
 				3D1732C11F26F6C200BFF90D /* FacePanel.m in Sources */,
 				8526950C1E4ACCEB0056EEE3 /* WPHomeReusableView.m in Sources */,
 				85C8FC021ECE85EC005D8367 /* WPDreamingDirectoryHeadView.m in Sources */,
@@ -7674,10 +7673,12 @@
 				3D1CF0011F3B04B9007EDA44 /* WPNewDreamingChoiceHeaderView.m in Sources */,
 				3D1732C51F26F6C200BFF90D /* MorePanel.m in Sources */,
 				852D0D791E5A986F00B8EE93 /* WPSearchGoodsCollectionViewCell.m in Sources */,
+				3DE9ED9D1F9984DD00C01310 /* UIView+WebCacheOperation.m in Sources */,
 				853B7B0B1E9CBBBA008BAA4D /* NSObject+MJClass.m in Sources */,
 				3D6B18E41F7DDBA3004D8F2B /* WPDreamingDetailRecommendTableViewCell.m in Sources */,
 				8566A7F21E4826C900C08624 /* UIImageView+WPCategory.m in Sources */,
 				85109E6B1E6E8AC1001B5DBC /* WPAddImagesButton.m in Sources */,
+				3DE9ED9A1F9984DD00C01310 /* UIImage+WebP.m in Sources */,
 				3D03E0181F906EDB00FF2664 /* NSMutableArray+WPSingletonStorageArrays.m in Sources */,
 				85187E3A1E8DF19300D3D64F /* MJRefreshConst.m in Sources */,
 				85A6418A1EC54C96008BDD60 /* WPDreamingDirectoryTableViewCell.m in Sources */,
@@ -7685,7 +7686,6 @@
 				8566A89A1E48281500C08624 /* WPOrderDetailTableViewCell.m in Sources */,
 				3D883C831F4C2FEF00A990D6 /* WPListOtherTableViewCell.m in Sources */,
 				8566A8A81E48284700C08624 /* RegisterViewController.m in Sources */,
-				85F08E961E482E3F00A07451 /* UIImage+GIF.m in Sources */,
 				85F08F031E484FEE00A07451 /* WPHomeHeaderView.m in Sources */,
 				3D1732BB1F26F6C200BFF90D /* MoreItem.m in Sources */,
 				853B7B0A1E9CBBBA008BAA4D /* MJPropertyType.m in Sources */,
@@ -7700,10 +7700,10 @@
 				8566A8A01E48281500C08624 /* WPMyViewController.m in Sources */,
 				3DC52A2B1F726762007CE969 /* WPGoodsRecommendedTableViewCell.m in Sources */,
 				3D1906311F29BF2900E4EFFD /* WPTableBaseViewController.m in Sources */,
-				85F08E9B1E482E3F00A07451 /* UIView+WebCacheOperation.m in Sources */,
 				854B290D1E7B86C200289554 /* WPUserIntroductionModel.m in Sources */,
 				8566A7D71E48265C00C08624 /* TOCropScrollView.m in Sources */,
 				3D0772F71F18A7F70084E409 /* TZPhotoPickerController.m in Sources */,
+				3DE9ED951F9984DD00C01310 /* SDWebImageManager.m in Sources */,
 				853B7B0D1E9CBBBA008BAA4D /* NSObject+MJKeyValue.m in Sources */,
 				3DFDCCFA1EE4EB95000249F7 /* LYDreamSubjectCell.m in Sources */,
 				85187E311E8DF19300D3D64F /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -7720,7 +7720,6 @@
 				8525A6C21E9E147E00FF0917 /* WPChoiceContentCollectionView.m in Sources */,
 				85F08F151E48504C00A07451 /* TAAnimatedDotView.m in Sources */,
 				8566A7D81E48265C00C08624 /* TOCropToolbar.m in Sources */,
-				85F08E951E482E3F00A07451 /* UIButton+WebCache.m in Sources */,
 				3D827A301EF10A320030B0D1 /* LYConversationListController.m in Sources */,
 				3D5C2ACD1EFA17F9001D82CA /* LYHomeCategory.m in Sources */,
 				8566A7AD1E48265C00C08624 /* NSArray+MASAdditions.m in Sources */,
@@ -7733,7 +7732,6 @@
 				3D76D95E1F67B806005A6080 /* FMDatabaseQueue.m in Sources */,
 				8566A7BF1E48265C00C08624 /* View+MASAdditions.m in Sources */,
 				8566A8941E48281500C08624 /* WPShoppingCarModel.m in Sources */,
-				85F08E941E482E3F00A07451 /* SDWebImagePrefetcher.m in Sources */,
 				8536A3C01E763D3800B09985 /* WPDreamingModel.m in Sources */,
 				85C748FF1E7FD3BD000E1B65 /* UIImageView+AFNetworking.m in Sources */,
 				85C748F61E7FD3BD000E1B65 /* AFURLResponseSerialization.m in Sources */,
@@ -7744,6 +7742,7 @@
 				3D64D2671F2F36D10084D4AB /* WPAdvertisingView.m in Sources */,
 				3D181A211F383A2700CEE3FF /* WPEnjoyGoodsTableViewCell.m in Sources */,
 				3DC63F761F01F126009C3768 /* LYHomeSectionFooter.m in Sources */,
+				3DE9ED941F9984DD00C01310 /* SDWebImageDownloaderOperation.m in Sources */,
 				851E36211EC4652A00C48AEF /* WPParticipateDreamingViewController.m in Sources */,
 				3D6C34DA1F4197B600630FC7 /* WPPushParameterTableViewCell.m in Sources */,
 				3D76D9471F67B5CA005A6080 /* JFSearchView.m in Sources */,
@@ -7770,7 +7769,6 @@
 				3D827A331EF10A680030B0D1 /* LYConversationController.m in Sources */,
 				85F08F191E48504C00A07451 /* SDCycleScrollView.m in Sources */,
 				3D96B9411F7CCF280015FCC7 /* WPReportBoxTableViewCell.m in Sources */,
-				85F08E921E482E3E00A07451 /* SDWebImageDownloaderOperation.m in Sources */,
 				852D0D831E5A98C800B8EE93 /* WPSearchUserTableViewCell.m in Sources */,
 				3D1732C71F26F6C200BFF90D /* OfficialAccountToolbar.m in Sources */,
 				852F80D51E822E1700D0AB48 /* WPExchangeOrderViewController.m in Sources */,
@@ -7779,6 +7777,7 @@
 				85FB6C591E83C00200520C0D /* WPAddressSelectTableViewCell.m in Sources */,
 				85187E2C1E8DF19300D3D64F /* MJRefreshBackFooter.m in Sources */,
 				8566A7AC1E48265C00C08624 /* MASViewConstraint.m in Sources */,
+				3DE9ED971F9984DD00C01310 /* UIButton+WebCache.m in Sources */,
 				8566A7EF1E4826C900C08624 /* NSString+AutoSize.m in Sources */,
 				3D0772F81F18A7F70084E409 /* TZPhotoPreviewCell.m in Sources */,
 				8566A7DA1E48265C00C08624 /* TOCropViewController.m in Sources */,
@@ -7818,6 +7817,7 @@
 				853281391E5EBAF9001AAAB1 /* WPFansTableViewCell.m in Sources */,
 				3D76D95B1F67B806005A6080 /* FMDatabase.m in Sources */,
 				851784DA1E88B0FB00FED78B /* WPSelectAlterView.m in Sources */,
+				3DE9ED9B1F9984DD00C01310 /* UIImageView+HighlightedWebCache.m in Sources */,
 				85187E301E8DF19300D3D64F /* MJRefreshAutoGifFooter.m in Sources */,
 				3D43CE951EF23E540047A23C /* LYActivityController.m in Sources */,
 				3DF746151F3426FB00A23B52 /* WPProductDetailUserStoreTableViewCell.m in Sources */,
@@ -7844,7 +7844,6 @@
 				8566A7DC1E48265C00C08624 /* TOCropViewControllerTransitioning.m in Sources */,
 				852695091E4AC1880056EEE3 /* WPHomeReusableModel.m in Sources */,
 				3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */,
-				85F08E8F1E482E3E00A07451 /* SDWebImageCompat.m in Sources */,
 				3D5B36D61F3C56B90065E61E /* WPNewDreamingModel.m in Sources */,
 				8566A7DD1E48265C00C08624 /* UIImage+CropRotate.m in Sources */,
 				852F80DD1E825E9300D0AB48 /* WPExchangeOrderModel.m in Sources */,
@@ -7865,7 +7864,6 @@
 				85A641981EC58E88008BDD60 /* WPMyDreamingViewController.m in Sources */,
 				85187E351E8DF19300D3D64F /* MJRefreshBackStateFooter.m in Sources */,
 				8566A6E21E48209B00C08624 /* main.m in Sources */,
-				85F08E971E482E3F00A07451 /* UIImage+MultiFormat.m in Sources */,
 				85187E2E1E8DF19300D3D64F /* MJRefreshFooter.m in Sources */,
 				8566A8871E48281500C08624 /* WPCommodityManagementTableViewCell.m in Sources */,
 				8594C1101EA88AAB006F028B /* openssl_wrapper.m in Sources */,
@@ -7891,12 +7889,13 @@
 				85C748F51E7FD3BD000E1B65 /* AFURLRequestSerialization.m in Sources */,
 				853B7B081E9CBBBA008BAA4D /* MJProperty.m in Sources */,
 				85F08F141E48504C00A07451 /* TAAbstractDotView.m in Sources */,
-				85F08E8C1E482E3E00A07451 /* MKAnnotationView+WebCache.m in Sources */,
 				3D07730A1F18BAEF0084E409 /* WPPushImageCollectionViewCell.m in Sources */,
 				85FB6C5D1E83CDE700520C0D /* WPAddressSelectModel.m in Sources */,
 				85F08F161E48504C00A07451 /* TADotView.m in Sources */,
+				3DE9ED8F1F9984DD00C01310 /* NSData+ImageContentType.m in Sources */,
 				854196281E55866F002210C7 /* WPSearchResultsViewController.m in Sources */,
 				8597EFBF1E8A6BAA001E1BA5 /* WPSelectExchangeGoodsViewController.m in Sources */,
+				3DE9ED911F9984DD00C01310 /* SDWebImageCompat.m in Sources */,
 				3D5737651F60E26200ECF3AB /* WPGoodsClassModel.m in Sources */,
 				3D1906341F29C99300E4EFFD /* WPProductLinkView.m in Sources */,
 				85D595591E5C1C6F00AB5869 /* WPSearchGoodsChildController.m in Sources */,

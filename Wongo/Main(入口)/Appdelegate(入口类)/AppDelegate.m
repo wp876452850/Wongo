@@ -271,9 +271,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    
-    BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
-    if (!result) {
         //支付
         if ([url.host isEqualToString:@"safepay"]) {
             //跳转支付宝钱包进行支付，处理支付结果
@@ -283,8 +280,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             }];
         }
         return YES;
-    }
-    return result;
     
 }
 

@@ -89,7 +89,7 @@
     [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     [cell.contentView removeAllSubviews];
     UIImageView * image = [[UIImageView alloc]initWithFrame:cell.contentView.frame];
-//    image.contentMode = UIViewContentModeScaleAspectFit;
+    //    image.contentMode = UIViewContentModeScaleAspectFit;
     [image sd_setImageWithURL:[NSURL URLWithString:self.images[indexPath.row]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     [cell addSubview:image];
     image.layer.borderWidth = 0.5f;
@@ -98,14 +98,14 @@
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    WPDreamingIntroduceTableViewCell *cell =(WPDreamingIntroduceTableViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
+    //    WPDreamingIntroduceTableViewCell *cell =(WPDreamingIntroduceTableViewCell *) [collectionView cellForItemAtIndexPath:indexPath];
     
-//    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
-//    browser.currentImageIndex = indexPath.row;
-//    browser.sourceImagesContainerView = cell.contentView;
-//    browser.imageCount = self.images.count;
-//    browser.delegate = self;
-//    [browser show];
+    //    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    //    browser.currentImageIndex = indexPath.row;
+    //    browser.sourceImagesContainerView = cell.contentView;
+    //    browser.imageCount = self.images.count;
+    //    browser.delegate = self;
+    //    [browser show];
     
 }
 

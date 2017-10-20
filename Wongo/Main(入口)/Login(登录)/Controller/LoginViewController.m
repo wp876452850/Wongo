@@ -49,6 +49,7 @@
     if (!_user) {
         _user = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 400, 100, 40) openRisingView:YES superView:self.view];
         _user.placeholder       = @"请输入账号";
+        
     }
     return _user;
 }
@@ -124,9 +125,20 @@
     label2.backgroundColor = ColorWithRGB(255, 204, 92);
     
     
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
+    label.centerX = WINDOW_WIDTH/2;
+    label.text = @"第三方登录";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13.f];
+    label.textColor = ColorWithRGB(255, 204, 92);
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+    
+    [self.view addSubview:label];
+    
     for (int i = 0; i<3; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-90, 30, 30);
+        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-50, 30, 30);
         button.backgroundColor = RandomColor;
         button.tag = i;
         [button addTarget:self action:@selector(thirdPartyLogin:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,7 +159,7 @@
             break;
         case 2:
         {
-            [self getAuthWithUserInfoFromWechat];
+            [self getUserInfoForPlatform:UMSocialPlatformType_WechatSession];
         }
             break;
     }
@@ -240,6 +252,31 @@
 
 
 #pragma mark - 第三方登录
+
+- (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
+{
+    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:platformType currentViewController:self completion:^(id result, NSError *error) {
+        
+        UMSocialUserInfoResponse *resp = result;
+        
+        // 第三方登录数据(为空表示平台未提供)
+        // 授权数据
+        NSLog(@" uid: %@", resp.uid);
+        NSLog(@" openid: %@", resp.openid);
+        NSLog(@" accessToken: %@", resp.accessToken);
+        NSLog(@" refreshToken: %@", resp.refreshToken);
+        NSLog(@" expiration: %@", resp.expiration);
+        
+        // 用户数据
+        NSLog(@" name: %@", resp.name);
+        NSLog(@" iconurl: %@", resp.iconurl);
+        NSLog(@" gender: %@", resp.unionGender);
+        
+        // 第三方平台SDK原始数据
+        NSLog(@" originalResponse: %@", resp.originalResponse);
+    }];
+}
 //新浪
 - (void)getAuthWithUserInfoFromSina
 {
@@ -296,16 +333,15 @@
     [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
     [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
         if (error) {
-            
+            NSLog(@"%@",error);
         } else {
             UMSocialUserInfoResponse *resp = result;
-            
             // 授权信息
             NSLog(@"Wechat uid: %@", resp.uid);
             NSLog(@"Wechat openid: %@", resp.openid);
             NSLog(@"Wechat unionid: %@", resp.unionId);
             NSLog(@"Wechat accessToken: %@", resp.accessToken);
-            NSLog(@"Wechat refreshToken: %@", resp.refreshToken);
+            NSLog(@"Wech at refreshToken: %@", resp.refreshToken);
             NSLog(@"Wechat expiration: %@", resp.expiration);
             
             // 用户信息

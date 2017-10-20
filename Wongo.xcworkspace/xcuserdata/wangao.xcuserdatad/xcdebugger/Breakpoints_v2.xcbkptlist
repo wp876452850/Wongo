@@ -52,12 +52,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "529984847.63696"
+            timestampString = "530090422.037051"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
-            landmarkName = "-getAuthWithUserInfoFromQQ"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
+            landmarkName = "-getAuthWithUserInfoFromWechat"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
+            timestampString = "530090422.037051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "-getAuthWithUserInfoFromSina"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

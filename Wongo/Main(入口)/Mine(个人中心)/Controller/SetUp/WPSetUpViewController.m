@@ -129,7 +129,7 @@
         {            
 //            CGFloat cacheSize = [[SDImageCache sharedImageCache] getDiskCount];
                         [self showAlertWithAlertTitle:@"提示" message:[NSString stringWithFormat:@"是否清楚所有缓存数据"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
-                [[SDImageCache sharedImageCache] clearDisk];
+                [[SDWebImageManager sharedManager].imageCache clearMemory];
             }];
         }
             break;
