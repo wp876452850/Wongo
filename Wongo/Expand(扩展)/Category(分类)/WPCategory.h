@@ -46,6 +46,7 @@
 #import "FaceThemeModel.h"
 #import "WPAttributedString.h"
 #import "WPShareController.h"
+#import "MBProgressHUD.h"
 
 #pragma mark - SDK
 #import <AlipaySDK/AlipaySDK.h>
