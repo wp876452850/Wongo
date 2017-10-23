@@ -125,25 +125,25 @@
     label2.backgroundColor = ColorWithRGB(255, 204, 92);
     
     
-    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
-    label.centerX = WINDOW_WIDTH/2;
-    label.text = @"第三方登录";
-    label.textAlignment = NSTextAlignmentCenter;
-    label.font = [UIFont systemFontOfSize:13.f];
-    label.textColor = ColorWithRGB(255, 204, 92);
-    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
-    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
-    
-    [self.view addSubview:label];
-    
-    for (int i = 0; i<3; i++) {
-        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-50, 30, 30);
-        button.backgroundColor = RandomColor;
-        button.tag = i;
-        [button addTarget:self action:@selector(thirdPartyLogin:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:button];
-    }
+//    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
+//    label.centerX = WINDOW_WIDTH/2;
+//    label.text = @"第三方登录";
+//    label.textAlignment = NSTextAlignmentCenter;
+//    label.font = [UIFont systemFontOfSize:13.f];
+//    label.textColor = ColorWithRGB(255, 204, 92);
+//    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+//    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+//    
+//    [self.view addSubview:label];
+//    
+//    for (int i = 0; i<3; i++) {
+//        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+//        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-50, 30, 30);
+//        button.backgroundColor = RandomColor;
+//        button.tag = i;
+//        [button addTarget:self action:@selector(thirdPartyLogin:) forControlEvents:UIControlEventTouchUpInside];
+//        [self.view addSubview:button];
+//    }
 }
 -(void)thirdPartyLogin:(UIButton *)sender{
     switch (sender.tag) {
@@ -181,7 +181,6 @@
 #pragma mark - 按钮点击
 //登录按钮
 -(void)clickLogin{
-
     //进行数据请求后记录
     NSDictionary * params = @{@"uname":self.user.text,@"password":self.password.text};
     self.view.userInteractionEnabled = NO;

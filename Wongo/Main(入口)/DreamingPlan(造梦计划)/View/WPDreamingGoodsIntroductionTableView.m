@@ -58,8 +58,12 @@ static NSString * const projectCell     = @"ProjectCell";
     if (indexPath.row == 0)
     {
         WPDreamingImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
-
-        cell.isFirst.text = [NSString stringWithFormat:@"第%ld轮",indexPath.section+1];
+        if (indexPath.section == 0) {
+            cell.isFirst.text = @"发起人";
+        }
+        else{
+            cell.isFirst.text = [NSString stringWithFormat:@"第%ld轮",(long)indexPath.section];
+        }
         cell.model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
         if (indexPath.section+1<self.dataArray.count) {
             [cell showOK];

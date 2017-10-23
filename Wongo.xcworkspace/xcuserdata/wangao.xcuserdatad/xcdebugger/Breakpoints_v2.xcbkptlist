@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5e97;&#x94fa;/Controller/WPStoreViewController.m"
-            timestampString = "529925156.860665"
+            timestampString = "530186444.260635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-goChat"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,6 +74,22 @@
             startingLineNumber = "290"
             endingLineNumber = "290"
             landmarkName = "-getAuthWithUserInfoFromSina"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/Cell/WPNewExchangeCollectionViewCell.m"
+            timestampString = "530186468.155229"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "-setModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

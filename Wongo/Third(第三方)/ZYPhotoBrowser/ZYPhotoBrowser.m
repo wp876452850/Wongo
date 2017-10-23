@@ -274,17 +274,15 @@
 - (void)showFirstImage
 {
     ZYPhotoCollectionView * collectionView = (ZYPhotoCollectionView *)self.sourceImagesContainerView;
-    UICollectionViewCell * cell;
-    if (collectionView.photoModelArray.count == 4 && self.currentImageIndex > 1) {
-        cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex + 1 inSection:0]];
-    } else {
-        cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex inSection:0]];
-    }
+    UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex inSection:0]];
     CGRect rect = [self.sourceImagesContainerView convertRect:cell.frame toView:self];
 
     UIImageView *tempView = [[UIImageView alloc] init];
     tempView.frame = rect;
     tempView.image = [self placeholderImageForIndex:self.currentImageIndex];
+    if (tempView.image.size.width == 0||tempView.image.size.height == 0) {
+        tempView.image = [UIImage imageNamed:@"loadimage"];
+    }
     [self addSubview:tempView];
     tempView.contentMode = UIViewContentModeScaleAspectFit;
     CGFloat placeImageSizeW = tempView.image.size.width;
@@ -440,6 +438,9 @@
     
     UIImageView *tempImageView = [[UIImageView alloc] init];
     tempImageView.image = currentImageView.image;
+    if (tempImageView.image.size.width == 0||tempImageView.image.size.height == 0) {
+        tempImageView.image = [UIImage imageNamed:@"loadimage"];
+    }
     CGFloat tempImageSizeH = tempImageView.image.size.height;
     CGFloat tempImageSizeW = tempImageView.image.size.width;
     CGFloat tempImageViewH = (tempImageSizeH * ZYAPPWidth)/tempImageSizeW;

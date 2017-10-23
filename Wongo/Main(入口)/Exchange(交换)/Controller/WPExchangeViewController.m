@@ -1,4 +1,4 @@
-	//
+//
 //  WPExchangeViewController.m
 //  Wongo
 //
@@ -126,7 +126,7 @@ static NSString * const recommendCell       = @"recommendCell";
         [_tableView registerClass:[WPExchangeImageShowTableViewCell class] forCellReuseIdentifier:imageShowCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailRecommendTableViewCell" bundle:nil] forCellReuseIdentifier:recommendCell];
         
-        //创建按钮        
+        //创建按钮
     }
     return _tableView;
 }
@@ -193,7 +193,7 @@ static NSString * const recommendCell       = @"recommendCell";
         
         //获取用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.exchangeModel.uid} datas:^(NSDictionary *responseObject) {
-        
+            
             weakSelf.exchangeModel.userIntroductionModel = [WPUserIntroductionModel mj_objectWithKeyValues:responseObject];
             [weakSelf.view addSubview:weakSelf.tableView];
             weakSelf.tableView.tableHeaderView = weakSelf.cycleScrollView;
@@ -261,23 +261,23 @@ static NSString * const recommendCell       = @"recommendCell";
         case 2:
         {
             WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
-
+            
             cell.model = _exchangeModel.userIntroductionModel;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;
-
+            
         case 4:{
-           UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            UITableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.selectionStyle     = UITableViewCellSelectionStyleNone;
             [cell.contentView removeAllSubviews];
             return cell;
             /**参数cell暂时隐藏*/
-//            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
-//            cell.model = self.exchangeModel;
-//            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-//            return cell;
+            //            WPCommentsSectionTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commentsSectionCell forIndexPath:indexPath];
+            //            cell.model = self.exchangeModel;
+            //            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            //            return cell;
         }
             break;
         case 5:{
@@ -356,7 +356,7 @@ static NSString * const recommendCell       = @"recommendCell";
             if (rowHeight < 40) {
                 return 40;
             }else
-            return rowHeight;
+                return rowHeight;
         }
             break;
         case 6:{
@@ -377,7 +377,7 @@ static NSString * const recommendCell       = @"recommendCell";
     if (indexPath.section == 3) {
         if (_exchangeModel.commentsModelArray.count<=0) {
             [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
-            //跳转评论界面
+                //跳转评论界面
                 WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
                 [self.navigationController pushViewController:vc animated:YES];
                 [vc.commentKeyBoard keyboardUpforComment];
@@ -543,7 +543,7 @@ static NSString * const recommendCell       = @"recommendCell";
     CGFloat scale = (cell.contentView.height/cell.imageView.image.size.height)<(WINDOW_WIDTH/cell.imageView.image.size.width)?(cell.contentView.height/cell.imageView.image.size.height):(WINDOW_WIDTH/cell.imageView.image.size.width);
     imageFrame.size = CGSizeMake(cell.imageView.image.size.width * scale, cell.imageView.image.size.height * scale);
     imageFrame.origin = CGPointMake((WINDOW_WIDTH - imageFrame.size.width)/2, (cell.contentView.height - imageFrame.size.height)/2);
-
+    
     CGRect targetTemp = [cell.contentView convertRect:imageFrame toView:supperView];
     
     [UIView animateWithDuration:0.4f    animations:^{

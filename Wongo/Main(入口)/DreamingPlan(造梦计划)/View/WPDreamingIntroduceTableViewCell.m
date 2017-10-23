@@ -61,7 +61,7 @@
     _images = [NSMutableArray arrayWithCapacity:3];
     _imagesData = [NSMutableArray arrayWithCapacity:3];
     for (int i = 0; i<_model.listimg.count; i++) {
-        [_images addObject:_model.listimg[i][@"proimg"]];
+        [_images addObject:_model.listimg[i][@"url"]];
         ZYPhotoModel * photoModel = [[ZYPhotoModel alloc]initWithsmallImageURL:_images[i] bigImageURL:_images[i]];
         [_imagesData addObject:photoModel];
     }

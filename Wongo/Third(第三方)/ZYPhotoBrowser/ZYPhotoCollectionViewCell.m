@@ -30,13 +30,14 @@
     } else {
         self.GIFLable.hidden = YES;
     }
+    
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:photoModel.smallImageURL] placeholderImage:[UIImage imageNamed:@"loadimage"]];
 }
 
 -(UIImageView *)imageView {
     if (_imageView == nil) {
         _imageView = [[UIImageView alloc] init];
-        _imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
         _imageView.clipsToBounds = YES;
         [self.contentView addSubview:_imageView];
         [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -118,7 +118,9 @@ static NSString * const storeCell       = @"StoreCell";
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (_menuTag == 0) {
         WPNewExchangeCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-        cell.model = [WPNewExchangeModel mj_objectWithKeyValues:_storeModel.listg[indexPath.row]];
+        WPNewExchangeModel * model = model = [WPNewExchangeModel mj_objectWithKeyValues:_storeModel.listg[indexPath.row]];
+        model.url = _storeModel.listg[indexPath.row][@"urlg"];
+        cell.model = model;
         return cell;
     }
     WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];

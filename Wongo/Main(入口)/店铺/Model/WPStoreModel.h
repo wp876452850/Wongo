@@ -13,7 +13,6 @@
 @property (nonatomic,strong)NSArray * listg;
 @property (nonatomic,strong)NSArray * listm;
 
-
 @property (nonatomic,strong)NSString * fansnum;
 @property (nonatomic,strong)NSString * attentionnum;
 @property (nonatomic,strong)NSString * state;
