@@ -13,5 +13,6 @@
 @property (nonatomic,strong)NSString * praise;
 @property (nonatomic,strong)NSString * uname;
 @property (nonatomic,strong)NSString * url;
-
+@property (nonatomic,strong)NSArray  * listuser;
+@property (nonatomic,strong)NSString * uid;
 @end

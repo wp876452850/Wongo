@@ -189,6 +189,7 @@ static NSString * const recommendCell   = @"recommendCell";
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     __block WPDreamingDetailViewController * weakSelf = self;
+    
     /**查询商品所有信息*/
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
         NSDictionary * list = responseObject[@"list"][0];
@@ -199,6 +200,12 @@ static NSString * const recommendCell   = @"recommendCell";
 //        }
         [rollPlays addObject:list[@"url"]];
         weakSelf.rollPlay.imageURLStringsGroup = rollPlays;
+        /**查询排行榜*/
+        [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:@{} datas:^(NSDictionary *responseObject) {
+            if ([responseObject[@"flag"] integerValue] == 1) {
+                weakSelf.listDatas = responseObject[@"list"];
+            }
+        }];
         //查询用户信息
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.model.uid} datas:^(NSDictionary *responseObject) {
             //查询评论信息

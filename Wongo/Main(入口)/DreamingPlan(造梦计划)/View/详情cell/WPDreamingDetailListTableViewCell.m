@@ -50,6 +50,7 @@
     for (int i = 0; i< imageCount; i++) {
         UIImageView * imageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * 45 + 15, 25, ImageWidthAndHeight , ImageWidthAndHeight)];
         WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
+        model.url = dataSourceArray[i][@"listuser"][0][@"url"];
         imageView.centerY = button.centerY;
         [self.contentView addSubview:imageView];
         imageView.backgroundColor = WongoGrayColor;

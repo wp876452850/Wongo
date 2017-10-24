@@ -178,65 +178,7 @@
     [self masonry];
     [self navigationLeftPop];
 }
-#pragma mark - 按钮点击
-//登录按钮
--(void)clickLogin{
-    //进行数据请求后记录
-    NSDictionary * params = @{@"uname":self.user.text,@"password":self.password.text};
-    self.view.userInteractionEnabled = NO;
-   
-    [WPNetWorking createPostRequestMenagerWithUrlString:LoginRequestUrl params:params datas:^(NSDictionary *responseObject) {
-        [[NSUserDefaults standardUserDefaults]setObject:responseObject[@"uname"] forKey:User_Name];
-        UIImageView * headimage = [[UIImageView alloc]init];
-        [headimage sd_setImageWithURL:[NSURL URLWithString:responseObject[@"url"]]];
-        NSData * imageData = [NSKeyedArchiver archivedDataWithRootObject:headimage.image];
-        [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:User_Head];
-        //记录用户信息
-        if ([[responseObject objectForKey:@"flag"] isEqualToString:@"1"]) {
-            [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
-                //记录token并登陆
-                NSDictionary * dic = [responseObject objectForKey:@"token"];
-                [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
-               [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
-                __weak LoginViewController * weakSelf = (LoginViewController *)self;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                });
-                [[RCIM sharedRCIM] connectWithToken:[dic objectForKey:@"token"] success:^(NSString *userId) {
-                    NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
-                } error:^(RCConnectErrorCode status) {
-                    NSLog(@"登陆的错误码为:%ld", (long)status);
-                } tokenIncorrect:^{
-                    NSLog(@"token错误");
-                    [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
-                        //记录token并登陆
-                        NSDictionary * dic = [responseObject objectForKey:@"token"];
-                        [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
-                        [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
-                        [[RCIM sharedRCIM] connectWithToken:[dic objectForKey:@"token"] success:^(NSString *userId) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [weakSelf.navigationController popViewControllerAnimated:YES];
-                            });
-                        } error:^(RCConnectErrorCode status) {
-                            self.view.userInteractionEnabled = YES;
-                        } tokenIncorrect:^{
-                            self.view.userInteractionEnabled = YES;
-                        }];
-                    }];
-                }];
-            }];
-        }
-        else{
-            [self showAlertWithAlertTitle:@"登录失败" message:@"账号/密码有误" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
-            self.view.userInteractionEnabled = YES;
-        }
-        
-    } failureBlock:^{
-        self.view.userInteractionEnabled = YES;
-    }];
-}
-
-
+#pragma mark - 注册
 //前往注册界面
 -(void)goRegister{
     __weak LoginViewController * weakSelf = self;
@@ -248,9 +190,82 @@
     }];
     [self.navigationController pushViewController:registerVC animated:YES];
 }
+#pragma mark - 登录请求数据方式
+//登录按钮
+-(void)clickLogin{
+    //进行数据请求后记录
+    NSDictionary * params = @{@"uname":self.user.text,@"password":self.password.text};
+    self.view.userInteractionEnabled = NO;
+    __block LoginViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:LoginRequestUrl params:params datas:^(NSDictionary *responseObject) {
+        [[NSUserDefaults standardUserDefaults]setObject:responseObject[@"uname"] forKey:User_Name];
+        UIImageView * headimage = [[UIImageView alloc]init];
+        [headimage sd_setImageWithURL:[NSURL URLWithString:responseObject[@"url"]]];
+        NSData * imageData = [NSKeyedArchiver archivedDataWithRootObject:headimage.image];
+        [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:User_Head];
+        //记录用户信息
+        if ([[responseObject objectForKey:@"flag"] isEqualToString:@"1"]) {
+            [weakSelf loginSuccessWithSelf:weakSelf];
+        }
+        else{
+            [weakSelf loginfailWithSelf:weakSelf];
+        }
+        
+    } failureBlock:^{
+        weakSelf.view.userInteractionEnabled = YES;
+    }];
+}
+
+//第三方登录
+-(void)ThirdPartyLoginWithSid:(NSString *)sid{
+    //sid:获取的第三方平台账户uid
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddsUrl params:@{} datas:^(NSDictionary *responseObject) {
+        
+    }];
+}
+//登录成功
+-(void)loginSuccessWithSelf:(LoginViewController *)weakSelf{
+    
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
+        //记录token并登陆
+        NSDictionary * dic = [responseObject objectForKey:@"token"];
+        [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
+        [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        });
+        [[RCIM sharedRCIM] connectWithToken:[dic objectForKey:@"token"] success:^(NSString *userId) {
+            NSLog(@"登陆成功。当前登录的用户ID：%@", userId);
+        } error:^(RCConnectErrorCode status) {
+            NSLog(@"登陆的错误码为:%ld", (long)status);
+        } tokenIncorrect:^{
+            NSLog(@"token错误");
+            [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
+                //记录token并登陆
+                NSDictionary * dic = [responseObject objectForKey:@"token"];
+                [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
+                [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
+                [[RCIM sharedRCIM] connectWithToken:[dic objectForKey:@"token"] success:^(NSString *userId) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    });
+                } error:^(RCConnectErrorCode status) {
+                    weakSelf.view.userInteractionEnabled = YES;
+                } tokenIncorrect:^{
+                    weakSelf.view.userInteractionEnabled = YES;
+                }];
+            }];
+        }];
+    }];
+}
+-(void)loginfailWithSelf:(LoginViewController *)weakSelf{
+    [weakSelf showAlertWithAlertTitle:@"登录失败" message:@"账号/密码有误" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    weakSelf.view.userInteractionEnabled = YES;
+}
 
 
-#pragma mark - 第三方登录
+
+#pragma mark - 第三方登录操作
 
 - (void)getUserInfoForPlatform:(UMSocialPlatformType)platformType
 {

@@ -14,6 +14,7 @@
 #import "WPUserIntroductionModel.h"
 #import "WPStoreModel.h"
 #import "WPNewExchangeModel.h"
+#import "WPStroeDreamingModel.h"
 
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 
@@ -124,6 +125,8 @@ static NSString * const storeCell       = @"StoreCell";
         return cell;
     }
     WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
+    WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
+    cell.model = model;
     return cell;
 }
 

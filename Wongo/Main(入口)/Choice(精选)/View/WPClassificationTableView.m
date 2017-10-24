@@ -76,13 +76,6 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WPGoodsClassModel * model = self.dataSourceArray[indexPath.row];
-    if (self.indexPath) {
-        UITableViewCell * oldCell = [tableView cellForRowAtIndexPath:self.indexPath];
-        oldCell.textLabel.textColor = [UIColor blackColor];
-    }
-    UITableViewCell * newCell = [tableView cellForRowAtIndexPath:indexPath];
-    newCell.textLabel.textColor = WongoBlueColor;
-    
     if (_classificationBlock) {
         _classificationBlock(model.cname,model.cid);
     }
@@ -99,11 +92,13 @@
         self.bounds = self.initBounds;
     }];
 }
+
 -(void)menuClose{
     [UIView animateWithDuration:0.5 animations:^{
         self.bounds = CGRectMake(0, 0, self.width, 0);
     }];
 }
+
 -(void)removeSelect{
     UITableViewCell * oldCell = [self cellForRowAtIndexPath:self.indexPath];
     oldCell.textLabel.textColor = [UIColor blackColor];

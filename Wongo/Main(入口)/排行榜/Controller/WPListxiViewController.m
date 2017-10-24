@@ -37,6 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myNavItem.title = @"排行榜";
+    [self loadDatas];
 }
 
 -(void)setDataSourceArray:(NSMutableArray *)dataSourceArray{
@@ -52,7 +53,7 @@
 }
 
 -(void)loadDatas{
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductUser params:@{@"proid":self.proid} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:@{} datas:^(NSDictionary *responseObject) {
         
     }];
 }
@@ -96,4 +97,5 @@
 //    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:@"1"];
 //    [self.navigationController pushViewController:vc animated:YES];
 //}
+
 @end

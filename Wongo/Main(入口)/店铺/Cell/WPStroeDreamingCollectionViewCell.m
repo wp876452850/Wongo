@@ -23,6 +23,12 @@
     [self.thumup setImage:[UIImage imageNamed:@"shopDreamingthumup_select"] forState:UIControlStateSelected];
 }
 
+-(void)setModel:(WPStroeDreamingModel *)model{
+    _model = model;
+    [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    _goodsName.text = model.proname;
+}
+
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
 }

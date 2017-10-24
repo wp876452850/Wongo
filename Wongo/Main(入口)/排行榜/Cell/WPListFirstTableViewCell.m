@@ -144,19 +144,19 @@
         switch (i) {
             case 0:
             {
-                [_one sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                [_one sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _onenumber.text = model.praise;
                 _oneLabel.text = model.uname;
                 
             }break;
             case 1:{
-                [_two sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                [_two sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _twoLabel.text = model.uname;
                 _twonumber = model.praise;
             }
                 break;
             case 2:{
-                [_three sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+                [_three sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _threeLabel.text = model.uname;
                 _threenumber.text = model.praise;
             }

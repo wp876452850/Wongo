@@ -16,7 +16,7 @@
 
 @property (nonatomic,strong)NSString * plid;
 
-@property (nonatomic,strong)NSString * prourl;
+@property (nonatomic,strong)NSString * url;
 
 @property (nonatomic,strong)NSString * proname;
 

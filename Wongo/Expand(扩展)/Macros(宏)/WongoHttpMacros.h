@@ -13,8 +13,14 @@
 //内网
 //#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
 
-/**登录url*/
+/**
+ *  登录url
+ */
+/**账户登录*/
 #define LoginRequestUrl         HttpHead(@"userLogin")
+/**第三方登录*/
+#define UseraddsUrl             HttpHead(@"useradds")
+
 /**发布上传数据url*/
 #define PushExchangeUrl         HttpHead(@"addGood")
 /**商品类型url*/
@@ -211,7 +217,7 @@
  *  排行榜
  */
 /**查询排行榜*/
-#define QueryProductUser        HttpHead(@"queryProductUser")
+#define Queryuserorder        HttpHead(@"queryuserorder")
 
 
 #endif /* WongoHttpMacros_h */

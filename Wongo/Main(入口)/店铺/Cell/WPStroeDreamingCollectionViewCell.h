@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPStroeDreamingModel.h"
 
 @interface WPStroeDreamingCollectionViewCell : UICollectionViewCell
 
-
+@property (nonatomic,strong)WPStroeDreamingModel * model;
 
 @end

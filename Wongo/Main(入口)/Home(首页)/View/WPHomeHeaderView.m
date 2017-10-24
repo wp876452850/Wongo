@@ -169,8 +169,8 @@
 }
 
 -(void)createWizardButton{
-    NSArray * titles = @[@"交换",@"造梦",@"发布",@"交换流程"];
-    NSArray * images = @[@"mainExchange",@"mainDreaming",@"mainPush",@"mainCourse"];
+    NSArray * titles = @[@"造梦",@"交换",@"发布",@"交换流程"];
+    NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"mainCourse"];
     CGFloat w = WINDOW_WIDTH * 0.133;
     NSUInteger count = images.count;
     CGFloat m = (WINDOW_WIDTH - count * w)/(count+1);

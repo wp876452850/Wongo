@@ -21,8 +21,13 @@
 
 -(void)setModel:(WPListModel *)model{
     _model = model;
-    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
-    if (model.praise) {
+    NSString * imageName = @"";
+    if (model.listuser[0]) {
+        imageName = model.listuser[0][@"url"];
+    }
+    [self.headerImage sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    
+    if (model.praise.length > 0) {
         self.number.text = model.praise;
     }
     else{
