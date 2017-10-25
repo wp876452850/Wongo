@@ -30,6 +30,9 @@
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
     _wantExchange.text = [NSString stringWithFormat:@"%ld想换",[_model.praise integerValue]];
+    if (model.url.length<=0) {
+        model.url = @"";
+    }
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     //商品名
     NSString * gname = model.gname;

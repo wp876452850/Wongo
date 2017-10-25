@@ -240,7 +240,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)loadNewDatas{
-    __weak WPChoiceSubCollectionView * weakSelf = self;
+    __block WPChoiceSubCollectionView * weakSelf = self;
     _page = 1;
     weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_page),@"cid":_cid,@"pubtime":@"1",@"praise":@"1"} datas:^(NSDictionary *responseObject) {
@@ -248,7 +248,7 @@ static NSString * const reuseIdentifier = @"Cell";
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]) {
+        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]||[weakSelf.url isEqualToString:QueryUserGoodsCtidDate]) {
             NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<goodsRm.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
@@ -286,7 +286,7 @@ static NSString * const reuseIdentifier = @"Cell";
             [weakSelf.mj_footer endRefreshing];
             return;
         }
-        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]) {
+        if ([weakSelf.url isEqualToString:QueryGoodsListPraise]||[weakSelf.url isEqualToString:QueryUserGoodsCtidDate]) {
             NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<goodsRm.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
@@ -301,14 +301,10 @@ static NSString * const reuseIdentifier = @"Cell";
             }
         }
         else{
-            NSArray * list = [responseObject objectForKey:@"list"];
-            for (int i = 0; i<list.count; i++) {
-                NSDictionary * dic = list[i];
-                NSArray *listg = dic[@"listg"];
-                for (int j = 0; j<listg.count; j++) {
-                    WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[j]];
-                    [_dataSourceArray addObject:model];
-                }
+            NSArray * listg = [responseObject objectForKey:@"listg"];
+            for (int i = 0; i<listg.count; i++) {
+                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[i]];
+                [_dataSourceArray addObject:model];
             }
         }
         // 刷新表格

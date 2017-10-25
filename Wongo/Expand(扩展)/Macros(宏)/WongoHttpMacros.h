@@ -21,6 +21,7 @@
 /**第三方登录*/
 #define UseraddsUrl             HttpHead(@"useradds")
 
+
 /**发布上传数据url*/
 #define PushExchangeUrl         HttpHead(@"addGood")
 /**商品类型url*/
@@ -81,6 +82,7 @@
 /**搜索页-查询造梦商品*/
 #define GetClassProductUrl      HttpHead(@"getClassProduct")
 
+
 /**一级分类*/
 #define QueryClassoneUrl        HttpHead(@"queryClassone")
 /**同意时修改订单状态接口*/
@@ -118,7 +120,7 @@
 /**时间排序(分类)*/
 #define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
 /**点赞排序(分类)*/
-#define QueryUserGoodCtid       HttpHead(@"queryUserGoodCtid")
+#define QueryUserGoodCtid       HttpHead(@"queryUserGoodsCtidpraise")
 
 
 /**

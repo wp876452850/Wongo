@@ -15,4 +15,6 @@
  @param images 图片数组
  */
 +(instancetype)createUpLoadImageGCDWithImages:(NSArray *)images urlString:(NSString *)urlString params:(NSDictionary *)params;
+
+//+(void)createUpLoadImageGCDWithImages:(NSArray *)images urlString:(NSString *)urlString params:(NSDictionary *)params;
 @end

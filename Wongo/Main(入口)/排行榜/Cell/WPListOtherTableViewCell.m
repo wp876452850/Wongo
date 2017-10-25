@@ -22,7 +22,7 @@
 -(void)setModel:(WPListModel *)model{
     _model = model;
     NSString * imageName = @"";
-    if (model.listuser[0]) {
+    if (model.listuser.count>0) {
         imageName = model.listuser[0][@"url"];
     }
     [self.headerImage sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];

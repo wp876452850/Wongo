@@ -140,23 +140,28 @@
         dataSourceArrayCount = 3;
     }
     for (int i = 0; i < dataSourceArrayCount; i++) {
+        
         WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
+        NSString * imageName = @"";
+        if (model.listuser.count > 0) {
+            imageName = model.listuser[0][@"url"];
+        }
         switch (i) {
             case 0:
             {
-                [_one sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+                [_one sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _onenumber.text = model.praise;
                 _oneLabel.text = model.uname;
                 
             }break;
-            case 1:{
-                [_two sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+            case 1:{               
+                [_two sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _twoLabel.text = model.uname;
-                _twonumber = model.praise;
+                _twonumber.text = model.praise;
             }
                 break;
             case 2:{
-                [_three sd_setImageWithURL:[NSURL URLWithString:model.listuser[0][@"url"]] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+                [_three sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _threeLabel.text = model.uname;
                 _threenumber.text = model.praise;
             }

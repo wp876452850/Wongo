@@ -4126,6 +4126,45 @@
 			path = "WPCacheCellHeight(缓存Cell高,自适应高度)";
 			sourceTree = "<group>";
 		};
+		3D9DE6B21F9F1F9700294323 /* 寄卖 */ = {
+			isa = PBXGroup;
+			children = (
+				3D9DE6B31F9F1F9800294323 /* Cell */,
+				3D9DE6B41F9F1F9800294323 /* Controller */,
+				3D9DE6B51F9F1F9800294323 /* Model */,
+				3D9DE6B61F9F1F9800294323 /* View */,
+			);
+			path = "寄卖";
+			sourceTree = "<group>";
+		};
+		3D9DE6B31F9F1F9800294323 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3D9DE6B41F9F1F9800294323 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D9DE6B51F9F1F9800294323 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D9DE6B61F9F1F9800294323 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3DE9ED6C1F9984DD00C01310 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -5511,6 +5550,7 @@
 				3D0DF8491F4E632800BA1615 /* 店铺 */,
 				3D883C6B1F4C1E0500A990D6 /* 排行榜 */,
 				3DF746041F3426FB00A23B52 /* Detail(商品详情页) */,
+				3D9DE6B21F9F1F9700294323 /* 寄卖 */,
 			);
 			path = "Main(入口)";
 			sourceTree = "<group>";
