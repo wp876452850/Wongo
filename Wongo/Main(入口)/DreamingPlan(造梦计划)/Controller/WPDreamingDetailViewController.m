@@ -498,8 +498,10 @@ static NSString * const recommendCell   = @"recommendCell";
 
 #pragma mark 界面跳转
 -(void)goNextViewController{
-    WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]initWithProid:self.model.plid];
-    [self.navigationController pushViewController:vc animated:YES];
+    if ([self determineWhetherTheLogin]) {
+        WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]initWithProid:self.model.plid];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)goChat{

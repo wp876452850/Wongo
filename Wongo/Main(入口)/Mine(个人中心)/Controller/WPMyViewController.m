@@ -18,15 +18,15 @@
 #import "WPExchangeOrderViewController.h"
 #import "WPMyDreamingViewController.h"
 #import "WPDreamingOrderViewController.h"
-
+#import "WPStoreViewController.h"
 #import "WPMyTableViewCell.h"
 
 
 
 #define CELL_ID @"cell"
 
-#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单"]
-#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder"]
+#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
+#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
 
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
@@ -178,6 +178,11 @@
             {
                 //跳转造梦订单
                 WPDreamingOrderViewController * vc = [[WPDreamingOrderViewController alloc]init];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 5:{
+                WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:[self getSelfUid]];
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

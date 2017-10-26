@@ -33,7 +33,7 @@
 }
 
 -(void)setModel:(WPDreamingMainGoodsModel *)model{
-    
+    _model = model;
 }
 
 - (IBAction)goSignUp:(UIButton *)sender

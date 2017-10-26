@@ -16,7 +16,7 @@
 /**电话号码*/
 @property (nonatomic,strong)NSString * phone;
 /**地址编号*/
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSInteger adid;
 /**是否默认地址*/
 @property (nonatomic,strong)NSString * state;
 @end

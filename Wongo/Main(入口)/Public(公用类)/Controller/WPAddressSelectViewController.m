@@ -163,7 +163,7 @@
 -(void)goAddAddress{
     WPAddressEditViewController * vc = [[WPAddressEditViewController alloc]initWithStyle:WPAddressNewStyle dateSource:nil];
     __weak typeof(self) weakSelf = self;
-    vc.saveBlock = vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSString * adid){
+    vc.saveBlock = vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSInteger adid){
         WPAddressModel *model = [[WPAddressModel alloc] init];
         model.phone = phone;
         model.address = detailAddress;

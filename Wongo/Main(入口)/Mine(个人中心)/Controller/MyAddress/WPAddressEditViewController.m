@@ -21,42 +21,12 @@
 @property (nonatomic,strong)NSString * phone;
 @property (nonatomic,strong)NSString * address;
 @property (nonatomic,strong)NSString * detailAddress;
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSInteger  adid;
 @property (nonatomic, strong) WPMyNavigationBar * customNav;
 @property (nonatomic,assign)WPAddressManageStyle style;
 @end
 
 @implementation WPAddressEditViewController
-- (NSString *)address{
-    if (!_address) {
-        _address = [NSString string];
-    }
-    return _address;
-}
-- (NSString *)phone{
-    if (!_phone) {
-        _phone = [NSString string];
-    }
-    return _phone;
-}
-- (NSString *)recipient{
-    if (!_recipient) {
-        _recipient = [NSString string];
-    }
-    return _recipient;
-}
-- (NSString *)detailAddress{
-    if (!_detailAddress) {
-        _detailAddress = [NSString string];
-    }
-    return _detailAddress;
-}
-- (NSString *)adid{
-    if (!_adid) {
-        _adid = [NSString string];
-    }
-    return _adid;
-}
 
 - (void)setIsPresent:(BOOL)isPresent{
     _isPresent = isPresent;
@@ -121,7 +91,7 @@
             
             
             if (self.saveBlock) {
-                self.saveBlock(_recipient,_phone,_address,_detailAddress,[responseObject objectForKey:@"adid"]);
+                self.saveBlock(_recipient,_phone,_address,_detailAddress,[[responseObject objectForKey:@"adid"] integerValue]);
             }
             if (_isPresent) {
                 [self disablesAutomaticKeyboardDismissal];
@@ -133,10 +103,10 @@
     }
     //修改
     else{
-        [WPNetWorking createPostRequestMenagerWithUrlString:UpdateAddressedUrl params:@{@"adid":self.adid,@"phone":self.phone,@"address":[NSString stringWithFormat:@"%@%@",self.address,self.detailAddress],@"consignee":self.recipient} datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:UpdateAddressedUrl params:@{@"adid":@(self.adid),@"phone":self.phone,@"address":[NSString stringWithFormat:@"%@%@",self.address,self.detailAddress],@"consignee":self.recipient} datas:^(NSDictionary *responseObject) {
             
             if (self.saveBlock) {
-                self.saveBlock(_recipient,_phone,_address,_detailAddress,[responseObject objectForKey:@"adid"]);
+                self.saveBlock(_recipient,_phone,_address,_detailAddress,[[responseObject objectForKey:@"adid"] integerValue]);
             }
             [self.navigationController popViewControllerAnimated:YES];
         }];

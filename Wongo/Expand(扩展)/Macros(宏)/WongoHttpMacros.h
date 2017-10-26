@@ -9,9 +9,9 @@
 #ifndef WongoHttpMacros_h
 #define WongoHttpMacros_h
 //外网
-#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
+//#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
 //内网
-//#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
+#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
 
 /**
  *  登录url
@@ -213,7 +213,12 @@
 /**
  *  关注
  */
-#define AttentionnumAddUrl      HttpHead(@"attentionnumAdd")
+/**添加关注*/
+#define FollowFAddUrl      HttpHead(@"FollowFAdd")
+/**取消关注  uidF:被关注用户 uid:当前登录用户 */
+#define FollowFDelUrl           HttpHead(@"FollowFDel")
+/**查询关注  uid*/
+#define QueryUidFollowUrl       HttpHead(@"queryUidFollow")
 
 /**
  *  排行榜

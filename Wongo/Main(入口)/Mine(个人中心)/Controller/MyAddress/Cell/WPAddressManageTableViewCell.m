@@ -25,7 +25,7 @@
 /**删除*/
 @property (weak, nonatomic) IBOutlet UIButton *deleteAddress;
 /**地址id*/
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSUInteger adid;
 
 @end
 @implementation WPAddressManageTableViewCell
@@ -46,7 +46,7 @@
 
 - (IBAction)delete:(UIButton *)sender {
     [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"是否删除地址" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确认",@"取消"] block:^{
-        [WPNetWorking createPostRequestMenagerWithUrlString:DeleteAddressedUrl params:@{@"adid":_model.adid} datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:DeleteAddressedUrl params:@{@"adid":@(_model.adid)} datas:^(NSDictionary *responseObject) {
             if (_deleteBlock) {
                 _deleteBlock();
             }
@@ -67,13 +67,13 @@
     NSString * detailAddress = array.lastObject;
     NSString * region = [_address.text stringByReplacingOccurrencesOfString:detailAddress withString:@""];
     [dateSource setObject:region forKey:@"address"];
-    [dateSource setObject:_adid forKey:@"adid"];
+    [dateSource setObject:@(_adid) forKey:@"adid"];
     WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
     UINavigationController * nav = [tabBar.childViewControllers lastObject];
     WPAddressEditViewController * vc = [[WPAddressEditViewController alloc]initWithStyle:WPAddressEditStyle dateSource:dateSource];
     //去编辑界面
     [nav pushViewController:vc animated:YES];
-    vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSString * adid){
+    vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSInteger adid){
         self.recipient.text = recipient;
         self.phone.text = phone;
         self.address.text = [NSString stringWithFormat:@"%@%@",address,detailAddress];

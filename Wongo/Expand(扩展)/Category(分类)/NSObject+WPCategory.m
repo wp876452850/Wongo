@@ -174,17 +174,16 @@
     if ([self determineWhetherTheLogin]) {
         __block UIButton * button = sender;
         if (!sender.selected) {
-            [WPNetWorking createPostRequestMenagerWithUrlString:AttentionnumAddUrl params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:FollowFAddUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
             }];
         }
         else{
-            [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{@"uid":uid} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:FollowFDelUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
             }];
         }
     }
-    
 }
 
 -(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{

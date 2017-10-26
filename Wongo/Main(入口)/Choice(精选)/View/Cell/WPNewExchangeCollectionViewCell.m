@@ -69,7 +69,6 @@
         self.wantExchange.text = [NSString stringWithFormat:@"%ld想换",praise];
     }
     [self thumbUpGoodsWithSender:sender gid:_model.gid];
-    
 }
 
 @end

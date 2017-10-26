@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumber;
 @property (weak, nonatomic) IBOutlet UILabel *address;
 
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSInteger  adid;
 
 @end
 @implementation WPAddressSelectTableViewCell

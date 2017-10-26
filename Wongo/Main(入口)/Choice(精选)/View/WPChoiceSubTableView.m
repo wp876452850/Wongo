@@ -105,8 +105,11 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
     }else{
         if (_memoryButtonTag == 0) {
             WPNewDreamingNotSignUpTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:notSignUpCell forIndexPath:indexPath];
+           
+            cell.model = self.dataSourceArray[indexPath.section];
             cell.image.image = [UIImage imageNamed:RegistrationIsIntroducedFigure[indexPath.section]];
             cell.instructions.text = [NSString stringWithFormat:@"%@\n【活动内容】\n1.“点击报名”发布自己符合平台要求的事物到活动界面，要求发布的事物需实拍图片清晰，详细文字描述，事物要是新奇有特点优先选择。\n2.可以邀请自己的好友点赞，第1名用户可以直接筛选为造梦用户预备名额。  \n【活动奖励】\n报名被选上的用户直接参与造梦计划，平台可以实现TA的梦想，帮该用户换取一件事物。",TitleContents[indexPath.section]];
+            
             return cell;
         }
         

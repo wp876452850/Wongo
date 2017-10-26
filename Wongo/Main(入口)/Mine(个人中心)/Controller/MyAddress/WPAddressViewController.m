@@ -40,7 +40,7 @@
 
 -(void)goAddAddress{
     WPAddressEditViewController * vc = [[WPAddressEditViewController alloc]initWithStyle:WPAddressNewStyle dateSource:nil];
-    vc.saveBlock = vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSString * adid){
+    vc.saveBlock = vc.saveBlock = ^(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSInteger adid){
         
     };
     [self.navigationController pushViewController:vc animated:YES];
@@ -109,7 +109,7 @@
     if (_indexPath) {
         [self showAlertWithAlertTitle:@"提示" message:@"是否设为默认地址" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确认",@"取消"] block:^{
             WPAddressModel * model = self.dataSource[self.indexPath.row];
-            [WPNetWorking createPostRequestMenagerWithUrlString:UpdAddressedStateUrl params:@{@"adid":model.adid} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:UpdAddressedStateUrl params:@{@"adid":@(model.adid)} datas:^(NSDictionary *responseObject) {
                 
             }];
         }];

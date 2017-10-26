@@ -274,7 +274,7 @@ static NSString * const cell            = @"cell";
         WPAddressSelectViewController * vc = [[WPAddressSelectViewController alloc]init];
         [self presentViewController:vc animated:YES completion:nil];
         [vc getAdidAndAddressWithBlock:^(WPAddressModel *address) {
-            _adid = address.adid;
+            _adid = [NSString stringWithFormat:@"%ld",address.adid];
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],address.address];
         }];

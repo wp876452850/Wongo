@@ -13,7 +13,7 @@
 
 @interface WPDreamingModel : NSObject
 /**收货地址id*/
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSInteger  adid;
 /**主题内容*/
 @property (nonatomic,strong)NSString * contents;
 /**商品类型*/

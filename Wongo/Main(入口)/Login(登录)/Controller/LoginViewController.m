@@ -205,7 +205,7 @@
         [[NSUserDefaults standardUserDefaults]setObject:imageData forKey:User_Head];
         //记录用户信息
         if ([[responseObject objectForKey:@"flag"] isEqualToString:@"1"]) {
-            [weakSelf loginSuccessWithSelf:weakSelf];
+            [weakSelf loginSuccessWithSelf:weakSelf uid:responseObject[@"uid"]];
         }
         else{
             [weakSelf loginfailWithSelf:weakSelf];
@@ -224,9 +224,8 @@
     }];
 }
 //登录成功
--(void)loginSuccessWithSelf:(LoginViewController *)weakSelf{
-    
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
+-(void)loginSuccessWithSelf:(LoginViewController *)weakSelf uid:(NSString *)uid{
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE,@"uid":uid} datas:^(NSDictionary *responseObject) {
         //记录token并登陆
         NSDictionary * dic = [responseObject objectForKey:@"token"];
         [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
@@ -240,7 +239,7 @@
             NSLog(@"登陆的错误码为:%ld", (long)status);
         } tokenIncorrect:^{
             NSLog(@"token错误");
-            [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE} datas:^(NSDictionary *responseObject) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE,@"uid":uid} datas:^(NSDictionary *responseObject) {
                 //记录token并登陆
                 NSDictionary * dic = [responseObject objectForKey:@"token"];
                 [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
@@ -258,6 +257,7 @@
         }];
     }];
 }
+
 -(void)loginfailWithSelf:(LoginViewController *)weakSelf{
     [weakSelf showAlertWithAlertTitle:@"登录失败" message:@"账号/密码有误" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
     weakSelf.view.userInteractionEnabled = YES;

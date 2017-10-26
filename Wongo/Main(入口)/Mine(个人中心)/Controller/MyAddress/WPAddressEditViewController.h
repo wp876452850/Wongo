@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger,WPAddressManageStyle)
     WPAddressNewStyle    = 1                     //新建样式
 };
 
-typedef void(^selectBlock)(NSString * recipient,NSString * phone,NSString * address,NSString * detailAddress,NSString * aid);
+typedef void(^selectBlock)(NSString *recipient,NSString *phone,NSString *address,NSString *detailAddress,NSInteger adid);
 
 @interface WPAddressEditViewController : UIViewController
 @property (nonatomic,strong)selectBlock saveBlock;

@@ -20,7 +20,7 @@
 @property (nonatomic,strong)NSString * neworold;
 @property (nonatomic,strong)NSString * url;
 @property (nonatomic,strong)NSString * pubtime;
-@property (nonatomic,strong)NSString * adid;
+@property (nonatomic,assign)NSInteger  adid;
 @property (nonatomic,strong)NSString * price;
 @property (nonatomic,strong)NSString * plid;
 @property (nonatomic,strong)NSString * proid;

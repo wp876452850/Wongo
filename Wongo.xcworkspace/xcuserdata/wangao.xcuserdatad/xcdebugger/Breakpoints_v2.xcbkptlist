@@ -52,7 +52,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "530434197.40053"
+            timestampString = "530590052.607367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "353"
@@ -68,7 +68,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "530434197.40053"
+            timestampString = "530590052.607367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
@@ -83,29 +83,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "530529762.515361"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/Cell/WPNewDreamingNotSignUpTableViewCell.m"
+            timestampString = "530605596.62734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-loginSuccessWithSelf:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Login(&#x767b;&#x5f55;)/Controller/LoginViewController.m"
-            timestampString = "530529782.795307"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "-loginSuccessWithSelf:"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-goSignUp:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

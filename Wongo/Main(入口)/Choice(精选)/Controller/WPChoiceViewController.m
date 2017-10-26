@@ -26,18 +26,6 @@
 
 @implementation WPChoiceViewController
 
-//-(UIButton *)help{
-//    if (!_help) {
-//        _help = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [_help setImage:[UIImage imageNamed:@"questionmark"] forState:UIControlStateNormal];
-//        [_help addTarget:self action:@selector(questionmark) forControlEvents:UIControlEventTouchUpInside];
-//        _help.bounds = CGRectMake(0, 0, 20, 20);
-//        _help.centerY = _navigationBar.height/2;
-//        _help.right = WINDOW_WIDTH - 10.f;
-//    }
-//    return _help;
-//}
-
 - (WPChoiceContentCollectionView *)choiceContentCollectionView{
     if (!_choiceContentCollectionView) {
          _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) SubViewsClassArray:@[[WPChoiceSubCollectionView class],[WPDreameChioceSubView class]] cellClassArray:@[[WPNewExchangeCollectionViewCell class],[WPNewExchangeCollectionViewCell class]] loadDatasUrls:@[QueryGoodsListNew,QuerySubIng]];        

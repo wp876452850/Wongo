@@ -294,7 +294,7 @@ static NSString * const cell            = @"cell";
         WPAddressSelectViewController * vc = [[WPAddressSelectViewController alloc]init];
         [self presentViewController:vc animated:YES completion:nil];
         [vc getAdidAndAddressWithBlock:^(WPAddressModel *addr) {
-            _adid = addr.adid;
+            _adid = [NSString stringWithFormat:@"%ld",addr.adid];
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],addr.address];
         }];
@@ -324,7 +324,7 @@ static NSString * const cell            = @"cell";
     if ([_price floatValue]>999999) {
         [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
     }
-    __weak WPPushDreamingViewController * weakSelf = (WPPushDreamingViewController*)self;
+    __block WPPushDreamingViewController * weakSelf = (WPPushDreamingViewController*)self;
     if (_name.length!=0&&_describe.length!=0&&_species.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0) {
         
         NSString * timeStr = [self getNowTime];
