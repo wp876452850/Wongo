@@ -70,7 +70,6 @@
     if (!_headPortrait) {
         _headPortrait = [[UIImageView alloc]init];
 #warning 后期修改成数据
-        _headPortrait.image = [UIImage imageNamed:@"1"];
         //画圆
         [_headPortrait roundWithWithCornerRadius:40];
         _headPortrait.layer.borderWidth = 1;
@@ -201,9 +200,9 @@
     
     _userName.text          = @"                               ";
     _signature.text         = @"                               ";
-    _attentionNumber.text   = @"0";
-    _fansNumber.text        = @"0";
-    _enjoyNumber.text       = @"0";
+    _attentionNumber.text   = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedFocusArray].count];
+    _fansNumber.text        = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedFansArray].count];
+    _enjoyNumber.text       = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedCollectionArray].count];
     //设置居中
     _userName.textAlignment = NSTextAlignmentCenter;
     _signature.textAlignment = NSTextAlignmentCenter;
@@ -378,16 +377,16 @@
     switch (sender.tag) {
         case 1:
         {
-            [self showAlter];
-//            WPConcernUserViewController * vc = [[WPConcernUserViewController alloc]init];
-//            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
+//            [self showAlter];
+            WPConcernUserViewController * vc = [[WPConcernUserViewController alloc]init];
+            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
         }
             break;
         case 2:
         {
-            [self showAlter];
-//            WPFansViewController * vc = [[WPFansViewController alloc]init];
-//            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
+//            [self showAlter];
+            WPFansViewController * vc = [[WPFansViewController alloc]init];
+            [nav pushViewControllerAndHideBottomBar:vc animated:YES];
             
         }
             break;

@@ -7,7 +7,9 @@
 //
 
 #import "WPStroeDreamingCollectionViewCell.h"
+#import "WPDreamingDetailViewController.h"
 
+#define States @[@"未开始",@"进行中"]
 @interface WPStroeDreamingCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
 @property (weak, nonatomic) IBOutlet UITextView *goodsName;
@@ -27,9 +29,15 @@
     _model = model;
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.proname;
+    _state.text = States[[model.isrecommend integerValue]];
+    
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:_model.proid plid:_model.plid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+}
+- (IBAction)thumup:(id)sender {
     
 }
 

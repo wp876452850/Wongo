@@ -21,10 +21,8 @@
         _dataLabel.bounds                       = CGRectMake(0, 0, radius - 10 ,self.bounds.size.width /4);
         _dataLabel.center                       = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2 - self.bounds.size.height/8);
         _dataLabel.textColor                    = self.progressColor;
-        _dataLabel.text                         = self.data;
         _dataLabel.adjustsFontSizeToFitWidth    = YES;
         _dataLabel.textAlignment                = NSTextAlignmentCenter;
-        
     }
     return _dataLabel;
 }
@@ -107,7 +105,10 @@
     [self addSubview:self.dataLabel];
     [self addSubview:self.dataNameLabel];
 }
-
+-(void)setData:(NSString *)data{
+    _data = data;
+    _dataLabel.text = data;
+}
 #pragma mark - setter
 -(void)setDataLabelFont:(CGFloat)dataLabelFont{
     _dataLabelFont = dataLabelFont;

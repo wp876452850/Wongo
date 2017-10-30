@@ -43,14 +43,16 @@
     if (!_collectionView) {
         _collectionView = [[ZYPhotoCollectionView alloc]initWithFrame:CGRectMake(10, 20, WINDOW_WIDTH-20, 80)];
         _collectionView.layout.itemSize = CGSizeMake(80, 80);
+        _collectionView.backgroundColor = WhiteColor;
     }
     return _collectionView;
 }
 //前往店铺
 -(void)goStore{
     WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
-    [[self findViewController:self]presentViewController:vc animated:YES completion:nil];
     vc.isPresen = YES;
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    [[self findViewController:self]presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{

@@ -83,6 +83,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"CHANGE_REDDOT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         [self.userInformationView changeMessageBtnDot];
     }];
+    
 }
 
 

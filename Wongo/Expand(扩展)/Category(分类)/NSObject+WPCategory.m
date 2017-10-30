@@ -159,11 +159,34 @@
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
+                [thumupArray addObject:gid];
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
+                [thumupArray removeObject:gid];
+            }];
+        }
+    }
+}
+
+-(void)thumbUpGoodsWithSender:(UIButton *)sender proid:(NSString *)proid addBlock:(AddBlock)addBlock reduceBlock:(ReduceBlock)reduceBlock{
+    //判断是否登录
+    if ([self determineWhetherTheLogin]) {
+        __block UIButton * button = sender;
+        if (!sender.selected) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:IncensesproductAdd params:@{@"proid":proid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+                [thumupDreamingArray addObject:proid];
+                addBlock();
+            }];
+        }
+        else{
+            [WPNetWorking createPostRequestMenagerWithUrlString:IncensesproductDel params:@{@"proid":proid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+                button.selected = !button.selected;
+                [thumupDreamingArray removeObject:proid];
+                reduceBlock();
             }];
         }
     }
@@ -176,21 +199,22 @@
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFAddUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
+                [focusArray addObject:uid];
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFDelUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 button.selected = !button.selected;
+                [focusArray removeObject:uid];
             }];
         }
     }
 }
-
+/**收藏*/
 -(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
     //判断是否登录
     if ([self determineWhetherTheLogin]) {
         __block UIButton * button = sender;
-        __block NSMutableArray * collectionArray = [NSMutableArray sharedCollectionArray];
         
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:CollectionAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
@@ -205,5 +229,209 @@
         }];
     }
 }
+/**************/
 
+
+static id thumupArray;
+static id thumupDreamingArray;
+static id focusArray;
+static id collectionArray;
+static id fansArray;
+static const NSString * selectUid;
+
++(instancetype)sharedThumupArray{
+    
+    if (thumupArray == nil) {
+        
+        @synchronized(self) {
+            
+            if(thumupArray == nil&&[selectUid getSelfUid].length>0) {
+                selectUid = [selectUid getSelfUid];
+                thumupArray = [[self alloc] init];
+                [thumupArray loadThumUpDatas];
+            }
+        }
+    }
+    else if (![selectUid isEqualToString:[selectUid getSelfUid]]) {
+        thumupArray = [[self alloc] init];
+        selectUid = [self getSelfUid];
+        [thumupArray loadThumUpDatas];
+    }
+    return thumupArray;
+}
++(instancetype)sharedThumupDreamingArray{
+    if (thumupDreamingArray == nil) {
+        @synchronized(self) {
+            if(thumupDreamingArray == nil&&[self getSelfUid].length>0) {
+                selectUid = [self getSelfUid];
+                thumupDreamingArray = [[self alloc] init];
+                [thumupDreamingArray loadThumUpDreamingDatas];
+            }
+        }
+    }
+    else if (![selectUid isEqualToString:[selectUid getSelfUid]]) {
+        thumupDreamingArray = [[self alloc] init];
+        selectUid = [self getSelfUid];
+        [thumupDreamingArray loadThumUpDreamingDatas];
+    }
+    return thumupDreamingArray;
+}
+
++(instancetype)sharedFocusArray{
+    if (focusArray == nil) {
+        @synchronized(self) {
+            if(focusArray == nil&&[self getSelfUid].length>0) {
+                selectUid = [self getSelfUid];
+                focusArray = [[self alloc] init];
+                [focusArray loadFocusDatas];
+            }
+        }
+    }
+    else if (![selectUid isEqualToString:[self getSelfUid]]) {
+        focusArray = [[self alloc] init];
+        selectUid = [self getSelfUid];
+        [focusArray loadFocusDatas];
+    }
+    return focusArray;
+}
+//粉丝
++(instancetype)sharedFansArray{
+    if (fansArray == nil) {
+        @synchronized(self) {
+            if(fansArray == nil&&[self getSelfUid].length>0) {
+                selectUid = [self getSelfUid];
+                fansArray = [[self alloc] init];
+                [fansArray loadFansDatas];
+            }
+        }
+    }
+    else if (![selectUid isEqualToString:[self getSelfUid]]) {
+        fansArray = [[self alloc] init];
+        selectUid = [self getSelfUid];
+        [fansArray loadFansDatas];
+    }
+    return fansArray;
+}
+
++(instancetype)sharedCollectionArray{
+    if (collectionArray == nil) {
+        
+        @synchronized(self) {
+            
+            if(collectionArray == nil&&[self getSelfUid].length>0) {
+                selectUid = [self getSelfUid];
+                collectionArray = [[self alloc] init];
+                [collectionArray loadCollectionDatas];
+            }
+        }
+    }
+    else if (![selectUid isEqualToString:[self getSelfUid]]) {
+        collectionArray = [[self alloc] init];
+        selectUid = [self getSelfUid];
+        [collectionArray loadCollectionDatas];
+    }
+    return collectionArray;
+}
+
+#pragma mark - loadDatas
+//收藏商品
+-(void)loadCollectionDatas{
+    if ([self getSelfUid].length>0) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCollectionUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            NSArray * list = responseObject[@"list"];
+            for (NSDictionary * dic in list) {
+                NSString * gid = dic[@"gid"];
+                [collectionArray addObject:[NSString stringWithFormat:@"%@",gid]];
+            }
+        }];
+    }
+}
+//点赞商品
+-(void)loadThumUpDatas{
+    if ([self getSelfUid].length>0) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelect params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            
+        }];
+    }
+}
+//造梦商品点赞商品
+-(void)loadThumUpDreamingDatas{
+    if ([self getSelfUid].length>0) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelectPrdouct params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            
+        }];
+    }
+}
+//关注用户
+-(void)loadFocusDatas{
+    if ([self getSelfUid].length>0) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUidFollowUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+            NSArray * listg = responseObject[@"listg"];
+            for (NSDictionary * dic in listg) {
+                [focusArray addObject:[NSString stringWithFormat:@"%@",dic[@"uids"]]];
+            }
+        }];
+    }
+}
+//粉丝
+-(void)loadFansDatas{
+    if ([self getSelfUid].length>0) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUidFollowsUrl params:@{@"uidF":[self getSelfUid]} datas:^(NSDictionary *responseObject){
+            NSArray * listg = responseObject[@"listg"];
+            for (NSDictionary * dic in listg) {
+                [fansArray addObject:[NSString stringWithFormat:@"%@",dic[@"uid"]]];
+            }
+        }];
+    }
+}
+
+#pragma mark - predicate
+
+-(BOOL)thumUpWithinArrayContainsGid:(NSString *)gid
+{
+    if ([self getSelfUid].length>0) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedThumupArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+-(BOOL)thumUpDreamingWithinArrayContainsProid:(NSString *)proid
+{
+    if ([self getSelfUid].length>0) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedThumupDreamingArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", proid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+-(BOOL)collectionWithinArrayContainsGid:(NSString *)gid
+{
+    if ([self getSelfUid].length>0) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedCollectionArray]];
+        NSPredicate *predicate1 = [NSPredicate predicateWithFormat:@"SELF == %@", gid];
+        NSArray *results1 = [collectionArray filteredArrayUsingPredicate:predicate1];
+        if (results1.count>0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+-(BOOL)focusOnWithinArrayContainsUid:(NSString *)uid{
+    
+    if ([self getSelfUid].length>0) {
+        NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedFocusArray]];
+        if ([collectionArray containsObject:uid]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 @end

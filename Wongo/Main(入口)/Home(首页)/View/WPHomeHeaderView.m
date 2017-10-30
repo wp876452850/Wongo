@@ -121,6 +121,7 @@
     if (sender.tag >= self.listhk.count) {
         return;
     }
+    
     LYHomeCategory *category = self.listhk[sender.tag];
     LYActivityController * vc = [LYActivityController controllerWithCategory:category];
     vc.activityState = sender.tag;
@@ -158,7 +159,10 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
     LYHomeCategory *category = self.listhl[index];
-    [[self findViewController:self].navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
+    LYActivityController * vc = [LYActivityController controllerWithCategory:category];
+    vc.activityState = index;
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+    
 }
 -(UIView *)fastView{
     if (!_fastView) {

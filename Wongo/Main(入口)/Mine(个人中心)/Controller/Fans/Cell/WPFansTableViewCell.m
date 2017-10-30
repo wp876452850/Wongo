@@ -22,24 +22,33 @@
     [super awakeFromNib];
     [_attention setTitle:@"+关注" forState:UIControlStateNormal];
     [_attention setTitle:@"已关注" forState:UIControlStateSelected];
-    [_attention setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
-    [_attention setTitleColor:GRAY_COLOR forState:UIControlStateSelected];
+    [_attention setTitleColor:GRAY_COLOR forState:UIControlStateNormal];
+    [_attention setTitleColor:SelfOrangeColor forState:UIControlStateSelected];
+    self.header.layer.cornerRadius = _header.height/2;
     _attention.layer.masksToBounds = YES;
     _attention.layer.cornerRadius  = _attention.height/2;
     _attention.layer.borderWidth   = 1;
     _attention.layer.borderColor   = SelfOrangeColor.CGColor;
 }
 
-
+-(void)setModel:(WPFansModel *)model{
+    _model = model;
+    [_header sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    _userName.text = model.uname;
+    _attention.selected = YES;
+    _signature.text = model.signature;
+}
 
 - (IBAction)attentionClick:(UIButton *)sender {
-    sender.selected = !sender.selected;
+    
+    [self focusOnTheUserWithSender:sender uid:_model.uid];
     if (sender.selected) {
         sender.layer.borderColor   = GRAY_COLOR.CGColor;
     }
     else{
         sender.layer.borderColor   = SelfOrangeColor.CGColor;
     }
+    
 }
 
 @end

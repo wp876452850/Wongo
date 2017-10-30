@@ -123,6 +123,12 @@
 #pragma mark - 第三方登录
 
     
+#pragma mark - 收藏 关注 点赞数据加载
+    [NSMutableArray sharedFocusArray];
+    [NSMutableArray sharedThumupArray];
+    [NSMutableArray sharedCollectionArray];
+    [NSMutableArray sharedThumupDreamingArray];
+    [NSMutableArray sharedFansArray];
     return YES;
 }
 

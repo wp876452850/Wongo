@@ -13,12 +13,20 @@
 
 @interface WPFansViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
-@property (nonatomic,strong)NSMutableArray * dataSource;
+@property (nonatomic,strong)NSMutableArray * fansArray;
+@property (nonatomic,strong)NSMutableArray * fansInformationArray;
 @property (nonatomic,strong)WPMyNavigationBar * nav;
 @end
 
 @implementation WPFansViewController
 
+-(NSMutableArray *)fansArray
+{
+    if (!_fansArray) {
+        _fansArray = [NSMutableArray sharedFansArray];
+    }
+    return _fansArray;
+}
 -(WPMyNavigationBar *)nav{
     if (!_nav) {
         _nav = [[WPMyNavigationBar alloc]init];
@@ -32,7 +40,7 @@
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 80;
+        _tableView.rowHeight = 80.f;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerNib:[UINib nibWithNibName:@"WPFansTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     }
@@ -40,13 +48,15 @@
 }
 
 -(void)loadDatas{
-    self.dataSource = [NSMutableArray arrayWithCapacity:3];
-    for (int i = 0 ; i < arc4random() % 10; i++) {
-        WPFansModel * model = [[WPFansModel alloc]init];
-        model.headImage_url = @"";
-        model.userName      = @"这是什么炮？";
-        model.signature     = @"阿姆斯特朗回旋加速喷气式阿姆斯特朗炮";
-        [self.dataSource addObject:model];
+    typeof(self) weakSelf = self;
+    self.fansInformationArray = [NSMutableArray arrayWithCapacity:3];
+    for (int i = 0; i < self.fansArray.count; i++) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":_fansArray[i]} datas:^(NSDictionary *responseObject) {
+            [weakSelf.fansInformationArray addObject:[WPFansModel mj_objectWithKeyValues:responseObject]];
+            if (i+1 >= weakSelf.fansArray.count) {
+                [weakSelf.tableView reloadData];
+            }
+        }];
     }
 }
 
@@ -60,18 +70,20 @@
 }
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    //return self.dataSource.count;
-    return 0;
+    return self.fansInformationArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     WPFansTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
+    [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+    cell.model = self.fansInformationArray[indexPath.row];
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     

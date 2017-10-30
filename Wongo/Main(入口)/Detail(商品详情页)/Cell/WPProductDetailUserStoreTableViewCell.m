@@ -72,6 +72,8 @@
     if (_rowHeightBlock) {
         _rowHeightBlock(self.line.bottom);
     }
+    
+    _collect.selected = [self focusOnWithinArrayContainsUid:_model.uid]?YES:NO;
 }
 
 -(void)getRowHeightWithBlock:(RowHeightBlock)block{

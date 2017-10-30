@@ -49,6 +49,9 @@
                             <constraint firstAttribute="width" constant="30" id="qIj-z5-kQ0"/>
                         </constraints>
                         <state key="normal" image="listthumup_normal"/>
+                        <connections>
+                            <action selector="thumup:" destination="gTV-IL-0wX" eventType="touchUpInside" id="acd-rM-9zF"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

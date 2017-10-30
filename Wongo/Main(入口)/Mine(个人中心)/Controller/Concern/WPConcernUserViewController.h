@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LYBaseController.h"
 
-@interface WPConcernUserViewController : UIViewController
+@interface WPConcernUserViewController : LYBaseController
 
 @end

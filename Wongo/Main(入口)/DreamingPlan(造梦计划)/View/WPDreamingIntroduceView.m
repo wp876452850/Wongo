@@ -10,6 +10,7 @@
 #import "WPDreamingGoodsIntroductionTableView.h"
 #import "LYConversationController.h"
 #import "WPParticipateDreamingViewController.h"
+#import "WPDreamingIntroduceView.h"
 
 #define Titles @[@" 造梦详情",@" 造梦故事",@" 造梦规则"]
 #define TitlesImages @[@"dreamingitemsisintroduced",@"dreamingrules",@"dreamingstory"]
@@ -159,6 +160,7 @@
 #pragma mark 界面跳转
 -(void)goNextViewController{
     WPParticipateDreamingViewController * vc = [[WPParticipateDreamingViewController alloc]initWithProid:self.vc.model.plid];
+    
     [[self findViewController:self]dismissViewControllerAnimated:YES completion:nil];
     [self.vc.navigationController pushViewController:vc animated:YES];
 }

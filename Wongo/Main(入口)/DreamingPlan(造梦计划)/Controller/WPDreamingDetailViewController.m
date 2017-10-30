@@ -222,6 +222,7 @@ static NSString * const recommendCell   = @"recommendCell";
                     //查询参与商品
                     [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
                         weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
+                        weakSelf.model.rounds = weakSelf.model.introduceModel.dreamingIntroduces.count;
                         [weakSelf.tableView reloadData];
                     }];
                 }];
@@ -259,6 +260,7 @@ static NSString * const recommendCell   = @"recommendCell";
     //进度条
     if (indexPath.section == 1) {
         WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
+        
         cell.model = _model;
         return cell;
     }

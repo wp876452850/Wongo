@@ -43,16 +43,19 @@
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const storeCell       = @"StoreCell";
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([self.uid isEqualToString:[self getSelfUid]]) {
+        [self hiddenBottomView];
+    }
+}
 #pragma mark - 懒加载
-
 //返回按钮
 -(UIButton *)backButton{
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_backButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
-        if (self.isPresen) {
-            [_backButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
-        }
         [_backButton setBackgroundImage:[UIImage imageNamed:@"back_gray"] forState:UIControlStateNormal];
         _backButton.frame = CGRectMake(10, 20, 30, 30);
     }
@@ -92,6 +95,13 @@ static NSString * const storeCell       = @"StoreCell";
         _collectionView.dataSource = self;
     }
     return _collectionView;
+}
+
+-(void)setIsPresen:(BOOL)isPresen{
+    _isPresen = isPresen;
+    if (isPresen) {
+        [self.backButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 -(instancetype)initWithUid:(NSString *)uid{
@@ -163,6 +173,7 @@ static NSString * const storeCell       = @"StoreCell";
 -(void)loadNewDatas{
     __weak WPStoreViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QureygoodUid params:@{@"uid":weakSelf.uid} datas:^(NSDictionary *responseObject) {
+        
         weakSelf.storeModel = [WPStoreModel mj_objectWithKeyValues:responseObject];
         [weakSelf.collectionView addSubview:weakSelf.storeUserInformationView];
         // 刷新表格
@@ -213,6 +224,11 @@ static NSString * const storeCell       = @"StoreCell";
 -(void)collect:(UIButton *)sender{
     sender.selected = !sender.selected;
     [self focusOnTheUserWithSender:sender uid:self.uid];
+}
+
+-(void)hiddenBottomView{
+    self.bottomView.hidden = YES;
+    self.collectionView.height = WINDOW_HEIGHT;
 }
 
 -(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{

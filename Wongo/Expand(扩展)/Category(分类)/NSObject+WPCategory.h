@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^AddBlock)(void);
+typedef void(^ReduceBlock)(void);
+
 @interface NSObject (WPCategory)
 /**获得当前时间字符串*/
 -(NSString *)getNowTime;
@@ -49,12 +52,26 @@
 
 /**点赞商品*/
 -(void)thumbUpGoodsWithSender:(UIButton *)sender gid:(NSString *)gid;
+/**点赞造梦商品*/
+-(void)thumbUpGoodsWithSender:(UIButton *)sender proid:(NSString *)proid addBlock:(AddBlock)addBlock reduceBlock:(ReduceBlock)reduceBlock;
 /**关注用户*/
 -(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid;
 /**收藏商品*/
 -(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid;
 
++(instancetype)sharedThumupArray;
++(instancetype)sharedThumupDreamingArray;
++(instancetype)sharedFocusArray;
++(instancetype)sharedFansArray;
++(instancetype)sharedCollectionArray;
 
+
+-(BOOL)thumUpWithinArrayContainsGid:(NSString *)gid;
+-(BOOL)thumUpDreamingWithinArrayContainsProid:(NSString *)proid;
+-(BOOL)collectionWithinArrayContainsGid:(NSString *)gid;
+-(BOOL)focusOnWithinArrayContainsUid:(NSString *)uid;
 /*-----------------------类方法-------------------------*/
+
+
 
  @end

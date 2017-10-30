@@ -12,6 +12,8 @@
 
 @property (nonatomic,strong)UIImageView * guideImageView;
 
+@property (nonatomic,strong)UILabel * titleLabel;
+
 
 
 @end
@@ -25,8 +27,16 @@
     }
     return _guideImageView;
 }
+-(UILabel *)titleLabel{
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 30)];
+        _titleLabel.backgroundColor = WhiteColor;
+    }
+    return _titleLabel;
+}
 -(instancetype)init{
     if (self = [super init]) {
+        
         
     }
     return self;

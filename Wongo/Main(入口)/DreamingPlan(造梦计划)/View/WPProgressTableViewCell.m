@@ -10,8 +10,10 @@
 #import "ProgressView.h"
 #define Progress_Width_Height (WINDOW_WIDTH - 80) /3
 
+#define States @[@"未开始",@"进行中"]
+
 static NSString * price;
-static NSString * unit;
+static NSString * isrecommend;
 static NSString * progress;
 
 @interface WPProgressTableViewCell ()
@@ -39,16 +41,15 @@ static NSString * progress;
 -(void)setModel:(WPDreamingModel *)model{
     _model      = model;
     price       = model.price;
-    unit        = model.unit;
+    isrecommend = model.isrecommend;
     progress    = model.progress;
-    
     
     [self createProgress];
     
 }
 //创建进度条
 -(void)createProgress{
-    progress = [NSString stringWithFormat:@"%u",arc4random()%10];
+    progress = [NSString stringWithFormat:@"%ld",_model.rounds - 1];
     if (!priceProgress) {
         //创建金额进度条
         priceProgress    = [ProgressView createProgressWithFrame:CGRectMake(20, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(188, 229, 219) color:ColorWithRGB(72, 208, 180) proportion:1];
@@ -64,13 +65,13 @@ static NSString * progress;
         dateProgress    = [ProgressView createProgressWithFrame:CGRectMake(60 +Progress_Width_Height*2, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(203, 192, 221) color:ColorWithRGB(146, 117, 179) proportion:1];
         [self.contentView addSubview:dateProgress];
     }
- 
-    priceProgress.data              = @"造梦中";
+    NSString * state = States[[isrecommend integerValue]];
+    priceProgress.data              = state;
     priceProgress.dataName          = @"造梦状态";
     [priceProgress showContentData];
     
     
-    progressProgress.data              = [NSString stringWithFormat:@"第%@轮",progress];
+    progressProgress.data              = [NSString stringWithFormat:@"第%ld轮",_model.rounds - 1];
     progressProgress.dataName          = @"轮次";
     [progressProgress showContentData];
     progressProgress.dataLabelFont = 25;

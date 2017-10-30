@@ -7,10 +7,12 @@
 //  造梦详情-物品介绍 Main图
 
 #import "WPDreamingImageTableViewCell.h"
+#import "WPStoreViewController.h"
 
 @interface WPDreamingImageTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
+
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
 /**状态(进行中)*/
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -37,8 +39,16 @@
     self.headerImage.layer.masksToBounds = YES;
     self.headerImage.layer.borderWidth = .5f;
     self.headerImage.layer.borderColor = WongoGrayColor.CGColor;
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goStore)];
+    [self.headerImage addGestureRecognizer:tap];
 }
-
+-(void)goStore{
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
+    vc.isPresen = YES;
+    [[self findViewController:self] presentViewController:vc animated:YES completion:nil];
+    
+}
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];

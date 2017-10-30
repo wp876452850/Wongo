@@ -33,6 +33,7 @@
 - (UIImageView *)introduceView{
     if (!_introduceView) {
         _introduceView = [[UIImageView alloc] init];
+        
     }
     return _introduceView;
 }
@@ -141,20 +142,6 @@
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     return CGSizeMake(WINDOW_WIDTH, self.introduceView.height + 10);
 }
-
-////设置每个item水平间距
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-//    return 0;
-//}
-////设置每个item垂直间距
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-//    return 10;
-//}
-////设置每个item的UIEdgeInsets
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-//    return UIEdgeInsetsMake(10, 10, 10, 10);
-//}
-
 
 
 @end

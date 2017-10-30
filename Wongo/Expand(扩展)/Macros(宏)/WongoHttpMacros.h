@@ -9,16 +9,16 @@
 #ifndef WongoHttpMacros_h
 #define WongoHttpMacros_h
 //外网
-//#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
+#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
 //内网
-#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
+//#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.109:8080/change/%@",(url)]
 
 /**
  *  登录url
  */
 /**账户登录*/
 #define LoginRequestUrl         HttpHead(@"userLogin")
-/**第三方登录*/
+/**第三方登录 sid, uname ,password, url */
 #define UseraddsUrl             HttpHead(@"useradds")
 
 
@@ -178,16 +178,18 @@
 /**
  *  点赞
  */
-#define ThumUpAddUrl            HttpHead(@"IncensesAdd")
+/** 点赞*/
+#define ThumUpAddUrl                HttpHead(@"IncensesAdd")
 /**取消点赞*/
-#define ThumUpCancelUrl         HttpHead(@"IncensesDel")
-/**造梦点赞*/
-#define IncensesproductAdd      HttpHead(@"IncensesproductAdd")
-/**造梦取消点赞*/
-#define IncensesproductDel      HttpHead(@"IncensesproductDel")
+#define ThumUpCancelUrl             HttpHead(@"IncensesDel")
+/**造梦点赞 uid ，proid*/
+#define IncensesproductAdd          HttpHead(@"IncensesproductAdd")
+/**造梦取消点赞 uid ，proid*/
+#define IncensesproductDel          HttpHead(@"IncensesproductDel")
 /**查询点赞商品 uid*/
-#define IncensesUidSelect       HttpHead(@"IncensesUidSelect")
-
+#define IncensesUidSelect           HttpHead(@"IncensesUidSelect")
+/**查询造梦点赞商品*/
+#define IncensesUidSelectPrdouct    HttpHead(@"IncensesUidSelectPrdouct")
 /**
  *  收藏
  */
@@ -219,6 +221,8 @@
 #define FollowFDelUrl           HttpHead(@"FollowFDel")
 /**查询关注  uid*/
 #define QueryUidFollowUrl       HttpHead(@"queryUidFollow")
+/**查询用户粉丝*/
+#define QueryUidFollowsUrl       HttpHead(@"queryUidFollows")
 
 /**
  *  排行榜

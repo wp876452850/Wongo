@@ -72,6 +72,7 @@ static NSString * contentOffset = @"contentOffset";
     if (!_advertisingView) {
         _advertisingView = [[WPAdvertisingView alloc]init];
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpAdvertisingLink)];
+        
         [_advertisingView addGestureRecognizer:tap];
     }
     return _advertisingView;
@@ -86,6 +87,9 @@ static NSString * contentOffset = @"contentOffset";
 {
     if (!_homeHeaderView) {
         _homeHeaderView = [[WPHomeHeaderView alloc] init];
+        for (UIView*view in _homeHeaderView.subviews) {
+            view.backgroundColor = WhiteColor;
+        }
     }
     return _homeHeaderView;
 }
@@ -178,14 +182,17 @@ static NSString * contentOffset = @"contentOffset";
             //查询造梦计划
             [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
                 
-                NSArray * dreamings = responseObject[@"listSub"][1][@"listplan"];
+                NSArray * dreamings = responseObject[@"listSub"];
                 
                 weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
-                    WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:dreamings[i]];
-                    [weakSelf.dreamings addObject:model];
-                    [weakSelf.collectionView reloadData];
+                    NSArray * listplan = dreamings[i][@"listplan"];
+                    for (int j = 0; j<listplan.count; j++) {
+                        WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
+                        [weakSelf.dreamings addObject:model];
+                    }
                 }
+                [weakSelf.collectionView reloadData];
             }];
         }];
     }failureBlock:^{

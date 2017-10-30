@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "WPNetWorking.h"
 #import <UMSocialCore/UMSocialCore.h>
+#define icons @[@"sina",@"QQ",@"wechat"]
 
 @interface LoginViewController ()
 
@@ -125,36 +126,36 @@
     label2.backgroundColor = ColorWithRGB(255, 204, 92);
     
     
-//    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
-//    label.centerX = WINDOW_WIDTH/2;
-//    label.text = @"第三方登录";
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.font = [UIFont systemFontOfSize:13.f];
-//    label.textColor = ColorWithRGB(255, 204, 92);
-//    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
-//    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
-//    
-//    [self.view addSubview:label];
-//    
-//    for (int i = 0; i<3; i++) {
-//        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-//        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-50, 30, 30);
-//        button.backgroundColor = RandomColor;
-//        button.tag = i;
-//        [button addTarget:self action:@selector(thirdPartyLogin:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:button];
-//    }
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
+    label.centerX = WINDOW_WIDTH/2;
+    label.text = @"第三方登录";
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:13.f];
+    label.textColor = ColorWithRGB(255, 204, 92);
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+    
+    [self.view addSubview:label];
+    
+    for (int i = 0; i<3; i++) {
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake((WINDOW_WIDTH-35)/4*(i+1), WINDOW_HEIGHT-50, 30, 30);
+        [button setImage:[UIImage imageNamed:icons[i]] forState:UIControlStateNormal];
+        button.tag = i;
+        [button addTarget:self action:@selector(thirdPartyLogin:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
+    }
 }
 -(void)thirdPartyLogin:(UIButton *)sender{
     switch (sender.tag) {
         case 0:
         {
-            [self getAuthWithUserInfoFromSina];
+            [self getUserInfoForPlatform:UMSocialPlatformType_Sina];
         }
             break;
         case 1:
         {
-            [self getAuthWithUserInfoFromQQ];
+            [self getUserInfoForPlatform:UMSocialPlatformType_QQ];
         }
             break;
         case 2:
@@ -217,19 +218,33 @@
 }
 
 //第三方登录
--(void)ThirdPartyLoginWithSid:(NSString *)sid{
+-(void)ThirdPartyLoginWithSid:(NSString *)sid uname:(NSString *)uname url:(NSString *)url{
+    __block typeof(self) weakSelf = self;
     //sid:获取的第三方平台账户uid
-    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddsUrl params:@{} datas:^(NSDictionary *responseObject) {
-        
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddsUrl params:@{@"uname":uname,@"sid":sid,@"password":@"123456",@"url":url} datas:^(NSDictionary *responseObject) {
+        if ([responseObject[@"flag"] integerValue] == 0) {
+            [weakSelf loginfailWithSelf:weakSelf];
+        }else
+        [weakSelf loginSuccessWithSelf:weakSelf uid:responseObject[@"uid"]];
+    } failureBlock:^{
+        [weakSelf loginfailWithSelf:weakSelf];
     }];
 }
+
 //登录成功
 -(void)loginSuccessWithSelf:(LoginViewController *)weakSelf uid:(NSString *)uid{
+    
     [WPNetWorking createPostRequestMenagerWithUrlString:GetTokenUrl params:@{@"type":RCIMDEVTYPE,@"uid":uid} datas:^(NSDictionary *responseObject) {
         //记录token并登陆
         NSDictionary * dic = [responseObject objectForKey:@"token"];
         [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"token"] forKey:User_Token];
         [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"userId"] forKey:User_ID];
+#pragma mark - 收藏 关注 点赞数据加载
+        [NSMutableArray sharedFocusArray];
+        [NSMutableArray sharedThumupArray];
+        [NSMutableArray sharedCollectionArray];
+        [NSMutableArray sharedThumupDreamingArray];
+        [NSMutableArray sharedFansArray];
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakSelf.navigationController popViewControllerAnimated:YES];
         });
@@ -289,84 +304,9 @@
         
         // 第三方平台SDK原始数据
         NSLog(@" originalResponse: %@", resp.originalResponse);
-    }];
-}
-//新浪
-- (void)getAuthWithUserInfoFromSina
-{
-    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_Sina currentViewController:nil completion:^(id result, NSError *error) {
-        if (error) {
-            NSLog(@"error --- %@",error);
-        } else {
-            UMSocialUserInfoResponse *resp = result;
-            // 授权信息
-            NSLog(@"Sina uid: %@", resp.uid);
-            NSLog(@"Sina accessToken: %@", resp.accessToken);
-            NSLog(@"Sina refreshToken: %@", resp.refreshToken);
-            NSLog(@"Sina expiration: %@", resp.expiration);
-            
-            // 用户信息
-            NSLog(@"Sina name: %@", resp.name);
-            NSLog(@"Sina iconurl: %@", resp.iconurl);
-            NSLog(@"Sina gender: %@", resp.unionGender);            
-            // 第三方平台SDK源数据
-            NSLog(@"Sina originalResponse: %@", resp.originalResponse);
+        if (resp.uid.length>0) {
+            [self ThirdPartyLoginWithSid:resp.uid uname:resp.name url:resp.iconurl];
         }
     }];
 }
-//QQ
-- (void)getAuthWithUserInfoFromQQ
-{
-    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_QQ currentViewController:nil completion:^(id result, NSError *error) {
-        if (error) {
-            
-        } else {
-            UMSocialUserInfoResponse *resp = result;
-            // 授权信息
-            NSLog(@"QQ uid: %@", resp.uid);
-            NSLog(@"QQ openid: %@", resp.openid);
-            NSLog(@"QQ unionid: %@", resp.unionId);
-            NSLog(@"QQ accessToken: %@", resp.accessToken);
-            NSLog(@"QQ expiration: %@", resp.expiration);
-            
-            // 用户信息
-            NSLog(@"QQ name: %@", resp.name);
-            NSLog(@"QQ iconurl: %@", resp.iconurl);
-            NSLog(@"QQ gender: %@", resp.unionGender);
-            
-            // 第三方平台SDK源数据
-            NSLog(@"QQ originalResponse: %@", resp.originalResponse);
-        }
-    }];
-}
-//微信
-- (void)getAuthWithUserInfoFromWechat
-{
-    [[UMSocialDataManager defaultManager] clearAllAuthorUserInfo];
-    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
-        if (error) {
-            NSLog(@"%@",error);
-        } else {
-            UMSocialUserInfoResponse *resp = result;
-            // 授权信息
-            NSLog(@"Wechat uid: %@", resp.uid);
-            NSLog(@"Wechat openid: %@", resp.openid);
-            NSLog(@"Wechat unionid: %@", resp.unionId);
-            NSLog(@"Wechat accessToken: %@", resp.accessToken);
-            NSLog(@"Wech at refreshToken: %@", resp.refreshToken);
-            NSLog(@"Wechat expiration: %@", resp.expiration);
-            
-            // 用户信息
-            NSLog(@"Wechat name: %@", resp.name);
-            NSLog(@"Wechat iconurl: %@", resp.iconurl);
-            NSLog(@"Wechat gender: %@", resp.unionGender);
-            
-            // 第三方平台SDK源数据
-            NSLog(@"Wechat originalResponse: %@", resp.originalResponse);
-        }
-    }];
-}
-
 @end

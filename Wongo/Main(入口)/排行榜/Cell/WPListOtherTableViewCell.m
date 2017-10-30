@@ -34,6 +34,10 @@
         self.number.text = @"0";
     }
     self.name.text = model.uname;
+    if ([self thumUpDreamingWithinArrayContainsProid:_model.proid]) {
+        _thumup.selected = YES;
+    }
+    
 }
 
 - (void)awakeFromNib {
@@ -47,7 +51,12 @@
 }
 
 - (IBAction)thumup:(UIButton *)sender {
-    _thumup.selected = !_thumup.selected;
+    typeof(self) weakSelf = self;
+    [self thumbUpGoodsWithSender:_thumup proid:_model.proid addBlock:^{
+        weakSelf.number.text = [NSString stringWithFormat:@"%ld", [weakSelf.number.text integerValue]+1];
+    } reduceBlock:^{
+        weakSelf.number.text = [NSString stringWithFormat:@"%ld", [weakSelf.number.text integerValue]-1];
+    }];
 }
 
 @end

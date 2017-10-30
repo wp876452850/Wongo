@@ -20,7 +20,7 @@
 @property (nonatomic,strong)NSString * gcid;
 /**造梦计划id*/
 @property (nonatomic,strong)NSString * plid;
-/**是否精选*/
+/**是否开始造梦*/
 @property (nonatomic,strong)NSString * isrecommend;
 /**点赞数*/
 @property (nonatomic,strong)NSString * praise;
@@ -43,7 +43,8 @@
 @property (nonatomic,strong)NSString * want;
 /**商品名*/
 @property (nonatomic,strong)NSString * proname;
-
+/**轮次*/
+@property (nonatomic,assign)NSInteger  rounds;
 
 /**subid*/
 @property (nonatomic,strong)NSString * subid;

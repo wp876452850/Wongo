@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPFansModel.h"
 
 @interface WPFansTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)WPFansModel * model;
 
 @end

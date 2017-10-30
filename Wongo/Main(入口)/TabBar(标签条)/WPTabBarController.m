@@ -274,8 +274,6 @@ static id tabBar;
 #pragma mark - 第三个界面跳转方式
 -(void)postBtnClick{
     WPPublishViewController * vc3 = [[WPPublishViewController alloc]init];
-
-    
     if (User_MobileVersion>=8.0) {
         vc3.modalPresentationStyle=UIModalPresentationOverCurrentContext;
     }else{

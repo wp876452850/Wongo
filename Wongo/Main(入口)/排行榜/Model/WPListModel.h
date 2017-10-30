@@ -15,4 +15,5 @@
 @property (nonatomic,strong)NSString * url;
 @property (nonatomic,strong)NSArray  * listuser;
 @property (nonatomic,strong)NSString * uid;
+@property (nonatomic,strong)NSString * proid;
 @end

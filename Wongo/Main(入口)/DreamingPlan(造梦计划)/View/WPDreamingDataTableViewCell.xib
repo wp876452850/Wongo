@@ -46,6 +46,7 @@
                     <constraint firstItem="sce-1h-03a" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yzw-ot-ea4"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
                 <outlet property="data" destination="WHH-pL-kTQ" id="npX-lp-XC3"/>
                 <outlet property="name" destination="sce-1h-03a" id="cU6-gG-pa0"/>

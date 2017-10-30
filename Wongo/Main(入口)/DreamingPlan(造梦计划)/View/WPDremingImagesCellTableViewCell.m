@@ -34,7 +34,7 @@
         _collectionView.backgroundColor         = WhiteColor;
         _collectionView.dataSource              = self;
         _collectionView.delegate                = self;
-        
+        _collectionView.backgroundColor = WhiteColor;
         [_collectionView registerNib:[UINib nibWithNibName:@"WPPushImageCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"cell"];
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"addButtonCell"];
         [self.contentView addSubview:_collectionView];

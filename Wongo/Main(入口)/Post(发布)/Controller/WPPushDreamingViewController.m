@@ -337,7 +337,7 @@ static NSString * const cell            = @"cell";
                 //上传图片
                 [WPGCD createUpLoadImageGCDWithImages:weakSelf.images urlString:UpProFileUrl params:@{@"proid":[responseObject objectForKey:@"proid"]}];
                 [self showAlertWithAlertTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
-                    [self dismissViewControllerAnimated:YES completion:nil];
+                    [self popoverPresentationController];
                 }];
             }
             else{
