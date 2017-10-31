@@ -315,6 +315,9 @@
 		3D1906371F29DB5C00E4EFFD /* WPProductLinkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1906361F29DB5C00E4EFFD /* WPProductLinkModel.m */; };
 		3D1A6D161F1F2FDB0064EB23 /* 1_star_1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1A6D141F1F2FDB0064EB23 /* 1_star_1@3x.png */; };
 		3D1A6D171F1F2FDB0064EB23 /* 1_star_2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D1A6D151F1F2FDB0064EB23 /* 1_star_2@3x.png */; };
+		3D1CA7A11FA6FCBB00FC4734 /* WPBrandCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CA79F1FA6FCBB00FC4734 /* WPBrandCollectionViewCell.m */; };
+		3D1CA7A21FA6FCBB00FC4734 /* WPBrandCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1CA7A01FA6FCBB00FC4734 /* WPBrandCollectionViewCell.xib */; };
+		3D1CA7A51FA72DDA00FC4734 /* WPVarietiesButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CA7A41FA72DDA00FC4734 /* WPVarietiesButton.m */; };
 		3D1CEFF91F3AF7B6007EDA44 /* WPChoiceSubTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CEFF81F3AF7B6007EDA44 /* WPChoiceSubTableView.m */; };
 		3D1CEFFD1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D1CEFFB1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.m */; };
 		3D1CEFFE1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D1CEFFC1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.xib */; };
@@ -1316,6 +1319,11 @@
 		3D1906361F29DB5C00E4EFFD /* WPProductLinkModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPProductLinkModel.m; sourceTree = "<group>"; };
 		3D1A6D141F1F2FDB0064EB23 /* 1_star_1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_star_1@3x.png"; sourceTree = "<group>"; };
 		3D1A6D151F1F2FDB0064EB23 /* 1_star_2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1_star_2@3x.png"; sourceTree = "<group>"; };
+		3D1CA79E1FA6FCBB00FC4734 /* WPBrandCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBrandCollectionViewCell.h; sourceTree = "<group>"; };
+		3D1CA79F1FA6FCBB00FC4734 /* WPBrandCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBrandCollectionViewCell.m; sourceTree = "<group>"; };
+		3D1CA7A01FA6FCBB00FC4734 /* WPBrandCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPBrandCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D1CA7A31FA72DD900FC4734 /* WPVarietiesButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPVarietiesButton.h; sourceTree = "<group>"; };
+		3D1CA7A41FA72DDA00FC4734 /* WPVarietiesButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPVarietiesButton.m; sourceTree = "<group>"; };
 		3D1CEFF71F3AF7B6007EDA44 /* WPChoiceSubTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPChoiceSubTableView.h; sourceTree = "<group>"; };
 		3D1CEFF81F3AF7B6007EDA44 /* WPChoiceSubTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPChoiceSubTableView.m; sourceTree = "<group>"; };
 		3D1CEFFA1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewDreamingTableViewCell.h; sourceTree = "<group>"; };
@@ -4143,6 +4151,9 @@
 		3D9DE6B31F9F1F9800294323 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				3D1CA79E1FA6FCBB00FC4734 /* WPBrandCollectionViewCell.h */,
+				3D1CA79F1FA6FCBB00FC4734 /* WPBrandCollectionViewCell.m */,
+				3D1CA7A01FA6FCBB00FC4734 /* WPBrandCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -4168,6 +4179,8 @@
 				3D7FB7B61FA0645E0044E7F9 /* WPConsignmentCollectionView.m */,
 				3D7E31111FA07394004C90BF /* WPConsignmentHeaderView.h */,
 				3D7E31121FA07394004C90BF /* WPConsignmentHeaderView.m */,
+				3D1CA7A31FA72DD900FC4734 /* WPVarietiesButton.h */,
+				3D1CA7A41FA72DDA00FC4734 /* WPVarietiesButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7243,6 +7256,7 @@
 				85187F611E8DFA1800D3D64F /* dropdown_anim__00051@2x.png in Resources */,
 				85D1FF9B1E52B64E003141A3 /* 100.jpg in Resources */,
 				3D1731CD1F26F6C200BFF90D /* section0_emotion12@2x.png in Resources */,
+				3D1CA7A21FA6FCBB00FC4734 /* WPBrandCollectionViewCell.xib in Resources */,
 				8566A88E1E48281500C08624 /* WPAddressOtherTableViewCell.xib in Resources */,
 				3D1731D31F26F6C200BFF90D /* section0_emotion3@2x.png in Resources */,
 				85D1FF9A1E52B64E003141A3 /* 10.jpg in Resources */,
@@ -7654,6 +7668,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85C749001E7FD3BD000E1B65 /* UIProgressView+AFNetworking.m in Sources */,
+				3D1CA7A11FA6FCBB00FC4734 /* WPBrandCollectionViewCell.m in Sources */,
 				85CA47DC1EBC1C4500109C98 /* ModifyUserDetailViewController.m in Sources */,
 				3D76D9461F67B5CA005A6080 /* JFCityViewController.m in Sources */,
 				85C748FA1E7FD3BD000E1B65 /* AFAutoPurgingImageCache.m in Sources */,
@@ -7839,6 +7854,7 @@
 				3D76D95E1F67B806005A6080 /* FMDatabaseQueue.m in Sources */,
 				8566A7BF1E48265C00C08624 /* View+MASAdditions.m in Sources */,
 				8566A8941E48281500C08624 /* WPShoppingCarModel.m in Sources */,
+				3D1CA7A51FA72DDA00FC4734 /* WPVarietiesButton.m in Sources */,
 				8536A3C01E763D3800B09985 /* WPDreamingModel.m in Sources */,
 				85C748FF1E7FD3BD000E1B65 /* UIImageView+AFNetworking.m in Sources */,
 				85C748F61E7FD3BD000E1B65 /* AFURLResponseSerialization.m in Sources */,
