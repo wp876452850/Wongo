@@ -21,14 +21,14 @@ typedef NSDictionary *(^HYBCacheHeight)();
  *
  *	唯一键，通常是数据模型的id，保证唯一
  */
-FOUNDATION_EXTERN NSString *const kHYBCacheUniqueKey;
+FOUNDATION_EXTERN NSString * const kHYBCacheUniqueKey;
 
 /**
  *	@author 黄仪标, 16-01-22 21:01:57
  *
  *	对于同一个model，如果有不同状态，而且不同状态下高度不一样，那么也需要指定
  */
-FOUNDATION_EXTERN NSString *const kHYBCacheStateKey;
+FOUNDATION_EXTERN NSString * const kHYBCacheStateKey;
 
 /**
  *	@author 黄仪标, 16-01-22 21:01:47

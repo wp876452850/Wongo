@@ -7,6 +7,7 @@
 //
 
 #import "WPConsignmentHeaderView.h"
+#import "WPVarietiesButton.h"
 
 @interface WPConsignmentHeaderView ()
 
@@ -16,15 +17,15 @@
 //品种分类视图
 @property (nonatomic,strong)UIView * varietiesView;
 //品种1
-@property (nonatomic,strong)UIButton * varieties1;
+@property (nonatomic,strong)WPVarietiesButton * varieties1;
 //品种2
-@property (nonatomic,strong)UIButton * varieties2;
+@property (nonatomic,strong)WPVarietiesButton * varieties2;
 //品种3
-@property (nonatomic,strong)UIButton * varieties3;
+@property (nonatomic,strong)WPVarietiesButton * varieties3;
 //品种4
-@property (nonatomic,strong)UIButton * varieties4;
+@property (nonatomic,strong)WPVarietiesButton * varieties4;
 //品种5
-@property (nonatomic,strong)UIButton * varieties5;
+@property (nonatomic,strong)WPVarietiesButton * varieties5;
 
 @end
 @implementation WPConsignmentHeaderView
@@ -41,7 +42,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 30)];
         _titleLabel.backgroundColor = WhiteColor;
-        _titleLabel.text = @"你要卖什么";
+        _titleLabel.text = @"您想要什么";
     }
     return _titleLabel;
 }
@@ -68,18 +69,19 @@
     }
     return _varietiesView;
 }
--(instancetype)init{
-    if (self = [super init]) {
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
         self.backgroundColor = WhiteColor;
         
         [self addSubview:self.guideImageView];
+        [self addSubview:self.titleLabel];
         [self addSubview:self.varietiesView];
     }
     return self;
 }
 
--(UIButton *)setupVarietiesViewWithFrame:(CGRect)frame tag:(NSInteger)tag{
-    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+-(WPVarietiesButton *)setupVarietiesViewWithFrame:(CGRect)frame tag:(NSInteger)tag{
+    WPVarietiesButton * button = [[WPVarietiesButton alloc]initWithImage:[UIImage imageNamed:@""] title:@"卖肾换iphone" frame:frame];
     button.frame = frame;
     button.tag = tag;
     [button addTarget:self action:@selector(gojimai) forControlEvents:UIControlEventTouchUpInside];

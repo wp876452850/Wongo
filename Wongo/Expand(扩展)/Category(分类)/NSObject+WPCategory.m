@@ -434,4 +434,25 @@ static const NSString * selectUid;
     }
     return NO;
 }
+
+-(void)makePhoneCallWithTelNumber:(NSString *)telNumber{
+    NSMutableString *str=[[NSMutableString alloc]initWithFormat:@"tel:%@",telNumber];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:telNumber preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+    }];
+    
+    UIAlertAction *otherAction = [UIAlertAction actionWithTitle:@"呼叫" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }];
+    
+    // Add the actions.
+    [alertController addAction:cancelAction];
+    [alertController addAction:otherAction];
+    WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
+    UINavigationController * nav = tabBar.viewControllers.lastObject;
+    UIViewController * vc = nav.viewControllers.lastObject;
+    [vc presentViewController:alertController animated:YES completion:nil];
+}
 @end

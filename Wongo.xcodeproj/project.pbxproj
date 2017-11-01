@@ -410,6 +410,7 @@
 		3D9824601F566DE100FDD412 /* WPDreamingOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D98245E1F566DE100FDD412 /* WPDreamingOrderTableViewCell.xib */; };
 		3D9824641F56A87A00FDD412 /* WPMyDreamingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9824621F56A87A00FDD412 /* WPMyDreamingTableViewCell.m */; };
 		3D9824651F56A87A00FDD412 /* WPMyDreamingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D9824631F56A87A00FDD412 /* WPMyDreamingTableViewCell.xib */; };
+		3DB736DC1FA814B400CD3A13 /* ceshi.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB736DB1FA814B400CD3A13 /* ceshi.m */; };
 		3DBDBA291F78AAEF005D64A9 /* WPCollectionBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBDBA281F78AAEF005D64A9 /* WPCollectionBaseViewController.m */; };
 		3DBED2741F4D51E7009B4731 /* WPListxiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBED2731F4D51E6009B4731 /* WPListxiViewController.m */; };
 		3DC236861F5546A500AB1965 /* WPExchangeImageShowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC236851F5546A500AB1965 /* WPExchangeImageShowTableViewCell.m */; };
@@ -1482,6 +1483,8 @@
 		3D9824611F56A87A00FDD412 /* WPMyDreamingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMyDreamingTableViewCell.h; sourceTree = "<group>"; };
 		3D9824621F56A87A00FDD412 /* WPMyDreamingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPMyDreamingTableViewCell.m; sourceTree = "<group>"; };
 		3D9824631F56A87A00FDD412 /* WPMyDreamingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPMyDreamingTableViewCell.xib; sourceTree = "<group>"; };
+		3DB736DA1FA814B400CD3A13 /* ceshi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ceshi.h; sourceTree = "<group>"; };
+		3DB736DB1FA814B400CD3A13 /* ceshi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ceshi.m; sourceTree = "<group>"; };
 		3DBDBA271F78AAEF005D64A9 /* WPCollectionBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPCollectionBaseViewController.h; path = "../../../../基类(Base)/WPCollectionBaseViewController.h"; sourceTree = "<group>"; };
 		3DBDBA281F78AAEF005D64A9 /* WPCollectionBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPCollectionBaseViewController.m; path = "../../../../基类(Base)/WPCollectionBaseViewController.m"; sourceTree = "<group>"; };
 		3DBED2721F4D51E6009B4731 /* WPListxiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPListxiViewController.h; sourceTree = "<group>"; };
@@ -4161,6 +4164,8 @@
 		3D9DE6B41F9F1F9800294323 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3DB736DA1FA814B400CD3A13 /* ceshi.h */,
+				3DB736DB1FA814B400CD3A13 /* ceshi.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -8021,6 +8026,7 @@
 				85F08F161E48504C00A07451 /* TADotView.m in Sources */,
 				3DE9ED8F1F9984DD00C01310 /* NSData+ImageContentType.m in Sources */,
 				854196281E55866F002210C7 /* WPSearchResultsViewController.m in Sources */,
+				3DB736DC1FA814B400CD3A13 /* ceshi.m in Sources */,
 				8597EFBF1E8A6BAA001E1BA5 /* WPSelectExchangeGoodsViewController.m in Sources */,
 				3DE9ED911F9984DD00C01310 /* SDWebImageCompat.m in Sources */,
 				3D5737651F60E26200ECF3AB /* WPGoodsClassModel.m in Sources */,

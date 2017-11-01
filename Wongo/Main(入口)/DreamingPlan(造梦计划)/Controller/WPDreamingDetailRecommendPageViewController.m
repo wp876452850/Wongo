@@ -7,10 +7,15 @@
 //
 
 #import "WPDreamingDetailRecommendPageViewController.h"
+#import "LYConversationController.h"
+
 #define RecommendImages @[@"danbaojiaohuan.jpg",@"zaixiankefu.jpg",@"kefudianhua.jpg",@"guanfangweixin.jpg"]
 
 @interface WPDreamingDetailRecommendPageViewController ()<UIScrollViewDelegate>
-
+{
+    NSString * _uid;
+    NSString * _uname;
+}
 @property (nonatomic,assign)NSInteger currentPage;
 
 @property (nonatomic,strong)UIScrollView * guideScrollView;
@@ -58,29 +63,65 @@
         _guideScrollView.contentOffset = CGPointMake(WINDOW_WIDTH*self.currentPage, 0);
         for (int i = 0; i<RecommendImages.count; i++) {
             UIImageView * imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:RecommendImages[i]]];
+            imageView.frame = CGRectMake(WINDOW_WIDTH * i, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+            imageView.backgroundColor = WhiteColor;
             imageView.userInteractionEnabled = YES;
             if (i == 1){
+                for (int i = 0; i<2; i++) {
+                    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+                    button.frame = CGRectMake(0, 0, 100, 30);
+                    button.bottom = WINDOW_HEIGHT - 130 - (i*120);
+                    button.centerX = imageView.width/2;
+                    [button setTitle:@[@"联系客服",@"联系用户"][i] forState:UIControlStateNormal];
+                    [button setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+                    button.layer.masksToBounds = YES;
+                    button.layer.cornerRadius = 5.f;
+                    button.layer.borderWidth = 1.f;
+                    button.layer.borderColor = SelfOrangeColor.CGColor;
+                    button.tag = i;
+                    [button addTarget:self action:@selector(goChat:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, button.y - 40, WINDOW_WIDTH, 20)];
+                    label.text = @[@"联系客服",@"联系用户"][i];
+                    label.font = [UIFont systemFontOfSize:18.f];
+                    label.textAlignment = NSTextAlignmentCenter;
+                    
+                    [imageView addSubview:button];
+                    [imageView addSubview:label];
+                }
                 
             }
             else if (i == 2){
                 UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-                button.bounds = CGRectMake(0, 0, 80, 40);
+                button.frame = CGRectMake(0, 0, 100, 30);
+                button.centerX = imageView.width/2;
+                button.centerY = WINDOW_HEIGHT*0.65;
+                [button setTitle:@"拨打电话" forState:UIControlStateNormal];
+                [button setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+                button.layer.masksToBounds = YES;
+                button.layer.cornerRadius = 5.f;
+                button.layer.borderWidth = 1.f;
+                button.layer.borderColor = SelfOrangeColor.CGColor;
+
+                [button addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
+                [imageView addSubview:button];
             }
             else if (i == 3){
                 
                 
             }
-            imageView.frame = CGRectMake(WINDOW_WIDTH * i, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-            imageView.backgroundColor = WhiteColor;
+            
             [_guideScrollView addSubview:imageView];
         }
     }
     return _guideScrollView;
 }
 
--(instancetype)initWithCurrentPage:(NSInteger)currentPage{
+-(instancetype)initWithCurrentPage:(NSInteger)currentPage uid:(NSString *)uid uname:(NSString *)uname{
     if (self = [super init]) {
         self.currentPage = currentPage;
+        _uid    = uid;
+        _uname  = uname;
     }
     return self;
 }
@@ -103,4 +144,25 @@
     }
 }
 
+
+-(void)callPhone{
+    [self makePhoneCallWithTelNumber:@"15359026907"];
+}
+
+-(void)goChat:(UIButton *)sender{
+    if (sender.tag == 1) {
+        [self goChatWithUid:_uid uname:_uname];
+        return;
+    }
+    [self goChatWithUid:@"1" uname:@"官方客服"];
+    
+}
+
+-(void)goChatWithUid:(NSString *)uid uname:(NSString *)uname{
+    if ([self determineWhetherTheLogin]) {
+        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:uid];
+        vc.title = uname;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 @end

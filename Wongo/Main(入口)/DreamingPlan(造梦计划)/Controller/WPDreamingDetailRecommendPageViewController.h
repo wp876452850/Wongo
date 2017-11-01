@@ -10,6 +10,6 @@
 
 @interface WPDreamingDetailRecommendPageViewController : UIViewController
 
--(instancetype)initWithCurrentPage:(NSInteger)currentPage;
+-(instancetype)initWithCurrentPage:(NSInteger)currentPage uid:(NSString *)uid uname:(NSString *)uname;
 
 @end

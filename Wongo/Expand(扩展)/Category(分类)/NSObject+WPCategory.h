@@ -70,6 +70,9 @@ typedef void(^ReduceBlock)(void);
 -(BOOL)thumUpDreamingWithinArrayContainsProid:(NSString *)proid;
 -(BOOL)collectionWithinArrayContainsGid:(NSString *)gid;
 -(BOOL)focusOnWithinArrayContainsUid:(NSString *)uid;
+
+//打电话
+-(void)makePhoneCallWithTelNumber:(NSString *)telNumber;
 /*-----------------------类方法-------------------------*/
 
 

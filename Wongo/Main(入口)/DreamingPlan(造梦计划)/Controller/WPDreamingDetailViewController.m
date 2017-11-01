@@ -255,6 +255,7 @@ static NSString * const recommendCell   = @"recommendCell";
     if (indexPath.section == 2) {
         WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+        cell.model = self.model;
         return cell;
     }
     //进度条

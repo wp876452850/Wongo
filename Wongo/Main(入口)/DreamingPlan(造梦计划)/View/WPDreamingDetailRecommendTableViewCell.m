@@ -19,7 +19,7 @@
 
 - (IBAction)goRecommend:(UIButton *)sender
 {
-    WPDreamingDetailRecommendPageViewController * vc = [[WPDreamingDetailRecommendPageViewController alloc]initWithCurrentPage:sender.tag];
+    WPDreamingDetailRecommendPageViewController * vc = [[WPDreamingDetailRecommendPageViewController alloc]initWithCurrentPage:sender.tag uid:self.model.uid uname:self.model.uname];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 

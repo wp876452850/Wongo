@@ -17,6 +17,7 @@
 
 @implementation LYConversationController
 
+
 -(UINavigationBar *)myNavBar{
     if (!_myNavBar) {
         _myNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 64)];

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPDreamingModel.h"
 
 @interface WPDreamingDetailRecommendTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)WPDreamingModel * model;
 
 @end

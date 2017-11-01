@@ -157,7 +157,7 @@
     /*
      设置微信的appKey和appSecret
      */
-    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wx0917670ee24434e4" appSecret:@"0bcd448e908ed9c1bbe94949701db0e1" redirectURL:nil];
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxf49b9d558933bae6" appSecret:@"53aa3b110a3c4e3cd1fcd7928b3e04c8" redirectURL:nil];
     
     /* 设置分享到QQ互联的appID
      * U-Share SDK为了兼容大部分平台命名，统一用appKey和appSecret进行参数设置，而QQ平台仅需将appID作为U-Share的appKey参数传进即可。

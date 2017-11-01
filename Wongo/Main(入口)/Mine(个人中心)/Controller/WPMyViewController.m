@@ -21,12 +21,15 @@
 #import "WPStoreViewController.h"
 #import "WPMyTableViewCell.h"
 
-
+#import "ceshi.h"
 
 #define CELL_ID @"cell"
 
-#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
-#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
+//#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
+//#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
+
+#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"ceshi"]
+#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
 
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
@@ -124,7 +127,6 @@
 #pragma mark - tableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.cellTitleArray.count;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -143,7 +145,14 @@
     //点击效果,按需求选择要不要
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([self determineWhetherTheLogin]) {
+    if (indexPath.row == 6) {
+        //测试界面用
+        ceshi * vc = [[ceshi alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
+    if ([self determineWhetherTheLogin]){
         switch (indexPath.row) {
                 break;
             case 0:
@@ -187,8 +196,8 @@
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
+                
         }
-
     }
 }
 

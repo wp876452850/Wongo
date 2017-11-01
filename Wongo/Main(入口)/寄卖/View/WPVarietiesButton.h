@@ -10,4 +10,8 @@
 
 @interface WPVarietiesButton : UIButton
 
+-(instancetype)initWithImage:(UIImage *)image title:(NSString *)title frame:(CGRect)frame;
+
+
+
 @end
