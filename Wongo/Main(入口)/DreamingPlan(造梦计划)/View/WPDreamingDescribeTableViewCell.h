@@ -10,7 +10,10 @@
 
 typedef void(^WPPushDescribeBlock)(NSString * str);
 @interface WPDreamingDescribeTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel * title;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (nonatomic,assign)NSInteger rowHeight;
 //描述textView文字改变时调用回调
 -(void)getDescribeBlockWithBlock:(WPPushDescribeBlock)block;
+
 @end

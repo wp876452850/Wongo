@@ -61,8 +61,9 @@
             <connections>
                 <outlet property="limitLenghtLabel" destination="b1P-tR-gau" id="lPv-NH-1sG"/>
                 <outlet property="textView" destination="GMN-Bw-ycW" id="qem-Y1-N5n"/>
+                <outlet property="title" destination="QX9-Jd-mVp" id="Cp2-E7-ytz"/>
             </connections>
-            <point key="canvasLocation" x="-117" y="39"/>
+            <point key="canvasLocation" x="72" y="-29"/>
         </tableViewCell>
     </objects>
 </document>

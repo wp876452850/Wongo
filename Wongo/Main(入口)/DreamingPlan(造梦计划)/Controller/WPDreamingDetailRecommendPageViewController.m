@@ -155,7 +155,6 @@
         return;
     }
     [self goChatWithUid:@"1" uname:@"官方客服"];
-    
 }
 
 -(void)goChatWithUid:(NSString *)uid uname:(NSString *)uname{

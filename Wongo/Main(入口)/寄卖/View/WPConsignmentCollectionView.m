@@ -9,7 +9,7 @@
 #import "WPConsignmentCollectionView.h"
 #import "WPConsignmentHeaderView.h"
 #import "WPBrandCollectionViewCell.h"
-#define HeaderView_Height WINDOW_WIDTH*0.6 + (180*WINDOW_WIDTH/375)+30
+#define HeaderView_Height WINDOW_WIDTH*0.4 + (180*WINDOW_WIDTH/375)+40
 
 
 
@@ -88,7 +88,7 @@ static NSString * const goodsCell = @"goodsCell";
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
     if (indexPath.section == 0) {
-        return CGSizeMake(WINDOW_WIDTH/4, WINDOW_WIDTH/4);
+        return CGSizeMake((WINDOW_WIDTH -3)/4, WINDOW_WIDTH/4);
     }
     return CGSizeMake((WINDOW_WIDTH)/2 - 0.5, WINDOW_WIDTH/2+90);
 }

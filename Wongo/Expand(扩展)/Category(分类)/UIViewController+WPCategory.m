@@ -92,7 +92,7 @@
         [vc.view sendSubviewToBack:reportBox];
         [self.navigationController pushViewController:vc animated:YES];
     }];
-    UIAlertAction * help = [UIAlertAction actionWithTitle:@"帮助" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction * help = [UIAlertAction actionWithTitle:@"客服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([self determineWhetherTheLogin]) {
             LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
             vc.title = @"官方客服";
@@ -117,7 +117,7 @@
         [vc.view sendSubviewToBack:reportBox];
         [self.navigationController pushViewController:vc animated:YES];
     }];
-    UIAlertAction * help = [UIAlertAction actionWithTitle:@"帮助" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    UIAlertAction * help = [UIAlertAction actionWithTitle:@"客服" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         if ([self determineWhetherTheLogin]) {
             LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:@"1"];
             vc.title = @"官方客服";

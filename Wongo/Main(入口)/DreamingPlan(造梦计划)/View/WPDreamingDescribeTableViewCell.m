@@ -12,8 +12,7 @@
 {
     WPPushDescribeBlock _pushDescribeBlock;
 }
-@property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet UILabel *titleNumber;
+
 @property (weak, nonatomic) IBOutlet UILabel *limitLenghtLabel;
 
 @end
@@ -24,7 +23,6 @@
     [super awakeFromNib];
     
     self.textView.delegate = self;
-    self.textView.placeholder = @"介绍宝贝的尺码、材质等信息";
     self.textView.limitLength = @(200);
     self.limitLenghtLabel.textAlignment = NSTextAlignmentRight;
     self.limitLenghtLabel.textColor = [UIColor lightGrayColor];

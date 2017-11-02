@@ -124,6 +124,7 @@ static NSString * contentOffset = @"contentOffset";
     [self w_backGroudColor:ColorWithRGB(0, 255, 255)];
     [self.view addSubview:self.collectionView];
     [self addHeaderLoad];
+    [self addFooterLoad];
     [self.collectionView addSubview:self.homeHeaderView];
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
@@ -131,10 +132,19 @@ static NSString * contentOffset = @"contentOffset";
 }
 
 -(void)addHeaderLoad{
+    __block typeof(self) weakSelf = self;
     self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        [self loadData];
+        [weakSelf loadData];
     }];
     [self.collectionView.mj_header beginRefreshing];
+    
+}
+-(void)addFooterLoad{
+    __block typeof(self) weakSelf = self;
+    self.collectionView.mj_footer = [MJRefreshBackGifFooter  footerWithRefreshingBlock:^{
+        [weakSelf footer];
+    }];
+    [self.collectionView.mj_footer beginRefreshing];
 }
 - (NSMutableArray *)dataSourceArray{
     if (!_dataSourceArray) {
@@ -151,7 +161,6 @@ static NSString * contentOffset = @"contentOffset";
             model.title_c = Theme2NameArray[i];     //标题中文名
             model.icon_name = ThemeIconArray[i];    //标题图标名
             model.titleColor = (UIColor *)ThemeNameColorArray[i];   //标题文字颜色
-               
             [_reusableDataSource addObject:model];
         }
     }
@@ -167,23 +176,20 @@ static NSString * contentOffset = @"contentOffset";
         weakSelf.response = response;
         weakSelf.homeHeaderView.listhl = response.listhl;
         weakSelf.homeHeaderView.listhk = response.listhk;
-        //查询交换
-        [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(1)} datas:^(NSDictionary *responseObject) {
+        //查询推荐商品
+        [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutique params:@{@"currPage":@(1)} datas:^(NSDictionary *responseObject) {
             
-            NSArray * goods = [responseObject objectForKey:@"goods"];
+            NSArray * listg = responseObject[@"listg"];
             weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-            for (NSDictionary * item in goods) {
+            for (NSDictionary * item in listg) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
                 [weakSelf.dataSourceArray addObject:model];
             }
-            
             _page++;
             [weakSelf.collectionView reloadData];
             //查询造梦计划
             [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
-                
                 NSArray * dreamings = responseObject[@"listSub"];
-                
                 weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
                 for (int i = 0; i < dreamings.count; i++) {
                     NSArray * listplan = dreamings[i][@"listplan"];
@@ -202,17 +208,17 @@ static NSString * contentOffset = @"contentOffset";
 
 -(void)footer{
     __block WPHomeViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(_page)} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
-        weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-        for (NSDictionary * item in goods) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutique params:@{@"currPage":@(_page)} datas:^(NSDictionary *responseObject) {
+        [weakSelf.collectionView.mj_footer endRefreshing];
+        NSArray * listg = responseObject[@"listg"];
+        for (NSDictionary * item in listg) {
             WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
             [weakSelf.dataSourceArray addObject:model];
         }
         _page++;
         [weakSelf.collectionView reloadData];
     }failureBlock:^{
-        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView.mj_footer endRefreshing];
     }];
 }
 #pragma mark - collectionViewDelegate && collectionViewDataSource
@@ -276,8 +282,8 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            if (_dreamings.count>2) {
-                return 2;
+            if (_dreamings.count>3) {
+                return 3;
             }else{
                 return _dreamings.count;
             }
@@ -422,15 +428,15 @@ static NSString * contentOffset = @"contentOffset";
 
     UIColor * color = ColorWithRGB(33, 34, 36);
     
-    CGFloat alpha = MIN(1,collectionViewOffsetY/(headerViewMaxY-164)  );
+    CGFloat alpha = MIN(1,collectionViewOffsetY/(headerViewMaxY - 453));
     
     self.homeHeaderSearchView.backgroundColor = color;
     self.homeHeaderSearchView.alpha = alpha;
-    if (collectionViewOffsetY < headerViewMaxY - 164 && collectionViewOffsetY > 0){
+    if (collectionViewOffsetY < headerViewMaxY - 453 && collectionViewOffsetY > 0){
         [self.homeHeaderSearchView showSearchView];
     } else if (collectionViewOffsetY <= 0 ){
         [self.homeHeaderSearchView hidenSearchView];
-    } else if (collectionViewOffsetY >= headerViewMaxY - 164){
+    } else if (collectionViewOffsetY >= headerViewMaxY - 453){
         [self.homeHeaderSearchView animationForSearchButton];
     }
 }

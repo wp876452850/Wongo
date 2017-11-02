@@ -32,7 +32,7 @@
 -(UIImageView *)guideImageView{
     if (!_guideImageView) {
         _guideImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
-        _guideImageView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.6);
+        _guideImageView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.4);
         _guideImageView.backgroundColor = RandomColor;
         
     }
@@ -40,7 +40,8 @@
 }
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
-        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 30)];
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 40)];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = WhiteColor;
         _titleLabel.text = @"您想要什么";
     }
@@ -56,7 +57,7 @@
         
         _varieties2 = [self setupVarietiesViewWithFrame:CGRectMake(width, 0, (WINDOW_WIDTH-width)/2, height/2) tag:2];
         
-        _varieties3 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties2.right, 0, (WINDOW_WIDTH-width)/2, height) tag:3];
+        _varieties3 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties2.right, 0, (WINDOW_WIDTH-width)/2, height/2) tag:3];
         
         _varieties4 = [self setupVarietiesViewWithFrame:CGRectMake(width, height/2, (WINDOW_WIDTH-width)/2, height/2) tag:4];
         

@@ -33,6 +33,8 @@
 
 @property (nonatomic,strong)UIButton            * addAddress;
 
+@property (nonatomic,strong)UIButton            * backButton;
+
 //自定义导航
 //@property (nonatomic,strong)WPMyNavigationBar   * nav;
 @end
@@ -50,7 +52,15 @@
     }
     return _addAddress;
 }
-
+-(UIButton *)backButton{
+    if (!_backButton) {
+        _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backButton.frame = CGRectMake(5, 40, 30,30);
+        [_backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
 -(UIButton *)resultAddress{
     if (!_resultAddress) {
         _resultAddress = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -71,6 +81,7 @@
     [rightbtn sizeToFit];
     [rightbtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.myNavItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightbtn];
+    self.myNavItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.backButton];
     
 }
 
@@ -98,6 +109,7 @@
     self.view.backgroundColor = WhiteColor;
     [self loadDatas];
     [self.view addSubview:self.addAddress];
+    [self.view addSubview:self.backButton];
 }
 
 -(void)loadDatas{

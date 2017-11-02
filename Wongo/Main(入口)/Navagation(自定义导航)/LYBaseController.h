@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) UINavigationItem *myNavItem;
 
-@property (nonatomic,strong)UIView * selfNavBar;
+@property (nonatomic,strong) UIView * selfNavBar;
 
 
 @end

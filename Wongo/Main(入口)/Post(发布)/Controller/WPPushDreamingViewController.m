@@ -16,9 +16,9 @@
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"金额(￥)：",@"种类：",@"新旧程度：",@"故事：",@"造梦计划：",@"收货地址：",@""]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"金额(￥)：",@"种类：",@"新旧程度：",@"故事：",@"成为造梦人?：",@"收货地址：",@""]
 
-#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入商品价值",@"",@"",@"说说物品的来源和故事",@"描述你的造梦计划，希望换到什么物品",@"",@""]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"描述你的造梦计划,希望换到什么物品",@"",@"请输入商品价值",@"",@"请说说物品的来源和故事,准确描述您的故事，能够增加被入选的机会",@"描述你的造梦计划,希望换到什么物品",@"",@"",@""]
 
 
 static NSString * const dataCell        = @"DataCell";
@@ -152,14 +152,20 @@ static NSString * const cell            = @"cell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
-        case 1:
+        case 1:case 6:
         {
             WPDreamingDescribeTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:describeCell forIndexPath:indexPath];
-            
-            [cell getDescribeBlockWithBlock:^(NSString *str) {
-                _describe = str;
-            }];
-            
+            cell.title.text = Push_Titles[indexPath.row];
+            cell.textView.placeholder = Section_0_Placeholder[indexPath.row];
+            if (indexPath.row == 1) {
+                [cell getDescribeBlockWithBlock:^(NSString *str) {
+                    _describe = str;
+                }];
+            }else{
+                [cell getDescribeBlockWithBlock:^(NSString *str) {
+                    _story = str;
+                }];
+            }
             return cell;
         }
             break;
@@ -236,14 +242,6 @@ static NSString * const cell            = @"cell";
         }];
         cell.data.keyboardType = UIKeyboardTypeDecimalPad;
     }
-    else if (indexPath.row == 6){
-        cell.data.text = _story;
-        cell.wordsNumber = 99999999;
-        cell.data.openRisingView = YES;
-        [cell getTextFieldDataWithBlock:^(NSString *str) {
-            _story = cell.data.text;
-        }];
-    }
     else if (indexPath.row == 0){
         cell.data.text = _name;
         [cell getTextFieldDataWithBlock:^(NSString *str) {
@@ -263,7 +261,7 @@ static NSString * const cell            = @"cell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row ==1) {
+    if (indexPath.row ==1||indexPath.row ==6) {
         return describeCellHeight;
     }
     else if (indexPath.row == 2){
@@ -277,7 +275,6 @@ static NSString * const cell            = @"cell";
         WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:self.view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string ,NSString * gcid) {
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],string];
-            
             _species = string;
             _specieid = gcid;
         } selectedCategoryName:_species];

@@ -34,7 +34,6 @@ static const void   * limitLengthKey    = &limitLengthKey;
 
 - (void)setPlaceholder:(NSString *)placeholder {
     
-    
     objc_setAssociatedObject(self, &PLACEHOLD, placeholder, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self setPlaceHolderLabel:placeholder];
 }
@@ -84,8 +83,8 @@ static const void   * limitLengthKey    = &limitLengthKey;
     self.placeholderLabel.numberOfLines = 0;
     self.placeholderLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.placeholderLabel.textColor = ColorWithRGB(217, 217, 217);
-    CGRect rect = [placeholder boundingRectWithSize:CGSizeMake(CGRectGetWidth(self.frame)-8, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13.]} context:nil];
-    self.placeholderLabel.frame = CGRectMake(5, 9, rect.size.width, rect.size.height);
+    CGSize size = [placeholder getSizeWithFont:[UIFont systemFontOfSize:15.f] maxSize:CGSizeMake(CGRectGetWidth(self.frame)-8, MAXFLOAT)];
+    self.placeholderLabel.frame = CGRectMake(5, 7, size.width, size.height);
     [self addSubview:self.placeholderLabel];
     self.placeholderLabel.hidden = self.text.length > 0 ? YES : NO;
     
