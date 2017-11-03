@@ -52,8 +52,6 @@
         _varietiesTitle = title;
         [self addSubview:self.varietiesTitleLabel];
         [self addSubview:self.varietiesImageVieww];
-        
-        
     }
     return self;
 }
