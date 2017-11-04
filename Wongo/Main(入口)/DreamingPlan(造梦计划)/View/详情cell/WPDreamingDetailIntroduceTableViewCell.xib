@@ -19,22 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="411" height="237.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dreamingdetailtuijian" translatesAutoresizingMaskIntoConstraints="NO" id="jjS-aL-4zF">
-                        <rect key="frame" x="13" y="18" width="17" height="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="芭芭拉小魔仙" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebE-6D-KRP">
+                        <rect key="frame" x="13" y="18" width="385" height="20.5"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="25" id="RuS-Kd-aOO"/>
-                            <constraint firstAttribute="width" constant="17" id="rr7-hu-NJY"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="芭芭拉小魔仙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebE-6D-KRP">
-                        <rect key="frame" x="35" y="21.5" width="92" height="18"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="巴啦啦能量乌卡拉卡，魔仙变身" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-ap-ekq">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="巴啦啦能量乌卡拉卡，魔仙变身" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="W8l-ap-ekq">
                         <rect key="frame" x="13" y="62" width="390" height="139"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,21 +35,16 @@
                     </textView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="jjS-aL-4zF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="GcD-LF-bN7"/>
-                    <constraint firstItem="jjS-aL-4zF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="Y6M-NR-6T1"/>
-                    <constraint firstItem="ebE-6D-KRP" firstAttribute="centerY" secondItem="jjS-aL-4zF" secondAttribute="centerY" id="ejC-mN-rFt"/>
-                    <constraint firstItem="ebE-6D-KRP" firstAttribute="leading" secondItem="jjS-aL-4zF" secondAttribute="trailing" constant="5" id="x9e-5v-gNf"/>
+                    <constraint firstItem="ebE-6D-KRP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="dOm-bK-2Pz"/>
+                    <constraint firstItem="ebE-6D-KRP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="k23-gn-J75"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ebE-6D-KRP" secondAttribute="trailing" constant="5" id="x68-Vb-SZN"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="icon" destination="jjS-aL-4zF" id="oE6-k7-7yV"/>
                 <outlet property="introduceTextView" destination="W8l-ap-ekq" id="qJ6-8C-NDM"/>
                 <outlet property="nameLabel" destination="ebE-6D-KRP" id="ElJ-Sn-MFX"/>
             </connections>
-            <point key="canvasLocation" x="-883" y="-65"/>
+            <point key="canvasLocation" x="-785" y="-66"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="dreamingdetailtuijian" width="17" height="25"/>
-    </resources>
 </document>

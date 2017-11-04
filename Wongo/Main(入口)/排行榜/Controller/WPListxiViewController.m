@@ -23,14 +23,14 @@
     if (self = [super init]) {
         [self setupTableView];
         self.proid = proid;
-        //[self loadDatas];
+        [self loadDatas];
     }
     return self;
 }
 -(instancetype)initWithDataSourceArray:(NSArray *)dataSourceArray{
     if (self = [super init]) {
         [self setupTableView];
-        self.dataSourceArray = [NSMutableArray arrayWithArray:dataSourceArray];
+        [self loadDatas];
     }
     return self;
 }
@@ -53,9 +53,16 @@
 }
 
 -(void)loadDatas{
-    [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:@{} datas:^(NSDictionary *responseObject) {
-        
+    __block typeof(self) weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:nil datas:^(NSDictionary *responseObject) {
+        if ([responseObject[@"flag"] integerValue] == 1) {
+            weakSelf.dataSourceArray = responseObject[@"list"];
+        }
+        [weakSelf.tableView reloadData];
+    } failureBlock:^{
+        [weakSelf.tableView reloadData];
     }];
+
 }
 
 

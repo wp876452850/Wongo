@@ -59,10 +59,9 @@
         UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
         [imageView addGestureRecognizer:tap];
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.prourl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
-        self.title.text = model.contents;
+        //self.title.text = model.contents;
         _imagebg.height = imageView.bottom;
     }
-    
 }
 
 -(void)tap:(UITapGestureRecognizer *)tap{

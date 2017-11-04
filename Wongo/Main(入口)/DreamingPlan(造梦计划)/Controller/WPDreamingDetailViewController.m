@@ -188,46 +188,79 @@ static NSString * const recommendCell   = @"recommendCell";
     self.model          = [[WPDreamingModel alloc]init];
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
-    __block WPDreamingDetailViewController * weakSelf = self;
-    
-    /**查询商品所有信息*/
+    [self loadGoodsInformationDatas];
+}
+//查询商品所有信息
+-(void)loadGoodsInformationDatas{
+    __block typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
         NSDictionary * list = responseObject[@"list"][0];
         weakSelf.model = [WPDreamingModel mj_objectWithKeyValues:list];
         NSMutableArray * rollPlays = [NSMutableArray arrayWithCapacity:3];
-//        for (int i = 0; i <weakSelf.model.listimg.count; i++) {
-//            [rollPlays addObject:weakSelf.model.listimg[i][@"proimg"]];
-//        }
         [rollPlays addObject:list[@"url"]];
         weakSelf.rollPlay.imageURLStringsGroup = rollPlays;
-        /**查询排行榜*/
-        [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:@{} datas:^(NSDictionary *responseObject) {
-            if ([responseObject[@"flag"] integerValue] == 1) {
-                weakSelf.listDatas = responseObject[@"list"];
-            }
-        }];
-        //查询用户信息
-        [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.model.uid} datas:^(NSDictionary *responseObject) {
-            //查询评论信息
-            weakSelf.model.url = responseObject[@"url"];
-            [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
-                NSArray * list = responseObject[@"list"];
-                for (int i = 0;  i<list.count; i++) {
-                    WPDreamingCommentsModel * model = [WPDreamingCommentsModel mj_objectWithKeyValues:list[i]];
-                    [weakSelf.model.commentsModelArray addObject:model];
-                }
-                //查询造梦故事
-                [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-                    weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
-                    //查询参与商品
-                    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
-                        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
-                        weakSelf.model.rounds = weakSelf.model.introduceModel.dreamingIntroduces.count;
-                        [weakSelf.tableView reloadData];
-                    }];
-                }];
-            }];
-        }];
+        [weakSelf loadListxiDatas];
+    }];
+}
+//查询排行榜
+-(void)loadListxiDatas{
+    __block typeof(self) weakSelf = self;
+    /**查询排行榜*/
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryuserorder params:nil datas:^(NSDictionary *responseObject) {
+        if ([responseObject[@"flag"] integerValue] == 1) {
+            weakSelf.listDatas = responseObject[@"list"];
+        }
+        [weakSelf loadUserDatas];
+    } failureBlock:^{
+        [weakSelf loadUserDatas];
+    }];
+}
+//查询用户信息
+-(void)loadUserDatas{
+    __block typeof(self) weakSelf = self;
+    //查询用户信息
+    [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.model.uid} datas:^(NSDictionary *responseObject) {
+        weakSelf.model.url = responseObject[@"url"];
+        [weakSelf loadCommentsDatas];
+    } failureBlock:^{
+        [weakSelf loadCommentsDatas];
+    }];
+
+}
+//查询评论信息
+-(void)loadCommentsDatas{
+    __block typeof(self) weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentproduct params:@{@"proid":weakSelf.model.proid} datas:^(NSDictionary *responseObject) {
+        NSArray * list = responseObject[@"list"];
+        for (int i = 0;  i<list.count; i++) {
+            WPDreamingCommentsModel * model = [WPDreamingCommentsModel mj_objectWithKeyValues:list[i]];
+            [weakSelf.model.commentsModelArray addObject:model];
+        }
+        [weakSelf loadDreamingStoryDatas];
+    } failureBlock:^{
+        [weakSelf loadDreamingStoryDatas];
+    }];
+}
+//查询造梦故事
+-(void)loadDreamingStoryDatas{
+    __block typeof(self) weakSelf = self;
+    //查询造梦故事
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryPlanStory params:@{@"plan":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+        weakSelf.model.introduceModel.dreamingStory = responseObject[@"strory"];
+        [weakSelf loadParticipateDatas];
+    } failureBlock:^{
+        [weakSelf loadParticipateDatas];
+    }];
+}
+//查询参与商品
+-(void)loadParticipateDatas{
+    __block typeof(self) weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":weakSelf.plid} datas:^(NSDictionary *responseObject) {
+        weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
+        weakSelf.model.rounds = weakSelf.model.introduceModel.dreamingIntroduces.count;
+        [weakSelf.tableView reloadData];
+    } failureBlock:^{
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -246,27 +279,27 @@ static NSString * const recommendCell   = @"recommendCell";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //商品信息
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         WPDreamingDetailListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
         cell.dataSourceArray = self.listDatas;
         return cell;
     }
     //平台推荐
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         cell.model = self.model;
         return cell;
     }
     //进度条
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
         
         cell.model = _model;
         return cell;
     }
     //用户信息
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         WPSearchUserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         WPSearchUserModel * model = [[WPSearchUserModel alloc]init];
@@ -278,8 +311,9 @@ static NSString * const recommendCell   = @"recommendCell";
         return cell;
     }
     
-    if (indexPath.section == 4) {
+    if (indexPath.section == 0) {
         WPDreamingDetailIntroduceTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        
         if (!cell) {
             cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
         }
@@ -288,7 +322,7 @@ static NSString * const recommendCell   = @"recommendCell";
         if (!cell.introduce) {
             cell.introduce = _model.remark;
         }
-        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+//        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         return cell;
     }
     else if (indexPath.section == 5){
@@ -314,19 +348,19 @@ static NSString * const recommendCell   = @"recommendCell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
+    if (indexPath.section == 1) {
         return 70;
     }
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         return (WINDOW_WIDTH - 80)/3+20;
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section == 3) {
         return (WINDOW_WIDTH - 160)/4 +70;
     }
-    if (indexPath.section == 3) {
+    if (indexPath.section == 4) {
         return 80;
     }
-    if (indexPath.section == 4) {
+    if (indexPath.section == 0) {
         if (_detailIntroduceTableViewCellHeight > 70) {
             return _detailIntroduceTableViewCellHeight;
         }else{

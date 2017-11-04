@@ -22,7 +22,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
-    _introduceTextView.frame = CGRectMake(10, _icon.bottom + 5, WINDOW_WIDTH - 20, 100);
+    _introduceTextView.frame = CGRectMake(_nameLabel.left, _nameLabel.bottom + 5, WINDOW_WIDTH - _nameLabel.left - 10, 100);
     self.hyb_lastViewInCell = self.introduceTextView;
     self.hyb_bottomOffsetToCell = 5.f;
 }

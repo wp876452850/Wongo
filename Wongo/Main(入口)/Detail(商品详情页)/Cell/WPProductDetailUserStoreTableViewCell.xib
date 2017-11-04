@@ -20,37 +20,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="110.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-uA-xSG">
-                        <rect key="frame" x="13" y="28" width="60" height="60"/>
+                        <rect key="frame" x="13" y="28" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="PMJ-Rf-89A"/>
-                            <constraint firstAttribute="height" constant="60" id="lyh-fS-YM0"/>
+                            <constraint firstAttribute="width" constant="50" id="PMJ-Rf-89A"/>
+                            <constraint firstAttribute="height" constant="50" id="lyh-fS-YM0"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="福建烤老鼠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-TU-2Xp">
-                        <rect key="frame" x="83" y="30" width="308" height="22"/>
+                        <rect key="frame" x="73" y="30" width="328" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Na7-0O-eRf"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人气:500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b42-2B-wwV">
-                        <rect key="frame" x="83" y="62" width="308" height="20"/>
+                        <rect key="frame" x="73" y="62" width="328" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="dxq-ld-hUr"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-QN-EKv">
-                        <rect key="frame" x="441" y="45.5" width="70" height="25"/>
+                        <rect key="frame" x="451" y="40.5" width="60" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="Gnj-tQ-0OG"/>
+                            <constraint firstAttribute="width" constant="60" id="Gnj-tQ-0OG"/>
                             <constraint firstAttribute="height" constant="25" id="uqM-9e-g9r"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="进入店铺">
                             <color key="titleColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -59,7 +59,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vma-1B-vj1">
-                        <rect key="frame" x="0.0" y="108" width="524" height="1"/>
+                        <rect key="frame" x="0.0" y="98" width="524" height="1"/>
                         <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="2X4-t4-Vjk"/>

@@ -158,14 +158,18 @@
         __block UIButton * button = sender;
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
-                [thumupArray addObject:gid];
+                if ([responseObject[@"flag"] boolValue]) {
+                    button.selected = !button.selected;
+                    [thumupArray addObject:gid];
+                }
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:ThumUpCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
-                [thumupArray removeObject:gid];
+                if ([responseObject[@"flag"] boolValue]) {
+                    button.selected = !button.selected;
+                    [thumupArray removeObject:gid];
+                }
             }];
         }
     }
@@ -177,16 +181,20 @@
         __block UIButton * button = sender;
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:IncensesproductAdd params:@{@"proid":proid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
+                if ([responseObject[@"flag"] boolValue]) {
+                   button.selected = !button.selected;
                 [thumupDreamingArray addObject:proid];
-                addBlock();
+                addBlock(); 
+                }
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:IncensesproductDel params:@{@"proid":proid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
+                if ([responseObject[@"flag"] boolValue]) {
+                    button.selected = !button.selected;
                 [thumupDreamingArray removeObject:proid];
                 reduceBlock();
+                }
             }];
         }
     }
@@ -198,14 +206,18 @@
         __block UIButton * button = sender;
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFAddUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
+                if ([responseObject[@"flag"] boolValue]) {
+                   button.selected = !button.selected;
                 [focusArray addObject:uid];
+                }
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFDelUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
+                if ([responseObject[@"flag"] boolValue]) {
+                     button.selected = !button.selected;
                 [focusArray removeObject:uid];
+                }
             }];
         }
     }
@@ -218,14 +230,18 @@
         
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:CollectionAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-                button.selected = !button.selected;
-                [collectionArray addObject:gid];
+                if ([responseObject[@"flag"] boolValue]) {
+                    button.selected = !button.selected;
+                    [collectionArray addObject:gid];
+                }
             }];
             return;
         }
         [WPNetWorking createPostRequestMenagerWithUrlString:CollectionCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-            [collectionArray removeObject:gid];
-            button.selected = !button.selected;
+            if ([responseObject[@"flag"] boolValue]) {
+                [collectionArray removeObject:gid];
+                button.selected = !button.selected;
+            }
         }];
     }
 }
@@ -350,7 +366,10 @@ static const NSString * selectUid;
 -(void)loadThumUpDatas{
     if ([self getSelfUid].length>0) {
         [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelect params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-            
+            NSArray * list = responseObject[@"list"];
+            for (NSDictionary * dic in list) {
+                [thumupArray addObject:[NSString stringWithFormat:@"%@",dic[@"gid"]]];
+            }
         }];
     }
 }
@@ -358,7 +377,10 @@ static const NSString * selectUid;
 -(void)loadThumUpDreamingDatas{
     if ([self getSelfUid].length>0) {
         [WPNetWorking createPostRequestMenagerWithUrlString:IncensesUidSelectPrdouct params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-            
+            NSArray * list = responseObject[@"list"];
+            for (NSDictionary * dic in list) {
+                [thumupDreamingArray addObject:[NSString stringWithFormat:@"%@",dic[@"proid"]]];
+            }
         }];
     }
 }

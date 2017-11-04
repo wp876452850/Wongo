@@ -41,7 +41,7 @@
                             <constraint firstAttribute="height" constant="50" id="VX3-Cj-feW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="进入数码时代" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-nK-IOe">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成为造梦人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEK-nK-IOe">
                         <rect key="frame" x="93" y="43.5" width="210" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Bgw-Yh-bFk"/>
@@ -60,7 +60,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="梦想就是让你感到坚持就是幸福的东西升值起可以视为一种信仰" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aTq-Ky-mcm">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="用您的物品帮助寄梦人换取以下物品,实现梦想" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aTq-Ky-mcm">
                         <rect key="frame" x="38" y="113" width="321" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="irN-kS-6pS"/>

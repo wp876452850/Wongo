@@ -10,6 +10,11 @@
 #import "WPListModel.h"
 
 @interface WPListFirstTableViewCell ()
+{
+    NSInteger _oneNumber;
+    NSInteger _twoNumber;
+    NSInteger _threeNumber;
+}
 /**3个头像*/
 @property (weak, nonatomic) IBOutlet UIImageView *one;
 @property (weak, nonatomic) IBOutlet UIImageView *two;
@@ -118,17 +123,33 @@
     
 }
 - (IBAction)thumup:(UIButton *)sender {
-    switch (sender.tag) {
-        case 0:
-            _onebutton.selected = !_onebutton.selected;
-            break;
-        case 1:
-            _twobutton.selected = !_twobutton.selected;
-            break;
-        default:
-            _threebutton.selected = !_threebutton.selected;
-            break;
-    }
+     WPListModel * model = [WPListModel mj_objectWithKeyValues:_dataSourceArray[sender.tag]];
+    typeof(self) weakSelf = self;
+    [self thumbUpGoodsWithSender:sender proid:model.proid addBlock:^{
+        switch (sender.tag) {
+            case 0:
+                weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",_oneNumber++];
+                break;
+            case 1:
+                weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",_twoNumber++];
+                break;
+            default:
+                weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",_threeNumber++];
+                break;
+        }
+    } reduceBlock:^{
+        switch (sender.tag) {
+            case 0:
+                weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",_oneNumber--];
+                break;
+            case 1:
+                weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",_twoNumber--];
+                break;
+            default:
+                weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",_threeNumber--];
+                break;
+        }
+    }];
 }
 
 
@@ -152,18 +173,21 @@
                 [_one sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _onenumber.text = model.praise;
                 _oneLabel.text = model.uname;
+                _oneNumber = [model.praise integerValue];
                 
             }break;
             case 1:{               
                 [_two sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _twoLabel.text = model.uname;
                 _twonumber.text = model.praise;
+                _twoNumber = [model.praise integerValue];
             }
                 break;
             case 2:{
                 [_three sd_setImageWithURL:[NSURL URLWithString:imageName] placeholderImage:[UIImage imageNamed:@"loadimage"]];
                 _threeLabel.text = model.uname;
                 _threenumber.text = model.praise;
+                _threeNumber = [model.praise integerValue];
             }
                 break;
         }

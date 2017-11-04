@@ -102,9 +102,12 @@ static NSString * contentOffset = @"contentOffset";
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         //注册
+        //区头
+        [_collectionView registerClass:[WPHomeReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"jingpintuijian"];
+        //单元格
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSquareCell" bundle:nil] forCellWithReuseIdentifier:@"SquareCellID"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeRectangleCell" bundle:nil] forCellWithReuseIdentifier:@"RectangleCellID"];
-        [_collectionView registerClass:[WPHomeReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSectionFooter" bundle:nil]  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID"];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"GoodsCell"];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPHomeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeDreamingCell"];
@@ -166,46 +169,63 @@ static NSString * contentOffset = @"contentOffset";
     }
     return _reusableDataSource;
 }
+
+#pragma makr - 数据
 //请求数据
 -(void)loadData{
     _plids = [NSMutableArray arrayWithCapacity:3];
     __block WPHomeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
-        [weakSelf.collectionView.mj_header endRefreshing];
-        LYHomeResponse *response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
+        LYHomeResponse * response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
         weakSelf.response = response;
         weakSelf.homeHeaderView.listhl = response.listhl;
         weakSelf.homeHeaderView.listhk = response.listhk;
-        //查询推荐商品
-        [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutique params:@{@"currPage":@(1)} datas:^(NSDictionary *responseObject) {
-            
-            NSArray * listg = responseObject[@"listg"];
-            weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-            for (NSDictionary * item in listg) {
-                WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-                [weakSelf.dataSourceArray addObject:model];
-            }
-            _page++;
-            [weakSelf.collectionView reloadData];
-            //查询造梦计划
-            [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
-                NSArray * dreamings = responseObject[@"listSub"];
-                weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
-                for (int i = 0; i < dreamings.count; i++) {
-                    NSArray * listplan = dreamings[i][@"listplan"];
-                    for (int j = 0; j<listplan.count; j++) {
-                        WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
-                        [weakSelf.dreamings addObject:model];
-                    }
-                }
-                [weakSelf.collectionView reloadData];
-            }];
-        }];
+        [weakSelf loadTuijianDatas];
     }failureBlock:^{
+        [weakSelf loadTuijianDatas];
         [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
+//获取推荐数据(第一条)
+-(void)loadTuijianDatas{
+    //查询推荐商品
+    __block WPHomeViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutique params:@{@"currPage":@(1)} datas:^(NSDictionary *responseObject) {
+        NSArray * listg = responseObject[@"listg"];
+        weakSelf.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+        for (NSDictionary * item in listg) {
+            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
+            [weakSelf.dataSourceArray addObject:model];
+        }
+        _page++;
+        [weakSelf loadDreamingDatas];
+    } failureBlock:^{
+        [weakSelf loadDreamingDatas];
+    }];
+}
+//获取造梦数据
+-(void)loadDreamingDatas{
+    //查询造梦计划
+    __block WPHomeViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
+        NSArray * dreamings = responseObject[@"listSub"];
+        weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
+        for (int i = 0; i < dreamings.count; i++) {
+            NSArray * listplan = dreamings[i][@"listplan"];
+            for (int j = 0; j<listplan.count; j++) {
+                WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
+                [weakSelf.dreamings addObject:model];
+            }
+        }
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView.mj_header endRefreshing];
+    } failureBlock:^{
+        [weakSelf.collectionView reloadData];
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
 
+}
+//获取推荐加载数据
 -(void)footer{
     __block WPHomeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutique params:@{@"currPage":@(_page)} datas:^(NSDictionary *responseObject) {
@@ -222,30 +242,6 @@ static NSString * contentOffset = @"contentOffset";
     }];
 }
 #pragma mark - collectionViewDelegate && collectionViewDataSource
-//
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-//    LYHomeCategory *category;
-//        NSInteger index = 0;
-//        if ([self.response hasBanner:indexPath.section]) {
-//            index = indexPath.row -1;
-//        }else{
-//            index = indexPath.row;
-//        }
-//        switch (indexPath.section) {
-//            case 0:
-//                category = self.response.listxk[index];
-//                break;
-//            case 1:
-//                category = self.response.listfk[index];
-//                break;
-//            case 2:
-//                category = self.response.listzk[index];
-//                break;
-//            default:
-//                break;
-//        }
-//    [self.navigationController pushViewController:[LYActivityController controllerWithCategory:category] animated:YES];
-//}
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
@@ -282,11 +278,7 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            if (_dreamings.count>3) {
-                return 3;
-            }else{
-                return _dreamings.count;
-            }
+            return _dreamings.count>3?3:_dreamings.count;
         }
             break;
         default:
@@ -368,8 +360,7 @@ static NSString * contentOffset = @"contentOffset";
         //隐藏热门
 //        return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame) + ReusableView_Height);
         return CGSizeMake(WINDOW_WIDTH, CGRectGetHeight(self.homeHeaderView.frame));
-    }
-    
+    }    
     return CGSizeMake(WINDOW_WIDTH, ReusableView_Height);
 }
 
@@ -387,10 +378,10 @@ static NSString * contentOffset = @"contentOffset";
 {
     if ([kind isEqualToString:UICollectionElementKindSectionFooter]) {
         return [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID" forIndexPath:indexPath];
-    }else{
-        
+    }else
+    {
         if (indexPath.section == 3) {
-            UICollectionReusableView * reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];;
+            UICollectionReusableView * reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"jingpintuijian" forIndexPath:indexPath];;
             UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
             title.center = CGPointMake(WINDOW_WIDTH/2, ReusableView_Height/2);
             title.text = @"精品推荐";
@@ -412,8 +403,6 @@ static NSString * contentOffset = @"contentOffset";
     }
 }
 
-
-
 #pragma mark - obser
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     UICollectionView * collectionView = (UICollectionView *)object;
@@ -421,7 +410,6 @@ static NSString * contentOffset = @"contentOffset";
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         return;
     }
-    
     CGFloat collectionViewOffsetY = collectionView.contentOffset.y;
 
     CGFloat headerViewMaxY = CGRectGetHeight(self.homeHeaderView.frame);
@@ -443,6 +431,8 @@ static NSString * contentOffset = @"contentOffset";
 
 -(void)dealloc{
     [self.collectionView removeObserver:self forKeyPath:contentOffset context:nil];
+    
+    
 }
 
 

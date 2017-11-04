@@ -147,11 +147,10 @@ static NSString * const cell            = @"cell";
         case 1:
         {
             WPDreamingDescribeTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:describeCell forIndexPath:indexPath];
-            
+            cell.textView.placeholder = Section_0_Placeholder[indexPath.section];
             [cell getDescribeBlockWithBlock:^(NSString *str) {
                 _describe = str;
-            }];
-            
+            }];            
             return cell;
         }
             break;
@@ -279,7 +278,6 @@ static NSString * const cell            = @"cell";
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],address.address];
         }];
     }
-    
     [self.view endEditing:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -287,7 +285,6 @@ static NSString * const cell            = @"cell";
 }
 #pragma mark - 发布(报名)造梦
 -(void)goNextVC{
-    
     if (!self.button.selected) {
         [self showAlertWithAlertTitle:@"提示" message:@"需要同意《造梦计划平台说明协议》规则后才能发布造梦计划" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
         return;

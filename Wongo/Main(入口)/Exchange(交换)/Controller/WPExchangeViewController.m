@@ -251,7 +251,7 @@ static NSString * const recommendCell       = @"recommendCell";
             NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
             [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length - @"  宝贝评价".length)];
             cell.textLabel.attributedText   = attributedString;
-            cell.textLabel.font             = [UIFont systemFontOfSize:17];
+            cell.textLabel.font             = [UIFont systemFontOfSize:14.f];
             cell.selectionStyle             = UITableViewCellSelectionStyleNone;
             cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
@@ -290,12 +290,13 @@ static NSString * const recommendCell       = @"recommendCell";
                 [cell.layer removeFromSuperlayer];
                 UITextView * textLabel     = [[UITextView alloc]initWithFrame:CGRectMake(10, 10, 80, 30)];
                 textLabel.text          = @"商品描述:";
-                textLabel.font          = [UIFont systemFontOfSize:15];
+                textLabel.font          = [UIFont systemFontOfSize:13.f];
                 [cell.contentView addSubview:textLabel];
+                
                 //描述内容
                 UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
                 textView.text           = _exchangeModel.remark;
-                textView.font           = [UIFont systemFontOfSize:15];
+                textView.font           = [UIFont systemFontOfSize:13.f];
                 textLabel.userInteractionEnabled    = NO;
                 textView.userInteractionEnabled     = NO;
                 [cell.contentView addSubview:textView];
