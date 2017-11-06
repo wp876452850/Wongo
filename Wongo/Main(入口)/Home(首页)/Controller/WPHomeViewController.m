@@ -21,6 +21,9 @@
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPHomeDreamingCollectionViewCell.h"
 #import "WPAdvertisingView.h"
+#import "WPDreamingModel.h"
+#import "WPNewHomeDreamingCollectionViewCell.h"
+#import "WPNewHomeDreamingPhotoModel.h"
 
 
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
@@ -63,6 +66,7 @@ static NSString * contentOffset = @"contentOffset";
 /**广告页*/
 @property (nonatomic,strong)WPAdvertisingView * advertisingView;
 
+@property (nonatomic,strong)WPDreamingModel * dreamingModel;
 @end
 
 @implementation WPHomeViewController
@@ -110,7 +114,9 @@ static NSString * contentOffset = @"contentOffset";
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeRectangleCell" bundle:nil] forCellWithReuseIdentifier:@"RectangleCellID"];
         [_collectionView registerNib:[UINib nibWithNibName:@"LYHomeSectionFooter" bundle:nil]  forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterViewID"];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"GoodsCell"];
-        [_collectionView registerNib:[UINib nibWithNibName:@"WPHomeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeDreamingCell"];
+        
+        //[_collectionView registerNib:[UINib nibWithNibName:@"WPHomeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeDreamingCell"];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewHomeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"HomeDreamingCell"];
         //添加监听
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld;
         [_collectionView addObserver:self forKeyPath:contentOffset options:options context:nil];
@@ -133,22 +139,6 @@ static NSString * contentOffset = @"contentOffset";
     [self.view addSubview:self.homeHeaderSearchView];
     [[UIApplication sharedApplication].keyWindow addSubview:self.advertisingView];
 }
-
--(void)addHeaderLoad{
-    __block typeof(self) weakSelf = self;
-    self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
-        [weakSelf loadData];
-    }];
-    [self.collectionView.mj_header beginRefreshing];
-    
-}
--(void)addFooterLoad{
-    __block typeof(self) weakSelf = self;
-    self.collectionView.mj_footer = [MJRefreshBackGifFooter  footerWithRefreshingBlock:^{
-        [weakSelf footer];
-    }];
-    [self.collectionView.mj_footer beginRefreshing];
-}
 - (NSMutableArray *)dataSourceArray{
     if (!_dataSourceArray) {
         _dataSourceArray = [NSMutableArray arrayWithCapacity:Theme2NameArray.count];
@@ -170,7 +160,23 @@ static NSString * contentOffset = @"contentOffset";
     return _reusableDataSource;
 }
 
-#pragma makr - 数据
+#pragma mark - 数据加载
+-(void)addHeaderLoad{
+    __block typeof(self) weakSelf = self;
+    self.collectionView.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
+        [weakSelf loadData];
+    }];
+    [self.collectionView.mj_header beginRefreshing];
+    
+}
+-(void)addFooterLoad{
+    __block typeof(self) weakSelf = self;
+    self.collectionView.mj_footer = [MJRefreshBackGifFooter  footerWithRefreshingBlock:^{
+        [weakSelf footer];
+    }];
+    [self.collectionView.mj_footer beginRefreshing];
+}
+
 //请求数据
 -(void)loadData{
     _plids = [NSMutableArray arrayWithCapacity:3];
@@ -215,15 +221,43 @@ static NSString * contentOffset = @"contentOffset";
             for (int j = 0; j<listplan.count; j++) {
                 WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
                 [weakSelf.dreamings addObject:model];
+                if (!weakSelf.dreamingModel) {
+                    [weakSelf loadDreamingInformationDatasWithPlid:model.plid];
+                }
             }
         }
-        [weakSelf.collectionView reloadData];
-        [weakSelf.collectionView.mj_header endRefreshing];
     } failureBlock:^{
         [weakSelf.collectionView reloadData];
         [weakSelf.collectionView.mj_header endRefreshing];
     }];
+}
+//获取造梦详细信息
+-(void)loadDreamingInformationDatasWithPlid:(NSString *)plid{
+    __block WPHomeViewController * weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
+        NSDictionary * list = responseObject[@"list"][0];
+        weakSelf.dreamingModel = [WPDreamingModel mj_objectWithKeyValues:list];
+        NSMutableArray * rollPlays = [NSMutableArray arrayWithCapacity:3];
+        [rollPlays addObject:list[@"url"]];
+        [weakSelf loadParticipateDatasWithPlid:plid];
 
+    } failureBlock:^{
+        [weakSelf loadParticipateDatasWithPlid:plid];
+        [weakSelf.collectionView.mj_header endRefreshing];
+    }];
+}
+//查询参与商品
+-(void)loadParticipateDatasWithPlid:(NSString *)plid{
+    __block typeof(self) weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
+        weakSelf.dreamingModel.introduceModel.dreamingIntroduces = responseObject[@"list"];
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView reloadData];
+        
+    } failureBlock:^{
+        [weakSelf.collectionView.mj_header endRefreshing];
+        [weakSelf.collectionView reloadData];
+    }];
 }
 //获取推荐加载数据
 -(void)footer{
@@ -241,18 +275,21 @@ static NSString * contentOffset = @"contentOffset";
         [weakSelf.collectionView.mj_footer endRefreshing];
     }];
 }
+
+
 #pragma mark - collectionViewDelegate && collectionViewDataSource
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]) {
+    if (indexPath.row == 0 && [self.response hasBanner:indexPath.section]){
         return CGSizeMake(WINDOW_WIDTH - 10, Cell_HeightSigleLine);
     }
     if (indexPath.section == 3) {
         return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
     }
     if (indexPath.section == 2) {
-        return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*194.5f/375);
+        //return CGSizeMake(WINDOW_WIDTH, 195*WINDOW_WIDTH/375);
+        return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*0.6+10+(WINDOW_WIDTH/3) + 90);
     }
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, Cell_HeightDouble);
 }
@@ -278,7 +315,7 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case 2:{
-            return _dreamings.count>3?3:_dreamings.count;
+            return self.dreamingModel.introduceModel.dreamingIntroduces.count>1?1:self.dreamingModel.introduceModel.dreamingIntroduces.count;
         }
             break;
         default:
@@ -311,8 +348,10 @@ static NSString * contentOffset = @"contentOffset";
         return cell;
     }
     else if (indexPath.section == 2){
-        WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-        cell.model = _dreamings[indexPath.row];
+        WPNewHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
+        cell.model = self.dreamingModel;
+//        WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
+//        cell.model = self.dreamings[indexPath.row];
         return cell;
     }
     else{

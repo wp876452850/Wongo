@@ -19,22 +19,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/View/Cell/WPActivityGoodsCollectionViewCell.m"
-            timestampString = "529817478.377186"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "-setModel:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/View/WPHomeHeaderView.m"
             timestampString = "530678541.802622"
             startingColumnNumber = "9223372036854775807"
@@ -132,12 +116,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/WPHomeViewController.m"
-            timestampString = "531386611.537523"
+            timestampString = "531481221.096068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-footer"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Home(&#x9996;&#x9875;)/Controller/LYActivityController.m"
+            timestampString = "531486676.714529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

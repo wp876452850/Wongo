@@ -101,7 +101,6 @@ static NSString * const projectCell     = @"ProjectCell";
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 //    if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
 //        //tableViewCell自身的高的
 //        return 310;
@@ -120,7 +119,6 @@ static NSString * const projectCell     = @"ProjectCell";
         return 250;
     }
     return [self.cellsHeight[indexPath.section] floatValue];
-
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{    
