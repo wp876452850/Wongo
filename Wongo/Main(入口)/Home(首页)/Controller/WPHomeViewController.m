@@ -220,10 +220,7 @@ static NSString * contentOffset = @"contentOffset";
             NSArray * listplan = dreamings[i][@"listplan"];
             for (int j = 0; j<listplan.count; j++) {
                 WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
-                [weakSelf.dreamings addObject:model];
-                if (!weakSelf.dreamingModel) {
-                    [weakSelf loadDreamingInformationDatasWithPlid:model.plid];
-                }
+                [weakSelf loadDreamingInformationDatasWithPlid:model.plid];                
             }
         }
     } failureBlock:^{
@@ -235,10 +232,11 @@ static NSString * contentOffset = @"contentOffset";
 -(void)loadDreamingInformationDatasWithPlid:(NSString *)plid{
     __block WPHomeViewController * weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
+        
         NSDictionary * list = responseObject[@"list"][0];
+        //WPDreamingModel * model = [WPDreamingModel mj_objectWithKeyValues:list];
+        //[weakSelf.dreamings addObject:model];
         weakSelf.dreamingModel = [WPDreamingModel mj_objectWithKeyValues:list];
-        NSMutableArray * rollPlays = [NSMutableArray arrayWithCapacity:3];
-        [rollPlays addObject:list[@"url"]];
         [weakSelf loadParticipateDatasWithPlid:plid];
 
     } failureBlock:^{
@@ -250,6 +248,7 @@ static NSString * contentOffset = @"contentOffset";
 -(void)loadParticipateDatasWithPlid:(NSString *)plid{
     __block typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
+        
         weakSelf.dreamingModel.introduceModel.dreamingIntroduces = responseObject[@"list"];
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView reloadData];
@@ -288,7 +287,6 @@ static NSString * contentOffset = @"contentOffset";
         return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
     }
     if (indexPath.section == 2) {
-        //return CGSizeMake(WINDOW_WIDTH, 195*WINDOW_WIDTH/375);
         return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*0.6+10+(WINDOW_WIDTH/3) + 90);
     }
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, Cell_HeightDouble);
@@ -316,6 +314,7 @@ static NSString * contentOffset = @"contentOffset";
             break;
         case 2:{
             return self.dreamingModel.introduceModel.dreamingIntroduces.count>1?1:self.dreamingModel.introduceModel.dreamingIntroduces.count;
+            //return self.dreamings.count>5?5:self.dreamings.count;
         }
             break;
         default:
@@ -350,8 +349,7 @@ static NSString * contentOffset = @"contentOffset";
     else if (indexPath.section == 2){
         WPNewHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
         cell.model = self.dreamingModel;
-//        WPHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-//        cell.model = self.dreamings[indexPath.row];
+        //cell.model = self.dreamings[indexPath.row];
         return cell;
     }
     else{

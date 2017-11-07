@@ -10,6 +10,7 @@
 #import "WPNewHomeDreamingPhotoModel.h"
 
 @interface WPHomeDreamingPhotoCollectionViewCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *shadow;
 
 @property (nonatomic,strong)WPNewHomeDreamingPhotoModel * model;
 @property (weak, nonatomic) IBOutlet UILabel *state;

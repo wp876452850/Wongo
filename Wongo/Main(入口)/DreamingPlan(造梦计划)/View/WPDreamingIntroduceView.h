@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WPDreamingIntroduceModel.h"
 #import "WPDreamingDetailViewController.h"
+#import "WPDreamingGoodsIntroductionTableView.h"
 
 @interface WPDreamingIntroduceView : UIView
 
@@ -17,5 +18,7 @@
 @property (nonatomic,strong)NSArray * dataSource;
 
 @property (nonatomic,strong)WPDreamingDetailViewController * vc;
+
+@property (nonatomic,strong)WPDreamingGoodsIntroductionTableView * tableView;
 
 @end

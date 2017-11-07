@@ -20,16 +20,17 @@
 #import "WPDreamingOrderViewController.h"
 #import "WPStoreViewController.h"
 #import "WPMyTableViewCell.h"
+#import "WPInviteCodeViewController.h"
 
 #import "ceshi.h"
 
 #define CELL_ID @"cell"
 
-//#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
-//#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
+#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
+#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
 
-#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"ceshi"]
-#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
+//#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"ceshi"]
+//#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
 
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)

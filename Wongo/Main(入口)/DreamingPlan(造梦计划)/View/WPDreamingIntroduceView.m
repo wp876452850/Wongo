@@ -7,7 +7,6 @@
 //
 
 #import "WPDreamingIntroduceView.h"
-#import "WPDreamingGoodsIntroductionTableView.h"
 #import "LYConversationController.h"
 #import "WPParticipateDreamingViewController.h"
 #import "WPDreamingIntroduceView.h"
@@ -21,7 +20,7 @@
 
 @property (nonatomic,strong)UITextView * contentShowLabel;
 
-@property (nonatomic,strong)WPDreamingGoodsIntroductionTableView * tableView;
+
 
 @property (nonatomic,strong)UIButton * joinDreaming;
 

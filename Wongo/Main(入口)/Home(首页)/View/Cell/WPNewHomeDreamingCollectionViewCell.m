@@ -11,6 +11,7 @@
 #import "WPHomeDreamingPhotoCollectionViewCell.h"
 #import "WPDreamingDetailViewController.h"
 #import "LYBaseController.h"
+#import "WPDreamingIntroduceView.h"
 
 @interface WPNewHomeDreamingCollectionViewCell ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *backImage;
@@ -32,8 +33,6 @@
         _collection.dataSource = self;
         _collection.delegate = self;
         _collection.backgroundColor = WhiteColor;
-        _collection.scrollEnabled = NO;
-        _collection.userInteractionEnabled = YES;
     }
     return _collection;;
 }
@@ -80,13 +79,17 @@
     cell.model =  [WPNewHomeDreamingPhotoModel mj_objectWithKeyValues:_model.introduceModel.dreamingIntroduces[indexPath.row]];
     if (indexPath.row == 0) {
         cell.lunci.text = @"寄梦人";
+        cell.state.text = @"造梦完成";
+        cell.shadow.hidden = NO;
     }
     else{
         cell.lunci.text = [NSString stringWithFormat:@"第%ld轮",indexPath.row];
         if (indexPath.row < _model.introduceModel.dreamingIntroduces.count-1) {
             cell.state.text = @"造梦完成";
+            cell.shadow.hidden = NO;
         }else{
             cell.state.text = @"进行中";
+            cell.shadow.hidden = YES;
         }
     }
     return cell;
@@ -98,13 +101,21 @@
 }
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    return CGSizeMake((WINDOW_WIDTH/3), (WINDOW_WIDTH/3) + 90);
+    return CGSizeMake((WINDOW_WIDTH-20)/3, (WINDOW_WIDTH-20)/3 + 90);
 }
 
-
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:_model.proid plid:_model.plid];
-    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+    WPDreamingDetailViewController * vc1 = [WPDreamingDetailViewController createDreamingDetailWithProid:_model.proid plid:_model.plid];
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc1 animated:YES];
+    
+    UIViewController * vc = [[UIViewController alloc]init];
+    WPDreamingIntroduceView * dv = [[WPDreamingIntroduceView alloc]initWithFrame:vc.view.frame];
+    dv.vc = vc1;
+    dv.dreamingStory = self.model.introduceModel.dreamingStory;
+    dv.dataSource = self.model.introduceModel.dreamingIntroduces;
+    [vc.view addSubview:dv];
+    [vc1 presentViewController:vc animated:YES completion:nil];
+    
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
