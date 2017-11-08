@@ -10,6 +10,7 @@
 #import "WPDreamingDetailViewController.h"
 #import "WPDreamingDirectoryModel.h"
 
+#define StateImageName @[@"isrecommend_0",@"isrecommend_1"]
 #define ImageWidth (WINDOW_WIDTH / 2 - 7.5)
 
 @interface WPNewDreamingSignUpTableViewCell (){
@@ -49,6 +50,7 @@
     
     for (int i = 0; i<_dataSource.count; i++) {
         WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:_dataSource[i]];
+        //造梦图
         UIImageView * imageView = [[UIImageView alloc]init];
         imageView.frame = CGRectMake(i%2*ImageWidth+5*(i%2+1), i/2*ImageWidth+5*(i/2+1), ImageWidth, ImageWidth);
         imageView.tag = i;
@@ -61,6 +63,12 @@
         [imageView sd_setImageWithURL:[NSURL URLWithString:model.prourl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
         //self.title.text = model.contents;
         _imagebg.height = imageView.bottom;
+        
+        //状态图
+        UIImage * stateImage = [UIImage imageNamed:StateImageName[[model.isrecommend integerValue]]];
+        UIImageView * stateImageView = [[UIImageView alloc]initWithImage:stateImage];
+        stateImageView.frame = CGRectMake(0, 0, stateImage.size.width, stateImage.size.height);
+        [imageView addSubview:stateImageView];
     }
 }
 
@@ -79,4 +87,5 @@
 -(void)closeWithBlock:(WPNewDreamingSignUpTableViewCellClose)block{
     _block = block;
 }
+
 @end

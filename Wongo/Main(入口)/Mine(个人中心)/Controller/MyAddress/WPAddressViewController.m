@@ -61,6 +61,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"收货地址";
+    
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 20)];
+    label.centerY = self.view.centerY;
+    label.font = [UIFont boldSystemFontOfSize:15.f];
+    label.textColor = TitleGrayColor;
+    label.text = @"您暂未添加收货地址";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
     WPMyNavigationBar * customNav = [[WPMyNavigationBar alloc]init];
     customNav.title.text = self.title;
     [self.view addSubview:customNav];
@@ -80,7 +89,6 @@
     [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [self.view addSubview:self.addAddress];
-    [self.view addSubview:self.tableView];
     [self loadDatas];
     
 }
@@ -91,17 +99,24 @@
 }
 -(void)loadDatas{
     self.dataSource = [NSMutableArray arrayWithCapacity:3];
+    __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QueryAddressedUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject){
         NSArray * lista = [responseObject objectForKey:@"lista"];
         for (NSDictionary * dic in lista) {
             WPAddressModel * model = [WPAddressModel mj_objectWithKeyValues:dic];
             if ([model.state integerValue] == 1) {
-                [self.dataSource insertObject:model atIndex:0];
+                [weakSelf.dataSource insertObject:model atIndex:0];
             }else{
-                [self.dataSource addObject:model];
+                [weakSelf.dataSource addObject:model];
             }
         }
-        [self.tableView reloadData];
+        if (lista.count>0) {
+            if (!_tableView) {
+                [weakSelf.view addSubview:weakSelf.tableView];
+            }else{
+                [weakSelf.tableView reloadData];
+            }
+        }
     }];
 }
 //设为默认地址按钮点击

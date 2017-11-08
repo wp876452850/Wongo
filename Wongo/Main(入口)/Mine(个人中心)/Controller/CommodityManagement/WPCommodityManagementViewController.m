@@ -35,6 +35,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
+    
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 20)];
+    label.centerY = self.view.centerY;
+    label.font = [UIFont boldSystemFontOfSize:15.f];
+    label.textColor = TitleGrayColor;
+    label.text = @"您暂未发布商品";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
     [self loadDatas];
     self.title = @"商品管理";
     
@@ -55,7 +64,13 @@
             
             [weakSelf.dataSourceArray addObject:model];
         }
-        [self.view addSubview:self.tableView];
+        if (array.count>0) {
+            if (!_tableView) {
+                [weakSelf.view addSubview:weakSelf.tableView];
+            }else{
+                [weakSelf.tableView reloadData];
+            }
+        }
     }];
     
 }

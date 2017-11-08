@@ -116,6 +116,8 @@
     [vc.view addSubview:dv];
     [vc1 presentViewController:vc animated:YES completion:nil];
     
+    NSIndexPath * cellIndexPath = [NSIndexPath indexPathForRow:0 inSection:indexPath.row];
+    [dv.tableView scrollToRowAtIndexPath:cellIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

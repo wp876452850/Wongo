@@ -398,6 +398,9 @@
 		3D7FB7B71FA0645E0044E7F9 /* WPConsignmentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7FB7B61FA0645E0044E7F9 /* WPConsignmentCollectionView.m */; };
 		3D827A301EF10A320030B0D1 /* LYConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A2F1EF10A320030B0D1 /* LYConversationListController.m */; };
 		3D827A331EF10A680030B0D1 /* LYConversationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A321EF10A680030B0D1 /* LYConversationController.m */; };
+		3D83C5C91FB146AD003342CB /* WPTimerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C5C81FB146AD003342CB /* WPTimerTool.m */; };
+		3D83C5CF1FB155A1003342CB /* WPPushConsignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C5CE1FB155A1003342CB /* WPPushConsignmentViewController.m */; };
+		3D83C5D31FB18316003342CB /* WPHomeClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D83C5D21FB18316003342CB /* WPHomeClassificationViewController.m */; };
 		3D87B8DA1F4425EB002139D2 /* WPHomeDreamingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D87B8D91F4425EB002139D2 /* WPHomeDreamingModel.m */; };
 		3D883C6A1F4C14CC00A990D6 /* UIButton+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C691F4C14CC00A990D6 /* UIButton+runtime.m */; };
 		3D883C7E1F4C2FD900A990D6 /* WPListFirstTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D883C7C1F4C2FD900A990D6 /* WPListFirstTableViewCell.m */; };
@@ -1471,6 +1474,12 @@
 		3D827A311EF10A680030B0D1 /* LYConversationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYConversationController.h; sourceTree = "<group>"; };
 		3D827A321EF10A680030B0D1 /* LYConversationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYConversationController.m; sourceTree = "<group>"; };
 		3D827A341EF122E90030B0D1 /* Wongo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Wongo.entitlements; sourceTree = "<group>"; };
+		3D83C5C71FB146AD003342CB /* WPTimerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPTimerTool.h; sourceTree = "<group>"; };
+		3D83C5C81FB146AD003342CB /* WPTimerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPTimerTool.m; sourceTree = "<group>"; };
+		3D83C5CD1FB155A1003342CB /* WPPushConsignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPushConsignmentViewController.h; sourceTree = "<group>"; };
+		3D83C5CE1FB155A1003342CB /* WPPushConsignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPushConsignmentViewController.m; sourceTree = "<group>"; };
+		3D83C5D11FB18316003342CB /* WPHomeClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPHomeClassificationViewController.h; sourceTree = "<group>"; };
+		3D83C5D21FB18316003342CB /* WPHomeClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHomeClassificationViewController.m; sourceTree = "<group>"; };
 		3D87B8D81F4425EB002139D2 /* WPHomeDreamingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPHomeDreamingModel.h; sourceTree = "<group>"; };
 		3D87B8D91F4425EB002139D2 /* WPHomeDreamingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPHomeDreamingModel.m; sourceTree = "<group>"; };
 		3D883C681F4C14CC00A990D6 /* UIButton+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+runtime.h"; sourceTree = "<group>"; };
@@ -4106,6 +4115,24 @@
 			path = "广告页";
 			sourceTree = "<group>";
 		};
+		3D83C5C61FB14627003342CB /* 计时器 */ = {
+			isa = PBXGroup;
+			children = (
+				3D83C5C71FB146AD003342CB /* WPTimerTool.h */,
+				3D83C5C81FB146AD003342CB /* WPTimerTool.m */,
+			);
+			path = "计时器";
+			sourceTree = "<group>";
+		};
+		3D83C5D01FB182F1003342CB /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				3D83C5D11FB18316003342CB /* WPHomeClassificationViewController.h */,
+				3D83C5D21FB18316003342CB /* WPHomeClassificationViewController.m */,
+			);
+			path = "分类";
+			sourceTree = "<group>";
+		};
 		3D883C6B1F4C1E0500A990D6 /* 排行榜 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5765,6 +5792,7 @@
 		8566A7201E48240900C08624 /* Tool(工具类) */ = {
 			isa = PBXGroup;
 			children = (
+				3D83C5C61FB14627003342CB /* 计时器 */,
 				3D1454761F6A77CF003CD7D8 /* 第三方分享 */,
 				3D13B8221F16222900C1A20F /* WPBezier(画线) */,
 				8566A7DF1E48268D00C08624 /* WPPhotoLibrary.h */,
@@ -5962,6 +5990,7 @@
 				3D43CE931EF23E540047A23C /* LYActivityController.h */,
 				3D43CE941EF23E540047A23C /* LYActivityController.m */,
 				854389D51E51A86700B84CCB /* Search(主页搜索) */,
+				3D83C5D01FB182F1003342CB /* 分类 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6103,6 +6132,8 @@
 				85FB6C511E836D7800520C0D /* WPPushExchangeViewController.m */,
 				857DBFD41EC0603900B3D233 /* WPPushDreamingViewController.h */,
 				857DBFD51EC0603A00B3D233 /* WPPushDreamingViewController.m */,
+				3D83C5CD1FB155A1003342CB /* WPPushConsignmentViewController.h */,
+				3D83C5CE1FB155A1003342CB /* WPPushConsignmentViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7733,6 +7764,7 @@
 				85C748FA1E7FD3BD000E1B65 /* AFAutoPurgingImageCache.m in Sources */,
 				3DA085D51FAD99DC00214099 /* WPHomeDreamingPhotoCollectionView.m in Sources */,
 				3D6142541F4FD0A000D52297 /* WPStroeDreamingCollectionViewCell.m in Sources */,
+				3D83C5C91FB146AD003342CB /* WPTimerTool.m in Sources */,
 				859D7B711EB1E27B00B2FE6F /* WPUpDataUserInformationViewController.m in Sources */,
 				852D0D8A1E5A990200B8EE93 /* WPSearchUserModel.m in Sources */,
 				3DE9EDBA1F999DD900C01310 /* MBProgressHUD.m in Sources */,
@@ -7742,6 +7774,7 @@
 				3DF746131F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m in Sources */,
 				855C97151E640C300089EF32 /* WPDreamingDetailViewController.m in Sources */,
 				3D0772FB1F18A7F70084E409 /* UIView+Layout.m in Sources */,
+				3D83C5CF1FB155A1003342CB /* WPPushConsignmentViewController.m in Sources */,
 				85187E421E8DF94B00D3D64F /* WPAnimationHeader.m in Sources */,
 				85187E361E8DF19300D3D64F /* MJRefreshGifHeader.m in Sources */,
 				3D1732C61F26F6C200BFF90D /* ChatToolBar.m in Sources */,
@@ -8021,6 +8054,7 @@
 				3DBDBA291F78AAEF005D64A9 /* WPCollectionBaseViewController.m in Sources */,
 				8566A7F31E4826C900C08624 /* UIViewController+WPCategory.m in Sources */,
 				8566A7D51E48265C00C08624 /* TOCropOverlayView.m in Sources */,
+				3D83C5D31FB18316003342CB /* WPHomeClassificationViewController.m in Sources */,
 				850E9F6C1EBAC5C10053C698 /* WPParameterInformationView.m in Sources */,
 				851E361E1EC4473A00C48AEF /* WPDreamingIntroduceImageModel.m in Sources */,
 				8566A7D01E48265C00C08624 /* LLSimpleCamera+Helper.m in Sources */,

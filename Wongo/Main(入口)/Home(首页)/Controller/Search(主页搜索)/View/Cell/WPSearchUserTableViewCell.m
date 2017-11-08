@@ -9,16 +9,13 @@
 #import "WPSearchUserTableViewCell.h"
 
 @interface WPSearchUserTableViewCell ()
-{
-    ChatBlock _chatBlock;
-}
+
 @property (weak, nonatomic) IBOutlet UIImageView *headImage;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *signature;
 @property (weak, nonatomic) IBOutlet UILabel *fansNumber;
 @property (weak, nonatomic) IBOutlet UILabel *goodsNumber;
 @property (weak, nonatomic) IBOutlet UIButton *attention;
-@property (weak, nonatomic) IBOutlet UIButton *chat;
 //对方用户ID
 @property (nonatomic,strong)NSString * userID;
 
@@ -38,13 +35,6 @@
     _attention.layer.borderColor    = WongoBlueColor.CGColor;
     _attention.titleLabel.font      = [UIFont systemFontOfSize:15];
     
-    _chat.layer.masksToBounds   = YES;
-    _chat.layer.borderWidth     = 1;
-    _chat.layer.borderColor     = WongoBlueColor.CGColor;
-    _chat.layer.cornerRadius    = 5;
-    _chat.titleLabel.font       = [UIFont systemFontOfSize:15];
-    [_chat setTitleColor:WongoBlueColor forState:UIControlStateNormal];
-    [_chat setTitle:@"发私信" forState:UIControlStateNormal];
     _headImage.layer.masksToBounds  = YES;
     _headImage.layer.cornerRadius   = _headImage.width/2;
     _headImage.layer.borderColor    = WongoGrayColor.CGColor;
@@ -61,18 +51,6 @@
 }
 - (IBAction)attentionClick:(UIButton *)sender {
     [self focusOnTheUserWithSender:sender uid:_model.uid];
-}
-
-- (IBAction)chatClick:(UIButton *)sender {
-    if ([self determineWhetherTheLogin]) {
-        if (_chatBlock) {
-            _chatBlock(_userID);
-        }
-    }
-}
-
--(void)goChatWithBlock:(ChatBlock)block{
-    _chatBlock = block;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

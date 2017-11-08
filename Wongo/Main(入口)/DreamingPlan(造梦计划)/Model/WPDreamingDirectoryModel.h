@@ -26,6 +26,6 @@
 /**商品图片*/
 @property (nonatomic,strong)NSString * url;
 
-@property (nonatomic,strong)NSString * Isrecommend;
+@property (nonatomic,strong)NSString * isrecommend;
 
 @end

@@ -118,9 +118,14 @@
 #define QueryGoodsListPraise    HttpHead(@"queryGoodsListPraise")
 
 /**时间排序(分类)*/
-#define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
+#define QueryUserGoodsCtidDate  HttpHead(@"queryGoodDate")
 /**点赞排序(分类)*/
-#define QueryUserGoodCtid       HttpHead(@"queryUserGoodsCtidpraise")
+#define QueryUserGoodCtid       HttpHead(@"queryGoodParise")
+
+///**时间排序(分类)*/
+//#define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
+///**点赞排序(分类)*/
+//#define QueryUserGoodCtid       HttpHead(@"queryUserGoodsCtidpraise")
 
 
 /**

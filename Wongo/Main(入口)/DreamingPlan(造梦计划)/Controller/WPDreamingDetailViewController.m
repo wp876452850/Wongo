@@ -184,6 +184,7 @@ static NSString * const recommendCell   = @"recommendCell";
     [self.tableView addSubview:self.functionButton];
 }
 
+#pragma mark - 获取数据
 -(void)loadDatas{
     self.model          = [[WPDreamingModel alloc]init];
     self.rollPlayImages = [NSMutableArray arrayWithCapacity:3];
@@ -264,6 +265,7 @@ static NSString * const recommendCell   = @"recommendCell";
     }];
 }
 
+#pragma mark -  TableViewDataSource
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 8;
 }

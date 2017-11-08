@@ -10,6 +10,7 @@
 #import "WPSearchGuideViewController.h"
 #import <MapKit/MapKit.h>
 #import "JFCityViewController.h"
+#import "WPHomeClassificationViewController.h"
 
 @interface WPHomeHeaderSearchView ()<UICollectionViewDelegate,CLLocationManagerDelegate,JFCityViewControllerDelegate>
 {
@@ -22,9 +23,12 @@
 /**分享按钮*/
 @property (nonatomic,strong)UIButton * shareButton;
 
+@property (nonatomic,strong)UIButton * classificationButton;
+
 @property (strong,nonatomic)CLLocationManager* locationManager;
 /**城市选择器*/
 @property (nonatomic,strong)JFCityViewController * cityViewController;
+
 @end
 static NSString * contentOffset = @"contantOffset";
 
@@ -64,8 +68,23 @@ static NSString * contentOffset = @"contantOffset";
     }
     return _shareButton;
 }
+
+-(UIButton *)classificationButton{
+    if (!_classificationButton) {
+        _classificationButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        //[_classificationButton setImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+        [_classificationButton setTitle:@"分类" forState:UIControlStateNormal];
+        [_classificationButton addTarget:self action:@selector(goclassificationVC) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_classificationButton];
+    }
+    return _classificationButton;
+}
 -(void)actionShare{
     [WPShareController shareAppWithCurrentViewController:[self findViewController:self]];
+}
+-(void)goclassificationVC{
+    WPHomeClassificationViewController * vc = [[WPHomeClassificationViewController alloc]init];
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
 }
 -(instancetype)init{
     self = [super init];
@@ -166,6 +185,7 @@ static NSString * contentOffset = @"contantOffset";
         self.searchButton.frame = CGRectMake(CGRectGetMaxX(self.positioningButton.frame) + 10 , 27, WINDOW_WIDTH - CGRectGetMaxX(self.positioningButton.frame) - (WINDOW_WIDTH - CGRectGetMidX(self.shareButton.frame)) - 35, 30);
     }];
 }
+//约束布局
 -(void)selfSubViewsFrame{
     [self.positioningButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
@@ -173,7 +193,13 @@ static NSString * contentOffset = @"contantOffset";
         make.size.mas_equalTo(CGSizeMake(50, 30));
     }];
     [self.shareButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-20);
+        make.right.mas_equalTo(-50);
+        make.centerY.mas_equalTo(self.mas_centerY).offset(10);
+        make.size.mas_equalTo(CGSizeMake(30, 30));
+    }];
+    
+    [self.classificationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-10);
         make.centerY.mas_equalTo(self.mas_centerY).offset(10);
         make.size.mas_equalTo(CGSizeMake(30, 30));
     }];
@@ -199,6 +225,7 @@ static NSString * contentOffset = @"contantOffset";
     UINavigationController * nav = [tabBar.childViewControllers firstObject];
     [nav pushViewControllerAndHideBottomBar:vc animated:YES];
 }
+
 
 #warning 1.0不做定位和购物车
 -(void)willMoveToSuperview:(UIView *)newSuperview{

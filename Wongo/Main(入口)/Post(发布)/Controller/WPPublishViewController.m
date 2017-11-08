@@ -11,7 +11,7 @@
 #import "WPPushExchangeViewController.h"
 #import "WPPushDreamingViewController.h"
 
-#define PushTypeTitle   @[@"发布"]
+#define PushTypeTitle   @[@"发布",@"寄卖"]
 #define PushButtonIcon  @[@"exchangebtn_normal",@"pushDreaming_normal"]
 #define PushButtonSelectIcon @[@"exchangebtn_selected",@"pushDreaming_selected"]
 
@@ -76,8 +76,8 @@
         UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
         button.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-        //button.centerX = self.view.width*(i%2*2+1)/4;
-        button.centerX = self.view.width/2;
+        button.centerX = self.view.width*(i%2*2+1)/4;
+        //button.centerX = self.view.width/2;
         button.centerY = self.view.centerY;
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];

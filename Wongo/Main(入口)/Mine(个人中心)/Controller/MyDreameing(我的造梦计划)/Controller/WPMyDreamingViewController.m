@@ -47,6 +47,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 20)];
+    label.centerY = self.view.centerY;
+    label.font = [UIFont boldSystemFontOfSize:15.f];
+    label.textColor = TitleGrayColor;
+    label.text = @"您暂未发布造梦计划";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
     self.view.backgroundColor = WhiteColor;
     [self.view addSubview:self.nav];
     [self.view addSubview:self.tableView];
@@ -74,9 +83,5 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
 }
-
-
-
-
 
 @end

@@ -62,12 +62,14 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     return _cycleScrollView;
 }
+
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
         _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
     }
     return _classificationTableView;
 }
+
 -(UIView *)menuView{
     if (!_menuView) {
         _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 40)];
@@ -169,14 +171,16 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     return self;
 }
+
 -(void)setRollPlayImages:(NSMutableArray *)rollPlayImages{
     _rollPlayImages = rollPlayImages;
     _cycleScrollView.imageURLStringsGroup = _rollPlayImages;
 }
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataSourceArray.count;
 }
+
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -263,7 +267,7 @@ static NSString * const reuseIdentifier = @"Cell";
             }
         }
         else{
-            NSArray * listg = [responseObject objectForKey:@"listg"];
+            NSArray * listg = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<listg.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[i]];
                 [_dataSourceArray addObject:model];

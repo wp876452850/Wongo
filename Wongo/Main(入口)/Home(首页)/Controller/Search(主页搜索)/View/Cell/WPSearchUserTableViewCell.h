@@ -9,8 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WPSearchUserModel.h"
 
-typedef void(^ChatBlock)(NSString * userID);
 @interface WPSearchUserTableViewCell : UITableViewCell
 @property (nonatomic,strong)WPSearchUserModel * model;
--(void)goChatWithBlock:(ChatBlock)block;
 @end

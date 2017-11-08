@@ -59,6 +59,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 20)];
+    label.centerY = self.view.centerY;
+    label.font = [UIFont boldSystemFontOfSize:15.f];
+    label.textColor = TitleGrayColor;
+    label.text = @"您暂无交换订单";
+    label.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:label];
+    
     self.view.backgroundColor = WhiteColor;
     [self.view addSubview:self.indicator];
     [self.view addSubview:self.nav];
@@ -70,7 +79,7 @@
 -(void)loadDatas{
     [self.indicator startAnimating];
     self.dataSource = [NSMutableArray arrayWithCapacity:3];
-    
+    __block typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:QueryOrderList params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
         [self.indicator stopAnimating];
         NSArray * orderList = [responseObject objectForKey:@"orderList"];
@@ -97,7 +106,13 @@
             model.partnerModel  = [WPExchangeOrderGoodsModel mj_objectWithKeyValues:[order objectForKey:@"yougood"]];
             [self.dataSource insertObject:model atIndex:0];
         }
-        [self.view addSubview:self.tableView];
+        if (orderList.count>0) {
+            if (!_tableView) {
+                [weakSelf.view addSubview:weakSelf.tableView];
+            }else{
+                [weakSelf.tableView reloadData];
+            }
+        }
     } failureBlock:^{
         [self.indicator stopAnimating];
     }];

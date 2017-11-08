@@ -118,23 +118,7 @@ static NSString * const items = @"Cell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataSource.count;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    WPSearchUserTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:items forIndexPath:indexPath];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = self.dataSource[indexPath.row];
-    [cell goChatWithBlock:^(NSString *userID) {
-        [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":userID} datas:^(NSDictionary *responseObject) {
-            RCConversationViewController *conversationVC = [[RCConversationViewController alloc]init];
-            conversationVC.conversationType = ConversationType_PRIVATE;
-            conversationVC.targetId         = [NSString stringWithFormat:@"%@",[responseObject objectForKey:@"uid"]] ;
-            conversationVC.title            = [responseObject objectForKey:@"uname"];
-            [self setUpChatNavigationBar];
-            self.navigationController.navigationBarHidden = NO;            
-            [self.navigationController pushViewController:conversationVC animated:YES];
-        }];
-    }];
-    return cell;
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
