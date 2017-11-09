@@ -198,12 +198,12 @@
         dict = @{NSForegroundColorAttributeName:stringColor,NSFontAttributeName:font,NSParagraphStyleAttributeName:paraStyle02};
     }
     
-    if (range.length==0)
+    if (range.length == 0)
     {
         range = NSMakeRange(0, attstr.length);
     }
     [attstr addAttributes:dict range:range];
-    
+
     return attstr.copy;
 }
 

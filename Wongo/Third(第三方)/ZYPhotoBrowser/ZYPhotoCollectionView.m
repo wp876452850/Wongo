@@ -35,7 +35,6 @@
         self.dataSource = self;
         self.delegate = self;
         self.backgroundColor = ZYSmallPhotoBackgrounColor;
-        self.scrollEnabled = NO;
     }
     return self;
 }

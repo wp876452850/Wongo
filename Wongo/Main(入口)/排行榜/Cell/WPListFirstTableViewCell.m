@@ -8,6 +8,7 @@
 
 #import "WPListFirstTableViewCell.h"
 #import "WPListModel.h"
+#import "WPStoreViewController.h"
 
 @interface WPListFirstTableViewCell ()
 {
@@ -113,9 +114,21 @@
     [_threebutton setImage:[UIImage imageNamed:@"listthumup_normal"] forState:UIControlStateNormal];
     [_threebutton setImage:[UIImage imageNamed:@"listthumup_blue"] forState:UIControlStateSelected];
     
+    
     [_one addSubview:self.oneLabel];
     [_two addSubview:self.twoLabel];
     [_three addSubview:self.threeLabel];
+    
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    [_one addGestureRecognizer:tap];
+    [_two addGestureRecognizer:tap];
+    [_three addGestureRecognizer:tap];
+}
+
+-(void)tap:(UITapGestureRecognizer *)tap{
+    WPListModel * model = [WPListModel mj_objectWithKeyValues:_dataSourceArray[tap.view.tag]];
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:model.uid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -192,5 +205,8 @@
                 break;
         }
     }
+}
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
 }
 @end

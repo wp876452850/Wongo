@@ -43,6 +43,7 @@
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 40)];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = WhiteColor;
+        _titleLabel.font = [UIFont boldSystemFontOfSize:17.f];
         _titleLabel.text = @"您想要什么";
     }
     return _titleLabel;
@@ -77,6 +78,8 @@
         [self addSubview:self.guideImageView];
         [self addSubview:self.titleLabel];
         [self addSubview:self.varietiesView];
+        [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 60, _titleLabel.centerY) moveForPoint:CGPointMake(WINDOW_WIDTH - 90, _titleLabel.centerY) lineColor:TitleBlackColor]];
+        [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(60, _titleLabel.centerY) moveForPoint:CGPointMake(90, _titleLabel.centerY) lineColor:TitleBlackColor]];
     }
     return self;
 }

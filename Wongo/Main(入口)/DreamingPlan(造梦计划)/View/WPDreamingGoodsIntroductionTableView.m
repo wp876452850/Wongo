@@ -99,20 +99,9 @@ static NSString * const projectCell     = @"ProjectCell";
     }
 }
 
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if ([[self.dataArray[indexPath.section] objectForKey:@"Cell"] isEqualToString:imageCell]) {
-//        //tableViewCell自身的高的
-//        return 310;
-//    }else{
-//        //弹出cell的高度
-//        if (indexPath.section >= self.cellsHeight.count) {
-//            return 250;
-//        }
-//        return [self.cellsHeight[indexPath.section] floatValue];
-//    }
     if (indexPath.row == 0) {
-        return 310;
+        return 185 * WINDOW_WIDTH/375+130;
     }
     //弹出cell的高度
     if (indexPath.section >= self.cellsHeight.count) {

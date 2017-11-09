@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WPChoiceContentCollectionView : UIScrollView
-+(instancetype)createChoiceCollectionWithFrame:(CGRect)frame SubViewsClassArray:(NSArray<Class> *)subClass cellClassArray:(NSArray<Class>*)cellClass loadDatasUrls:(NSArray<NSString *> *)loadDatasUrls;
++(instancetype)createChoiceCollectionWithFrame:(CGRect)frame loadDatasUrls:(NSArray<NSString *> *)loadDatasUrls;
 @end

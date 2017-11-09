@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xue-RM-UkN">
+                    <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xue-RM-UkN">
                         <rect key="frame" x="268" y="48" width="80" height="80"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -27,7 +27,7 @@
                             <constraint firstAttribute="width" constant="80" id="wSQ-Bp-ZWP"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-Hf-hSw">
+                    <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ga9-Hf-hSw">
                         <rect key="frame" x="28" y="48" width="80" height="80"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -35,7 +35,7 @@
                             <constraint firstAttribute="width" constant="80" id="y0U-yg-7Of"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ImZ-uN-SoE">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ImZ-uN-SoE">
                         <rect key="frame" x="128" y="28" width="120" height="120"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -192,7 +192,7 @@
                 <outlet property="twobutton" destination="xYm-4m-xEe" id="eny-Rv-1Ir"/>
                 <outlet property="twonumber" destination="xQd-KH-O9O" id="sQ4-kr-cuA"/>
             </connections>
-            <point key="canvasLocation" x="-916.5" y="-49"/>
+            <point key="canvasLocation" x="-1203" y="18"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -47,7 +47,7 @@
                 <constraint firstAttribute="trailing" secondItem="OZ3-kP-JwV" secondAttribute="trailing" id="xer-ff-RAe"/>
             </constraints>
             <size key="customSize" width="111" height="110"/>
-            <point key="canvasLocation" x="-378.5" y="59"/>
+            <point key="canvasLocation" x="-473" y="17"/>
         </collectionViewCell>
     </objects>
 </document>

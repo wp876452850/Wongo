@@ -22,6 +22,7 @@
     NSInteger _memoryButtonTag;
     
 }
+
 @property (nonatomic,strong)NSMutableArray * tagOneItemsHeight;
 
 @property (nonatomic,strong)NSMutableArray * tagTwoItemsHeight;
@@ -43,8 +44,6 @@
 static NSString * const projectCell = @"ProjectCell";
 static NSString * const signUp = @"SignUp";
 static NSString * const notSignUpCell   = @"notSignUpCell";
-
-
 
 -(NSMutableArray *)cellsArray{
     if (!_cellsArray) {
@@ -84,18 +83,22 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     return 5.0f;
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     return 0.01f;
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([[self.cellsArray[section] objectForKey:@"isOpen"] boolValue]) {
         return 2;
     }
     return 1;
 }
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.cellsArray.count;
 }
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0)
     {
@@ -109,10 +112,8 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
             cell.model = self.dataSourceArray[indexPath.section];
             cell.image.image = [UIImage imageNamed:RegistrationIsIntroducedFigure[indexPath.section]];
             cell.instructions.text = [NSString stringWithFormat:@"%@\n【活动内容】\n1.“点击报名”发布自己符合平台要求的事物到活动界面，要求发布的事物需实拍图片清晰，详细文字描述，事物要是新奇有特点优先选择。\n2.可以邀请自己的好友点赞，第1名用户可以直接筛选为造梦用户预备名额。  \n【活动奖励】\n报名被选上的用户直接参与造梦计划，平台可以实现TA的梦想，帮该用户换取一件事物。",TitleContents[indexPath.section]];
-            
             return cell;
         }
-        
         WPNewDreamingSignUpTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
         if (cell == nil||![cell isKindOfClass:[WPNewDreamingSignUpTableViewCell class]]) {
             cell = (WPNewDreamingSignUpTableViewCell * )[tableView dequeueReusableCellWithIdentifier:signUp forIndexPath:indexPath];
@@ -130,6 +131,7 @@ static NSString * const notSignUpCell   = @"notSignUpCell";
         return cell;
     }
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         if ([[tableView cellForRowAtIndexPath:indexPath] class] == [WPNewDreamingTableViewCell class]) {

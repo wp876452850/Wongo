@@ -10,6 +10,7 @@
 #import "WPChoiceSubCollectionView.h"
 //#import "WPDreameChioceSubView.h"
 #import "WPChoiceSubTableView.h"
+#import "WPConsignmentCollectionView.h"
 
 #define ChoiceCellItmeSize CGSizeMake(WINDOW_WIDTH , WINDOW_WIDTH * 0.66)
 
@@ -17,8 +18,6 @@
 #define RollWithContentInterval 30
 #define RollPlayHeight 200
 @interface WPChoiceContentCollectionView ()
-@property (nonatomic,strong)NSArray * subClass;
-@property (nonatomic,strong)NSArray * subCellClass;
 /**请求的rul，2个*/
 @property (nonatomic,strong)NSArray * urls;
 @end
@@ -33,13 +32,11 @@
     return self;
 }
 
-+(instancetype)createChoiceCollectionWithFrame:(CGRect)frame SubViewsClassArray:(NSArray<Class> *)subClass cellClassArray:(NSArray<Class> *)cellClass loadDatasUrls:(NSArray<NSString *> *)loadDatasUrls{
++(instancetype)createChoiceCollectionWithFrame:(CGRect)frame loadDatasUrls:(NSArray<NSString *> *)loadDatasUrls{
 
     WPChoiceContentCollectionView * chioceCollection = [[WPChoiceContentCollectionView alloc]initWithFrame:frame];
-    chioceCollection.subCellClass                    = cellClass;
-    chioceCollection.subClass                        = subClass;
     chioceCollection.urls                            = loadDatasUrls;
-    chioceCollection.contentSize = CGSizeMake(WINDOW_WIDTH * subClass.count, 0);
+    chioceCollection.contentSize = CGSizeMake(WINDOW_WIDTH * loadDatasUrls.count, 0);
     
     UICollectionViewFlowLayout *layout  = [[UICollectionViewFlowLayout alloc] init];
     
@@ -52,6 +49,12 @@
     //造梦表
     WPChoiceSubTableView * tableView = [[WPChoiceSubTableView alloc]initWithFrame:CGRectMake(0, 0, chioceCollection.width, chioceCollection.height) style:UITableViewStyleGrouped url:chioceCollection.urls[1]];
     [chioceCollection addSubview:tableView];
+    
+    //寄卖表
+    UICollectionViewFlowLayout *consignmentLayout  = [[UICollectionViewFlowLayout alloc] init];
+
+    WPConsignmentCollectionView * consignmentCollectionView = [[WPConsignmentCollectionView alloc]initWithFrame:CGRectMake(WINDOW_WIDTH*2, 0, WINDOW_WIDTH, chioceCollection.height) collectionViewLayout:consignmentLayout];
+    [chioceCollection addSubview:consignmentCollectionView];
     
     return chioceCollection;
 }

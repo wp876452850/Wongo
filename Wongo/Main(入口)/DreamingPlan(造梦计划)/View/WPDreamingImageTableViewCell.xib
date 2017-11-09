@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,38 +21,38 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="90.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="m00-gV-n0j" userLabel="商品图">
-                        <rect key="frame" x="18" y="38" width="372" height="180"/>
+                        <rect key="frame" x="19" y="38" width="370" height="185"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="180" id="oqk-io-18G"/>
+                            <constraint firstAttribute="width" secondItem="m00-gV-n0j" secondAttribute="height" multiplier="2:1" id="VG2-bk-lRO"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单反相机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-2N-C5o">
-                        <rect key="frame" x="18" y="228" width="57.5" height="17"/>
+                        <rect key="frame" x="18" y="233" width="57.5" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第5轮" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beD-60-6UP">
-                        <rect key="frame" x="352.5" y="228" width="37.5" height="17"/>
+                        <rect key="frame" x="352.5" y="233" width="37.5" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEm-ex-g0c" userLabel="阴影">
-                        <rect key="frame" x="18" y="38" width="372" height="180"/>
+                        <rect key="frame" x="19" y="38" width="370" height="185"/>
                         <color key="backgroundColor" red="0.055832249780000003" green="0.064117167680000003" blue="0.050567676339999999" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="state_ongoing" translatesAutoresizingMaskIntoConstraints="NO" id="psd-2n-Rl9" userLabel="状态">
-                        <rect key="frame" x="18" y="38" width="88" height="88"/>
+                        <rect key="frame" x="19" y="38" width="88" height="88"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="88" id="Q2N-bW-zOV"/>
                             <constraint firstAttribute="width" constant="88" id="YMa-jt-8Qa"/>
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="造梦完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74x-us-Ils">
-                        <rect key="frame" x="150" y="108.5" width="109.5" height="40"/>
+                        <rect key="frame" x="150" y="110.5" width="109.5" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Z7c-Et-sXB"/>
                         </constraints>
@@ -60,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NtK-Et-JZB">
-                        <rect key="frame" x="18" y="8" width="37.5" height="20"/>
+                        <rect key="frame" x="19" y="8" width="37.5" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="dFB-lf-8rv"/>
@@ -70,14 +71,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="11.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="aBg-MI-smo">
-                        <rect key="frame" x="18" y="255" width="50" height="50"/>
+                        <rect key="frame" x="18" y="260" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="7Y6-EQ-CxF"/>
                             <constraint firstAttribute="width" constant="50" id="sTn-Su-VHU"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wongo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdx-pS-Z8m">
-                        <rect key="frame" x="83" y="270.5" width="51.5" height="20"/>
+                        <rect key="frame" x="83" y="275.5" width="51.5" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="OgO-CM-KPS"/>
@@ -87,7 +88,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9He-dN-iFD">
-                        <rect key="frame" x="303" y="266" width="87" height="30"/>
+                        <rect key="frame" x="303" y="271" width="87" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="KXE-Ld-bbp"/>
                         </constraints>
@@ -100,7 +101,7 @@
                 <constraints>
                     <constraint firstItem="aBg-MI-smo" firstAttribute="leading" secondItem="wRT-2N-C5o" secondAttribute="leading" id="0no-zO-nhf"/>
                     <constraint firstItem="9He-dN-iFD" firstAttribute="centerY" secondItem="cdx-pS-Z8m" secondAttribute="centerY" id="5GR-Uh-EeV"/>
-                    <constraint firstItem="m00-gV-n0j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5Gd-4g-LeJ"/>
+                    <constraint firstItem="m00-gV-n0j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="11" id="5Gd-4g-LeJ"/>
                     <constraint firstItem="wRT-2N-C5o" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="9am-rc-4jc"/>
                     <constraint firstItem="aBg-MI-smo" firstAttribute="top" secondItem="wRT-2N-C5o" secondAttribute="bottom" constant="10" id="A7K-Q6-uvd"/>
                     <constraint firstItem="74x-us-Ils" firstAttribute="centerY" secondItem="kEm-ex-g0c" secondAttribute="centerY" id="CfS-CW-ZJh"/>
@@ -109,7 +110,7 @@
                     <constraint firstItem="cdx-pS-Z8m" firstAttribute="centerY" secondItem="aBg-MI-smo" secondAttribute="centerY" id="LxV-5t-1la"/>
                     <constraint firstItem="beD-60-6UP" firstAttribute="centerY" secondItem="wRT-2N-C5o" secondAttribute="centerY" id="OyP-QR-PBW"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="top" secondItem="m00-gV-n0j" secondAttribute="top" id="Pst-dg-7mb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="m00-gV-n0j" secondAttribute="trailing" constant="10" id="S8L-Fh-DXX"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="m00-gV-n0j" secondAttribute="trailing" constant="11" id="S8L-Fh-DXX"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="NtK-Et-JZB" secondAttribute="leading" id="amh-54-BZi"/>
                     <constraint firstItem="NtK-Et-JZB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="c8H-qg-AND"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="trailing" secondItem="m00-gV-n0j" secondAttribute="trailing" id="ipX-og-guI"/>

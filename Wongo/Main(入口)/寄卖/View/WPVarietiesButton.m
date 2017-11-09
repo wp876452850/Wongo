@@ -9,29 +9,26 @@
 #import "WPVarietiesButton.h"
 
 @interface WPVarietiesButton ()
-{
-    UIImage * _varietiesImage;
-    NSString * _varietiesTitle;
-}
-//品种图片
-@property (nonatomic,strong)UIImageView * varietiesImageVieww;
-//品种标题
-@property (nonatomic,strong)UILabel * varietiesTitleLabel;
 
+@property (nonatomic,strong)NSString * varietiesTitle;
+
+@property (nonatomic,strong)UIImage * varietiesImage;
 
 @end
 
+
 @implementation WPVarietiesButton
 
--(UIImageView *)varietiesImageVieww{
-    if (!_varietiesImageVieww) {
-        _varietiesImageVieww = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.8, self.height * 0.6)];
-        _varietiesImageVieww.top = self.varietiesTitleLabel.bottom;
-        _varietiesImageVieww.centerX = self.width/2;
-        _varietiesImageVieww.bottom  = self.height - 10;
-        _varietiesImageVieww.backgroundColor = RandomColor;
+-(UIImageView *)varietiesImageView{
+    if (!_varietiesImageView) {
+        _varietiesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.8, self.height * 0.6)];
+        _varietiesImageView.top = self.varietiesTitleLabel.bottom;
+        _varietiesImageView.centerX = self.width/2;
+        _varietiesImageView.bottom  = self.height - 10;
+        _varietiesImageView.backgroundColor = RandomColor;
+        [self addSubview:_varietiesImageView];
     }
-    return _varietiesImageVieww;
+    return _varietiesImageView;
 }
 
 -(UILabel *)varietiesTitleLabel{
@@ -39,7 +36,8 @@
         _varietiesTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 30)];
         _varietiesTitleLabel.font = [UIFont systemFontOfSize:14.f];
         _varietiesTitleLabel.centerX = self.width/2;
-        _varietiesTitleLabel.backgroundColor = RandomColor;        
+        _varietiesTitleLabel.backgroundColor = RandomColor;
+        [self addSubview:_varietiesTitleLabel];
     }
     return _varietiesTitleLabel;
 }
@@ -50,10 +48,21 @@
         self.frame = frame;
         _varietiesImage = image;
         _varietiesTitle = title;
-        [self addSubview:self.varietiesTitleLabel];
-        [self addSubview:self.varietiesImageVieww];
     }
     return self;
 }
 
+-(void)setVarietiesImage:(UIImage *)varietiesImage{
+    _varietiesImage = varietiesImage;
+    if (_varietiesImage) {
+        self.varietiesImageView.image = varietiesImage;
+    }
+}
+
+-(void)setVarietiesTitle:(NSString *)varietiesTitle{
+    _varietiesTitle = varietiesTitle;
+    if (varietiesTitle.length>0) {
+        self.varietiesTitleLabel.text = varietiesTitle;
+    }
+}
 @end

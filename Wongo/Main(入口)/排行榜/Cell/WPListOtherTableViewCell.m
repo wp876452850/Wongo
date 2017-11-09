@@ -8,10 +8,10 @@
 
 #import "WPListOtherTableViewCell.h"
 #import "WPCustomButton.h"
+#import "WPStoreViewController.h"
 
 @interface WPListOtherTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
-
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UIButton *thumup;
 @property (weak, nonatomic) IBOutlet UILabel *number;
@@ -59,4 +59,8 @@
     }];
 }
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
+    [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+}
 @end
