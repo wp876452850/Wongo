@@ -28,7 +28,7 @@
     [super awakeFromNib];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.headPortrait.layer.masksToBounds = YES;
-    self.headPortrait.layer.cornerRadius = 30;
+    self.headPortrait.layer.cornerRadius = 25;
     self.headPortrait.layer.borderWidth = 0.5f;
     self.headPortrait.layer.borderColor =ColorWithRGB(24, 24, 24).CGColor;
     self.headPortrait.userInteractionEnabled = YES;

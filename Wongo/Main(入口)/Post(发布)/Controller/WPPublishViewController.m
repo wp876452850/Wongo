@@ -10,10 +10,12 @@
 #import "WPTabBarController.h"
 #import "WPPushExchangeViewController.h"
 #import "WPPushDreamingViewController.h"
+#import "WPPushConsignmentViewController.h"
 
-#define PushTypeTitle   @[@"发布",@"寄卖"]
-#define PushButtonIcon  @[@"exchangebtn_normal",@"pushDreaming_normal"]
-#define PushButtonSelectIcon @[@"exchangebtn_selected",@"pushDreaming_selected"]
+#define PushTypeTitle           @[@"交换",@"寄卖"]
+#define PushDescribeTitle       @[@"平台担保安全交换",@"平台检测商品寄卖"]
+#define PushButtonIcon          @[@"exchangebtn_normal",@"pushDreaming_normal"]
+#define PushButtonSelectIcon    @[@"exchangebtn_selected",@"pushDreaming_selected"]
 
 @interface WPPublishViewController ()
 // 毛玻璃
@@ -99,7 +101,7 @@
         label1.centerX = button.centerX;
         label1.textColor = WhiteColor;
         label1.textAlignment = NSTextAlignmentCenter;
-        label1.text = @"平台担保安全交换";
+        label1.text = PushDescribeTitle[i];
         [self.view addSubview:label1];
     }
 }
@@ -119,7 +121,7 @@
 //            [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
 //            return;
             if ([self determineWhetherTheLoginWithViewController:self]) {
-                WPPushDreamingViewController * vc = [[WPPushDreamingViewController alloc]init];
+                WPPushConsignmentViewController * vc = [[WPPushConsignmentViewController alloc]init];
                 [self presentViewController:vc animated:YES completion:nil];
             }
         }

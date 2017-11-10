@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface WPDreamingCommentsModel : NSObject
+
+@property (nonatomic,strong)NSString * uid;
 //评论人
 @property (nonatomic,strong)NSString * uname;
 //评论信息

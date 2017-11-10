@@ -67,7 +67,7 @@
     _model = model;
     
     [_myGoodsImage sd_setImageWithURL:[NSURL URLWithString:model.myModel.url] placeholderImage:nil];
-    [_partnerGoodsImage sd_setImageWithURL:[NSURL URLWithString:model.partnerModel.url] placeholderImage:nil];
+    [_partnerGoodsImage sd_setImageWithURL:[NSURL URLWithString:model.partnerModel.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text         = model.myModel.gname;
     _goodsPrice.text        = [NSString stringWithFormat:@"￥%@",model.myModel.price];
     _partnerGoodsName.text  = model.partnerModel.gname;
@@ -159,7 +159,7 @@
         {
             
             //支付保证金
-            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] dream:NO];
+            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] aliPayUrl:AliPayUrl];
 //            vc.model = self.model;
             [[self findViewController:self].navigationController pushViewController:vc animated:YES];
         }

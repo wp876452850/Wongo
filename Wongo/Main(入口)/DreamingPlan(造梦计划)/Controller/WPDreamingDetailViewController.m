@@ -295,8 +295,7 @@ static NSString * const recommendCell   = @"recommendCell";
     }
     //进度条
     if (indexPath.section == 2) {
-        WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
-        
+        WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];        
         cell.model = _model;
         return cell;
     }

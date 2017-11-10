@@ -161,10 +161,6 @@
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
-/***/
-#define QueryProductImg         HttpHead(@"queryProductImg")
-/**某个造梦计划的参与造梦*/
-#define QueryPlordersOne        HttpHead(@"queryPlordersOne")
 
 /**
  *  个人中心(我的店铺)
@@ -179,6 +175,10 @@
 #define AliPayProductUrl        HttpHead(@"aliPayProduct")
 /**交换支付 */
 #define AliPayUrl               HttpHead(@"aliPay")
+/**押金支付*/
+#define AliPaySignup            HttpHead(@"aliPaySignup")
+
+
 
 /**
  *  点赞
@@ -213,7 +213,7 @@
 /**查询交换评论*/
 #define QueryUserCommentUrl     HttpHead(@"queryUserComment")
 /**添加造梦评论*/
-#define CommentproductsUrl      HttpHead(@"commentproductsAdd")
+#define CommentproductsUrl      HttpHead(@"CommentproductsAdd")
 /**查询造梦评论*/
 #define QueryUserCommentproduct HttpHead(@"queryUserCommentproduct")
 

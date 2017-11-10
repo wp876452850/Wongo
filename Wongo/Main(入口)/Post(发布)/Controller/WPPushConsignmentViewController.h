@@ -6,8 +6,8 @@
 //  Copyright © 2017年 Winny. All rights reserved.
 //
 
-#import "LYBaseController.h"
+#import <UIKit/UIKit.h>
 
-@interface WPPushConsignmentViewController : LYBaseController
+@interface WPPushConsignmentViewController : UIViewController
 
 @end

@@ -1363,8 +1363,8 @@
 		3D2F20E01EEA4DD900045EF8 /* LYWanGaoUserAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWanGaoUserAgreementController.h; sourceTree = "<group>"; };
 		3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWanGaoUserAgreementController.m; sourceTree = "<group>"; };
 		3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWanGaoUserAgreementController.xib; sourceTree = "<group>"; };
-		3D389C121EE63E9200B25DF4 /* LYAliPayResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYAliPayResultController.h; sourceTree = "<group>"; };
-		3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYAliPayResultController.m; sourceTree = "<group>"; };
+		3D389C121EE63E9200B25DF4 /* LYAliPayResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYAliPayResultController.h; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/LYAliPayResultController.h"; sourceTree = "<group>"; };
+		3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYAliPayResultController.m; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/LYAliPayResultController.m"; sourceTree = "<group>"; };
 		3D389C151EE6502F00B25DF4 /* LYExchangeAdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYExchangeAdressController.h; sourceTree = "<group>"; };
 		3D389C161EE6502F00B25DF4 /* LYExchangeAdressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYExchangeAdressController.m; sourceTree = "<group>"; };
 		3D389C171EE6502F00B25DF4 /* LYExchangeAdressController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYExchangeAdressController.xib; sourceTree = "<group>"; };
@@ -1978,9 +1978,9 @@
 		854B29101E7BC99500289554 /* WPExchangeCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPExchangeCommentCell.xib; sourceTree = "<group>"; };
 		854E04291E7780A400FEE59D /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		854E042A1E7780A400FEE59D /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
-		85510EFD1EA759B70058B54E /* WPPayDepositViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPayDepositViewController.h; sourceTree = "<group>"; };
-		85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPayDepositViewController.m; sourceTree = "<group>"; };
-		85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPayDepositViewController.xib; sourceTree = "<group>"; };
+		85510EFD1EA759B70058B54E /* WPPayDepositViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WPPayDepositViewController.h; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/WPPayDepositViewController.h"; sourceTree = "<group>"; };
+		85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPPayDepositViewController.m; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/WPPayDepositViewController.m"; sourceTree = "<group>"; };
+		85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WPPayDepositViewController.xib; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/WPPayDepositViewController.xib"; sourceTree = "<group>"; };
 		855644521EB83CEC0002E6AE /* headerBGImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headerBGImage.jpg; sourceTree = "<group>"; };
 		85566FAB1E9F4CF500BA7D2A /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		85566FAC1E9F4CF600BA7D2A /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
@@ -2592,6 +2592,34 @@
 				3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3D131D5B1FB3F791001B70FA /* 支付 */ = {
+			isa = PBXGroup;
+			children = (
+				3D131D5D1FB3F7AA001B70FA /* 支付宝支付 */,
+				3D131D5C1FB3F79F001B70FA /* 微信支付 */,
+			);
+			path = "支付";
+			sourceTree = "<group>";
+		};
+		3D131D5C1FB3F79F001B70FA /* 微信支付 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "微信支付";
+			sourceTree = "<group>";
+		};
+		3D131D5D1FB3F7AA001B70FA /* 支付宝支付 */ = {
+			isa = PBXGroup;
+			children = (
+				85510EFD1EA759B70058B54E /* WPPayDepositViewController.h */,
+				85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */,
+				85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */,
+				3D389C121EE63E9200B25DF4 /* LYAliPayResultController.h */,
+				3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */,
+			);
+			path = "支付宝支付";
 			sourceTree = "<group>";
 		};
 		3D13B8221F16222900C1A20F /* WPBezier(画线) */ = {
@@ -5213,11 +5241,6 @@
 			children = (
 				852F80D31E822E1700D0AB48 /* WPExchangeOrderViewController.h */,
 				852F80D41E822E1700D0AB48 /* WPExchangeOrderViewController.m */,
-				85510EFD1EA759B70058B54E /* WPPayDepositViewController.h */,
-				85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */,
-				85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */,
-				3D389C121EE63E9200B25DF4 /* LYAliPayResultController.h */,
-				3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */,
 				3DF8EDD01EE13F69000F55BF /* LYExchangeOrderDetailController.h */,
 				3DF8EDD11EE13F6A000F55BF /* LYExchangeOrderDetailController.m */,
 				3D389C151EE6502F00B25DF4 /* LYExchangeAdressController.h */,
@@ -5647,6 +5670,7 @@
 				8566A7161E48224A00C08624 /* Home(首页) */,
 				8566A7171E4822DC00C08624 /* Choice(精选) */,
 				8566A7181E4822ED00C08624 /* Post(发布) */,
+				3D131D5B1FB3F791001B70FA /* 支付 */,
 				8566A7191E48233000C08624 /* Mine(个人中心) */,
 				8566A71A1E48234E00C08624 /* Login(登录) */,
 				8566A71C1E48239D00C08624 /* Register(注册) */,

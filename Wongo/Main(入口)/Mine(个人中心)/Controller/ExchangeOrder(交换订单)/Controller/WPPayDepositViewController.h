@@ -11,6 +11,6 @@
 
 @interface WPPayDepositViewController : UIViewController
 //@property (nonatomic, strong) WPExchangeOrderModel *model;
--(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price dream:(BOOL)isDream;
+-(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl;
 
 @end

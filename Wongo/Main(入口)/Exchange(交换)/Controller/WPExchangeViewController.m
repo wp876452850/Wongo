@@ -261,9 +261,8 @@ static NSString * const recommendCell       = @"recommendCell";
         case 2:
         {
             WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
-            
             cell.model = _exchangeModel.userIntroductionModel;
-            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            //[cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
             return cell;
         }
             break;

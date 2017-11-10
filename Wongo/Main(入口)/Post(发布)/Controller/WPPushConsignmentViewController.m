@@ -18,8 +18,8 @@
 #import "WPPushParameterTableViewCell.h"
 #import "WPGoodsClassModel.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
-#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"]
 
 @interface WPPushConsignmentViewController ()<UITableViewDelegate,UITableViewDataSource>{
 
@@ -58,6 +58,8 @@
 @property (nonatomic,strong)NSMutableArray * images;
 //参数
 @property (nonatomic,strong)NSMutableArray * parameters;
+//自定义导航
+@property (nonatomic,strong)WPMyNavigationBar * nav;
 
 @end
 
@@ -68,7 +70,14 @@ static NSString * const describeCell    = @"DescribeCell";
 static NSString * const imagesCell      = @"ImageCell";
 static NSString * const cell            = @"cell";
 static NSString * const parameter       = @"Parameter";
-
+-(WPMyNavigationBar *)nav{
+    if (!_nav) {
+        _nav = [[WPMyNavigationBar alloc]init];
+        _nav.title.text = @"申请寄卖";
+        [_nav.leftButton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _nav;
+}
 -(UITableView *)tableView
 {
     if (!_tableView) {
@@ -95,13 +104,16 @@ static NSString * const parameter       = @"Parameter";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.myNavItem.title = @"发布寄卖";
+    [self.view addSubview:self.nav];
     self.view.backgroundColor = WhiteColor;
+    [self.view addSubview:self.tableView];
+    self.images = [NSMutableArray arrayWithCapacity:3];
+
     
     UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor  = WongoBlueColor;
     button.titleLabel.font = [UIFont systemFontOfSize:19];
-    [button setTitle:@"发布" forState:UIControlStateNormal];
+    [button setTitle:@"确认寄卖信息" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(pushConsignment) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -174,7 +186,7 @@ static NSString * const parameter       = @"Parameter";
         case 1:
         {
             WPDreamingDescribeTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:describeCell forIndexPath:indexPath];
-            
+            cell.textView.placeholder = Section_0_Placeholder[indexPath.section];
             [cell getDescribeBlockWithBlock:^(NSString *str) {
                 _describe = str;
             }];

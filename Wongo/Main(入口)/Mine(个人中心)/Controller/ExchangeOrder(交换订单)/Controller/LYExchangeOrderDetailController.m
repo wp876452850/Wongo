@@ -255,7 +255,7 @@
              }
             break;
         case 3:{ //支付保证金
-            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] dream:NO];
+            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] aliPayUrl:AliPayUrl];
 //            vc.model = self.model;
             [self.navigationController pushViewController:vc animated:YES];
         }

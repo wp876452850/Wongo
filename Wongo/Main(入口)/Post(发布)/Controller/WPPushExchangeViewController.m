@@ -18,8 +18,10 @@
 #import "WPPushParameterTableViewCell.h"
 #import "WPGoodsClassModel.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
-#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)："]
+#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存"]
+//#define Push_Titles @[@"名称：",@"描述：",@"",@"价格(￥)：",@"种类：",@"新旧程度：",@"库存(件)：",@"产品参数："]
+//#define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"",@"请输入价格",@"",@"",@"请输入库存",@""]
 
 static NSString * const dataCell        = @"DataCell";
 static NSString * const describeCell    = @"DescribeCell";
@@ -35,9 +37,9 @@ static NSString * const parameter       = @"Parameter";
     CGFloat dataCellHeight;
     //记录描述组单元格高度
     CGFloat describeCellHeight;
-    /////////////
-    ///物品信息///
-    ////////////
+    ///////////////
+    /// 物品信息 ///
+    ///////////////
     //商品名称
     NSString * _name;
     //商品描述

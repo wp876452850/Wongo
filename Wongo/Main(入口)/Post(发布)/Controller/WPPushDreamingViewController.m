@@ -15,6 +15,7 @@
 #import "WPMyNavigationBar.h"
 #import "WPAddressSelectViewController.h"
 #import "WPSelectAlterView.h"
+#import "WPPayDepositViewController.h"
 
 #define Push_Titles @[@"名称：",@"描述：",@"",@"金额(￥)：",@"种类：",@"新旧程度：",@"故事：",@"成为造梦人?：",@"收货地址：",@""]
 
@@ -295,14 +296,14 @@ static NSString * const cell            = @"cell";
             UITableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
             cell.textLabel.text    = [NSString stringWithFormat:@"%@%@",Push_Titles[indexPath.row],addr.address];
         }];
-
     }
-    
     [self.view endEditing:YES];
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
+
 #pragma mark - 发布(报名)造梦
 -(void)goNextVC{
     if (![self determineWhetherTheLogin]) {

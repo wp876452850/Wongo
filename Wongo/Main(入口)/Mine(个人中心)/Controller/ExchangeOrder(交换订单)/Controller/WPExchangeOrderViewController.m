@@ -45,6 +45,7 @@
         _tableView.dataSource = self;
         [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeOrderCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         _tableView.rowHeight = 295;
+        [self.view addSubview:_tableView];
     }
     return _tableView;
 }
@@ -107,11 +108,7 @@
             [self.dataSource insertObject:model atIndex:0];
         }
         if (orderList.count>0) {
-            if (!_tableView) {
-                [weakSelf.view addSubview:weakSelf.tableView];
-            }else{
-                [weakSelf.tableView reloadData];
-            }
+            [weakSelf.tableView reloadData];
         }
     } failureBlock:^{
         [self.indicator stopAnimating];

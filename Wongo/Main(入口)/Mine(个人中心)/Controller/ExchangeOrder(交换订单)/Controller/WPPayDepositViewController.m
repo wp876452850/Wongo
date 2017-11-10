@@ -19,22 +19,23 @@
 /**金额*/
 @property (weak, nonatomic) IBOutlet UILabel    * price;
 /**支付宝按钮*/
-@property (weak, nonatomic) IBOutlet UIButton *zfbButton;
+@property (weak, nonatomic) IBOutlet UIButton   * zfbButton;
 /**跳转第三方付款按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *pay;
 @property (weak, nonatomic) IBOutlet UITextField *payAmountField;
+//订单号
 @property (nonatomic, strong) NSString *oid;
 @property (nonatomic, assign) CGFloat myAmount;
-@property (nonatomic, assign) BOOL isDream;
+@property (nonatomic,strong)NSString * aliPayUrl;
 @end
 
 @implementation WPPayDepositViewController
 
--(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price dream:(BOOL)isDream{
+-(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl{
     if (self = [super init]) {
         self.oid = orderNumber;
         self.myAmount = price;
-        self.isDream = isDream;
+        self.aliPayUrl = aliPayUrl;
     }
     return self;
 }
@@ -61,14 +62,13 @@
 
 /**支付回调 */
 - (void)alipayBack:(NSNotification *)note{
-    self.pay.userInteractionEnabled = YES;
     NSDictionary *result = note.object;
     LYAliPayResult *res = [LYAliPayResult mj_objectWithKeyValues:result];
     if (res.resultStatus == 9000||res.resultStatus == 8000 || res.resultStatus == 6004) {
         //9000	订单支付成功
         //8000	正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
         //6004	支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
-        LYAliPayResultController *vc = [[LYAliPayResultController alloc] init];
+        LYAliPayResultController * vc = [[LYAliPayResultController alloc] init];
         vc.result = res;
         [self.navigationController pushViewController:vc animated:NO];
     } else {
@@ -86,15 +86,23 @@
 
 /**前往选择的支付第三方*/
 - (IBAction)jumpPayThird:(UIButton *)sender {
-    sender.userInteractionEnabled = NO;
     // NOTE: 调用支付结果开始支付
     CGFloat f = [self notRounding:[self.payAmountField.text substringFromIndex:1].floatValue afterPoint:2];
     NSLog(@"%@",[self.payAmountField.text substringFromIndex:1]);
     CGFloat v = [self notRounding:self.myAmount * 0.3 afterPoint:2];
     if (f >= v) {
-        NSString *parm1 = self.isDream?@"ploid":@"oid";
-        NSString *url = self.isDream?AliPayProductUrl:AliPayUrl;
-        NSDictionary *params = @{parm1:self.oid,@"amount":@(0.01)};
+        NSString *parm1 = nil;
+        if ([self.aliPayUrl isEqualToString:AliPayUrl]) {
+            parm1 = @"oid";
+        }
+        else if ([self.aliPayUrl isEqualToString:AliPayProductUrl]){
+            parm1 = @"ploid";
+        }
+        else{
+            parm1 = @"signupid";
+        }
+        NSString *url = self.aliPayUrl;
+        NSDictionary *params = @{parm1:self.oid,@"amount":@(self.myAmount)};
         [WPNetWorking createPostRequestMenagerWithUrlString:url params:params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
