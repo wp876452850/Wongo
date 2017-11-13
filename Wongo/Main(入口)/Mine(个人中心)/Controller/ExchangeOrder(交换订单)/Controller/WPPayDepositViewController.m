@@ -12,6 +12,9 @@
 #import "LYAliPayResultController.h"
 
 @interface WPPayDepositViewController ()
+{
+    PayMoneyBlock _payMoneyBlock;
+}
 /**导航*/
 @property (strong, nonatomic) WPMyNavigationBar *nav;
 /**平台说明*/
@@ -79,6 +82,10 @@
     }
 }
 
+-(void)getStateBlock:(PayMoneyBlock)block{
+    _payMoneyBlock = block;
+}
+
 /**选择支付方式按钮*/
 - (IBAction)selectPayStyle:(UIButton *)sender {
     _pay.tag = 111;
@@ -102,7 +109,7 @@
             parm1 = @"signupid";
         }
         NSString *url = self.aliPayUrl;
-        NSDictionary *params = @{parm1:self.oid,@"amount":@(self.myAmount)};
+        NSDictionary *params = @{parm1:self.oid,@"amount":@(0.01)};
         [WPNetWorking createPostRequestMenagerWithUrlString:url params:params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {

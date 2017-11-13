@@ -52,10 +52,11 @@
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    [_thumup setTitle:[NSString stringWithFormat:@"支持数:%@人",model.praise] forState:UIControlStateNormal];
     _goodsName.text = _model.proname;
     _pushTime.text = _model.pbutime;
     _userName.text = _model.uname;
-    
+    [_headerImage sd_setImageWithURL:[NSURL URLWithString:model.userUrl] placeholderImage:[UIImage imageNamed:@"loadimage"]];
 }
 -(void)showOK{
     self.logoImageOK.hidden = NO;

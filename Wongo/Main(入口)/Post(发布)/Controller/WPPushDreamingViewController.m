@@ -304,6 +304,10 @@ static NSString * const cell            = @"cell";
     [self.view endEditing:YES];
 }
 
+-(void)payFee{
+    
+}
+
 #pragma mark - 发布(报名)造梦
 -(void)goNextVC{
     if (![self determineWhetherTheLogin]) {

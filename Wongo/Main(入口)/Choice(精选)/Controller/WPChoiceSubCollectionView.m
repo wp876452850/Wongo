@@ -305,7 +305,7 @@ static NSString * const reuseIdentifier = @"Cell";
             }
         }
         else{
-            NSArray * listg = [responseObject objectForKey:@"listg"];
+            NSArray * listg = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<listg.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[i]];
                 [_dataSourceArray addObject:model];

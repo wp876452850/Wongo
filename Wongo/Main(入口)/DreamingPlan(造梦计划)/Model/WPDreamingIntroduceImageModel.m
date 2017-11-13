@@ -10,4 +10,10 @@
 
 @implementation WPDreamingIntroduceImageModel
 
++(NSDictionary *)mj_replacedKeyFromPropertyName{
+    return @{
+             @"userUrl":@"listuser[0].url"
+             };
+}
+
 @end

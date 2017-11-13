@@ -26,4 +26,8 @@
 
 @property (nonatomic,strong)NSString * uid;
 
+@property (nonatomic,strong)NSString * userUrl;
+
+@property (nonatomic,strong)NSString * praise;
+
 @end
