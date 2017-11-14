@@ -120,9 +120,12 @@
     [_three addSubview:self.threeLabel];
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    UITapGestureRecognizer * tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    UITapGestureRecognizer * tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     [_one addGestureRecognizer:tap];
-    [_two addGestureRecognizer:tap];
-    [_three addGestureRecognizer:tap];
+    [_two addGestureRecognizer:tap1];
+    [_three addGestureRecognizer:tap2];
+    
 }
 
 -(void)tap:(UITapGestureRecognizer *)tap{
@@ -206,7 +209,7 @@
         }
     }
 }
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-}
+//-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    
+//}
 @end

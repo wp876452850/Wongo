@@ -13,6 +13,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *name;
 
+@property (weak, nonatomic) IBOutlet UILabel *price;
+
 
 @end
 
@@ -20,13 +22,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
+    self.state.shadowOffset = CGSizeMake(0.2, 0.2);
+    self.state.shadowColor = TitleGrayColor;
+    self.lunci.shadowOffset = CGSizeMake(0.2, 0.2);
+    self.lunci.shadowColor = TitleGrayColor;
 }
 
 
 -(void)setModel:(WPNewHomeDreamingPhotoModel *)model{
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     self.name.text = model.proname;
-    
+    self.price.text = [NSString stringWithFormat:@"￥%@",model.price];
 }
 @end

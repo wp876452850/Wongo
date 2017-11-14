@@ -35,23 +35,28 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TMD-KL-9he">
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TMD-KL-9he">
                         <rect key="frame" x="0.0" y="0.0" width="172" height="172"/>
                         <color key="backgroundColor" red="0.055832249780000003" green="0.064117167680000003" blue="0.050567676339999999" alpha="1" colorSpace="calibratedRGB"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寄梦商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIf-ou-sPB">
-                        <rect key="frame" x="0.0" y="227" width="172" height="20"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="SHo-fz-TrR"/>
-                        </constraints>
+                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cat-jr-lhs">
+                        <rect key="frame" x="86.5" y="86.5" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8np-KW-jPL">
+                        <rect key="frame" x="0.0" y="227" width="172" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cat-jr-lhs">
-                        <rect key="frame" x="86.5" y="86.5" width="0.0" height="0.0"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寄梦商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIf-ou-sPB">
+                        <rect key="frame" x="0.0" y="152" width="172" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="SHo-fz-TrR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -61,9 +66,11 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="xrA-DV-sKE" secondAttribute="trailing" id="6wL-Gy-MA2"/>
                 <constraint firstItem="xrA-DV-sKE" firstAttribute="top" secondItem="TMD-KL-9he" secondAttribute="top" id="9Ci-ho-sac"/>
+                <constraint firstItem="8np-KW-jPL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="BRp-RM-DIc"/>
                 <constraint firstItem="cat-jr-lhs" firstAttribute="centerY" secondItem="xrA-DV-sKE" secondAttribute="centerY" id="F0j-Nd-pC2"/>
-                <constraint firstItem="QIf-ou-sPB" firstAttribute="top" secondItem="XON-Pt-gU2" secondAttribute="bottom" constant="5" id="K5X-GJ-Huw"/>
+                <constraint firstItem="8np-KW-jPL" firstAttribute="top" secondItem="XON-Pt-gU2" secondAttribute="bottom" constant="5" id="FVQ-hD-6gj"/>
                 <constraint firstAttribute="trailing" secondItem="XON-Pt-gU2" secondAttribute="trailing" constant="5" id="LsG-wJ-jxc"/>
+                <constraint firstItem="XON-Pt-gU2" firstAttribute="top" secondItem="QIf-ou-sPB" secondAttribute="bottom" constant="5" id="TwR-8o-u2A"/>
                 <constraint firstAttribute="trailing" secondItem="QIf-ou-sPB" secondAttribute="trailing" id="byu-5d-JLw"/>
                 <constraint firstItem="xrA-DV-sKE" firstAttribute="bottom" secondItem="TMD-KL-9he" secondAttribute="bottom" id="dQK-dk-2qX"/>
                 <constraint firstItem="XON-Pt-gU2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="hfE-qp-mkH"/>
@@ -74,16 +81,18 @@
                 <constraint firstItem="xrA-DV-sKE" firstAttribute="leading" secondItem="TMD-KL-9he" secondAttribute="leading" id="pFN-fp-09D"/>
                 <constraint firstItem="cat-jr-lhs" firstAttribute="centerX" secondItem="xrA-DV-sKE" secondAttribute="centerX" id="qe4-Jf-b5h"/>
                 <constraint firstItem="XON-Pt-gU2" firstAttribute="top" secondItem="xrA-DV-sKE" secondAttribute="bottom" constant="5" id="vpU-si-ddq"/>
+                <constraint firstAttribute="trailing" secondItem="8np-KW-jPL" secondAttribute="trailing" id="wBt-WT-Til"/>
             </constraints>
             <size key="customSize" width="172" height="257"/>
             <connections>
                 <outlet property="goodsImage" destination="xrA-DV-sKE" id="07W-60-jjr"/>
                 <outlet property="lunci" destination="QIf-ou-sPB" id="Api-vT-GM7"/>
                 <outlet property="name" destination="XON-Pt-gU2" id="rcc-p2-SWf"/>
+                <outlet property="price" destination="8np-KW-jPL" id="b1Q-cU-YGI"/>
                 <outlet property="shadow" destination="TMD-KL-9he" id="RY8-yU-E7p"/>
                 <outlet property="state" destination="cat-jr-lhs" id="mzj-M8-Z6f"/>
             </connections>
-            <point key="canvasLocation" x="-805" y="-39"/>
+            <point key="canvasLocation" x="-1016" y="-42"/>
         </collectionViewCell>
     </objects>
 </document>

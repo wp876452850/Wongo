@@ -14,5 +14,6 @@
 @property (nonatomic,strong)NSString * proname;
 @property (nonatomic,strong)NSString * url;
 @property (nonatomic,strong)NSArray * listimg;
+@property (nonatomic,strong)NSString * price;
 
 @end

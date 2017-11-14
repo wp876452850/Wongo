@@ -394,6 +394,7 @@
 		3D76D95D1F67B806005A6080 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D76D9531F67B806005A6080 /* FMDatabasePool.m */; };
 		3D76D95E1F67B806005A6080 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D76D9551F67B806005A6080 /* FMDatabaseQueue.m */; };
 		3D76D95F1F67B806005A6080 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D76D9581F67B806005A6080 /* FMResultSet.m */; };
+		3D79117F1FB995FE006268DC /* WPMyConsignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D79117E1FB995FE006268DC /* WPMyConsignmentViewController.m */; };
 		3D7E31131FA07394004C90BF /* WPConsignmentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E31121FA07394004C90BF /* WPConsignmentHeaderView.m */; };
 		3D7FB7B71FA0645E0044E7F9 /* WPConsignmentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7FB7B61FA0645E0044E7F9 /* WPConsignmentCollectionView.m */; };
 		3D827A301EF10A320030B0D1 /* LYConversationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D827A2F1EF10A320030B0D1 /* LYConversationListController.m */; };
@@ -1467,6 +1468,8 @@
 		3D76D9561F67B806005A6080 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		3D76D9571F67B806005A6080 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		3D76D9581F67B806005A6080 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		3D79117D1FB995FE006268DC /* WPMyConsignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMyConsignmentViewController.h; sourceTree = "<group>"; };
+		3D79117E1FB995FE006268DC /* WPMyConsignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPMyConsignmentViewController.m; sourceTree = "<group>"; };
 		3D7E31111FA07394004C90BF /* WPConsignmentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConsignmentHeaderView.h; sourceTree = "<group>"; };
 		3D7E31121FA07394004C90BF /* WPConsignmentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConsignmentHeaderView.m; sourceTree = "<group>"; };
 		3D7FB7B51FA0645E0044E7F9 /* WPConsignmentCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConsignmentCollectionView.h; sourceTree = "<group>"; };
@@ -4148,6 +4151,47 @@
 			path = "广告页";
 			sourceTree = "<group>";
 		};
+		3D7911781FB99345006268DC /* 我的寄卖 */ = {
+			isa = PBXGroup;
+			children = (
+				3D7911791FB99345006268DC /* Cell */,
+				3D79117A1FB99345006268DC /* Controller */,
+				3D79117B1FB99345006268DC /* Model */,
+				3D79117C1FB99345006268DC /* View */,
+			);
+			path = "我的寄卖";
+			sourceTree = "<group>";
+		};
+		3D7911791FB99345006268DC /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3D79117A1FB99345006268DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D79117D1FB995FE006268DC /* WPMyConsignmentViewController.h */,
+				3D79117E1FB995FE006268DC /* WPMyConsignmentViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D79117B1FB99345006268DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D79117C1FB99345006268DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D83C5C61FB14627003342CB /* 计时器 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6202,6 +6246,7 @@
 			children = (
 				8566A87E1E48281500C08624 /* WPMyViewController.h */,
 				8566A87F1E48281500C08624 /* WPMyViewController.m */,
+				3D7911781FB99345006268DC /* 我的寄卖 */,
 				3D25381A1FB00C6300862486 /* 邀请码 */,
 				8566A8441E48281500C08624 /* CommodityManagement(商品管理) */,
 				852F80CF1E822D3500D0AB48 /* ExchangeOrder(交换订单) */,
@@ -8058,6 +8103,7 @@
 				8549F6EF1E95D55E0046E96C /* WPMyShopGoodsModel.m in Sources */,
 				8566A8421E4827F600C08624 /* WPPublishViewController.m in Sources */,
 				8566A7E11E48268D00C08624 /* WPPhotoLibrary.m in Sources */,
+				3D79117F1FB995FE006268DC /* WPMyConsignmentViewController.m in Sources */,
 				8566A7F01E4826C900C08624 /* NSString+WPCategory.m in Sources */,
 				85156FA81E690A0B00726FA7 /* WPDreamingDescribeTableViewCell.m in Sources */,
 				851E35931EC3F8AA00C48AEF /* WPDreameChioceSubView.m in Sources */,

@@ -10,4 +10,10 @@
 
 @implementation WPNewHomeDreamingPhotoModel
 
+//+(NSDictionary *)mj_replacedKeyFromPropertyName{
+//    return @{
+//             @"price":@""
+//             };
+//}
+
 @end
