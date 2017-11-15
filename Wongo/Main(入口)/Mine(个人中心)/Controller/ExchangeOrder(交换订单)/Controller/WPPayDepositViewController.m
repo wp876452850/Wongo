@@ -25,18 +25,19 @@
 @property (weak, nonatomic) IBOutlet UIButton   * zfbButton;
 /**跳转第三方付款按钮*/
 @property (weak, nonatomic) IBOutlet UIButton *pay;
-@property (weak, nonatomic) IBOutlet UITextField *payAmountField;
+
+@property (weak, nonatomic) IBOutlet UITextField * payAmountField;
 //订单号
-@property (nonatomic, strong) NSString *oid;
+@property (nonatomic, strong) NSDictionary * params;
 @property (nonatomic, assign) CGFloat myAmount;
 @property (nonatomic,strong)NSString * aliPayUrl;
 @end
 
 @implementation WPPayDepositViewController
 
--(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl{
+-(instancetype)initWithParams:(NSDictionary *)params price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl{
     if (self = [super init]) {
-        self.oid = orderNumber;
+        self.params = params;
         self.myAmount = price;
         self.aliPayUrl = aliPayUrl;
     }
@@ -56,7 +57,7 @@
     [self.view addSubview:self.nav];
     _pay.layer.masksToBounds = YES;
     _pay.layer.cornerRadius  = 5;
-    self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount /3 afterPoint:2]];
+    self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount*.3 afterPoint:2]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:@"ALIPAY_DONE" object:nil];
 }
 - (void)dealloc{
@@ -108,9 +109,7 @@
         else{
             parm1 = @"signupid";
         }
-        NSString *url = self.aliPayUrl;
-        NSDictionary *params = @{parm1:self.oid,@"amount":@(0.01)};
-        [WPNetWorking createPostRequestMenagerWithUrlString:url params:params datas:^(NSDictionary *responseObject) {
+        [WPNetWorking createPostRequestMenagerWithUrlString:self.aliPayUrl params:self.params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                 NSLog(@"reslut = %@",resultDic);

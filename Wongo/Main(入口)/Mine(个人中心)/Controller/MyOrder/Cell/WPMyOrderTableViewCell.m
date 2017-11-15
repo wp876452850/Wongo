@@ -173,7 +173,7 @@
     }else{//收货人
         switch (self.model.state) {
             case 0:{//支付保证金
-                WPPayDepositViewController *payVC = [[WPPayDepositViewController alloc] initWithOrderNumber:self.model.ploid price:[self.model.price floatValue] aliPayUrl:AliPayProductUrl];
+                WPPayDepositViewController *payVC = [[WPPayDepositViewController alloc] initWithParams:@{@"ploid":self.model.ploid,@"amount":@([self.model.price floatValue]*.3f)} price:[self.model.price floatValue] aliPayUrl:AliPayProductUrl];
                 [[self findViewController:self].navigationController pushViewController:payVC animated:YES];
             }
                 break;

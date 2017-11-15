@@ -74,7 +74,7 @@
                 <outlet property="goodsName" destination="bZg-TB-mWY" id="WgS-GV-n69"/>
                 <outlet property="price" destination="wTp-SX-L5F" id="7gv-fX-MFs"/>
             </connections>
-            <point key="canvasLocation" x="-190" y="22"/>
+            <point key="canvasLocation" x="-179" y="22"/>
         </tableViewCell>
     </objects>
     <resources>

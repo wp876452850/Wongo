@@ -101,7 +101,7 @@ static NSString * const projectCell     = @"ProjectCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 185 * WINDOW_WIDTH/375+130;
+        return WINDOW_WIDTH  * WINDOW_WIDTH/375+130;
     }
     //弹出cell的高度
     if (indexPath.section >= self.cellsHeight.count) {

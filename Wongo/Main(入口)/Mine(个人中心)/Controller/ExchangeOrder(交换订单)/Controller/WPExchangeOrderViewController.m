@@ -72,11 +72,15 @@
     self.view.backgroundColor = WhiteColor;
     [self.view addSubview:self.indicator];
     [self.view addSubview:self.nav];
-    [self loadDatas];
+    
+}
+-(void)addHeader{
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
+    [self loadDatas];
 }
+
 -(void)loadDatas{
     [self.indicator startAnimating];
     self.dataSource = [NSMutableArray arrayWithCapacity:3];

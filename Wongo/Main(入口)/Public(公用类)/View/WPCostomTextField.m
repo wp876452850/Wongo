@@ -34,17 +34,12 @@
     _openRisingView = openRisingView;
     if (openRisingView) {
         self.delegate = self;
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHidden:) name:UIKeyboardWillHideNotification object:nil];
     }else{
         self.delegate = nil;
     }
 }
 
-
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
-
-    
     
     int offset = CGRectGetMaxY(self.frame)-(_superView.bounds.size.height - 258);//iPhone键盘高度216，iPad的为352
     
@@ -66,36 +61,9 @@
     [UIView commitAnimations];
     NSLog(@"%@",_superView);
 }
-
-
-
 -(void)textFieldDidEndEditing:(UITextField *)textField{
     _superView.bounds = CGRectMake(0.0f, 0.0f, _superView.frame.size.width, _superView.frame.size.height);
 }
-
-///**
-// *  键盘将要显示
-// *
-// *  @param notification 通知
-// */
-//-(void)keyboardWillShow:(NSNotification *)notification
-//{
-//    //这样就拿到了键盘的位置大小信息frame，然后根据frame进行高度处理之类的信息
-//    CGRect frame = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-//    
-//    
-//}
-///**
-// *  键盘将要隐藏
-// *
-// *  @param notification 通知
-// */
-//-(void)keyboardWillHidden:(NSNotification *)notification
-//{
-//    
-//}
-//
-
 -(void)dealloc{
     
 }

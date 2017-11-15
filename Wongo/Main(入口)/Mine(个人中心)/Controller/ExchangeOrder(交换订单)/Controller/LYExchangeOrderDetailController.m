@@ -255,8 +255,9 @@
              }
             break;
         case 3:{ //支付保证金
-            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithOrderNumber:self.model.oid price:[self.model.myModel.price floatValue] aliPayUrl:AliPayUrl];
-//            vc.model = self.model;
+            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithParams:@{@"oid":self.model.oid,@"amount":@(0.01)} price:[self.model.partnerModel.price floatValue] aliPayUrl:AliPayUrl];
+//            WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithParams:@{@"oid":self.model.oid,@"amount":@([self.model.partnerModel.price floatValue]*.3f)} price:[self.model.partnerModel.price floatValue] aliPayUrl:AliPayUrl];
+
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

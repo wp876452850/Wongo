@@ -15,7 +15,7 @@
 /**订单编号*/
 @property (nonatomic,strong)NSString                    * oid;
 /**交易状态*/
-@property (nonatomic,assign)int                    state;
+@property (nonatomic,assign)int                         state;
 /**我的商品信息*/
 @property (nonatomic,strong)WPExchangeOrderGoodsModel   * myModel;
 /**对方的商品信息*/

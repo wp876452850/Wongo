@@ -12,6 +12,9 @@
 #import "WPPushDreamingViewController.h"
 #import "WPPushConsignmentViewController.h"
 
+
+#import "WPPayDepositViewController.h"
+
 #define PushTypeTitle           @[@"交换",@"寄卖"]
 #define PushDescribeTitle       @[@"平台担保安全交换",@"平台检测商品寄卖"]
 #define PushButtonIcon          @[@"exchangebtn_normal",@"pushDreaming_normal"]

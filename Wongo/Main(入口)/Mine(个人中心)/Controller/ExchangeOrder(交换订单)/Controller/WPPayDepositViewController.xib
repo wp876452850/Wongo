@@ -23,15 +23,15 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSd-m5-c6w">
-                    <rect key="frame" x="40" y="69" width="325" height="125"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cSd-m5-c6w">
+                    <rect key="frame" x="10" y="73" width="355" height="125"/>
                     <string key="text">保证金说明：交换保证金是保证交换双方的个人利益，由平台代收保管并根据交换双方对交换过程的认可，成功与否进行退回，如果交换过程中存在欺骗或者与交换过程中描述不服的情况，保证金退回给利益损害方，如果交换双方对交换过程表示认可，不存在上述违规，交换过程没有任何疑问，保证金退还至交换双方各自账户</string>
                     <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="15"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="保证金金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzs-ep-PFF">
-                    <rect key="frame" x="136.5" y="219" width="102" height="30"/>
+                    <rect key="frame" x="136.5" y="223" width="102" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="Ct2-Uf-WK3"/>
                     </constraints>
@@ -40,7 +40,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqK-Ol-ODf">
-                    <rect key="frame" x="325" y="348.5" width="30" height="30"/>
+                    <rect key="frame" x="325" y="352.5" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="BFL-II-a8w"/>
                         <constraint firstAttribute="width" constant="30" id="l2F-Il-hwc"/>
@@ -50,7 +50,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付宝支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5x-nz-Txp">
-                    <rect key="frame" x="50" y="354" width="87" height="20"/>
+                    <rect key="frame" x="50" y="358" width="87" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="BKE-E5-2GY"/>
                     </constraints>
@@ -59,17 +59,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alipay_logo" translatesAutoresizingMaskIntoConstraints="NO" id="JHE-6B-gaj">
-                    <rect key="frame" x="10" y="348.5" width="30" height="30"/>
+                    <rect key="frame" x="10" y="352.5" width="30" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="4lU-0F-BwB"/>
                         <constraint firstAttribute="height" constant="30" id="Pae-ZB-sYO"/>
-                    </constraints>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5zH-9h-7EY">
-                    <rect key="frame" x="0.0" y="64" width="20" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="20" id="HQb-K4-7Bh"/>
-                        <constraint firstAttribute="height" constant="60" id="PhS-22-BHH"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lo6-nT-tj2">
@@ -84,7 +77,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="支付方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ajq-xK-kRR">
-                    <rect key="frame" x="10" y="314" width="69.5" height="20"/>
+                    <rect key="frame" x="10" y="318" width="69.5" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="prv-Xq-mcm"/>
                     </constraints>
@@ -93,7 +86,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入保证金金额" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HQu-Qo-JFf">
-                    <rect key="frame" x="40" y="249" width="295" height="60"/>
+                    <rect key="frame" x="40" y="253" width="295" height="60"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="74I-Sj-K4F"/>
                     </constraints>
@@ -107,23 +100,21 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="5zH-9h-7EY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="F2I-Db-t7R"/>
                 <constraint firstAttribute="trailing" secondItem="wqK-Ol-ODf" secondAttribute="trailing" constant="20" id="GBE-hz-eYJ"/>
                 <constraint firstAttribute="trailing" secondItem="HQu-Qo-JFf" secondAttribute="trailing" constant="40" id="Gv8-6P-dCP"/>
                 <constraint firstItem="HQu-Qo-JFf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="HDq-X4-2iL"/>
-                <constraint firstItem="cSd-m5-c6w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="69" id="HXW-Em-BK1"/>
+                <constraint firstItem="cSd-m5-c6w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="73" id="HXW-Em-BK1"/>
                 <constraint firstItem="wqK-Ol-ODf" firstAttribute="centerY" secondItem="JHE-6B-gaj" secondAttribute="centerY" id="KBl-eJ-Ddo"/>
                 <constraint firstItem="JHE-6B-gaj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Ktt-Sx-jLa"/>
                 <constraint firstItem="Ajq-xK-kRR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Kzf-aA-KkQ"/>
                 <constraint firstAttribute="trailing" secondItem="lo6-nT-tj2" secondAttribute="trailing" constant="5" id="Q0g-j4-nLo"/>
                 <constraint firstAttribute="trailing" secondItem="cSd-m5-c6w" secondAttribute="trailing" constant="10" id="QrP-0B-Hqq"/>
-                <constraint firstItem="5zH-9h-7EY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Sfb-OX-yd4"/>
                 <constraint firstItem="lo6-nT-tj2" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="Ude-aT-azV"/>
                 <constraint firstItem="J5x-nz-Txp" firstAttribute="leading" secondItem="JHE-6B-gaj" secondAttribute="trailing" constant="10" id="bhz-ZI-tGu"/>
                 <constraint firstItem="J5x-nz-Txp" firstAttribute="top" secondItem="Ajq-xK-kRR" secondAttribute="bottom" constant="20" id="dCa-RU-U2f"/>
-                <constraint firstItem="cSd-m5-c6w" firstAttribute="leading" secondItem="5zH-9h-7EY" secondAttribute="trailing" constant="20" id="eJM-nQ-8hL"/>
                 <constraint firstItem="J5x-nz-Txp" firstAttribute="centerY" secondItem="JHE-6B-gaj" secondAttribute="centerY" id="iOc-vT-Ggv"/>
                 <constraint firstItem="Ajq-xK-kRR" firstAttribute="top" secondItem="HQu-Qo-JFf" secondAttribute="bottom" constant="5" id="jRY-kQ-YTU"/>
+                <constraint firstItem="cSd-m5-c6w" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="kdM-Ou-KY4"/>
                 <constraint firstItem="Hzs-ep-PFF" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nOz-rY-uGI"/>
                 <constraint firstAttribute="bottom" secondItem="lo6-nT-tj2" secondAttribute="bottom" constant="5" id="pCg-RM-Uk0"/>
                 <constraint firstItem="HQu-Qo-JFf" firstAttribute="top" secondItem="Hzs-ep-PFF" secondAttribute="bottom" id="pY9-Yi-waZ"/>

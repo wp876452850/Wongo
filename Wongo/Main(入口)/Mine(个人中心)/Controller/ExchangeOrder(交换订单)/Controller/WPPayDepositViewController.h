@@ -12,7 +12,7 @@
 typedef void(^PayMoneyBlock)(NSString * state);
 @interface WPPayDepositViewController : UIViewController
 //@property (nonatomic, strong) WPExchangeOrderModel *model;
--(instancetype)initWithOrderNumber:(NSString *)orderNumber price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl;
+-(instancetype)initWithParams:(NSDictionary *)params price:(CGFloat)price aliPayUrl:(NSString *)aliPayUrl;
 
 -(void)getStateBlock:(PayMoneyBlock)block;
 

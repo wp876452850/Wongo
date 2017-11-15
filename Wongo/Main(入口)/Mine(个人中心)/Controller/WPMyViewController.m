@@ -22,8 +22,6 @@
 #import "WPMyTableViewCell.h"
 #import "WPInviteCodeViewController.h"
 
-#import "ceshi.h"
-
 #define CELL_ID @"cell"
 
 #define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
@@ -145,14 +143,6 @@
 {
     //点击效果,按需求选择要不要
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    if (indexPath.row == 6) {
-        //测试界面用
-        ceshi * vc = [[ceshi alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-        return;
-    }
-    
     if ([self determineWhetherTheLogin]){
         switch (indexPath.row) {
                 break;

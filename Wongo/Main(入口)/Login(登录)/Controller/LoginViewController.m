@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "WPNetWorking.h"
 #import <UMSocialCore/UMSocialCore.h>
+#import "WPRegisterViewController.h"
 #define icons @[@"sina",@"QQ",@"wechat"]
 
 @interface LoginViewController ()
@@ -183,7 +184,7 @@
 //前往注册界面
 -(void)goRegister{
     __weak LoginViewController * weakSelf = self;
-    RegisterViewController * registerVC = [[RegisterViewController alloc]init];
+    WPRegisterViewController * registerVC = [[WPRegisterViewController alloc]init];
     [registerVC getRegisterUserAndPasswordWithBlock:^(NSString *user, NSString *password) {
         _user.text = user;
         _password.text = password;
