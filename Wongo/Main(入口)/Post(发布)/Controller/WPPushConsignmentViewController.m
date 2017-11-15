@@ -211,8 +211,7 @@ static NSString * const parameter       = @"Parameter";
         }
             break;
         case 4:case 5:
-        {
-            
+        {            
             UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             cell.textLabel.font = [UIFont systemFontOfSize:15];
             cell.textLabel.text = Push_Titles[indexPath.section];

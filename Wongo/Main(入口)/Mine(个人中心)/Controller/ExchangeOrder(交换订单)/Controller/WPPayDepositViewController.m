@@ -109,12 +109,20 @@
         else{
             parm1 = @"signupid";
         }
+        
         [WPNetWorking createPostRequestMenagerWithUrlString:self.aliPayUrl params:self.params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
+       
+            
+//            [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+//                
+//                NSLog(@"reslut = %@",resultDic);
+//                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAY_DONE" object:resultDic];
+//            }];
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                 NSLog(@"reslut = %@",resultDic);
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"ALIPAY_DONE" object:resultDic];
             }];
+
         }];
     }else{
         [self showAlertWithAlertTitle:nil message:@"保证金金额须为商品标价的30%以上！" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];

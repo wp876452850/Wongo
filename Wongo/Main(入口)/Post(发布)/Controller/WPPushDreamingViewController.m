@@ -17,7 +17,7 @@
 #import "WPSelectAlterView.h"
 #import "WPPayDepositViewController.h"
 
-#define Push_Titles @[@"名称：",@"描述：",@"",@"金额(￥)：",@"种类：",@"新旧程度：",@"故事：",@"成为造梦人?：",@"收货地址：",@""]
+#define Push_Titles @[@"名称：",@"描述：",@"",@"商品价值(￥)：",@"种类：",@"新旧程度：",@"故事：",@"成为造梦人?：",@"收货地址：",@""]
 
 #define Section_0_Placeholder @[@"商品名称",@"介绍宝贝的尺码、材质等信息",@"描述你的造梦计划,希望换到什么物品",@"",@"请输入商品价值",@"",@"请说说物品的来源和故事,准确描述您的故事，能够增加被入选的机会",@"描述你的造梦计划,希望换到什么物品",@"",@"",@""]
 
@@ -305,7 +305,10 @@ static NSString * const cell            = @"cell";
 }
 
 -(void)payFee{
-    
+    __block typeof(self)weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"proid":@""} datas:^(NSDictionary *responseObject) {
+        
+    }];
 }
 
 #pragma mark - 发布(报名)造梦

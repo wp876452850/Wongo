@@ -120,14 +120,14 @@
     }];
     [_verificationCode mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(60);
-        make.right.mas_equalTo(-120);
-        make.bottom.mas_equalTo(-260);
+        make.right.mas_equalTo(-121);
+        make.bottom.mas_equalTo(-285);
         make.height.mas_equalTo(30);
     }];
     [_verificationCodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(90);
         make.right.mas_equalTo(-30);
-        make.bottom.mas_equalTo(-260);
+        make.bottom.mas_equalTo(-285);
         make.height.mas_equalTo(50);
     }];
     [_registerUser mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -155,7 +155,7 @@
         make.top.mas_equalTo(weakSelf.verificationCode.mas_bottom).offset(-1);
         make.height.mas_equalTo(1);
         make.left.mas_equalTo(30);
-        make.right.mas_equalTo(-120);
+        make.right.mas_equalTo(-121);
     }];
     label1.backgroundColor = ColorWithRGB(255, 204, 92);
     label2.backgroundColor = ColorWithRGB(255, 204, 92);

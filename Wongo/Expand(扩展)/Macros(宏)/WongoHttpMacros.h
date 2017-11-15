@@ -38,8 +38,6 @@
 #define ExchangeDetailGoodsUrl  HttpHead(@"getgood")
 /**发布图片Url*/
 #define PushImageUrl            HttpHead(@"upfile")
-/**生成交换订单*/
-#define GenerateOrderUrl        HttpHead(@"addOrders")
 /**查询所有订单*/
 #define QueryOrderList          HttpHead(@"queryOrderList")
 /**查询指定订单*/
@@ -62,6 +60,18 @@
 #define DeleteAddressedUrl      HttpHead(@"deleteAddressed")
 /**修改默认地址*/
 #define UpdAddressedStateUrl    HttpHead(@"updAddressedState")
+
+
+
+/**
+ *  生成订单
+ */
+/**生成交换订单*/
+#define GenerateOrderUrl        HttpHead(@"addOrders")
+/**生成造梦报名订单*/
+#define SignupAddUrl            HttpHead(@"SignupAdd")
+
+
 
 /**修改用户头像*/
 #define UpdataUserHeaderImage   HttpHead(@"saveImage")

@@ -74,9 +74,6 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 
 //
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (section == 0) {
-        return UIEdgeInsetsMake(HeaderView_Height + 3, 0, 0, 0);
-    }
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
@@ -101,7 +98,10 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 
 //返回每个区头大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    if (section == 1) {
         return CGSizeMake(WINDOW_WIDTH, 47);
+    }
+    return CGSizeMake(WINDOW_WIDTH, HeaderView_Height + 47);
 }
 
 //设置区头
@@ -119,14 +119,14 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
         reusableView =  [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"pinpaituijian" forIndexPath:indexPath];
         [reusableView removeAllSubviews];
     }
-    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 5, WINDOW_WIDTH, 40)];
+    UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, HeaderView_Height+6, WINDOW_WIDTH, 40)];
     title.centerX = WINDOW_WIDTH/2;
     if (indexPath.section == 0) {
         title.text = @"热门品牌推荐";
-        title.y = HeaderView_Height+8;
         }
     else{
         title.text = @"热门寄卖推荐";
+        title.y = 5;
     }
     title.backgroundColor = WhiteColor;
     title.font = [UIFont boldSystemFontOfSize:17.f];

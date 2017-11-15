@@ -425,6 +425,15 @@
 		3DC52A2C1F726762007CE969 /* WPGoodsRecommendedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC52A2A1F726761007CE969 /* WPGoodsRecommendedTableViewCell.xib */; };
 		3DC63F761F01F126009C3768 /* LYHomeSectionFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */; };
 		3DC63F771F01F126009C3768 /* LYHomeSectionFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */; };
+		3DC998701FBBEDED00A87423 /* WPPerfectedUserInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9986E1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.m */; };
+		3DC998711FBBEDED00A87423 /* WPPerfectedUserInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC9986F1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.xib */; };
+		3DC9987C1FBC133F00A87423 /* WPNewPushDreamingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9987B1FBC133F00A87423 /* WPNewPushDreamingViewController.m */; };
+		3DC9987F1FBC135900A87423 /* WPNewPushExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC9987E1FBC135900A87423 /* WPNewPushExchangeViewController.m */; };
+		3DC998821FBC137300A87423 /* WPNewPushConsignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC998811FBC137300A87423 /* WPNewPushConsignmentViewController.m */; };
+		3DC998861FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC998841FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.m */; };
+		3DC998871FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC998851FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.xib */; };
+		3DC9988E1FBC23B800A87423 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3DC9988C1FBC23B800A87423 /* AlipaySDK.bundle */; };
+		3DC9988F1FBC23B800A87423 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DC9988D1FBC23B800A87423 /* AlipaySDK.framework */; };
 		3DD67D3C1F46896000C2359D /* AdobeHeitiStd-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3DD67D3B1F46896000C2359D /* AdobeHeitiStd-Regular.otf */; };
 		3DD67D3F1F468BB900C2359D /* UILabel+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD67D3E1F468BB900C2359D /* UILabel+runtime.m */; };
 		3DD67D451F468CE200C2359D /* UITextView+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD67D441F468CE200C2359D /* UITextView+runtime.m */; };
@@ -732,8 +741,6 @@
 		85510F001EA759B70058B54E /* WPPayDepositViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */; };
 		85510F011EA759B70058B54E /* WPPayDepositViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */; };
 		855644531EB83CEC0002E6AE /* headerBGImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 855644521EB83CEC0002E6AE /* headerBGImage.jpg */; };
-		85566FAD1E9F4CF600BA7D2A /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 85566FAB1E9F4CF500BA7D2A /* AlipaySDK.bundle */; };
-		85566FAE1E9F4CF600BA7D2A /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FAC1E9F4CF600BA7D2A /* AlipaySDK.framework */; };
 		85566FB01E9F4DA900BA7D2A /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FAF1E9F4DA900BA7D2A /* CoreText.framework */; };
 		85566FB21E9F4DCD00BA7D2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FB11E9F4DCD00BA7D2A /* Foundation.framework */; };
 		85566FB41E9F4DDF00BA7D2A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FB31E9F4DDF00BA7D2A /* CoreMotion.framework */; };
@@ -1522,6 +1529,20 @@
 		3DC63F731F01F126009C3768 /* LYHomeSectionFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYHomeSectionFooter.h; sourceTree = "<group>"; };
 		3DC63F741F01F126009C3768 /* LYHomeSectionFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYHomeSectionFooter.m; sourceTree = "<group>"; };
 		3DC63F751F01F126009C3768 /* LYHomeSectionFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYHomeSectionFooter.xib; sourceTree = "<group>"; };
+		3DC9986D1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPerfectedUserInformationViewController.h; sourceTree = "<group>"; };
+		3DC9986E1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPerfectedUserInformationViewController.m; sourceTree = "<group>"; };
+		3DC9986F1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPerfectedUserInformationViewController.xib; sourceTree = "<group>"; };
+		3DC9987A1FBC133F00A87423 /* WPNewPushDreamingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewPushDreamingViewController.h; sourceTree = "<group>"; };
+		3DC9987B1FBC133F00A87423 /* WPNewPushDreamingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNewPushDreamingViewController.m; sourceTree = "<group>"; };
+		3DC9987D1FBC135900A87423 /* WPNewPushExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewPushExchangeViewController.h; sourceTree = "<group>"; };
+		3DC9987E1FBC135900A87423 /* WPNewPushExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNewPushExchangeViewController.m; sourceTree = "<group>"; };
+		3DC998801FBC137300A87423 /* WPNewPushConsignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewPushConsignmentViewController.h; sourceTree = "<group>"; };
+		3DC998811FBC137300A87423 /* WPNewPushConsignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNewPushConsignmentViewController.m; sourceTree = "<group>"; };
+		3DC998831FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPNewPushGoodsInfomationCollectionViewCell.h; sourceTree = "<group>"; };
+		3DC998841FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPNewPushGoodsInfomationCollectionViewCell.m; sourceTree = "<group>"; };
+		3DC998851FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPNewPushGoodsInfomationCollectionViewCell.xib; sourceTree = "<group>"; };
+		3DC9988C1FBC23B800A87423 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		3DC9988D1FBC23B800A87423 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		3DD67D3B1F46896000C2359D /* AdobeHeitiStd-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeHeitiStd-Regular.otf"; sourceTree = "<group>"; };
 		3DD67D3D1F468BB900C2359D /* UILabel+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+runtime.h"; sourceTree = "<group>"; };
 		3DD67D3E1F468BB900C2359D /* UILabel+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+runtime.m"; sourceTree = "<group>"; };
@@ -1982,8 +2003,6 @@
 		85510EFE1EA759B70058B54E /* WPPayDepositViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WPPayDepositViewController.m; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/WPPayDepositViewController.m"; sourceTree = "<group>"; };
 		85510EFF1EA759B70058B54E /* WPPayDepositViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WPPayDepositViewController.xib; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/WPPayDepositViewController.xib"; sourceTree = "<group>"; };
 		855644521EB83CEC0002E6AE /* headerBGImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = headerBGImage.jpg; sourceTree = "<group>"; };
-		85566FAB1E9F4CF500BA7D2A /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		85566FAC1E9F4CF600BA7D2A /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		85566FAF1E9F4DA900BA7D2A /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		85566FB11E9F4DCD00BA7D2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		85566FB31E9F4DDF00BA7D2A /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -2469,11 +2488,11 @@
 				85F08EAC1E48478800A07451 /* CoreMedia.framework in Frameworks */,
 				85F08EAA1E48478300A07451 /* CoreLocation.framework in Frameworks */,
 				85F08EA61E48477700A07451 /* CoreAudio.framework in Frameworks */,
-				85566FAE1E9F4CF600BA7D2A /* AlipaySDK.framework in Frameworks */,
 				85F08EA21E48476500A07451 /* AVFoundation.framework in Frameworks */,
 				85F08EA01E48475F00A07451 /* AudioToolbox.framework in Frameworks */,
 				85F08E9E1E48475800A07451 /* AssetsLibrary.framework in Frameworks */,
 				8566A8C91E4829A300C08624 /* RongIMKit.framework in Frameworks */,
+				3DC9988F1FBC23B800A87423 /* AlipaySDK.framework in Frameworks */,
 				8566A8CC1E4829A300C08624 /* RongIMLib.framework in Frameworks */,
 				8566A8CA1E4829A300C08624 /* libopencore-amrnb.a in Frameworks */,
 				3D6EFF531F5E89E4007173D2 /* UShareUI.framework in Frameworks */,
@@ -4291,6 +4310,78 @@
 			path = "主页造梦单元格";
 			sourceTree = "<group>";
 		};
+		3DC998721FBC0F5D00A87423 /* Push(发布商品) */ = {
+			isa = PBXGroup;
+			children = (
+				3DC998731FBC0F5D00A87423 /* Cell */,
+				3DC998741FBC0F5D00A87423 /* Controller */,
+				3DC998751FBC0F5D00A87423 /* Model */,
+				3DC998761FBC0F5D00A87423 /* View */,
+			);
+			path = "Push(发布商品)";
+			sourceTree = "<group>";
+		};
+		3DC998731FBC0F5D00A87423 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3DC998831FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.h */,
+				3DC998841FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.m */,
+				3DC998851FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3DC998741FBC0F5D00A87423 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DC998771FBC0F8000A87423 /* 造梦计划 */,
+				3DC998781FBC0F9100A87423 /* 交换 */,
+				3DC998791FBC0F9C00A87423 /* 寄卖 */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3DC998751FBC0F5D00A87423 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC998761FBC0F5D00A87423 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3DC998771FBC0F8000A87423 /* 造梦计划 */ = {
+			isa = PBXGroup;
+			children = (
+				3DC9987A1FBC133F00A87423 /* WPNewPushDreamingViewController.h */,
+				3DC9987B1FBC133F00A87423 /* WPNewPushDreamingViewController.m */,
+			);
+			path = "造梦计划";
+			sourceTree = "<group>";
+		};
+		3DC998781FBC0F9100A87423 /* 交换 */ = {
+			isa = PBXGroup;
+			children = (
+				3DC9987D1FBC135900A87423 /* WPNewPushExchangeViewController.h */,
+				3DC9987E1FBC135900A87423 /* WPNewPushExchangeViewController.m */,
+			);
+			path = "交换";
+			sourceTree = "<group>";
+		};
+		3DC998791FBC0F9C00A87423 /* 寄卖 */ = {
+			isa = PBXGroup;
+			children = (
+				3DC998801FBC137300A87423 /* WPNewPushConsignmentViewController.h */,
+				3DC998811FBC137300A87423 /* WPNewPushConsignmentViewController.m */,
+			);
+			path = "寄卖";
+			sourceTree = "<group>";
+		};
 		3DE9ED6C1F9984DD00C01310 /* SDWebImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -5610,8 +5701,8 @@
 		85566FAA1E9F4CE800BA7D2A /* AlipaySDK(支付宝SDK) */ = {
 			isa = PBXGroup;
 			children = (
-				85566FAB1E9F4CF500BA7D2A /* AlipaySDK.bundle */,
-				85566FAC1E9F4CF600BA7D2A /* AlipaySDK.framework */,
+				3DC9988C1FBC23B800A87423 /* AlipaySDK.bundle */,
+				3DC9988D1FBC23B800A87423 /* AlipaySDK.framework */,
 			);
 			path = "AlipaySDK(支付宝SDK)";
 			sourceTree = "<group>";
@@ -5783,6 +5874,7 @@
 				8566A8AF1E4828C200C08624 /* Navagation(自定义导航) */,
 				8566A7161E48224A00C08624 /* Home(首页) */,
 				8566A7171E4822DC00C08624 /* Choice(精选) */,
+				3DC998721FBC0F5D00A87423 /* Push(发布商品) */,
 				8566A7181E4822ED00C08624 /* Post(发布) */,
 				3D131D5B1FB3F791001B70FA /* 支付 */,
 				8566A7191E48233000C08624 /* Mine(个人中心) */,
@@ -6535,6 +6627,9 @@
 				8566A8A51E48284700C08624 /* RegisterViewController.m */,
 				3D240ADB1FBA992C0077D164 /* WPRegisterViewController.h */,
 				3D240ADC1FBA992C0077D164 /* WPRegisterViewController.m */,
+				3DC9986D1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.h */,
+				3DC9986E1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.m */,
+				3DC9986F1FBBEDED00A87423 /* WPPerfectedUserInformationViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7292,7 +7387,6 @@
 				3D17323B1F26F6C200BFF90D /* f_static_048@2x.png in Resources */,
 				3D1731D71F26F6C200BFF90D /* section0_emotion7@2x.png in Resources */,
 				85187F6B1E8DFA1800D3D64F /* dropdown_anim__00056@2x.png in Resources */,
-				85566FAD1E9F4CF600BA7D2A /* AlipaySDK.bundle in Resources */,
 				3D1732961F26F6C200BFF90D /* f_static_093@3x.png in Resources */,
 				3D1732501F26F6C200BFF90D /* f_static_058@3x.png in Resources */,
 				3D1732661F26F6C200BFF90D /* f_static_069@3x.png in Resources */,
@@ -7385,6 +7479,7 @@
 				3D1A6D161F1F2FDB0064EB23 /* 1_star_1@3x.png in Resources */,
 				3D17323C1F26F6C200BFF90D /* f_static_048@3x.png in Resources */,
 				854B29071E7B866E00289554 /* WPUserIntroductionTableViewCell.xib in Resources */,
+				3DC9988E1FBC23B800A87423 /* AlipaySDK.bundle in Resources */,
 				85187F3B1E8DFA1800D3D64F /* dropdown_anim__00034@2x.png in Resources */,
 				3D1732A61F26F6C200BFF90D /* f_static_101@3x.png in Resources */,
 				85187F761E8DFA1800D3D64F /* Contents.json in Resources */,
@@ -7446,6 +7541,7 @@
 				85187F731E8DFA1800D3D64F /* dropdown_anim__0006@2x.png in Resources */,
 				3D1731E91F26F6C200BFF90D /* f_static_007@2x.png in Resources */,
 				85187F3F1E8DFA1800D3D64F /* dropdown_anim__00036@2x.png in Resources */,
+				3DC998711FBBEDED00A87423 /* WPPerfectedUserInformationViewController.xib in Resources */,
 				3D17327D1F26F6C200BFF90D /* f_static_081@2x.png in Resources */,
 				3D1731EA1F26F6C200BFF90D /* f_static_007@3x.png in Resources */,
 				85187F5C1E8DFA1800D3D64F /* Contents.json in Resources */,
@@ -7614,6 +7710,7 @@
 				85187F651E8DFA1800D3D64F /* dropdown_anim__00053@2x.png in Resources */,
 				3D17324A1F26F6C200BFF90D /* f_static_055@3x.png in Resources */,
 				3D1731F51F26F6C200BFF90D /* f_static_013@2x.png in Resources */,
+				3DC998871FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.xib in Resources */,
 				3D1732351F26F6C200BFF90D /* f_static_045@2x.png in Resources */,
 				3D1732551F26F6C200BFF90D /* f_static_061@2x.png in Resources */,
 				85187F1D1E8DFA1800D3D64F /* dropdown_anim__00020@2x.png in Resources */,
@@ -7982,6 +8079,7 @@
 				85C749021E7FD3BD000E1B65 /* UIWebView+AFNetworking.m in Sources */,
 				853B7B051E9CBBBA008BAA4D /* MJExtensionConfig.m in Sources */,
 				8566A8901E48281500C08624 /* WPAddressEditViewController.m in Sources */,
+				3DC998861FBC154600A87423 /* WPNewPushGoodsInfomationCollectionViewCell.m in Sources */,
 				850262431EA9B089007AD988 /* WPMyGoodsInformationModel.m in Sources */,
 				8594C1121EA88AAB006F028B /* RSADataVerifier.m in Sources */,
 				3D6279821F74F6090057B49B /* WPReportBox.m in Sources */,
@@ -8025,6 +8123,7 @@
 				8566A8A81E48284700C08624 /* RegisterViewController.m in Sources */,
 				3DE9EDB41F99953400C01310 /* ZYWaitingView.m in Sources */,
 				85F08F031E484FEE00A07451 /* WPHomeHeaderView.m in Sources */,
+				3DC998701FBBEDED00A87423 /* WPPerfectedUserInformationViewController.m in Sources */,
 				3D1732BB1F26F6C200BFF90D /* MoreItem.m in Sources */,
 				853B7B0A1E9CBBBA008BAA4D /* MJPropertyType.m in Sources */,
 				3D1732D71F2735BF00BFF90D /* WPCommentMessageCell.m in Sources */,
@@ -8045,6 +8144,7 @@
 				853B7B0D1E9CBBBA008BAA4D /* NSObject+MJKeyValue.m in Sources */,
 				85187E311E8DF19300D3D64F /* MJRefreshAutoNormalFooter.m in Sources */,
 				3D5B36D21F3C0F260065E61E /* WPNewDreamingSignUpTableViewCell.m in Sources */,
+				3DC9987C1FBC133F00A87423 /* WPNewPushDreamingViewController.m in Sources */,
 				3D204E571F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.m in Sources */,
 				854E042B1E7780A400FEE59D /* ProgressView.m in Sources */,
 				8566A8A11E48281500C08624 /* WPMyTableViewCell.m in Sources */,
@@ -8160,6 +8260,7 @@
 				8566A80B1E48276000C08624 /* WPHotCell.m in Sources */,
 				853281391E5EBAF9001AAAB1 /* WPFansTableViewCell.m in Sources */,
 				3D76D95B1F67B806005A6080 /* FMDatabase.m in Sources */,
+				3DC9987F1FBC135900A87423 /* WPNewPushExchangeViewController.m in Sources */,
 				851784DA1E88B0FB00FED78B /* WPSelectAlterView.m in Sources */,
 				3DE9ED9B1F9984DD00C01310 /* UIImageView+HighlightedWebCache.m in Sources */,
 				85187E301E8DF19300D3D64F /* MJRefreshAutoGifFooter.m in Sources */,
@@ -8256,6 +8357,7 @@
 				8566A7DE1E48265C00C08624 /* UIImage+FixOrientation.m in Sources */,
 				85187E3E1E8DF19300D3D64F /* UIView+MJExtension.m in Sources */,
 				85C748FC1E7FD3BD000E1B65 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				3DC998821FBC137300A87423 /* WPNewPushConsignmentViewController.m in Sources */,
 				85E8B8FE1EC9900E00488853 /* WPDreamingOrderViewController.m in Sources */,
 				3D1CEFFD1F3AFA0D007EDA44 /* WPNewDreamingTableViewCell.m in Sources */,
 				3D389C181EE6502F00B25DF4 /* LYExchangeAdressController.m in Sources */,
