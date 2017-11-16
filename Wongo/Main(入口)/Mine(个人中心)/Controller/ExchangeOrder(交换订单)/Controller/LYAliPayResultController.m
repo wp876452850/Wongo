@@ -18,16 +18,23 @@
     [super viewDidLoad];
     UILabel *label = [[UILabel alloc] init];
     label.textColor = SelfOrangeColor;
-    if (self.result.memo.length <= 0){
-        if (self.result.resultStatus == 9000) {
-            label.text = @"支付成功";
-            label.textColor = [UIColor blackColor];
-        }else{
-             label.text = @"支付结果未知，稍后查询订单。请勿重复支付！";
-        }
-    }else{
-        label.text = self.result.memo;
+    if (self.result.resultStatus == 9000) {
+        label.text = @"支付成功";
+        label.textColor = [UIColor blackColor];
     }
+    else if (self.result.resultStatus == 6001){
+        label.text = @"取消支付";
+        label.textColor = [UIColor blackColor];
+    }
+    else if (self.result.resultStatus == 8000){
+        label.text = @"支付结果处理中,请勿重复支付";
+        label.textColor = [UIColor blackColor];
+    }
+
+    else{
+         label.text = @"支付结果未知,稍后查询订单,请勿重复支付！";
+    }
+
     
     
     [label sizeToFit];

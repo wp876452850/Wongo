@@ -130,7 +130,7 @@ static NSString * const cell            = @"cell";
     button.backgroundColor  = WongoBlueColor;
     [button setTitle:@"发布" forState:UIControlStateNormal];
     button.titleLabel.font  = [UIFont systemFontOfSize:15];
-    [button addTarget:self action:@selector(goNextVC) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(payFee) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(0);
@@ -306,9 +306,14 @@ static NSString * const cell            = @"cell";
 
 -(void)payFee{
     __block typeof(self)weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"proid":@""} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
         
+       WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@"signupid"],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
+        [weakSelf.navigationController pushViewController:payvc animated:YES];
     }];
+}
+-(void)createAliPay{
+    
 }
 
 #pragma mark - 发布(报名)造梦

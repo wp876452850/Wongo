@@ -30,6 +30,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    
 #pragma mark - 引导页
     //判断是否第一次登录
     NSString * first = [[NSUserDefaults standardUserDefaults]objectForKey:FirstTimeTosStart];
@@ -279,7 +281,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     
-    
     if ([url.host isEqualToString:@"safepay"]) {
         // 支付跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -316,8 +317,8 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         // 支付跳转支付宝钱包进行支付，处理支付结果
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             NSLog(@"result = %@",resultDic);
-            
-            
+            //发送通知
+            [[NSNotificationCenter defaultCenter] postNotificationName:AliPay_PaymentNotice object:resultDic];
         }];
         
         // 授权跳转支付宝钱包进行支付，处理支付结果
@@ -337,9 +338,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
             }
             NSLog(@"授权结果 authCode = %@", authCode?:@"");
         }];
-
     }
-    
     
     if(![[UMSocialManager defaultManager] handleOpenURL:url]) {
         BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];

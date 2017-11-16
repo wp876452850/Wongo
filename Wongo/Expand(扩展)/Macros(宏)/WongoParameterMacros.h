@@ -32,6 +32,8 @@
 #define RONGCLOUD_IM_APPKEY  ([RCIMDEVTYPE isEqualToString:@"1"] ? @"e5t4ouvpeiifa" : @"0vnjpoad0eewz") //appkey
 
 #define Ali_App_Id          @"2016080200150163"
+//支付宝支付通知标识名
+#define AliPay_PaymentNotice  @"ALIPAY_DONE"
 
 #define User_MobileVersion  [[[UIDevice currentDevice] systemVersion] floatValue]
 
