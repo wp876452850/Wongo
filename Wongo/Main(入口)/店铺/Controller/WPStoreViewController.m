@@ -134,10 +134,17 @@ static NSString * const storeCell       = @"StoreCell";
         cell.model = model;
         return cell;
     }
-    WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
-    WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
-    cell.model = model;
-    return cell;
+  //  else if (_menuTag == 1){
+        WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
+        WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
+        cell.model = model;
+        return cell;
+  //  }
+//    WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
+//    WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
+//    cell.model = model;
+//    return cell;
+    
 }
 
 //每个单元格返回的大小

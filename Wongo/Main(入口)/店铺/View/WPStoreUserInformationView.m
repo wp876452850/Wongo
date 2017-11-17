@@ -10,6 +10,8 @@
 #import "WPCustomButton.h"
 
 #define MenuTitles @[@"交换商品",@"造梦商品"]
+//#define MenuTitles @[@"交换商品",@"造梦商品",@"寄卖商品"]
+
 @interface WPStoreUserInformationView ()
 {
     UIButton * _selectButton;
@@ -108,9 +110,9 @@
 }
 
 -(void)createButton{
-    for (int i = 0; i<2; i++) {
+    for (int i = 0; i<MenuTitles.count; i++) {
         UIButton * menuButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        menuButton.frame = CGRectMake(i*WINDOW_WIDTH/2, 0, WINDOW_WIDTH/2, 40);
+        menuButton.frame = CGRectMake(i*WINDOW_WIDTH/MenuTitles.count, 0, WINDOW_WIDTH/MenuTitles.count, 40);
         menuButton.backgroundColor = ColorWithRGB(0, 0, 0);
        
         menuButton.y = self.height - 80;

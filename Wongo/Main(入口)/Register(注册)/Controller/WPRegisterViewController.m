@@ -179,6 +179,7 @@
 
 -(void)getRegisterUserAndPasswordWithBlock:(SuccessfulRegister)block{
     _registerBlock = block;
+    
 }
 
 //限制输入长度
