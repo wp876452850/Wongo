@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WPNewPushTermsCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="221"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="340" height="221"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交换规则申请条款条款:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-om-Iat">
+                        <rect key="frame" x="10" y="15" width="320" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="LYL-nR-cZ7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1.不能好好说话了" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVa-F2-QPW">
+                        <rect key="frame" x="10" y="55" width="320" height="156"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="dVa-F2-QPW" secondAttribute="trailing" constant="10" id="67s-Ro-shg"/>
+                <constraint firstItem="wuG-om-Iat" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="85r-bc-HWK"/>
+                <constraint firstItem="dVa-F2-QPW" firstAttribute="top" secondItem="wuG-om-Iat" secondAttribute="bottom" constant="10" id="MMV-q3-65g"/>
+                <constraint firstAttribute="trailing" secondItem="wuG-om-Iat" secondAttribute="trailing" constant="10" id="WbB-9W-6bW"/>
+                <constraint firstItem="dVa-F2-QPW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="atu-iP-5nm"/>
+                <constraint firstAttribute="bottom" secondItem="dVa-F2-QPW" secondAttribute="bottom" constant="10" id="hnF-JP-aXh"/>
+                <constraint firstItem="wuG-om-Iat" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="pZ7-Yx-eN2"/>
+            </constraints>
+            <size key="customSize" width="340" height="221"/>
+            <point key="canvasLocation" x="-56" y="69"/>
+        </collectionViewCell>
+    </objects>
+</document>

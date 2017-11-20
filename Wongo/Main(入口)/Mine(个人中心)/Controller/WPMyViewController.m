@@ -24,11 +24,11 @@
 
 #define CELL_ID @"cell"
 
-#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
-#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
+//#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
+//#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
 
-//#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"ceshi"]
-//#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
+#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"邀请码"]
+#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
 
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
@@ -141,8 +141,15 @@
 #pragma mark - tableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     //点击效果,按需求选择要不要
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (indexPath.row == 6) {
+        WPInviteCodeViewController * vc = [[WPInviteCodeViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
     if ([self determineWhetherTheLogin]){
         switch (indexPath.row) {
                 break;

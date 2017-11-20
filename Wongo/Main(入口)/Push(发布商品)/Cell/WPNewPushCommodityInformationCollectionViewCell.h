@@ -7,7 +7,13 @@
 //  商品基本信息
 
 #import <UIKit/UIKit.h>
-
+#import "WPCostomTextField.h"
+typedef void(^WPNewPushGoodsNameBlock)(NSString * str);
+typedef void(^WPNewPushDescribeBlock)(NSString * str);
 @interface WPNewPushCommodityInformationCollectionViewCell : UICollectionViewCell
+/**输入框限制字数 默认50*/
+@property (nonatomic,assign)NSInteger wordsNumber;
 
+-(void)getGoodsNameBlockWithBlock:(WPNewPushGoodsNameBlock)block;
+-(void)getDescribeBlockWithBlock:(WPNewPushDescribeBlock)block;
 @end

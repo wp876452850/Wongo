@@ -12,68 +12,76 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WPNewPushCommodityInformationCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="329" height="163"/>
+            <rect key="frame" x="0.0" y="0.0" width="329" height="200"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="329" height="163"/>
+                <rect key="frame" x="0.0" y="0.0" width="329" height="200"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品描述:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nco-6G-d24">
-                        <rect key="frame" x="5" y="104" width="70" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="70" id="731-P2-bYZ"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8W1-i6-Pnq">
-                        <rect key="frame" x="80" y="97.5" width="244" height="30"/>
-                        <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基本信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGL-86-RYt">
-                        <rect key="frame" x="5" y="20" width="319" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="10" y="20" width="314" height="17"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品名:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqr-rp-gjJ">
-                        <rect key="frame" x="5" y="57" width="70" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="70" id="pmO-Jh-TYf"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awp-0z-LqZ">
-                        <rect key="frame" x="80" y="50.5" width="244" height="30"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入商品名称" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="awp-0z-LqZ" customClass="WPCostomTextField">
+                        <rect key="frame" x="15" y="58" width="299" height="30"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDC-4r-U7N">
+                        <rect key="frame" x="0.0" y="42" width="329" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="27S-Eo-ODf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DDQ-ux-G82">
+                        <rect key="frame" x="15" y="103.5" width="299" height="86.5"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15/200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDK-pn-iE7">
+                        <rect key="frame" x="266.5" y="169" width="42.5" height="16"/>
+                        <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="nco-6G-d24" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="1IT-VG-bMN"/>
-                <constraint firstItem="yqr-rp-gjJ" firstAttribute="top" secondItem="cGL-86-RYt" secondAttribute="bottom" constant="20" id="47f-XE-ds0"/>
-                <constraint firstAttribute="trailing" secondItem="awp-0z-LqZ" secondAttribute="trailing" constant="5" id="6W4-Og-0J2"/>
-                <constraint firstItem="8W1-i6-Pnq" firstAttribute="leading" secondItem="nco-6G-d24" secondAttribute="trailing" constant="5" id="FPo-Lp-8s1"/>
-                <constraint firstItem="nco-6G-d24" firstAttribute="top" secondItem="yqr-rp-gjJ" secondAttribute="bottom" constant="30" id="FWa-gz-slq"/>
-                <constraint firstItem="awp-0z-LqZ" firstAttribute="centerY" secondItem="yqr-rp-gjJ" secondAttribute="centerY" id="RH4-LE-1ud"/>
-                <constraint firstAttribute="trailing" secondItem="8W1-i6-Pnq" secondAttribute="trailing" constant="5" id="VzA-pa-yNa"/>
-                <constraint firstItem="yqr-rp-gjJ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="avz-Xh-0Sv"/>
-                <constraint firstItem="8W1-i6-Pnq" firstAttribute="centerY" secondItem="nco-6G-d24" secondAttribute="centerY" id="e5c-bs-Qeh"/>
-                <constraint firstItem="cGL-86-RYt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="frX-6v-kRa"/>
+                <constraint firstAttribute="trailing" secondItem="awp-0z-LqZ" secondAttribute="trailing" constant="15" id="6W4-Og-0J2"/>
+                <constraint firstAttribute="bottom" secondItem="zDK-pn-iE7" secondAttribute="bottom" constant="15" id="BLH-8u-M7P"/>
+                <constraint firstAttribute="trailing" secondItem="NDC-4r-U7N" secondAttribute="trailing" id="Fgq-yd-3wx"/>
+                <constraint firstItem="DDQ-ux-G82" firstAttribute="top" secondItem="awp-0z-LqZ" secondAttribute="bottom" constant="15" id="GAr-FC-rTs"/>
+                <constraint firstAttribute="bottom" secondItem="DDQ-ux-G82" secondAttribute="bottom" constant="10" id="Hfo-DT-NJe"/>
+                <constraint firstAttribute="trailing" secondItem="DDQ-ux-G82" secondAttribute="trailing" constant="15" id="Ju0-4f-c29"/>
+                <constraint firstItem="awp-0z-LqZ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="L4y-8h-Th2"/>
+                <constraint firstItem="NDC-4r-U7N" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Ski-AY-q8s"/>
+                <constraint firstItem="awp-0z-LqZ" firstAttribute="top" secondItem="NDC-4r-U7N" secondAttribute="bottom" constant="15" id="XdG-4D-Lnk"/>
+                <constraint firstItem="NDC-4r-U7N" firstAttribute="top" secondItem="cGL-86-RYt" secondAttribute="bottom" constant="5" id="YnZ-BH-65S"/>
+                <constraint firstAttribute="trailing" secondItem="zDK-pn-iE7" secondAttribute="trailing" constant="20" id="b2R-gv-Zh4"/>
+                <constraint firstItem="cGL-86-RYt" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="frX-6v-kRa"/>
                 <constraint firstItem="cGL-86-RYt" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="20" id="iwg-EK-hlK"/>
+                <constraint firstItem="DDQ-ux-G82" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="kgL-lg-X9n"/>
                 <constraint firstAttribute="trailing" secondItem="cGL-86-RYt" secondAttribute="trailing" constant="5" id="rcE-e7-ahh"/>
-                <constraint firstItem="awp-0z-LqZ" firstAttribute="leading" secondItem="yqr-rp-gjJ" secondAttribute="trailing" constant="5" id="vWT-yQ-2O6"/>
             </constraints>
-            <size key="customSize" width="329" height="163"/>
-            <point key="canvasLocation" x="3.5" y="-21.5"/>
+            <size key="customSize" width="329" height="203"/>
+            <connections>
+                <outlet property="describe" destination="DDQ-ux-G82" id="6H9-8H-pxA"/>
+                <outlet property="goodsname" destination="awp-0z-LqZ" id="D61-ry-c69"/>
+                <outlet property="limitLenghtLabel" destination="zDK-pn-iE7" id="Toe-sF-3DP"/>
+            </connections>
+            <point key="canvasLocation" x="-361" y="-92"/>
         </collectionViewCell>
     </objects>
 </document>

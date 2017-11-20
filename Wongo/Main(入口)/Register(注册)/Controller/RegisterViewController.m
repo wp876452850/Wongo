@@ -183,7 +183,7 @@
         return;
     }
     
-    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"uname":_user.text,@"password":_password.text} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"uname":_user.text,@"password":_password.text,@"activation":@"324139"} datas:^(NSDictionary *responseObject) {
         
         if ([[responseObject objectForKey:@"flag"] integerValue] == 1) {
             [self showAlertWithAlertTitle:@"提示" message:[responseObject objectForKey:@"msg"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{

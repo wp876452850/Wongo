@@ -58,7 +58,6 @@ static NSString * const cell            = @"cell";
     NSString * _adid;
     //是否同意协议说明
     BOOL       _isAgreed;
-    
 }
 @property (nonatomic,strong)UITableView * tableView;
 
@@ -67,6 +66,7 @@ static NSString * const cell            = @"cell";
 @property (nonatomic,strong)WPMyNavigationBar * nav;
 //同意协议按钮
 @property (nonatomic,strong)UIButton * button;
+
 @end
 
 @implementation WPPushDreamingViewController
@@ -112,12 +112,14 @@ static NSString * const cell            = @"cell";
     }
     return _tableView;
 }
+
 -(instancetype)initWithSubid:(NSString *)subid{
     if (self = [super init]) {
         self.subid = subid;
     }
     return self;
 }
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -151,6 +153,7 @@ static NSString * const cell            = @"cell";
         [self.nav.leftButton addTarget:self action:@selector(w_popViewController) forControlEvents:UIControlEventTouchUpInside];
     }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.row) {
         case 1:case 6:

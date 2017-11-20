@@ -104,7 +104,15 @@
                 <constraint firstItem="Xrx-ZE-9X4" firstAttribute="top" secondItem="K21-CO-Zcd" secondAttribute="bottom" constant="5" id="tHO-pD-iq4"/>
             </constraints>
             <size key="customSize" width="389" height="182"/>
-            <point key="canvasLocation" x="-207.5" y="-143"/>
+            <connections>
+                <outlet property="goodName" destination="BVd-TJ-ANk" id="9Hb-xt-s1z"/>
+                <outlet property="goodsImage" destination="K21-CO-Zcd" id="n15-ss-AuS"/>
+                <outlet property="left" destination="8Mm-sH-XFA" id="2dH-Zd-CIQ"/>
+                <outlet property="lunci" destination="3o3-40-0Bp" id="79c-Us-dDl"/>
+                <outlet property="price" destination="Xrx-ZE-9X4" id="aNR-Hz-Dgt"/>
+                <outlet property="right" destination="CsW-jq-WrW" id="qx7-yU-iY4"/>
+            </connections>
+            <point key="canvasLocation" x="-86" y="-90"/>
         </collectionViewCell>
     </objects>
     <resources>

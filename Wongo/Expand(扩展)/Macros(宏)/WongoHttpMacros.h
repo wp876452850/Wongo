@@ -21,6 +21,14 @@
 /**第三方登录 sid, uname ,password, url */
 #define UseraddsUrl             HttpHead(@"useradds")
 
+/**注册*/
+#define UseraddUrl              HttpHead(@"useradd")
+
+/**修改用户头像*/
+#define UpdataUserHeaderImage   HttpHead(@"saveImage")
+/**修改用户信息*/
+#define UpdateUserUrl           HttpHead(@"updateUser")
+
 
 /**发布上传数据url*/
 #define PushExchangeUrl         HttpHead(@"addGood")
@@ -73,12 +81,6 @@
 
 
 
-/**修改用户头像*/
-#define UpdataUserHeaderImage   HttpHead(@"saveImage")
-/**注册*/
-#define UseraddUrl              HttpHead(@"useradd")
-/**修改用户信息*/
-#define UpdateUserUrl           HttpHead(@"updateUser")
 
 /**
  *  搜索
