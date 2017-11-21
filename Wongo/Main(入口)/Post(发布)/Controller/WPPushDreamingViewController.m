@@ -308,6 +308,9 @@ static NSString * const cell            = @"cell";
 }
 
 -(void)payFee{
+    if (![self determineWhetherTheLogin]) {
+        return;
+    }
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
         

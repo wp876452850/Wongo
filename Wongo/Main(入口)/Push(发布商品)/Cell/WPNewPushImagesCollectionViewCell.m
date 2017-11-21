@@ -32,7 +32,7 @@
         flowLayout.minimumLineSpacing           = 20;
         flowLayout.minimumInteritemSpacing      = 0;
         flowLayout.itemSize                     = CGSizeMake(AddButton_Width_Height,AddButton_Width_Height);
-        _collectionView                         = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 35, WINDOW_WIDTH, AddButton_Width_Height +40) collectionViewLayout:flowLayout];
+        _collectionView                         = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 35, WINDOW_WIDTH, AddButton_Width_Height + 40) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor         = WhiteColor;
         _collectionView.dataSource              = self;
         _collectionView.delegate                = self;
@@ -49,7 +49,7 @@
     [super awakeFromNib];
     _images = [NSMutableArray arrayWithCapacity:3];
     _addButton = [[WPAddImagesButton alloc]initWithFrame:CGRectMake(0,0, AddButton_Width_Height, AddButton_Width_Height)];
-    _rowHeight = _addButton.height + 40 ;
+    _rowHeight = _addButton.height + 80 ;
 }
 -(void)setImages:(NSMutableArray *)images{
     [self.contentView addSubview:self.collectionView];
@@ -65,7 +65,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (_imagesCount>=Max_Images) {
-        [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"宝贝图片不能超过10张,多出的图片将自动去除" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        [[self findViewController:self] showAlertWithAlertTitle:@" 提示" message:[NSString stringWithFormat:@"宝贝图片不能超过%d张,多出的图片将自动去除",Max_Images] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
         
     }
     return self.images.count<Max_Images?self.images.count + 1:Max_Images+1;
@@ -79,8 +79,8 @@
         typeof(self)weakSelf = self;
         [cell.imageView getBlock:^{
             [_images removeObjectAtIndex:indexPath.row];
-            weakSelf.rowHeight = (_images.count /3)*(AddButton_Width_Height+20) + AddButton_Width_Height+ 75;
-            weakSelf.collectionView.height = weakSelf.rowHeight;
+            weakSelf.rowHeight = (_images.count /3)*(AddButton_Width_Height+20) + AddButton_Width_Height + 80;
+            weakSelf.collectionView.height = weakSelf.rowHeight-40;
             _backImagesBlock(weakSelf.images,weakSelf.rowHeight);
             [weakSelf.collectionView reloadData];
         }];
@@ -90,16 +90,17 @@
     //添加按钮
     if (indexPath.row == _images.count) {
         UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"addButtonCell" forIndexPath:indexPath];
+
         __block typeof(self)weakSelf = self;
         [_addButton getSelectPhotoWithBlock:^(NSArray * imagesArray) {
             for (UIImage * image in imagesArray) {
                 [weakSelf.images addObject:image];
             }
             _imagesCount = weakSelf.images.count;
-            while (weakSelf.images.count>10) {
-                [weakSelf.images removeObjectAtIndex:10];
+            while (weakSelf.images.count>Max_Images) {
+                [weakSelf.images removeObjectAtIndex:Max_Images];
             }
-            weakSelf.rowHeight = (weakSelf.images.count /3)*(AddButton_Width_Height+20) + AddButton_Width_Height+40;
+            weakSelf.rowHeight = (weakSelf.images.count /3)*(AddButton_Width_Height+20) + AddButton_Width_Height+80;
             weakSelf.collectionView.height = weakSelf.rowHeight;
             _backImagesBlock(weakSelf.images,weakSelf.rowHeight);
             [weakSelf.collectionView reloadData];
@@ -117,8 +118,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.row == _images.count) {
-        [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"宝贝图片已达到上限(10张),无法继续添加" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:[NSString stringWithFormat:@"宝贝图片已达到上限(%d张),无法继续添加",Max_Images] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
         return;
     }
     WPPushImageCollectionViewCell *cell =(WPPushImageCollectionViewCell *) [collectionView cellForItemAtIndexPath:indexPath];

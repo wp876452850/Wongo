@@ -16,6 +16,7 @@
 @property (nonatomic,strong)WPCostomTextField * user;
 @property (nonatomic,strong)WPCostomTextField * password;
 @property (nonatomic,strong)WPCostomTextField * resultPassword;
+@property (nonatomic,strong)WPCostomTextField * yaoqinma;
 @property (nonatomic,strong)UIButton          * registerUser;
 @property (nonatomic,strong)UIButton            * backButton;
 @property (nonatomic, strong) UIButton *userAgreement;
@@ -56,6 +57,16 @@
     }
     return _resultPassword;
 }
+-(WPCostomTextField *)yaoqinma{
+    if (!_yaoqinma) {
+        _yaoqinma = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 300, 100, 30) openRisingView:YES superView:self.view];
+        _yaoqinma.placeholder         = @"请输入邀请码(选填)";
+        _yaoqinma.secureTextEntry     = YES;
+        _yaoqinma.delegate            = self;
+    }
+    return _yaoqinma;
+}
+
 -(UIButton *)backButton{
     if (!_backButton) {
         _backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -99,6 +110,7 @@
     [self.view addSubview:self.resultPassword];
     [self.view addSubview:self.backButton];
     [self.view addSubview:self.userAgreement];
+    [self.view addSubview:self.yaoqinma];
     [self masonry];
     
 }
@@ -116,13 +128,19 @@
         make.bottom.mas_equalTo(-290);
         make.height.mas_equalTo(30);
     }];
-    
     [_resultPassword mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(60);
         make.right.mas_equalTo(-60);
         make.bottom.mas_equalTo(-240);
         make.height.mas_equalTo(30);
     }];
+    [_yaoqinma mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(60);
+        make.right.mas_equalTo(-60);
+        make.bottom.mas_equalTo(-190);
+        make.height.mas_equalTo(30);
+    }];
+    
     
     [_registerUser mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
@@ -140,6 +158,8 @@
     [self.view addSubview:label2];
     UILabel * label3 = [[UILabel alloc]init];
     [self.view addSubview:label3];
+    UILabel * label4 = [[UILabel alloc]init];
+    [self.view addSubview:label4];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(_user.mas_bottom).offset(-1);
         make.height.mas_equalTo(1);
@@ -158,10 +178,16 @@
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-30);
     }];
-    
+    [label4 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(_yaoqinma.mas_bottom).offset(-1);
+        make.height.mas_equalTo(1);
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(-30);
+    }];
     label1.backgroundColor = ColorWithRGB(255, 204, 92);
     label2.backgroundColor = ColorWithRGB(255, 204, 92);
     label3.backgroundColor = ColorWithRGB(255, 204, 92);
+    label4.backgroundColor = ColorWithRGB(255, 204, 92);
 }
 -(void)actionRegister{
 #warning 发送请求
@@ -183,8 +209,7 @@
         return;
     }
     
-    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"uname":_user.text,@"password":_password.text,@"activation":@"324139"} datas:^(NSDictionary *responseObject) {
-        
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"uname":_user.text,@"password":_password.text,@"activation":_yaoqinma.text} datas:^(NSDictionary *responseObject) {
         if ([[responseObject objectForKey:@"flag"] integerValue] == 1) {
             [self showAlertWithAlertTitle:@"提示" message:[responseObject objectForKey:@"msg"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
                 if (_registerBlock) {

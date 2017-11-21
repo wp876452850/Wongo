@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "WPCostomTextField.h"
 typedef void(^WPNewPushGoodsNameBlock)(NSString * str);
-typedef void(^WPNewPushDescribeBlock)(NSString * str);
+typedef void(^WPNewPushDescribeBlock)(NSString * str ,CGFloat height);
 @interface WPNewPushCommodityInformationCollectionViewCell : UICollectionViewCell
 /**输入框限制字数 默认50*/
 @property (nonatomic,assign)NSInteger wordsNumber;

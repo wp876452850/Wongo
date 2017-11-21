@@ -12,7 +12,7 @@ typedef void(^BackImageBlock)(NSArray * images);
 
 
 @interface WPAddImagesButton : UIButton
-
+@property (nonatomic,assign)NSInteger maxImages;
 -(void)getSelectPhotoWithBlock:(BackImageBlock)block;
 
 @end

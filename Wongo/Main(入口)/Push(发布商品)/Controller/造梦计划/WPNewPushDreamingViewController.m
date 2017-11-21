@@ -16,17 +16,20 @@
 #import "WPNewPushAddressSelectCollectionViewCell.h"
 #import "WPPushDetailInformationCollectionViewCell.h"
 #import "WPNewPushSelectCollectionViewCell.h"
+#import "WPNewPushStoreCollectionViewCell.h"
 #import "WPNewPushTermsCollectionViewCell.h"
 
-#define Push_Placeholder @[@"",@"",@"",@"",@"请选择商品类型",@"请选择新旧程度",@"请输入商品价值(￥)",@"请输入",@"",@"",@""]
+#define Placeholders @[@"请选择商品种类",@"请选择商品新旧程度",@"请输入商品价值(￥)",@"是否成为寄梦人?"]
+#define Titles @[@"请选择您进行造梦的商品所属种类",@"请选择您进行造梦的商品新旧程度",@"请输入您进行造梦的商品预估价值",@"是否同意成为寄梦人?"]
 
-static NSString * const userInformationCell = @"userInformationCell";
-static NSString * const commodityInformationCell = @"commodityInformationCell";
-static NSString * const imagesCell = @"imagesCell";
+static NSString * const userInformationCell         = @"userInformationCell";
+static NSString * const commodityInformationCell    = @"commodityInformationCell";
+static NSString * const imagesCell  = @"imagesCell";
 static NSString * const addressCell = @"addressCell";
-static NSString * const detailInformationCell = @"detailInformationCell";
-static NSString * const selectCell = @"selectCell";
-static NSString * const termsCell = @"termsCell";
+static NSString * const detailInformationCell       = @"detailInformationCell";
+static NSString * const selectCell  = @"selectCell";
+static NSString * const termsCell   = @"termsCell";
+static NSString * const storeCell   = @"storeCell";
 
 @interface WPNewPushDreamingViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -36,6 +39,9 @@ static NSString * const termsCell = @"termsCell";
     CGFloat dataCellHeight;
     //记录描述组单元格高度
     CGFloat describeCellHeight;
+    //记录造梦故事单元格高度
+    CGFloat storeCellHeight;
+    
     /////////////
     ///物品信息///
     ////////////
@@ -96,9 +102,12 @@ static NSString * const termsCell = @"termsCell";
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushAddressSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:addressCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPPushDetailInformationCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:detailInformationCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushStoreCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
+        
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushTermsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:termsCell];
+        
         _collectionView.backgroundColor = AllBorderColor;
-        imagesCellHeight = 170.f;
+        imagesCellHeight = 175.f;
     }
     return _collectionView;
 }
@@ -129,7 +138,10 @@ static NSString * const termsCell = @"termsCell";
         }
         case 1:
         {
-            return CGSizeMake(WINDOW_WIDTH, 200.f);
+            if (describeCellHeight<200.f) {
+                return CGSizeMake(WINDOW_WIDTH, 200.f);
+            }
+            return CGSizeMake(WINDOW_WIDTH, describeCellHeight);
         }
         case 2:
         {
@@ -137,11 +149,14 @@ static NSString * const termsCell = @"termsCell";
         }
         case 3:case 4: case 5:case 6:case 7:
         {
-            return CGSizeMake(WINDOW_WIDTH, 50.f);
+            return CGSizeMake(WINDOW_WIDTH, 70.f);
         }
         case 8:
         {
-            return CGSizeMake(WINDOW_WIDTH, 50.f);
+            if (storeCellHeight<200.f) {
+                return CGSizeMake(WINDOW_WIDTH, 200.f);
+            }
+            return CGSizeMake(WINDOW_WIDTH, storeCellHeight);
         }
         case 9:
         {
@@ -176,7 +191,15 @@ static NSString * const termsCell = @"termsCell";
         case 1:
         {
             WPNewPushCommodityInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:commodityInformationCell forIndexPath:indexPath];
-            
+            [cell getGoodsNameBlockWithBlock:^(NSString *str) {
+                
+            }];
+            [cell getDescribeBlockWithBlock:^(NSString *str, CGFloat height) {
+                if (describeCellHeight!=height&&height>=200) {
+                    describeCellHeight = height;
+                    [collectionView reloadData];
+                }
+            }];
             return cell;
         }
             break;
@@ -199,7 +222,13 @@ static NSString * const termsCell = @"termsCell";
         case 3:case 4:
         {
             WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectCell forIndexPath:indexPath];
-            
+            if (indexPath.section == 3) {
+                cell.url = CommodityTypeUrl;
+            }else{
+                cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
+            }
+            cell.textField.placeholder = Placeholders[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section-3];
             return cell;
         }
             break;
@@ -207,22 +236,44 @@ static NSString * const termsCell = @"termsCell";
         case 5:case 6:
         {
             WPPushDetailInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:detailInformationCell forIndexPath:indexPath];
-            
+            if (indexPath.section == 5) {
+                [cell getTextFieldDataWithBlock:^(NSString *str) {
+                    
+                }];
+            }else{
+                [cell getTextFieldDataWithBlock:^(NSString *str) {
+                    
+                }];
+            }
+            cell.data.placeholder = Placeholders[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section-3];
+            cell.superView = collectionView;
+            cell.indexPath = indexPath;
+            return cell;
+        }
+            break;
+            //选择地址
+        case 7:
+        {
+            WPNewPushAddressSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:addressCell forIndexPath:indexPath];
+            [cell getAddressWithBlock:^(NSInteger adid) {
+                
+            }];
             return cell;
         }
             break;
             //造梦故事
-        case 7:
-        {
-            WPNewPushAddressSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:addressCell forIndexPath:indexPath];
-            
-            return cell;
-        }
-            break;
         case 8:
         {
-            WPPushDetailInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:detailInformationCell forIndexPath:indexPath];
-            
+            WPNewPushStoreCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
+            cell.superView = collectionView;
+            cell.indexPath = indexPath;
+            [cell getStoreBlockWithBlock:^(NSString *str, CGFloat height) {
+                if (storeCellHeight != height&&height>=200) {
+                    storeCellHeight = height;
+                    [collectionView reloadData];
+                }
+            }];
             return cell;
         }
             break;

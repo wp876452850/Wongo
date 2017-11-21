@@ -55,7 +55,7 @@
 }
 - (void)textViewDidChange:(UITextView *)textView{
     if (_describeBlock) {
-        _describeBlock(textView.text);
+        _describeBlock(textView.text,[textView.text getSizeWithFont:[UIFont systemFontOfSize:14.5f] maxSize:CGSizeMake(textView.width, MAXFLOAT)].height+145.f);
     }
     if (self.describe.text.length > 200 ) {
         self.describe.text = [self.describe.text substringToIndex:200];

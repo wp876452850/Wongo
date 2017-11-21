@@ -62,13 +62,13 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入本人联系电话，以便于配送是利于联系" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-Nr-lqx">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入本人联系电话，以便于配送时利于联系" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsW-Nr-lqx">
                         <rect key="frame" x="15" y="138" width="288" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入本人邮箱，接受平台发送的消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dy-eF-0xA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入本人邮箱，接收平台发送的消息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Dy-eF-0xA">
                         <rect key="frame" x="15" y="188" width="288" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="2QI-pJ-d3O"/>
@@ -113,7 +113,7 @@
                 <outlet property="name" destination="KcM-hv-HGR" id="uMD-me-zwc"/>
                 <outlet property="phone" destination="NeN-hi-K0b" id="K9b-05-8zP"/>
             </connections>
-            <point key="canvasLocation" x="-277" y="20"/>
+            <point key="canvasLocation" x="-438" y="23"/>
         </collectionViewCell>
     </objects>
 </document>

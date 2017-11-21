@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef void(^WPNewPushAddressBlock)(NSInteger adid);
 @interface WPNewPushAddressSelectCollectionViewCell : UICollectionViewCell
+
+-(void)getAddressWithBlock:(WPNewPushAddressBlock)block;
 
 @end

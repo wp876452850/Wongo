@@ -12,29 +12,55 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WPNewPushSelectCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="288" height="102"/>
+            <rect key="frame" x="0.0" y="0.0" width="288" height="88"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="288" height="102"/>
+                <rect key="frame" x="0.0" y="0.0" width="288" height="88"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="选择商品种类" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZ7-DU-qsV">
-                        <rect key="frame" x="15" y="36" width="258" height="30"/>
+                        <rect key="frame" x="15" y="10" width="258" height="34"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="惊了惊了" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pdk-4N-OSg">
+                        <rect key="frame" x="15" y="44" width="258" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="ujr-43-YC8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L0k-Rp-8iq">
+                        <rect key="frame" x="15" y="10" width="258" height="34"/>
+                        <connections>
+                            <action selector="actionSelect:" destination="gTV-IL-0wX" eventType="touchUpInside" id="t2E-xA-X2E"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="Pdk-4N-OSg" firstAttribute="leading" secondItem="FZ7-DU-qsV" secondAttribute="leading" id="A6o-Wq-l9f"/>
                 <constraint firstItem="FZ7-DU-qsV" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="15" id="DHy-yZ-1Eh"/>
+                <constraint firstItem="L0k-Rp-8iq" firstAttribute="leading" secondItem="FZ7-DU-qsV" secondAttribute="leading" id="LSs-Wt-wr3"/>
+                <constraint firstItem="L0k-Rp-8iq" firstAttribute="trailing" secondItem="FZ7-DU-qsV" secondAttribute="trailing" id="PSW-Xp-fju"/>
+                <constraint firstItem="L0k-Rp-8iq" firstAttribute="bottom" secondItem="FZ7-DU-qsV" secondAttribute="bottom" id="REC-tC-pV1"/>
                 <constraint firstAttribute="trailing" secondItem="FZ7-DU-qsV" secondAttribute="trailing" constant="15" id="aRt-dG-dEK"/>
-                <constraint firstItem="FZ7-DU-qsV" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="pcD-Xx-9PC"/>
+                <constraint firstItem="Pdk-4N-OSg" firstAttribute="trailing" secondItem="FZ7-DU-qsV" secondAttribute="trailing" id="kOA-d9-Twf"/>
+                <constraint firstItem="Pdk-4N-OSg" firstAttribute="top" secondItem="FZ7-DU-qsV" secondAttribute="bottom" id="nJd-J7-0aC"/>
+                <constraint firstItem="FZ7-DU-qsV" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="qlD-3i-WU3"/>
+                <constraint firstItem="L0k-Rp-8iq" firstAttribute="top" secondItem="FZ7-DU-qsV" secondAttribute="top" id="sAY-Pv-5SF"/>
             </constraints>
-            <size key="customSize" width="288" height="102"/>
-            <point key="canvasLocation" x="-106" y="21"/>
+            <size key="customSize" width="288" height="88"/>
+            <connections>
+                <outlet property="textField" destination="FZ7-DU-qsV" id="YJX-MZ-PWn"/>
+                <outlet property="title" destination="Pdk-4N-OSg" id="4um-Ad-e1G"/>
+            </connections>
+            <point key="canvasLocation" x="-561" y="-144"/>
         </collectionViewCell>
     </objects>
 </document>

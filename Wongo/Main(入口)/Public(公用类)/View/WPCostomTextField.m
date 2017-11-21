@@ -56,13 +56,13 @@
         _superView.bounds = CGRectMake(0.0f, -(offset+CGRectGetHeight(self.bounds)+20), _superView.frame.size.width, _superView.frame.size.height);
     }
     if (self.superViewIsTableViewCell) {
-        _superView.bounds = CGRectMake(0.0f, 258.0f, _superView.frame.size.width, _superView.frame.size.height);
+        _superView.y -= 258.f;
     }
     [UIView commitAnimations];
     NSLog(@"%@",_superView);
 }
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-    _superView.bounds = CGRectMake(0.0f, 0.0f, _superView.frame.size.width, _superView.frame.size.height);
+    _superView.y += 258.f;
 }
 -(void)dealloc{
     
