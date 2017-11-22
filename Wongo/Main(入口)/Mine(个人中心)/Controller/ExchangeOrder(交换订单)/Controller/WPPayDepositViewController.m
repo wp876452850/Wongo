@@ -58,7 +58,8 @@
     _pay.layer.masksToBounds = YES;
     _pay.layer.cornerRadius  = 5;
     self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount*.3 afterPoint:2]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:AliPay_PaymentNotice object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:AliPay_PaymentNotice object:self userInfo:@{@"payType":self.aliPayUrl}];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:self.aliPayUrl object:nil];
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -66,29 +67,30 @@
 
 /**支付回调 */
 - (void)alipayBack:(NSNotification *)note{
-    NSDictionary *result = note.object;
-    __block typeof(self)weakSelf = self;
-    LYAliPayResult *res = [LYAliPayResult mj_objectWithKeyValues:result];
-    if (res.resultStatus == 9000||res.resultStatus == 8000 || res.resultStatus == 6004|| res.resultStatus == 6001) {
-        //9000	订单支付成功
-        //8000	正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
-        //6004	支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
-        if ([weakSelf.aliPayUrl isEqualToString:AliPaySignup]) {
-            if (_payMoneyBlock) {
-                _payMoneyBlock(res.resultStatus);
-            }
-            [weakSelf.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-        LYAliPayResultController * vc = [[LYAliPayResultController alloc] init];
-        vc.result = res;
-        [self.navigationController pushViewController:vc animated:NO];
-    } else {
-        [SVProgressHUD showErrorWithStatus:res.memo];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [SVProgressHUD dismiss];
-        });
-    }
+    [self.navigationController popViewControllerAnimated:NO];
+//    NSDictionary *result = note.object;
+//    __block typeof(self)weakSelf = self;
+//    LYAliPayResult *res = [LYAliPayResult mj_objectWithKeyValues:result];
+//    if (res.resultStatus == 9000||res.resultStatus == 8000 || res.resultStatus == 6004|| res.resultStatus == 6001) {
+//        //9000	订单支付成功
+//        //8000	正在处理中，支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+//        //6004	支付结果未知（有可能已经支付成功），请查询商户订单列表中订单的支付状态
+//        if ([weakSelf.aliPayUrl isEqualToString:AliPaySignup]) {
+//            if (_payMoneyBlock) {
+//                _payMoneyBlock(res.resultStatus);
+//            }
+//            [weakSelf.navigationController popViewControllerAnimated:YES];
+//            return;
+//        }
+//        LYAliPayResultController * vc = [[LYAliPayResultController alloc] init];
+//        vc.result = res;
+//        [self.navigationController pushViewController:vc animated:NO];
+//    } else {
+//        [SVProgressHUD showErrorWithStatus:res.memo];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [SVProgressHUD dismiss];
+//        });
+//    }
 }
 
 -(void)getStateBlock:(PayMoneyBlock)block{
@@ -106,12 +108,12 @@
     CGFloat f = [self notRounding:[self.payAmountField.text substringFromIndex:1].floatValue afterPoint:2];
     NSLog(@"%@",[self.payAmountField.text substringFromIndex:1]);
     CGFloat v = [self notRounding:self.myAmount * 0.3 afterPoint:2];
-    if (f >= v) {      
+    if (f >= v) {
+        __block typeof(self)weakSelf = self;
         [WPNetWorking createPostRequestMenagerWithUrlString:self.aliPayUrl params:self.params datas:^(NSDictionary *responseObject) {
             NSString *appScheme = @"wongo";
             [[AlipaySDK defaultService] payOrder:responseObject[@"orderStr"] fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                 NSLog(@"reslut = %@",resultDic);
-                [[NSNotificationCenter defaultCenter] postNotificationName:AliPay_PaymentNotice object:resultDic];
             }];
 
         }];
@@ -155,14 +157,12 @@
                     if(single == '.'){
                         [textField.text stringByReplacingCharactersInRange:range withString:@""];
                         return NO;
-                        
                     }
                 }
                 if([textField.text length]==1 && [textField.text isEqualToString:@"0"]){
                     if(single != '.'){
                         [textField.text stringByReplacingCharactersInRange:range withString:@""];
                         return NO;
-                        
                     }
                 }
                 if (single=='.')

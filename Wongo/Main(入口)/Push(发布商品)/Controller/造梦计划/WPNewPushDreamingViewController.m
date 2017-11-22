@@ -53,8 +53,6 @@ static NSString * const storeCell   = @"storeCell";
     NSString * _newOrOld;
     //商品价格
     NSString * _price;
-    //种类
-    NSString * _species;
     //种类id
     NSString * _specieid;
     /**造梦故事*/
@@ -117,6 +115,7 @@ static NSString * const storeCell   = @"storeCell";
     self.itemHeights = [NSMutableArray arrayWithCapacity:3];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.pushButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:AliPaySignup object:nil];
 }
 
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
@@ -292,11 +291,32 @@ static NSString * const storeCell   = @"storeCell";
 
 #pragma mark - 支付
 -(void)payFee{
+    if (![self determineWhetherTheDataIntegrity]) {
+        return;
+    }
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
         
         WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@"signupid"],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
         [weakSelf.navigationController pushViewController:payvc animated:YES];
     }];
+}
+//判断是否有空数据
+-(BOOL)determineWhetherTheDataIntegrity{
+    if (_name.length!=0&&_describe.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0) {
+    }
+    return YES;
+}
+#pragma mark - 支付通知中心回调
+-(void)alipayBack:(NSNotification *)notification{
+    NSDictionary *result = notification.object;
+    if ([result[@"resultStatus"] integerValue] == 9000) {
+        [self upLoadDreamingInformation];
+    }
+}
+#pragma mark - 上传造梦计划申请
+//付钱后上传
+-(void)upLoadDreamingInformation{
+    
 }
 @end

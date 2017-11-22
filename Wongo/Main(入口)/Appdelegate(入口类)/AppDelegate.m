@@ -30,7 +30,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(payType:) name:AliPay_PaymentNotice object:nil];
     
 #pragma mark - 引导页
     //判断是否第一次登录
@@ -315,10 +315,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if ([url.host isEqualToString:@"safepay"]) {
         //跳转支付宝钱包进行支付，处理支付结果
         // 支付跳转支付宝钱包进行支付，处理支付结果
+        __block typeof(self)weakSelf = self;
         [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
             NSLog(@"result = %@",resultDic);
             //发送通知
-            [[NSNotificationCenter defaultCenter] postNotificationName:AliPay_PaymentNotice object:resultDic];
+            [[NSNotificationCenter defaultCenter]postNotificationName:weakSelf.payType object:resultDic];
         }];
         
         // 授权跳转支付宝钱包进行支付，处理支付结果
@@ -345,6 +346,11 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo {
         return result;
     }
     return YES;
+}
+//支付类型:通知中心
+-(void)payType:(NSNotification *)notification{
+    self.payType = notification.userInfo[@"payType"];
+    
 }
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
