@@ -56,7 +56,7 @@
 
 -(WPCostomTextField *)user{
     if (!_user) {
-        _user = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 400, 100, 40) openRisingView:YES superView:self.view];
+        _user = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 400, 100, 40) openRisingView:NO superView:self.view];
         _user.placeholder       = @"请输入账号";
         
     }
@@ -65,7 +65,7 @@
 
 -(WPCostomTextField *)password{
     if (!_password) {
-        _password = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 500, 100, 40) openRisingView:YES superView:self.view];
+        _password = [WPCostomTextField createCostomTextFieldWithFrame:CGRectMake(100, 500, 100, 40) openRisingView:NO superView:self.view];
         _password.placeholder       = @"请输入密码";
         _password.secureTextEntry   = YES;
     }
@@ -81,6 +81,7 @@
     }
     return _backButton;
 }
+
 -(UIImageView *)bgImage
 {
     if (!_bgImage) {

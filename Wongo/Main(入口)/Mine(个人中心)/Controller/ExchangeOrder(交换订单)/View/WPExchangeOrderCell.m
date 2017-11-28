@@ -69,9 +69,9 @@
     [_myGoodsImage sd_setImageWithURL:[NSURL URLWithString:model.myModel.url] placeholderImage:nil];
     [_partnerGoodsImage sd_setImageWithURL:[NSURL URLWithString:model.partnerModel.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text         = model.myModel.gname;
-    _goodsPrice.text        = [NSString stringWithFormat:@"￥%@",model.myModel.price];
+    _goodsPrice.text        = [NSString stringWithFormat:@"￥%ld",[model.myModel.price integerValue]];
     _partnerGoodsName.text  = model.partnerModel.gname;
-    _partnerGoodsPrice.text =  [NSString stringWithFormat:@"￥%@",model.partnerModel.price];
+    _partnerGoodsPrice.text =  [NSString stringWithFormat:@"￥%ld",[model.partnerModel.price integerValue]];
     
     NSString *rightTitle = @"";
     if (model.state <= RightButtonTitles.count && model.state >= 0) {

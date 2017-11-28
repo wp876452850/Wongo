@@ -49,7 +49,7 @@
     }
     _goodsName.attributedText = attributeString;
     
-    _price.text = [NSString stringWithFormat:@"￥%@",model.price];
+    _price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

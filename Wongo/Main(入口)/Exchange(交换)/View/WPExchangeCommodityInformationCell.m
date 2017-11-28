@@ -83,10 +83,7 @@
          _goodsName.attributedText = [WPAttributedString attributedStringWithAttributedString:attributedString insertImage:[UIImage imageNamed:@"goodsnew"] atIndex:0 imageBounds:CGRectMake(0, -1.5, 41, 16)];
     }
     _oldNew.text    = model.neworold;
-    _price.text     = [NSString stringWithFormat:@"￥%.2f",[model.price floatValue]];
-//    [UILabel changeWordSpaceForLabel:_price WithSpace:-0.2f];
-//    _price.attributedText = [WPAttributedString attributedStringWithAttributedString:_price.attributedText insertImage:[UIImage imageNamed:@"goodsprice"] atIndex:0 imageBounds:CGRectMake(0, -2, 12.5, 25)];
-    
+    _price.text     = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
     
     _freightNumber = [_model.freight integerValue];
     _collectionNumber.text = [NSString stringWithFormat:@"收藏量:%ld",_freightNumber];

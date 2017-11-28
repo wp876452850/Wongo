@@ -36,7 +36,7 @@
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:model.goodsImage_url] placeholderImage:[UIImage imageNamed:@"broken"]];
     self.goodsName.text = model.goodsName;
     self.goodsNumber.text = model.goodsNumber;
-    self.price.text = [NSString stringWithFormat:@"%@%@",model.price_unit,model.price];
+    self.price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 -(void)numberWithAddBlock:(WPNumberChangeBlock)block
 {

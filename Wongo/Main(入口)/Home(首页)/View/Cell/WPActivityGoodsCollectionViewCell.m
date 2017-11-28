@@ -58,8 +58,7 @@
     [_goodsImageOne sd_setImageWithURL:model.listimg[0][@"url"] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     self.wantExchange.text = [NSString stringWithFormat:@"%ld人想换",_wantNumber];
     
-    self.price.text = [NSString stringWithFormat:@"￥%@",model.price];
-    NSLog(@"%@",[NSMutableArray sharedThumupArray]);
+    self.price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
     if ([NSMutableArray thumUpWithinArrayContainsGid:model.gid]) {
         _thumup.selected = YES;
     }

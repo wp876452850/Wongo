@@ -37,7 +37,7 @@
     _collectNumber.text = model.freight;
     _collect.selected = [model.collect boolValue];
     //_originalPrice.text = [NSString stringWithFormat:@"%@%@",model.priceUnit,model.originalPrice];
-    _presentPrice.text = [NSString stringWithFormat:@"￥%@",model.price];
+    _presentPrice.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 
 @end

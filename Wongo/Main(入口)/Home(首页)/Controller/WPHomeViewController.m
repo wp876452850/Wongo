@@ -229,6 +229,11 @@ static NSString * contentOffset = @"contentOffset";
                 WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
                 [weakSelf loadDreamingInformationDatasWithPlid:model.plid];                
             }
+            if (listplan.count <=0) {
+                [weakSelf.hud hide:YES];
+                [weakSelf.collectionView reloadData];
+                [weakSelf.collectionView.mj_header endRefreshing];
+            }
         }
     } failureBlock:^{
         [weakSelf.collectionView reloadData];

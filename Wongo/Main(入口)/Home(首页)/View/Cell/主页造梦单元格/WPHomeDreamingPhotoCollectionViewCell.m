@@ -32,6 +32,6 @@
 -(void)setModel:(WPNewHomeDreamingPhotoModel *)model{
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     self.name.text = model.proname;
-    self.price.text = [NSString stringWithFormat:@"￥%@",model.price];
+    self.price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 @end

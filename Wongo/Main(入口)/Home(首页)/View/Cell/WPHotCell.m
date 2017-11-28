@@ -39,7 +39,7 @@
     _goodsName.text         = model.gname;
     _collectButton.selected = model.collection;
     _collectNumber.text     = model.collectNumber;
-    _projectNumber.text     = [NSString stringWithFormat:@"￥%@",model.price];
+    _projectNumber.text     = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 //点赞
 - (IBAction)collect:(UIButton *)sender {

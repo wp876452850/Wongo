@@ -31,7 +31,7 @@
     _model = model;
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _goodsName.text = model.gname;
-    _price.text = [NSString stringWithFormat:@"%.2f",model.price.floatValue];
+    _price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
 }
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

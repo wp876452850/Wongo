@@ -119,8 +119,8 @@
     _goodsName.text = model.proname;
     _paymentStatus.text = statusTitle;
     _specifications.text = model.remark;
-    _price.text = [NSString stringWithFormat:@"￥%@",model.price];
-    _totalPrice.text = [NSString stringWithFormat:@"￥%@",model.price];
+    _price.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
+    _totalPrice.text = [NSString stringWithFormat:@"￥%ld",[model.price integerValue]];
     [_rightButton setTitle:statusButtonTitle forState:UIControlStateNormal];
 }
 
