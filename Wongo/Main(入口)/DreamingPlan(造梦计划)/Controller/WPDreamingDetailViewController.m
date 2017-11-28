@@ -489,7 +489,7 @@ static NSString * const recommendCell   = @"recommendCell";
     UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"发送" forState:UIControlStateNormal];
     button.frame = CGRectMake(WINDOW_WIDTH - 80, 5, 60, 30);
-    button.backgroundColor = SelfOrangeColor;
+    button.backgroundColor = SelfThemeColor;
     button.layer.masksToBounds = YES;
     button.layer.cornerRadius  = 10;
     button.titleLabel.font = [UIFont systemFontOfSize:15];

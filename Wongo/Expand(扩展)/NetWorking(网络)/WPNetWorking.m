@@ -7,6 +7,7 @@
 //
 
 #import "WPNetWorking.h"
+#import "MBProgressHUD.h"
 
 @implementation WPNetWorking
 
@@ -30,7 +31,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
     }];
-    
 }
 
 +(void)createPostRequestMenagerWithUrlString:(NSString *)urlString params:(NSDictionary *)params datas:(DataBlock)datas{
@@ -77,13 +77,11 @@
     }];
 }
 
-
 +(NSArray *)getHomeDataModelArray{
     NSMutableArray * dataSource = [NSMutableArray arrayWithCapacity:3];
     
     return dataSource;
 }
-
 
 //上传图片
 +(void)uploadedMorePhotosWithUrlString:(NSString *)urlString image:(UIImage *)image params:(NSDictionary *)params{

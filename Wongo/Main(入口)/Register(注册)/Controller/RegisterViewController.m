@@ -79,7 +79,7 @@
 - (UIButton *)userAgreement{
     if (!_userAgreement) {
         _userAgreement = [[UIButton alloc] init];
-        [_userAgreement setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+        [_userAgreement setTitleColor:SelfThemeColor forState:UIControlStateNormal];
         _userAgreement.titleLabel.font = [UIFont systemFontOfSize:14];
         [_userAgreement setTitle:@"注册即同意《碗糕用户服务协议》" forState:UIControlStateNormal];
         [_userAgreement sizeToFit];

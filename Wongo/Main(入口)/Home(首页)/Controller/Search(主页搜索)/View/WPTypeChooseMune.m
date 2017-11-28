@@ -53,7 +53,7 @@
         [button addTarget:self action:@selector(changeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:button];
         [button setTitleColor:WhiteColor forState:UIControlStateNormal];
-        [button setTitleColor:SelfOrangeColor forState:UIControlStateSelected];
+        [button setTitleColor:SelfThemeColor forState:UIControlStateSelected];
         if (i == 0) {
             button.selected = YES;
             self.selectButton = button;

@@ -30,8 +30,10 @@
 {
     if (!_loginBtn) {
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_loginBtn setBackgroundImage:[UIImage imageNamed:@"login"] forState:UIControlStateNormal];
-        [_loginBtn setBackgroundImage:[UIImage imageNamed:@"login_select"] forState:UIControlStateHighlighted];
+        _loginBtn.layer.masksToBounds = YES;
+        _loginBtn.layer.cornerRadius = 20.f;
+        _loginBtn.backgroundColor = SelfThemeColor;
+        [_loginBtn setTitle:@"登录" forState:UIControlStateNormal];
         [_loginBtn addTarget:self action:@selector(clickLogin) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loginBtn;
@@ -41,7 +43,12 @@
 {
     if (!_registerBtn) {
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_registerBtn setBackgroundImage:[UIImage imageNamed:@"register"] forState:UIControlStateNormal];
+        _registerBtn.layer.masksToBounds = YES;
+        _registerBtn.layer.cornerRadius = 20.f;
+        _registerBtn.layer.borderWidth = 1.f;
+        _registerBtn.layer.borderColor = SelfThemeColor.CGColor;
+        [_registerBtn setTitleColor:SelfThemeColor forState:UIControlStateNormal];
+        [_registerBtn setTitle:@"注册" forState:UIControlStateNormal];
         [_registerBtn addTarget:self action:@selector(goRegister) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerBtn;
@@ -123,8 +130,8 @@
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-30);
     }];
-    label1.backgroundColor = ColorWithRGB(255, 204, 92);
-    label2.backgroundColor = ColorWithRGB(255, 204, 92);
+    label1.backgroundColor = SelfThemeColor;
+    label2.backgroundColor = SelfThemeColor;
     
     
     UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-90, 90, 20)];
@@ -132,9 +139,9 @@
     label.text = @"第三方登录";
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:13.f];
-    label.textColor = ColorWithRGB(255, 204, 92);
-    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
-    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:ColorWithRGB(255, 204, 92)]];
+    label.textColor = SelfThemeColor;
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(40, label.centerY) moveForPoint:CGPointMake(label.left - 10, label.centerY) lineColor:SelfThemeColor]];
+    [self.view.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH-40, label.centerY) moveForPoint:CGPointMake(label.right + 10, label.centerY) lineColor:SelfThemeColor]];
     
     [self.view addSubview:label];
     
@@ -184,8 +191,8 @@
 //前往注册界面
 -(void)goRegister{
     __weak LoginViewController * weakSelf = self;
-//    WPRegisterViewController * registerVC = [[WPRegisterViewController alloc]init];
-    RegisterViewController * registerVC = [[RegisterViewController alloc]init];
+    WPRegisterViewController * registerVC = [[WPRegisterViewController alloc]init];
+//    RegisterViewController * registerVC = [[RegisterViewController alloc]init];
     [registerVC getRegisterUserAndPasswordWithBlock:^(NSString *user, NSString *password) {
         _user.text = user;
         _password.text = password;

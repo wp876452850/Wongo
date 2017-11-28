@@ -45,7 +45,7 @@
         _addAddress = [UIButton buttonWithType:UIButtonTypeCustom];
         _addAddress.frame = CGRectMake(5, WINDOW_HEIGHT- 40, WINDOW_WIDTH-10, 35);
         [_addAddress setTitle:@"新增地址" forState:UIControlStateNormal];
-        _addAddress.backgroundColor = SelfOrangeColor;
+        _addAddress.backgroundColor = SelfThemeColor;
         [_addAddress addTarget:self action:@selector(goAddAddress) forControlEvents:UIControlEventTouchUpInside];
         _addAddress.layer.masksToBounds = YES;
         _addAddress.layer.cornerRadius  = 5;
@@ -66,7 +66,7 @@
         _resultAddress = [UIButton buttonWithType:UIButtonTypeCustom];
         _resultAddress.frame = CGRectMake(5, WINDOW_HEIGHT- 40, WINDOW_WIDTH-10, 35);
         [_resultAddress setTitle:@"新增地址" forState:UIControlStateNormal];
-        _resultAddress.backgroundColor = SelfOrangeColor;
+        _resultAddress.backgroundColor = SelfThemeColor;
         [_resultAddress addTarget:self action:@selector(goAddAddress) forControlEvents:UIControlEventTouchUpInside];
         _resultAddress.layer.masksToBounds = YES;
         _resultAddress.layer.cornerRadius  = 5;

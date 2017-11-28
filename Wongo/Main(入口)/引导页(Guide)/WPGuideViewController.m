@@ -23,7 +23,7 @@
         _pageControl.centerX = self.view.centerX;
         _pageControl.centerY = WINDOW_HEIGHT - 60;
         _pageControl.pageIndicatorTintColor = ColorWithRGB(222, 222, 222);
-        _pageControl.currentPageIndicatorTintColor = SelfOrangeColor;
+        _pageControl.currentPageIndicatorTintColor = SelfThemeColor;
         _pageControl.numberOfPages = GuideImages.count;
         _pageControl.currentPage = 0;
         _pageControl.userInteractionEnabled = NO;
@@ -36,7 +36,7 @@
         _passButton.frame = CGRectMake(self.guideScrollView.contentSize.width - 120, 30, 120, 30);
         _passButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
         _passButton.backgroundColor = [UIColor clearColor];
-        [_passButton setTintColor:SelfOrangeColor];
+        [_passButton setTintColor:SelfThemeColor];
         [_passButton setTitle:@"点击进入>>>" forState:UIControlStateNormal];
         [_passButton addTarget:self action:@selector(pass) forControlEvents:UIControlEventTouchUpInside];
     }

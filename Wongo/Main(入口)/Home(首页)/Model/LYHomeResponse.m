@@ -39,10 +39,10 @@
         case 0:
             return self.listxl.count;
             break;
-        case 1:
+        case 2:
             return self.listfl.count;
             break;
-        case 2:
+        case 1:
             return self.listzl.count;
             break;
         default:

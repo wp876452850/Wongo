@@ -128,7 +128,7 @@
     [_rightButton setTitle:rightTitle forState:UIControlStateNormal];
     _transactionStatus.text = [NSString stringWithFormat:@"交易状态: %@",transcationStatusTitle];
     if (model.state  != 0) {
-        _rightButton.backgroundColor = SelfOrangeColor;
+        _rightButton.backgroundColor = SelfThemeColor;
     }else{
         _rightButton.backgroundColor = [UIColor clearColor];
     }

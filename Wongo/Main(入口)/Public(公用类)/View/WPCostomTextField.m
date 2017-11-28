@@ -52,7 +52,7 @@
     
     if(offset > -20)
     {
-        _superView.backgroundColor = SelfOrangeColor;
+        _superView.backgroundColor = SelfThemeColor;
         _superView.bounds = CGRectMake(0.0f, -(offset+CGRectGetHeight(self.bounds)+20), _superView.frame.size.width, _superView.frame.size.height);
     }
     if (self.superViewIsTableViewCell) {

@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _presentPrice.textColor = SelfOrangeColor;
+    _presentPrice.textColor = SelfThemeColor;
     
     [_collect setImage:[UIImage imageNamed:@"collectBtn"] forState:UIControlStateNormal];
     [_collect setImage:[UIImage imageNamed:@"select_select_address"] forState:UIControlStateSelected];

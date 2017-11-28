@@ -45,7 +45,7 @@
         _pageControl.centerX = self.view.centerX;
         _pageControl.centerY = WINDOW_HEIGHT - 60;
         _pageControl.pageIndicatorTintColor = ColorWithRGB(222, 222, 222);
-        _pageControl.currentPageIndicatorTintColor = SelfOrangeColor;
+        _pageControl.currentPageIndicatorTintColor = SelfThemeColor;
         _pageControl.numberOfPages = RecommendImages.count;
         _pageControl.currentPage = self.currentPage;
         _pageControl.userInteractionEnabled = NO;
@@ -73,11 +73,11 @@
                     button.bottom = WINDOW_HEIGHT - 130 - (i*120);
                     button.centerX = imageView.width/2;
                     [button setTitle:@[@"联系客服",@"联系用户"][i] forState:UIControlStateNormal];
-                    [button setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+                    [button setTitleColor:SelfThemeColor forState:UIControlStateNormal];
                     button.layer.masksToBounds = YES;
                     button.layer.cornerRadius = 5.f;
                     button.layer.borderWidth = 1.f;
-                    button.layer.borderColor = SelfOrangeColor.CGColor;
+                    button.layer.borderColor = SelfThemeColor.CGColor;
                     button.tag = i;
                     [button addTarget:self action:@selector(goChat:) forControlEvents:UIControlEventTouchUpInside];
                     
@@ -97,11 +97,11 @@
                 button.centerX = imageView.width/2;
                 button.centerY = WINDOW_HEIGHT*0.65;
                 [button setTitle:@"拨打电话" forState:UIControlStateNormal];
-                [button setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+                [button setTitleColor:SelfThemeColor forState:UIControlStateNormal];
                 button.layer.masksToBounds = YES;
                 button.layer.cornerRadius = 5.f;
                 button.layer.borderWidth = 1.f;
-                button.layer.borderColor = SelfOrangeColor.CGColor;
+                button.layer.borderColor = SelfThemeColor.CGColor;
 
                 [button addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
                 [imageView addSubview:button];

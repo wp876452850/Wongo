@@ -77,7 +77,7 @@
     [self.view addSubview:self.nav];
     UIButton * button           = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:@"确定" forState:UIControlStateNormal];
-    button.backgroundColor      = SelfOrangeColor;
+    button.backgroundColor      = SelfThemeColor;
     button.frame                = CGRectMake(0, WINDOW_HEIGHT - 40, WINDOW_WIDTH, 40);
     button.layer.masksToBounds  = YES;
     button.layer.cornerRadius   = 5;

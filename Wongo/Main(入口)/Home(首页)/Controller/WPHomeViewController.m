@@ -25,16 +25,18 @@
 #import "WPNewHomeDreamingCollectionViewCell.h"
 #import "WPNewHomeDreamingPhotoModel.h"
 
+#define Dreaming_Section 1
+#define Exchange_Section 2
 
 #define COLLECTIONVIEW_FRAME CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 49)
 
 #define RollPlayImages @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
 
 
-#define ThemeNameArray      @[@"HOT",@"CHANGE SIDES",@"DREAM"]
-#define Theme2NameArray     @[@"热门",@"交换",@"造梦"]
-#define ThemeIconArray      @[@"hotthemeicon",@"exchangethemeicon",@"homedreamingicon"]
-#define ThemeNameColorArray @[ColorWithRGB(255, 129, 37),ColorWithRGB(125, 153, 224),ColorWithRGB(0, 123, 249)]
+#define ThemeNameArray      @[@"HOT",@"DREAM",@"CHANGE SIDES"]
+#define Theme2NameArray     @[@"热门",@"造梦",@"交换"]
+#define ThemeIconArray      @[@"hotthemeicon",@"homedreamingicon",@"exchangethemeicon"]
+#define ThemeNameColorArray @[ColorWithRGB(255, 129, 37),ColorWithRGB(0, 123, 249),ColorWithRGB(125, 153, 224)]
 
 #define Cell_HeightDouble (WINDOW_WIDTH*0.5 )
 #define Cell_HeightSigleLine (0.54*WINDOW_WIDTH)
@@ -64,9 +66,12 @@ static NSString * contentOffset = @"contentOffset";
 
 @property (nonatomic, strong) LYHomeResponse *response;
 /**广告页*/
+
 @property (nonatomic,strong)WPAdvertisingView * advertisingView;
 
 @property (nonatomic,strong)WPDreamingModel * dreamingModel;
+
+@property (nonatomic,strong)MBProgressHUD * hud;
 @end
 
 @implementation WPHomeViewController
@@ -181,6 +186,8 @@ static NSString * contentOffset = @"contentOffset";
 -(void)loadData{
     _plids = [NSMutableArray arrayWithCapacity:3];
     __block WPHomeViewController * weakSelf = self;
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.hud.removeFromSuperViewOnHide = YES;
     [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
         LYHomeResponse * response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
         weakSelf.response = response;
@@ -225,6 +232,7 @@ static NSString * contentOffset = @"contentOffset";
         }
     } failureBlock:^{
         [weakSelf.collectionView reloadData];
+        [weakSelf.hud hide:YES];
         [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
@@ -252,8 +260,9 @@ static NSString * contentOffset = @"contentOffset";
         weakSelf.dreamingModel.introduceModel.dreamingIntroduces = responseObject[@"list"];
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView reloadData];
-        
+        [weakSelf.hud hide:YES];
     } failureBlock:^{
+        [weakSelf.hud hide:YES];
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView reloadData];
     }];
@@ -286,7 +295,7 @@ static NSString * contentOffset = @"contentOffset";
     if (indexPath.section == 3) {
         return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
     }
-    if (indexPath.section == 2) {
+    if (indexPath.section == Dreaming_Section) {
         return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*0.6+10+(WINDOW_WIDTH/3) + 90);
     }
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, Cell_HeightDouble);
@@ -307,12 +316,12 @@ static NSString * contentOffset = @"contentOffset";
             return 0;
         }
             break;
-        case 1:{
+        case Exchange_Section:{
             NSInteger num = self.response.listfk.count + (self.response.listfl.count?1:0);
             return num > 5?5:num;
         }
             break;
-        case 2:{
+        case Dreaming_Section:{
             return self.dreamingModel.introduceModel.dreamingIntroduces.count>1?1:self.dreamingModel.introduceModel.dreamingIntroduces.count;
             //return self.dreamings.count>5?5:self.dreamings.count;
         }
@@ -331,10 +340,10 @@ static NSString * contentOffset = @"contentOffset";
                 case 0:
                     cell.categorys = self.response.listxl;
                     break;
-                case 1:
+                case Exchange_Section:
                     cell.categorys = self.response.listfl;
                     break;
-                case 2:
+                case Dreaming_Section:
                     cell.categorys = self.response.listzl;
                     break;
             }
@@ -346,7 +355,7 @@ static NSString * contentOffset = @"contentOffset";
         cell.model = self.dataSourceArray[indexPath.row];
         return cell;
     }
-    else if (indexPath.section == 2){
+    else if (indexPath.section == Dreaming_Section){
         WPNewHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
         cell.model = self.dreamingModel;
         //cell.model = self.dreamings[indexPath.row];
@@ -364,10 +373,10 @@ static NSString * contentOffset = @"contentOffset";
             case 0:
                 cell.category = self.response.listxk[index];
                 break;
-            case 1:
+            case Exchange_Section:
                 cell.category = self.response.listfk[index];
                 break;
-            case 2:
+            case Dreaming_Section:
                 cell.category = self.response.listzk[index];
                 break;
             default:
@@ -432,7 +441,7 @@ static NSString * contentOffset = @"contentOffset";
         }
         WPHomeReusableView * reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableView" forIndexPath:indexPath];
         //隐藏热门区头
-        if (indexPath.section < 3&&indexPath.section!=0) {
+        if (indexPath.section < 3 &&indexPath.section!=0) {
             WPHomeReusableModel * model = self.reusableDataSource[indexPath.section];
             reusableView.model = model;
         }

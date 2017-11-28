@@ -483,7 +483,7 @@
     CGFloat h = 40;
     CGFloat m = 5;
     _btnB = [[UIButton alloc] initWithFrame:CGRectMake(m, WINDOW_HEIGHT - m - h, WINDOW_WIDTH - m * 2, h)];
-    _btnB.backgroundColor = SelfOrangeColor;
+    _btnB.backgroundColor = SelfThemeColor;
     _btnB.layer.cornerRadius = 2.5;
     _btnB.layer.masksToBounds = YES;
     [_btnB addTarget:self action:@selector(btnBClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -492,7 +492,7 @@
     _btnA = [[UIButton alloc] initWithFrame:CGRectMake(m, WINDOW_HEIGHT - 2 * (m + h), WINDOW_WIDTH - m * 2, h)];
     _btnA.layer.cornerRadius = 2.5;
     _btnA.layer.masksToBounds = YES;
-    _btnA.backgroundColor = SelfOrangeColor;
+    _btnA.backgroundColor = SelfThemeColor;
     [_btnA addTarget:self action:@selector(btnAClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnA];
 }

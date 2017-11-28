@@ -53,7 +53,7 @@
 #define TitleBlackColor     ColorWithRGB(34, 34, 34)
 #define TitleGrayColor      ColorWithRGB(128, 128, 128)
 //橘色
-#define SelfOrangeColor     ColorWithRGB(252,139,29)
+#define SelfThemeColor     ColorWithRGB(72, 135, 190)
 //线条颜色
 #define AllBorderColor      ColorWithRGB(217, 217, 217)
 //基础色

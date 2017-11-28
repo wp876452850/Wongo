@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UILabel *label = [[UILabel alloc] init];
-    label.textColor = SelfOrangeColor;
+    label.textColor = SelfThemeColor;
     if (self.result.resultStatus == 9000) {
         label.text = @"支付成功";
         label.textColor = [UIColor blackColor];
@@ -47,9 +47,9 @@
     btn.layer.cornerRadius = 5;
     btn.layer.masksToBounds = YES;
     btn.layer.borderWidth = 1;
-    btn.layer.borderColor = SelfOrangeColor.CGColor;
+    btn.layer.borderColor = SelfThemeColor.CGColor;
     [btn setTitle:@"返回首页" forState:UIControlStateNormal];
-    [btn setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+    [btn setTitleColor:SelfThemeColor forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(gotoHome:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
 }

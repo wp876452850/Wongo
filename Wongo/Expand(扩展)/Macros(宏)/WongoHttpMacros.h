@@ -23,6 +23,8 @@
 
 /**注册*/
 #define UseraddUrl              HttpHead(@"useradd")
+/**发送验证码*/
+#define SendUrl                 HttpHead(@"send")
 
 /**修改用户头像*/
 #define UpdataUserHeaderImage   HttpHead(@"saveImage")

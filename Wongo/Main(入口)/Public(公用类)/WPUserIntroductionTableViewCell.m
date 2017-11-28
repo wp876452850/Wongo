@@ -24,11 +24,11 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [_collectButton setTitle:@"+关注" forState:UIControlStateNormal];
     [_collectButton setTitle:@"已关注" forState:UIControlStateSelected];
-    [_collectButton setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+    [_collectButton setTitleColor:SelfThemeColor forState:UIControlStateNormal];
     _collectButton.layer.masksToBounds = YES;
     _collectButton.layer.cornerRadius  = _collectButton.height/2;
     _collectButton.layer.borderWidth   = 1;
-    _collectButton.layer.borderColor   = SelfOrangeColor.CGColor;
+    _collectButton.layer.borderColor   = SelfThemeColor.CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

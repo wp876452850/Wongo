@@ -135,7 +135,7 @@
 #pragma mark - touchesBegan
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

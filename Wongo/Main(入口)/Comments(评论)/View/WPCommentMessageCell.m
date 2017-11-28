@@ -47,8 +47,8 @@
     }else{
         comment = [NSString stringWithFormat:@"%@回复%@:%@",model.uname,model.byuname,model.commentContent];}
     NSMutableAttributedString * content = [[NSMutableAttributedString alloc]initWithString:comment];
-    [content addAttribute:NSForegroundColorAttributeName value:SelfOrangeColor range:NSMakeRange(0, model.uname.length)];
-    [content addAttribute:NSForegroundColorAttributeName value:SelfOrangeColor range:NSMakeRange(model.uname.length+2, model.byuname.length)];
+    [content addAttribute:NSForegroundColorAttributeName value:SelfThemeColor range:NSMakeRange(0, model.uname.length)];
+    [content addAttribute:NSForegroundColorAttributeName value:SelfThemeColor range:NSMakeRange(model.uname.length+2, model.byuname.length)];
     self.commentContent.attributedText = content;
     
 }

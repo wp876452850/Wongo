@@ -53,7 +53,7 @@
     UILabel * price = [[UILabel alloc]init];
     [self addSubview:price];
     price.font = [UIFont systemFontOfSize:14];
-    price.textColor = SelfOrangeColor;
+    price.textColor = SelfThemeColor;
     price.text = [NSString stringWithFormat:@"￥%@",_model.price];
     self.goodsImage = goodsImage;
     self.gname = gname;

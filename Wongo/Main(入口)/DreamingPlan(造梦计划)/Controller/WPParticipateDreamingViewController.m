@@ -192,7 +192,7 @@ static NSString * const cell            = @"cell";
                 NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@",name,comments]];
                 [attributedString addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:NSMakeRange(0, name.length+comments.length)];
                 
-                [attributedString addAttribute:NSForegroundColorAttributeName value:SelfOrangeColor range:NSMakeRange(name.length, comments.length)];
+                [attributedString addAttribute:NSForegroundColorAttributeName value:SelfThemeColor range:NSMakeRange(name.length, comments.length)];
                 
                 cell.textLabel.numberOfLines    = 0;
                 cell.textLabel.attributedText   = attributedString;

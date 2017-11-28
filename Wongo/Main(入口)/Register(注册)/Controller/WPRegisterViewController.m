@@ -8,12 +8,15 @@
 
 #import "WPRegisterViewController.h"
 #import "LYWanGaoUserAgreementController.h"
+#import "WPTimerTool.h"
 
 @interface WPRegisterViewController ()<UITextFieldDelegate>
 {
     SuccessfulRegister _registerBlock;
 }
+/**电话号码*/
 @property (nonatomic,strong)WPCostomTextField   * phoneNumber;
+/**验证码*/
 @property (nonatomic,strong)WPCostomTextField   * verificationCode;
 @property (nonatomic,strong)UIButton            * registerUser;
 @property (nonatomic,strong)UIButton            * backButton;
@@ -67,7 +70,7 @@
 - (UIButton *)userAgreement{
     if (!_userAgreement) {
         _userAgreement = [[UIButton alloc] init];
-        [_userAgreement setTitleColor:SelfOrangeColor forState:UIControlStateNormal];
+        [_userAgreement setTitleColor:SelfThemeColor forState:UIControlStateNormal];
         _userAgreement.titleLabel.font = [UIFont systemFontOfSize:14];
         [_userAgreement setTitle:@"注册即同意《碗糕用户服务协议》" forState:UIControlStateNormal];
         [_userAgreement sizeToFit];
@@ -79,8 +82,8 @@
 -(UIButton *)verificationCodeButton{
     if (!_verificationCodeButton) {
         _verificationCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _verificationCodeButton.backgroundColor = SelfOrangeColor;
-        [_verificationCodeButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+        _verificationCodeButton.backgroundColor = SelfThemeColor;
+        [_verificationCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
         [_verificationCodeButton addTarget:self action:@selector(pushVerificationCode) forControlEvents:UIControlEventTouchUpInside];
         _verificationCodeButton.titleLabel.font = [UIFont systemFontOfSize:14.f];
     }
@@ -90,8 +93,13 @@
 -(UIButton *)registerUser{
     if (!_registerUser) {
         _registerUser = [UIButton buttonWithType:UIButtonTypeCustom];
+        _registerUser.layer.masksToBounds = YES;
+        _registerUser.layer.cornerRadius = 20.f;
+        _registerUser.layer.borderWidth = 1.f;
+        _registerUser.layer.borderColor = SelfThemeColor.CGColor;
+        [_registerUser setTitleColor:SelfThemeColor forState:UIControlStateNormal];
+        [_registerUser setTitle:@"注册" forState:UIControlStateNormal];
         [_registerUser addTarget:self action:@selector(actionRegister) forControlEvents:UIControlEventTouchUpInside];
-        [_registerUser setBackgroundImage:[UIImage imageNamed:@"registerbtn"] forState:UIControlStateNormal];
     }
     return _registerUser;
 }
@@ -157,20 +165,35 @@
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-121);
     }];
-    label1.backgroundColor = ColorWithRGB(255, 204, 92);
-    label2.backgroundColor = ColorWithRGB(255, 204, 92);
+    label1.backgroundColor = SelfThemeColor;
+    label2.backgroundColor = SelfThemeColor;
 }
 
 #pragma mark - 点击事件
 //注册
 -(void)actionRegister{
-    
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"mobile":self.phoneNumber.text,@"compare":self.verificationCode.text} datas:^(NSDictionary *responseObject) {
+        
+    } failureBlock:^{
+        NSLog(@"注册失败");
+    }];
     
 }
 //发送验证码
 -(void)pushVerificationCode{
+    if (![self isMobileNumber:self.phoneNumber.text]) {
+        [self showAlertWithAlertTitle:@"提示" message:@"电话号码格式不正确" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        return;
+    }
     self.verificationCode.userInteractionEnabled = YES;
-    
+    [WPTimerTool createCountdownWithTime:60 sender:self.verificationCodeButton block:^{
+        
+    }];
+    [WPNetWorking createPostRequestMenagerWithUrlString:SendUrl params:@{@"mobile":self.phoneNumber.text} datas:^(NSDictionary *responseObject) {
+        
+    } failureBlock:^{
+        NSLog(@"发送失败");
+    }];
 }
 //碗糕服务协议
 - (void)agreement:(UIButton *)btn{
