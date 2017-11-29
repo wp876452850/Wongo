@@ -220,20 +220,13 @@ static NSString * contentOffset = @"contentOffset";
 -(void)loadDreamingDatas{
     //查询造梦计划
     __block WPHomeViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:QuerySubIng params:nil datas:^(NSDictionary *responseObject) {
-        NSArray * dreamings = responseObject[@"listSub"];
+    [WPNetWorking createPostRequestMenagerWithUrlString:Queryboutiqueproduct params:nil datas:^(NSDictionary *responseObject) {
+        
+        NSArray * dreamings = responseObject[@"listg"];
         weakSelf.dreamings = [NSMutableArray arrayWithCapacity:3];
         for (int i = 0; i < dreamings.count; i++) {
-            NSArray * listplan = dreamings[i][@"listplan"];
-            for (int j = 0; j<listplan.count; j++) {
-                WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:listplan[j]];
-                [weakSelf loadDreamingInformationDatasWithPlid:model.plid];                
-            }
-            if (listplan.count <=0) {
-                [weakSelf.hud hide:YES];
-                [weakSelf.collectionView reloadData];
-                [weakSelf.collectionView.mj_header endRefreshing];
-            }
+            WPDreamingDirectoryModel * model = [WPDreamingDirectoryModel mj_objectWithKeyValues:dreamings[i]];
+            [weakSelf loadDreamingInformationDatasWithDreamingDirectoryModel:model];
         }
     } failureBlock:^{
         [weakSelf.collectionView reloadData];
@@ -242,27 +235,25 @@ static NSString * contentOffset = @"contentOffset";
     }];
 }
 //获取造梦详细信息
--(void)loadDreamingInformationDatasWithPlid:(NSString *)plid{
+-(void)loadDreamingInformationDatasWithDreamingDirectoryModel:(WPDreamingDirectoryModel *)dreamingDirectoryModel{
     __block WPHomeViewController * weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
-        
+    [WPNetWorking createPostRequestMenagerWithUrlString:GetPlanUrl params:@{@"plid":dreamingDirectoryModel.plid} datas:^(NSDictionary *responseObject) {
         NSDictionary * list = responseObject[@"list"][0];
-        //WPDreamingModel * model = [WPDreamingModel mj_objectWithKeyValues:list];
-        //[weakSelf.dreamings addObject:model];
-        weakSelf.dreamingModel = [WPDreamingModel mj_objectWithKeyValues:list];
-        [weakSelf loadParticipateDatasWithPlid:plid];
+        WPDreamingModel * model = [WPDreamingModel mj_objectWithKeyValues:list];
+        dreamingDirectoryModel.dreamingModel = model;
+        [weakSelf loadParticipateDatasWithDreamingModel:dreamingDirectoryModel.dreamingModel];
+        [weakSelf.dreamings addObject:model];
 
     } failureBlock:^{
-        [weakSelf loadParticipateDatasWithPlid:plid];
+        [weakSelf loadParticipateDatasWithDreamingModel:dreamingDirectoryModel.dreamingModel];
         [weakSelf.collectionView.mj_header endRefreshing];
     }];
 }
 //查询参与商品
--(void)loadParticipateDatasWithPlid:(NSString *)plid{
+-(void)loadParticipateDatasWithDreamingModel:(WPDreamingModel *)dreamingModel{
     __block typeof(self) weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":plid} datas:^(NSDictionary *responseObject) {
-        
-        weakSelf.dreamingModel.introduceModel.dreamingIntroduces = responseObject[@"list"];
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryProductById params:@{@"plid":dreamingModel.plid} datas:^(NSDictionary *responseObject) {
+        dreamingModel.introduceModel.dreamingIntroduces = responseObject[@"list"];
         [weakSelf.collectionView.mj_header endRefreshing];
         [weakSelf.collectionView reloadData];
         [weakSelf.hud hide:YES];
@@ -327,8 +318,8 @@ static NSString * contentOffset = @"contentOffset";
         }
             break;
         case Dreaming_Section:{
-            return self.dreamingModel.introduceModel.dreamingIntroduces.count>1?1:self.dreamingModel.introduceModel.dreamingIntroduces.count;
-            //return self.dreamings.count>5?5:self.dreamings.count;
+//            return self.dreamingModel.introduceModel.dreamingIntroduces.count>1?1:self.dreamingModel.introduceModel.dreamingIntroduces.count;
+            return self.dreamings.count>5?5:self.dreamings.count;
         }
             break;
         default:
@@ -362,8 +353,8 @@ static NSString * contentOffset = @"contentOffset";
     }
     else if (indexPath.section == Dreaming_Section){
         WPNewHomeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"HomeDreamingCell" forIndexPath:indexPath];
-        cell.model = self.dreamingModel;
-        //cell.model = self.dreamings[indexPath.row];
+//        cell.model = self.dreamingModel;
+        cell.model = self.dreamings[indexPath.row];
         return cell;
     }
     else{

@@ -104,6 +104,10 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:User_Name];
 }
 
+-(NSString *)getUserToken{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:User_Token];
+}
+
 -(UIImage *)getUserHeadPortrait{
     NSData * headPortraitData = [[NSUserDefaults standardUserDefaults]objectForKey:User_Head];
     if (headPortraitData) {

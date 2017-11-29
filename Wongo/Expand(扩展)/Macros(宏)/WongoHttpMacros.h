@@ -254,5 +254,15 @@
  */
 /**首页推荐*/
 #define Queryboutique           HttpHead(@"queryboutique")
+/**首页推荐(造梦计划)*/
+#define Queryboutiqueproduct    HttpHead(@"queryboutiqueproduct")
+
+/**
+ *  邀请码
+ */
+/**输入邀请码  uid:当前用户id   activation邀请码id*/
+#define SetUserActivationUrl    HttpHead(@"setUserActivation")
+
 
 #endif /* WongoHttpMacros_h */
+

@@ -218,9 +218,9 @@
     //设置字体颜色
     _userName.textColor = [UIColor blackColor];
     _signature.textColor = [UIColor lightGrayColor];
-    _attentionNumber.textColor = [UIColor orangeColor];
-    _fansNumber.textColor = [UIColor orangeColor];
-    _enjoyNumber.textColor = [UIColor orangeColor];
+    _attentionNumber.textColor = SelfThemeColor;
+    _fansNumber.textColor = SelfThemeColor;
+    _enjoyNumber.textColor = SelfThemeColor;
     
     //设置约束
     [_userName mas_makeConstraints:^(MASConstraintMaker *make) {

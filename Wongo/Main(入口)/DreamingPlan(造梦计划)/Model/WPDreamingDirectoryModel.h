@@ -7,6 +7,7 @@
 //  造梦-专题model
 
 #import <Foundation/Foundation.h>
+#import "WPDreamingModel.h"
 
 @interface WPDreamingDirectoryModel : NSObject
 /**标题*/
@@ -27,5 +28,9 @@
 @property (nonatomic,strong)NSString * url;
 
 @property (nonatomic,strong)NSString * isrecommend;
+
+@property (nonatomic,strong)WPDreamingModel * dreamingModel;
+
+
 
 @end

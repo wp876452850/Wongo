@@ -97,6 +97,12 @@
                             <color key="titleColor" red="0.17613327503204346" green="0.39057978987693787" blue="0.5666382908821106" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hge-lV-x3X">
+                        <rect key="frame" x="369" y="500" width="30" height="34"/>
+                        <connections>
+                            <action selector="thumup:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JOK-BP-vtZ"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="aBg-MI-smo" firstAttribute="leading" secondItem="wRT-2N-C5o" secondAttribute="leading" id="0no-zO-nhf"/>
@@ -108,11 +114,13 @@
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="bottom" secondItem="m00-gV-n0j" secondAttribute="bottom" id="Kaa-G2-WCQ"/>
                     <constraint firstItem="9He-dN-iFD" firstAttribute="trailing" secondItem="beD-60-6UP" secondAttribute="trailing" id="Ll5-HF-66W"/>
                     <constraint firstItem="cdx-pS-Z8m" firstAttribute="centerY" secondItem="aBg-MI-smo" secondAttribute="centerY" id="LxV-5t-1la"/>
+                    <constraint firstItem="hge-lV-x3X" firstAttribute="trailing" secondItem="9He-dN-iFD" secondAttribute="trailing" id="MoO-qe-Izw"/>
                     <constraint firstItem="beD-60-6UP" firstAttribute="centerY" secondItem="wRT-2N-C5o" secondAttribute="centerY" id="OyP-QR-PBW"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="top" secondItem="m00-gV-n0j" secondAttribute="top" id="Pst-dg-7mb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="m00-gV-n0j" secondAttribute="trailing" constant="11" id="S8L-Fh-DXX"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="NtK-Et-JZB" secondAttribute="leading" id="amh-54-BZi"/>
                     <constraint firstItem="NtK-Et-JZB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="c8H-qg-AND"/>
+                    <constraint firstItem="hge-lV-x3X" firstAttribute="top" secondItem="9He-dN-iFD" secondAttribute="bottom" constant="5" id="fh9-zt-NfD"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="trailing" secondItem="m00-gV-n0j" secondAttribute="trailing" id="ipX-og-guI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="beD-60-6UP" secondAttribute="trailing" constant="10" id="nFm-cH-8cL"/>
                     <constraint firstItem="wRT-2N-C5o" firstAttribute="top" secondItem="kEm-ex-g0c" secondAttribute="bottom" constant="10" id="naM-4y-Xjx"/>
@@ -133,10 +141,11 @@
                 <outlet property="logoImageOK" destination="kEm-ex-g0c" id="NNy-Zo-Afl"/>
                 <outlet property="logoLabelOK" destination="74x-us-Ils" id="RWK-NC-1cW"/>
                 <outlet property="pushTime" destination="NtK-Et-JZB" id="Y8M-8p-f34"/>
+                <outlet property="thumpButton" destination="hge-lV-x3X" id="D9l-Nz-qEq"/>
                 <outlet property="thumup" destination="9He-dN-iFD" id="sAx-Gt-U8z"/>
                 <outlet property="userName" destination="cdx-pS-Z8m" id="06a-PW-VEd"/>
             </connections>
-            <point key="canvasLocation" x="-1837.5" y="-140.5"/>
+            <point key="canvasLocation" x="-2152" y="-218"/>
         </tableViewCell>
     </objects>
     <resources>

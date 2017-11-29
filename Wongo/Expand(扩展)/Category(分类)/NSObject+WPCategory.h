@@ -37,6 +37,8 @@ typedef void(^ReduceBlock)(void);
 
 -(NSString *)getUserName;
 
+-(NSString *)getUserToken;
+
 -(UIImage *)getUserHeadPortrait;
 
 -(BOOL)determineWhetherTheLoginWithViewController:(UIViewController*)viewController;

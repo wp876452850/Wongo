@@ -29,6 +29,8 @@
 /**支持*/
 @property (weak, nonatomic) IBOutlet UIButton *thumup;
 
+@property (weak, nonatomic) IBOutlet UIButton *thumpButton;
+
 @end
 @implementation WPDreamingImageTableViewCell
 
@@ -39,6 +41,9 @@
     self.headerImage.layer.masksToBounds = YES;
     self.headerImage.layer.borderWidth = .5f;
     self.headerImage.layer.borderColor = WongoGrayColor.CGColor;
+    
+    [self.thumpButton setImage:[UIImage imageNamed:@"shopDreamingthumup_normal"] forState:UIControlStateNormal];
+    [self.thumpButton setImage:[UIImage imageNamed:@"shopDreamingthumup_select"] forState:UIControlStateNormal];
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goStore)];
     [self.headerImage addGestureRecognizer:tap];
@@ -69,4 +74,10 @@
     self.logoImageOK.hidden = YES;
     self.logoLabelOK.hidden = YES;
 }
+- (IBAction)thumup:(id)sender {
+    
+    
+}
+
+
 @end

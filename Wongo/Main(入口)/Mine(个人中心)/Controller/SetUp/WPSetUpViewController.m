@@ -60,7 +60,7 @@
         make.right.mas_equalTo(self.view).offset(-10);
         make.height.mas_equalTo(50);
     }];
-    _logoutButton.backgroundColor = ColorWithRGB(255, 130, 1);
+    _logoutButton.backgroundColor = SelfThemeColor;
     _logoutButton.layer.masksToBounds = YES;
     _logoutButton.layer.cornerRadius = 5;
     [_logoutButton setTitle:@"退出登录" forState:UIControlStateNormal];

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28D099FA71FBF94054BCA0CF /* libPods-Wongo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC6F344167E7C137723A0A1 /* libPods-Wongo.a */; };
+		3D020C221FCD4197000DAE8A /* WPIMChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D020C211FCD4197000DAE8A /* WPIMChatViewController.m */; };
 		3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E01F18A7F70084E409 /* TZAssetCell.m */; };
 		3D0772F31F18A7F70084E409 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E21F18A7F70084E409 /* TZAssetModel.m */; };
 		3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E41F18A7F70084E409 /* TZImageManager.m */; };
@@ -1003,6 +1004,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D020C201FCD4197000DAE8A /* WPIMChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPIMChatViewController.h; sourceTree = "<group>"; };
+		3D020C211FCD4197000DAE8A /* WPIMChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPIMChatViewController.m; sourceTree = "<group>"; };
 		3D0772DF1F18A7F70084E409 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		3D0772E01F18A7F70084E409 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		3D0772E11F18A7F70084E409 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -2564,6 +2567,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D020C1B1FCD4116000DAE8A /* 聊天界面 */ = {
+			isa = PBXGroup;
+			children = (
+				3D020C1C1FCD4116000DAE8A /* Cell */,
+				3D020C1D1FCD4116000DAE8A /* Controller */,
+				3D020C1E1FCD4116000DAE8A /* Model */,
+				3D020C1F1FCD4116000DAE8A /* View */,
+			);
+			path = "聊天界面";
+			sourceTree = "<group>";
+		};
+		3D020C1C1FCD4116000DAE8A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3D020C1D1FCD4116000DAE8A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D020C201FCD4197000DAE8A /* WPIMChatViewController.h */,
+				3D020C211FCD4197000DAE8A /* WPIMChatViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D020C1E1FCD4116000DAE8A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D020C1F1FCD4116000DAE8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D0772DE1F18A7F70084E409 /* TZImagePickerController(相册多选） */ = {
 			isa = PBXGroup;
 			children = (
@@ -5935,6 +5979,7 @@
 				3DF746191F34272500A23B52 /* Info.Plist&&StoryBorad */,
 				3D27A9351F30255300091646 /* 引导页(Guide) */,
 				8566A7271E48259100C08624 /* Appdelegate(入口类) */,
+				3D020C1B1FCD4116000DAE8A /* 聊天界面 */,
 				3D1906281F29BDA200E4EFFD /* 基类(Base) */,
 				3D62797F1F74F5780057B49B /* 举报框 */,
 				8566A7141E48220700C08624 /* TabBar(标签条) */,
@@ -8310,6 +8355,7 @@
 				853B7B031E9CBBBA008BAA4D /* MJExtension-dummy.m in Sources */,
 				3DE9EDB11F99953400C01310 /* ZYPhotoCollectionView.m in Sources */,
 				8597EFB11E8A3CD7001E1BA5 /* WPGCD.m in Sources */,
+				3D020C221FCD4197000DAE8A /* WPIMChatViewController.m in Sources */,
 				8566A88B1E48281500C08624 /* WPAddressManageTableViewCell.m in Sources */,
 				8500435C1EB037F50046186D /* WPAddressModel.m in Sources */,
 				85FB6C551E83B3EC00520C0D /* WPAddressSelectViewController.m in Sources */,
