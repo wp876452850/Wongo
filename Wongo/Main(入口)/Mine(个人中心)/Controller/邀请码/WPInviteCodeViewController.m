@@ -2,14 +2,16 @@
 //  WPInviteCodeViewController.m
 //  Wongo
 //
-//  Created by  WanGao on 2017/11/6.
+//  Created by  WanGao on 2017/11/30.
 //  Copyright © 2017年 Winny. All rights reserved.
 //
 
 #import "WPInviteCodeViewController.h"
+#import "WPMyInviteCodeViewController.h"
+#import "WPFillInviteCodeViewController.h"
 
+#define ViewControllers @[[WPMyInviteCodeViewController class],[WPFillInviteCodeViewController class]]
 @interface WPInviteCodeViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -17,13 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.myNavItem.title = @"邀请码";
 }
 
-
-- (IBAction)start:(id)sender {
-    
-    
+- (IBAction)chakanzijiyaoqingma:(UIButton *)sender {
+    id vc = [[ViewControllers[sender.tag] alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WPFillInviteCodeViewController">
+            <connections>
+                <outlet property="button" destination="OX8-Rq-Wq1" id="we4-xb-Mtu"/>
+                <outlet property="textField" destination="vFd-Cb-vFP" id="1mS-QM-Ji8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入邀请码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vFd-Cb-vFP">
+                    <rect key="frame" x="60" y="250" width="255" height="40"/>
+                    <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1Eg-IM-iBA"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OX8-Rq-Wq1">
+                    <rect key="frame" x="87" y="390" width="200" height="40"/>
+                    <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="CnC-z1-ndH"/>
+                        <constraint firstAttribute="width" constant="200" id="kJz-Ux-nON"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="确认">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="action:" destination="-1" eventType="touchUpInside" id="a7A-Kv-FTR"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="填写邀请人邀请码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ac-z6-uZp">
+                    <rect key="frame" x="59.5" y="295" width="255.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vFd-Cb-vFP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="37i-AB-P3T"/>
+                <constraint firstItem="0ac-z6-uZp" firstAttribute="top" secondItem="vFd-Cb-vFP" secondAttribute="bottom" constant="5" id="IVD-iF-AIL"/>
+                <constraint firstItem="OX8-Rq-Wq1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MtU-6m-5AV"/>
+                <constraint firstItem="0ac-z6-uZp" firstAttribute="leading" secondItem="vFd-Cb-vFP" secondAttribute="leading" id="OqK-I7-qW9"/>
+                <constraint firstItem="OX8-Rq-Wq1" firstAttribute="top" secondItem="vFd-Cb-vFP" secondAttribute="bottom" constant="100" id="Sfv-Wp-5em"/>
+                <constraint firstItem="vFd-Cb-vFP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="Xwx-Cl-4UM"/>
+                <constraint firstItem="0ac-z6-uZp" firstAttribute="trailing" secondItem="vFd-Cb-vFP" secondAttribute="trailing" id="jK6-6C-b6n"/>
+                <constraint firstAttribute="trailing" secondItem="vFd-Cb-vFP" secondAttribute="trailing" constant="60" id="t1F-UI-b89"/>
+                <constraint firstItem="vFd-Cb-vFP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="250" id="yWG-Cp-UdF"/>
+            </constraints>
+            <point key="canvasLocation" x="-119" y="38"/>
+        </view>
+    </objects>
+</document>

@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WPInviteCodeViewController">
             <connections>
-                <outlet property="textField" destination="dEt-SE-NTX" id="Hix-8R-pgD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,38 +19,43 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入邀请码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dEt-SE-NTX">
-                    <rect key="frame" x="80" y="120" width="215" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wtM-lf-67E">
+                    <rect key="frame" x="60" y="250" width="255" height="40"/>
+                    <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="Atv-n0-eZg"/>
+                        <constraint firstAttribute="height" constant="40" id="fJ1-wq-xS2"/>
                     </constraints>
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBf-vP-b5h">
-                    <rect key="frame" x="147" y="180" width="80" height="30"/>
-                    <color key="backgroundColor" red="0.2236888111" green="0.39865952729999998" blue="0.55391877889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="86v-Sh-Gbx"/>
-                        <constraint firstAttribute="height" constant="30" id="Olv-gZ-qiT"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="确定"/>
+                    <state key="normal" title="查看我的邀请码">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
-                        <action selector="start:" destination="-1" eventType="touchUpInside" id="hVW-0v-wiR"/>
+                        <action selector="chakanzijiyaoqingma:" destination="-1" eventType="touchUpInside" id="h8U-uM-4DI"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gQF-ya-nbz">
+                    <rect key="frame" x="60" y="390" width="255" height="40"/>
+                    <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="jrV-io-t66"/>
+                    </constraints>
+                    <state key="normal" title="填写邀请人邀请码">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="chakanzijiyaoqingma:" destination="-1" eventType="touchUpInside" id="lyL-YX-Sqb"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="dEt-SE-NTX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="80" id="57b-xc-GhN"/>
-                <constraint firstItem="KBf-vP-b5h" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="91x-Mx-mRo"/>
-                <constraint firstAttribute="trailing" secondItem="dEt-SE-NTX" secondAttribute="trailing" constant="80" id="VHj-yL-Zym"/>
-                <constraint firstItem="dEt-SE-NTX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="120" id="aw7-KN-hO0"/>
-                <constraint firstItem="KBf-vP-b5h" firstAttribute="top" secondItem="dEt-SE-NTX" secondAttribute="bottom" constant="30" id="jYG-ZW-0JQ"/>
+                <constraint firstItem="gQF-ya-nbz" firstAttribute="top" secondItem="wtM-lf-67E" secondAttribute="bottom" constant="100" id="4Ca-fD-FY0"/>
+                <constraint firstItem="gQF-ya-nbz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="4ts-TO-UEE"/>
+                <constraint firstItem="wtM-lf-67E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="60" id="Fep-cq-rAQ"/>
+                <constraint firstAttribute="trailing" secondItem="gQF-ya-nbz" secondAttribute="trailing" constant="60" id="etc-KF-e28"/>
+                <constraint firstItem="wtM-lf-67E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="250" id="lPx-qx-68a"/>
+                <constraint firstAttribute="trailing" secondItem="wtM-lf-67E" secondAttribute="trailing" constant="60" id="nnW-0n-D8o"/>
             </constraints>
-            <point key="canvasLocation" x="41" y="102"/>
+            <point key="canvasLocation" x="-297" y="-98"/>
         </view>
     </objects>
 </document>

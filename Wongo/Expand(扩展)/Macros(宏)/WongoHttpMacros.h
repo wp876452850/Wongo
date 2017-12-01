@@ -9,9 +9,9 @@
 #ifndef WongoHttpMacros_h
 #define WongoHttpMacros_h
 //外网
-#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
+//#define HttpHead(url)         [NSString stringWithFormat:@"http://119.23.32.206:8080/change/%@",(url)]
 //内网
-//#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.119:8080/change/%@",(url)]
+#define HttpHead(url)           [NSString stringWithFormat:@"http://192.168.1.119:8080/change/%@",(url)]
 
 /**
  *  登录url
@@ -80,8 +80,8 @@
 #define GenerateOrderUrl        HttpHead(@"addOrders")
 /**生成造梦报名订单*/
 #define SignupAddUrl            HttpHead(@"SignupAdd")
-
-
+/**生成提现订单    uid*/
+#define userMoneyOrderUrl       HttpHead(@"userMoneyOrder")
 
 
 /**
@@ -263,6 +263,13 @@
 /**输入邀请码  uid:当前用户id   activation邀请码id*/
 #define SetUserActivationUrl    HttpHead(@"setUserActivation")
 
+/**
+ *  余额、提现
+ */
+/**提现 moneyid 订单ID ,amount 支付金*/
+#define AliPayMoneyOrderUrl     HttpHead(@"aliPayMoneyOrder")
+/**余额*/
+#define AliPayMoneyOrderUrl     HttpHead(@"aliPayMoneyOrder")
 
 #endif /* WongoHttpMacros_h */
 

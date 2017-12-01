@@ -21,15 +21,16 @@
 #import "WPStoreViewController.h"
 #import "WPMyTableViewCell.h"
 #import "WPInviteCodeViewController.h"
+#import "WPBalanceViewController.h"
 
 #define CELL_ID @"cell"
 
 //#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页"]
 //#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
 
-#define Cell_title_array @[@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"邀请码"]
-#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
-
+#define Cell_title_array @[@"余额",@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"邀请码"]
+#define Cell_Icon_Array @[@"",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@""]
+#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPInviteCodeViewController class]]
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
 //表的一个区头试图高度
@@ -144,58 +145,15 @@
     
     //点击效果,按需求选择要不要
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    if (indexPath.row == 6) {
-        WPInviteCodeViewController * vc = [[WPInviteCodeViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
     
     if ([self determineWhetherTheLogin]){
-        switch (indexPath.row) {
-                break;
-            case 0:
-            {
-                //跳转商品管理
-                WPCommodityManagementViewController * vc = [[WPCommodityManagementViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 1:
-            {
-                //跳转交换订单
-                WPExchangeOrderViewController * vc = [[WPExchangeOrderViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 2:
-            {
-                //跳转收货地址
-                WPAddressViewController * vc = [[WPAddressViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-                
-            case 3:
-            {
-                //跳转我的造梦
-                WPMyDreamingViewController * vc = [[WPMyDreamingViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 4:
-            {
-                //跳转造梦订单
-                WPDreamingOrderViewController * vc = [[WPDreamingOrderViewController alloc]init];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 5:{
-                WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:[self getSelfUid]];
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-                
-        }
+        if (indexPath.row == 6) {
+          WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:[self getSelfUid]];
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            id vc = [[Cell_ViewControllers[indexPath.row] alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }       
     }
 }
 

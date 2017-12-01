@@ -328,8 +328,6 @@
 		3D204E571F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D204E551F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.m */; };
 		3D204E581F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D204E561F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.xib */; };
 		3D240ADD1FBA992C0077D164 /* WPRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D240ADC1FBA992C0077D164 /* WPRegisterViewController.m */; };
-		3D25381E1FB00CAF00862486 /* WPInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25381C1FB00CAE00862486 /* WPInviteCodeViewController.m */; };
-		3D25381F1FB00CAF00862486 /* WPInviteCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D25381D1FB00CAE00862486 /* WPInviteCodeViewController.xib */; };
 		3D27A9341F301FD800091646 /* guanggao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D27A9331F301FD800091646 /* guanggao.jpg */; };
 		3D27A9381F30259500091646 /* WPGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D27A9371F30259500091646 /* WPGuideViewController.m */; };
 		3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */; };
@@ -381,6 +379,14 @@
 		3D6EFF511F5E89E4007173D2 /* libUMSocialLog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6EFF461F5E89E4007173D2 /* libUMSocialLog.a */; };
 		3D6EFF521F5E89E4007173D2 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EFF481F5E89E4007173D2 /* UMSocialSDKResources.bundle */; };
 		3D6EFF531F5E89E4007173D2 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6EFF491F5E89E4007173D2 /* UShareUI.framework */; };
+		3D75ACBB1FCFA6B7001F0627 /* WPInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACB91FCFA6B7001F0627 /* WPInviteCodeViewController.m */; };
+		3D75ACBC1FCFA6B7001F0627 /* WPInviteCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D75ACBA1FCFA6B7001F0627 /* WPInviteCodeViewController.xib */; };
+		3D75ACC01FCFAADF001F0627 /* WPMyInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACBE1FCFAADF001F0627 /* WPMyInviteCodeViewController.m */; };
+		3D75ACC11FCFAADF001F0627 /* WPMyInviteCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D75ACBF1FCFAADF001F0627 /* WPMyInviteCodeViewController.xib */; };
+		3D75ACC51FCFAB2B001F0627 /* WPFillInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACC31FCFAB2B001F0627 /* WPFillInviteCodeViewController.m */; };
+		3D75ACC61FCFAB2B001F0627 /* WPFillInviteCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D75ACC41FCFAB2B001F0627 /* WPFillInviteCodeViewController.xib */; };
+		3D75ACCA1FCFED49001F0627 /* WPBalanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACC81FCFED49001F0627 /* WPBalanceViewController.m */; };
+		3D75ACCB1FCFED49001F0627 /* WPBalanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D75ACC91FCFED49001F0627 /* WPBalanceViewController.xib */; };
 		3D76D93F1F67B5CA005A6080 /* JFAreaDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D76D92B1F67B5CA005A6080 /* JFAreaDataManager.m */; };
 		3D76D9401F67B5CA005A6080 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 3D76D92D1F67B5CA005A6080 /* shop_area.sqlite */; };
 		3D76D9411F67B5CA005A6080 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D76D92F1F67B5CA005A6080 /* JFButton.m */; };
@@ -1381,9 +1387,6 @@
 		3D204E561F4AD15000EFFAB2 /* WPDreamingDetailIntroduceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPDreamingDetailIntroduceTableViewCell.xib; sourceTree = "<group>"; };
 		3D240ADB1FBA992C0077D164 /* WPRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPRegisterViewController.h; sourceTree = "<group>"; };
 		3D240ADC1FBA992C0077D164 /* WPRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPRegisterViewController.m; sourceTree = "<group>"; };
-		3D25381B1FB00CAE00862486 /* WPInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPInviteCodeViewController.h; sourceTree = "<group>"; };
-		3D25381C1FB00CAE00862486 /* WPInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPInviteCodeViewController.m; sourceTree = "<group>"; };
-		3D25381D1FB00CAE00862486 /* WPInviteCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPInviteCodeViewController.xib; sourceTree = "<group>"; };
 		3D27A9331F301FD800091646 /* guanggao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = guanggao.jpg; sourceTree = "<group>"; };
 		3D27A9361F30259500091646 /* WPGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPGuideViewController.h; sourceTree = "<group>"; };
 		3D27A9371F30259500091646 /* WPGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPGuideViewController.m; sourceTree = "<group>"; };
@@ -1467,6 +1470,18 @@
 		3D6EFF461F5E89E4007173D2 /* libUMSocialLog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocialLog.a; sourceTree = "<group>"; };
 		3D6EFF481F5E89E4007173D2 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		3D6EFF491F5E89E4007173D2 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		3D75ACB81FCFA6B7001F0627 /* WPInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPInviteCodeViewController.h; sourceTree = "<group>"; };
+		3D75ACB91FCFA6B7001F0627 /* WPInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPInviteCodeViewController.m; sourceTree = "<group>"; };
+		3D75ACBA1FCFA6B7001F0627 /* WPInviteCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPInviteCodeViewController.xib; sourceTree = "<group>"; };
+		3D75ACBD1FCFAADF001F0627 /* WPMyInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPMyInviteCodeViewController.h; sourceTree = "<group>"; };
+		3D75ACBE1FCFAADF001F0627 /* WPMyInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPMyInviteCodeViewController.m; sourceTree = "<group>"; };
+		3D75ACBF1FCFAADF001F0627 /* WPMyInviteCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPMyInviteCodeViewController.xib; sourceTree = "<group>"; };
+		3D75ACC21FCFAB2B001F0627 /* WPFillInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPFillInviteCodeViewController.h; sourceTree = "<group>"; };
+		3D75ACC31FCFAB2B001F0627 /* WPFillInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPFillInviteCodeViewController.m; sourceTree = "<group>"; };
+		3D75ACC41FCFAB2B001F0627 /* WPFillInviteCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPFillInviteCodeViewController.xib; sourceTree = "<group>"; };
+		3D75ACC71FCFED49001F0627 /* WPBalanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPBalanceViewController.h; sourceTree = "<group>"; };
+		3D75ACC81FCFED49001F0627 /* WPBalanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPBalanceViewController.m; sourceTree = "<group>"; };
+		3D75ACC91FCFED49001F0627 /* WPBalanceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPBalanceViewController.xib; sourceTree = "<group>"; };
 		3D76D92A1F67B5CA005A6080 /* JFAreaDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAreaDataManager.h; sourceTree = "<group>"; };
 		3D76D92B1F67B5CA005A6080 /* JFAreaDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAreaDataManager.m; sourceTree = "<group>"; };
 		3D76D92D1F67B5CA005A6080 /* shop_area.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_area.sqlite; sourceTree = "<group>"; };
@@ -4035,9 +4050,15 @@
 		3D25381A1FB00C6300862486 /* 邀请码 */ = {
 			isa = PBXGroup;
 			children = (
-				3D25381B1FB00CAE00862486 /* WPInviteCodeViewController.h */,
-				3D25381C1FB00CAE00862486 /* WPInviteCodeViewController.m */,
-				3D25381D1FB00CAE00862486 /* WPInviteCodeViewController.xib */,
+				3D75ACB81FCFA6B7001F0627 /* WPInviteCodeViewController.h */,
+				3D75ACB91FCFA6B7001F0627 /* WPInviteCodeViewController.m */,
+				3D75ACBA1FCFA6B7001F0627 /* WPInviteCodeViewController.xib */,
+				3D75ACBD1FCFAADF001F0627 /* WPMyInviteCodeViewController.h */,
+				3D75ACBE1FCFAADF001F0627 /* WPMyInviteCodeViewController.m */,
+				3D75ACBF1FCFAADF001F0627 /* WPMyInviteCodeViewController.xib */,
+				3D75ACC21FCFAB2B001F0627 /* WPFillInviteCodeViewController.h */,
+				3D75ACC31FCFAB2B001F0627 /* WPFillInviteCodeViewController.m */,
+				3D75ACC41FCFAB2B001F0627 /* WPFillInviteCodeViewController.xib */,
 			);
 			path = "邀请码";
 			sourceTree = "<group>";
@@ -4159,6 +4180,16 @@
 				3D6EFF491F5E89E4007173D2 /* UShareUI.framework */,
 			);
 			path = UMSocialUI;
+			sourceTree = "<group>";
+		};
+		3D75ACB71FCFA605001F0627 /* 余额 */ = {
+			isa = PBXGroup;
+			children = (
+				3D75ACC71FCFED49001F0627 /* WPBalanceViewController.h */,
+				3D75ACC81FCFED49001F0627 /* WPBalanceViewController.m */,
+				3D75ACC91FCFED49001F0627 /* WPBalanceViewController.xib */,
+			);
+			path = "余额";
 			sourceTree = "<group>";
 		};
 		3D76D9281F67B5CA005A6080 /* JFCityViewController(城市选择器-定位) */ = {
@@ -6493,6 +6524,7 @@
 				8566A87F1E48281500C08624 /* WPMyViewController.m */,
 				3D7911781FB99345006268DC /* 我的寄卖 */,
 				3D25381A1FB00C6300862486 /* 邀请码 */,
+				3D75ACB71FCFA605001F0627 /* 余额 */,
 				8566A8441E48281500C08624 /* CommodityManagement(商品管理) */,
 				852F80CF1E822D3500D0AB48 /* ExchangeOrder(交换订单) */,
 				8566A84B1E48281500C08624 /* Concern(关注的用户) */,
@@ -7424,7 +7456,6 @@
 				85187F141E8DFA1800D3D64F /* Contents.json in Resources */,
 				85187F481E8DFA1800D3D64F /* Contents.json in Resources */,
 				3D1732921F26F6C200BFF90D /* f_static_091@3x.png in Resources */,
-				3D25381F1FB00CAF00862486 /* WPInviteCodeViewController.xib in Resources */,
 				3D1732441F26F6C200BFF90D /* f_static_052@3x.png in Resources */,
 				3D1732011F26F6C200BFF90D /* f_static_019@2x.png in Resources */,
 				3D1732421F26F6C200BFF90D /* f_static_051@3x.png in Resources */,
@@ -7678,6 +7709,7 @@
 				3D1731E11F26F6C200BFF90D /* f_static_003@3x.png in Resources */,
 				3D1732821F26F6C200BFF90D /* f_static_083@3x.png in Resources */,
 				85187F611E8DFA1800D3D64F /* dropdown_anim__00051@2x.png in Resources */,
+				3D75ACCB1FCFED49001F0627 /* WPBalanceViewController.xib in Resources */,
 				85D1FF9B1E52B64E003141A3 /* 100.jpg in Resources */,
 				3D1731CD1F26F6C200BFF90D /* section0_emotion12@2x.png in Resources */,
 				3DA085DA1FAD9BAF00214099 /* WPHomeDreamingPhotoCollectionViewCell.xib in Resources */,
@@ -7826,6 +7858,7 @@
 				854389E31E51A8E800B84CCB /* 3.jpg in Resources */,
 				85187F041E8DFA1800D3D64F /* Contents.json in Resources */,
 				85187F461E8DFA1800D3D64F /* Contents.json in Resources */,
+				3D75ACBC1FCFA6B7001F0627 /* WPInviteCodeViewController.xib in Resources */,
 				3D1731D61F26F6C200BFF90D /* section0_emotion6@2x.png in Resources */,
 				3D1732471F26F6C200BFF90D /* f_static_054@2x.png in Resources */,
 				85187F651E8DFA1800D3D64F /* dropdown_anim__00053@2x.png in Resources */,
@@ -7932,7 +7965,9 @@
 				3D1732561F26F6C200BFF90D /* f_static_061@3x.png in Resources */,
 				3D1732B11F26F6C200BFF90D /* sharemore_location@2x.png in Resources */,
 				85D1FF9F1E52B64E003141A3 /* 20.jpg in Resources */,
+				3D75ACC61FCFAB2B001F0627 /* WPFillInviteCodeViewController.xib in Resources */,
 				85187F2A1E8DFA1800D3D64F /* Contents.json in Resources */,
+				3D75ACC11FCFAADF001F0627 /* WPMyInviteCodeViewController.xib in Resources */,
 				3D17324B1F26F6C200BFF90D /* f_static_056@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -8135,6 +8170,7 @@
 				3D0772F61F18A7F70084E409 /* TZImagePickerController.m in Sources */,
 				3D76D95F1F67B806005A6080 /* FMResultSet.m in Sources */,
 				3D93802C1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.m in Sources */,
+				3D75ACBB1FCFA6B7001F0627 /* WPInviteCodeViewController.m in Sources */,
 				85187E381E8DF19300D3D64F /* MJRefreshStateHeader.m in Sources */,
 				3DF3C3391FBA89CC00C9BC19 /* WPStoreConsignmentCollectionViewCell.m in Sources */,
 				8566A7A61E48265C00C08624 /* CityPickView.m in Sources */,
@@ -8225,6 +8261,7 @@
 				3D6C34D51F41811D00630FC7 /* WPHomeDreamingCollectionViewCell.m in Sources */,
 				853281351E5EB5A3001AAAB1 /* WPFansViewController.m in Sources */,
 				8566A88D1E48281500C08624 /* WPAddressOtherTableViewCell.m in Sources */,
+				3D75ACC51FCFAB2B001F0627 /* WPFillInviteCodeViewController.m in Sources */,
 				3D76D95A1F67B806005A6080 /* README.markdown in Sources */,
 				85C748F91E7FD3BD000E1B65 /* README.md in Sources */,
 				3D1454791F6A7852003CD7D8 /* WPShareController.m in Sources */,
@@ -8345,7 +8382,7 @@
 				3DD67D451F468CE200C2359D /* UITextView+runtime.m in Sources */,
 				85FB6C591E83C00200520C0D /* WPAddressSelectTableViewCell.m in Sources */,
 				85187E2C1E8DF19300D3D64F /* MJRefreshBackFooter.m in Sources */,
-				3D25381E1FB00CAF00862486 /* WPInviteCodeViewController.m in Sources */,
+				3D75ACCA1FCFED49001F0627 /* WPBalanceViewController.m in Sources */,
 				8566A7AC1E48265C00C08624 /* MASViewConstraint.m in Sources */,
 				3DE9ED971F9984DD00C01310 /* UIButton+WebCache.m in Sources */,
 				8566A7EF1E4826C900C08624 /* NSString+AutoSize.m in Sources */,
@@ -8427,6 +8464,7 @@
 				3D6BA12A1F2B2AA400EC165C /* WPMatching.m in Sources */,
 				85187E2F1E8DF19300D3D64F /* MJRefreshHeader.m in Sources */,
 				3D76D95C1F67B806005A6080 /* FMDatabaseAdditions.m in Sources */,
+				3D75ACC01FCFAADF001F0627 /* WPMyInviteCodeViewController.m in Sources */,
 				3D0773041F18AF560084E409 /* SDBrowserImageView.m in Sources */,
 				3D1731BB1F26F6C200BFF90D /* ChatKeyBoard.m in Sources */,
 				3D17301D1F26F37500BFF90D /* WPCommentModel.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  WPInviteCodeViewController.h
+//  WPMyInviteCodeViewController.h
 //  Wongo
 //
 //  Created by  WanGao on 2017/11/30.
@@ -8,6 +8,6 @@
 
 #import "LYBaseController.h"
 
-@interface WPInviteCodeViewController : LYBaseController
+@interface WPMyInviteCodeViewController : LYBaseController
 
 @end
