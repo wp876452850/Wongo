@@ -11,7 +11,11 @@
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPChoiceSubCollectionView.h"
 
-#define Title_Array @[@"造梦计划",@"交换",@"寄卖"]//1.0
+//#define Title_Array @[@"造梦计划",@"交换",@"寄卖"]//1.0
+#define Title_Array @[@"造梦计划",@"交换"]//1.0
+//#define Urls @[QueryGoodsListNew,QuerySubIng,@""]
+#define Urls @[QueryGoodsListNew,QuerySubIng]
+
 @interface WPChoiceViewController (){
     
 }
@@ -25,7 +29,7 @@
 
 - (WPChoiceContentCollectionView *)choiceContentCollectionView{
     if (!_choiceContentCollectionView) {
-        _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) loadDatasUrls:@[QueryGoodsListNew,QuerySubIng,@""]];
+        _choiceContentCollectionView = [WPChoiceContentCollectionView createChoiceCollectionWithFrame:CGRectMake(0, 104, WINDOW_WIDTH, WINDOW_HEIGHT - 153) loadDatasUrls:Urls];
     }
     return _choiceContentCollectionView;
 }

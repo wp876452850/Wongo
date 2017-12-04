@@ -34,5 +34,6 @@ typedef void(^WPAlertBlock)(void);
 - (void)showAlertNotOpenedWithBlock:(WPAlertBlock)block;
 
 - (void)navigationLeftPop;
-
+/**展示有文字的提示框*/
+- (void)showMBProgressHUDWithTitle:(NSString *)title;
 @end

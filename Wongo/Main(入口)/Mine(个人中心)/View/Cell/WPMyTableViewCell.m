@@ -19,6 +19,7 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _icon = [[UIImageView alloc]init];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:_icon];
         [_icon mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self).offset(10);

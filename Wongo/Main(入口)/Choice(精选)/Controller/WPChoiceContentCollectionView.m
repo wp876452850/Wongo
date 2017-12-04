@@ -51,10 +51,10 @@
     [chioceCollection addSubview:tableView];
     
     //寄卖表
-    UICollectionViewFlowLayout *consignmentLayout  = [[UICollectionViewFlowLayout alloc] init];
+//    UICollectionViewFlowLayout *consignmentLayout  = [[UICollectionViewFlowLayout alloc] init];
 
-    WPConsignmentCollectionView * consignmentCollectionView = [[WPConsignmentCollectionView alloc]initWithFrame:CGRectMake(WINDOW_WIDTH*2, 0, WINDOW_WIDTH, chioceCollection.height) collectionViewLayout:consignmentLayout];
-    [chioceCollection addSubview:consignmentCollectionView];
+//    WPConsignmentCollectionView * consignmentCollectionView = [[WPConsignmentCollectionView alloc]initWithFrame:CGRectMake(WINDOW_WIDTH*2, 0, WINDOW_WIDTH, chioceCollection.height) collectionViewLayout:consignmentLayout];
+//    [chioceCollection addSubview:consignmentCollectionView];
     
     return chioceCollection;
 }

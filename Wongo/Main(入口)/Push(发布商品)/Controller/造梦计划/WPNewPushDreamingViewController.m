@@ -159,7 +159,7 @@ static NSString * const storeCell   = @"storeCell";
         }
         case 9:
         {
-            return CGSizeMake(WINDOW_WIDTH, 150.f);
+            return CGSizeMake(WINDOW_WIDTH, 250.f);
         }
     }
     return CGSizeMake(WINDOW_WIDTH, 150.f);
@@ -280,7 +280,6 @@ static NSString * const storeCell   = @"storeCell";
         case 9:
         {
             WPNewPushTermsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:termsCell forIndexPath:indexPath];
-            
             return cell;
         }
             break;
@@ -296,27 +295,31 @@ static NSString * const storeCell   = @"storeCell";
     }
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        
         WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@"signupid"],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
         [weakSelf.navigationController pushViewController:payvc animated:YES];
     }];
 }
 //判断是否有空数据
 -(BOOL)determineWhetherTheDataIntegrity{
-    if (_name.length!=0&&_describe.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0) {
+    if (_name.length!=0&&_describe.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0&&_specieid.length!=0) {
+        return YES;
     }
-    return YES;
+    [self showMBProgressHUDWithTitle:@"请输入完整信息"];
+    return NO;
 }
 #pragma mark - 支付通知中心回调
 -(void)alipayBack:(NSNotification *)notification{
     NSDictionary *result = notification.object;
     if ([result[@"resultStatus"] integerValue] == 9000) {
+        [self showMBProgressHUDWithTitle:@"支付成功"];
         [self upLoadDreamingInformation];
     }
 }
+
 #pragma mark - 上传造梦计划申请
 //付钱后上传
 -(void)upLoadDreamingInformation{
-    
+   
 }
+
 @end

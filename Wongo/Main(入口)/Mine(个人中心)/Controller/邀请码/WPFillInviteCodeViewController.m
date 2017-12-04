@@ -24,7 +24,9 @@
 }
 
 - (IBAction)action:(id)sender {
-    
+    [WPNetWorking createPostRequestMenagerWithUrlString:SetUserActivationUrl params:@{@"uid":[self getSelfUid],@"activation":self.textField.text} datas:^(NSDictionary *responseObject) {
+        [self showMBProgressHUDWithTitle:responseObject[@"msg"]];
+    }];
 }
 
 @end

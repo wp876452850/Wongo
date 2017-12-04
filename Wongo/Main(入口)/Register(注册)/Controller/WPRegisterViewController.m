@@ -153,6 +153,8 @@
     [self.view addSubview:label1];
     UILabel * label2 = [[UILabel alloc]init];
     [self.view addSubview:label2];
+    UILabel * label3 = [[UILabel alloc]init];
+    [self.view addSubview:label3];
     [label1 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(weakSelf.phoneNumber.mas_bottom).offset(-1);
         make.height.mas_equalTo(1);
@@ -165,8 +167,17 @@
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(-121);
     }];
+    [label3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(weakSelf.verificationCode.mas_bottom).offset(2);
+        make.height.mas_equalTo(20);
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(-121);
+    }];
     label1.backgroundColor = SelfThemeColor;
     label2.backgroundColor = SelfThemeColor;
+    label3.textColor = TitleGrayColor;
+    label3.text = @"注册后默认密码为123456,可在设置界面修改";
+    label3.font = [UIFont systemFontOfSize:11.f];
 }
 
 #pragma mark - 点击事件

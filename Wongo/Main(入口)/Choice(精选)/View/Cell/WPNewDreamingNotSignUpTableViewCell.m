@@ -42,10 +42,10 @@
     if (![self determineWhetherTheLogin]) {
         return;
     }
-//    WPPushDreamingViewController * vc = [[WPPushDreamingViewController alloc]initWithSubid:_model.subid];
-//    vc.isPush = YES;
-    WPNewPushDreamingViewController * vc = [[WPNewPushDreamingViewController alloc]init];
-    vc.subid = _model.subid;
+    WPPushDreamingViewController * vc = [[WPPushDreamingViewController alloc]initWithSubid:_model.subid];
+    vc.isPush = YES;
+//    WPNewPushDreamingViewController * vc = [[WPNewPushDreamingViewController alloc]init];
+//    vc.subid = _model.subid;
     [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
     
 }

@@ -27,7 +27,7 @@
 -(void)loadData{
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        weakSelf.inviteCode.text = responseObject[@"second"];
+        weakSelf.inviteCode.text = responseObject[@"first"];
     }];
 }
 - (IBAction)copy:(UIButton *)sender {

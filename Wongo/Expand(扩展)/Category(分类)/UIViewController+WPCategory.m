@@ -132,4 +132,11 @@
     }];
     [self showAlertWithAlertTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet actions:@[report,help,share,cancle]];
 }
+
+- (void)showMBProgressHUDWithTitle:(NSString *)title{
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = title;
+    [hud hide:YES afterDelay:2.f];
+}
 @end

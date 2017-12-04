@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="WPNewPushTermsCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="340" height="221"/>
+            <rect key="frame" x="0.0" y="0.0" width="340" height="259"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="340" height="221"/>
+                <rect key="frame" x="0.0" y="0.0" width="340" height="259"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交换规则申请条款条款:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-om-Iat">
@@ -28,9 +28,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="1.不能好好说话了" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVa-F2-QPW">
-                        <rect key="frame" x="10" y="55" width="320" height="156"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVa-F2-QPW">
+                        <rect key="frame" x="10" y="55" width="320" height="194"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">您不得利用碗糕发表、传送、传播、储存违反国家法律、危害国家安全、祖国统一、社会稳定、公序良俗的内容，或任何不当的、侮辱诽谤的、淫秽的、暴力的及任何违反国家法律法规政策的内容或侵害他人知识产权、商业秘密权、隐私权等合法权利的内容，也不得传送或散布以其他方式实现传送含有受到知识产权法律保护的图像、相片、软件或其他资料的文件，除非用户拥有或控制着相应的权利或已得到所有必要的认可。否则，一经发现或收到举报，碗糕有权删除并处理</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
@@ -46,8 +47,8 @@
                 <constraint firstAttribute="bottom" secondItem="dVa-F2-QPW" secondAttribute="bottom" constant="10" id="hnF-JP-aXh"/>
                 <constraint firstItem="wuG-om-Iat" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="pZ7-Yx-eN2"/>
             </constraints>
-            <size key="customSize" width="340" height="221"/>
-            <point key="canvasLocation" x="-56" y="69"/>
+            <size key="customSize" width="340" height="259"/>
+            <point key="canvasLocation" x="-54" y="73.5"/>
         </collectionViewCell>
     </objects>
 </document>
