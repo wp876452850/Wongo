@@ -10,9 +10,10 @@
 #import "WPCostomTextField.h"
 typedef void(^WPNewPushNameBlock)(NSString * str);
 typedef void(^WPNewPushPhoneBlock)(NSString * str);
+typedef void(^WPNewPushMailBlock)(NSString * str);
 @interface WPNewPushUserInformationCollectionViewCell : UICollectionViewCell
 
 -(void)getNameBlockWithBlock:(WPNewPushNameBlock)block;
 -(void)getPhoneBlockWithBlock:(WPNewPushPhoneBlock)block;
-
+-(void)getMailBlockWithBlock:(WPNewPushPhoneBlock)block;
 @end

@@ -25,11 +25,11 @@
     [self.data addTarget:self action:@selector(endEnding) forControlEvents:UIControlEventEditingDidEndOnExit];
     _wordsNumber = 50;
 }
+//点击换行结束编辑
 -(void)endEnding{
     [self.contentView endEditing:YES];
 }
 -(void)textDidBegin:(UITextField *)textField{
-    
     if (self.superView&&self.indexPath) {
         [self.superView selectItemAtIndexPath:self.indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
     }

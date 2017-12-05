@@ -14,6 +14,7 @@ typedef void(^WPNewPushSelectBlock)(NSString * string ,NSString * gcid);
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (nonatomic,strong)NSArray * selectDataArray;
 @property (nonatomic,strong)NSString * url;
+@property (nonatomic,strong)UICollectionView * superView;
 
 
 -(void)getSelectWithBlock:(WPNewPushSelectBlock)block;

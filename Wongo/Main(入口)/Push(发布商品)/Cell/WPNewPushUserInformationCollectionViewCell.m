@@ -12,6 +12,7 @@
 {
     WPNewPushNameBlock  _nameBlock;
     WPNewPushPhoneBlock _phoneBlock;
+    WPNewPushMailBlock  _mailBlock;
 }
 @property (weak, nonatomic) IBOutlet WPCostomTextField *name;
 @property (weak, nonatomic) IBOutlet WPCostomTextField *phone;
@@ -31,9 +32,15 @@
         if (_nameBlock) {
             _nameBlock(textField.text);
         }
-    }else{
+    }
+    else if(textField.tag == 1){
         if (_phoneBlock) {
             _phoneBlock(textField.text);
+        }
+    }
+    else{
+        if (_mailBlock) {
+            _mailBlock(textField.text);
         }
     }
 }
@@ -44,5 +51,8 @@
 }
 -(void)getPhoneBlockWithBlock:(WPNewPushPhoneBlock)block{
     _phoneBlock = block;
+}
+-(void)getMailBlockWithBlock:(WPNewPushPhoneBlock)block;{
+    _mailBlock = block;
 }
 @end

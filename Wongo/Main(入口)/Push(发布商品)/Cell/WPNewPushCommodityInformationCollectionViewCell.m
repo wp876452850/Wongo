@@ -12,7 +12,7 @@
 @interface WPNewPushCommodityInformationCollectionViewCell ()<UITextViewDelegate,UITextFieldDelegate>
 {
     WPNewPushGoodsNameBlock _goodsNameBlock;
-    WPNewPushDescribeBlock  _describeBlock;
+    WPNewPushDescribeEdtingBlock _describeEdtingBlock;
 }
 @property (weak, nonatomic) IBOutlet WPCostomTextField *goodsname;
 @property (weak, nonatomic) IBOutlet UITextView  *describe;
@@ -25,6 +25,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    [self.goodsname addTarget:self action:@selector(endEnding) forControlEvents:UIControlEventEditingDidEndOnExit];
+    
     self.describe.layer.masksToBounds = YES;
     self.describe.layer.borderWidth = .5f;
     self.describe.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -53,22 +55,40 @@
         textField.text = [textField.text substringToIndex:_wordsNumber];
     }
 }
+
 - (void)textViewDidChange:(UITextView *)textView{
-    if (_describeBlock) {
-        _describeBlock(textView.text,[textView.text getSizeWithFont:[UIFont systemFontOfSize:14.5f] maxSize:CGSizeMake(textView.width, MAXFLOAT)].height+145.f);
-    }
+
     if (self.describe.text.length > 200 ) {
         self.describe.text = [self.describe.text substringToIndex:200];
     }    
     self.limitLenghtLabel.text = [NSString stringWithFormat:@"%lu/%@",(unsigned long)self.describe.text.length,@(200)];
 }
 
+//结束编辑
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    [self endEnding];
+    if (_describeEdtingBlock) {
+        _describeEdtingBlock(textView.text,[textView.text getSizeWithFont:[UIFont systemFontOfSize:14.5f] maxSize:CGSizeMake(textView.width, MAXFLOAT)].height+145.f);
+    }
+}
+
+
+//点击换行结束编辑
+-(void)endEnding{
+    [self.contentView endEditing:YES];
+}
+-(void)textDidBegin:(UITextField *)textField{
+    if (self.superView&&self.indexPath) {
+        [self.superView selectItemAtIndexPath:self.indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredVertically];
+    }
+}
+
 //回调
 -(void)getGoodsNameBlockWithBlock:(WPNewPushGoodsNameBlock)block{
     _goodsNameBlock = block;
 }
--(void)getDescribeBlockWithBlock:(WPNewPushDescribeBlock)block{
-    _describeBlock = block;
-}
 
+-(void)getDescribeEdtingBlockWithBlock:(WPNewPushDescribeEdtingBlock)block{
+    _describeEdtingBlock = block;
+}
 @end

@@ -45,6 +45,12 @@ static NSString * const storeCell   = @"storeCell";
     /////////////
     ///物品信息///
     ////////////
+    //用户姓名
+    NSString * _userName;
+    //用户电话
+    NSString * _userPhone;
+    //用户邮件
+    NSString * _userMail;
     //商品名称
     NSString * _name;
     //商品描述
@@ -80,7 +86,7 @@ static NSString * const storeCell   = @"storeCell";
         _pushButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _pushButton.frame = CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50);
         _pushButton.backgroundColor  = WongoBlueColor;
-        [_pushButton setTitle:@"开始我的造梦计划" forState:UIControlStateNormal];
+        [_pushButton setTitle:@"同意条款并开始我的造梦计划" forState:UIControlStateNormal];
         _pushButton.titleLabel.font  = [UIFont systemFontOfSize:15];
         [_pushButton addTarget:self action:@selector(payFee) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -118,6 +124,10 @@ static NSString * const storeCell   = @"storeCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:AliPaySignup object:nil];
 }
 
+#pragma mark - UIScrollViewDelegate
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    [self.view endEditing:YES];
+//}
 #pragma mark - UICollectionViewDelegate,UICollectionViewDataSource
 
 //返回每个区头大小
@@ -182,6 +192,18 @@ static NSString * const storeCell   = @"storeCell";
         case 0:
         {
             WPNewPushUserInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:userInformationCell forIndexPath:indexPath];
+            //名字
+            [cell getNameBlockWithBlock:^(NSString *str) {
+                _userName = str;
+            }];
+            //电话
+            [cell getPhoneBlockWithBlock:^(NSString *str) {
+                _userPhone = str;
+            }];
+            //邮箱
+            [cell getMailBlockWithBlock:^(NSString *str) {
+                _userMail = str;
+            }];
             
             return cell;
         }
@@ -190,14 +212,17 @@ static NSString * const storeCell   = @"storeCell";
         case 1:
         {
             WPNewPushCommodityInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:commodityInformationCell forIndexPath:indexPath];
+            cell.superView = collectionView;
+            cell.indexPath = indexPath;
             [cell getGoodsNameBlockWithBlock:^(NSString *str) {
-                
+                _name = str;
             }];
-            [cell getDescribeBlockWithBlock:^(NSString *str, CGFloat height) {
+            [cell getDescribeEdtingBlockWithBlock:^(NSString *str, CGFloat height) {
+                _describe = str;
                 if (describeCellHeight!=height&&height>=200) {
                     describeCellHeight = height;
-                    [collectionView reloadData];
                 }
+                [collectionView reloadData];
             }];
             return cell;
         }
@@ -217,12 +242,17 @@ static NSString * const storeCell   = @"storeCell";
             return cell;
         }
             break;
-            //商品详情信息
+            //选择详情信息
         case 3:case 4:
         {
+            
             WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectCell forIndexPath:indexPath];
+            cell.superView = collectionView;
             if (indexPath.section == 3) {
                 cell.url = CommodityTypeUrl;
+                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                    
+                }];
             }else{
                 cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
             }
@@ -231,11 +261,12 @@ static NSString * const storeCell   = @"storeCell";
             return cell;
         }
             break;
-            //选择商品信息
+            //输入商品信息
         case 5:case 6:
         {
             WPPushDetailInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:detailInformationCell forIndexPath:indexPath];
-            if (indexPath.section == 5) {
+            if (indexPath.row == 5) {
+                cell.data.keyboardType = UIKeyboardTypeNumberPad;
                 [cell getTextFieldDataWithBlock:^(NSString *str) {
                     
                 }];

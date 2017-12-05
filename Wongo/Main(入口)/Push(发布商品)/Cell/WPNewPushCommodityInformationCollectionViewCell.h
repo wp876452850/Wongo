@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "WPCostomTextField.h"
 typedef void(^WPNewPushGoodsNameBlock)(NSString * str);
-typedef void(^WPNewPushDescribeBlock)(NSString * str ,CGFloat height);
+typedef void(^WPNewPushDescribeEdtingBlock)(NSString * str ,CGFloat height);
+
+
 @interface WPNewPushCommodityInformationCollectionViewCell : UICollectionViewCell
 /**输入框限制字数 默认50*/
 @property (nonatomic,assign)NSInteger wordsNumber;
 
+@property (nonatomic,strong)UICollectionView * superView;
+
+@property (nonatomic,strong)NSIndexPath * indexPath;
+
 -(void)getGoodsNameBlockWithBlock:(WPNewPushGoodsNameBlock)block;
--(void)getDescribeBlockWithBlock:(WPNewPushDescribeBlock)block;
+
+-(void)getDescribeEdtingBlockWithBlock:(WPNewPushDescribeEdtingBlock)block;
 @end

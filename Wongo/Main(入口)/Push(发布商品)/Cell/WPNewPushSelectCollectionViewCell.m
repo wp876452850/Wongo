@@ -30,6 +30,7 @@
     
 }
 - (IBAction)actionSelect:(id)sender {
+    [self.superView endEditing:YES];
     __block typeof(self)weakSelf = self;
     if (isNeedNetWorlk) {
         WPSelectAlterView * selectAlterView = [WPSelectAlterView createURLSelectAlterWithFrame:[self findViewController:self].view.frame urlString:CommodityTypeUrl params:nil block:^(NSString *string ,NSString * gcid) {
