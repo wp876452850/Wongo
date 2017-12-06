@@ -10,4 +10,6 @@
 
 @interface WPConsignmentCollectionView : UICollectionView
 
+@property (nonatomic,strong)NSString * url;
+
 @end

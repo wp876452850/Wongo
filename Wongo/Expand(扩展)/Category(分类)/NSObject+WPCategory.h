@@ -12,6 +12,9 @@ typedef void(^AddBlock)(void);
 typedef void(^ReduceBlock)(void);
 
 @interface NSObject (WPCategory)
+/**默认商品图片*/
+-(UIImage *)getPlaceholderImage;
+
 /**获得当前时间字符串*/
 -(NSString *)getNowTime;
 

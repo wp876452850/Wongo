@@ -136,10 +136,11 @@
 /**点赞排序(分类)*/
 #define QueryUserGoodCtid       HttpHead(@"queryGoodParise")
 
-///**时间排序(分类)*/
-//#define QueryUserGoodsCtidDate  HttpHead(@"queryUserGoodsCtidDate")
-///**点赞排序(分类)*/
-//#define QueryUserGoodCtid       HttpHead(@"queryUserGoodsCtidpraise")
+/**
+ *  寄卖
+ */
+/**查询所有寄卖 currPage分页数*/
+#define QueryShoppingListPraise HttpHead(@"queryShoppingListPraise")
 
 
 /**

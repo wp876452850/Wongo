@@ -10,12 +10,17 @@
 #import "WPConsignmentHeaderView.h"
 #import "WPBrandCollectionViewCell.h"
 #import "WPConsignmentGoodsCollectionViewCell.h"
+#import "WPConsignmentModel.h"
 #define HeaderView_Height WINDOW_WIDTH*0.4 + (180*WINDOW_WIDTH/375)+40
 
 
+@interface WPConsignmentCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
+    NSInteger _currPage;
+}
 
-@interface WPConsignmentCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong)WPConsignmentHeaderView * headerView;
+
+@property (nonatomic,strong)NSMutableArray * dataSourceArray;
 
 @end
 @implementation WPConsignmentCollectionView
@@ -47,7 +52,30 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
     return self;
 }
 
+-(void)setUrl:(NSString *)url{
+    _url = url;
+    [self addHeaderLoad];
+}
+-(void)addHeaderLoad{
+    __block typeof(self) weakSelf = self;
+    self.mj_header = [WPAnimationHeader headerWithRefreshingBlock:^{
+        [weakSelf loadDatas];
+    }];
+    [self.mj_header beginRefreshing];
+}
 -(void)loadDatas{
+    _currPage = 1;
+    _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    __block typeof(self) weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_currPage)} datas:^(NSDictionary *responseObject) {
+        NSArray * array = responseObject[@"shoppingRm"];
+        for (int i = 0; i<array.count; i++) {
+            WPConsignmentModel * model = [WPConsignmentModel mj_objectWithKeyValues:array[i]];
+            [weakSelf.dataSourceArray addObject:model];
+        }
+        [weakSelf reloadData];
+        [weakSelf.mj_header endRefreshing];
+    }];
     
 }
 //区数
@@ -60,7 +88,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
     if (section == 0) {
         return 8;
     }
-    return 10;
+    return _dataSourceArray.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -69,6 +97,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
         return cell;
     }
     WPConsignmentGoodsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ConsignmentCell forIndexPath:indexPath];
+    cell.model = self.dataSourceArray[indexPath.row];
     return cell;
 }
 
