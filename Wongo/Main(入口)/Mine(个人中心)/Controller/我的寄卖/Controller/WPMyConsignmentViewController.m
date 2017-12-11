@@ -7,7 +7,7 @@
 //
 
 #import "WPMyConsignmentViewController.h"
-
+#import "WPCommodityManagementTableViewCell.h"
 @interface WPMyConsignmentViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;

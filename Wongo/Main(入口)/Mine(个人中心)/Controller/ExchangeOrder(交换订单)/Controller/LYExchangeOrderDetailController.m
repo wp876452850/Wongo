@@ -17,32 +17,24 @@
 @interface LYExchangeOrderDetailController ()
 /**订单详情 */
 @property (nonatomic, strong) LYExchangeOrderDetialModel *detailModel;
-
 /**订单模型*/
 @property (nonatomic, strong) WPExchangeOrderModel *model;
-
 /**对方支付信息*/
 @property (nonatomic, strong) UILabel *payL;
-
 /**对方发货物流信息*/
 @property (nonatomic, strong) UILabel *expL;
-
 /**聊天按钮 */
 @property (nonatomic, strong) UIButton *chatBtn;
-
 /**查看地址按钮 */
 @property (nonatomic, strong) UIButton *addrBtn;
-@property (nonatomic, strong) UILabel *addrL;
 
+@property (nonatomic, strong) UILabel *addrL;
 /**物流公司 */
 @property (nonatomic, strong) UITextField *expCompany;
-
 /**物流单号 */
 @property (nonatomic, strong) UITextField *expNum;
-
 /**第一个按钮 */
 @property (nonatomic, strong) UIButton *btnA;
-
 /**第二个按钮 */
 @property (nonatomic, strong) UIButton *btnB;
 

@@ -186,8 +186,8 @@ static NSString * contentOffset = @"contentOffset";
 -(void)loadData{
     _plids = [NSMutableArray arrayWithCapacity:3];
     __block WPHomeViewController * weakSelf = self;
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.removeFromSuperViewOnHide = YES;
+//    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    self.hud.removeFromSuperViewOnHide = YES;
     [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
         LYHomeResponse * response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
         weakSelf.response = response;
@@ -216,7 +216,7 @@ static NSString * contentOffset = @"contentOffset";
         [weakSelf loadDreamingDatas];
     }];
 }
-//获取造梦数据
+//获取推荐造梦数据
 -(void)loadDreamingDatas{
     //查询造梦计划
     __block WPHomeViewController * weakSelf = self;

@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "RegisterViewController.h"
 #import "WPNetWorking.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "WPRegisterViewController.h"

@@ -184,11 +184,22 @@
 //注册
 -(void)actionRegister{
     [WPNetWorking createPostRequestMenagerWithUrlString:UseraddUrl params:@{@"mobile":self.phoneNumber.text,@"compare":self.verificationCode.text} datas:^(NSDictionary *responseObject) {
-        
+        if ([[responseObject objectForKey:@"flag"] integerValue] == 1) {
+            [self showAlertWithAlertTitle:@"提示" message:[responseObject objectForKey:@"msg"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
+                if (_registerBlock) {
+                    _registerBlock(_phoneNumber.text,@"123456");
+                }
+                [self w_popViewController];
+            }];
+        }
+        else{
+            [self showAlertWithAlertTitle:@"提示" message:[responseObject objectForKey:@"msg"] preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]block:^{
+                self.view.userInteractionEnabled = YES;
+            }];
+        }
     } failureBlock:^{
-        NSLog(@"注册失败");
+        
     }];
-    
 }
 //发送验证码
 -(void)pushVerificationCode{
@@ -213,7 +224,6 @@
 
 -(void)getRegisterUserAndPasswordWithBlock:(SuccessfulRegister)block{
     _registerBlock = block;
-    
 }
 
 //限制输入长度

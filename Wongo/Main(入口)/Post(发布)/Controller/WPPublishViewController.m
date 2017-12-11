@@ -121,12 +121,12 @@
             break;
         case 1:
         {   //FIXME:功能暂未开放
-//            [[self findViewController:self]showAlertNotOpenedWithBlock:nil];
-//            return;
-            if ([self determineWhetherTheLoginWithViewController:self]) {
-                WPPushConsignmentViewController * vc = [[WPPushConsignmentViewController alloc]init];
-                [self presentViewController:vc animated:YES completion:nil];
-            }
+            [self showAlertNotOpenedWithBlock:nil];
+            return;
+//            if ([self determineWhetherTheLoginWithViewController:self]) {
+//                WPPushConsignmentViewController * vc = [[WPPushConsignmentViewController alloc]init];
+//                [self presentViewController:vc animated:YES completion:nil];
+//            }
         }
             break;
     }

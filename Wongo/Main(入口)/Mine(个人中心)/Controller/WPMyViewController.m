@@ -143,7 +143,6 @@
 #pragma mark - tableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     //点击效果,按需求选择要不要
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
@@ -193,8 +192,5 @@
     [_tableView addSubview:_userInformationView];
     [self.tableView reloadData];
 }
-
-
-
 
 @end
