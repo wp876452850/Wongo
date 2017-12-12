@@ -7,8 +7,18 @@
 //
 
 #import "WPNewPushConsignmentViewController.h"
+//用户信息
+#import "WPNewPushUserInformationCollectionViewCell.h"
+//图片信息
+#import "WPNewPushImagesCollectionViewCell.h"
+//可输入信息框
+#import "WPPushDetailInformationCollectionViewCell.h"
+//条款条例
+#import "WPNewPushTermsCollectionViewCell.h"
 
 @interface WPNewPushConsignmentViewController ()
+
+@property (nonatomic,strong)UITableView * tableView;
 
 @end
 

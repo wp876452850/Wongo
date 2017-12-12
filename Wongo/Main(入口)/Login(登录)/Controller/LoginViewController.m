@@ -230,7 +230,7 @@
 -(void)ThirdPartyLoginWithSid:(NSString *)sid uname:(NSString *)uname url:(NSString *)url{
     __block typeof(self) weakSelf = self;
     //sid:获取的第三方平台账户uid
-    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddsUrl params:@{@"uname":uname,@"sid":sid,@"password":@"123456",@"url":url} datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:UseraddsUrl params:@{@"uname":uname,@"sid":sid,@"url":url} datas:^(NSDictionary *responseObject) {
         if ([responseObject[@"flag"] integerValue] == 0) {
             [weakSelf loginfailWithSelf:weakSelf];
         }else

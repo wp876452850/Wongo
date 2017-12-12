@@ -46,7 +46,7 @@
 }
 
 -(void)getTextFieldDataWithBlock:(WPNewPushDetailInformationBlock)block{
-    
+    _block = block;
 }
 
 @end

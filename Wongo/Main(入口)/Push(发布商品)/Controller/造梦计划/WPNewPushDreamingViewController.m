@@ -10,13 +10,21 @@
 //支付
 #import "WPPayDepositViewController.h"
 //cell
+//用户信息
 #import "WPNewPushUserInformationCollectionViewCell.h"
+//商品信息
 #import "WPNewPushCommodityInformationCollectionViewCell.h"
+//图片信息
 #import "WPNewPushImagesCollectionViewCell.h"
+//地址信息
 #import "WPNewPushAddressSelectCollectionViewCell.h"
+//可输入信息框
 #import "WPPushDetailInformationCollectionViewCell.h"
+//选择框
 #import "WPNewPushSelectCollectionViewCell.h"
+//造梦故事
 #import "WPNewPushStoreCollectionViewCell.h"
+//条款条例
 #import "WPNewPushTermsCollectionViewCell.h"
 
 #define Placeholders @[@"请选择商品种类",@"请选择商品新旧程度",@"请输入商品价值(￥)",@"是否成为寄梦人?"]
@@ -51,6 +59,7 @@ static NSString * const storeCell   = @"storeCell";
     NSString * _userPhone;
     //用户邮件
     NSString * _userMail;
+    
     //商品名称
     NSString * _name;
     //商品描述
@@ -59,12 +68,12 @@ static NSString * const storeCell   = @"storeCell";
     NSString * _newOrOld;
     //商品价格
     NSString * _price;
+    //种类
+    NSString * _species;
     //种类id
     NSString * _specieid;
     /**造梦故事*/
     NSString * _story;
-    /**造梦计划*/
-    NSString * _contents;
     /**收货地址*/
     NSString * _adid;
     //是否同意协议说明
@@ -251,10 +260,15 @@ static NSString * const storeCell   = @"storeCell";
             if (indexPath.section == 3) {
                 cell.url = CommodityTypeUrl;
                 [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
-                    
+                    _species = string;
+                    _specieid = gcid;
                 }];
+                
             }else{
                 cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
+                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                    _newOrOld = string;
+                }];
             }
             cell.textField.placeholder = Placeholders[indexPath.section-3];
             cell.title.text = Titles[indexPath.section-3];
@@ -265,10 +279,11 @@ static NSString * const storeCell   = @"storeCell";
         case 5:case 6:
         {
             WPPushDetailInformationCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:detailInformationCell forIndexPath:indexPath];
-            if (indexPath.row == 5) {
-                cell.data.keyboardType = UIKeyboardTypeNumberPad;
+            cell.data.keyboardType = UIKeyboardTypeDefault;
+            if (indexPath.section == 5) {
+                cell.data.keyboardType = UIKeyboardTypeDecimalPad;
                 [cell getTextFieldDataWithBlock:^(NSString *str) {
-                    
+                    _price = str;
                 }];
             }else{
                 [cell getTextFieldDataWithBlock:^(NSString *str) {
@@ -287,7 +302,7 @@ static NSString * const storeCell   = @"storeCell";
         {
             WPNewPushAddressSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:addressCell forIndexPath:indexPath];
             [cell getAddressWithBlock:^(NSInteger adid) {
-                
+                _adid = [NSString stringWithFormat:@"%ld",adid];
             }];
             return cell;
         }
@@ -299,6 +314,7 @@ static NSString * const storeCell   = @"storeCell";
             cell.superView = collectionView;
             cell.indexPath = indexPath;
             [cell getStoreBlockWithBlock:^(NSString *str, CGFloat height) {
+                _story = str;
                 if (storeCellHeight != height&&height>=200) {
                     storeCellHeight = height;
                     [collectionView reloadData];
@@ -324,15 +340,16 @@ static NSString * const storeCell   = @"storeCell";
     if (![self determineWhetherTheDataIntegrity]) {
         return;
     }
-    __block typeof(self)weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@"signupid"],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
-        [weakSelf.navigationController pushViewController:payvc animated:YES];
-    }];
+    [self upLoadDreamingInformation];
+//    __block typeof(self)weakSelf = self;
+//    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+//        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@""],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
+//        [weakSelf.navigationController pushViewController:payvc animated:YES];
+//    }];
 }
 //判断是否有空数据
 -(BOOL)determineWhetherTheDataIntegrity{
-    if (_name.length!=0&&_describe.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_contents.length!=0&&_adid.length!=0&&_specieid.length!=0) {
+    if (_name.length!=0&&_describe.length!=0&&_price.length!=0&&_story.length!=0&&_newOrOld.length!=0&&_adid!=nil&&_specieid!=nil) {
         return YES;
     }
     [self showMBProgressHUDWithTitle:@"请输入完整信息"];
@@ -350,7 +367,32 @@ static NSString * const storeCell   = @"storeCell";
 #pragma mark - 上传造梦计划申请
 //付钱后上传
 -(void)upLoadDreamingInformation{
-   
+    if ([_price floatValue]<0) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得小于0" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+    if ([_price floatValue]>999999) {
+        [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+    }
+    NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"story":_story,@"contents":@"123",@"subid":_subid,@"pubtime":[self getNowTime],@"want":@"123"};
+    
+    __block typeof(self)weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:AddProduct params:params datas:^(NSDictionary *responseObject) {
+        NSString * flag = [responseObject objectForKey:@"flag"];
+        if ([flag integerValue] == 1) {
+            //上传图片
+            [WPGCD createUpLoadImageGCDWithImages:weakSelf.images urlString:UpProFileUrl params:@{@"proid":[responseObject objectForKey:@"proid"]}];
+            [self showAlertWithAlertTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
+                [self popoverPresentationController];
+            }];
+        }
+        else{
+            [self showAlertWithAlertTitle:@"上传失败" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        }
+    }];
+
 }
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+}
 @end

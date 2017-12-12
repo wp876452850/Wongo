@@ -4081,6 +4081,29 @@
 			path = "引导页(Guide)";
 			sourceTree = "<group>";
 		};
+		3D3388451FDE71D20031FE7B /* 造梦条例 */ = {
+			isa = PBXGroup;
+			children = (
+				3D9380371FBE79A800CCEF65 /* WPNewPushTermsCollectionViewCell.m */,
+				3D9380381FBE79A800CCEF65 /* WPNewPushTermsCollectionViewCell.xib */,
+			);
+			name = "造梦条例";
+			sourceTree = "<group>";
+		};
+		3D3388471FDE72110031FE7B /* 寄卖条例 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "寄卖条例";
+			sourceTree = "<group>";
+		};
+		3D3388481FDE722C0031FE7B /* 交换条例 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "交换条例";
+			sourceTree = "<group>";
+		};
 		3D62797F1F74F5780057B49B /* 举报框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -4478,8 +4501,9 @@
 				3D1EB9A41FC27C3A003D8988 /* WPNewPushStoreCollectionViewCell.m */,
 				3D1EB9A51FC27C3A003D8988 /* WPNewPushStoreCollectionViewCell.xib */,
 				3D9380361FBE79A800CCEF65 /* WPNewPushTermsCollectionViewCell.h */,
-				3D9380371FBE79A800CCEF65 /* WPNewPushTermsCollectionViewCell.m */,
-				3D9380381FBE79A800CCEF65 /* WPNewPushTermsCollectionViewCell.xib */,
+				3D3388451FDE71D20031FE7B /* 造梦条例 */,
+				3D3388471FDE72110031FE7B /* 寄卖条例 */,
+				3D3388481FDE722C0031FE7B /* 交换条例 */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

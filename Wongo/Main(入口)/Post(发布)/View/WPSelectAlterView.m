@@ -114,7 +114,7 @@ static SelectAlertBlock _selectAlertBlock;
 
 -(void)selectAlert:(UIButton *)sender{
     if (_selectAlertBlock) {
-        _selectAlertBlock(self.dataSource[sender.tag],self.gcids[sender.tag]);
+        _selectAlertBlock(self.dataSource[sender.tag],[NSString stringWithFormat:@"%@",self.gcids[sender.tag]]);
     }
     [UIView animateWithDuration:0.3 animations:^{
         self.selectView.y  = WINDOW_HEIGHT;
