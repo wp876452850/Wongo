@@ -24,12 +24,12 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="LYL-nR-cZ7"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dVa-F2-QPW">
-                        <rect key="frame" x="10" y="55" width="320" height="194"/>
+                        <rect key="frame" x="10" y="45" width="320" height="204"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <string key="text">您不得利用碗糕发表、传送、传播、储存违反国家法律、危害国家安全、祖国统一、社会稳定、公序良俗的内容，或任何不当的、侮辱诽谤的、淫秽的、暴力的及任何违反国家法律法规政策的内容或侵害他人知识产权、商业秘密权、隐私权等合法权利的内容，也不得传送或散布以其他方式实现传送含有受到知识产权法律保护的图像、相片、软件或其他资料的文件，除非用户拥有或控制着相应的权利或已得到所有必要的认可。否则，一经发现或收到举报，碗糕有权删除并处理</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -41,7 +41,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dVa-F2-QPW" secondAttribute="trailing" constant="10" id="67s-Ro-shg"/>
                 <constraint firstItem="wuG-om-Iat" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="85r-bc-HWK"/>
-                <constraint firstItem="dVa-F2-QPW" firstAttribute="top" secondItem="wuG-om-Iat" secondAttribute="bottom" constant="10" id="MMV-q3-65g"/>
+                <constraint firstItem="dVa-F2-QPW" firstAttribute="top" secondItem="wuG-om-Iat" secondAttribute="bottom" id="MMV-q3-65g"/>
                 <constraint firstAttribute="trailing" secondItem="wuG-om-Iat" secondAttribute="trailing" constant="10" id="WbB-9W-6bW"/>
                 <constraint firstItem="dVa-F2-QPW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="atu-iP-5nm"/>
                 <constraint firstAttribute="bottom" secondItem="dVa-F2-QPW" secondAttribute="bottom" constant="10" id="hnF-JP-aXh"/>

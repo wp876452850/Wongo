@@ -337,15 +337,20 @@ static NSString * const storeCell   = @"storeCell";
 
 #pragma mark - 支付
 -(void)payFee{
-    if (![self determineWhetherTheDataIntegrity]) {
-        return;
-    }
-    [self upLoadDreamingInformation];
-//    __block typeof(self)weakSelf = self;
-//    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-//        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":responseObject[@""],@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
-//        [weakSelf.navigationController pushViewController:payvc animated:YES];
-//    }];
+//    if (![self determineWhetherTheDataIntegrity]) {
+//        return;
+//    }
+    __block typeof(self)weakSelf = self;
+    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        
+        NSLog(@" flag ==== %ld",[responseObject[@"flag"] integerValue]);
+        NSLog(@" signupid ==== %ld",[responseObject[@"signupid"] integerValue]);
+        
+        NSInteger signupid = [responseObject[@"signupid"] integerValue];
+        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
+        
+        [weakSelf.navigationController pushViewController:payvc animated:YES];
+    }];
 }
 //判断是否有空数据
 -(BOOL)determineWhetherTheDataIntegrity{
@@ -373,7 +378,7 @@ static NSString * const storeCell   = @"storeCell";
     if ([_price floatValue]>999999) {
         [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
     }
-    NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"story":_story,@"contents":@"123",@"subid":_subid,@"pubtime":[self getNowTime],@"want":@"123"};
+    NSDictionary * params = @{@"uid":[self getSelfUid],@"proname":_name,@"gcid":_specieid,@"price":_price,@"remark":_describe,@"neworold":_newOrOld,@"adid":_adid,@"story":_story,@"contents":@"123",@"subid":_subid,@"pubtime":[self getNowTime],@"plantime":[self getNowTime],@"want":@"123"};
     
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:AddProduct params:params datas:^(NSDictionary *responseObject) {
