@@ -50,7 +50,7 @@
                 <outlet property="data" destination="h6o-ts-hSe" id="Ff2-rF-vLh"/>
                 <outlet property="title" destination="a24-pO-8dc" id="HUt-4Y-WaY"/>
             </connections>
-            <point key="canvasLocation" x="-147" y="-50"/>
+            <point key="canvasLocation" x="-101" y="-69"/>
         </collectionViewCell>
     </objects>
 </document>

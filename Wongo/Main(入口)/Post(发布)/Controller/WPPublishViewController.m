@@ -12,6 +12,7 @@
 #import "WPPushDreamingViewController.h"
 #import "WPPushConsignmentViewController.h"
 
+#import "WPNewPushExchangeViewController.h"
 
 #import "WPPayDepositViewController.h"
 
@@ -114,7 +115,8 @@
         case 0:
         {
             if ([self determineWhetherTheLoginWithViewController:self]) {
-                WPPushExchangeViewController * vc = [[WPPushExchangeViewController alloc]init];
+//                WPPushExchangeViewController * vc = [[WPPushExchangeViewController alloc]init];
+                WPNewPushExchangeViewController * vc = [[WPNewPushExchangeViewController alloc]init];
                 [self presentViewController:vc animated:YES completion:nil];
             }
         }

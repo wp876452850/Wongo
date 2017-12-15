@@ -27,9 +27,14 @@
 -(void)loadData{
     __block typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        weakSelf.inviteCode.text = responseObject[@"first"];
+        NSString * inviteCode = responseObject[@"first"];
+        if (inviteCode.length>0) {
+             weakSelf.inviteCode.text = inviteCode;
+        }       
     }];
 }
+
+
 - (IBAction)copy:(UIButton *)sender {
     UIPasteboard *pab = [UIPasteboard generalPasteboard];
     

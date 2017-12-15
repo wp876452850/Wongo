@@ -269,7 +269,6 @@ static NSString * const parameter       = @"Parameter";
     }
     else if (indexPath.section == 6){
         cell.data.text              = _inventory;
-        cell.data.openRisingView    = YES;
         cell.data.keyboardType      = UIKeyboardTypeNumberPad;
         [cell getTextFieldDataWithBlock:^(NSString *str) {
             _inventory = cell.data.text;

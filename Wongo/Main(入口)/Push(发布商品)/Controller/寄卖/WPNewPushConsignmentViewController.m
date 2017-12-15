@@ -229,7 +229,7 @@ static NSString * const selectCell              = @"selectCell";
             return cell;
         }
             break;
-//            //选择地址
+              //选择地址
 //        case 7:
 //        {
 //            WPNewPushAddressSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:addressCell forIndexPath:indexPath];
@@ -240,7 +240,7 @@ static NSString * const selectCell              = @"selectCell";
 //        }
 //            break;
 
-            //造梦条款
+            //寄卖条款
         case 9:
         {
             

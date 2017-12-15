@@ -127,6 +127,7 @@ static NSString * const storeCell   = @"storeCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myNavItem.title = @"报名造梦计划";
+    
     self.itemHeights = [NSMutableArray arrayWithCapacity:3];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.pushButton];
