@@ -45,7 +45,7 @@
 
 -(void)setModel:(WPSearchUserModel *)model{
     _model = model;
-    [_headImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"broken"]];
+    [_headImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     _userName.text                  = model.uname;
     _userID                         = model.uid;
 }

@@ -10,7 +10,7 @@
 #import "WPSelectAlterViewCell.h"
 #import "WPGoodsClassModel.h"
 
-#define SelectItemSize CGSizeMake(WINDOW_WIDTH / 5, 40)
+#define SelectItemSize CGSizeMake(WINDOW_WIDTH / 4, 40)
 #define ReusableView_Height 44
 static SelectAlertBlock _selectAlertBlock;
 @interface WPSelectAlterView ()<UICollectionViewDelegate,UICollectionViewDataSource>
@@ -169,15 +169,15 @@ static SelectAlertBlock _selectAlertBlock;
 
     if ([self.dataSource[indexPath.section] isKindOfClass:[WPGoodsClassModel class]]){
                 WPGoodsClassModel * model = _dataSource[indexPath.section];
-        UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 20)];
+        UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 20)];
         title.center = CGPointMake(WINDOW_WIDTH/2, ReusableView_Height/2);
         title.text = model.cname;
-        title.font = [UIFont systemFontOfSize:19];
-        title.textColor = AllBorderColor;
+        title.font = [UIFont systemFontOfSize:17.f];
+        title.textColor = TitleBlackColor;
         title.textAlignment = NSTextAlignmentCenter;
-        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(50, title.centerY) moveForPoint:CGPointMake(title.left - 20, title.centerY) lineColor:AllBorderColor]];
+        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(title.left - 50, title.centerY) moveForPoint:CGPointMake(title.left - 20, title.centerY) lineColor:TitleBlackColor]];
         [reusableView addSubview:title];
-        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 50, title.centerY) moveForPoint:CGPointMake(title.right + 20, title.centerY) lineColor:AllBorderColor]];
+        [reusableView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(title.right + 50, title.centerY) moveForPoint:CGPointMake(title.right + 20, title.centerY) lineColor:TitleBlackColor]];
         
     }
     return reusableView;

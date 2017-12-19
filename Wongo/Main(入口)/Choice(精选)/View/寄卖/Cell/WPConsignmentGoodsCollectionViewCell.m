@@ -23,7 +23,7 @@
 }
 
 -(void)setModel:(WPConsignmentModel *)model{
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadImage"]];
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     self.title.text = model.sname;
     self.price.text = [NSString stringWithFormat:@"￥%.f",[model.price floatValue]];
 }

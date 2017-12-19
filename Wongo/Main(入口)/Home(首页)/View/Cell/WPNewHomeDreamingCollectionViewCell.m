@@ -64,7 +64,7 @@
 
 -(void)setModel:(WPDreamingModel *)model{
     _model = model;
-    self.title.text = [NSString stringWithFormat:@"造梦物品:%@",@"手机"];
+    self.title.text = [NSString stringWithFormat:@"造梦物品:%@",model.want];
     self.category.text = model.proname;
     [self.collection reloadData];
     //[self drowLine];

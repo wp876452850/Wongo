@@ -63,6 +63,7 @@
 //item 高度
 @property (nonatomic,strong)NSMutableArray * itemHeights;
 
+@property (nonatomic,strong)UIButton * leftBarbutton;
 @end
 
 @implementation WPNewPushExchangeViewController
@@ -74,7 +75,15 @@ static NSString * const detailInformationCell   = @"detailInformationCell";
 static NSString * const selectCell              = @"selectCell";
 
 //懒加载
-
+-(UIButton *)leftBarbutton{
+    if (!_leftBarbutton) {
+        _leftBarbutton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _leftBarbutton.frame = CGRectMake(10, 27, 30, 30);
+        [_leftBarbutton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        [_leftBarbutton addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _leftBarbutton;
+}
 -(UIButton *)pushButton{
     if (!_pushButton) {
         _pushButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -106,9 +115,11 @@ static NSString * const selectCell              = @"selectCell";
 }
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myNavItem.title = @"发布交换商品";
+    [self.myNavBar addSubview:self.leftBarbutton];
     self.itemHeights = [NSMutableArray arrayWithCapacity:3];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.pushButton];
@@ -241,14 +252,14 @@ static NSString * const selectCell              = @"selectCell";
             
             WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectCell forIndexPath:indexPath];
             cell.superView = collectionView;
-            if (indexPath.section == 3) {
+            if (indexPath.section == 4) {
                 cell.url = CommodityTypeUrl;
                 [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
                     _species = string;
                     _specieid = gcid;
                 }];
                 
-            }else{
+            }else if(indexPath.section == 5){
                 cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
                 [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
                     _newOrOld = string;
@@ -259,7 +270,6 @@ static NSString * const selectCell              = @"selectCell";
             return cell;
         }
             break;
-
             //寄卖条款
         case 7:
         {
@@ -281,9 +291,11 @@ static NSString * const selectCell              = @"selectCell";
     __block typeof(self)weakSelf = self;
     if ([_price floatValue]<0) {
         [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得小于0" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        return;
     }
     if ([_price floatValue]>999999) {
         [self showAlertWithAlertTitle:@"提示" message:@"输入的金额不得大于999999" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"]];
+        return;
     }
     
     if (_name.length!=0&&_describe.length!=0&&_specieid!=nil&&_price.length!=0&&_inventory.length!=0&&_newOrOld.length!=0) {
@@ -310,4 +322,7 @@ static NSString * const selectCell              = @"selectCell";
     }
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%@",indexPath);
+}
 @end

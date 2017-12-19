@@ -13,19 +13,18 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.selectButton.layer.masksToBounds   = YES;
-    self.selectButton.layer.cornerRadius    = 15;
-    self.selectButton.layer.borderColor     = ColorWithRGB(147, 147, 147).CGColor;
+    self.selectButton.layer.cornerRadius    = 5;
+    self.selectButton.layer.borderColor     = BlackColor.CGColor;
     self.selectButton.layer.borderWidth     = 1.0f;
-    [self.selectButton setTitleColor:ColorWithRGB(147, 147, 147) forState:UIControlStateNormal];
-    //[self.selectButton setTitleColor:SelfThemeColor forState:UIControlStateSelected];
+    [self.selectButton setTitleColor:BlackColor forState:UIControlStateNormal];
 }
 
 - (IBAction)select:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
-        self.selectButton.layer.borderColor = SelfThemeColor.CGColor;
+        self.selectButton.layer.borderColor = BlackColor.CGColor;
     }else{
-        self.selectButton.layer.borderColor = ColorWithRGB(147, 147, 147).CGColor;
+        self.selectButton.layer.borderColor = BlackColor.CGColor;
     }
 }
 

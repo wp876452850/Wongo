@@ -40,7 +40,7 @@
     _limitLenghtLabel.font = [UIFont systemFontOfSize:13.];
     _limitLenghtLabel.text = [NSString stringWithFormat:@"%lu/%@",(unsigned long)self.describe.text.length,@(200)];
     
-    self.describe.placeholder = @"请描述物品相关信息,越详细获选的几率越高哟";
+    self.describe.placeholder = @"请详细描述您所发布的物品相关信息";
     _wordsNumber = 50;
 }
 

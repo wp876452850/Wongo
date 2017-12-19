@@ -37,7 +37,7 @@
 
 -(void)setModel:(WPSelectExchangeGoodsModel *)model{
     _model = model;
-    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:nil];
+    [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     self.goodsName.text     = model.gname;
     self.goodsPrice.text    = [NSString stringWithFormat:@"￥%@",model.price];
 }

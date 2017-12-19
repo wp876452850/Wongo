@@ -20,7 +20,7 @@
                 <subviews>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RV-s4-F1L">
                         <rect key="frame" x="5" y="5" width="201" height="57"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" red="0.090196078430000007" green="0.090196078430000007" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -40,7 +40,7 @@
             <connections>
                 <outlet property="selectButton" destination="2RV-s4-F1L" id="NEB-yn-cvm"/>
             </connections>
-            <point key="canvasLocation" x="-358" y="36"/>
+            <point key="canvasLocation" x="-64" y="37"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -12,6 +12,7 @@
 
 +(instancetype)createUpLoadImageGCDWithImages:(NSArray *)images urlString:(NSString *)urlString params:(NSDictionary *)params
 {
+    NSLog(@"%@",params);
     WPGCD * gcd = [[WPGCD alloc]init];
     NSMutableArray* result = [NSMutableArray array];
     

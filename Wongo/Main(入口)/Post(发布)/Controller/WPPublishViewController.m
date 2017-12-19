@@ -13,6 +13,7 @@
 #import "WPPushConsignmentViewController.h"
 
 #import "WPNewPushExchangeViewController.h"
+#import "WPNewPushConsignmentViewController.h"
 
 #import "WPPayDepositViewController.h"
 
@@ -126,7 +127,7 @@
 //            [self showAlertNotOpenedWithBlock:nil];
 //            return;
             if ([self determineWhetherTheLoginWithViewController:self]) {
-                WPPushConsignmentViewController * vc = [[WPPushConsignmentViewController alloc]init];
+                WPNewPushConsignmentViewController * vc = [[WPNewPushConsignmentViewController alloc]init];
                 [self presentViewController:vc animated:YES completion:nil];
             }
         }

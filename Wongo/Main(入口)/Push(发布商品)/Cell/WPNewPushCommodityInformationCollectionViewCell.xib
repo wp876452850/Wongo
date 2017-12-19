@@ -84,7 +84,7 @@
                 <outlet property="goodsname" destination="awp-0z-LqZ" id="D61-ry-c69"/>
                 <outlet property="limitLenghtLabel" destination="zDK-pn-iE7" id="Toe-sF-3DP"/>
             </connections>
-            <point key="canvasLocation" x="-647" y="-243"/>
+            <point key="canvasLocation" x="-933" y="-254"/>
         </collectionViewCell>
     </objects>
 </document>
