@@ -22,6 +22,7 @@
 #import "WPMyTableViewCell.h"
 #import "WPInviteCodeViewController.h"
 #import "WPBalanceViewController.h"
+#import "WPMyConsignmentViewController.h"
 
 #define CELL_ID @"cell"
 
@@ -29,9 +30,9 @@
 //#define Cell_Icon_Array @[@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop"]
 //#define Cell_ViewControllers @[[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class]]
 
-#define Cell_title_array @[@"余额",@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"邀请码"]
-#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"invitecode"]
-#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPInviteCodeViewController class]]
+#define Cell_title_array @[@"余额",@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"我的寄卖",@"邀请码"]
+#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"",@"invitecode"]
+#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPMyConsignmentViewController class],[WPInviteCodeViewController class]]
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
 //表的一个区头试图高度

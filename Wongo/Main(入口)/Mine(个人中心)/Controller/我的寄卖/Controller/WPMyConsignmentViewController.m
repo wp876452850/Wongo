@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self loadDatas];
 }
 
 -(UITableView *)tableView
@@ -34,5 +34,17 @@
         
     }
     return _tableView;
+}
+
+-(void)loadDatas{
+    [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsUserquery params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
+        
+    }];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return nil;
 }
 @end

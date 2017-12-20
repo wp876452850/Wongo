@@ -57,6 +57,7 @@
 -(void)setModel:(WPDreamingIntroduceImageModel *)model{
     _model = model;
     [self.goodsImage sd_setImageWithURL:[NSURL URLWithString:_model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
+    if (!model.praise||[model.praise isKindOfClass:[NSNull class]])model.praise = @"0";
     [_thumup setTitle:[NSString stringWithFormat:@"支持数:%@人",model.praise] forState:UIControlStateNormal];
     _goodsName.text = _model.proname;
     _pushTime.text = _model.pbutime;

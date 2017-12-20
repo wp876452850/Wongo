@@ -145,6 +145,8 @@
 #define LogisticsUserAdd        HttpHead(@"logisticsUserAdd")
 /**上传寄卖图片*/
 #define Upfilelog               HttpHead(@"upfilelog")
+/**我的寄卖 uid*/
+#define LogisticsUserquery      HttpHead(@"logisticsUserquery")
 
 /**
  *      造梦
