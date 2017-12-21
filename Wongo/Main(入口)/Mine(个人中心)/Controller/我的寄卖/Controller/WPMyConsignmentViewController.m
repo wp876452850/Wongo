@@ -7,7 +7,8 @@
 //
 
 #import "WPMyConsignmentViewController.h"
-#import "WPCommodityManagementTableViewCell.h"
+#import "WPMyConsignmentTableViewCell.h"
+#import "WPMyConsignmentModel.h"
 @interface WPMyConsignmentViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
@@ -18,7 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"我的寄卖";
     [self loadDatas];
+    [self.view addSubview:self.tableView];
 }
 
 -(UITableView *)tableView
@@ -29,22 +32,32 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 90;
-        [_tableView registerNib:[UINib nibWithNibName:@"WPCommodityManagementTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-        
+        _tableView.rowHeight = 115;
+        [_tableView registerNib:[UINib nibWithNibName:@"WPMyConsignmentTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];        
     }
     return _tableView;
 }
 
 -(void)loadDatas{
+    self.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    __block typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsUserquery params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
-        
+        NSArray * listg = responseObject[@"listg"];
+        for (int i = 0; i<listg.count; i++) {
+            WPMyConsignmentModel * model = [WPMyConsignmentModel mj_objectWithKeyValues:listg[i]];
+            [weakSelf.dataSourceArray addObject:model];
+        }
+        [weakSelf.tableView reloadData];
     }];
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return self.dataSourceArray.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return nil;
+    WPMyConsignmentTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.model = self.dataSourceArray[indexPath.row];
+    return cell;
 }
 @end

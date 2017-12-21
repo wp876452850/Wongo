@@ -10,9 +10,11 @@
 #import "LoginViewController.h"
 
 @implementation NSObject (WPCategory)
+
 -(UIImage *)getPlaceholderImage{
-    return [UIImage imageNamed:@"loadImage"];
+    return [UIImage imageNamed:@"loadimage"];
 }
+
 -(NSString *)getNowTime{
     NSDate * beDate = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateFormatter * df = [[NSDateFormatter alloc]init];

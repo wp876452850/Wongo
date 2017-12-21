@@ -31,10 +31,9 @@
 @implementation WPConsignmentHeaderView
 -(UIImageView *)guideImageView{
     if (!_guideImageView) {
-        _guideImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+        _guideImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jimaishangmiandetu"]];
         _guideImageView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.4);
-        _guideImageView.backgroundColor = RandomColor;
-        
+        _guideImageView.backgroundColor = RandomColor;        
     }
     return _guideImageView;
 }
@@ -54,15 +53,15 @@
         CGFloat width  = 143*(WINDOW_WIDTH/375);
         CGFloat height = 180 * (WINDOW_WIDTH/375);
         
-        _varieties1 = [self setupVarietiesViewWithFrame:CGRectMake(0, 0, width, height) tag:1];
+        _varieties1 = [self setupVarietiesViewWithFrame:CGRectMake(0, 0, width, height) tag:0];
         
-        _varieties2 = [self setupVarietiesViewWithFrame:CGRectMake(width, 0, (WINDOW_WIDTH-width)/2, height/2) tag:2];
+        _varieties2 = [self setupVarietiesViewWithFrame:CGRectMake(width, 0, (WINDOW_WIDTH-width)/2, height/2) tag:1];
         
-        _varieties3 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties2.right, 0, (WINDOW_WIDTH-width)/2, height/2) tag:3];
+        _varieties3 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties2.right, 0, (WINDOW_WIDTH-width)/2, height/2) tag:2];
         
-        _varieties4 = [self setupVarietiesViewWithFrame:CGRectMake(width, height/2, (WINDOW_WIDTH-width)/2, height/2) tag:4];
+        _varieties4 = [self setupVarietiesViewWithFrame:CGRectMake(width, height/2, (WINDOW_WIDTH-width)/2, height/2) tag:3];
         
-        _varieties5 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties4.right, height/2, (WINDOW_WIDTH-width)/2, height/2) tag:5];
+        _varieties5 = [self setupVarietiesViewWithFrame:CGRectMake(_varieties4.right, height/2, (WINDOW_WIDTH-width)/2, height/2) tag:4];
         
         [self.varietiesView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(0, 0) moveForPoint:CGPointMake(WINDOW_WIDTH, 0)]];
         [self.varietiesView.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(width, 0) moveForPoint:CGPointMake(width, height)]];
@@ -71,6 +70,7 @@
     }
     return _varietiesView;
 }
+
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = WhiteColor;
@@ -84,8 +84,12 @@
     return self;
 }
 
+-(void)loadDatas{
+    
+}
+
 -(WPVarietiesButton *)setupVarietiesViewWithFrame:(CGRect)frame tag:(NSInteger)tag{
-    WPVarietiesButton * button = [[WPVarietiesButton alloc]initWithImage:[UIImage imageNamed:@""] title:@"卖肾换iphone" frame:frame];
+    WPVarietiesButton * button = [[WPVarietiesButton alloc]initWithImage:[UIImage imageNamed:@"loadimage"] title:@"卖肾换iphone" frame:frame];
     button.frame = frame;
     button.tag = tag;
     [button addTarget:self action:@selector(gojimai) forControlEvents:UIControlEventTouchUpInside];

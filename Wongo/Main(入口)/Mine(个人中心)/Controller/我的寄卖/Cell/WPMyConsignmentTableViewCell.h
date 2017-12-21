@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WPMyConsignmentModel.h"
 
 @interface WPMyConsignmentTableViewCell : UITableViewCell
+
+@property (nonatomic,strong)WPMyConsignmentModel * model;
 
 @end

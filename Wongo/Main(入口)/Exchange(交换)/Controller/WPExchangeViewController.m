@@ -208,8 +208,7 @@ static NSString * const recommendCell       = @"recommendCell";
                 WPCommentModel * model = [WPCommentModel mj_objectWithKeyValues:list[i]];
                 [weakSelf.exchangeModel.commentsModelArray addObject:model];
             }
-            [weakSelf.tableView reloadData];
-            
+            [weakSelf.tableView reloadData];            
         }];
     }];
 }
@@ -220,12 +219,14 @@ static NSString * const recommendCell       = @"recommendCell";
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 9;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (section == 8) {
         return 4;
     }
     return 1;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     switch (indexPath.section) {

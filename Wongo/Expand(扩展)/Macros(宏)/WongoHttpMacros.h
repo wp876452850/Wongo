@@ -140,13 +140,16 @@
  *  寄卖
  */
 /**查询所有寄卖 currPage分页数*/
-#define QueryShoppingListPraise HttpHead(@"queryShoppingListPraise")
+#define QueryShoppingListPraise HttpHead(@"queryLog")
 /**发布寄卖*/
 #define LogisticsUserAdd        HttpHead(@"logisticsUserAdd")
 /**上传寄卖图片*/
 #define Upfilelog               HttpHead(@"upfilelog")
 /**我的寄卖 uid*/
 #define LogisticsUserquery      HttpHead(@"logisticsUserquery")
+/**查询寄卖页商品分类*/
+#define QueryClassoneLog        HttpHead(@"queryClassoneLog")
+
 
 /**
  *      造梦

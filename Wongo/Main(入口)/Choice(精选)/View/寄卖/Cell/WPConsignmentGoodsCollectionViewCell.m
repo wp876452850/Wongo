@@ -23,8 +23,9 @@
 }
 
 -(void)setModel:(WPConsignmentModel *)model{
+    if (!model.url||[model.url isKindOfClass:[NSNull class]])model.url = @"";
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
-    self.title.text = model.sname;
+    self.title.text = model.lname;
     self.price.text = [NSString stringWithFormat:@"￥%.f",[model.price floatValue]];
 }
 @end

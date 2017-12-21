@@ -25,13 +25,12 @@
 
 @property (nonatomic,strong)NSString * remark;
 
-@property (nonatomic,strong)NSString * sid;
+@property (nonatomic,strong)NSString * lid;
 
-@property (nonatomic,strong)NSString * sname;
+@property (nonatomic,strong)NSString * lname;
 
 @property (nonatomic,strong)NSString * uid;
 
 @property (nonatomic,strong)NSString * url;
-
 
 @end

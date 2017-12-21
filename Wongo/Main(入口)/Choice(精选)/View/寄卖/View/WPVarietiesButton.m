@@ -21,11 +21,10 @@
 
 -(UIImageView *)varietiesImageView{
     if (!_varietiesImageView) {
-        _varietiesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.8, self.height * 0.6)];
+        _varietiesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.8, _varietiesTitleLabel.height>0?self.height-_varietiesTitleLabel.height-10:self.height-20)];
         _varietiesImageView.top = self.varietiesTitleLabel.bottom;
         _varietiesImageView.centerX = self.width/2;
         _varietiesImageView.bottom  = self.height - 10;
-        _varietiesImageView.backgroundColor = RandomColor;
         [self addSubview:_varietiesImageView];
     }
     return _varietiesImageView;
@@ -34,20 +33,20 @@
 -(UILabel *)varietiesTitleLabel{
     if (!_varietiesTitleLabel) {
         _varietiesTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.width, 30)];
-        _varietiesTitleLabel.font = [UIFont systemFontOfSize:14.f];
+        _varietiesTitleLabel.font = [UIFont systemFontOfSize:13.f];
         _varietiesTitleLabel.centerX = self.width/2;
-        _varietiesTitleLabel.backgroundColor = RandomColor;
+        _varietiesTitleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_varietiesTitleLabel];
     }
     return _varietiesTitleLabel;
 }
 
 -(instancetype)initWithImage:(UIImage *)image title:(NSString *)title frame:(CGRect)frame{
-    if (self) {
+    if (self = [super init]) {
         self = [WPVarietiesButton buttonWithType:UIButtonTypeCustom];
         self.frame = frame;
-        _varietiesImage = image;
-        _varietiesTitle = title;
+        self.varietiesTitle = title;
+        self.varietiesImage = image;
     }
     return self;
 }

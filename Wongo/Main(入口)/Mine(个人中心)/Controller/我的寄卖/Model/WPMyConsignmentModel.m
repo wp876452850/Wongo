@@ -10,4 +10,13 @@
 
 @implementation WPMyConsignmentModel
 
+
+-(void)setUrl:(NSString *)url{
+    _url = url;
+    if (!url||[url isKindOfClass:[NSNull class]]) {
+        _url = @"";
+    }
+}
+
+
 @end

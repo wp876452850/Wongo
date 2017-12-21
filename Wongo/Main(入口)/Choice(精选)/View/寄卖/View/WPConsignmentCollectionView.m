@@ -68,7 +68,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
     _dataSourceArray = [NSMutableArray arrayWithCapacity:3];
     __block typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_currPage)} datas:^(NSDictionary *responseObject) {
-        NSArray * array = responseObject[@"shoppingRm"];
+        NSArray * array = responseObject[@"LogRm"];
         for (int i = 0; i<array.count; i++) {
             WPConsignmentModel * model = [WPConsignmentModel mj_objectWithKeyValues:array[i]];
             [weakSelf.dataSourceArray addObject:model];
@@ -82,6 +82,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 2;
 }
+
 //item 数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -91,6 +92,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
     return _dataSourceArray.count;
 }
 
+//
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         WPBrandCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:brandCell forIndexPath:indexPath];

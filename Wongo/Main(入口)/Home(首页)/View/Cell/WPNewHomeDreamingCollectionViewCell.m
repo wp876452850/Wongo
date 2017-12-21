@@ -56,8 +56,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    self.category.layer.borderWidth = 1.f;
-//    self.category.layer.borderColor = ColorWithRGB(255,255, 255).CGColor;
+    
     self.contentView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.collection];
 }
@@ -66,6 +65,7 @@
     _model = model;
     self.title.text = [NSString stringWithFormat:@"造梦物品:%@",model.want];
     self.category.text = model.proname;
+    [self.backImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[self getPlaceholderImage]];
     [self.collection reloadData];
     //[self drowLine];
 }

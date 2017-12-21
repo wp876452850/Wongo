@@ -332,6 +332,7 @@
 		3D27A9381F30259500091646 /* WPGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D27A9371F30259500091646 /* WPGuideViewController.m */; };
 		3D2F20E31EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */; };
 		3D2F20E41EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */; };
+		3D34C4BB1FE9FE4000611D68 /* WPConsignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D34C4BA1FE9FE4000611D68 /* WPConsignmentViewController.m */; };
 		3D389C141EE63E9200B25DF4 /* LYAliPayResultController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */; };
 		3D389C181EE6502F00B25DF4 /* LYExchangeAdressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D389C161EE6502F00B25DF4 /* LYExchangeAdressController.m */; };
 		3D389C191EE6502F00B25DF4 /* LYExchangeAdressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D389C171EE6502F00B25DF4 /* LYExchangeAdressController.xib */; };
@@ -1397,6 +1398,8 @@
 		3D2F20E01EEA4DD900045EF8 /* LYWanGaoUserAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYWanGaoUserAgreementController.h; sourceTree = "<group>"; };
 		3D2F20E11EEA4DD900045EF8 /* LYWanGaoUserAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYWanGaoUserAgreementController.m; sourceTree = "<group>"; };
 		3D2F20E21EEA4DD900045EF8 /* LYWanGaoUserAgreementController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYWanGaoUserAgreementController.xib; sourceTree = "<group>"; };
+		3D34C4B91FE9FE4000611D68 /* WPConsignmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConsignmentViewController.h; sourceTree = "<group>"; };
+		3D34C4BA1FE9FE4000611D68 /* WPConsignmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConsignmentViewController.m; sourceTree = "<group>"; };
 		3D389C121EE63E9200B25DF4 /* LYAliPayResultController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LYAliPayResultController.h; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/LYAliPayResultController.h"; sourceTree = "<group>"; };
 		3D389C131EE63E9200B25DF4 /* LYAliPayResultController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LYAliPayResultController.m; path = "../../Mine(个人中心)/Controller/ExchangeOrder(交换订单)/Controller/LYAliPayResultController.m"; sourceTree = "<group>"; };
 		3D389C151EE6502F00B25DF4 /* LYExchangeAdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYExchangeAdressController.h; sourceTree = "<group>"; };
@@ -4108,6 +4111,47 @@
 			path = "交换条例";
 			sourceTree = "<group>";
 		};
+		3D34C4B41FE9FC5F00611D68 /* 寄卖详情页 */ = {
+			isa = PBXGroup;
+			children = (
+				3D34C4B51FE9FC5F00611D68 /* Cell */,
+				3D34C4B61FE9FC5F00611D68 /* Controller */,
+				3D34C4B71FE9FC5F00611D68 /* Model */,
+				3D34C4B81FE9FC5F00611D68 /* View */,
+			);
+			path = "寄卖详情页";
+			sourceTree = "<group>";
+		};
+		3D34C4B51FE9FC5F00611D68 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3D34C4B61FE9FC5F00611D68 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3D34C4B91FE9FE4000611D68 /* WPConsignmentViewController.h */,
+				3D34C4BA1FE9FE4000611D68 /* WPConsignmentViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3D34C4B71FE9FC5F00611D68 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3D34C4B81FE9FC5F00611D68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3D62797F1F74F5780057B49B /* 举报框 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6072,6 +6116,7 @@
 				3D0DF8491F4E632800BA1615 /* 店铺 */,
 				3D883C6B1F4C1E0500A990D6 /* 排行榜 */,
 				3DF746041F3426FB00A23B52 /* Detail(商品详情页) */,
+				3D34C4B41FE9FC5F00611D68 /* 寄卖详情页 */,
 			);
 			path = "Main(入口)";
 			sourceTree = "<group>";
@@ -8243,6 +8288,7 @@
 				3D1732CF1F26F88400BFF90D /* WPCommentViewController.m in Sources */,
 				3DF3C3551FBA8CAC00C9BC19 /* WPConsignmentHeaderView.m in Sources */,
 				857E30771EADA925000F4328 /* WPExchangeOrderDetailModel.m in Sources */,
+				3D34C4BB1FE9FE4000611D68 /* WPConsignmentViewController.m in Sources */,
 				3D240ADD1FBA992C0077D164 /* WPRegisterViewController.m in Sources */,
 				3DE9ED921F9984DD00C01310 /* SDWebImageDecoder.m in Sources */,
 				8597EFBC1E8A51B4001E1BA5 /* NSObject+WPCategory.m in Sources */,
