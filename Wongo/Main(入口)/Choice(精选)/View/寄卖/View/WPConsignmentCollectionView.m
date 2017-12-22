@@ -80,24 +80,24 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 }
 //区数
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 1;
 }
 
 //item 数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 8;
-    }
+//    if (section == 0) {
+//        return 8;
+//    }
     return _dataSourceArray.count;
 }
 
 //
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        WPBrandCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:brandCell forIndexPath:indexPath];
-        return cell;
-    }
+//    if (indexPath.section == 0) {
+//        WPBrandCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:brandCell forIndexPath:indexPath];
+//        return cell;
+//    }
     WPConsignmentGoodsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ConsignmentCell forIndexPath:indexPath];
     cell.model = self.dataSourceArray[indexPath.row];
     return cell;
@@ -121,17 +121,17 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    if (indexPath.section == 0) {
-        return CGSizeMake((WINDOW_WIDTH - 3)/4, WINDOW_WIDTH/4+10);
-    }
+//    if (indexPath.section == 0) {
+//        return CGSizeMake((WINDOW_WIDTH - 3)/4, WINDOW_WIDTH/4+10);
+//    }
     return CGSizeMake((WINDOW_WIDTH)/2 - 0.5, WINDOW_WIDTH/2+70);
 }
 
 //返回每个区头大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    if (section == 1) {
-        return CGSizeMake(WINDOW_WIDTH, 47);
-    }
+//    if (section == 1) {
+//        return CGSizeMake(WINDOW_WIDTH, 47);
+//    }
     return CGSizeMake(WINDOW_WIDTH, HeaderView_Height + 47);
 }
 
@@ -153,7 +153,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
     UILabel * title = [[UILabel alloc]initWithFrame:CGRectMake(0, HeaderView_Height+6, WINDOW_WIDTH, 40)];
     title.centerX = WINDOW_WIDTH/2;
     if (indexPath.section == 0) {
-        title.text = @"热门品牌推荐";
+        title.text = @"热门寄卖推荐";
         }
     else{
         title.text = @"热门寄卖推荐";

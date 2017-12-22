@@ -10,7 +10,7 @@
 
 @interface WPExchangeViewController : UIViewController
 @property (nonatomic,strong)UIView * bottomView;
-@property (nonatomic,strong)UITableView            * tableView;
+@property (nonatomic,strong)UITableView * tableView;
 @property (nonatomic,assign)NSInteger activityState;
 /**旧方法(已废弃)*/
 +(instancetype)createExchangeGoodsWithUrlString:(NSString *)url params:(NSDictionary *)params fromOrder:(BOOL)fromOrder;

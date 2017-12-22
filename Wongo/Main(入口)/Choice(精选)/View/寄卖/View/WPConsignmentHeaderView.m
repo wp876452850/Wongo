@@ -8,6 +8,7 @@
 
 #import "WPConsignmentHeaderView.h"
 #import "WPVarietiesButton.h"
+#import "WPConsignmentClassOneModel.h"
 
 @interface WPConsignmentHeaderView ()
 
@@ -27,6 +28,7 @@
 //品种5
 @property (nonatomic,strong)WPVarietiesButton * varieties5;
 
+@property (nonatomic,strong)NSMutableArray * dataSourceArray;
 @end
 @implementation WPConsignmentHeaderView
 -(UIImageView *)guideImageView{
@@ -37,6 +39,7 @@
     }
     return _guideImageView;
 }
+
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.guideImageView.bottom, WINDOW_WIDTH, 40)];
@@ -47,10 +50,12 @@
     }
     return _titleLabel;
 }
+
 -(UIView *)varietiesView{
     if (!_varietiesView) {
         _varietiesView = [[UIView alloc]initWithFrame:CGRectMake(0, _titleLabel.bottom, WINDOW_WIDTH, 180)];
         CGFloat width  = 143*(WINDOW_WIDTH/375);
+        
         CGFloat height = 180 * (WINDOW_WIDTH/375);
         
         _varieties1 = [self setupVarietiesViewWithFrame:CGRectMake(0, 0, width, height) tag:0];
@@ -74,10 +79,10 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = WhiteColor;
-        
+        [self loadDatas];
         [self addSubview:self.guideImageView];
         [self addSubview:self.titleLabel];
-        [self addSubview:self.varietiesView];
+        
         [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(WINDOW_WIDTH - 60, _titleLabel.centerY) moveForPoint:CGPointMake(WINDOW_WIDTH - 90, _titleLabel.centerY) lineColor:TitleBlackColor]];
         [self.layer addSublayer:[WPBezierPath drowLineWithMoveToPoint:CGPointMake(60, _titleLabel.centerY) moveForPoint:CGPointMake(90, _titleLabel.centerY) lineColor:TitleBlackColor]];
     }
@@ -85,11 +90,25 @@
 }
 
 -(void)loadDatas{
-    
+    __block typeof(self)weakSelf = self;
+    self.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneLog params:nil datas:^(NSDictionary *responseObject) {
+        NSArray * listc = responseObject[@"listc"];
+        for (int i = 0; i<listc.count; i++) {
+            WPConsignmentClassOneModel * model = [WPConsignmentClassOneModel mj_objectWithKeyValues:listc[i]];
+            if ([model.cid floatValue] == 3) {
+                [weakSelf.dataSourceArray insertObject:model atIndex:0];
+            }else
+            [weakSelf.dataSourceArray addObject:model];
+        }
+        [weakSelf addSubview:weakSelf.varietiesView];
+    }];
 }
 
 -(WPVarietiesButton *)setupVarietiesViewWithFrame:(CGRect)frame tag:(NSInteger)tag{
-    WPVarietiesButton * button = [[WPVarietiesButton alloc]initWithImage:[UIImage imageNamed:@"loadimage"] title:@"卖肾换iphone" frame:frame];
+    WPConsignmentClassOneModel * model = self.dataSourceArray[tag];
+    WPVarietiesButton * button = [[WPVarietiesButton alloc]initWithImage:nil title:model.cname frame:frame];
+    [button.varietiesImageView sd_setImageWithURL:[NSURL URLWithString:model.curl] placeholderImage:[self getPlaceholderImage]];
     button.frame = frame;
     button.tag = tag;
     [button addTarget:self action:@selector(gojimai) forControlEvents:UIControlEventTouchUpInside];

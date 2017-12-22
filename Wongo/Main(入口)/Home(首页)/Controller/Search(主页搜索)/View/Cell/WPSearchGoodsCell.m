@@ -8,6 +8,7 @@
 
 #import "WPSearchGoodsCell.h"
 #import "WPCollectionBaseViewController.h"
+#import "WPConsignmentClassGoodsViewController.h"
 
 @interface WPSearchGoodsCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -31,8 +32,14 @@
 
 -(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    WPCollectionBaseViewController * vc = [[WPCollectionBaseViewController alloc]initWithGcid:_model.gcid];
-    vc.url = QueryGoodById;
+    if (!self.isConsignment) {
+        WPCollectionBaseViewController * vc = [[WPCollectionBaseViewController alloc]initWithGcid:_model.gcid];
+        vc.url = QueryGoodById;
+        vc.myNavItem.title = _model.gcname;
+        [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    WPConsignmentClassGoodsViewController * vc = [[WPConsignmentClassGoodsViewController alloc]initWithGcid:_model.gcid];
     vc.myNavItem.title = _model.gcname;
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
 }

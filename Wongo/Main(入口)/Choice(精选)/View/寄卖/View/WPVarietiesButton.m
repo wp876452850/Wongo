@@ -7,6 +7,7 @@
 //
 
 #import "WPVarietiesButton.h"
+#import "WPConsignmentClassificationViewController.h"
 
 @interface WPVarietiesButton ()
 
@@ -21,7 +22,7 @@
 
 -(UIImageView *)varietiesImageView{
     if (!_varietiesImageView) {
-        _varietiesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.8, _varietiesTitleLabel.height>0?self.height-_varietiesTitleLabel.height-10:self.height-20)];
+        _varietiesImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.width * 0.68, _varietiesTitleLabel.height>0?self.height-_varietiesTitleLabel.height-10:self.height-20)];
         _varietiesImageView.top = self.varietiesTitleLabel.bottom;
         _varietiesImageView.centerX = self.width/2;
         _varietiesImageView.bottom  = self.height - 10;
@@ -47,6 +48,7 @@
         self.frame = frame;
         self.varietiesTitle = title;
         self.varietiesImage = image;
+        [self addTarget:self action:@selector(goConsignmentClass) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
 }
@@ -63,5 +65,10 @@
     if (varietiesTitle.length>0) {
         self.varietiesTitleLabel.text = varietiesTitle;
     }
+}
+
+-(void)goConsignmentClass{
+    WPConsignmentClassificationViewController * vc = [[WPConsignmentClassificationViewController alloc]initWithGcname:self.varietiesTitle];
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
 }
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "WPSearchModel.h"
 
+
 @interface WPSearchGoodsCell : UICollectionViewCell
 @property (nonatomic,strong)WPSearchModel * model;
+@property (nonatomic,assign)BOOL isConsignment;
 @end
