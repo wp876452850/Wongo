@@ -83,6 +83,7 @@
     }
 }
 
+
 //回调
 -(void)getGoodsNameBlockWithBlock:(WPNewPushGoodsNameBlock)block{
     _goodsNameBlock = block;
@@ -90,5 +91,9 @@
 
 -(void)getDescribeEdtingBlockWithBlock:(WPNewPushDescribeEdtingBlock)block{
     _describeEdtingBlock = block;
+}
+
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[self findViewController:self].view endEditing:YES];
 }
 @end

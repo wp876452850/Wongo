@@ -76,6 +76,9 @@
     WPDreamingDirectoryModel * model  = [WPDreamingDirectoryModel mj_objectWithKeyValues:self.dataSource[tap.view.tag]];
     WPDreamingDetailViewController * vc = [WPDreamingDetailViewController createDreamingDetailWithProid:model.proid plid:model.plid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
+    [WPNetWorking createPostRequestMenagerWithUrlString:Subreadview params:@{@"plid":model.plid} datas:^(NSDictionary *responseObject) {
+        
+    }];
 }
  
 - (IBAction)close:(UIButton *)sender {

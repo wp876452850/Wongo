@@ -21,7 +21,7 @@
 @interface WPStoreViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
 {
-    NSInteger                   _menuTag;
+    NSInteger _menuTag;
 }
 
 @property (nonatomic,strong)NSString                    * uid;
@@ -50,6 +50,7 @@ static NSString * const storeCell       = @"StoreCell";
         [self hiddenBottomView];
     }
 }
+
 #pragma mark - 懒加载
 //返回按钮
 -(UIButton *)backButton{
@@ -61,6 +62,7 @@ static NSString * const storeCell       = @"StoreCell";
     }
     return _backButton;
 }
+
 -(UIView *)bottomView{
     if (!_bottomView) {
         _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
@@ -68,6 +70,7 @@ static NSString * const storeCell       = @"StoreCell";
     }
     return _bottomView;
 }
+
 -(WPStoreUserInformationView *)storeUserInformationView{
     if (!_storeUserInformationView) {
         _storeUserInformationView = [[WPStoreUserInformationView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) storeModel:_storeModel];
@@ -79,6 +82,7 @@ static NSString * const storeCell       = @"StoreCell";
     }
     return _storeUserInformationView;
 }
+
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         //layout

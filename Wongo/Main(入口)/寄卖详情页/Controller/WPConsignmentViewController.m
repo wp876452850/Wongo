@@ -9,7 +9,7 @@
 #import "WPConsignmentViewController.h"
 #import "SDCycleScrollView.h"
 #import "WPExchangeDetailModel.h"
-#import "WPExchangeCommodityInformationCell.h"
+#import "WPConsignmentDetailInformationTableViewCell.h"
 #import "WPSelectExchangeGoodsViewController.h"
 #import "LoginViewController.h"
 #import "WPParameterInformationView.h"
@@ -155,50 +155,8 @@ static NSString * const recommendCell       = @"recommendCell";
 
 -(void)loadDatas{
     __weak typeof(self) weakSelf = self;
-    //获取活动数据
-    [WPNetWorking createPostRequestMenagerWithUrlString:QtQueryType params:nil datas:^(NSDictionary *responseObject) {
-        weakSelf.response = [LYHomeResponse mj_objectWithKeyValues:responseObject];
-    }];
     
-    //获取推荐商品
-    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeHomePageUrl params:@{@"page":@(arc4random()%10+1)} datas:^(NSDictionary *responseObject) {
-        NSArray * goods = [responseObject objectForKey:@"goods"];
-        weakSelf.goodsRecommendDatas = [NSMutableArray arrayWithCapacity:3];
-        for (NSDictionary * item in goods) {
-            WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:item];
-            [_goodsRecommendDatas addObject:model];
-        }}];
-    
-    [WPNetWorking createPostRequestMenagerWithUrlString:ExchangeDetailGoodsUrl params:self.params datas:^(NSDictionary *responseObject) {
-        weakSelf.exchangeModel = [WPExchangeDetailModel mj_objectWithKeyValues:responseObject];
-        weakSelf.exchangeModel.parameters = [NSMutableArray arrayWithObject:@"本产品无参数"];
-        NSArray * images = [responseObject objectForKey:@"listimg"];
-        for (int i = 0; i < images.count; i++) {
-            NSDictionary * dic = images[i];
-            [weakSelf.exchangeModel.rollPlayImages addObject:[dic objectForKey:@"url"]];
-            
-        }
-        
-        //获取用户信息
-        [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":weakSelf.exchangeModel.uid} datas:^(NSDictionary *responseObject) {
-            
-            weakSelf.exchangeModel.userIntroductionModel = [WPUserIntroductionModel mj_objectWithKeyValues:responseObject];
-            [weakSelf.view addSubview:weakSelf.tableView];
-            weakSelf.tableView.tableHeaderView = weakSelf.cycleScrollView;
-            [weakSelf.view addSubview:weakSelf.backButton];
-            [weakSelf.view addSubview:weakSelf.functionButton];
-        }];
-#pragma mark - 查询评论
-        __weak typeof(self) weakSelf = self;
-        [WPNetWorking createPostRequestMenagerWithUrlString:QueryUserCommentUrl params:@{@"gid":_exchangeModel.gid} datas:^(NSDictionary *responseObject) {
-            NSArray * list = responseObject[@"list"];
-            for (int i = 0; i<list.count; i++) {
-                WPCommentModel * model = [WPCommentModel mj_objectWithKeyValues:list[i]];
-                [weakSelf.exchangeModel.commentsModelArray addObject:model];
-            }
-            [weakSelf.tableView reloadData];
-        }];
-    }];
+
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -220,10 +178,9 @@ static NSString * const recommendCell       = @"recommendCell";
     switch (indexPath.section) {
         case 0:
         {
-            WPExchangeCommodityInformationCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
+            WPConsignmentDetailInformationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-            cell.model = _exchangeModel;
-            cell.listhk = self.response.listhk;
+            
             return cell;
         }
             break;
@@ -238,7 +195,7 @@ static NSString * const recommendCell       = @"recommendCell";
         {
             WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
             cell.model = _exchangeModel.userIntroductionModel;
-            //[cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            
             return cell;
         }
             break;
@@ -246,14 +203,14 @@ static NSString * const recommendCell       = @"recommendCell";
         case 3:
         {
             UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
-            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length - @"  宝贝评价".length)];
-            cell.textLabel.attributedText   = attributedString;
-            cell.textLabel.font             = [UIFont systemFontOfSize:14.f];
-            cell.selectionStyle             = UITableViewCellSelectionStyleNone;
-            cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
-            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-            return cell;
+//            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
+//            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length - @"  宝贝评价".length)];
+//            cell.textLabel.attributedText   = attributedString;
+//            cell.textLabel.font             = [UIFont systemFontOfSize:14.f];
+//            cell.selectionStyle             = UITableViewCellSelectionStyleNone;
+//            cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
+//            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+//            return cell;
         }
             break;
 
@@ -272,7 +229,7 @@ static NSString * const recommendCell       = @"recommendCell";
                 
                 //描述内容
                 UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
-                textView.text           = _exchangeModel.remark;
+//                textView.text           = _exchangeModel.remark;
                 textView.font           = [UIFont systemFontOfSize:13.f];
                 textLabel.userInteractionEnabled    = NO;
                 textView.userInteractionEnabled     = NO;
@@ -285,7 +242,7 @@ static NSString * const recommendCell       = @"recommendCell";
         case 5:{
             WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
             [cell.contentView removeAllSubviews];
-            cell.images = self.exchangeModel.rollPlayImages;
+//            cell.images = self.exchangeModel.rollPlayImages;
             return cell;
         }break;
     }
@@ -487,4 +444,8 @@ static NSString * const recommendCell       = @"recommendCell";
     }];
 }
 
+-(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
+    
+    
+}
 @end

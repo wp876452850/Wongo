@@ -56,5 +56,7 @@
 -(void)getSelectWithBlock:(WPNewPushSelectBlock)block{
     _block = block;
 }
-
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[self findViewController:self].view endEditing:YES];
+}
 @end

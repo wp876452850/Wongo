@@ -160,6 +160,7 @@ static NSString * const recommendCell       = @"recommendCell";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = WhiteColor;
     [self loadDatas];
     [self navigationLeftPop];

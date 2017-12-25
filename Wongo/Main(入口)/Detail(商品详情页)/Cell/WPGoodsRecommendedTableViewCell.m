@@ -63,6 +63,7 @@
     cell.model = _dataSouceArray[indexPath.row];
     return cell;
 }
+
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     return CGSizeMake((WINDOW_WIDTH) * 0.5 - 7.5, Cell_Height);

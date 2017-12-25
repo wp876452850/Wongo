@@ -25,11 +25,7 @@
     self.userImage.layer.cornerRadius  = self.userImage.width/2;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
-}
 
 -(void)setModel:(WPExchangeCommentsModel *)model{
     _model          = model;
@@ -37,7 +33,5 @@
     _time.text      = model.time;
     [_userName setTitle:model.userName forState:UIControlStateNormal];
     [_userImage sd_setImageWithURL:[NSURL URLWithString:model.userImage_url] placeholderImage:nil];
-    
-    
 }
 @end

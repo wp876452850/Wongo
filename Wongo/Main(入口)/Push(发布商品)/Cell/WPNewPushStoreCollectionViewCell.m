@@ -57,4 +57,7 @@
 -(void)getStoreBlockWithBlock:(WPNewPushStoreBlock)block{
     _storeBlock = block;
 }
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[self findViewController:self].view endEditing:YES];
+}
 @end

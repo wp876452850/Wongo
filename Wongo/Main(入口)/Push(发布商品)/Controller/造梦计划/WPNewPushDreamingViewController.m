@@ -347,8 +347,7 @@ static NSString * const storeCell   = @"storeCell";
         NSLog(@" signupid ==== %ld",[responseObject[@"signupid"] integerValue]);
         
         NSInteger signupid = [responseObject[@"signupid"] integerValue];
-        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
-        
+        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(1)} price:1.f aliPayUrl:AliPaySignup];        
         [weakSelf.navigationController pushViewController:payvc animated:YES];
     }];
 }

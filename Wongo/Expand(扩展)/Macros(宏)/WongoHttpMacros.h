@@ -186,6 +186,8 @@
 #define UpdatePlorderStateUrl   HttpHead(@"updatePlorderState")
 /**查询用户商品故事*/
 #define QueryPlanStory          HttpHead(@"queryPlanStory")
+/**增加主题浏览量方法*/
+#define Subreadview             HttpHead(@"subreadview")
 
 /**
  *  个人中心(我的店铺)
