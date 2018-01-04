@@ -72,7 +72,8 @@ static NSString * const userInformationCell     = @"userInformationCell";
 static NSString * const commodityInformationCell= @"commodityInformationCell";
 static NSString * const imagesCell              = @"imagesCell";
 static NSString * const detailInformationCell   = @"detailInformationCell";
-static NSString * const selectCell              = @"selectCell";
+static NSString * const selectUrlCell  = @"selectUrlCell";
+static NSString * const selectArrayCell  = @"selectArrayCell";
 
 //懒加载
 -(UIButton *)leftBarbutton{
@@ -106,7 +107,8 @@ static NSString * const selectCell              = @"selectCell";
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushUserInformationCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:userInformationCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushCommodityInformationCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:commodityInformationCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushImagesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:imagesCell];
-        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectUrlCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectArrayCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPPushDetailInformationCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:detailInformationCell];
         _collectionView.backgroundColor = AllBorderColor;
         imagesCellHeight = 175.f;
@@ -247,29 +249,33 @@ static NSString * const selectCell              = @"selectCell";
         }
             break;
             //选择详情信息
-        case 4:case 5:
+        case 4:
         {
             
-            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectCell forIndexPath:indexPath];
+            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectUrlCell forIndexPath:indexPath];
             cell.superView = collectionView;
-            if (indexPath.section == 4) {
-                cell.url = CommodityTypeUrl;
-                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
-                    _species = string;
-                    _specieid = gcid;
-                }];
-                
-            }else if(indexPath.section == 5){
-                cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
-                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
-                    _newOrOld = string;
-                }];
-            }
+            cell.url = CommodityTypeUrl;
+            [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                _species = string;
+                _specieid = gcid;
+            }];
             cell.textField.placeholder = Placeholders[indexPath.section-3];
-            cell.title.text = Titles[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section - 3];
             return cell;
+
         }
             break;
+        case 5:{
+            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectArrayCell forIndexPath:indexPath];
+            cell.superView = collectionView;
+            cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
+            [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                _newOrOld = string;
+            }];
+            cell.textField.placeholder = Placeholders[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section - 3];
+            return cell;
+        }break;
             //寄卖条款
         case 7:
         {
@@ -325,4 +331,8 @@ static NSString * const selectCell              = @"selectCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%@",indexPath);
 }
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
 @end

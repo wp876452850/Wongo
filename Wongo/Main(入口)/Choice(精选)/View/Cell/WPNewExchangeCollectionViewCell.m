@@ -26,10 +26,11 @@
     [super awakeFromNib];
     [_thumpUp setImage:[UIImage imageNamed:@"thumup_select"] forState:UIControlStateSelected];
     [_thumpUp setImage:[UIImage imageNamed:@"thumup_normal"] forState:UIControlStateNormal];
+    _goodsImage.contentMode = UIViewContentModeScaleAspectFill;
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
-    _wantExchange.text = [NSString stringWithFormat:@"%ld想换",[_model.praise integerValue]];
+    _wantExchange.text = [NSString stringWithFormat:@"%ld想换",(long)[_model.praise integerValue]];
     if (!model.url||[model.url isKindOfClass:[NSNull class]]) model.url = @"";
     [_goodsImage sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[UIImage imageNamed:@"loadimage"]];
     //商品名

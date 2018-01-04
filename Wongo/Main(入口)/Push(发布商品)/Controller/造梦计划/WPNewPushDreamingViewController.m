@@ -27,6 +27,8 @@
 //条款条例
 #import "WPNewPushTermsCollectionViewCell.h"
 
+#import "WPSignUpModel.h"
+
 #define Placeholders @[@"请选择商品种类",@"请选择商品新旧程度",@"请输入商品价值(￥)",@"是否成为寄梦人?"]
 #define Titles @[@"请选择您进行造梦的商品所属种类",@"请选择您进行造梦的商品新旧程度",@"请输入您进行造梦的商品预估价值",@"是否同意成为寄梦人?"]
 
@@ -35,7 +37,8 @@ static NSString * const commodityInformationCell    = @"commodityInformationCell
 static NSString * const imagesCell  = @"imagesCell";
 static NSString * const addressCell = @"addressCell";
 static NSString * const detailInformationCell       = @"detailInformationCell";
-static NSString * const selectCell  = @"selectCell";
+static NSString * const selectUrlCell  = @"selectUrlCell";
+static NSString * const selectArrayCell  = @"selectArrayCell";
 static NSString * const termsCell   = @"termsCell";
 static NSString * const storeCell   = @"storeCell";
 
@@ -114,7 +117,8 @@ static NSString * const storeCell   = @"storeCell";
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushImagesCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:imagesCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushAddressSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:addressCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPPushDetailInformationCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:detailInformationCell];
-        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectUrlCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushSelectCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:selectArrayCell];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushStoreCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
         
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewPushTermsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:termsCell];
@@ -252,26 +256,29 @@ static NSString * const storeCell   = @"storeCell";
         }
             break;
             //选择详情信息
-        case 3:case 4:
+        case 3:
         {
-            
-            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectCell forIndexPath:indexPath];
+            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectUrlCell forIndexPath:indexPath];
             cell.superView = collectionView;
-            if (indexPath.section == 3) {
                 cell.url = CommodityTypeUrl;
-                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
-                    _species = string;
-                    _specieid = gcid;
-                }];
-                
-            }else{
-                cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
-                [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
-                    _newOrOld = string;
-                }];
-            }
+            [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                _species = string;
+                _specieid = gcid;
+            }];
             cell.textField.placeholder = Placeholders[indexPath.section-3];
-            cell.title.text = Titles[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section - 3];
+            return cell;
+        }
+            break;
+        case 4:{
+            WPNewPushSelectCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:selectArrayCell forIndexPath:indexPath];
+            cell.superView = collectionView;
+            cell.selectDataArray = @[@"全新",@"九成新",@"八成新",@"七成新",@"六成新",@"五成新",@"其他"];
+            [cell getSelectWithBlock:^(NSString *string, NSString *gcid) {
+                _newOrOld = string;
+            }];
+            cell.textField.placeholder = Placeholders[indexPath.section-3];
+            cell.title.text = Titles[indexPath.section - 3];
             return cell;
         }
             break;
@@ -337,18 +344,19 @@ static NSString * const storeCell   = @"storeCell";
 
 #pragma mark - 支付
 -(void)payFee{
-//    if (![self determineWhetherTheDataIntegrity]) {
-//        return;
-//    }
-    __block typeof(self)weakSelf = self;
+    if (![self determineWhetherTheDataIntegrity]) {
+        return;
+    }
+    __weak typeof(self)weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
         
-        NSLog(@" flag ==== %ld",[responseObject[@"flag"] integerValue]);
-        NSLog(@" signupid ==== %ld",[responseObject[@"signupid"] integerValue]);
+        WPSignUpModel * model = [WPSignUpModel mj_objectWithKeyValues:responseObject];
         
-        NSInteger signupid = [responseObject[@"signupid"] integerValue];
-        WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(1)} price:1.f aliPayUrl:AliPaySignup];        
-        [weakSelf.navigationController pushViewController:payvc animated:YES];
+        if ([model.flag integerValue] == 1) {
+            NSInteger signupid = [model.signupid integerValue];
+            WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
+            [weakSelf.navigationController pushViewController:payvc animated:YES];
+        }
     }];
 }
 //判断是否有空数据
@@ -388,7 +396,7 @@ static NSString * const storeCell   = @"storeCell";
             //上传图片
             [WPGCD createUpLoadImageGCDWithImages:weakSelf.images urlString:UpProFileUrl params:@{@"proid":[responseObject objectForKey:@"proid"]}];
             [self showAlertWithAlertTitle:@"上传成功" message:nil preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定"] block:^{
-                [self popoverPresentationController];
+                [self w_popViewController];
             }];
         }
         else{

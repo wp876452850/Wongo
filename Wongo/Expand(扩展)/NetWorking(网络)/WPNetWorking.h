@@ -19,15 +19,11 @@ typedef void(^FailureBlock)();
 +(void)createGetRequestMenagerWithUrlString:(NSString *)urlString datas:(DataBlock)datas;
 //获取数据manager
 +(void)createPostRequestMenagerWithUrlString:(NSString *)urlString params:(NSDictionary *)params datas:(DataBlock)datas;
-//
+//获取数据manager
 +(void)createPostRequestMenagerWithUrlString:(NSString *)urlString params:(NSDictionary *)params datas:(DataBlock)datas failureBlock:(FailureBlock)failue;
-//
 
-
-//获取主页数据
-+(NSArray *)getHomeDataModelArray;
 //图片上传
-+(void)uploadedMorePhotosWithUrlString:(NSString *)urlString image:(UIImage *)image params:(NSDictionary *)params;
++(void)uploadedMorePhotosWithUrlString:(NSString *)urlString image:(UIImage *)image params:(NSDictionary *)params fileNumber:(NSInteger)fileNumber;
 
 
 @end

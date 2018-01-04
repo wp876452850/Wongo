@@ -139,4 +139,10 @@
     hud.labelText = title;
     [hud hide:YES afterDelay:2.f];
 }
+
+-(MBProgressHUD *)showAlertWithMBProgressHUDDefault{
+    MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    return hud;
+}
+
 @end

@@ -78,6 +78,11 @@ typedef void(^ReduceBlock)(void);
 
 //打电话
 -(void)makePhoneCallWithTelNumber:(NSString *)telNumber;
+
+//寻找当前视图控制器
++ (UIViewController *)currentViewController;
+//寻找当前导航控制器
++ (UINavigationController *)currentNavigationController;
 /*-----------------------类方法-------------------------*/
 
 

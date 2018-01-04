@@ -309,4 +309,9 @@ static NSString * const selectCell              = @"selectCell";
         }];
     }
 }
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+}
+
 @end

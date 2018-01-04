@@ -454,7 +454,7 @@
 -(void)getSelectPhotoWithImage:(UIImage *)image
 {
     self.headPortrait.image = image;
-    [WPNetWorking uploadedMorePhotosWithUrlString:UpdataUserHeaderImage image:image params:@{@"uid":[self getSelfUid]}];
+    [WPNetWorking uploadedMorePhotosWithUrlString:UpdataUserHeaderImage image:image params:@{@"uid":[self getSelfUid]} fileNumber:0];
     NSData * headimage = [NSKeyedArchiver archivedDataWithRootObject:image];
     [[NSUserDefaults standardUserDefaults]setObject:headimage forKey:User_Head];
 }

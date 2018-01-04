@@ -84,6 +84,10 @@
     WPCommodityManagementTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.model = self.dataSourceArray[indexPath.row];
     [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+    [cell deleteWithBlock:^{
+        [_dataSourceArray removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+    }];
     return cell;
 }
 

@@ -424,6 +424,7 @@
 		3D883C841F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D883C821F4C2FEF00A990D6 /* WPListOtherTableViewCell.xib */; };
 		3D89B4B61F42D60D00B79689 /* DLPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D89B4B51F42D60D00B79689 /* DLPickerView.m */; };
 		3D8F71A61FD635AE00349B6B /* WPConsignmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8F71A51FD635AE00349B6B /* WPConsignmentModel.m */; };
+		3D91F08C1FF6268C00A4B889 /* WPSignUpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D91F08B1FF6268C00A4B889 /* WPSignUpModel.m */; };
 		3D93802C1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D93802A1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.m */; };
 		3D93802D1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D93802B1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.xib */; };
 		3D9380341FBE77CD00CCEF65 /* WPNewPushAddressSelectCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D9380321FBE77CD00CCEF65 /* WPNewPushAddressSelectCollectionViewCell.m */; };
@@ -1562,6 +1563,8 @@
 		3D89B4B51F42D60D00B79689 /* DLPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLPickerView.m; sourceTree = "<group>"; };
 		3D8F71A41FD635AE00349B6B /* WPConsignmentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConsignmentModel.h; sourceTree = "<group>"; };
 		3D8F71A51FD635AE00349B6B /* WPConsignmentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConsignmentModel.m; sourceTree = "<group>"; };
+		3D91F08A1FF6268C00A4B889 /* WPSignUpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPSignUpModel.h; sourceTree = "<group>"; };
+		3D91F08B1FF6268C00A4B889 /* WPSignUpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPSignUpModel.m; sourceTree = "<group>"; };
 		3D9380291FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPPushDetailInformationCollectionViewCell.h; sourceTree = "<group>"; };
 		3D93802A1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPPushDetailInformationCollectionViewCell.m; sourceTree = "<group>"; };
 		3D93802B1FBE75AC00CCEF65 /* WPPushDetailInformationCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPPushDetailInformationCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -4611,6 +4614,8 @@
 		3DC998751FBC0F5D00A87423 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3D91F08A1FF6268C00A4B889 /* WPSignUpModel.h */,
+				3D91F08B1FF6268C00A4B889 /* WPSignUpModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8539,6 +8544,7 @@
 				85C748FB1E7FD3BD000E1B65 /* AFImageDownloader.m in Sources */,
 				852A686E1E66B88F00318F4A /* WPDreamingIntroduceView.m in Sources */,
 				8566A8B51E4828FC00C08624 /* WPNavigationBarView.m in Sources */,
+				3D91F08C1FF6268C00A4B889 /* WPSignUpModel.m in Sources */,
 				3DC52A271F721D41007CE969 /* WPExchangeFunctionMenu.m in Sources */,
 				8594C10E1EA88AAB006F028B /* base64.m in Sources */,
 				3DA085D91FAD9BAF00214099 /* WPHomeDreamingPhotoCollectionViewCell.m in Sources */,

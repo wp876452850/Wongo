@@ -57,7 +57,7 @@
     [self.view addSubview:self.nav];
     _pay.layer.masksToBounds = YES;
     _pay.layer.cornerRadius  = 5;
-    self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount*.3 afterPoint:2]];
+    self.payAmountField.text = [NSString stringWithFormat:@"￥%.2f",[self notRounding:self.myAmount afterPoint:2]];
     [[NSNotificationCenter defaultCenter] postNotificationName:AliPay_PaymentNotice object:self userInfo:@{@"payType":self.aliPayUrl}];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(alipayBack:) name:self.aliPayUrl object:nil];
 }

@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "WPMyGoodsInformationModel.h"
 
+typedef void(^DeleteBlock)(void);
+
 @interface WPCommodityManagementTableViewCell : UITableViewCell
 
 @property (nonatomic,strong)WPMyGoodsInformationModel * model;
 
+
+-(void)deleteWithBlock:(DeleteBlock)block;
 @end

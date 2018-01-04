@@ -40,5 +40,7 @@
     _wongoPrice.text = [NSString stringWithFormat:@"碗糕报价:%@",@"暂无报价"];
     [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[self getPlaceholderImage]];
 }
+- (IBAction)jichu:(UIButton *)sender {
+}
 
 @end

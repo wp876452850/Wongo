@@ -9,7 +9,9 @@
 #import "WPCommodityManagementTableViewCell.h"
 #import "WPExchangeViewController.h"
 
-@interface WPCommodityManagementTableViewCell ()
+@interface WPCommodityManagementTableViewCell (){
+    DeleteBlock _block;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
 @property (weak, nonatomic) IBOutlet UILabel *goodsName;
 @property (weak, nonatomic) IBOutlet UILabel *price;
@@ -24,7 +26,17 @@
 }
 
 - (IBAction)delete:(UIButton *)sender {
-    
+    [[self findViewController:self] showAlertWithAlertTitle:@"提示" message:@"是否确认删除" preferredStyle:UIAlertControllerStyleActionSheet actionTitles:@[@"确认",@"取消"] block:^{
+        [WPNetWorking createPostRequestMenagerWithUrlString:DeleteMyGoods params:@{@"gid":_model.gid} datas:^(NSDictionary *responseObject) {
+            if (_block) {
+                _block();
+            }
+        }];
+    }];
+}
+
+-(void)deleteWithBlock:(DeleteBlock)block{
+    _block = block;
 }
 
 -(void)setModel:(WPMyGoodsInformationModel *)model{

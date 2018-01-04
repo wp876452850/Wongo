@@ -36,6 +36,9 @@
                         <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <state key="normal" title="寄给碗糕"/>
+                        <connections>
+                            <action selector="jichu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P8Y-aL-2hD"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="碗糕报价:￥15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxf-MD-tiw">
                         <rect key="frame" x="108" y="85" width="125" height="21"/>
@@ -64,11 +67,12 @@
             <connections>
                 <outlet property="goodsImageView" destination="I5j-WX-JTY" id="wKn-oS-g8Y"/>
                 <outlet property="lName" destination="YQ9-fu-x0H" id="bWE-YR-oA2"/>
+                <outlet property="rightButton" destination="8wX-YY-T6C" id="s77-B9-oac"/>
                 <outlet property="state" destination="spv-cD-fcq" id="DEX-a0-4ix"/>
                 <outlet property="userPrice" destination="doU-lj-5Pj" id="tDh-VC-eDf"/>
                 <outlet property="wongoPrice" destination="vxf-MD-tiw" id="9Gu-vr-lt2"/>
             </connections>
-            <point key="canvasLocation" x="-171.5" y="-25"/>
+            <point key="canvasLocation" x="-254" y="-28"/>
         </tableViewCell>
     </objects>
 </document>
