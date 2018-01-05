@@ -38,8 +38,6 @@ typedef void(^WPAlertBlock)(void);
 /**展示有文字的提示框*/
 - (void)showMBProgressHUDWithTitle:(NSString *)title;
 
-//
--(void)showAlertWithMBProgressHUDTitleStyleWithTitle:(NSString *)title;
 //小菊花
--(MBProgressHUD *)showAlertWithMBProgressHUDDefault;
+-(MBProgressHUD *)showMBProgressHUDDefault;
 @end

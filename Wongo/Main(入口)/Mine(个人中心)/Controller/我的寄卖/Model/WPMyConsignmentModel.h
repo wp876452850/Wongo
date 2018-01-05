@@ -14,6 +14,7 @@
 @property (nonatomic,strong)NSString * logcompany;
 @property (nonatomic,strong)NSString * lognum;
 @property (nonatomic,strong)NSString * price;
+//状态
 @property (nonatomic,strong)NSString * sign;
 @property (nonatomic,strong)NSString * url;
 @end

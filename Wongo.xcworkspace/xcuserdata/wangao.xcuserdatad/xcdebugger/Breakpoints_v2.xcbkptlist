@@ -35,38 +35,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/&#x9080;&#x8bf7;&#x7801;/WPMyInviteCodeViewController.m"
-            timestampString = "536223617.615359"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "-loadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/&#x9080;&#x8bf7;&#x7801;/WPMyInviteCodeViewController.m"
-            timestampString = "536223971.090859"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-loadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Push(&#x53d1;&#x5e03;&#x5546;&#x54c1;)/Controller/&#x9020;&#x68a6;&#x8ba1;&#x5212;/WPNewPushDreamingViewController.m"
             timestampString = "536227088.391516"
             startingColumnNumber = "9223372036854775807"
@@ -106,6 +74,54 @@
             startingLineNumber = "75"
             endingLineNumber = "75"
             landmarkName = "+createPostRequestMenagerWithUrlString:params:datas:failureBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/&#x6211;&#x7684;&#x5bc4;&#x5356;/Controller/WPMyConsignmentSendViewController.m"
+            timestampString = "536730980.935244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-sendClick:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/&#x6211;&#x7684;&#x5bc4;&#x5356;/Controller/WPMyConsignmentSendViewController.m"
+            timestampString = "536739561.410617"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "-textFieldDidEndEditing:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/Mine(&#x4e2a;&#x4eba;&#x4e2d;&#x5fc3;)/Controller/&#x6211;&#x7684;&#x5bc4;&#x5356;/Controller/WPMyConsignmentSendViewController.m"
+            timestampString = "536739865.734987"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

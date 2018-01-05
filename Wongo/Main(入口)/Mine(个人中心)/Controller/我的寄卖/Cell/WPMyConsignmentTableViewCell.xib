@@ -6,65 +6,110 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="KGk-i7-Jjw" customClass="WPMyConsignmentTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="381" height="114"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="249" id="KGk-i7-Jjw" customClass="WPMyConsignmentTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="249"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="381" height="113.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="471" height="248.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I5j-WX-JTY">
-                        <rect key="frame" x="8" y="13" width="92" height="93"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PyD-ub-tgj">
+                        <rect key="frame" x="13" y="74.5" width="445" height="100"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I5j-WX-JTY">
+                                <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Ah6-MF-2tT"/>
+                                    <constraint firstAttribute="width" constant="80" id="wJ3-Ha-mWl"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="待寄出" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spv-cD-fcq">
+                                <rect key="frame" x="365" y="10" width="60" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="PtQ-9f-mlT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="期望报价:￥15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doU-lj-5Pj">
+                                <rect key="frame" x="100" y="40" width="84.5" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="qgk-nc-9ci"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-YY-T6C">
+                                <rect key="frame" x="360" y="60" width="65" height="30"/>
+                                <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="WKP-ge-jeM"/>
+                                    <constraint firstAttribute="width" constant="65" id="cvh-Bu-UT4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="寄给碗糕"/>
+                                <connections>
+                                    <action selector="jichu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P8Y-aL-2hD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="碗糕报价:￥15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxf-MD-tiw">
+                                <rect key="frame" x="100" y="65" width="260" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="wR2-Wv-VyF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小黄人茶杯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ9-fu-x0H">
+                                <rect key="frame" x="100" y="15" width="265" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="tjl-em-ceP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="小黄人茶杯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YQ9-fu-x0H">
-                        <rect key="frame" x="108" y="13" width="134" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-YY-T6C">
-                        <rect key="frame" x="302" y="76" width="71" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <state key="normal" title="寄给碗糕"/>
-                        <connections>
-                            <action selector="jichu:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="P8Y-aL-2hD"/>
-                        </connections>
-                    </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="碗糕报价:￥15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxf-MD-tiw">
-                        <rect key="frame" x="108" y="85" width="125" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" red="0.28235294119999998" green="0.52941176469999995" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="待寄出" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="spv-cD-fcq">
-                        <rect key="frame" x="327" y="9" width="46" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="期望报价:￥15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doU-lj-5Pj">
-                        <rect key="frame" x="108" y="49" width="125" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <constraints>
+                            <constraint firstItem="doU-lj-5Pj" firstAttribute="top" secondItem="YQ9-fu-x0H" secondAttribute="bottom" constant="5" id="4hw-WJ-ukJ"/>
+                            <constraint firstItem="spv-cD-fcq" firstAttribute="top" secondItem="I5j-WX-JTY" secondAttribute="top" id="9uz-1Y-Tft"/>
+                            <constraint firstItem="YQ9-fu-x0H" firstAttribute="leading" secondItem="I5j-WX-JTY" secondAttribute="trailing" constant="10" id="9yt-YI-atD"/>
+                            <constraint firstItem="spv-cD-fcq" firstAttribute="leading" secondItem="YQ9-fu-x0H" secondAttribute="trailing" id="BFl-am-NXg"/>
+                            <constraint firstItem="doU-lj-5Pj" firstAttribute="leading" secondItem="I5j-WX-JTY" secondAttribute="trailing" constant="10" id="CWf-x7-rNP"/>
+                            <constraint firstItem="8wX-YY-T6C" firstAttribute="leading" secondItem="vxf-MD-tiw" secondAttribute="trailing" id="Dig-Mb-bGS"/>
+                            <constraint firstItem="I5j-WX-JTY" firstAttribute="leading" secondItem="PyD-ub-tgj" secondAttribute="leading" constant="10" id="NoN-Lj-XeF"/>
+                            <constraint firstItem="YQ9-fu-x0H" firstAttribute="top" secondItem="PyD-ub-tgj" secondAttribute="top" constant="15" id="Pl4-QW-xJn"/>
+                            <constraint firstItem="8wX-YY-T6C" firstAttribute="bottom" secondItem="I5j-WX-JTY" secondAttribute="bottom" id="aI5-L1-ZXc"/>
+                            <constraint firstItem="spv-cD-fcq" firstAttribute="trailing" secondItem="8wX-YY-T6C" secondAttribute="trailing" id="aiU-jN-JQB"/>
+                            <constraint firstItem="I5j-WX-JTY" firstAttribute="centerY" secondItem="PyD-ub-tgj" secondAttribute="centerY" id="ate-WK-WxY"/>
+                            <constraint firstItem="vxf-MD-tiw" firstAttribute="top" secondItem="doU-lj-5Pj" secondAttribute="bottom" constant="5" id="cWr-8s-EGy"/>
+                            <constraint firstAttribute="trailing" secondItem="8wX-YY-T6C" secondAttribute="trailing" constant="20" id="jBN-5P-5AB"/>
+                            <constraint firstItem="vxf-MD-tiw" firstAttribute="leading" secondItem="I5j-WX-JTY" secondAttribute="trailing" constant="10" id="lmW-lq-4JJ"/>
+                            <constraint firstAttribute="height" constant="100" id="qv1-Cv-huV"/>
+                        </constraints>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="0.85090833902359009" green="0.85102826356887817" blue="0.85087054967880249" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="PyD-ub-tgj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7oD-hH-iKg"/>
+                    <constraint firstItem="PyD-ub-tgj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="JwQ-a3-o52"/>
+                    <constraint firstItem="PyD-ub-tgj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="NXx-Cs-QXA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PyD-ub-tgj" secondAttribute="trailing" constant="5" id="gNi-gf-lzQ"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="backView" destination="PyD-ub-tgj" id="L3J-3s-KPX"/>
                 <outlet property="goodsImageView" destination="I5j-WX-JTY" id="wKn-oS-g8Y"/>
                 <outlet property="lName" destination="YQ9-fu-x0H" id="bWE-YR-oA2"/>
                 <outlet property="rightButton" destination="8wX-YY-T6C" id="s77-B9-oac"/>
@@ -72,7 +117,7 @@
                 <outlet property="userPrice" destination="doU-lj-5Pj" id="tDh-VC-eDf"/>
                 <outlet property="wongoPrice" destination="vxf-MD-tiw" id="9Gu-vr-lt2"/>
             </connections>
-            <point key="canvasLocation" x="-254" y="-28"/>
+            <point key="canvasLocation" x="-387" y="-61"/>
         </tableViewCell>
     </objects>
 </document>

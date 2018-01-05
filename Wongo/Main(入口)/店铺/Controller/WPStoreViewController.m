@@ -8,13 +8,18 @@
 
 #import "WPStoreViewController.h"
 #import "WPNewExchangeCollectionViewCell.h"
-#import "WPStoreUserInformationView.h"
 #import "WPStroeDreamingCollectionViewCell.h"
-#import "LYConversationController.h"
+#import "WPStoreConsignmentCollectionViewCell.h"
+
 #import "WPUserIntroductionModel.h"
 #import "WPStoreModel.h"
 #import "WPNewExchangeModel.h"
 #import "WPStroeDreamingModel.h"
+#import "WPConsignmentModel.h"
+
+#import "WPStoreUserInformationView.h"
+#import "LYConversationController.h"
+
 
 #define Cell_Height (WINDOW_WIDTH*0.5+60)
 
@@ -42,6 +47,7 @@
 @implementation WPStoreViewController
 static NSString * const reuseIdentifier = @"Cell";
 static NSString * const storeCell       = @"StoreCell";
+static NSString * const consigmentCell  = @"ConsigmentCell";
 
 -(void)viewWillAppear:(BOOL)animated
 {
@@ -93,6 +99,7 @@ static NSString * const storeCell       = @"StoreCell";
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT - 50) collectionViewLayout:layout];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPNewExchangeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:reuseIdentifier];
         [_collectionView registerNib:[UINib nibWithNibName:@"WPStroeDreamingCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:storeCell];
+        [_collectionView registerNib:[UINib nibWithNibName:@"WPStoreConsignmentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:consigmentCell];
         
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.delegate   = self;
@@ -126,8 +133,10 @@ static NSString * const storeCell       = @"StoreCell";
 {
     if (_menuTag == 0) {
         return _storeModel.listg.count;
+    }else if (_menuTag == 1){
+        return _storeModel.listm.count;
     }
-    return _storeModel.listm.count;
+    return _storeModel.listl.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -138,17 +147,18 @@ static NSString * const storeCell       = @"StoreCell";
         cell.model = model;
         return cell;
     }
-  //  else if (_menuTag == 1){
+    else if (_menuTag == 1){
         WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
         WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
         cell.model = model;
         return cell;
-  //  }
-//    WPStroeDreamingCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:storeCell forIndexPath:indexPath];
-//    WPStroeDreamingModel * model = [WPStroeDreamingModel mj_objectWithKeyValues:_storeModel.listm[indexPath.row]];
-//    cell.model = model;
-//    return cell;
+    }
     
+    WPStoreConsignmentCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:consigmentCell forIndexPath:indexPath];
+    WPConsignmentModel * model = [WPConsignmentModel mj_objectWithKeyValues:_storeModel.listl[indexPath.row]];
+    cell.model = model;
+    return cell;
+
 }
 
 //每个单元格返回的大小

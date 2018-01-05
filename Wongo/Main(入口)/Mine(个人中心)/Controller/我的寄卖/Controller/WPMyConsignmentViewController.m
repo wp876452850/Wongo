@@ -19,8 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"我的寄卖";
+    self.myNavItem.title = @"我的寄卖";
     [self loadDatas];
+    self.view.backgroundColor = AllBorderColor;
     [self.view addSubview:self.tableView];
 }
 
@@ -28,11 +29,12 @@
 {
     if (!_tableView) {
         self.automaticallyAdjustsScrollViewInsets = NO;
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64) style:UITableViewStyleGrouped];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.rowHeight = 115;
+        _tableView.rowHeight = 110.f;
+        _tableView.backgroundColor = AllBorderColor;
         [_tableView registerNib:[UINib nibWithNibName:@"WPMyConsignmentTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];        
     }
     return _tableView;
@@ -61,5 +63,10 @@
     return cell;
 }
 
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 5.f;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.01f;
+}
 @end

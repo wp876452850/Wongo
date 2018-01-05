@@ -32,16 +32,6 @@
              weakSelf.inviteCode.text = inviteCode;
         }       
     }];
-    
-    [WPNetWorking createPostRequestMenagerWithUrlString:SignupAddUrl params:@{@"uid":[self getSelfUid]} datas:^(NSDictionary * responseObject) {
-        NSLog(@" flag ==== %@",responseObject);
-        
-        NSString * inviteCode = [responseObject objectForKey:@""];
-        
-        if ([responseObject[@"flag"] integerValue] == 1) {
-            
-        }
-    }];
 }
 
 

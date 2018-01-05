@@ -151,7 +151,8 @@
 #define QueryClassoneLog        HttpHead(@"queryClassoneLog")
 /**查询分类下的所有寄卖商品 currPage分页数 gcid分类*/
 #define LogisticsQueryClo       HttpHead(@"logisticsQueryClo")
-
+/**寄出寄卖商品*/
+#define LogisticsUserUpdate     HttpHead(@"logisticsUserUpdate")
 
 /**
  *      造梦

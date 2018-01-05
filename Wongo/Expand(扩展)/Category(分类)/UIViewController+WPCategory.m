@@ -140,7 +140,7 @@
     [hud hide:YES afterDelay:2.f];
 }
 
--(MBProgressHUD *)showAlertWithMBProgressHUDDefault{
+-(MBProgressHUD *)showMBProgressHUDDefault{
     MBProgressHUD * hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     return hud;
 }

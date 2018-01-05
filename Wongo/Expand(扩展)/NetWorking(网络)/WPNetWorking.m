@@ -37,7 +37,7 @@
     
     NSLog(@"%@",urlString);
     NSLog(@"%@",params);
-    __block MBProgressHUD * hud = [[self currentViewController] showAlertWithMBProgressHUDDefault];
+    __block MBProgressHUD * hud = [[self currentViewController] showMBProgressHUDDefault];
     AFHTTPSessionManager * manager = [WPNetWorking createManager];
     [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [hud hide:YES];
@@ -57,7 +57,7 @@
 {
     NSLog(@"%@",urlString);
     NSLog(@"%@",params);
-     __block MBProgressHUD * hud = [[self currentViewController] showAlertWithMBProgressHUDDefault];
+     __block MBProgressHUD * hud = [[self currentViewController] showMBProgressHUDDefault];
     AFHTTPSessionManager * manager = [WPNetWorking createManager];
     [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [hud hide:YES];

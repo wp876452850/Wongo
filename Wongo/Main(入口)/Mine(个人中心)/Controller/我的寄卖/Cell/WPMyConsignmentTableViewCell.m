@@ -7,6 +7,9 @@
 //
 
 #import "WPMyConsignmentTableViewCell.h"
+#import "WPMyConsignmentSendView.h"
+
+#define States @[@"待寄出",@"已寄出"]
 
 @interface WPMyConsignmentTableViewCell ()
 
@@ -16,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wongoPrice;
 @property (weak, nonatomic) IBOutlet UILabel *state;
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 @implementation WPMyConsignmentTableViewCell
@@ -25,6 +29,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.rightButton.layer.masksToBounds = YES;
     self.rightButton.layer.cornerRadius = 2.f;
+    self.backView.layer.cornerRadius = 5.f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -39,8 +44,17 @@
     _userPrice.text = [NSString stringWithFormat:@"期望报价:￥%@",model.price];
     _wongoPrice.text = [NSString stringWithFormat:@"碗糕报价:%@",@"暂无报价"];
     [_goodsImageView sd_setImageWithURL:[NSURL URLWithString:model.url] placeholderImage:[self getPlaceholderImage]];
+    self.state.text = States[[_model.sign integerValue]];
+    if ([_model.sign integerValue]!=0) {
+        self.rightButton.hidden = YES;
+    }
 }
+//寄出操作
 - (IBAction)jichu:(UIButton *)sender {
+    //
+    WPMyConsignmentSendView * view = [[WPMyConsignmentSendView alloc]initWithLid:_model.lid];
+    
+    [[self findViewController:self].view addSubview:view];
 }
 
 @end

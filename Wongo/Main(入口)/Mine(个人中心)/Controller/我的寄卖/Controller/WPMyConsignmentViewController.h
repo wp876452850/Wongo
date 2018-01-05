@@ -10,4 +10,6 @@
 
 @interface WPMyConsignmentViewController : LYBaseController
 
+-(void)loadDatas;
+
 @end

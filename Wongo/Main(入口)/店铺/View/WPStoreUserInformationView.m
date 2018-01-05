@@ -9,8 +9,8 @@
 #import "WPStoreUserInformationView.h"
 #import "WPCustomButton.h"
 
-#define MenuTitles @[@"交换商品",@"造梦商品"]
-//#define MenuTitles @[@"交换商品",@"造梦商品",@"寄卖商品"]
+//#define MenuTitles @[@"交换商品",@"造梦商品"]
+#define MenuTitles @[@"交换商品",@"造梦商品",@"寄卖商品"]
 
 @interface WPStoreUserInformationView ()
 {
