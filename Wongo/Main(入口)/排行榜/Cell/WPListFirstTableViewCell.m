@@ -177,7 +177,6 @@
         dataSourceArrayCount = 3;
     }
     for (int i = 0; i < dataSourceArrayCount; i++) {
-        
         WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
         NSString * imageName = @"";
         if (model.listuser.count > 0) {

@@ -10,4 +10,6 @@
 
 @interface WPConsignmentViewController : UIViewController
 
+-(instancetype)initWithLid:(NSString *)lid;
+
 @end

@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface WPConsignmentModel : NSObject
+
 @property (nonatomic,strong)NSString * freight;
 
 @property (nonatomic,strong)NSString * gcid;
 
-@property (nonatomic,strong)NSArray  * listimg;
+@property (nonatomic,strong)NSMutableArray  * listimg;
 
 @property (nonatomic,strong)NSString * neworold;
 

@@ -7,6 +7,8 @@
 //
 
 #import "WPStoreConsignmentCollectionViewCell.h"
+//寄卖详情
+#import "WPConsignmentViewController.h"
 
 @interface WPStoreConsignmentCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
@@ -29,4 +31,8 @@
     _price.text = [NSString stringWithFormat:@"￥%.f",[model.price floatValue]];
 }
 
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    WPConsignmentViewController * vc = [[WPConsignmentViewController alloc]initWithLid:_model.lid];
+    [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
+}
 @end

@@ -7,29 +7,22 @@
 //
 
 #import "WPConsignmentViewController.h"
-#import "SDCycleScrollView.h"
-#import "WPExchangeDetailModel.h"
-#import "WPConsignmentDetailInformationTableViewCell.h"
-#import "WPSelectExchangeGoodsViewController.h"
-#import "LoginViewController.h"
-#import "WPParameterInformationView.h"
 #import "LYConversationController.h"
-#import "SDCollectionViewCell.h"
-#import "WPCommentViewController.h"
-#import "WPProductDetailUserStoreTableViewCell.h"
-#import "WPCommentsSectionTableViewCell.h"
-#import "WPUserIntroductionTableViewCell.h"
-#import "WPCommentModel.h"
+
 #import "WPRecommendationView.h"
+
+#import "ZYPhotoCollectionView.h"
+#import "ZYPhotoModel.h"
+
+#import "WPProductDetailUserStoreTableViewCell.h"
+#import "WPConsignmentDetailInformationTableViewCell.h"
 #import "WPExchangeImageShowTableViewCell.h"
-#import "WPExchangeFunctionMenu.h"
-#import "WPGoodsRecommendedTableViewCell.h"
-#import "LYHomeResponse.h"
-#import "LYActivityController.h"
-#import "WPReportBox.h"
 #import "WPDreamingDetailRecommendTableViewCell.h"
 
+#import "WPConsignmentModel.h"
+
 #define RecommendCellHeight (WINDOW_WIDTH*0.5+65)
+
 static NSString * const userCell            = @"UserCell";
 static NSString * const commodityCell       = @"CommodityCell";
 static NSString * const commentsSectionCell = @"WPCommentsSectionTableViewCell";
@@ -37,30 +30,37 @@ static NSString * const imageShowCell       = @"ImageShowCell";
 static NSString * const goodsRecommended    = @"GoodsRecommended";
 static NSString * const recommendCell       = @"recommendCell";
 
-@interface WPConsignmentViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,SDPhotoBrowserDelegate,WPRecommendationViewDelegate>
-@property (nonatomic,strong)UITableView * tableView;
-@property (nonatomic,strong)UIView * bottomView;
-//活动数据模型
-@property (nonatomic, strong) LYHomeResponse *response;
+@interface WPConsignmentViewController ()<UITableViewDelegate,UITableViewDataSource,WPRecommendationViewDelegate>
+{
+    NSString * _lid;
+}
+@property (nonatomic,strong) WPConsignmentModel * model;
+@property (nonatomic,strong) UITableView * tableView;
+@property (nonatomic,strong) UIView * bottomView;
 //自动滚播器
-@property (nonatomic,strong) SDCycleScrollView      * cycleScrollView;
-@property (nonatomic,strong) WPExchangeDetailModel  * exchangeModel;
+@property (nonatomic,strong)ZYPhotoCollectionView * collectionView;
 
 @property (nonatomic,strong) NSString               * urlString;
 @property (nonatomic,strong) NSDictionary           * params;
 @property (nonatomic,strong) UIButton               * backButton;
-@property (nonatomic,assign) BOOL fromOrder;
 @property (nonatomic,assign) CGFloat userStoreRowHeight;
 @property (nonatomic,strong) WPRecommendationView * recommendationView;
 //右侧功能按钮
 @property (nonatomic,strong) UIButton * functionButton;
-@property (nonatomic,strong) NSMutableArray * goodsRecommendDatas;
 
+@property (nonatomic,strong) NSMutableArray * goodsRecommendDatas;
+//存放商品展示图数组
+@property (nonatomic,strong) NSMutableArray<ZYPhotoModel *> * imageDatas;
 @end
 
 @implementation WPConsignmentViewController
 
-
+-(instancetype)initWithLid:(NSString *)lid{
+    if (self = [super init]) {
+        _lid = lid;
+    }
+    return self;
+}
 -(UIButton *)functionButton{
     if (!_functionButton) {
         _functionButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -77,6 +77,7 @@ static NSString * const recommendCell       = @"recommendCell";
     }
     return _functionButton;
 }
+
 -(void)clickfunctionButton{
     [self clickfunctionButtonWithGid:self.params[@"gid"]];
 }
@@ -88,6 +89,7 @@ static NSString * const recommendCell       = @"recommendCell";
     }
     return _recommendationView;
 }
+
 -(UIView *)bottomView{
     if (!_bottomView) {
         _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
@@ -95,6 +97,7 @@ static NSString * const recommendCell       = @"recommendCell";
     }
     return _bottomView;
 }
+
 -(UITableView *)tableView
 {
     if (!_tableView) {
@@ -108,7 +111,7 @@ static NSString * const recommendCell       = @"recommendCell";
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSectionCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
-        [_tableView registerNib:[UINib nibWithNibName:@"WPExchangeCommodityInformationCell" bundle:nil] forCellReuseIdentifier:commodityCell];
+        [_tableView registerNib:[UINib nibWithNibName:@"WPConsignmentDetailInformationTableViewCell" bundle:nil] forCellReuseIdentifier:commodityCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPGoodsRecommendedTableViewCell" bundle:nil] forCellReuseIdentifier:goodsRecommended];
         [_tableView registerClass:[WPExchangeImageShowTableViewCell class] forCellReuseIdentifier:imageShowCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPDreamingDetailRecommendTableViewCell" bundle:nil] forCellReuseIdentifier:recommendCell];
@@ -118,23 +121,15 @@ static NSString * const recommendCell       = @"recommendCell";
     return _tableView;
 }
 
--(SDCycleScrollView *)cycleScrollView{
-    if(!_cycleScrollView){
-        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH) imageURLStringsGroup:_exchangeModel.rollPlayImages];
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"loadimage"];
-        _cycleScrollView.currentPageDotColor = ColorWithRGB(45, 102, 139);
-        _cycleScrollView.pageDotColor = ColorWithRGB(45, 102, 139);
-        _cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
-        _cycleScrollView.delegate = self;
-        _cycleScrollView.autoScroll = NO;
-        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFit;
-        
-        UIImageView * goodsimageshadow = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"goodsimageshadow"]];
-        goodsimageshadow.frame = CGRectMake(0, _cycleScrollView.bottom-19, WINDOW_WIDTH, 19);
-        [self.tableView addSubview:goodsimageshadow];
+-(ZYPhotoCollectionView *)collectionView{
+    if (!_collectionView) {
+        _collectionView = [[ZYPhotoCollectionView alloc]initWithFrame:CGRectMake(10, 20, WINDOW_WIDTH-20, 80)];
+        _collectionView.layout.itemSize = CGSizeMake(80, 80);
+        _collectionView.backgroundColor = WhiteColor;
     }
-    return _cycleScrollView;
+    return _collectionView;
 }
+
 //返回按钮
 -(UIButton *)backButton{
     if (!_backButton) {
@@ -155,8 +150,16 @@ static NSString * const recommendCell       = @"recommendCell";
 
 -(void)loadDatas{
     __weak typeof(self) weakSelf = self;
-    
-
+    [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsQueryLid params:@{@"lid":_lid} datas:^(NSDictionary *responseObject) {
+        weakSelf.model = [WPConsignmentModel mj_objectWithKeyValues:responseObject];
+        [weakSelf.model.listimg insertObject:weakSelf.model.url atIndex:0];
+        for (int i = 0; i<weakSelf.model.listimg.count; i++) {
+            ZYPhotoModel * photoModel = [[ZYPhotoModel alloc]initWithsmallImageURL:weakSelf.model.listimg[i][@"url"] bigImageURL:weakSelf.model.listimg[i][@"url"]];
+            [weakSelf.imageDatas addObject:photoModel];
+        }
+        _collectionView.photoModelArray = weakSelf.imageDatas;
+        [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
@@ -194,7 +197,6 @@ static NSString * const recommendCell       = @"recommendCell";
         case 2:
         {
             WPProductDetailUserStoreTableViewCell * cell  = [tableView dequeueReusableCellWithIdentifier:userCell forIndexPath:indexPath];
-            cell.model = _exchangeModel.userIntroductionModel;
             
             return cell;
         }
@@ -210,7 +212,7 @@ static NSString * const recommendCell       = @"recommendCell";
 //            cell.selectionStyle             = UITableViewCellSelectionStyleNone;
 //            cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
 //            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-//            return cell;
+            return cell;
         }
             break;
 
@@ -228,7 +230,7 @@ static NSString * const recommendCell       = @"recommendCell";
                 [cell.contentView addSubview:textLabel];
                 
                 //描述内容
-                UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - textLabel.right, MAXFLOAT)].height+10)];
+                UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, 0)];
 //                textView.text           = _exchangeModel.remark;
                 textView.font           = [UIFont systemFontOfSize:13.f];
                 textLabel.userInteractionEnabled    = NO;
@@ -246,9 +248,8 @@ static NSString * const recommendCell       = @"recommendCell";
             return cell;
         }break;
     }
-    WPGoodsRecommendedTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:goodsRecommended forIndexPath:indexPath];
-    cell.row = indexPath.row;
-    cell.dataSouceArray = _goodsRecommendDatas;
+    
+     UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     return cell;
     
 }
@@ -275,7 +276,7 @@ static NSString * const recommendCell       = @"recommendCell";
             break;
 
         case 4:{
-            CGFloat rowHeight = [_exchangeModel.remark getSizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(WINDOW_WIDTH - 80, MAXFLOAT)].height + 40;
+            CGFloat rowHeight =  40;
             if (rowHeight < 40) {
                 return 40;
             }else
@@ -285,7 +286,7 @@ static NSString * const recommendCell       = @"recommendCell";
 
             break;
         case 5:{
-            return (WINDOW_WIDTH+10)*self.exchangeModel.rollPlayImages.count;
+            return 0;
         }
             break;
     }
@@ -294,20 +295,21 @@ static NSString * const recommendCell       = @"recommendCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //评论
-    if (indexPath.section == 3) {
-        if (_exchangeModel.commentsModelArray.count<=0) {
-            [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
-                //跳转评论界面
-                WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
-                [self.navigationController pushViewController:vc animated:YES];
-                [vc.commentKeyBoard keyboardUpforComment];
-            }];
-        }else{
-            //跳转评论展示界面
-            WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
+//    if (indexPath.section == 3) {
+//        if (_exchangeModel.commentsModelArray.count<=0) {
+//            [self showAlertWithAlertTitle:@"提示" message:@"当前商品暂无评论,是否进行评论" preferredStyle:UIAlertControllerStyleAlert actionTitles:@[@"确定",@"取消"] block:^{
+//                //跳转评论界面
+//                WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
+//                [self.navigationController pushViewController:vc animated:YES];
+//                [vc.commentKeyBoard keyboardUpforComment];
+//            }];
+//        }else{
+//            //跳转评论展示界面
+//            WPCommentViewController * vc = [[WPCommentViewController alloc]initWithModel:_exchangeModel];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//    }
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -376,11 +378,11 @@ static NSString * const recommendCell       = @"recommendCell";
 }
 
 -(void)goChat{
-    if ([self determineWhetherTheLogin]) {
-        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
-        vc.title = self.exchangeModel.userIntroductionModel.uname;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if ([self determineWhetherTheLogin]) {
+//        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
+//        vc.title = self.exchangeModel.userIntroductionModel.uname;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 -(void)buy{
@@ -391,61 +393,7 @@ static NSString * const recommendCell       = @"recommendCell";
     
 }//去交换
 
-
-
-#pragma mark SDCycleScrollViewDelegate
-//点击图片回调
-- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
-    NSIndexPath * indexPath = [NSIndexPath indexPathForItem:index inSection:0];
-    SDCollectionViewCell * cell = (SDCollectionViewCell *)[cycleScrollView.mainView cellForItemAtIndexPath:indexPath];
-    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH, 0)];
-    browser.currentImageIndex = indexPath.row;
-    browser.sourceImagesContainerView = cell.contentView;
-    browser.imageCount = _exchangeModel.rollPlayImages.count;
-    browser.delegate = self;
-    [browser show];
-}
-
-#pragma mark - SDPhotoBrowserDelegate
-//展示的图片与对应的index
-- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
-{
-    UIImageView * imageView = [[UIImageView alloc]init];
-    [imageView sd_setImageWithURL:_exchangeModel.rollPlayImages[index]];
-    return imageView.image;
-}
-//点击缩小图片至什么位置
-- (void)selfView:(UIView *)supperView imageForIndex:(NSInteger)index currentImageView:(UIImageView *)imageview {
-    
-    NSIndexPath *CellIndexPath = [NSIndexPath indexPathForRow: index inSection:0];
-    
-    SDCollectionViewCell * cell = (SDCollectionViewCell *)[_cycleScrollView.mainView cellForItemAtIndexPath:CellIndexPath];
-    
-    //如果cell不存在，从重用池中取出cell
-    if (!cell) {
-        [_cycleScrollView.mainView scrollToItemAtIndexPath:CellIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-        [_cycleScrollView.mainView layoutIfNeeded];
-        cell = (SDCollectionViewCell*)[_cycleScrollView.mainView cellForItemAtIndexPath:CellIndexPath];
-    }
-    
-    /**图片尺寸大小*/
-    CGRect imageFrame = CGRectZero;
-    CGFloat scale = (cell.contentView.height/cell.imageView.image.size.height)<(WINDOW_WIDTH/cell.imageView.image.size.width)?(cell.contentView.height/cell.imageView.image.size.height):(WINDOW_WIDTH/cell.imageView.image.size.width);
-    imageFrame.size = CGSizeMake(cell.imageView.image.size.width * scale, cell.imageView.image.size.height * scale);
-    imageFrame.origin = CGPointMake((WINDOW_WIDTH - imageFrame.size.width)/2, (cell.contentView.height - imageFrame.size.height)/2);
-    
-    CGRect targetTemp = [cell.contentView convertRect:imageFrame toView:supperView];
-    
-    [UIView animateWithDuration:0.4f    animations:^{
-        imageview.frame = targetTemp;
-        supperView.backgroundColor = [UIColor clearColor];
-    } completion:^(BOOL finished) {
-        [supperView removeFromSuperview];
-    }];
-}
-
 -(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
-    
     
 }
 

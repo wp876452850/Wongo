@@ -29,6 +29,7 @@
 @property (nonatomic,strong)WPVarietiesButton * varieties5;
 
 @property (nonatomic,strong)NSMutableArray * dataSourceArray;
+
 @end
 @implementation WPConsignmentHeaderView
 -(UIImageView *)guideImageView{

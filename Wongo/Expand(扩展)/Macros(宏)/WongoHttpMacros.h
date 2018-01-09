@@ -141,6 +141,8 @@
  */
 /**查询所有寄卖 currPage分页数*/
 #define QueryShoppingListPraise HttpHead(@"queryLog")
+/**查询指定的寄卖详情*/
+#define LogisticsQueryLid       HttpHead(@"logisticsQueryLid")
 /**发布寄卖*/
 #define LogisticsUserAdd        HttpHead(@"logisticsUserAdd")
 /**上传寄卖图片*/

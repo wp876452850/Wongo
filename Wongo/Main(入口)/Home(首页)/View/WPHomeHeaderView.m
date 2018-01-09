@@ -73,7 +73,7 @@
         
         _activityA = [self setUpActivityImageWithFrame:CGRectMake(2.5, 10, w , h) actitvityState:0];
         _activityB = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, 10, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:1];
-        _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:3];
+        _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:2];
         
         //点击手势
         _activityA.tag = 0;
