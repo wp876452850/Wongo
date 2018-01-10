@@ -35,6 +35,9 @@ static NSString * const recommendCell       = @"recommendCell";
     NSString * _lid;
 }
 @property (nonatomic,strong) WPConsignmentModel * model;
+//滚动视图图片
+@property (nonatomic,strong) NSMutableArray * rollplayImages;
+
 @property (nonatomic,strong) UITableView * tableView;
 @property (nonatomic,strong) UIView * bottomView;
 //自动滚播器
@@ -62,6 +65,7 @@ static NSString * const recommendCell       = @"recommendCell";
     return self;
 }
 -(UIButton *)functionButton{
+    
     if (!_functionButton) {
         _functionButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _functionButton.size = _backButton.size;
@@ -94,6 +98,7 @@ static NSString * const recommendCell       = @"recommendCell";
     if (!_bottomView) {
         _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT - 50, WINDOW_WIDTH, 50)];
         _bottomView.backgroundColor = WhiteColor;
+        
     }
     return _bottomView;
 }
@@ -107,6 +112,7 @@ static NSString * const recommendCell       = @"recommendCell";
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.delegate         = self;
         _tableView.dataSource       = self;
+        _tableView.tableHeaderView  = self.collectionView;
         
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
         [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSectionCell];
@@ -123,9 +129,11 @@ static NSString * const recommendCell       = @"recommendCell";
 
 -(ZYPhotoCollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[ZYPhotoCollectionView alloc]initWithFrame:CGRectMake(10, 20, WINDOW_WIDTH-20, 80)];
-        _collectionView.layout.itemSize = CGSizeMake(80, 80);
+        _collectionView = [[ZYPhotoCollectionView alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH , WINDOW_WIDTH)];
+        _collectionView.layout.itemSize = CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH);
         _collectionView.backgroundColor = WhiteColor;
+        _collectionView.layout.minimumLineSpacing = 0.f;
+        _collectionView.contentOffset = CGPointMake(0, 0);
     }
     return _collectionView;
 }
@@ -143,6 +151,7 @@ static NSString * const recommendCell       = @"recommendCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
+    [self.view addSubview:self.tableView];
     [self loadDatas];
     [self navigationLeftPop];
     [self showShoppingBottomView];
@@ -152,19 +161,24 @@ static NSString * const recommendCell       = @"recommendCell";
     __weak typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsQueryLid params:@{@"lid":_lid} datas:^(NSDictionary *responseObject) {
         weakSelf.model = [WPConsignmentModel mj_objectWithKeyValues:responseObject];
-        [weakSelf.model.listimg insertObject:weakSelf.model.url atIndex:0];
+        weakSelf.rollplayImages = [NSMutableArray arrayWithCapacity:3];
+        [weakSelf.rollplayImages addObject:weakSelf.model.url];
+        ZYPhotoModel * photoModel0 = [[ZYPhotoModel alloc] initWithsmallImageURL:weakSelf.model.url bigImageURL:weakSelf.model.url];
+        [weakSelf.imageDatas addObject:photoModel0];
+        
         for (int i = 0; i<weakSelf.model.listimg.count; i++) {
             ZYPhotoModel * photoModel = [[ZYPhotoModel alloc]initWithsmallImageURL:weakSelf.model.listimg[i][@"url"] bigImageURL:weakSelf.model.listimg[i][@"url"]];
             [weakSelf.imageDatas addObject:photoModel];
+            [weakSelf.rollplayImages addObject:weakSelf.model.listimg[i][@"url"]];
         }
         _collectionView.photoModelArray = weakSelf.imageDatas;
-        [self.collectionView reloadData];
+        [weakSelf.collectionView reloadData];
+        [weakSelf.tableView reloadData];
     }];
 }
 
 #pragma mark - UITableViewDelegate,UITableViewDataSource
 //返回多少区
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 6;
 }
@@ -177,7 +191,6 @@ static NSString * const recommendCell       = @"recommendCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     switch (indexPath.section) {
         case 0:
         {
@@ -210,8 +223,9 @@ static NSString * const recommendCell       = @"recommendCell";
 //            cell.textLabel.attributedText   = attributedString;
 //            cell.textLabel.font             = [UIFont systemFontOfSize:14.f];
 //            cell.selectionStyle             = UITableViewCellSelectionStyleNone;
-//            cell.accessoryType              =UITableViewCellAccessoryDisclosureIndicator;
+//            cell.accessoryType              = UITableViewCellAccessoryDisclosureIndicator;
 //            [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+            
             return cell;
         }
             break;
@@ -242,17 +256,20 @@ static NSString * const recommendCell       = @"recommendCell";
         }
             break;
         case 5:{
+            //图片展示页
             WPExchangeImageShowTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:imageShowCell forIndexPath:indexPath];
             [cell.contentView removeAllSubviews];
-//            cell.images = self.exchangeModel.rollPlayImages;
+            cell.images = self.rollplayImages;
             return cell;
         }break;
     }
     
+    //推荐cell暂时没有推荐功能
      UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     return cell;
     
 }
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
         case 0:
@@ -283,10 +300,8 @@ static NSString * const recommendCell       = @"recommendCell";
                 return rowHeight;
         }
             break;
-
-            break;
         case 5:{
-            return 0;
+            return (WINDOW_WIDTH+10)*self.rollplayImages.count;
         }
             break;
     }
@@ -395,6 +410,10 @@ static NSString * const recommendCell       = @"recommendCell";
 
 -(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
     
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.rollplayImages.count;
 }
 
 @end

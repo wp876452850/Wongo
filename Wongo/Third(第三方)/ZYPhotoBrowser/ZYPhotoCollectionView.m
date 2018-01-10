@@ -106,6 +106,7 @@
 -(void)setWidth:(CGFloat)width {
     _width = width;
     [self getLayoutSizeWithWidth:width];
+    
 }
 
 @end

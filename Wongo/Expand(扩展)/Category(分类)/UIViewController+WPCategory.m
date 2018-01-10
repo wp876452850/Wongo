@@ -126,6 +126,7 @@
     }];
     UIAlertAction * share = [UIAlertAction actionWithTitle:@"分享" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [WPShareController shareAppWithCurrentViewController:self];
+        
     }];
     UIAlertAction * cancle = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         

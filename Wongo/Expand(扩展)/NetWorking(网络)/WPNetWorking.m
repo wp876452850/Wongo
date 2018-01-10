@@ -41,6 +41,7 @@
     AFHTTPSessionManager * manager = [WPNetWorking createManager];
     [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [hud hide:YES];
+        [hud removeFromSuperview];
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if (datas)
         {
@@ -50,6 +51,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         [hud hide:YES];
+        [hud removeFromSuperview];
         [[self currentViewController] showMBProgressHUDWithTitle:@"数据加载失败,请稍后重试"];
     }];
 }
@@ -61,7 +63,7 @@
     AFHTTPSessionManager * manager = [WPNetWorking createManager];
     [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [hud hide:YES];
-        
+        [hud removeFromSuperview];
         NSDictionary * dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if (datas)
         {
@@ -71,6 +73,7 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
         [hud hide:YES];
+        [hud removeFromSuperview];
         [[self currentViewController] showMBProgressHUDWithTitle:@"数据加载失败,请稍后重试"];
         if (failue) {
             failue();

@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Expand(&#x6269;&#x5c55;)/NetWorking(&#x7f51;&#x7edc;)/WPNetWorking.m"
-            timestampString = "536665424.093011"
+            timestampString = "537174565.469553"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "+createPostRequestMenagerWithUrlString:params:datas:failureBlock:"
             landmarkType = "7">
          </BreakpointContent>
@@ -179,13 +179,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5bc4;&#x5356;&#x8be6;&#x60c5;&#x9875;/Controller/WPConsignmentViewController.m"
-            timestampString = "536837132.996341"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/View/WPDreamingIntroduceTableViewCell.m"
+            timestampString = "537175141.5396169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "-loadDatas"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-collectionView:numberOfItemsInSection:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Wongo/Main(&#x5165;&#x53e3;)/DreamingPlan(&#x9020;&#x68a6;&#x8ba1;&#x5212;)/View/WPDreamingIntroduceTableViewCell.m"
+            timestampString = "537175188.221585"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-collectionView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

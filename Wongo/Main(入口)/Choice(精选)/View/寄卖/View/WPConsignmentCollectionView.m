@@ -9,7 +9,7 @@
 #import "WPConsignmentCollectionView.h"
 #import "WPConsignmentHeaderView.h"
 #import "WPBrandCollectionViewCell.h"
-#import "WPConsignmentGoodsCollectionViewCell.h"
+#import "WPStoreConsignmentCollectionViewCell.h"
 #import "WPConsignmentModel.h"
 #define HeaderView_Height WINDOW_WIDTH*0.4 + (180*WINDOW_WIDTH/375)+40
 
@@ -40,7 +40,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 {
     if (self = [super initWithFrame:frame collectionViewLayout:layout]) {
         [self registerNib:[UINib nibWithNibName:@"WPBrandCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:brandCell];
-        [self registerNib:[UINib nibWithNibName:@"WPConsignmentGoodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:ConsignmentCell];
+        [self registerNib:[UINib nibWithNibName:@"WPStoreConsignmentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:ConsignmentCell];
         
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"rementuijian"];
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"pinpaituijian"];
@@ -98,7 +98,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 //        WPBrandCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:brandCell forIndexPath:indexPath];
 //        return cell;
 //    }
-    WPConsignmentGoodsCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ConsignmentCell forIndexPath:indexPath];
+    WPStoreConsignmentCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ConsignmentCell forIndexPath:indexPath];
     cell.model = self.dataSourceArray[indexPath.row];
     return cell;
 }

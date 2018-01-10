@@ -19,6 +19,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"exchangecollect_normal"] forState:UIControlStateNormal];
     [_collectionButoon setBackgroundImage:[UIImage imageNamed:@"exchangecollect_select"] forState:UIControlStateSelected];
 }
