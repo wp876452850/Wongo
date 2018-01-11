@@ -9,7 +9,7 @@
 #import "WPMyConsignmentTableViewCell.h"
 #import "WPMyConsignmentSendView.h"
 
-#define States @[@"待寄出",@"已寄出"]
+#define States @[@"待寄出",@"已寄出",@"已收货"]
 
 @interface WPMyConsignmentTableViewCell ()
 

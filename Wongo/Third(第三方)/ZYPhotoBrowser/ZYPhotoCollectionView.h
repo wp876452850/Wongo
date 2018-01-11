@@ -14,6 +14,12 @@
 
 @property(nonatomic, strong)UICollectionViewFlowLayout *layout;
 /**
+ *  是否需要pageView
+ */
+@property (nonatomic,assign)BOOL openPageView;
+
+
+/**
  *  传入图片模型数组 会自动根据数组的数量 来布局展示图片
  
     English:
@@ -31,4 +37,6 @@
  *  @return 展示控件  English:Display control
  */
 -(instancetype)initWithFrame:(CGRect)frame;
+
+
 @end

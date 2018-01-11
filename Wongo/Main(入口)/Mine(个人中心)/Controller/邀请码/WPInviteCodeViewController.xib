@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WPInviteCodeViewController">
             <connections>
+                <outlet property="bottom" destination="gQF-ya-nbz" id="aag-hN-mVE"/>
+                <outlet property="top" destination="wtM-lf-67E" id="5rr-2F-sYD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,7 +57,7 @@
                 <constraint firstItem="wtM-lf-67E" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="250" id="lPx-qx-68a"/>
                 <constraint firstAttribute="trailing" secondItem="wtM-lf-67E" secondAttribute="trailing" constant="60" id="nnW-0n-D8o"/>
             </constraints>
-            <point key="canvasLocation" x="-297" y="-98"/>
+            <point key="canvasLocation" x="-583" y="-169"/>
         </view>
     </objects>
 </document>

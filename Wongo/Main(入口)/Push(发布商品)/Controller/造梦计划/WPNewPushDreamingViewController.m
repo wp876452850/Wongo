@@ -354,7 +354,7 @@ static NSString * const storeCell   = @"storeCell";
         
         if ([model.flag integerValue] == 1) {
             NSInteger signupid = [model.signupid integerValue];
-            WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(0.01)} price:1.f aliPayUrl:AliPaySignup];
+            WPPayDepositViewController * payvc = [[WPPayDepositViewController alloc]initWithParams:@{@"signupid":@(signupid),@"amount":@(1)} price:1.f aliPayUrl:AliPaySignup];
             [weakSelf.navigationController pushViewController:payvc animated:YES];
         }
     }];

@@ -12,6 +12,8 @@
 
 #define ViewControllers @[[WPMyInviteCodeViewController class],[WPFillInviteCodeViewController class]]
 @interface WPInviteCodeViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *top;
+@property (weak, nonatomic) IBOutlet UIButton *bottom;
 
 @end
 
@@ -20,6 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.myNavItem.title = @"邀请码";
+    self.top.layer.cornerRadius = 5.f;
+    self.bottom.layer.cornerRadius = 5.f;
 }
 
 - (IBAction)chakanzijiyaoqingma:(UIButton *)sender {

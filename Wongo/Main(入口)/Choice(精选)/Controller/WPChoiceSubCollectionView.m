@@ -297,6 +297,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 [_dataSourceArray addObject:model];
             }
         }
+        
         if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
             NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
             for (int i = 0; i<goodsNew.count; i++) {
@@ -304,6 +305,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 [_dataSourceArray addObject:model];
             }
         }
+        
         else{
             NSArray * listg = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<listg.count; i++) {
@@ -311,6 +313,7 @@ static NSString * const reuseIdentifier = @"Cell";
                 [_dataSourceArray addObject:model];
             }
         }
+        
         // 刷新表格
         [weakSelf reloadData];
         // 隐藏当前的上拉刷新控件

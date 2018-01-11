@@ -16,12 +16,23 @@
 //第三方
 #import "SDImageCache.h"
 
+
 @interface ZYPhotoCollectionView () <UICollectionViewDelegate, UICollectionViewDataSource, HZPhotoBrowserDelegate>
 
 @property (nonatomic, assign) CGFloat width;
+
+@property (nonatomic,strong)UIPageViewController * pageViewController;
 @end
 
 @implementation ZYPhotoCollectionView
+
+-(UIPageViewController *)pageViewController{
+    if (!_pageViewController) {
+        _pageViewController = [[UIPageViewController alloc]init];
+        
+    }
+    return _pageViewController;
+}
 
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame collectionViewLayout:self.layout]) {
@@ -106,6 +117,11 @@
 -(void)setWidth:(CGFloat)width {
     _width = width;
     [self getLayoutSizeWithWidth:width];
+    
+}
+
+-(void)setOpenPageView:(BOOL)openPageView{
+    _openPageView = openPageView;
     
 }
 

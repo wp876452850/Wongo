@@ -8,6 +8,8 @@
 
 #import "WPConsignmentViewController.h"
 #import "LYConversationController.h"
+#import "WPAddressSelectViewController.h"
+#import "WPPayDepositViewController.h"
 
 #import "WPRecommendationView.h"
 
@@ -114,7 +116,10 @@ static NSString * const recommendCell       = @"recommendCell";
         _tableView.dataSource       = self;
         _tableView.tableHeaderView  = self.collectionView;
         
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"miaoshu"];
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"pingjia"];
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+        
         [_tableView registerNib:[UINib nibWithNibName:@"WPCommentsSectionTableViewCell" bundle:nil] forCellReuseIdentifier:commentsSectionCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPProductDetailUserStoreTableViewCell" bundle:nil] forCellReuseIdentifier:userCell];
         [_tableView registerNib:[UINib nibWithNibName:@"WPConsignmentDetailInformationTableViewCell" bundle:nil] forCellReuseIdentifier:commodityCell];
@@ -133,7 +138,9 @@ static NSString * const recommendCell       = @"recommendCell";
         _collectionView.layout.itemSize = CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH);
         _collectionView.backgroundColor = WhiteColor;
         _collectionView.layout.minimumLineSpacing = 0.f;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.contentOffset = CGPointMake(0, 0);
+        _collectionView.pagingEnabled = YES;
     }
     return _collectionView;
 }
@@ -161,6 +168,7 @@ static NSString * const recommendCell       = @"recommendCell";
     __weak typeof(self) weakSelf = self;
     [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsQueryLid params:@{@"lid":_lid} datas:^(NSDictionary *responseObject) {
         weakSelf.model = [WPConsignmentModel mj_objectWithKeyValues:responseObject];
+        weakSelf.imageDatas = [NSMutableArray arrayWithCapacity:3];
         weakSelf.rollplayImages = [NSMutableArray arrayWithCapacity:3];
         [weakSelf.rollplayImages addObject:weakSelf.model.url];
         ZYPhotoModel * photoModel0 = [[ZYPhotoModel alloc] initWithsmallImageURL:weakSelf.model.url bigImageURL:weakSelf.model.url];
@@ -196,7 +204,7 @@ static NSString * const recommendCell       = @"recommendCell";
         {
             WPConsignmentDetailInformationTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:commodityCell forIndexPath:indexPath];
             [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
-            
+            cell.model = self.model;
             return cell;
         }
             break;
@@ -217,7 +225,7 @@ static NSString * const recommendCell       = @"recommendCell";
             
         case 3:
         {
-            UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+            UITableViewCell * cell      = [tableView dequeueReusableCellWithIdentifier:@"pingjia" forIndexPath:indexPath];
 //            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"  宝贝评价(%ld)",(unsigned long)_exchangeModel.commentsModelArray.count]];
 //            [attributedString addAttribute:NSForegroundColorAttributeName value:GRAY_COLOR range:NSMakeRange(@"  宝贝评价".length,attributedString.length - @"  宝贝评价".length)];
 //            cell.textLabel.attributedText   = attributedString;
@@ -234,7 +242,7 @@ static NSString * const recommendCell       = @"recommendCell";
             //标签：商品描述
             UITableViewCell * cell  = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
             if (!cell) {
-                cell =[tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell =[tableView dequeueReusableCellWithIdentifier:@"miaoshu" forIndexPath:indexPath];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 [cell.contentView removeAllSubviews];
                 [cell.layer removeFromSuperlayer];
@@ -245,7 +253,7 @@ static NSString * const recommendCell       = @"recommendCell";
                 
                 //描述内容
                 UITextView * textView   = [[UITextView alloc]initWithFrame:CGRectMake(textLabel.right, 10, WINDOW_WIDTH - textLabel.right, 0)];
-//                textView.text           = _exchangeModel.remark;
+                textView.text           = self.model.remark;
                 textView.font           = [UIFont systemFontOfSize:13.f];
                 textLabel.userInteractionEnabled    = NO;
                 textView.userInteractionEnabled     = NO;
@@ -261,7 +269,8 @@ static NSString * const recommendCell       = @"recommendCell";
             [cell.contentView removeAllSubviews];
             cell.images = self.rollplayImages;
             return cell;
-        }break;
+        }
+            break;
     }
     
     //推荐cell暂时没有推荐功能
@@ -288,7 +297,8 @@ static NSString * const recommendCell       = @"recommendCell";
             break;
         case 3:
         {
-            return 50;
+//            return 50;
+            return 0;
         }
             break;
 
@@ -324,7 +334,6 @@ static NSString * const recommendCell       = @"recommendCell";
 //            [self.navigationController pushViewController:vc animated:YES];
 //        }
 //    }
-    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -399,14 +408,29 @@ static NSString * const recommendCell       = @"recommendCell";
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
 }
-
+//购买
 -(void)buy{
-    
+    if ([self determineWhetherTheLogin]) {
+        WPAddressSelectViewController * vc = [[WPAddressSelectViewController alloc]init];
+        __block typeof(self)weakSelf = self;
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc getAdidAndAddressWithBlock:^(WPAddressModel *address) {
+            [WPNetWorking createPostRequestMenagerWithUrlString:UpdAddressedStateUrl params:@{@"adid":@(address.adid)} datas:^(NSDictionary *responseObject) {
+                if ([responseObject[@"flag"] integerValue] == 1) {
+                    [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsIssueOrdernumAdd params:@{@"uid":[self getSelfUid],@"lid":weakSelf.model.lid} datas:^(NSDictionary *responseObject) {
+                        WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithParams:@{@"loid":responseObject[@"id"],@"amount":@(1)} price:[_model.price floatValue] aliPayUrl:AliPayLog];
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+                    }];
+                }
+            }];
+        }];
+    }
 }
 
 -(void)shoppingCar{
     
-}//去交换
+}
+//去交换
 
 -(void)didSrollWithCollectionView:(UICollectionView *)collectionView{
     

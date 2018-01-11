@@ -14,7 +14,6 @@ typedef void(^SelectAddressBlock)(WPAddressModel* address);
 
 @interface WPAddressSelectViewController : LYBaseController
 
-
-
 -(void)getAdidAndAddressWithBlock:(SelectAddressBlock)block;
+
 @end

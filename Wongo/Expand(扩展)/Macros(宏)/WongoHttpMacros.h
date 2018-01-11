@@ -72,7 +72,6 @@
 #define UpdAddressedStateUrl    HttpHead(@"updAddressedState")
 
 
-
 /**
  *  生成订单
  */
@@ -82,6 +81,8 @@
 #define SignupAddUrl            HttpHead(@"SignupAdd")
 /**生成提现订单    uid*/
 #define userMoneyOrderUrl       HttpHead(@"userMoneyOrder")
+/**生成寄卖订单*/
+#define LogisticsIssueOrdernumAdd   HttpHead(@"logisticsIssueOrdernumAdd")
 
 
 /**
@@ -156,6 +157,7 @@
 /**寄出寄卖商品*/
 #define LogisticsUserUpdate     HttpHead(@"logisticsUserUpdate")
 
+
 /**
  *      造梦
  */
@@ -207,7 +209,8 @@
 #define AliPayUrl               HttpHead(@"aliPay")
 /**押金支付 signupid amount*/
 #define AliPaySignup            HttpHead(@"aliPaySignup")
-
+/**寄卖支付 loid amount*/
+#define AliPayLog               HttpHead(@"aliPayLog")
 
 
 /**

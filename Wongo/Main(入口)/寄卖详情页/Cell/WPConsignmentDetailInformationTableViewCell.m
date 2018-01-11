@@ -26,9 +26,13 @@
 
 - (IBAction)collect:(UIButton *)sender {
     
-    
-    
 }
 
+-(void)setModel:(WPConsignmentModel *)model
+{
+    _model = model;
+    _goodName.text = model.lname;
+    _price.text = [NSString stringWithFormat:@"￥%@",model.price];
+}
 
 @end

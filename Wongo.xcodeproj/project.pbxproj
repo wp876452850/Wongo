@@ -2780,7 +2780,8 @@
 				3D131D5D1FB3F7AA001B70FA /* 支付宝支付 */,
 				3D131D5C1FB3F79F001B70FA /* 微信支付 */,
 			);
-			path = "支付";
+			name = "支付";
+			path = "../支付";
 			sourceTree = "<group>";
 		};
 		3D131D5C1FB3F79F001B70FA /* 微信支付 */ = {
@@ -4562,6 +4563,7 @@
 		3DC998721FBC0F5D00A87423 /* Push(发布商品) */ = {
 			isa = PBXGroup;
 			children = (
+				3D131D5B1FB3F791001B70FA /* 支付 */,
 				3DC998731FBC0F5D00A87423 /* Cell */,
 				3DC998741FBC0F5D00A87423 /* Controller */,
 				3DC998751FBC0F5D00A87423 /* Model */,
@@ -6156,7 +6158,6 @@
 				8566A7171E4822DC00C08624 /* Choice(精选) */,
 				3DC998721FBC0F5D00A87423 /* Push(发布商品) */,
 				8566A7181E4822ED00C08624 /* Post(发布) */,
-				3D131D5B1FB3F791001B70FA /* 支付 */,
 				8566A7191E48233000C08624 /* Mine(个人中心) */,
 				8566A71A1E48234E00C08624 /* Login(登录) */,
 				8566A71C1E48239D00C08624 /* Register(注册) */,

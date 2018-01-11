@@ -10,7 +10,9 @@
 #import "WPExchangeViewController.h"
 
 @interface WPNewExchangeCollectionViewCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
+
 @property (weak, nonatomic) IBOutlet UITextView *goodsName;
 
 @property (weak, nonatomic) IBOutlet UILabel *price;
@@ -27,6 +29,8 @@
     [_thumpUp setImage:[UIImage imageNamed:@"thumup_select"] forState:UIControlStateSelected];
     [_thumpUp setImage:[UIImage imageNamed:@"thumup_normal"] forState:UIControlStateNormal];
     _goodsImage.contentMode = UIViewContentModeScaleAspectFill;
+    self.contentView.clipsToBounds = YES;
+    _goodsName.clipsToBounds = YES;
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;
