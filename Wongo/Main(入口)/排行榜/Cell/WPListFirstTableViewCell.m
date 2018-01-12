@@ -122,6 +122,7 @@
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     UITapGestureRecognizer * tap1 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
     UITapGestureRecognizer * tap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tap:)];
+    
     [_one addGestureRecognizer:tap];
     [_two addGestureRecognizer:tap1];
     [_three addGestureRecognizer:tap2];
@@ -138,36 +139,44 @@
     [super setSelected:selected animated:animated];
     
 }
-- (IBAction)thumup:(UIButton *)sender {
-     WPListModel * model = [WPListModel mj_objectWithKeyValues:_dataSourceArray[sender.tag]];
-    typeof(self) weakSelf = self;
-    [self thumbUpGoodsWithSender:sender proid:model.proid addBlock:^{
-        switch (sender.tag) {
-            case 0:
-                weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",_oneNumber++];
-                break;
-            case 1:
-                weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",_twoNumber++];
-                break;
-            default:
-                weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",_threeNumber++];
-                break;
-        }
-    } reduceBlock:^{
-        switch (sender.tag) {
-            case 0:
-                weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",_oneNumber--];
-                break;
-            case 1:
-                weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",_twoNumber--];
-                break;
-            default:
-                weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",_threeNumber--];
-                break;
-        }
-    }];
-}
 
+- (IBAction)thumupDreamingPlan:(UIButton *)sender {
+    WPListModel * model = [WPListModel mj_objectWithKeyValues:_dataSourceArray[sender.tag]];
+    typeof(self) weakSelf = self;   
+        switch (sender.tag) {
+            case 0:{
+                [self thumbUpGoodsWithSender:_onebutton proid:model.proid
+                addBlock:^{
+                    weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",++_oneNumber];
+                }
+                reduceBlock:^{
+                    weakSelf.onenumber.text = [NSString stringWithFormat:@"%ld",--_oneNumber];
+                }];
+        }
+                break;
+            case 1:{
+                [self thumbUpGoodsWithSender:_twobutton proid:model.proid
+                addBlock:^{
+                     weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",++_twoNumber];
+                }
+                reduceBlock:^{
+                     weakSelf.twonumber.text = [NSString stringWithFormat:@"%ld",--_twoNumber];
+                }];
+               
+            }
+                break;
+            default:{
+                [self thumbUpGoodsWithSender:_threebutton proid:model.proid
+                addBlock:^{
+                    weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",++_threeNumber];
+                }
+                reduceBlock:^{
+                    weakSelf.threenumber.text = [NSString stringWithFormat:@"%ld",--_threeNumber];
+                }];
+            }
+                break;
+   }
+}
 
 -(void)setDataSourceArray:(NSArray *)dataSourceArray{
     _dataSourceArray = dataSourceArray;
@@ -179,6 +188,7 @@
     for (int i = 0; i < dataSourceArrayCount; i++) {
         WPListModel * model = [WPListModel mj_objectWithKeyValues:dataSourceArray[i]];
         NSString * imageName = @"";
+        
         if (model.listuser.count > 0) {
             imageName = model.listuser[0][@"url"];
         }
@@ -189,6 +199,9 @@
                 _onenumber.text = model.praise;
                 _oneLabel.text = model.uname;
                 _oneNumber = [model.praise integerValue];
+                if ([self thumUpDreamingWithinArrayContainsProid:model.proid]) {
+                    _onebutton.selected = YES;
+                }
                 
             }break;
             case 1:{               
@@ -196,6 +209,9 @@
                 _twoLabel.text = model.uname;
                 _twonumber.text = model.praise;
                 _twoNumber = [model.praise integerValue];
+                if ([self thumUpDreamingWithinArrayContainsProid:model.proid]) {
+                    _twobutton.selected = YES;
+                }
             }
                 break;
             case 2:{
@@ -203,6 +219,9 @@
                 _threeLabel.text = model.uname;
                 _threenumber.text = model.praise;
                 _threeNumber = [model.praise integerValue];
+                if ([self thumUpDreamingWithinArrayContainsProid:model.proid]) {
+                    _threebutton.selected = YES;
+                }
             }
                 break;
         }

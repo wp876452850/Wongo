@@ -9,7 +9,7 @@
 #import "WPMyConsignmentTableViewCell.h"
 #import "WPMyConsignmentSendView.h"
 
-#define States @[@"待寄出",@"已寄出",@"已收货"]
+#define States @[@"待寄出",@"已寄出",@"审核中",@"已上架",@""]
 
 @interface WPMyConsignmentTableViewCell ()
 
@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
+
 @implementation WPMyConsignmentTableViewCell
 
 - (void)awakeFromNib {
@@ -34,8 +35,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-   
+    
 }
 
 -(void)setModel:(WPMyConsignmentModel *)model{
@@ -49,8 +49,10 @@
         self.rightButton.hidden = YES;
     }
 }
+
 //寄出操作
 - (IBAction)jichu:(UIButton *)sender {
+    
     //
     WPMyConsignmentSendView * view = [[WPMyConsignmentSendView alloc]initWithLid:_model.lid];
     

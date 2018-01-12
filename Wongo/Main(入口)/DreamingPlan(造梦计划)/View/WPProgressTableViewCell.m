@@ -45,7 +45,6 @@ static NSString * progress;
     progress    = model.progress;
     
     [self createProgress];
-    
 }
 //创建进度条
 -(void)createProgress{

@@ -37,7 +37,6 @@
     if ([self thumUpDreamingWithinArrayContainsProid:_model.proid]) {
         _thumup.selected = YES;
     }
-    
 }
 
 - (void)awakeFromNib {

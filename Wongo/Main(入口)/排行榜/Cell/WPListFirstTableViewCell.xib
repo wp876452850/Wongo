@@ -71,7 +71,7 @@
                             <constraint firstAttribute="height" constant="30" id="MK4-Nq-caP"/>
                         </constraints>
                         <connections>
-                            <action selector="thumup:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Gm-FA-eQD"/>
+                            <action selector="thumupDreamingPlan:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fMt-tA-bM5"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3x-pg-9YU">
@@ -97,7 +97,7 @@
                             <constraint firstAttribute="width" constant="110" id="fPA-14-2w4"/>
                         </constraints>
                         <connections>
-                            <action selector="thumup:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="7ZE-vm-wXL"/>
+                            <action selector="thumupDreamingPlan:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iL4-ha-5D0"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYm-4m-xEe">
@@ -123,7 +123,7 @@
                             <constraint firstAttribute="width" constant="110" id="YdL-wj-ve9"/>
                         </constraints>
                         <connections>
-                            <action selector="thumup:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CTH-Wz-4fl"/>
+                            <action selector="thumupDreamingPlan:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OvL-mi-95h"/>
                         </connections>
                     </button>
                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oUR-CE-dLe">
@@ -192,7 +192,7 @@
                 <outlet property="twobutton" destination="xYm-4m-xEe" id="eny-Rv-1Ir"/>
                 <outlet property="twonumber" destination="xQd-KH-O9O" id="sQ4-kr-cuA"/>
             </connections>
-            <point key="canvasLocation" x="-1203" y="18"/>
+            <point key="canvasLocation" x="-2497" y="-10"/>
         </tableViewCell>
     </objects>
     <resources>

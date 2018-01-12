@@ -226,7 +226,6 @@ static NSString * const recommendCell   = @"recommendCell";
     } failureBlock:^{
         [weakSelf loadCommentsDatas];
     }];
-
 }
 //查询评论信息
 -(void)loadCommentsDatas{
@@ -280,10 +279,28 @@ static NSString * const recommendCell   = @"recommendCell";
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == 0) {
+        WPDreamingDetailIntroduceTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (!cell) {
+            cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
+        }
+        cell.name =_model.proname;
+        if (!cell.introduce) {
+            cell.introduce = _model.remark;
+        }
+        return cell;
+    }
     //商品信息
     if (indexPath.section == 1) {
         WPDreamingDetailListTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:listCell forIndexPath:indexPath];
         cell.dataSourceArray = self.listDatas;
+        return cell;
+    }
+    //进度条
+    if (indexPath.section == 2) {
+        WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
+        cell.model = _model;
         return cell;
     }
     //平台推荐
@@ -291,12 +308,6 @@ static NSString * const recommendCell   = @"recommendCell";
         WPDreamingDetailRecommendTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:recommendCell forIndexPath:indexPath];
         [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         cell.model = self.model;
-        return cell;
-    }
-    //进度条
-    if (indexPath.section == 2) {
-        WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
-        cell.model = _model;
         return cell;
     }
     //用户信息
@@ -309,21 +320,6 @@ static NSString * const recommendCell   = @"recommendCell";
         model.url = self.model.url;
         cell.model = model;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }
-    
-    if (indexPath.section == 0) {
-        WPDreamingDetailIntroduceTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-        
-        if (!cell) {
-            cell = [tableView dequeueReusableCellWithIdentifier:introduceCell forIndexPath:indexPath];
-        }
-
-        cell.name =_model.proname;
-        if (!cell.introduce) {
-            cell.introduce = _model.remark;
-        }
-//        [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
         return cell;
     }
     else if (indexPath.section == 5){

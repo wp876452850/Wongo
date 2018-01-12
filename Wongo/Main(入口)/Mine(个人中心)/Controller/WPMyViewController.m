@@ -31,9 +31,12 @@
 //#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"invitecode"]
 //#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPInviteCodeViewController class]]
 
-#define Cell_title_array @[@"余额",@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"我的寄卖",@"邀请码"]
-#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"",@"invitecode"]
-#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPMyConsignmentViewController class],[WPInviteCodeViewController class]]
+//#define Cell_title_array @[@"余额",@"商品管理",@"交换订单",@"收货地址",@"造梦计划",@"造梦订单",@"我的主页",@"我的寄卖",@"邀请码"]
+//#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"",@"invitecode"]
+#define Cell_title_array @[@"我的主页",@"造梦计划",@"造梦订单",@"我的寄卖",@"交换订单",@"收货地址",@"商品管理",@"余额",@"邀请码"]
+#define Cell_Icon_Array @[@"myShop",@"dreamingPlan",@"myOrder",@"",@"tradeOrders",@"address",@"commodityManagement",@"money",@"invitecode"]
+
+#define Cell_ViewControllers @[[WPStoreViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPMyConsignmentViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPCommodityManagementViewController class],[WPBalanceViewController class],[WPInviteCodeViewController class]]
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
 //表的一个区头试图高度
@@ -149,7 +152,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if ([self determineWhetherTheLogin]){
-        if (indexPath.row == 6) {
+        if (indexPath.row == 0) {
           WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:[self getSelfUid]];
             [self.navigationController pushViewController:vc animated:YES];
         }else{
