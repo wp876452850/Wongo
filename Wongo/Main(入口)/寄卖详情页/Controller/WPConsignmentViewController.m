@@ -11,6 +11,7 @@
 #import "WPAddressSelectViewController.h"
 #import "WPPayDepositViewController.h"
 
+
 #import "WPRecommendationView.h"
 
 #import "ZYPhotoCollectionView.h"
@@ -22,6 +23,7 @@
 #import "WPDreamingDetailRecommendTableViewCell.h"
 
 #import "WPConsignmentModel.h"
+#import "WPUserIntroductionModel.h"
 
 #define RecommendCellHeight (WINDOW_WIDTH*0.5+65)
 
@@ -239,6 +241,7 @@ static NSString * const recommendCell       = @"recommendCell";
             break;
 
         case 4:{
+            
             //标签：商品描述
             UITableViewCell * cell  = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
             if (!cell) {
@@ -259,6 +262,7 @@ static NSString * const recommendCell       = @"recommendCell";
                 textView.userInteractionEnabled     = NO;
                 [cell.contentView addSubview:textView];
                 [cell.layer addSublayer:[WPBezierPath cellBottomDrowLineWithTableViewCell:cell]];
+                
             }
             return cell;
         }
@@ -371,6 +375,7 @@ static NSString * const recommendCell       = @"recommendCell";
     
     [self.view addSubview:self.bottomView];
     UIButton * chat = [self createChatButton];
+    
     //加入购物车
     //    UIButton * shoppingCar      = [UIButton buttonWithType:UIButtonTypeCustom];
     //    shoppingCar.frame           = CGRectMake(chat.width, 0, (WINDOW_WIDTH - chat.width)/2, 50);
@@ -402,12 +407,15 @@ static NSString * const recommendCell       = @"recommendCell";
 }
 
 -(void)goChat{
+    
 //    if ([self determineWhetherTheLogin]) {
 //        LYConversationController *vc = [[LYConversationController alloc] initWithConversationType:ConversationType_PRIVATE targetId:self.exchangeModel.uid];
 //        vc.title = self.exchangeModel.userIntroductionModel.uname;
 //        [self.navigationController pushViewController:vc animated:YES];
 //    }
+    
 }
+
 //购买
 -(void)buy{
     if ([self determineWhetherTheLogin]) {
@@ -418,7 +426,7 @@ static NSString * const recommendCell       = @"recommendCell";
             [WPNetWorking createPostRequestMenagerWithUrlString:UpdAddressedStateUrl params:@{@"adid":@(address.adid)} datas:^(NSDictionary *responseObject) {
                 if ([responseObject[@"flag"] integerValue] == 1) {
                     [WPNetWorking createPostRequestMenagerWithUrlString:LogisticsIssueOrdernumAdd params:@{@"uid":[self getSelfUid],@"lid":weakSelf.model.lid} datas:^(NSDictionary *responseObject) {
-                        WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithParams:@{@"loid":responseObject[@"id"],@"amount":@(1)} price:[_model.price floatValue] aliPayUrl:AliPayLog];
+                        WPPayDepositViewController * vc = [[WPPayDepositViewController alloc]initWithParams:@{@"loid":responseObject[@"id"],@"amount":@([_model.price integerValue])} price:[_model.price floatValue] aliPayUrl:AliPayLog];
                         [weakSelf.navigationController pushViewController:vc animated:YES];
                     }];
                 }
@@ -426,6 +434,7 @@ static NSString * const recommendCell       = @"recommendCell";
         }];
     }
 }
+
 
 -(void)shoppingCar{
     

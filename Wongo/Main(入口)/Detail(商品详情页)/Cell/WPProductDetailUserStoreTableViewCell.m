@@ -48,12 +48,19 @@
 }
 
 -(void)tap{
-    WPStoreViewController * vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
+    WPStoreViewController * vc = nil;
+    if (_model.url.length <=0) {
+       vc = [[WPStoreViewController alloc]initWithUid:@"1"];
+    }else
+    vc = [[WPStoreViewController alloc]initWithUid:_model.uid];
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
     
 }
 
 - (IBAction)collect:(UIButton *)sender {
+    if (_model.url.length <=0) {
+        [self focusOnTheUserWithSender:sender uid:@"1"];
+    }
     [self focusOnTheUserWithSender:sender uid:_model.uid];
 }
 

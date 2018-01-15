@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/&#x5bc4;&#x5356;&#x8be6;&#x60c5;&#x9875;/Controller/WPConsignmentViewController.m"
-            timestampString = "537268107.989095"
+            timestampString = "537440787.836576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-loadDatas"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,12 +212,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Wongo/Main(&#x5165;&#x53e3;)/Choice(&#x7cbe;&#x9009;)/View/&#x5bc4;&#x5356;/View/WPConsignmentHeaderView.m"
-            timestampString = "537352870.140504"
+            timestampString = "537416099.494717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
-            landmarkName = "-loadDatas"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-gojimai"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -19,14 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="524" height="333.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="110.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-uA-xSG">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wongoicon" translatesAutoresizingMaskIntoConstraints="NO" id="7Y2-uA-xSG">
                         <rect key="frame" x="13" y="28" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="PMJ-Rf-89A"/>
                             <constraint firstAttribute="height" constant="50" id="lyh-fS-YM0"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="福建烤老鼠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-TU-2Xp">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="碗糕官方" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vo2-TU-2Xp">
                         <rect key="frame" x="73" y="30" width="328" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="Na7-0O-eRf"/>
@@ -35,7 +35,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人气:500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b42-2B-wwV">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="碗糕官方账号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b42-2B-wwV">
                         <rect key="frame" x="73" y="62" width="328" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="dxq-ld-hUr"/>
@@ -92,10 +92,10 @@
                 <outlet property="other" destination="b42-2B-wwV" id="ezT-OU-DLt"/>
                 <outlet property="uname" destination="Vo2-TU-2Xp" id="hrc-3a-RbS"/>
             </connections>
-            <point key="canvasLocation" x="-196" y="159"/>
+            <point key="canvasLocation" x="-438" y="40"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="110.jpg" width="188" height="180"/>
+        <image name="wongoicon" width="80" height="80"/>
     </resources>
 </document>

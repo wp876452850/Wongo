@@ -1,4 +1,4 @@
-//
+ //
 //  WPConsignmentHeaderView.m
 //  Wongo
 //
@@ -93,7 +93,8 @@
 -(void)loadDatas{
     __block typeof(self)weakSelf = self;
     self.dataSourceArray = [NSMutableArray arrayWithCapacity:3];
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneLog params:nil datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneLog params:nil datas:^(NSDictionary *responseObject)
+    {
         NSArray * listc = responseObject[@"listc"];
         for (int i = 0; i<listc.count; i++) {
             WPConsignmentClassOneModel * model = [WPConsignmentClassOneModel mj_objectWithKeyValues:listc[i]];
@@ -118,6 +119,7 @@
 }
 
 -(void)gojimai{
+    
     
 }
 
