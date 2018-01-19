@@ -191,6 +191,7 @@ static NSString * const recommendCell   = @"recommendCell";
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     [self loadGoodsInformationDatas];
 }
+
 //查询商品所有信息
 -(void)loadGoodsInformationDatas{
     __block typeof(self) weakSelf = self;
@@ -203,6 +204,7 @@ static NSString * const recommendCell   = @"recommendCell";
         [weakSelf loadListxiDatas];
     }];
 }
+
 //查询排行榜
 -(void)loadListxiDatas{
     __block typeof(self) weakSelf = self;
@@ -216,6 +218,7 @@ static NSString * const recommendCell   = @"recommendCell";
         [weakSelf loadUserDatas];
     }];
 }
+
 //查询用户信息
 -(void)loadUserDatas{
     __block typeof(self) weakSelf = self;

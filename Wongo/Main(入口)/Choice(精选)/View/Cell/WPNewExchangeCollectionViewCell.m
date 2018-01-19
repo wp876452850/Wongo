@@ -7,6 +7,7 @@
 //
 
 #import "WPNewExchangeCollectionViewCell.h"
+
 #import "WPExchangeViewController.h"
 
 @interface WPNewExchangeCollectionViewCell ()
@@ -22,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *wantExchange;
 
 @end
+
 @implementation WPNewExchangeCollectionViewCell
 
 - (void)awakeFromNib {
