@@ -289,7 +289,7 @@ static NSString * contentOffset = @"contentOffset";
         return CGSizeMake(WINDOW_WIDTH - 10, Cell_HeightSigleLine);
     }
     if (indexPath.section == 3) {
-        return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12, WINDOW_WIDTH*0.5+60);
+        return CGSizeMake((WINDOW_WIDTH) * 0.5 - 12,WINDOW_WIDTH * 0.5 + 70);
     }
     if (indexPath.section == Dreaming_Section) {
         return CGSizeMake(WINDOW_WIDTH, WINDOW_WIDTH*0.6+10+(WINDOW_WIDTH/3) + 90);

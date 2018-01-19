@@ -55,10 +55,11 @@
 -(void)loadDatas{
     typeof(self) weakSelf = self;
     self.focusInformationArray = [NSMutableArray arrayWithCapacity:3];
-    for (int i = 0; i < self.focusArray.count; i++) {
+    for (__block int i = 0; i < self.focusArray.count; i++) {
+
         [WPNetWorking createPostRequestMenagerWithUrlString:UserGetUrl params:@{@"uid":_focusArray[i]} datas:^(NSDictionary *responseObject) {
             [weakSelf.focusInformationArray addObject:[WPFansModel mj_objectWithKeyValues:responseObject]];
-            if (i+1>=_focusArray.count) {
+            if (weakSelf.focusInformationArray.count == _focusArray.count) {
                 [weakSelf.tableView reloadData];
             }
         }];

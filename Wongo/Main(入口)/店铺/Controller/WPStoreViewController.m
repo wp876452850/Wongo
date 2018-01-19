@@ -21,7 +21,7 @@
 #import "LYConversationController.h"
 
 
-#define Cell_Height (WINDOW_WIDTH*0.5+60)
+#define Cell_Height (WINDOW_WIDTH * 0.5 + 70)
 
 @interface WPStoreViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 

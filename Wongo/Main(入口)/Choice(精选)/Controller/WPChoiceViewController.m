@@ -8,7 +8,6 @@
 
 #import "WPChoiceViewController.h"
 #import "WPNavigationBarView.h"
-#import "WPNewExchangeCollectionViewCell.h"
 #import "WPChoiceSubCollectionView.h"
 
 #define Title_Array @[@"造梦计划",@"交换",@"寄卖"]//1.0

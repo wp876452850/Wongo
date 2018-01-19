@@ -2,17 +2,15 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "myShop.png",
+      "filename" : "jimaihaibao.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "myShop@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "myShop@3x.PNG",
       "scale" : "3x"
     }
   ],

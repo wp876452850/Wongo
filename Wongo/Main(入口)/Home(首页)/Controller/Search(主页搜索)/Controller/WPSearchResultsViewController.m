@@ -186,7 +186,7 @@ static NSString * contentOffset = @"contentOffset";
 }
 //每个单元格返回的大小
 -(CGSize)collectionView:(UICollectionView*)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath*)indexPath{
-    return CGSizeMake((WINDOW_WIDTH) * 0.5 - 7.5, WINDOW_WIDTH*0.5+60);
+    return CGSizeMake((WINDOW_WIDTH) * 0.5 - 7.5, WINDOW_WIDTH*0.5+70);
 }
 
 //设置每个item水平间距

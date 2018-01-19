@@ -101,11 +101,12 @@ static NSString * const projectCell     = @"ProjectCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return WINDOW_WIDTH  * WINDOW_WIDTH/375+130;
+        return WINDOW_WIDTH  * WINDOW_WIDTH/375+80;
     }
     //弹出cell的高度
     if (indexPath.section >= self.cellsHeight.count) {
-        return 250;
+       WPDreamingIntroduceImageModel * model = [WPDreamingIntroduceImageModel mj_objectWithKeyValues:self.dataSourceArray[indexPath.section]];
+        return [model.remark getSizeWithFont:[UIFont systemFontOfSize:15.5] maxSize:CGSizeMake(WINDOW_WIDTH-10, MAXFLOAT)].height+150;
     }
     return [self.cellsHeight[indexPath.section] floatValue];
 }
@@ -114,6 +115,7 @@ static NSString * const projectCell     = @"ProjectCell";
     if (scrollView.contentOffset.y<=-80)
     {
         [[self findViewController:self] w_dismissViewControllerAnimated];
+        
     }
 }
 

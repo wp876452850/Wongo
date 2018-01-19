@@ -79,7 +79,7 @@ static NSString * const reusable = @"Reusable";
     self.titles = [NSMutableArray arrayWithCapacity:3];
     //交换分类
     __block typeof(self) weakSelf = self;
-    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneUrl params:nil datas:^(NSDictionary *responseObject) {
+    [WPNetWorking createPostRequestMenagerWithUrlString:QueryClassoneLog params:nil datas:^(NSDictionary *responseObject) {
         NSArray * listc = responseObject[@"listc"];
         for (int i = 0; i < listc.count; i++) {
             WPGoodsClassModel * model = [WPGoodsClassModel mj_objectWithKeyValues:listc[i]];

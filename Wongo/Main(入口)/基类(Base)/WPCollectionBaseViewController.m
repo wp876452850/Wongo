@@ -9,7 +9,7 @@
 #import "WPCollectionBaseViewController.h"
 #import "WPNewExchangeModel.h"
 #import "WPNewExchangeCollectionViewCell.h"
-#define Cell_Height (WINDOW_WIDTH*0.5+60)
+#define Cell_Height (WINDOW_WIDTH * 0.5 + 70)
 
 @interface WPCollectionBaseViewController ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {

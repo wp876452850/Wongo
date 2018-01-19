@@ -34,7 +34,7 @@
 @implementation WPConsignmentHeaderView
 -(UIImageView *)guideImageView{
     if (!_guideImageView) {
-        _guideImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jimaishangmiandetu"]];
+        _guideImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"jimaihaibao"]];
         _guideImageView.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_WIDTH*0.4);
         _guideImageView.backgroundColor = RandomColor;        
     }
@@ -47,7 +47,7 @@
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = WhiteColor;
         _titleLabel.font = [UIFont boldSystemFontOfSize:17.f];
-        _titleLabel.text = @"您想要什么";
+        _titleLabel.text = @"您想要当什么";
     }
     return _titleLabel;
 }
@@ -55,7 +55,8 @@
 -(UIView *)varietiesView{
     if (!_varietiesView) {
         _varietiesView = [[UIView alloc]initWithFrame:CGRectMake(0, _titleLabel.bottom, WINDOW_WIDTH, 180)];
-        CGFloat width  = 143*(WINDOW_WIDTH/375);
+        
+        CGFloat width  = 143 * (WINDOW_WIDTH/375);
         
         CGFloat height = 180 * (WINDOW_WIDTH/375);
         

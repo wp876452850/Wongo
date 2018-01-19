@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无商品介绍" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kIX-bi-KtP">
-                        <rect key="frame" x="13" y="110" width="312" height="18"/>
+                        <rect key="frame" x="13" y="120" width="312" height="18"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
@@ -30,13 +30,13 @@
                 <constraints>
                     <constraint firstItem="kIX-bi-KtP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="OBf-B9-I83"/>
                     <constraint firstItem="kIX-bi-KtP" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="5" id="aRB-FY-dWM"/>
-                    <constraint firstItem="kIX-bi-KtP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="110" id="vwI-Vm-k6X"/>
+                    <constraint firstItem="kIX-bi-KtP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="120" id="vwI-Vm-k6X"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="goodsIntroduce" destination="kIX-bi-KtP" id="alb-fF-YHg"/>
             </connections>
-            <point key="canvasLocation" x="-347" y="45"/>
+            <point key="canvasLocation" x="-846" y="-36"/>
         </tableViewCell>
     </objects>
 </document>

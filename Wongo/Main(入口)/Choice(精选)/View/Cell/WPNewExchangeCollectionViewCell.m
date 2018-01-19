@@ -30,7 +30,7 @@
     [_thumpUp setImage:[UIImage imageNamed:@"thumup_normal"] forState:UIControlStateNormal];
     _goodsImage.contentMode = UIViewContentModeScaleAspectFill;
     self.contentView.clipsToBounds = YES;
-    _goodsName.clipsToBounds = YES;
+    self.goodsImage.layer.masksToBounds = YES;
 }
 -(void)setModel:(WPNewExchangeModel *)model{
     _model = model;

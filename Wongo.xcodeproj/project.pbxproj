@@ -2721,6 +2721,21 @@
 			path = SDPhotoBrowser;
 			sourceTree = "<group>";
 		};
+		3D0C9948201081D000B6AD9A /* 造梦详情 */ = {
+			isa = PBXGroup;
+			children = (
+				851E360C1EC4472E00C48AEF /* WPDreamingGoodsIntroductionTableView.h */,
+				851E360D1EC4472E00C48AEF /* WPDreamingGoodsIntroductionTableView.m */,
+				851E360E1EC4472E00C48AEF /* WPDreamingImageTableViewCell.h */,
+				851E360F1EC4472E00C48AEF /* WPDreamingImageTableViewCell.m */,
+				851E36101EC4472E00C48AEF /* WPDreamingImageTableViewCell.xib */,
+				851E36111EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.h */,
+				851E36121EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.m */,
+				851E36131EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.xib */,
+			);
+			name = "造梦详情";
+			sourceTree = "<group>";
+		};
 		3D0DF8491F4E632800BA1615 /* 店铺 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6018,6 +6033,7 @@
 		855C97111E63FA590089EF32 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D0C9948201081D000B6AD9A /* 造梦详情 */,
 				3D204E501F4AB41A00EFFAB2 /* 详情cell */,
 				85C8FC001ECE85EC005D8367 /* WPDreamingDirectoryHeadView.h */,
 				85C8FC011ECE85EC005D8367 /* WPDreamingDirectoryHeadView.m */,
@@ -6029,8 +6045,6 @@
 				8536A3BC1E763CF600B09985 /* WPProgressTableViewCell.m */,
 				85109E691E6E8AC1001B5DBC /* WPAddImagesButton.h */,
 				85109E6A1E6E8AC1001B5DBC /* WPAddImagesButton.m */,
-				851E360C1EC4472E00C48AEF /* WPDreamingGoodsIntroductionTableView.h */,
-				851E360D1EC4472E00C48AEF /* WPDreamingGoodsIntroductionTableView.m */,
 				85156FA01E6906B800726FA7 /* WPDreamingDataTableViewCell.h */,
 				85156FA11E6906B800726FA7 /* WPDreamingDataTableViewCell.m */,
 				85156FA21E6906B800726FA7 /* WPDreamingDataTableViewCell.xib */,
@@ -6040,12 +6054,6 @@
 				85037DFD1E7102580094B32E /* WPDremingImagesCellTableViewCell.h */,
 				85037DFE1E7102580094B32E /* WPDremingImagesCellTableViewCell.m */,
 				85037DFF1E7102580094B32E /* WPDremingImagesCellTableViewCell.xib */,
-				851E360E1EC4472E00C48AEF /* WPDreamingImageTableViewCell.h */,
-				851E360F1EC4472E00C48AEF /* WPDreamingImageTableViewCell.m */,
-				851E36101EC4472E00C48AEF /* WPDreamingImageTableViewCell.xib */,
-				851E36111EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.h */,
-				851E36121EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.m */,
-				851E36131EC4472E00C48AEF /* WPDreamingIntroduceTableViewCell.xib */,
 				85A641871EC54C96008BDD60 /* WPDreamingDirectoryTableViewCell.h */,
 				85A641881EC54C96008BDD60 /* WPDreamingDirectoryTableViewCell.m */,
 				85A641891EC54C96008BDD60 /* WPDreamingDirectoryTableViewCell.xib */,

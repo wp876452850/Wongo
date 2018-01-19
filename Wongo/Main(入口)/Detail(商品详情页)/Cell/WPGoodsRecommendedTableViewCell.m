@@ -9,7 +9,7 @@
 #import "WPGoodsRecommendedTableViewCell.h"
 #import "WPNewExchangeCollectionViewCell.h"
 #import "WPNewExchangeModel.h"
-#define Cell_Height (WINDOW_WIDTH*0.5+60)
+#define Cell_Height (WINDOW_WIDTH * 0.5 + 70)
 @interface WPGoodsRecommendedTableViewCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic,strong)UICollectionView * collectionView;

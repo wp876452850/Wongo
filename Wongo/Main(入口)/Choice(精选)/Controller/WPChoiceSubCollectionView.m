@@ -15,7 +15,7 @@
 #import "WPNewDreamingNotSignUpTableViewCell.h"
 
 #define HeaderMenuHeight 104
-#define Cell_Height (WINDOW_WIDTH*0.5+60)
+#define Cell_Height (WINDOW_WIDTH * 0.5 + 70)
 #define SectionMenuTitles @[@"综合推荐",@"人气优先",@"全部分类"]
 //全部分类排序
 #define AllSortingUrl @[QueryGoodsListNew,QueryGoodsListPraise]
@@ -180,7 +180,6 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return _dataSourceArray.count;
 }
-
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     

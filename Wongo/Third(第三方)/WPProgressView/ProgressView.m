@@ -23,6 +23,7 @@
         _dataLabel.textColor                    = self.progressColor;
         _dataLabel.adjustsFontSizeToFitWidth    = YES;
         _dataLabel.textAlignment                = NSTextAlignmentCenter;
+        _dataLabel.font                         = [UIFont systemFontOfSize:14.f];
     }
     return _dataLabel;
 }
@@ -37,6 +38,7 @@
         _dataNameLabel.text                         = self.dataName;
         _dataNameLabel.adjustsFontSizeToFitWidth    = YES;
         _dataNameLabel.textAlignment                = NSTextAlignmentCenter;
+        _dataNameLabel.font                         = [UIFont systemFontOfSize:15.f];
     }
     return _dataNameLabel;
 }
