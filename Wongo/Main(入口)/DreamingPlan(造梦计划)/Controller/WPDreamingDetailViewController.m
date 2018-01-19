@@ -26,6 +26,8 @@
 #import "WPDreamingDetailRecommendTableViewCell.h"
 
 
+#import "YSCountDown.h"
+
 static NSString * const listCell        = @"listCell";
 static NSString * const introduceCell   = @"introduceCell";
 static NSString * const userCell        = @"UserCell";
@@ -36,6 +38,7 @@ static NSString * const recommendCell   = @"recommendCell";
 @interface WPDreamingDetailViewController ()<ChatKeyBoardDataSource,ChatKeyBoardDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     UITextField * _comment;
+    YSCountDown * countDown;
     CGFloat _detailIntroduceTableViewCellHeight;
 }
 //参与交换
@@ -164,9 +167,11 @@ static NSString * const recommendCell   = @"recommendCell";
         _tableView.tableHeaderView  = self.rollPlay;
         _tableView.separatorStyle   = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundView.backgroundColor = WhiteColor;
+        
     }
     return _tableView;
 }
+
 
 +(instancetype)createDreamingDetailWithProid:(NSString *)proid plid:(NSString *)plid{
     WPDreamingDetailViewController * vc = [[WPDreamingDetailViewController alloc]init];
@@ -174,6 +179,8 @@ static NSString * const recommendCell   = @"recommendCell";
     vc.proid = proid;
     return vc;
 }
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = WhiteColor;
@@ -184,6 +191,7 @@ static NSString * const recommendCell   = @"recommendCell";
     [self.tableView addSubview:self.functionButton];
 }
 
+
 #pragma mark - 获取数据
 -(void)loadDatas{
     self.model          = [[WPDreamingModel alloc]init];
@@ -191,6 +199,7 @@ static NSString * const recommendCell   = @"recommendCell";
     self.listDatas = [NSMutableArray arrayWithCapacity:3];
     [self loadGoodsInformationDatas];
 }
+
 
 //查询商品所有信息
 -(void)loadGoodsInformationDatas{
@@ -202,6 +211,9 @@ static NSString * const recommendCell   = @"recommendCell";
         [rollPlays addObject:list[@"url"]];
         weakSelf.rollPlay.imageURLStringsGroup = rollPlays;
         [weakSelf loadListxiDatas];
+        
+        NSInteger time = [[self getNowTimeStamp] integerValue] + arc4random() % 1000;
+        countDown = [[YSCountDown alloc]initWith:weakSelf.tableView :@[[NSString stringWithFormat:@"%ld",time]]];
     }];
 }
 
@@ -303,6 +315,7 @@ static NSString * const recommendCell   = @"recommendCell";
     //进度条
     if (indexPath.section == 2) {
         WPProgressTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:progressCell forIndexPath:indexPath];
+        cell.dateProgress.data = [countDown countDownWithPER_SEC:indexPath];
         cell.model = _model;
         return cell;
     }
@@ -547,5 +560,10 @@ static NSString * const recommendCell   = @"recommendCell";
         vc.title = self.model.uname;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void)dealloc {
+    /// 2.销毁
+    [countDown destoryTimer];
 }
 @end

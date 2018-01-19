@@ -17,11 +17,7 @@ static NSString * isrecommend;
 static NSString * progress;
 
 @interface WPProgressTableViewCell ()
-{
-    ProgressView * priceProgress;
-    ProgressView * progressProgress;
-    ProgressView * dateProgress;
-}
+
 @end
 @implementation WPProgressTableViewCell
 
@@ -59,10 +55,10 @@ static NSString * progress;
         progressProgress    = [ProgressView createProgressWithFrame:CGRectMake(30+Progress_Width_Height, 0, Progress_Width_Height+20, Progress_Width_Height+20) backColor:ColorWithRGB(252, 211, 145) color:ColorWithRGB(252, 114, 0) proportion:[progress floatValue]/10];
         [self.contentView addSubview:progressProgress];
     }
-    if (!dateProgress) {
+    if (!_dateProgress) {
         //创建时间进度条
-        dateProgress    = [ProgressView createProgressWithFrame:CGRectMake(60 +Progress_Width_Height*2, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(203, 192, 221) color:ColorWithRGB(146, 117, 179) proportion:1];
-        [self.contentView addSubview:dateProgress];
+        _dateProgress    = [ProgressView createProgressWithFrame:CGRectMake(60 +Progress_Width_Height*2, 10, Progress_Width_Height, Progress_Width_Height) backColor:ColorWithRGB(203, 192, 221) color:ColorWithRGB(146, 117, 179) proportion:1];
+        [self.contentView addSubview:_dateProgress];
     }
     NSString * state = States[[isrecommend integerValue]];
     priceProgress.data              = state;
@@ -76,8 +72,7 @@ static NSString * progress;
     progressProgress.dataLabelFont = 25;
     progressProgress.dataLabelBold = YES;
     
-    dateProgress.data              = [NSString stringWithFormat:@"10:20"];
-    dateProgress.dataName          = @"时间";
-    [dateProgress showContentData];
+    _dateProgress.dataName          = @"时间";
+    [_dateProgress showContentData];
 }
 @end

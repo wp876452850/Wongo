@@ -385,6 +385,7 @@
 		3D6EFF511F5E89E4007173D2 /* libUMSocialLog.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6EFF461F5E89E4007173D2 /* libUMSocialLog.a */; };
 		3D6EFF521F5E89E4007173D2 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D6EFF481F5E89E4007173D2 /* UMSocialSDKResources.bundle */; };
 		3D6EFF531F5E89E4007173D2 /* UShareUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6EFF491F5E89E4007173D2 /* UShareUI.framework */; };
+		3D74D3842011C1C300D62F46 /* YSCountDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74D3832011C1C300D62F46 /* YSCountDown.m */; };
 		3D75ACBB1FCFA6B7001F0627 /* WPInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACB91FCFA6B7001F0627 /* WPInviteCodeViewController.m */; };
 		3D75ACBC1FCFA6B7001F0627 /* WPInviteCodeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D75ACBA1FCFA6B7001F0627 /* WPInviteCodeViewController.xib */; };
 		3D75ACC01FCFAADF001F0627 /* WPMyInviteCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75ACBE1FCFAADF001F0627 /* WPMyInviteCodeViewController.m */; };
@@ -1493,6 +1494,8 @@
 		3D6EFF461F5E89E4007173D2 /* libUMSocialLog.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMSocialLog.a; sourceTree = "<group>"; };
 		3D6EFF481F5E89E4007173D2 /* UMSocialSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = UMSocialSDKResources.bundle; sourceTree = "<group>"; };
 		3D6EFF491F5E89E4007173D2 /* UShareUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UShareUI.framework; sourceTree = "<group>"; };
+		3D74D3822011C1C300D62F46 /* YSCountDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSCountDown.h; sourceTree = "<group>"; };
+		3D74D3832011C1C300D62F46 /* YSCountDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSCountDown.m; sourceTree = "<group>"; };
 		3D75ACB81FCFA6B7001F0627 /* WPInviteCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPInviteCodeViewController.h; sourceTree = "<group>"; };
 		3D75ACB91FCFA6B7001F0627 /* WPInviteCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPInviteCodeViewController.m; sourceTree = "<group>"; };
 		3D75ACBA1FCFA6B7001F0627 /* WPInviteCodeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WPInviteCodeViewController.xib; sourceTree = "<group>"; };
@@ -4322,6 +4325,16 @@
 			path = UMSocialUI;
 			sourceTree = "<group>";
 		};
+		3D74D3812011C1C300D62F46 /* Tool(计时器) */ = {
+			isa = PBXGroup;
+			children = (
+				3D74D3822011C1C300D62F46 /* YSCountDown.h */,
+				3D74D3832011C1C300D62F46 /* YSCountDown.m */,
+			);
+			name = "Tool(计时器)";
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		3D75ACB71FCFA605001F0627 /* 余额 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6342,6 +6355,7 @@
 		8566A7221E4824EF00C08624 /* Third(第三方) */ = {
 			isa = PBXGroup;
 			children = (
+				3D74D3812011C1C300D62F46 /* Tool(计时器) */,
 				3DE9EDB51F999DD900C01310 /* MBProgressHUD */,
 				3DE9ED9E1F99953400C01310 /* ZYPhotoBrowser */,
 				3DE9ED6C1F9984DD00C01310 /* SDWebImage */,
@@ -8281,6 +8295,7 @@
 				85C749001E7FD3BD000E1B65 /* UIProgressView+AFNetworking.m in Sources */,
 				3DA2D4B51FAAB9C800D0C718 /* WPNewHomeDreamingCollectionViewCell.m in Sources */,
 				85CA47DC1EBC1C4500109C98 /* ModifyUserDetailViewController.m in Sources */,
+				3D74D3842011C1C300D62F46 /* YSCountDown.m in Sources */,
 				3D76D9461F67B5CA005A6080 /* JFCityViewController.m in Sources */,
 				3D93803E1FBE7B1100CCEF65 /* WPNewPushUserInformationCollectionViewCell.m in Sources */,
 				85C748FA1E7FD3BD000E1B65 /* AFAutoPurgingImageCache.m in Sources */,

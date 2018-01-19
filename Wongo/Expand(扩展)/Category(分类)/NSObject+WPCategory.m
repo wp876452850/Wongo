@@ -23,6 +23,11 @@
     return timeStr;
 }
 
+-(NSString *)getNowTimeStamp{
+    NSDate * beDate = [NSDate date];
+    return [NSString stringWithFormat:@"%ld",(long)[beDate timeIntervalSince1970]];
+}
+
 -(NSString *)getOrderNumber{
     NSTimeInterval interval = [[NSDate date] timeIntervalSince1970] * 1000;
     NSInteger number = arc4random()%1000;

@@ -18,6 +18,9 @@ typedef void(^ReduceBlock)(void);
 /**获得当前时间字符串*/
 -(NSString *)getNowTime;
 
+/**获得当前时间时间戳*/
+-(NSString *)getNowTimeStamp;
+
 /**生成订单号*/
 -(NSString *)getOrderNumber;
 

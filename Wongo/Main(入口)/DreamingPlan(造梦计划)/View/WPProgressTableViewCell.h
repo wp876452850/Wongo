@@ -10,7 +10,15 @@
 #import "WPDreamingModel.h"
 
 @interface WPProgressTableViewCell : UITableViewCell
+{
+    ProgressView * priceProgress;
+    ProgressView * progressProgress;
+    
+}
+@property (nonatomic,strong)ProgressView * dateProgress;
 
 @property (nonatomic,strong)WPDreamingModel * model;
+
+@property (nonatomic,strong)UITableView * tableView;
 
 @end
