@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "consignment_normal.PNG",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "consignment_normal@2x.PNG",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "consignment_normal@3x.PNG",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

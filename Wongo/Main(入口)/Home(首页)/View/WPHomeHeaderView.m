@@ -36,7 +36,7 @@
 
 @property (nonatomic, strong) UIView *bottomLine;
 /**公告*/
-@property (nonatomic,strong)UIView * announcementView;
+@property (nonatomic, strong) UIView * announcementView;
 
 @property (nonatomic, strong) NSArray *bannerList;
 @end
@@ -175,16 +175,19 @@
 -(void)createWizardButton{
     NSArray * titles = @[@"造梦",@"交换",@"发布",@"交换流程"];
     NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"mainCourse"];
+    
     CGFloat w = WINDOW_WIDTH * 0.133;
     NSUInteger count = images.count;
     CGFloat m = (WINDOW_WIDTH - count * w)/(count+1);
     CGFloat mL = 8;
-    CGFloat y = (self.fastView.height - w - mL - 12) * 0.5;
+
+    
     for (int i = 0; i < count; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         button.tag = i + 1;
-        CGFloat x = m + (i % count)*(w + m);
+        CGFloat x = m + (i % 4)*(w + m);
+        CGFloat y = (self.fastView.height - w - mL - 12) * 0.5 * (i+1);
         button.frame = CGRectMake(x, y , w, w);
         
         [button setBackgroundImage:[UIImage imageNamed:images[i]] forState:UIControlStateNormal];

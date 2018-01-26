@@ -8,19 +8,17 @@
 
 #import "WPPublishViewController.h"
 #import "WPTabBarController.h"
-#import "WPPushExchangeViewController.h"
-#import "WPPushDreamingViewController.h"
-#import "WPPushConsignmentViewController.h"
 
 #import "WPNewPushExchangeViewController.h"
 #import "WPNewPushConsignmentViewController.h"
+#import "WPNewPushDreamingViewController.h"
 
 #import "WPPayDepositViewController.h"
 
-#define PushTypeTitle           @[@"交换",@"寄卖"]
-#define PushDescribeTitle       @[@"平台担保安全交换",@"平台检测商品寄卖"]
-#define PushButtonIcon          @[@"exchangebtn_normal",@"pushDreaming_normal"]
-#define PushButtonSelectIcon    @[@"exchangebtn_selected",@"pushDreaming_selected"]
+#define PushTypeTitle           @[@"交换",@"寄卖",@"造梦"]
+#define PushDescribeTitle       @[@"平台担保安全交换",@"平台检测商品寄卖",@"平台提供造梦计划"]
+#define PushButtonIcon          @[@"exchangebtn_normal",@"consignment_normal",@"pushDreaming_normal"]
+#define PushButtonSelectIcon    @[@"exchangebtn_selected",@"consignment_select",@"pushDreaming_selected"]
 
 @interface WPPublishViewController ()
 // 毛玻璃
@@ -82,10 +80,15 @@
         UIImage * image = [UIImage imageNamed:PushButtonIcon[i]];
         UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
-        button.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
+        button.bounds = CGRectMake(0, 0, 134, 134);
         button.centerX = self.view.width*(i%2*2+1)/4;
-        //button.centerX = self.view.width/2;
-        button.centerY = self.view.centerY;
+        button.centerY = self.view.centerY - 50;
+        if (i==2) {
+            button.centerX = self.view.width/2;
+            button.centerY = self.view.centerY+150;
+        }
+
+        
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:image forState:UIControlStateNormal];
@@ -112,26 +115,27 @@
 }
 
 -(void)push:(UIButton *)sender{
-    switch (sender.tag) {
-        case 0:
-        {
-            if ([self determineWhetherTheLoginWithViewController:self]) {
-//                WPPushExchangeViewController * vc = [[WPPushExchangeViewController alloc]init];
+    if ([self determineWhetherTheLoginWithViewController:self]) {
+        switch (sender.tag) {
+            case 0:
+            {
                 WPNewPushExchangeViewController * vc = [[WPNewPushExchangeViewController alloc]init];
                 [self presentViewController:vc animated:YES completion:nil];
             }
-        }
-            break;
-        case 1:
-        {   //FIXME:功能暂未开放
-//            [self showAlertNotOpenedWithBlock:nil];
-//            return;
-            if ([self determineWhetherTheLoginWithViewController:self]) {
+                break;
+            case 1:
+            {   //FIXME:功能暂未开放
+                //         [self showAlertNotOpenedWithBlock:nil];
+                //         return;
                 WPNewPushConsignmentViewController * vc = [[WPNewPushConsignmentViewController alloc]init];
                 [self presentViewController:vc animated:YES completion:nil];
             }
+                break;
+            case 2:{
+                WPNewPushDreamingViewController * vc = [[WPNewPushDreamingViewController alloc]init];
+                [self presentViewController:vc animated:YES completion:nil];
+            }
         }
-            break;
     }
 }
 
