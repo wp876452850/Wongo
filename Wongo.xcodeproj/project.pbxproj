@@ -12,6 +12,7 @@
 		3D03283B1FEB52D500F901A7 /* WPConsignmentClassOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03283A1FEB52D500F901A7 /* WPConsignmentClassOneModel.m */; };
 		3D03283E1FEB630700F901A7 /* WPConsignmentClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D03283D1FEB630700F901A7 /* WPConsignmentClassificationViewController.m */; };
 		3D0328411FEB686A00F901A7 /* WPConsignmentClassGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0328401FEB686A00F901A7 /* WPConsignmentClassGoodsViewController.m */; };
+		3D047F7F201F20C90000A137 /* WPCostomTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D047F7E201F20C80000A137 /* WPCostomTabbar.m */; };
 		3D0772F21F18A7F70084E409 /* TZAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E01F18A7F70084E409 /* TZAssetCell.m */; };
 		3D0772F31F18A7F70084E409 /* TZAssetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E21F18A7F70084E409 /* TZAssetModel.m */; };
 		3D0772F41F18A7F70084E409 /* TZImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0772E41F18A7F70084E409 /* TZImageManager.m */; };
@@ -1031,6 +1032,8 @@
 		3D03283D1FEB630700F901A7 /* WPConsignmentClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConsignmentClassificationViewController.m; sourceTree = "<group>"; };
 		3D03283F1FEB686A00F901A7 /* WPConsignmentClassGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPConsignmentClassGoodsViewController.h; sourceTree = "<group>"; };
 		3D0328401FEB686A00F901A7 /* WPConsignmentClassGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPConsignmentClassGoodsViewController.m; sourceTree = "<group>"; };
+		3D047F7D201F20C80000A137 /* WPCostomTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WPCostomTabbar.h; sourceTree = "<group>"; };
+		3D047F7E201F20C80000A137 /* WPCostomTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WPCostomTabbar.m; sourceTree = "<group>"; };
 		3D0772DF1F18A7F70084E409 /* TZAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetCell.h; sourceTree = "<group>"; };
 		3D0772E01F18A7F70084E409 /* TZAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZAssetCell.m; sourceTree = "<group>"; };
 		3D0772E11F18A7F70084E409 /* TZAssetModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZAssetModel.h; sourceTree = "<group>"; };
@@ -6199,6 +6202,8 @@
 			children = (
 				8566A8B01E4828ED00C08624 /* WPTabBarController.h */,
 				8566A8B11E4828ED00C08624 /* WPTabBarController.m */,
+				3D047F7D201F20C80000A137 /* WPCostomTabbar.h */,
+				3D047F7E201F20C80000A137 /* WPCostomTabbar.m */,
 			);
 			path = "TabBar(标签条)";
 			sourceTree = "<group>";
@@ -8490,6 +8495,7 @@
 				8566A7D81E48265C00C08624 /* TOCropToolbar.m in Sources */,
 				3D827A301EF10A320030B0D1 /* LYConversationListController.m in Sources */,
 				3D5C2ACD1EFA17F9001D82CA /* LYHomeCategory.m in Sources */,
+				3D047F7F201F20C90000A137 /* WPCostomTabbar.m in Sources */,
 				8566A7AD1E48265C00C08624 /* NSArray+MASAdditions.m in Sources */,
 				3DEAFB911FADC0E60037A680 /* WPNewHomeDreamingPhotoModel.m in Sources */,
 				854B29061E7B866D00289554 /* WPUserIntroductionTableViewCell.m in Sources */,

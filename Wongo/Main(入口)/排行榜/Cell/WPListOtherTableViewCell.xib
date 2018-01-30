@@ -84,7 +84,7 @@
                 <outlet property="number" destination="Ldl-RA-gL7" id="l14-uA-3q9"/>
                 <outlet property="thumup" destination="SVv-fy-WBp" id="utK-SN-hR2"/>
             </connections>
-            <point key="canvasLocation" x="-496" y="-64"/>
+            <point key="canvasLocation" x="-182" y="-1"/>
         </tableViewCell>
     </objects>
 </document>

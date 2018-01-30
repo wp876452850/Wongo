@@ -14,4 +14,5 @@
 -(instancetype)initWithFrame:(CGRect)frame withOptions:(NSDictionary *)options;
 
 -(void)selectMenuWithIndex:(NSInteger)index;
+
 @end

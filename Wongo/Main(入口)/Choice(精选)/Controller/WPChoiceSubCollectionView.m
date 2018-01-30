@@ -16,7 +16,7 @@
 
 #define HeaderMenuHeight 104
 #define Cell_Height (WINDOW_WIDTH * 0.5 + 70)
-#define SectionMenuTitles @[@"综合推荐",@"人气优先",@"全部分类"]
+#define SectionMenuTitles @[@" 综合推荐 ",@" 人气优先 ",@" 全部分类 "]
 //全部分类排序
 #define AllSortingUrl @[QueryGoodsListNew,QueryGoodsListPraise]
 //指定分类排序

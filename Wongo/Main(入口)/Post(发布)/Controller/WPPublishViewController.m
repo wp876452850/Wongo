@@ -133,6 +133,7 @@
                 break;
             case 2:{
                 WPNewPushDreamingViewController * vc = [[WPNewPushDreamingViewController alloc]init];
+                vc.isPresen = YES;
                 [self presentViewController:vc animated:YES completion:nil];
             }
         }

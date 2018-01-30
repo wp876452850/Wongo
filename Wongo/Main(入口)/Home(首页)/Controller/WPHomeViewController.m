@@ -6,6 +6,8 @@
 //  Copyright © 2016年 Winny. All rights reserved.
 //  主页
 
+#import "WPCostomTabbar.h"
+
 #import "WPHomeViewController.h"
 #import "WPHomeHeaderView.h"
 #import "WPHomeDataModel.h"
@@ -64,9 +66,8 @@ static NSString * contentOffset = @"contentOffset";
 //记录collectionView最后Y偏移
 @property (nonatomic,assign)CGFloat lastCollectionContentOffsetY;
 
-@property (nonatomic, strong) LYHomeResponse *response;
+@property (nonatomic, strong)LYHomeResponse * response;
 /**广告页*/
-
 @property (nonatomic,strong)WPAdvertisingView * advertisingView;
 
 @property (nonatomic,strong)WPDreamingModel * dreamingModel;
@@ -80,8 +81,7 @@ static NSString * contentOffset = @"contentOffset";
 -(WPAdvertisingView *)advertisingView{
     if (!_advertisingView) {
         _advertisingView = [[WPAdvertisingView alloc]init];
-        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpAdvertisingLink)];
-        
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(jumpAdvertisingLink)];        
         [_advertisingView addGestureRecognizer:tap];
     }
     return _advertisingView;

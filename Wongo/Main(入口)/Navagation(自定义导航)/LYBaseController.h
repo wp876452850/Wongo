@@ -16,5 +16,6 @@
 
 @property (nonatomic,strong) UIView * selfNavBar;
 
+@property (nonatomic,assign) BOOL isPresen;
 
 @end

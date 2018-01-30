@@ -48,4 +48,22 @@
     [super setTitle:title];
     self.selfNavTitleLabel.text = title;
 }
+-(void)setIsPresen:(BOOL)isPresen{
+    _isPresen = isPresen;
+    if (_isPresen) {
+        [self createLeftButton];
+    }
+}
+
+-(void)createLeftButton{
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(w_dismissViewControllerAnimated) forControlEvents:UIControlEventTouchUpInside];
+    [button setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, 20, 20);
+    button.centerY = 20 + 44/2;
+    UIBarButtonItem* leftBtnItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    [self.myNavItem setLeftBarButtonItem:leftBtnItem];
+}
+
+
 @end

@@ -17,7 +17,7 @@
 #define THIRD_IMG_URL @"http://img14.3lian.com/201605/13/6d7f1ae0bef9f44aa3789dc043ff90eb.jpg"
 #define FOURTH_IMG_URL @"http://img14.3lian.com/201605/13/74aa1cf4a1110713146b8295967fdfc6.jpg"
 #define ROLLPLAYIMAGES @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
-#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, 127.5)
+#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, (10+WINDOW_WIDTH * 0.133+8+20)*2)
 #define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.announcementView.frame)+8,WINDOW_WIDTH,232.5*(WINDOW_WIDTH/375)+20)
 #define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.activityView.frame))
 #define LabelFont [UIFont systemFontOfSize:12]
@@ -28,7 +28,7 @@
 
 //@property (nonatomic,strong)NSArray * rollPlayImages;
 
-@property (nonatomic, strong) UIView * fastView;
+@property (nonatomic, strong) UIImageView * fastView;
 
 @property (nonatomic, strong) UIView *noticeView;
 
@@ -121,7 +121,6 @@
     if (sender.tag >= self.listhk.count) {
         return;
     }
-    
     LYHomeCategory *category = self.listhk[sender.tag];
     LYActivityController * vc = [LYActivityController controllerWithCategory:category];
     vc.activityState = sender.tag;
@@ -164,31 +163,39 @@
     [[self findViewController:self].navigationController pushViewController:vc animated:YES];
     
 }
--(UIView *)fastView{
+-(UIImageView *)fastView{
     if (!_fastView) {
-        _fastView = [[UIView alloc]initWithFrame:FastViewFrame];
+        _fastView = [[UIImageView alloc]initWithFrame:FastViewFrame];
+        _fastView.userInteractionEnabled = YES;
         _fastView.backgroundColor = ColorWithRGB(255, 255, 255);
     }
     return _fastView;
 }
 
 -(void)createWizardButton{
-    NSArray * titles = @[@"造梦",@"交换",@"发布",@"交换流程"];
-    NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"mainCourse"];
+    NSArray * titles = @[@"造梦",@"交换",@"寄卖",@"公益换新",@"分享奖励",@"闲置换新",@"造梦流程",@"发布商品"];
+    NSArray * images = @[@"homeDreaming",@"homeExchange",@"homeConsignment",@"homegongyi",@"homefenxiang",@"homexianzhi",@"homeCourse",@"homePush"];
+    //NSArray * titles = @[@"造梦",@"交换",@"发布",@"造梦流程"];
+    //NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"homeCourse"];
     
     CGFloat w = WINDOW_WIDTH * 0.133;
-    NSUInteger count = images.count;
-    CGFloat m = (WINDOW_WIDTH - count * w)/(count+1);
+    CGFloat m = (WINDOW_WIDTH - 4 * w)/(4+1);
     CGFloat mL = 8;
-
-    
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < images.count; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        button.tag = i + 1;
+        
+        if (i == 3||i == 4||i == 5) {
+            button.tag = i-3;
+            [button addTarget:self action:@selector(tapImage:) forControlEvents:UIControlEventTouchUpInside];
+        }else{
+            [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+            button.tag = i + 1;
+        }
+        
+        
         CGFloat x = m + (i % 4)*(w + m);
-        CGFloat y = (self.fastView.height - w - mL - 12) * 0.5 * (i+1);
-        button.frame = CGRectMake(x, y , w, w);
+        CGFloat y = 10+(w+mL+20)*(i/4);
+        button.frame = CGRectMake(x, y , 50, 54);
         
         [button setBackgroundImage:[UIImage imageNamed:images[i]] forState:UIControlStateNormal];
         [self.fastView addSubview:button];
@@ -206,8 +213,10 @@
         }];
     }
 }
+
 -(void)buttonClick:(UIButton *)sender{
-    if (sender.tag == 4) {
+    //教程
+    if (sender.tag == 7) {
         LYBaseController * vc = [[LYBaseController alloc]init];
         vc.myNavItem.title = @"教程";
         UIScrollView * sv = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, WINDOW_WIDTH, WINDOW_HEIGHT - 64)];
@@ -218,24 +227,27 @@
         sv.contentSize = imageView.size;
         [vc.view addSubview:sv];
         [sv addSubview:imageView];
-        [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];;
+        [[self findViewController:self].navigationController pushViewControllerAndHideBottomBar:vc animated:YES];
         return;
     }
+    
     NSInteger i = sender.tag;
-    if (sender.tag == 2) {
+    if (sender.tag == 1||sender.tag == 2||sender.tag == 3) {
         sender.tag = 1;
     }
-    
-    WPTabBarController * tabbar = [WPTabBarController sharedTabbarController];
-    if (sender.tag == 3) {
+    if (sender.tag == 8) {
         sender.tag = 2;
     }
+    WPTabBarController * tabbar = [WPTabBarController sharedTabbarController];
     [tabbar btnClick:sender];
-    if (i == 1 || i == 2) {
+    
+    if (i == 1||i == 2||i == 3) {
         UINavigationController * nav = [tabbar selectedViewController];
         WPChoiceViewController * vc = [nav.viewControllers lastObject];
         [vc.menuScrollView selectMenuWithIndex:i-1];
     }
+    
     sender.tag = i;
+    
 }
 @end
