@@ -17,7 +17,7 @@
 #define THIRD_IMG_URL @"http://img14.3lian.com/201605/13/6d7f1ae0bef9f44aa3789dc043ff90eb.jpg"
 #define FOURTH_IMG_URL @"http://img14.3lian.com/201605/13/74aa1cf4a1110713146b8295967fdfc6.jpg"
 #define ROLLPLAYIMAGES @[FIRST_IMG_URL,SECOND_IMG_URL,THIRD_IMG_URL,FOURTH_IMG_URL]
-#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, (10+WINDOW_WIDTH * 0.133+8+20)*2)
+#define FastViewFrame CGRectMake(0, CGRectGetMaxY(self.cycleScrollView.frame), WINDOW_WIDTH, (30+79+15)*2)
 #define ActivityViewFrame CGRectMake(0,CGRectGetMaxY(self.announcementView.frame)+8,WINDOW_WIDTH,232.5*(WINDOW_WIDTH/375)+20)
 #define SelfFrame CGRectMake(0, 0, WINDOW_WIDTH, CGRectGetMaxY(self.activityView.frame))
 #define LabelFont [UIFont systemFontOfSize:12]
@@ -167,6 +167,7 @@
     if (!_fastView) {
         _fastView = [[UIImageView alloc]initWithFrame:FastViewFrame];
         _fastView.userInteractionEnabled = YES;
+//        _fastView.image = [UIImage imageNamed:@"homeiconbackground.jpg"];
         _fastView.backgroundColor = ColorWithRGB(255, 255, 255);
     }
     return _fastView;
@@ -178,12 +179,13 @@
     //NSArray * titles = @[@"造梦",@"交换",@"发布",@"造梦流程"];
     //NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"homeCourse"];
     
-    CGFloat w = WINDOW_WIDTH * 0.133;
+    CGFloat w = 74;
+    CGFloat h = 79;
     CGFloat m = (WINDOW_WIDTH - 4 * w)/(4+1);
     CGFloat mL = 8;
     for (int i = 0; i < images.count; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
+        UIImage * icon = [UIImage imageNamed:images[i]];
         if (i == 3||i == 4||i == 5) {
             button.tag = i-3;
             [button addTarget:self action:@selector(tapImage:) forControlEvents:UIControlEventTouchUpInside];
@@ -194,10 +196,10 @@
         
         
         CGFloat x = m + (i % 4)*(w + m);
-        CGFloat y = 10+(w+mL+20)*(i/4);
-        button.frame = CGRectMake(x, y , 50, 54);
+        CGFloat y = 30+(w+5+20)*(i/4);
+        button.frame = CGRectMake(x, y , icon.size.width, icon.size.height);
         
-        [button setBackgroundImage:[UIImage imageNamed:images[i]] forState:UIControlStateNormal];
+        [button setBackgroundImage:icon forState:UIControlStateNormal];
         [self.fastView addSubview:button];
         
         UILabel * label = [[UILabel alloc]init];
@@ -209,7 +211,7 @@
         
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(button.mas_centerX);
-            make.top.mas_equalTo(button.mas_bottom).offset(mL);
+            make.top.mas_equalTo(button.mas_bottom);
         }];
     }
 }

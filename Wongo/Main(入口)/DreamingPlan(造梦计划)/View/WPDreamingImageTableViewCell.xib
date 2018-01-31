@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="417" height="515"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="417" height="515"/>
+                <rect key="frame" x="0.0" y="0.0" width="417" height="514.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="90.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="m00-gV-n0j" userLabel="商品图">
@@ -27,15 +27,18 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单反相机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRT-2N-C5o">
-                        <rect key="frame" x="18" y="397" width="57.5" height="17"/>
+                        <rect key="frame" x="18" y="397" width="336" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第5轮" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beD-60-6UP">
-                        <rect key="frame" x="361.5" y="397" width="37.5" height="17"/>
+                        <rect key="frame" x="359" y="397" width="40" height="17"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="VGr-im-1t4"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -128,6 +131,7 @@
                     <constraint firstItem="cdx-pS-Z8m" firstAttribute="leading" secondItem="aBg-MI-smo" secondAttribute="trailing" constant="15" id="pYM-5Z-0Bo"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="top" secondItem="psd-2n-Rl9" secondAttribute="top" id="qjy-TQ-9ii"/>
                     <constraint firstItem="74x-us-Ils" firstAttribute="centerX" secondItem="kEm-ex-g0c" secondAttribute="centerX" id="r08-xQ-7Wz"/>
+                    <constraint firstItem="beD-60-6UP" firstAttribute="leading" secondItem="wRT-2N-C5o" secondAttribute="trailing" constant="5" id="r7z-cK-Eix"/>
                     <constraint firstItem="m00-gV-n0j" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tp4-AD-flv"/>
                     <constraint firstItem="kEm-ex-g0c" firstAttribute="leading" secondItem="psd-2n-Rl9" secondAttribute="leading" id="yvT-DD-ThZ"/>
                 </constraints>

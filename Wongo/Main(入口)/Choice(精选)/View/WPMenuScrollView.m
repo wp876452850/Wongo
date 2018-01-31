@@ -17,6 +17,7 @@
 //菜单按钮大小
 ///
 @property (nonatomic,assign)CGFloat buttonWidth;
+
 @property (nonatomic,assign)CGFloat buttonHeight;
 
 @property (nonatomic,strong)UIButton * selectButton;
@@ -74,8 +75,8 @@ static NSString * contentOffset = @"contentOffset";
         }
         [menuButton addTarget:self action:@selector(menuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         menuButton.tag = i;
+        //颜色
         menuButton.backgroundColor = ColorWithRGB(255, 255, 255);
-        //menuButton.backgroundColor = RandomColor;
         [self.buttons addObject:menuButton];
     }
     [self addSubview:self.informationalSign];

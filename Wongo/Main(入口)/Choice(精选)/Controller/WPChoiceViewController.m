@@ -9,6 +9,7 @@
 #import "WPChoiceViewController.h"
 #import "WPNavigationBarView.h"
 #import "WPChoiceSubCollectionView.h"
+#import "WPCostomTabbar.h"
 
 #define Title_Array @[@"造梦计划",@"交换",@"寄卖"]//1.0
 #define Urls @[QueryGoodsListNew,QuerySubIng,QueryShoppingListPraise]
@@ -22,9 +23,18 @@
 
 @property (nonatomic,strong)UIButton * help;
 
+@property (nonatomic,strong)WPCostomTabbar * tabbar;
+
 @end
 
 @implementation WPChoiceViewController
+
+-(WPCostomTabbar *)tabbar{
+    if (!_tabbar) {
+        _tabbar = [[WPCostomTabbar alloc]initWithCurrentPage:1];
+    }
+    return _tabbar;
+}
 
 - (WPChoiceContentCollectionView *)choiceContentCollectionView{
     if (!_choiceContentCollectionView) {
@@ -51,6 +61,7 @@
         NSDictionary * options = @{@"titles":Title_Array,@"width":@(80),@"height":@(40)};
         _menuScrollView = [[WPMenuScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(self.navigationBar.frame), 0, 0) withOptions:options];
         _menuScrollView.collectionView = self.choiceContentCollectionView;
+        
         _menuScrollView.height += 20;
         _menuScrollView.y -= 20;
     }
@@ -63,6 +74,10 @@
     [self.view addSubview:self.choiceContentCollectionView];
     [self.view addSubview:self.menuScrollView];
     [self.view addSubview:self.navigationBar];
+    [self.view addSubview:self.tabbar];
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [WPTabBarController sharedTabbarController].tabbarHiddenWhenPushed = YES;
+}
 @end

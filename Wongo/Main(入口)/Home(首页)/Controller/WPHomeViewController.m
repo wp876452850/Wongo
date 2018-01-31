@@ -7,6 +7,7 @@
 //  主页
 
 #import "WPCostomTabbar.h"
+#import "WPChoiceViewController.h"
 
 #import "WPHomeViewController.h"
 #import "WPHomeHeaderView.h"
@@ -73,11 +74,20 @@ static NSString * contentOffset = @"contentOffset";
 @property (nonatomic,strong)WPDreamingModel * dreamingModel;
 
 @property (nonatomic,strong)MBProgressHUD * hud;
+
+@property (nonatomic,strong)WPCostomTabbar * tabbar;
 @end
 
 @implementation WPHomeViewController
 
 #pragma mark - 懒加载
+-(WPCostomTabbar *)tabbar{
+    if (!_tabbar) {
+        _tabbar = [[WPCostomTabbar alloc]initWithCurrentPage:0];
+    }
+    return _tabbar;
+}
+
 -(WPAdvertisingView *)advertisingView{
     if (!_advertisingView) {
         _advertisingView = [[WPAdvertisingView alloc]init];
@@ -143,7 +153,14 @@ static NSString * contentOffset = @"contentOffset";
     [self.view bringSubviewToFront:self.homeHeaderView];
     [self.view addSubview:self.homeHeaderSearchView];
     [[UIApplication sharedApplication].keyWindow addSubview:self.advertisingView];
+    [self.view addSubview:self.tabbar];
 }
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [WPTabBarController sharedTabbarController].tabbarHiddenWhenPushed = YES;
+}
+
 - (NSMutableArray *)dataSourceArray{
     if (!_dataSourceArray) {
         _dataSourceArray = [NSMutableArray arrayWithCapacity:Theme2NameArray.count];
@@ -482,6 +499,12 @@ static NSString * contentOffset = @"contentOffset";
 //广告页点击跳转活动页
 -(void)jumpAdvertisingLink{
     [_advertisingView removeFromSuperview];
-    [_homeHeaderView tapImage:_homeHeaderView.activityA];
+    UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.tag = 1;
+    WPTabBarController * tabbar = [WPTabBarController sharedTabbarController];
+    [tabbar btnClick:button];
+    UINavigationController * nav = [tabbar selectedViewController];
+    WPChoiceViewController * vc = [nav.viewControllers lastObject];
+    [vc.menuScrollView selectMenuWithIndex:2];
 }
 @end

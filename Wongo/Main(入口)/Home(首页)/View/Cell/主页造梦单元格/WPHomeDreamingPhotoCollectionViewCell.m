@@ -11,7 +11,8 @@
 @interface WPHomeDreamingPhotoCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
 
-@property (weak, nonatomic) IBOutlet UITextView *name;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+
 
 @property (weak, nonatomic) IBOutlet UILabel *price;
 

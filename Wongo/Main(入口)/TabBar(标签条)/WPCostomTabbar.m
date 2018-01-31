@@ -12,7 +12,7 @@
 
 @property (nonatomic,strong)UIImageView * bgImageView;
 
-
+@property (nonatomic,assign)NSInteger currentPage;
 
 @end
 
@@ -20,9 +20,9 @@
 
 -(UIImageView *)bgImageView{
     if (!_bgImageView) {
-        _bgImageView = [[UIImageView alloc]initWithFrame:self.frame];
+        _bgImageView = [[UIImageView alloc]initWithFrame:self.bounds];
         _bgImageView.image = [UIImage imageNamed:@"tabbarbg"];
-        _bgImageView.userInteractionEnabled = YES;
+//        _bgImageView.userInteractionEnabled = YES;
         
     }
     return _bgImageView;
@@ -31,22 +31,36 @@
 -(instancetype)init{
     if (self) {
         self = [[WPCostomTabbar alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-115, WINDOW_WIDTH, 115)];
-        
+        [self addSubview:self.bgImageView];
+        [self createTabbarButton];
+    }
+    return self;
+}
+
+-(instancetype)initWithCurrentPage:(NSInteger)currentPage{
+    if (self = [super init]) {
+        self = [[WPCostomTabbar alloc]initWithFrame:CGRectMake(0, WINDOW_HEIGHT-115, WINDOW_WIDTH, 115)];
+        self.currentPage = currentPage;
+        [self addSubview:self.bgImageView];
+        [self createTabbarButton];
     }
     return self;
 }
 
 -(void)createTabbarButton{
-    NSArray * icons = @[@"tabbar_Home",@"tabbar_Exchange",@"tabbar_Push",@"tabbar_My"];
+    NSArray * icons = @[@"tabbar_Home_Normal",@"tabbar_Exchange_Normal",@"tabbar_Push_Normal",@"tabbar_My_Normal"];
+    NSArray * selectIcons = @[@"tabbar_Home_Select",@"tabbar_Exchange_Select",@"tabbar_Push_Select",@"tabbar_My_Select"];
     for (int i = 0; i<4; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        CGFloat w = 73;
-        CGFloat h = 73;
-        button.frame = CGRectMake(0, self.height - 73 - 10, 73, 73);
-        button.centerY = WINDOW_WIDTH/8 * (i*2+1);
+        button.frame = CGRectMake(0, self.height - 73, 94, 74);
+        button.centerX = WINDOW_WIDTH/8 * (i*2+1);
         button.tag = i;
         [button setImage:[UIImage imageNamed:icons[i]] forState:UIControlStateNormal];
+        if (i == self.currentPage) {
+            [button setImage:[UIImage imageNamed:selectIcons[i]] forState:UIControlStateNormal];
+        }        
         [button addTarget:self action:@selector(tabbarButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:button];
     }
 }
 

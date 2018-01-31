@@ -68,7 +68,7 @@
     self.logoImageOK.hidden = NO;
     self.logoLabelOK.hidden = NO;
     self.logoImage.hidden = YES;
-    }
+}
 -(void)showOngoing
 {
     self.logoImage.hidden = NO;

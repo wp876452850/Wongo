@@ -35,7 +35,7 @@
     
     NSString        * _cid;
     
-    NSInteger       _d;
+    BOOL _isFirst;
     
     BOOL _isOpen;
 }
@@ -45,7 +45,7 @@
 
 @property (nonatomic,strong)NSMutableArray      * dataSourceArray;
 //二级菜单
-@property (nonatomic,strong)UIView              * menuView;
+@property (nonatomic,strong)UIImageView         * menuView;
 
 @property (nonatomic,strong)NSString            * url;
 //分类弹出菜单
@@ -65,19 +65,21 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(WPClassificationTableView *)classificationTableView{
     if (!_classificationTableView) {
-        _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom, WINDOW_WIDTH, 200) style:UITableViewStylePlain];
+        _classificationTableView  = [[WPClassificationTableView alloc]initWithFrame:CGRectMake(0, _menuView.bottom , WINDOW_WIDTH, 200) style:UITableViewStylePlain];
     }
     return _classificationTableView;
 }
 
--(UIView *)menuView{
+-(UIImageView *)menuView{
     if (!_menuView) {
-        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 40)];
+        _menuView = [[UIImageView alloc]initWithFrame:CGRectMake(0, _cycleScrollView.bottom, WINDOW_WIDTH, 46)];
+        _menuView.image = [UIImage imageNamed:@"menuBackground.jpg"];
+        _menuView.userInteractionEnabled = YES;
         _menuView.layer.borderWidth = 0.5f;
         _menuView.layer.borderColor = WongoGrayColor.CGColor;
         _menuView.backgroundColor = WhiteColor;
         for (int i = 0; i < 3; i++) {
-            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 30)];
+            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/3+i, 5, WINDOW_WIDTH/3-1, 36)];
             if (i == 0) {
                 menuButton.selected = YES;
                 _memoryButton = menuButton;
@@ -91,8 +93,8 @@ static NSString * const reuseIdentifier = @"Cell";
             menuButton.tag = i;
             [menuButton setBackgroundColor:[UIColor clearColor]];
             menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
-            menuButton.normalTitleColor = ColorWithRGB(100, 100, 100);
-            menuButton.selectedTitleColor = WongoBlueColor;
+            menuButton.normalTitleColor = WhiteColor;
+            menuButton.selectedTitleColor = WhiteColor;
             NSString * title = SectionMenuTitles[i];
             
             menuButton.normalAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@""] atIndex:title.length imageBounds:CGRectMake(0, 0, 9, 9)];
@@ -166,8 +168,8 @@ static NSString * const reuseIdentifier = @"Cell";
         [self addSubview:self.menuView];
         [self addSubview:self.classificationTableView];
         _cid = @"876452850";
-        [self addFooter];
         [self addHeader];
+        [self addFooter];
     }
     return self;
 }
@@ -205,7 +207,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 //设置边距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(WINDOW_WIDTH - 70, 5, 10, 5);
+    return UIEdgeInsetsMake(WINDOW_WIDTH - 60, 5, 10, 5);
 }
 
 
@@ -284,6 +286,11 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)loadMoreDatas{
     __weak WPChoiceSubCollectionView * weakSelf = self;
+    if (!_isFirst) {
+        _isFirst = YES;
+        [weakSelf.mj_footer endRefreshing];
+        return;
+    }
     [WPNetWorking createPostRequestMenagerWithUrlString:self.url params:@{@"currPage":@(_page),@"cid":_cid} datas:^(NSDictionary *responseObject) {
         if ([[responseObject valueForKey:@"goods"] isKindOfClass:[NSNull class]]) {
             [weakSelf.mj_footer endRefreshing];

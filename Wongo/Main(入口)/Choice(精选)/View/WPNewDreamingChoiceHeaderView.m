@@ -9,7 +9,7 @@
 #import "WPNewDreamingChoiceHeaderView.h"
 #import "SDCycleScrollView.h"
 #import "WPCustomButton.h"
-#define SectionMenuTitles @[@" 成为梦想人",@" 成为造梦人"]
+#define SectionMenuTitles @[@" 成为梦想人 ",@" 成为造梦人 "]
 
 @interface WPNewDreamingChoiceHeaderView ()
 {
@@ -19,7 +19,7 @@
 //海报
 @property (nonatomic,strong)SDCycleScrollView * posters;
 @property (nonatomic,strong)NSArray * postersImages;
-@property (nonatomic,strong)UIView * menuView;
+@property (nonatomic,strong)UIImageView * menuView;
 @end
 @implementation WPNewDreamingChoiceHeaderView
 
@@ -31,14 +31,16 @@
     }
     return _posters;
 }
--(UIView *)menuView{
+-(UIImageView *)menuView{
     if (!_menuView) {
-        _menuView = [[UIView alloc]initWithFrame:CGRectMake(0, _posters.bottom, WINDOW_WIDTH, 40)];
+        _menuView = [[UIImageView alloc]initWithFrame:CGRectMake(0, _posters.bottom, WINDOW_WIDTH, 46)];
+        _menuView.userInteractionEnabled = YES;
+        _menuView.image = [UIImage imageNamed:@"menuBackground.jpg"];
         _menuView.layer.borderColor = WongoGrayColor.CGColor;
         _menuView.backgroundColor = WhiteColor;
         _menuView.backgroundColor = ColorWithRGB(30, 35, 36);
         for (int i = 0; i < 2; i++) {
-            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/2+i, 5, WINDOW_WIDTH/2-1, 30)];
+            WPCustomButton * menuButton = [[WPCustomButton  alloc]initWithFrame:CGRectMake(i*WINDOW_WIDTH/2+i, 5, WINDOW_WIDTH/2-1, 36)];
             if (i == 0) {
                 menuButton.selected = YES;
                 _memoryButton = menuButton;
@@ -49,7 +51,7 @@
             [menuButton setBackgroundColor:[UIColor clearColor]];
             menuButton.titleLabel.font = [UIFont systemFontOfSize:15];
             menuButton.normalTitleColor = WhiteColor;
-            menuButton.selectedTitleColor = WongoBlueColor;
+            menuButton.selectedTitleColor = WhiteColor;
             NSString * title = SectionMenuTitles[i];
             
             menuButton.normalAttrobuteString = [WPAttributedString attributedStringWithAttributedString:[[NSAttributedString alloc]initWithString:title] insertImage:[UIImage imageNamed:@""] atIndex:title.length imageBounds:CGRectMake(0, 0, 9, 9)];

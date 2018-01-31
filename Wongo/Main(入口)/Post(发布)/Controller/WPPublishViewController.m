@@ -18,7 +18,6 @@
 #define PushTypeTitle           @[@"交换",@"寄卖",@"造梦"]
 #define PushDescribeTitle       @[@"平台担保安全交换",@"平台检测商品寄卖",@"平台提供造梦计划"]
 #define PushButtonIcon          @[@"exchangebtn_normal",@"consignment_normal",@"pushDreaming_normal"]
-#define PushButtonSelectIcon    @[@"exchangebtn_selected",@"consignment_select",@"pushDreaming_selected"]
 
 @interface WPPublishViewController ()
 // 毛玻璃
@@ -80,9 +79,9 @@
         UIImage * image = [UIImage imageNamed:PushButtonIcon[i]];
         UIButton * button       = [UIButton buttonWithType:UIButtonTypeCustom];
         button.tag = i;
-        button.bounds = CGRectMake(0, 0, 134, 134);
+        button.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
         button.centerX = self.view.width*(i%2*2+1)/4;
-        button.centerY = self.view.centerY - 50;
+        button.centerY = self.view.centerY - 100;
         if (i==2) {
             button.centerX = self.view.width/2;
             button.centerY = self.view.centerY+150;
@@ -92,7 +91,6 @@
         [self.view addSubview:button];
         [button addTarget:self action:@selector(push:) forControlEvents:UIControlEventTouchUpInside];
         [button setImage:image forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:PushButtonSelectIcon[i]] forState:UIControlStateHighlighted];
         
         UILabel * label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, WINDOW_WIDTH/3, 30)];
         label.top = button.bottom;

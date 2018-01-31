@@ -152,7 +152,7 @@ static id tabBar;
     [super viewWillAppear:animated];
     [self changeRedDot];
     //删除系统自带的tabBarButton
-
+    
     for (UIView *tabBarButton in self.tabBar.subviews)
     {
         if ([tabBarButton isKindOfClass:NSClassFromString(@"UITabBarButton")])
@@ -165,6 +165,8 @@ static id tabBar;
 #pragma mark - viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.tabbarHiddenWhenPushed = YES;
     
     self.hidesBottomBarWhenPushed = YES;
     
@@ -192,7 +194,7 @@ static id tabBar;
     [[NSNotificationCenter defaultCenter] addObserverForName:@"CHANGE_REDDOT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         [self changeRedDot];
     }];
-    
+    self.footView.hidden = YES;
 }
 #pragma mark - 创建子试图控制器
 - (void)createChildViewController:(UIViewController *)viewController{
@@ -262,6 +264,7 @@ static id tabBar;
     self.imageView = img;
     self.selectedIndex = btn.tag;
 }
+
 
 
 #pragma mark - 隐藏/开启标签条

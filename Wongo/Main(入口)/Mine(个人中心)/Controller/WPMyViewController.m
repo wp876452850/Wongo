@@ -24,6 +24,8 @@
 #import "WPBalanceViewController.h"
 #import "WPMyConsignmentViewController.h"
 
+#import "WPCostomTabbar.h"
+
 #define CELL_ID @"cell"
 
 
@@ -31,10 +33,10 @@
 //#define Cell_Icon_Array @[@"money",@"commodityManagement",@"tradeOrders",@"address",@"dreamingPlan",@"myOrder",@"myShop",@"invitecode"]
 //#define Cell_ViewControllers @[[WPBalanceViewController class],[WPCommodityManagementViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPStoreViewController class],[WPInviteCodeViewController class]]
 
-#define Cell_title_array @[@"我的主页",@"商品管理",@"造梦计划",@"造梦订单",@"我的寄卖",@"交换订单",@"收货地址",@"余额",@"邀请码"]
-#define Cell_Icon_Array @[@"myShop",@"commodityManagement",@"dreamingPlan",@"myOrder",@"myconsignment",@"tradeOrders",@"address",@"money",@"invitecode"]
+#define Cell_title_array @[@"我的主页",@"商品管理",@"造梦计划",@"造梦订单",@"我的寄卖",@"交换订单",@"收货地址",@"余额",@"邀请码",@""]
+#define Cell_Icon_Array @[@"myShop",@"commodityManagement",@"dreamingPlan",@"myOrder",@"myconsignment",@"tradeOrders",@"address",@"money",@"invitecode",@""]
 
-#define Cell_ViewControllers @[[WPStoreViewController class],[WPCommodityManagementViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPMyConsignmentViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPBalanceViewController class],[WPInviteCodeViewController class]]
+#define Cell_ViewControllers @[[WPStoreViewController class],[WPCommodityManagementViewController class],[WPMyDreamingViewController class],[WPDreamingOrderViewController class],[WPMyConsignmentViewController class],[WPExchangeOrderViewController class],[WPAddressViewController class],[WPBalanceViewController class],[WPInviteCodeViewController class],[WPInviteCodeViewController class]]
 
 #define Self_NavigationBarTintColor ColorWithRGB(33, 34, 35)
 //表的一个区头试图高度
@@ -51,11 +53,21 @@
 
 @property (nonatomic,strong)NSArray * cellIconArray;
 
+@property (nonatomic,strong)WPCostomTabbar * tabbar;
+
 @end
 
 @implementation WPMyViewController
 
 #pragma mark - 懒加载
+
+-(WPCostomTabbar *)tabbar{
+    if (!_tabbar) {
+        _tabbar = [[WPCostomTabbar alloc]initWithCurrentPage:3];
+    }
+    return _tabbar;
+}
+
 -(NSArray *)cellTitleArray
 {
     if (!_cellTitleArray) {
@@ -90,7 +102,7 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:@"CHANGE_REDDOT" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         [self.userInformationView changeMessageBtnDot];
     }];
-    
+    [self.view addSubview:self.tabbar];
 }
 
 
@@ -105,7 +117,6 @@
         [[NSUserDefaults standardUserDefaults]setObject:@"0" forKey:IsMySubViewController];
     }
     WPTabBarController * tabBar = [WPTabBarController sharedTabbarController];
-    tabBar.tabbarHiddenWhenPushed = NO;
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     //判断登录状态是否改变
     NSString * isChangeUserID = [defaults objectForKey:User_ID_ISChange];
@@ -116,6 +127,7 @@
     }
     [self.userInformationView changeMessageBtnDot];
     [tabBar changeRedDot];
+    tabBar.tabbarHiddenWhenPushed = YES;
 }
 
 //更改导航条样式

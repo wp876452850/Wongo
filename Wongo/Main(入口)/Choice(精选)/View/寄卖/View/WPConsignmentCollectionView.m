@@ -11,8 +11,8 @@
 #import "WPBrandCollectionViewCell.h"
 #import "WPStoreConsignmentCollectionViewCell.h"
 #import "WPConsignmentModel.h"
-#define HeaderView_Height WINDOW_WIDTH*0.4 + (180*WINDOW_WIDTH/375)+40
 
+#define HeaderView_Height WINDOW_WIDTH*0.4 + (180*WINDOW_WIDTH/375)+40
 
 @interface WPConsignmentCollectionView ()<UICollectionViewDelegate,UICollectionViewDataSource>{
     NSInteger _currPage;
@@ -86,18 +86,11 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 //item 数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-//    if (section == 0) {
-//        return 8;
-//    }
     return _dataSourceArray.count;
 }
 
 //
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 0) {
-//        WPBrandCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:brandCell forIndexPath:indexPath];
-//        return cell;
-//    }
     WPStoreConsignmentCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:ConsignmentCell forIndexPath:indexPath];
     cell.model = self.dataSourceArray[indexPath.row];
     return cell;
@@ -116,7 +109,7 @@ static NSString * const ConsignmentCell = @"ConsignmentCell";
 
 //设置每个item垂直间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 1;
+    return 5;
 }
 
 //每个单元格返回的大小

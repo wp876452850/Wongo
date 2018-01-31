@@ -10,4 +10,6 @@
 
 @interface WPCostomTabbar : UIView
 
+-(instancetype)initWithCurrentPage:(NSInteger)currentNumber;
+
 @end

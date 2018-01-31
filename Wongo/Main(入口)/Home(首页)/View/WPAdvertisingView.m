@@ -59,14 +59,13 @@
     if (self = [super init]) {
         self.frame = CGRectMake(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
         [self addSubview:self.passButton];
-        [self addSubview:self. advertisingImageView];
+        [self addSubview:self.advertisingImageView];
         [self bringSubviewToFront:self.passButton];
     }
     return self;
 }
 #pragma mark -loadData
 -(void)loadData{
-    
     //获取广告图片
     [WPNetWorking createPostRequestMenagerWithUrlString:@"" params:@{} datas:^(NSDictionary *responseObject) {
         
