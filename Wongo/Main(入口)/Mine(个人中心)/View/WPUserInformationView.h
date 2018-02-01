@@ -22,5 +22,8 @@ typedef NS_ENUM(NSUInteger,UserType)
 
 
 -(instancetype)initWithFrame:(CGRect)frame Type:(UserType)type;
+
 -(void)loadDatas;
+
+-(void)upDataDatasNumber;
 @end

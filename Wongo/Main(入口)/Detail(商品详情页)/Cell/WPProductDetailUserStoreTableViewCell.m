@@ -32,7 +32,7 @@
     self.headPortrait.layer.borderWidth = 0.5f;
     self.headPortrait.layer.borderColor =ColorWithRGB(24, 24, 24).CGColor;
     self.headPortrait.userInteractionEnabled = YES;
-    
+    _collect.selected = [self focusOnWithinArrayContainsUid:@"1"]?YES:NO;
     
     self.collect.layer.masksToBounds = YES;
     self.collect.layer.cornerRadius = 5;
@@ -59,9 +59,14 @@
 
 - (IBAction)collect:(UIButton *)sender {
     if (_model.url.length <=0) {
-        [self focusOnTheUserWithSender:sender uid:@"1"];
+        [self focusOnTheUserWithSender:sender uid:@"1" chenggongBlock:^{
+            _collect.selected = !_collect.selected;
+        } shibaiBlock:nil];
     }
-    [self focusOnTheUserWithSender:sender uid:_model.uid];
+    else
+        [self focusOnTheUserWithSender:sender uid:_model.uid chenggongBlock:^{
+            _collect.selected = !_collect.selected;
+        } shibaiBlock:nil];
 }
 
 -(void)setModel:(WPUserIntroductionModel *)model{
@@ -74,7 +79,6 @@
     else{
         self.other.text = @"用户暂无签名";
     }
-    self.collect.selected = [model.collect floatValue];
     //判断是否有其他推荐，没有则返回分割线位置
     if (_rowHeightBlock) {
         _rowHeightBlock(self.line.bottom);

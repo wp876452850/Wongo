@@ -180,6 +180,12 @@
     }
 }
 
+-(void)upDataDatasNumber{
+    _attentionNumber.text   = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedFocusArray].count];
+    _fansNumber.text        = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedFansArray].count];
+    _enjoyNumber.text       = [NSString stringWithFormat:@"%ld",[NSMutableArray sharedCollectionArray].count];
+}
+
 //创建用户名、签名、关注、粉丝、喜欢部分
 -(void)createInforMation{
     self.userName = [[UILabel alloc]init];

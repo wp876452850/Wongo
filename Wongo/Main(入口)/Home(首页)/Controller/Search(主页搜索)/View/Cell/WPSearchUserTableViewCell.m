@@ -50,7 +50,9 @@
     _userID                         = model.uid;
 }
 - (IBAction)attentionClick:(UIButton *)sender {
-    [self focusOnTheUserWithSender:sender uid:_model.uid];
+    [self focusOnTheUserWithSender:sender uid:_model.uid chenggongBlock:^{
+        _attention.selected = !_attention.selected;
+    } shibaiBlock:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

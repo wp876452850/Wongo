@@ -213,39 +213,54 @@
     }
 }
 /**关注*/
--(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid{
+-(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid chenggongBlock:(WPChenggongBlock)chenggongBlock shibaiBlock:(WPShibaiBlock)shibaiBlock{
     //判断是否登录
     if ([self determineWhetherTheLogin]) {
-        __block UIButton * button = sender;
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFAddUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 if ([responseObject[@"flag"] boolValue]) {
-                   button.selected = !button.selected;
+                    if (chenggongBlock) {
+                        chenggongBlock();
+                    }
                 [focusArray addObject:uid];
+                }
+            } failureBlock:^{
+                if (shibaiBlock) {
+                    shibaiBlock();
                 }
             }];
         }
         else{
             [WPNetWorking createPostRequestMenagerWithUrlString:FollowFDelUrl params:@{@"uidF":uid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 if ([responseObject[@"flag"] boolValue]) {
-                     button.selected = !button.selected;
+                    if (chenggongBlock) {
+                        chenggongBlock();
+                    }
                 [focusArray removeObject:uid];
+                }
+            } failureBlock:^{
+                if (shibaiBlock) {
+                    shibaiBlock();
                 }
             }];
         }
     }
 }
 /**收藏*/
--(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
+-(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid chenggongBlock:(WPChenggongBlock)chenggongBlock shibaiBlock:(WPShibaiBlock)shibaiBlock{
     //判断是否登录
-    if ([self determineWhetherTheLogin]) {
-        __block UIButton * button = sender;
-        
+    if ([self determineWhetherTheLogin]) {        
         if (!sender.selected) {
             [WPNetWorking createPostRequestMenagerWithUrlString:CollectionAddUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
                 if ([responseObject[@"flag"] boolValue]) {
-                    button.selected = !button.selected;
+                    if (chenggongBlock) {
+                        chenggongBlock();
+                    }
                     [collectionArray addObject:gid];
+                }
+            } failureBlock:^{
+                if (shibaiBlock) {
+                    shibaiBlock();
                 }
             }];
             return;
@@ -253,7 +268,13 @@
         [WPNetWorking createPostRequestMenagerWithUrlString:CollectionCancelUrl params:@{@"gid":gid,@"uid":[self getSelfUid]} datas:^(NSDictionary *responseObject) {
             if ([responseObject[@"flag"] boolValue]) {
                 [collectionArray removeObject:gid];
-                button.selected = !button.selected;
+                if (chenggongBlock) {
+                    chenggongBlock();
+                }
+            }
+        }failureBlock:^{
+            if (shibaiBlock) {
+                shibaiBlock();
             }
         }];
     }
@@ -460,7 +481,6 @@ static const NSString * selectUid;
     return NO;
 }
 -(BOOL)focusOnWithinArrayContainsUid:(NSString *)uid{
-    
     if ([self getSelfUid].length>0) {
         NSArray * collectionArray =  [NSArray arrayWithArray:[NSMutableArray sharedFocusArray]];
         if ([collectionArray containsObject:uid]) {

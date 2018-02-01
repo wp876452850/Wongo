@@ -41,7 +41,10 @@
 
 - (IBAction)attentionClick:(UIButton *)sender {
     
-    [self focusOnTheUserWithSender:sender uid:_model.uid];
+    [self focusOnTheUserWithSender:sender uid:_model.uid chenggongBlock:^{
+        sender.selected = !sender.selected;
+    } shibaiBlock:nil];
+    
     if (sender.selected) {
         sender.layer.borderColor   = GRAY_COLOR.CGColor;
     }

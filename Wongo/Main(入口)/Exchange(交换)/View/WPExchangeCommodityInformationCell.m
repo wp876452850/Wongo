@@ -94,7 +94,9 @@
 }
 //收藏
 - (IBAction)collection:(UIButton *)sender {
-    [self collectionOfGoodsWithSender:sender gid:_model.gid];
+    [self collectionOfGoodsWithSender:sender gid:_model.gid chenggongBlock:^{
+        _collectionButoon.selected = !_collectionButoon.selected;
+    } shibaiBlock:nil];
     if (sender.selected) {
         _freightNumber--;
     }

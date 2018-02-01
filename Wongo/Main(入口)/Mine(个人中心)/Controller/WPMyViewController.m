@@ -128,6 +128,10 @@
     [self.userInformationView changeMessageBtnDot];
     [tabBar changeRedDot];
     tabBar.tabbarHiddenWhenPushed = YES;
+    
+    if (_userInformationView) {
+        [_userInformationView upDataDatasNumber];
+    }
 }
 
 //更改导航条样式

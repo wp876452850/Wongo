@@ -28,6 +28,7 @@
 		3D0773061F18AF560084E409 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773031F18AF560084E409 /* SDWaitingView.m */; };
 		3D07730A1F18BAEF0084E409 /* WPPushImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0773081F18BAEF0084E409 /* WPPushImageCollectionViewCell.m */; };
 		3D07730B1F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0773091F18BAEF0084E409 /* WPPushImageCollectionViewCell.xib */; };
+		3D0D20742021919A0033375B /* WPDreamingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C97141E640C300089EF32 /* WPDreamingDetailViewController.m */; };
 		3D0DF8561F4E68CE00BA1615 /* WPStoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8551F4E68CE00BA1615 /* WPStoreViewController.m */; };
 		3D0DF8591F4E6E8300BA1615 /* WPStoreUserInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0DF8581F4E6E8300BA1615 /* WPStoreUserInformationView.m */; };
 		3D13B8251F16227000C1A20F /* WPBezierPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D13B8241F16227000C1A20F /* WPBezierPath.m */; };
@@ -783,7 +784,6 @@
 		85566FB21E9F4DCD00BA7D2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FB11E9F4DCD00BA7D2A /* Foundation.framework */; };
 		85566FB41E9F4DDF00BA7D2A /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85566FB31E9F4DDF00BA7D2A /* CoreMotion.framework */; };
 		8559811E1EA458D200F58BD6 /* WPConcernUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8559811D1EA458D200F58BD6 /* WPConcernUserViewController.m */; };
-		855C97151E640C300089EF32 /* WPDreamingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855C97141E640C300089EF32 /* WPDreamingDetailViewController.m */; };
 		855D560A1E650AC400206BE0 /* WPDreamingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 855D56091E650AC400206BE0 /* WPDreamingDetailModel.m */; };
 		856245C01E4C054B003480BE /* WPMenuScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 856245BF1E4C054B003480BE /* WPMenuScrollView.m */; };
 		8566A6E21E48209B00C08624 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8566A6E11E48209B00C08624 /* main.m */; };
@@ -8314,7 +8314,6 @@
 				3D1906371F29DB5C00E4EFFD /* WPProductLinkModel.m in Sources */,
 				852D0D871E5A98EC00B8EE93 /* WPSearchGoodsModel.m in Sources */,
 				3DF746131F3426FB00A23B52 /* WPCommentsSectionTableViewCell.m in Sources */,
-				855C97151E640C300089EF32 /* WPDreamingDetailViewController.m in Sources */,
 				3D0772FB1F18A7F70084E409 /* UIView+Layout.m in Sources */,
 				3D83C5CF1FB155A1003342CB /* WPPushConsignmentViewController.m in Sources */,
 				85187E421E8DF94B00D3D64F /* WPAnimationHeader.m in Sources */,
@@ -8696,6 +8695,7 @@
 				3D1906341F29C99300E4EFFD /* WPProductLinkView.m in Sources */,
 				85D595591E5C1C6F00AB5869 /* WPSearchGoodsChildController.m in Sources */,
 				3D603BEC1F3953C200E983AE /* WPNewExchangeModel.m in Sources */,
+				3D0D20742021919A0033375B /* WPDreamingDetailViewController.m in Sources */,
 				8566A7F71E4826E800C08624 /* WPNetWorking.m in Sources */,
 				8566A8B21E4828ED00C08624 /* WPTabBarController.m in Sources */,
 				850E9F6F1EBB1EDC0053C698 /* WPGoodsImageView.m in Sources */,

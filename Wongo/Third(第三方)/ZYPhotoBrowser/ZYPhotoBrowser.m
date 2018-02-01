@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "ZYPhotoBrowserView.h"
 #import "ZYPhotoCollectionView.h"
+#import "ZYPhotoCollectionViewCell.h"
 //第三方
 #import "Masonry.h"
 #import "MBProgressHUD.h"
@@ -269,7 +270,6 @@
         } completion:nil];
     }
 }
-
 #pragma mark - 开始大图模式
 - (void)showFirstImage
 {
@@ -398,7 +398,9 @@
         } completion:^(BOOL finished) {
             [self hidePhotoBrowser:recognizer];
         }];
-    } else {
+    }
+    else
+    {
         [self hidePhotoBrowser:recognizer];
     }
 }
@@ -427,14 +429,25 @@
     ZYPhotoBrowserView *view = (ZYPhotoBrowserView *)recognizer.view;
     UIImageView *currentImageView = view.imageview;
     ZYPhotoCollectionView * collectionView = (ZYPhotoCollectionView *)self.sourceImagesContainerView;
-    UICollectionViewCell * cell;
-    if (collectionView.photoModelArray.count == 4 && self.currentImageIndex > 1) {
-        cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex + 1 inSection:0]];
-    } else {
-        cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex inSection:0]];
-    }
-
-    CGRect targetTemp = [self.sourceImagesContainerView convertRect:cell.frame toView:self];
+    ZYPhotoCollectionViewCell * cell;
+//    if (/*collectionView.photoModelArray.count == 4 &&*/ self.currentImageIndex > 1) {
+//        cell = [collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex + 1 inSection:0]];
+//    } else {
+    cell = (ZYPhotoCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.currentImageIndex inSection:0]];
+//    }
+    
+    
+    CGFloat w = cell.imageView.image.size.width;
+    CGFloat h = cell.imageView.image.size.height;
+    CGFloat max = MAX(w, h);
+    CGFloat scale = cell.width /max;
+    CGFloat scaleW = scale * w;
+    CGFloat scaleH = scale * h;
+    
+    
+    CGRect frame = CGRectMake(cell.centerX - scaleW /2, cell.centerY - scaleH/2, scaleW, scaleH);
+    
+    CGRect targetTemp = [self.sourceImagesContainerView convertRect:frame toView:self];
     
     UIImageView *tempImageView = [[UIImageView alloc] init];
     tempImageView.image = currentImageView.image;

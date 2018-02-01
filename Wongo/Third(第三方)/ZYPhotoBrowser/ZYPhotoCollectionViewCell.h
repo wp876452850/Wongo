@@ -12,5 +12,5 @@
 @interface ZYPhotoCollectionViewCell : UICollectionViewCell
 @property(nonatomic,assign) NSUInteger index;
 @property(nonatomic,strong) ZYPhotoModel *photoModel;
-
+@property(nonatomic, strong)UIImageView *imageView;
 @end

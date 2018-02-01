@@ -11,6 +11,9 @@
 typedef void(^AddBlock)(void);
 typedef void(^ReduceBlock)(void);
 
+typedef void(^WPChenggongBlock)(void);
+typedef void(^WPShibaiBlock)(void);
+
 @interface NSObject (WPCategory)
 /**默认商品图片*/
 -(UIImage *)getPlaceholderImage;
@@ -63,9 +66,9 @@ typedef void(^ReduceBlock)(void);
 /**点赞造梦商品*/
 -(void)thumbUpGoodsWithSender:(UIButton *)sender proid:(NSString *)proid addBlock:(AddBlock)addBlock reduceBlock:(ReduceBlock)reduceBlock;
 /**关注用户*/
--(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid;
+-(void)focusOnTheUserWithSender:(UIButton *)sender uid:(NSString *)uid chenggongBlock:(WPChenggongBlock)chenggongBlock shibaiBlock:(WPShibaiBlock)shibaiBlock;
 /**收藏商品*/
--(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid;
+-(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid chenggongBlock:(WPChenggongBlock)chenggongBlock shibaiBlock:(WPShibaiBlock)shibaiBlock;
 
 +(instancetype)sharedThumupArray;
 +(instancetype)sharedThumupDreamingArray;

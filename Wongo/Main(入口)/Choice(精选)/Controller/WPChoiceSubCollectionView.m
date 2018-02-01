@@ -257,21 +257,21 @@ static NSString * const reuseIdentifier = @"Cell";
             NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<goodsRm.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
-        if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
+        else if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
             NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
             for (int i = 0; i<goodsNew.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsNew[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
         else{
             NSArray * listg = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<listg.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
         // 刷新表格
@@ -300,15 +300,15 @@ static NSString * const reuseIdentifier = @"Cell";
             NSArray * goodsRm = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<goodsRm.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsRm[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
         
-        if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
+       else if ([weakSelf.url isEqualToString:QueryGoodsListNew]) {
             NSArray * goodsNew = [responseObject objectForKey:@"goodsNew"];
             for (int i = 0; i<goodsNew.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:goodsNew[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
         
@@ -316,10 +316,9 @@ static NSString * const reuseIdentifier = @"Cell";
             NSArray * listg = [responseObject objectForKey:@"goodsRm"];
             for (int i = 0; i<listg.count; i++) {
                 WPNewExchangeModel * model = [WPNewExchangeModel mj_objectWithKeyValues:listg[i]];
-                [_dataSourceArray addObject:model];
+                [weakSelf.dataSourceArray addObject:model];
             }
         }
-        
         // 刷新表格
         [weakSelf reloadData];
         // 隐藏当前的上拉刷新控件

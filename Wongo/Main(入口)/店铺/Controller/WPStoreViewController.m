@@ -243,8 +243,9 @@ static NSString * const consigmentCell  = @"ConsigmentCell";
 }
 
 -(void)collect:(UIButton *)sender{
-    sender.selected = !sender.selected;
-    [self focusOnTheUserWithSender:sender uid:self.uid];
+    [self focusOnTheUserWithSender:sender uid:self.uid chenggongBlock:^{
+        sender.selected = !sender.selected;
+    } shibaiBlock:nil];
 }
 
 -(void)hiddenBottomView{
@@ -252,7 +253,4 @@ static NSString * const consigmentCell  = @"ConsigmentCell";
     self.collectionView.height = WINDOW_HEIGHT;
 }
 
--(void)collectionOfGoodsWithSender:(UIButton *)sender gid:(NSString *)gid{
-    
-}
 @end

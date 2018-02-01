@@ -187,8 +187,8 @@ static NSString * const recommendCell   = @"recommendCell";
     [self loadDatas];
     [self.view addSubview:self.joinDreaming];
     [self.view addSubview:self.tableView];
-    [self.tableView addSubview:self.backBtn];
-    [self.tableView addSubview:self.functionButton];
+    [self.view addSubview:self.backBtn];
+    [self.view addSubview:self.functionButton];
 }
 
 
@@ -200,7 +200,11 @@ static NSString * const recommendCell   = @"recommendCell";
     [self loadGoodsInformationDatas];
 }
 
-
+-(void)btntop{
+    
+    [self.tableView bringSubviewToFront:_functionButton];
+    [self.tableView bringSubviewToFront:_backBtn];
+}
 //查询商品所有信息
 -(void)loadGoodsInformationDatas{
     __block typeof(self) weakSelf = self;
@@ -274,6 +278,7 @@ static NSString * const recommendCell   = @"recommendCell";
         weakSelf.model.introduceModel.dreamingIntroduces = responseObject[@"list"];
         weakSelf.model.rounds = weakSelf.model.introduceModel.dreamingIntroduces.count;
         [weakSelf.tableView reloadData];
+//        [weakSelf btntop];
     } failureBlock:^{
         [weakSelf.tableView reloadData];
     }];

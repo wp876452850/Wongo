@@ -43,7 +43,8 @@
     UIColor * color = ActivityColors[activityState];
     self.thumup.layer.borderColor = color.CGColor;
     self.goExchange.backgroundColor = color;
-    [self.goExchange setTitle:ActivityTitles[activityState] forState:UIControlStateNormal];    
+//    [self.goExchange setTitle:ActivityTitles[activityState] forState:UIControlStateNormal];
+    [self.goExchange setTitle:@"参与活动" forState:UIControlStateNormal];
     [self.thumup setImage:[UIImage imageNamed:ThumupIcon_Normal[activityState]] forState:UIControlStateNormal];
     [self.thumup setImage:[UIImage imageNamed:ThumupIcon_Select[activityState]] forState:UIControlStateSelected];
     [self.thumup setTitleColor:color forState:UIControlStateNormal];

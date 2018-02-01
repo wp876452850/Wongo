@@ -12,7 +12,7 @@
 
 @interface WPStoreConsignmentCollectionViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImage;
-@property (weak, nonatomic) IBOutlet UITextView *goodsName;
+@property (weak, nonatomic) IBOutlet UILabel *goodsName;
 @property (weak, nonatomic) IBOutlet UILabel *price;
 
 @end

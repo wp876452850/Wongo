@@ -92,7 +92,7 @@
                 <outlet property="other" destination="b42-2B-wwV" id="ezT-OU-DLt"/>
                 <outlet property="uname" destination="Vo2-TU-2Xp" id="hrc-3a-RbS"/>
             </connections>
-            <point key="canvasLocation" x="-438" y="40"/>
+            <point key="canvasLocation" x="-497" y="15"/>
         </tableViewCell>
     </objects>
     <resources>

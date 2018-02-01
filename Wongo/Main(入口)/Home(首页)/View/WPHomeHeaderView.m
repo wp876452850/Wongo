@@ -76,9 +76,9 @@
         _activityC = [self setUpActivityImageWithFrame:CGRectMake(_activityA.right+2.5, _activityB.bottom+2.5, WINDOW_WIDTH-7.5-w, (h-2.5)/2) actitvityState:2];
         
         //点击手势
-        _activityA.tag = 0;
-        _activityB.tag = 1;
-        _activityC.tag = 2;
+        _activityA.tag = 5;
+        _activityB.tag = 6;
+        _activityC.tag = 7;
         
         
         
@@ -174,15 +174,13 @@
 }
 
 -(void)createWizardButton{
-    NSArray * titles = @[@"造梦",@"交换",@"寄卖",@"公益换新",@"分享奖励",@"闲置换新",@"造梦流程",@"发布商品"];
-    NSArray * images = @[@"homeDreaming",@"homeExchange",@"homeConsignment",@"homegongyi",@"homefenxiang",@"homexianzhi",@"homeCourse",@"homePush"];
+    NSArray * titles = @[@"造梦",@"交换",@"寄卖",@"分享奖励",@"公益换新",@"闲置换新",@"造梦流程",@"发布商品"];
+    NSArray * images = @[@"homeDreaming",@"homeExchange",@"homeConsignment",@"homefenxiang",@"homegongyi",@"homexianzhi",@"homeCourse",@"homePush"];
     //NSArray * titles = @[@"造梦",@"交换",@"发布",@"造梦流程"];
     //NSArray * images = @[@"mainDreaming",@"mainExchange",@"mainPush",@"homeCourse"];
     
     CGFloat w = 74;
-    CGFloat h = 79;
     CGFloat m = (WINDOW_WIDTH - 4 * w)/(4+1);
-    CGFloat mL = 8;
     for (int i = 0; i < images.count; i++) {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage * icon = [UIImage imageNamed:images[i]];
